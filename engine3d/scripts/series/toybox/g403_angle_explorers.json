@@ -1,0 +1,6522 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "meta": {
+  "series": "toybox",
+  "episode": "g403",
+  "audience": "grade4",
+  "title": "Angle Explorers",
+  "seed": 403,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "playful",
+  "musicGain": 0.18,
+  "skills": [
+   "angles_4"
+  ],
+  "youtube": {
+   "title": "Angles for Kids: Acute, Right, Obtuse and How to Use a Protractor | Grade 4 Math | Toy Box Friends",
+   "description": "Robo thinks the angle with the longest arms is the biggest. Owl tests it, and finds an angle measures turn, not arm length!\nKids learn lines, rays, segments and the vertex; quarter, half and full turns (90°, 180°, 360°) with a door, a clock and Bunny's skateboard; how to sort acute, right, obtuse and straight angles; how to use a protractor (centre, 0 line, count up from 0) with a sense check; adding angles and finding a missing angle; and parallel, perpendicular and intersecting lines.\nTry at home: fold paper in half twice to make a right angle tester and hunt for angles. If you test a door, keep fingers away from the hinge and let a grown-up swing it.",
+   "tags": [
+    "angles for kids",
+    "acute right obtuse",
+    "protractor",
+    "measuring angles",
+    "degrees",
+    "parallel and perpendicular lines",
+    "grade 4 math",
+    "4th grade geometry",
+    "geometry for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "protractor",
+    "title": "ANGLES!",
+    "subtitle": "Acute, right, obtuse",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 4",
+    "stage": "classroom",
+    "at": 1,
+    "camera": {
+     "position": [
+      0,
+      1.45,
+      6.9
+     ],
+     "lookAt": [
+      0,
+      1.1,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "prot",
+      "kind": "prop",
+      "model": "protractor",
+      "at": [
+       0.65,
+       0.6,
+       0
+      ],
+      "size": 2.2
+     },
+     {
+      "id": "a",
+      "kind": "angle",
+      "degrees": 90,
+      "radius": 1.3,
+      "color": "red",
+      "at": [
+       0.65,
+       0.78,
+       0.08
+      ]
+     },
+     {
+      "id": "owl",
+      "kind": "critter",
+      "species": "owl",
+      "at": [
+       2.35,
+       0,
+       0.6
+      ],
+      "size": 0.8,
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "same",
+    "title": "SAME ANGLE?",
+    "subtitle": "Long arms or short arms",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 4",
+    "stage": "classroom",
+    "at": 1,
+    "camera": {
+     "position": [
+      0,
+      1.45,
+      7.1
+     ],
+     "lookAt": [
+      0,
+      1.15,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "big",
+      "kind": "angle",
+      "degrees": 50,
+      "radius": 1.2,
+      "color": "blue",
+      "label": false,
+      "at": [
+       0.65,
+       0.8,
+       0
+      ]
+     },
+     {
+      "id": "small",
+      "kind": "angle",
+      "degrees": 50,
+      "radius": 0.55,
+      "color": "orange",
+      "label": false,
+      "at": [
+       2.1,
+       0.8,
+       0
+      ]
+     },
+     {
+      "id": "eq",
+      "kind": "letter",
+      "text": "=",
+      "size": 0.5,
+      "color": "ink",
+      "at": [
+       1.95,
+       1.55,
+       0
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       3.05,
+       0,
+       0.5
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "clip": "No",
+      "feeling": "surprised"
+     }
+    ]
+   }
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1.1,
+    "speed": 1
+   },
+   "owl": {
+    "voice": "deep",
+    "pitch": 0.9,
+    "speed": 0.95
+   },
+   "bunny": {
+    "voice": "squeaky",
+    "pitch": 1.2,
+    "speed": 1.05
+   }
+  }
+ },
+ "stage": {
+  "preset": "classroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.3,
+   9.2
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.4,
+    0,
+    0.6
+   ],
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "owl",
+   "kind": "critter",
+   "species": "owl",
+   "at": [
+    3.4,
+    0,
+    0.6
+   ],
+   "size": 0.8,
+   "rotation": [
+    0,
+    -25,
+    0
+   ]
+  },
+  {
+   "id": "notebook",
+   "kind": "prop",
+   "model": "notebook",
+   "parent": "owl",
+   "at": [
+    -0.3,
+    0.3,
+    0.35
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "big",
+   "kind": "angle",
+   "degrees": 50,
+   "radius": 1.9,
+   "color": "blue",
+   "at": [
+    -2.2,
+    0.9,
+    0
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "small",
+   "kind": "angle",
+   "degrees": 50,
+   "radius": 0.7,
+   "color": "orange",
+   "at": [
+    1,
+    0.9,
+    0
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "deg50",
+   "kind": "letter",
+   "text": "50°",
+   "size": 0.26,
+   "color": "gold",
+   "at": [
+    -0.9,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ln",
+   "kind": "pointer",
+   "from": [
+    -2,
+    2.5,
+    0
+   ],
+   "to": [
+    0.8,
+    2.5,
+    0
+   ],
+   "width": 0.06,
+   "color": "ink",
+   "hidden": true,
+   "head": "arrow",
+   "tail": "arrow"
+  },
+  {
+   "id": "ry",
+   "kind": "pointer",
+   "from": [
+    -2,
+    1.85,
+    0
+   ],
+   "to": [
+    0.8,
+    1.85,
+    0
+   ],
+   "width": 0.06,
+   "color": "ink",
+   "hidden": true,
+   "head": "arrow",
+   "tail": "dot"
+  },
+  {
+   "id": "sg",
+   "kind": "pointer",
+   "from": [
+    -2,
+    1.2,
+    0
+   ],
+   "to": [
+    0.8,
+    1.2,
+    0
+   ],
+   "width": 0.06,
+   "color": "ink",
+   "hidden": true,
+   "head": "dot",
+   "tail": "dot"
+  },
+  {
+   "id": "t_ln",
+   "kind": "letter",
+   "text": "line",
+   "size": 0.24,
+   "color": "ink",
+   "at": [
+    1.65,
+    2.42,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_ry",
+   "kind": "letter",
+   "text": "ray",
+   "size": 0.24,
+   "color": "ink",
+   "at": [
+    1.65,
+    1.77,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_sg",
+   "kind": "letter",
+   "text": "segment",
+   "size": 0.24,
+   "color": "ink",
+   "at": [
+    1.95,
+    1.12,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "a50",
+   "kind": "angle",
+   "degrees": 50,
+   "radius": 1.4,
+   "color": "blue",
+   "at": [
+    -0.9,
+    0.95,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "a50l",
+   "kind": "angle",
+   "degrees": 50,
+   "radius": 2,
+   "color": "blue",
+   "at": [
+    -0.9,
+    0.95,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "a50s",
+   "kind": "angle",
+   "degrees": 50,
+   "radius": 0.8,
+   "color": "blue",
+   "at": [
+    -0.9,
+    0.95,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_vertex",
+   "kind": "letter",
+   "text": "vertex",
+   "size": 0.2,
+   "color": "red",
+   "at": [
+    -1.65,
+    0.5,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_vertex",
+   "kind": "pointer",
+   "from": [
+    -1.35,
+    0.68,
+    0
+   ],
+   "to": [
+    -0.98,
+    0.9,
+    0
+   ],
+   "width": 0.04,
+   "color": "red",
+   "hidden": true
+  },
+  {
+   "id": "t_ray1",
+   "kind": "letter",
+   "text": "ray",
+   "size": 0.2,
+   "color": "red",
+   "at": [
+    1.05,
+    0.62,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_ray2",
+   "kind": "letter",
+   "text": "ray",
+   "size": 0.2,
+   "color": "red",
+   "at": [
+    0.35,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "door",
+   "kind": "prop",
+   "model": "door",
+   "at": [
+    -1.4,
+    0,
+    -0.8
+   ],
+   "hidden": true
+  },
+  {
+   "id": "door_ang",
+   "kind": "angle",
+   "degrees": 0,
+   "radius": 1,
+   "color": "blue",
+   "at": [
+    0.9,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "clock",
+   "kind": "clock",
+   "time": "12:00",
+   "size": 1.7,
+   "at": [
+    0,
+    0.4,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c90",
+   "kind": "letter",
+   "text": "90°",
+   "size": 0.26,
+   "color": "blue",
+   "at": [
+    1.6,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c180",
+   "kind": "letter",
+   "text": "180°",
+   "size": 0.26,
+   "color": "orange",
+   "at": [
+    1.6,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c360",
+   "kind": "letter",
+   "text": "360°",
+   "size": 0.26,
+   "color": "red",
+   "at": [
+    1.6,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "skate",
+   "kind": "prop",
+   "model": "skateboard",
+   "at": [
+    0.6,
+    0.02,
+    0.8
+   ],
+   "size": 1.1,
+   "hidden": true
+  },
+  {
+   "id": "bunny",
+   "kind": "critter",
+   "species": "bunny",
+   "parent": "skate",
+   "at": [
+    0,
+    0.12,
+    0
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "b90",
+   "kind": "letter",
+   "text": "90°  quarter turn",
+   "size": 0.16,
+   "color": "blue",
+   "at": [
+    0.6,
+    1.3,
+    0.8
+   ],
+   "hidden": true
+  },
+  {
+   "id": "b180",
+   "kind": "letter",
+   "text": "180°  half turn",
+   "size": 0.16,
+   "color": "orange",
+   "at": [
+    0.6,
+    1.3,
+    0.8
+   ],
+   "hidden": true
+  },
+  {
+   "id": "b360",
+   "kind": "letter",
+   "text": "360°  full turn",
+   "size": 0.16,
+   "color": "red",
+   "at": [
+    0.6,
+    1.3,
+    0.8
+   ],
+   "hidden": true
+  },
+  {
+   "id": "one",
+   "kind": "angle",
+   "degrees": 0,
+   "radius": 2.2,
+   "color": "green",
+   "at": [
+    -0.8,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tester",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "yellow",
+   "material": "paper",
+   "at": [
+    0.15000000000000002,
+    1.45,
+    -0.06
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sorter",
+   "kind": "angle",
+   "degrees": 40,
+   "radius": 1.3,
+   "color": "ink",
+   "at": [
+    -0.3,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row0",
+   "kind": "angle",
+   "degrees": 40,
+   "radius": 0.42,
+   "color": "teal",
+   "at": [
+    -2.75,
+    1.45,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rowt0",
+   "kind": "letter",
+   "text": "acute",
+   "size": 0.12,
+   "color": "teal",
+   "at": [
+    -2.7,
+    1.05,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row1",
+   "kind": "angle",
+   "degrees": 90,
+   "radius": 0.42,
+   "color": "red",
+   "at": [
+    -1.67,
+    1.45,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rowt1",
+   "kind": "letter",
+   "text": "right",
+   "size": 0.12,
+   "color": "red",
+   "at": [
+    -1.62,
+    1.05,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row2",
+   "kind": "angle",
+   "degrees": 135,
+   "radius": 0.42,
+   "color": "orange",
+   "at": [
+    -0.5899999999999999,
+    1.45,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rowt2",
+   "kind": "letter",
+   "text": "obtuse",
+   "size": 0.12,
+   "color": "orange",
+   "at": [
+    -0.54,
+    1.05,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row3",
+   "kind": "angle",
+   "degrees": 180,
+   "radius": 0.42,
+   "color": "purple",
+   "at": [
+    0.4900000000000002,
+    1.45,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rowt3",
+   "kind": "letter",
+   "text": "straight",
+   "size": 0.12,
+   "color": "purple",
+   "at": [
+    0.54,
+    1.05,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row4",
+   "kind": "angle",
+   "degrees": 75,
+   "radius": 0.42,
+   "color": "teal",
+   "at": [
+    1.5700000000000003,
+    1.45,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rowt4",
+   "kind": "letter",
+   "text": "acute",
+   "size": 0.12,
+   "color": "teal",
+   "at": [
+    1.62,
+    1.05,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row5",
+   "kind": "angle",
+   "degrees": 110,
+   "radius": 0.42,
+   "color": "orange",
+   "at": [
+    2.6500000000000004,
+    1.45,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rowt5",
+   "kind": "letter",
+   "text": "obtuse",
+   "size": 0.12,
+   "color": "orange",
+   "at": [
+    2.7,
+    1.05,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_acute",
+   "kind": "letter",
+   "text": "acute: less than 90°",
+   "size": 0.2,
+   "color": "teal",
+   "at": [
+    -0.3,
+    2.65,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_right",
+   "kind": "letter",
+   "text": "right: exactly 90°",
+   "size": 0.2,
+   "color": "red",
+   "at": [
+    -0.3,
+    2.65,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_obtuse",
+   "kind": "letter",
+   "text": "obtuse: 90° to 180°",
+   "size": 0.2,
+   "color": "orange",
+   "at": [
+    -0.3,
+    2.65,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_straight",
+   "kind": "letter",
+   "text": "straight: exactly 180°",
+   "size": 0.2,
+   "color": "purple",
+   "at": [
+    -0.3,
+    2.65,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "upside",
+   "kind": "angle",
+   "degrees": 90,
+   "radius": 0.9,
+   "color": "red",
+   "at": [
+    0.5,
+    1.6,
+    0
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "still90",
+   "kind": "letter",
+   "text": "still 90°",
+   "size": 0.22,
+   "color": "red",
+   "at": [
+    0.5,
+    0.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "prot",
+   "kind": "prop",
+   "model": "protractor",
+   "at": [
+    -0.5,
+    0.85,
+    0
+   ],
+   "size": 2.6,
+   "hidden": true
+  },
+  {
+   "id": "pa",
+   "kind": "angle",
+   "degrees": 60,
+   "radius": 1.65,
+   "color": "blue",
+   "at": [
+    -0.5,
+    1.058,
+    0.14
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "in0",
+   "kind": "letter",
+   "text": "0",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    0.28784620240976644,
+    0.8590814578664558,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "out0",
+   "kind": "letter",
+   "text": "180",
+   "size": 0.11,
+   "color": "red",
+   "at": [
+    0.8984270092773352,
+    0.751419587712959,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "in30",
+   "kind": "letter",
+   "text": "30",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    0.25175409662872683,
+    1.271616114660535,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "out30",
+   "kind": "letter",
+   "text": "150",
+   "size": 0.11,
+   "color": "red",
+   "at": [
+    0.8343635215159899,
+    1.4836686035224496,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "in60",
+   "kind": "letter",
+   "text": "60",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    0.014230087749231513,
+    1.6108355544951825,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "out60",
+   "kind": "letter",
+   "text": "120",
+   "size": 0.11,
+   "color": "red",
+   "at": [
+    0.41275840575488587,
+    2.0857831092289487,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "in90",
+   "kind": "letter",
+   "text": "90",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    -0.3610814578664556,
+    1.7858462024097665,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "out90",
+   "kind": "letter",
+   "text": "90",
+   "size": 0.11,
+   "color": "red",
+   "at": [
+    -0.2534195877129588,
+    2.396427009277335,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "in120",
+   "kind": "letter",
+   "text": "120",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    -0.7736161146605349,
+    1.7497540966287268,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "out120",
+   "kind": "letter",
+   "text": "60",
+   "size": 0.11,
+   "color": "red",
+   "at": [
+    -0.9856686035224496,
+    2.33236352151599,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "in150",
+   "kind": "letter",
+   "text": "150",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    -1.1128355544951822,
+    1.5122300877492316,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "out150",
+   "kind": "letter",
+   "text": "30",
+   "size": 0.11,
+   "color": "red",
+   "at": [
+    -1.5877831092289485,
+    1.910758405754886,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "in180",
+   "kind": "letter",
+   "text": "180",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    -1.2969557584733966,
+    0.9282754058018736,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "out180",
+   "kind": "letter",
+   "text": "0",
+   "size": 0.11,
+   "color": "red",
+   "at": [
+    -1.9145964712902785,
+    0.8742388452983259,
+    0.16
+   ],
+   "hidden": true,
+   "depth": 0.03
+  },
+  {
+   "id": "read120",
+   "kind": "letter",
+   "text": "120° ?",
+   "size": 0.22,
+   "color": "red",
+   "at": [
+    2.15,
+    1.9,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "read60",
+   "kind": "letter",
+   "text": "60°",
+   "size": 0.24,
+   "color": "blue",
+   "at": [
+    2.15,
+    1.9,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "read40",
+   "kind": "letter",
+   "text": "40°",
+   "size": 0.24,
+   "color": "blue",
+   "at": [
+    2.15,
+    1.9,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "read135",
+   "kind": "letter",
+   "text": "135°",
+   "size": 0.24,
+   "color": "blue",
+   "at": [
+    2.15,
+    1.9,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step1",
+   "kind": "letter",
+   "text": "1. centre on the vertex",
+   "size": 0.16,
+   "color": "ink",
+   "at": [
+    0,
+    2.55,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step2",
+   "kind": "letter",
+   "text": "2. 0 line on one ray",
+   "size": 0.16,
+   "color": "ink",
+   "at": [
+    0,
+    2.55,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step3",
+   "kind": "letter",
+   "text": "3. count up from that 0",
+   "size": 0.16,
+   "color": "ink",
+   "at": [
+    0,
+    2.55,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w30",
+   "kind": "angle",
+   "degrees": 30,
+   "radius": 1.2,
+   "color": "teal",
+   "at": [
+    -2.2,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w60",
+   "kind": "angle",
+   "degrees": 60,
+   "radius": 1.2,
+   "color": "orange",
+   "at": [
+    0.8,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sum90",
+   "kind": "letter",
+   "text": "30° + 60° = 90°",
+   "size": 0.24,
+   "color": "ink",
+   "at": [
+    -0.4,
+    2.65,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rt",
+   "kind": "angle",
+   "degrees": 90,
+   "radius": 1.5,
+   "color": "ink",
+   "at": [
+    -1.4,
+    0.95,
+    0
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "m35",
+   "kind": "angle",
+   "degrees": 35,
+   "radius": 1.5,
+   "color": "teal",
+   "at": [
+    -1.4,
+    0.95,
+    0.02
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q55",
+   "kind": "letter",
+   "text": "?",
+   "size": 0.3,
+   "color": "orange",
+   "at": [
+    -1,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "a55",
+   "kind": "letter",
+   "text": "55°",
+   "size": 0.24,
+   "color": "orange",
+   "at": [
+    -0.95,
+    1.65,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "eq55",
+   "kind": "letter",
+   "text": "90° − 35° = 55°",
+   "size": 0.2,
+   "color": "ink",
+   "at": [
+    1.2,
+    1.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st",
+   "kind": "angle",
+   "degrees": 180,
+   "radius": 1.5,
+   "color": "ink",
+   "at": [
+    0,
+    0.95,
+    0
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "m130",
+   "kind": "angle",
+   "degrees": 130,
+   "radius": 1.5,
+   "color": "orange",
+   "at": [
+    0,
+    0.95,
+    0.02
+   ],
+   "hidden": true
+  },
+  {
+   "id": "a50b",
+   "kind": "letter",
+   "text": "50°",
+   "size": 0.22,
+   "color": "teal",
+   "at": [
+    -1.25,
+    1.2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "eq50",
+   "kind": "letter",
+   "text": "180° − 130° = 50°",
+   "size": 0.2,
+   "color": "ink",
+   "at": [
+    0,
+    2.7,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "par1",
+   "kind": "pointer",
+   "from": [
+    -3.3,
+    2.3,
+    0
+   ],
+   "to": [
+    -1.5,
+    2.3,
+    0
+   ],
+   "width": 0.07,
+   "color": "ink",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "par2",
+   "kind": "pointer",
+   "from": [
+    -3.3,
+    1.7,
+    0
+   ],
+   "to": [
+    -1.5,
+    1.7,
+    0
+   ],
+   "width": 0.07,
+   "color": "ink",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "sl0",
+   "kind": "pointer",
+   "from": [
+    -3.1,
+    1.6,
+    -0.02
+   ],
+   "to": [
+    -3.1,
+    2.4,
+    -0.02
+   ],
+   "width": 0.05,
+   "color": "wood_dark",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "sl1",
+   "kind": "pointer",
+   "from": [
+    -2.7,
+    1.6,
+    -0.02
+   ],
+   "to": [
+    -2.7,
+    2.4,
+    -0.02
+   ],
+   "width": 0.05,
+   "color": "wood_dark",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "sl2",
+   "kind": "pointer",
+   "from": [
+    -2.3,
+    1.6,
+    -0.02
+   ],
+   "to": [
+    -2.3,
+    2.4,
+    -0.02
+   ],
+   "width": 0.05,
+   "color": "wood_dark",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "sl3",
+   "kind": "pointer",
+   "from": [
+    -1.9,
+    1.6,
+    -0.02
+   ],
+   "to": [
+    -1.9,
+    2.4,
+    -0.02
+   ],
+   "width": 0.05,
+   "color": "wood_dark",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "sl4",
+   "kind": "pointer",
+   "from": [
+    -1.5,
+    1.6,
+    -0.02
+   ],
+   "to": [
+    -1.5,
+    2.4,
+    -0.02
+   ],
+   "width": 0.05,
+   "color": "wood_dark",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "t_par",
+   "kind": "letter",
+   "text": "parallel",
+   "size": 0.18,
+   "color": "blue",
+   "at": [
+    -2.4,
+    1.05,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp1",
+   "kind": "pointer",
+   "from": [
+    -0.8,
+    2.5,
+    0
+   ],
+   "to": [
+    0.8,
+    2.5,
+    0
+   ],
+   "width": 0.07,
+   "color": "ink",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "pp2",
+   "kind": "pointer",
+   "from": [
+    0,
+    2.5,
+    0
+   ],
+   "to": [
+    0,
+    1.4,
+    0
+   ],
+   "width": 0.07,
+   "color": "ink",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "sq",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "material": "matte",
+   "at": [
+    0.12,
+    2.38,
+    0.02
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.2,
+    1,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_pp",
+   "kind": "letter",
+   "text": "perpendicular",
+   "size": 0.15,
+   "color": "red",
+   "at": [
+    0,
+    1.05,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "x1",
+   "kind": "pointer",
+   "from": [
+    1.7,
+    1.4,
+    0
+   ],
+   "to": [
+    3.2,
+    2.5,
+    0
+   ],
+   "width": 0.07,
+   "color": "ink",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "x2",
+   "kind": "pointer",
+   "from": [
+    1.7,
+    2.5,
+    0
+   ],
+   "to": [
+    3.2,
+    1.4,
+    0
+   ],
+   "width": 0.07,
+   "color": "ink",
+   "hidden": true,
+   "head": "none"
+  },
+  {
+   "id": "t_x",
+   "kind": "letter",
+   "text": "intersecting",
+   "size": 0.15,
+   "color": "purple",
+   "at": [
+    2.45,
+    1.05,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "chant_a",
+   "kind": "angle",
+   "degrees": 30,
+   "radius": 1.6,
+   "color": "teal",
+   "at": [
+    -0.3,
+    0.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "hclock",
+   "kind": "clock",
+   "time": "3:00",
+   "size": 1.8,
+   "at": [
+    -0.9,
+    0.45,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "h3",
+   "kind": "angle",
+   "degrees": 90,
+   "radius": 0.55,
+   "color": "gold",
+   "at": [
+    -0.9,
+    1.35,
+    0.12
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "h1",
+   "kind": "angle",
+   "degrees": 30,
+   "radius": 0.55,
+   "color": "gold",
+   "at": [
+    -0.9,
+    1.35,
+    0.12
+   ],
+   "hidden": true,
+   "label": false,
+   "rotation": [
+    0,
+    0,
+    60
+   ]
+  },
+  {
+   "id": "h5",
+   "kind": "angle",
+   "degrees": 150,
+   "radius": 0.55,
+   "color": "gold",
+   "at": [
+    -0.9,
+    1.35,
+    0.12
+   ],
+   "hidden": true,
+   "label": false,
+   "rotation": [
+    0,
+    0,
+    -60
+   ]
+  },
+  {
+   "id": "h6",
+   "kind": "angle",
+   "degrees": 180,
+   "radius": 0.55,
+   "color": "gold",
+   "at": [
+    -0.9,
+    1.35,
+    0.12
+   ],
+   "hidden": true,
+   "label": false,
+   "rotation": [
+    0,
+    0,
+    -90
+   ]
+  },
+  {
+   "id": "ht3",
+   "kind": "letter",
+   "text": "right, 90°",
+   "size": 0.18,
+   "color": "red",
+   "at": [
+    1.5,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ht1",
+   "kind": "letter",
+   "text": "acute, 30°",
+   "size": 0.18,
+   "color": "teal",
+   "at": [
+    1.5,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ht5",
+   "kind": "letter",
+   "text": "obtuse, 150°",
+   "size": 0.18,
+   "color": "orange",
+   "at": [
+    1.5,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ht6",
+   "kind": "letter",
+   "text": "straight, 180°",
+   "size": 0.16,
+   "color": "purple",
+   "at": [
+    1.5,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lv",
+   "kind": "letter",
+   "text": "V",
+   "size": 0.75,
+   "color": "teal",
+   "at": [
+    -1,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ll",
+   "kind": "letter",
+   "text": "L",
+   "size": 0.75,
+   "color": "red",
+   "at": [
+    1,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lvt",
+   "kind": "letter",
+   "text": "acute",
+   "size": 0.2,
+   "color": "teal",
+   "at": [
+    -1,
+    0.55,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "llt",
+   "kind": "letter",
+   "text": "right",
+   "size": 0.2,
+   "color": "red",
+   "at": [
+    1,
+    0.55,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "hex",
+   "kind": "shape",
+   "shape": "hexagon",
+   "color": "gold",
+   "material": "toy",
+   "at": [
+    0,
+    1.1,
+    0
+   ],
+   "size": 1.2,
+   "hidden": true
+  },
+  {
+   "id": "hext",
+   "kind": "letter",
+   "text": "120°",
+   "size": 0.24,
+   "color": "orange",
+   "at": [
+    1.3,
+    1.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q1",
+   "kind": "letter",
+   "text": "longer arms, bigger?",
+   "size": 0.24,
+   "color": "ink",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q2",
+   "kind": "letter",
+   "text": "3:00",
+   "size": 0.3,
+   "color": "ink",
+   "at": [
+    1.6,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q3",
+   "kind": "letter",
+   "text": "130°",
+   "size": 0.34,
+   "color": "ink",
+   "at": [
+    -1.1,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q3a",
+   "kind": "letter",
+   "text": "obtuse",
+   "size": 0.26,
+   "color": "orange",
+   "at": [
+    1.1,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q4",
+   "kind": "angle",
+   "degrees": 90,
+   "radius": 1.5,
+   "color": "ink",
+   "at": [
+    -0.9,
+    0.95,
+    0
+   ],
+   "hidden": true,
+   "label": false
+  },
+  {
+   "id": "q4m",
+   "kind": "angle",
+   "degrees": 50,
+   "radius": 1.5,
+   "color": "teal",
+   "at": [
+    -0.9,
+    0.95,
+    0.02
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q4q",
+   "kind": "letter",
+   "text": "?",
+   "size": 0.3,
+   "color": "orange",
+   "at": [
+    -0.3,
+    2.05,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q4a",
+   "kind": "letter",
+   "text": "40°",
+   "size": 0.24,
+   "color": "orange",
+   "at": [
+    -0.3,
+    2.05,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "recap",
+   "kind": "text_card",
+   "text": "An angle is an amount of turn.\n90° is a quarter turn, 180° a half turn, 360° a full turn.\nProtractor: count up from 0 on your ray.\nSense check: smaller than a corner? Less than 90°.",
+   "width": 5.6,
+   "size": 0.19,
+   "at": [
+    0,
+    0.95,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "home_card",
+   "kind": "text_card",
+   "text": "Fold any paper in half, then in half again. The folded corner is a right angle tester. Hunt for angles: acute, right or obtuse?",
+   "width": 4.6,
+   "size": 0.2,
+   "at": [
+    0,
+    1.1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fold",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "yellow",
+   "material": "paper",
+   "at": [
+    0,
+    2.85,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.6,
+    1,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 160,
+   "area": [
+    8,
+    3
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hook",
+   "title": "Long arms, short arms",
+   "beats": [
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Angle Explorers",
+       "style": "title",
+       "dur": 2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "big",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "small",
+       "dur": 0.4,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two angles. Easy! The one with the long arms is the bigger angle.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "big"
+      },
+      {
+       "do": "point",
+       "target": "robo",
+       "to": "big",
+       "at": 0.8,
+       "hold": 1.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Are you sure? Which angle is bigger? Make your guess.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "small"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.011,
+        4.637
+       ],
+       "lookAt": [
+        0,
+        1.442,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      },
+      {
+       "do": "caption",
+       "text": "Which is bigger?",
+       "style": "label",
+       "dur": 2.8
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Let's test it. I'll slide the small one on top.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "small",
+       "to": [
+        -2.2,
+        0.9,
+        0.06
+       ],
+       "dur": 1.4,
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "volume": 0.5,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Whoa. The arms line up exactly. It's the same angle!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "small",
+       "dur": 1.8,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "deg50",
+       "sound": false,
+       "at": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.1,
+        1.949,
+        4.285
+       ],
+       "lookAt": [
+        -1.1,
+        1.423,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "So arm length does not decide. What does an angle measure?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "big",
+       "result": "incorrect",
+       "dur": 1.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "big",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "small",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "deg50",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "what",
+   "title": "What is an angle?",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.011,
+        4.637
+       ],
+       "lookAt": [
+        0,
+        1.442,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "draw",
+       "target": "ln",
+       "dur": 0.8,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "t_ln",
+       "sound": false,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "First, some parts. A line goes on forever, both ways. See the two arrows?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "ln"
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "ln"
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "A ray has one endpoint, and goes on forever one way.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "ry",
+       "dur": 0.8,
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "t_ry",
+       "sound": false,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A line segment has two endpoints. It stops at both ends.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "sg",
+       "dur": 0.8,
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "t_sg",
+       "sound": false,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ln",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ry",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sg",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_ln",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_ry",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_sg",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "a50",
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Two rays that share an endpoint make an angle.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "t_ray1",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "t_ray2",
+       "sound": false,
+       "at": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.5,
+        1.819,
+        4.87
+       ],
+       "lookAt": [
+        -0.5,
+        1.221,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "The shared point is called the vertex.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "p_vertex",
+       "dur": 0.5,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "t_vertex",
+       "sound": false,
+       "at": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "p_vertex",
+       "dur": 1.5,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now let's stretch the arms longer.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "t_ray1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_ray2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "a50",
+       "dur": 0.15,
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "a50l",
+       "dur": 0.2,
+       "at": 0.65
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "volume": 0.5,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.4,
+        1.933,
+        5.259
+       ],
+       "lookAt": [
+        -0.4,
+        1.287,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.9500000000000001,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Still fifty degrees. Now shorter.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "a50l",
+       "dur": 0.15,
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "a50s",
+       "dur": 0.2,
+       "at": 0.8500000000000001
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "volume": 0.5,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Still fifty degrees! The arms changed, but the turn did not.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "a50s",
+       "dur": 1.6,
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "angle = amount of turn",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "a50s",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_vertex",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p_vertex",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turns",
+   "title": "Turns and degrees",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "show",
+       "target": "door",
+       "dur": 0.4
+      },
+      {
+       "do": "show",
+       "target": "door_ang",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.1,
+        1.363,
+        4.475
+       ],
+       "lookAt": [
+        -0.1,
+        0.789,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "An angle is a turn. Watch the door open a quarter turn.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "door#door",
+       "to": [
+        0,
+        -90,
+        0
+       ],
+       "dur": 1.8,
+       "at": 0.6
+      },
+      {
+       "do": "open",
+       "target": "door_ang",
+       "to": 90,
+       "dur": 1.8,
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "door_open",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "A quarter turn is ninety degrees. That's a right angle.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "quarter turn = 90°",
+       "style": "label"
+      },
+      {
+       "do": "highlight",
+       "target": "door_ang",
+       "dur": 1.6,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "turn",
+       "target": "door#door",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "door",
+       "dur": 0.3,
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "door_ang",
+       "dur": 0.3,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "clock",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        1.435,
+        3.896
+       ],
+       "lookAt": [
+        0.5,
+        0.957,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The minute hand turns too. From twelve to three is a quarter turn.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "12:15",
+       "dur": 1.5,
+       "sound": "tick",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "c90",
+       "sound": false,
+       "at": 2.3
+      }
+     ]
+    },
+    {
+     "dur": 1.9500000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "From twelve to six is a half turn. One hundred eighty degrees.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "12:30",
+       "dur": 1.5,
+       "sound": "tick",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c90",
+       "dur": 0.15,
+       "at": 1.8
+      },
+      {
+       "do": "show",
+       "target": "c180",
+       "dur": 0.2,
+       "at": 1.85
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "All the way round is a full turn. Three hundred sixty degrees.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "1:00",
+       "dur": 1.8,
+       "sound": "tick",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c180",
+       "dur": 0.15,
+       "at": 2.1
+      },
+      {
+       "do": "show",
+       "target": "c360",
+       "dur": 0.2,
+       "at": 2.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Fun fact: the 360 comes from ancient Babylon, where people counted in sixties.",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "clock",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c360",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "skate",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "bunny",
+       "dur": 0.4,
+       "at": 0.35
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.6,
+        1.149,
+        5.081
+       ],
+       "lookAt": [
+        0.6,
+        0.623,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "Watch me skate! A quarter turn!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "skate",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "dur": 0.8,
+       "at": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "b90",
+       "sound": false,
+       "at": 1.5
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "skate"
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "skate"
+      }
+     ]
+    },
+    {
+     "dur": 1.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "A half turn! Skaters call it a one-eighty.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "skate",
+       "to": [
+        0,
+        270,
+        0
+       ],
+       "dur": 1,
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "b90",
+       "dur": 0.15,
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "b180",
+       "dur": 0.2,
+       "at": 1.25
+      }
+     ]
+    },
+    {
+     "dur": 1.6500000000000001,
+     "do": [
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "And a full turn, a three-sixty! Back where I started.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "spin",
+       "target": "skate",
+       "turns": 1,
+       "dur": 1.4,
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "b180",
+       "dur": 0.15,
+       "at": 1.5
+      },
+      {
+       "do": "show",
+       "target": "b360",
+       "dur": 0.2,
+       "at": 1.55
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0.6,
+        0.6,
+        0.8
+       ],
+       "degrees": 25,
+       "dur": 3,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Skaters name their tricks by the angle they turn!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "skate",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "bunny",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "b360",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "one",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.2,
+        1.849,
+        4.285
+       ],
+       "lookAt": [
+        0.2,
+        1.323,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "A full turn is cut into three hundred sixty tiny equal turns. Each one is one degree.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "open",
+       "target": "one",
+       "to": 1,
+       "dur": 1.2,
+       "at": 1
+      },
+      {
+       "do": "caption",
+       "text": "1° = 1/360 of a turn",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One degree is tiny! Ninety of them make a right angle.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "open",
+       "target": "one",
+       "to": 90,
+       "dur": 2,
+       "sound": "tick",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "one",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sort",
+   "title": "Acute, right, obtuse, straight",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.011,
+        4.637
+       ],
+       "lookAt": [
+        0,
+        1.442,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "sorter",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let's sort angles. Our corner tester is the corner of a sheet of paper.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's a right angle.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "highlight",
+       "target": "tester",
+       "dur": 1.6,
+       "at": 0.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "tester"
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Put the corner on the vertex. Is the angle smaller, the same, or bigger?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "sorter"
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "open",
+       "target": "sorter",
+       "to": 40,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "40°",
+       "style": "count",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "40 degrees: smaller than the corner. Acute!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "w_acute",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "sorter",
+       "result": "correct",
+       "dur": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_acute",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "open",
+       "target": "sorter",
+       "to": 90,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "90°",
+       "style": "count",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "90 degrees: it matches the corner. Right!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "w_right",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "sorter",
+       "result": "correct",
+       "dur": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_right",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "open",
+       "target": "sorter",
+       "to": 135,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "135°",
+       "style": "count",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.2,
+     "do": []
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "135 degrees: bigger than the corner. Obtuse!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "w_obtuse",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "sorter",
+       "result": "correct",
+       "dur": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_obtuse",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "open",
+       "target": "sorter",
+       "to": 180,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "180°",
+       "style": "count",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "180 degrees: flat as a line. Straight!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "w_straight",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "sorter",
+       "result": "correct",
+       "dur": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_straight",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "open",
+       "target": "sorter",
+       "to": 75,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "75°",
+       "style": "count",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.2,
+     "do": []
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "75 degrees: smaller than the corner. Acute!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "sorter",
+       "result": "correct",
+       "dur": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "open",
+       "target": "sorter",
+       "to": 110,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "110°",
+       "style": "count",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.2,
+     "do": []
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "110 degrees: bigger than the corner. Obtuse!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "sorter",
+       "result": "correct",
+       "dur": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "sorter",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "tester",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "row0",
+       "dur": 0.3,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "rowt0",
+       "dur": 0.3,
+       "at": 0.35
+      },
+      {
+       "do": "show",
+       "target": "row1",
+       "dur": 0.3,
+       "at": 0.44999999999999996
+      },
+      {
+       "do": "show",
+       "target": "rowt1",
+       "dur": 0.3,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "row2",
+       "dur": 0.3,
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "rowt2",
+       "dur": 0.3,
+       "at": 0.6499999999999999
+      },
+      {
+       "do": "show",
+       "target": "row3",
+       "dur": 0.3,
+       "at": 0.75
+      },
+      {
+       "do": "show",
+       "target": "rowt3",
+       "dur": 0.3,
+       "at": 0.7999999999999999
+      },
+      {
+       "do": "show",
+       "target": "row4",
+       "dur": 0.3,
+       "at": 0.8999999999999999
+      },
+      {
+       "do": "show",
+       "target": "rowt4",
+       "dur": 0.3,
+       "at": 0.95
+      },
+      {
+       "do": "show",
+       "target": "row5",
+       "dur": 0.3,
+       "at": 1.05
+      },
+      {
+       "do": "show",
+       "target": "rowt5",
+       "dur": 0.3,
+       "at": 1.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        5.829
+       ],
+       "lookAt": [
+        0,
+        1.063,
+        0.3
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Here they all are, sorted by their turn.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "row0",
+       "dur": 1,
+       "at": 0.2
+      },
+      {
+       "do": "highlight",
+       "target": "row1",
+       "dur": 1,
+       "at": 0.45
+      },
+      {
+       "do": "highlight",
+       "target": "row2",
+       "dur": 1,
+       "at": 0.7
+      },
+      {
+       "do": "highlight",
+       "target": "row3",
+       "dur": 1,
+       "at": 0.95
+      },
+      {
+       "do": "highlight",
+       "target": "row4",
+       "dur": 1,
+       "at": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "row5",
+       "dur": 1,
+       "at": 1.45
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "row0",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rowt0",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "row1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rowt1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "row2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rowt2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "row3",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rowt3",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "row4",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rowt4",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "row5",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rowt5",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "upside",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        1.663,
+        4.675
+       ],
+       "lookAt": [
+        0.5,
+        1.089,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Does a right angle have to point right? Let's turn it upside down.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "upside",
+       "by": 180,
+       "axis": "z",
+       "dur": 1.4,
+       "at": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "volume": 0.5,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Still a square corner. Still ninety degrees. Right just means a square corner.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "still90",
+       "sound": false,
+       "at": 0.3
+      },
+      {
+       "do": "mark",
+       "target": "upside",
+       "result": "correct",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "upside",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "still90",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "protractor",
+   "title": "The protractor",
+   "music": "calm",
+   "musicGain": 0.15,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0.3,
+        1.917,
+        4.816
+       ],
+       "lookAt": [
+        0.3,
+        1.326,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "prot",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "in0",
+       "dur": 0.3,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "out0",
+       "dur": 0.3,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "in30",
+       "dur": 0.3,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "out30",
+       "dur": 0.3,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "in60",
+       "dur": 0.3,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "out60",
+       "dur": 0.3,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "in90",
+       "dur": 0.3,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "out90",
+       "dur": 0.3,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "in120",
+       "dur": 0.3,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "out120",
+       "dur": 0.3,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "in150",
+       "dur": 0.3,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "out150",
+       "dur": 0.3,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "in180",
+       "dur": 0.3,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "out180",
+       "dur": 0.3,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "This is a protractor. It measures angles in degrees. It has two scales.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "in90",
+       "dur": 1.4,
+       "at": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "out90",
+       "dur": 1.4,
+       "at": 1
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "prot"
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Step one: put the centre mark on the vertex.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "1. centre mark on the vertex",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "pa",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "prot",
+       "dur": 1.2,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Step two: line up the zero line with one ray.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "2. zero line on one ray",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "highlight",
+       "target": "in0",
+       "dur": 1.6,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.3000000000000003,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Step three: start at the zero on that ray, and count up to the other ray.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "3. count up from that zero",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "highlight",
+       "target": "in30",
+       "dur": 1,
+       "at": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "in60",
+       "dur": 1.2,
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "My turn! The ray crosses one hundred twenty. So it's one hundred twenty degrees!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "out60",
+       "dur": 1.6,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "read120",
+       "sound": false,
+       "at": 1.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Sense check first. Is this angle smaller than a corner?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "tester",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "move",
+       "target": "tester",
+       "to": [
+        -0.04999999999999999,
+        1.508,
+        0.1
+       ],
+       "dur": 0.05,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Yes! So it must be less than ninety. Robo read the wrong scale.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "read120",
+       "result": "incorrect",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Our ray starts at the zero on the right, so we read the blue scale. Sixty degrees.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "tester",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "read120",
+       "dur": 0.15,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "read60",
+       "dur": 0.2,
+       "at": 0.45
+      },
+      {
+       "do": "highlight",
+       "target": "in60",
+       "dur": 1.6,
+       "at": 1
+      },
+      {
+       "do": "mark",
+       "target": "read60",
+       "result": "correct",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Got it. Count from the zero on my ray, then do a sense check.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Now try this one.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "read60",
+       "dur": 0.3
+      },
+      {
+       "do": "open",
+       "target": "pa",
+       "to": 40,
+       "dur": 1,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.9000000000000001,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Zero, ten, twenty, thirty, forty. Forty degrees, and it is acute.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "read40",
+       "sound": false,
+       "at": 1.6
+      },
+      {
+       "do": "mark",
+       "target": "read40",
+       "result": "correct",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "And this one?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "read40",
+       "dur": 0.3
+      },
+      {
+       "do": "open",
+       "target": "pa",
+       "to": 135,
+       "dur": 1.2,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Past ninety, not flat. One hundred thirty five degrees. Obtuse!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "read135",
+       "sound": false,
+       "at": 1.2
+      },
+      {
+       "do": "mark",
+       "target": "read135",
+       "result": "correct",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "read135",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pa",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "prot",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "in0",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "out0",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "in30",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "out30",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "in60",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "out60",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "in90",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "out90",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "in120",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "out120",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "in150",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "out150",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "in180",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "out180",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "add",
+   "title": "Angles add up",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.011,
+        4.637
+       ],
+       "lookAt": [
+        0,
+        1.442,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "w30",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "w60",
+       "dur": 0.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Angles add up, like pizza slices. Thirty degrees and sixty degrees.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "w30"
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "w60"
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Slide them together, side by side.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "w60",
+       "to": [
+        -2.2,
+        1,
+        0.02
+       ],
+       "dur": 1.2,
+       "at": 0.5
+      },
+      {
+       "do": "turn",
+       "target": "w60",
+       "to": [
+        0,
+        0,
+        30
+       ],
+       "dur": 1.2,
+       "at": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.7
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Thirty plus sixty is ninety. A right angle!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "sum90",
+       "sound": false,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "w60",
+       "dur": 1.6,
+       "at": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "w30",
+       "dur": 1.6,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w30",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "w60",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sum90",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "rt",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "m35",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.1,
+        1.855,
+        4.459
+       ],
+       "lookAt": [
+        0.1,
+        1.308,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "A right angle is split by a ray.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "One part is thirty five degrees. What is the other part?",
+       "voice": "deep",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "pop",
+       "target": "q55",
+       "sound": false,
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Ninety take away thirty five is fifty five degrees.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q55",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "a55",
+       "dur": 0.2,
+       "at": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "eq55",
+       "sound": false,
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "a55",
+       "result": "correct",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "rt",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "m35",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "a55",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "eq55",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "st",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "m130",
+       "dur": 0.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "A straight angle is one hundred eighty.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "If one part is one hundred thirty, the other is fifty.",
+       "voice": "deep",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "pop",
+       "target": "a50b",
+       "sound": false,
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "eq50",
+       "sound": false,
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "st",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "m130",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "a50b",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "eq50",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lines",
+   "title": "Lines: parallel and perpendicular",
+   "beats": [
+    {
+     "dur": 1.02,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.023,
+        6.421
+       ],
+       "lookAt": [
+        0,
+        1.235,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -4.8,
+        0,
+        0.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "owl",
+       "to": [
+        4.8,
+        0,
+        0.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "draw",
+       "target": "par1",
+       "dur": 0.6,
+       "at": 0.3
+      },
+      {
+       "do": "draw",
+       "target": "par2",
+       "dur": 0.6,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "sl0",
+       "dur": 0.2,
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "sl1",
+       "dur": 0.2,
+       "at": 0.6799999999999999
+      },
+      {
+       "do": "show",
+       "target": "sl2",
+       "dur": 0.2,
+       "at": 0.76
+      },
+      {
+       "do": "show",
+       "target": "sl3",
+       "dur": 0.2,
+       "at": 0.84
+      },
+      {
+       "do": "show",
+       "target": "sl4",
+       "dur": 0.2,
+       "at": 0.9199999999999999
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Train tracks are parallel lines. They stay the same distance apart and never meet.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "t_par",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "par1",
+       "dur": 1.4,
+       "at": 1
+      },
+      {
+       "do": "highlight",
+       "target": "par2",
+       "dur": 1.4,
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "These lines meet at a right angle, like the letter T. They are perpendicular.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "pp1",
+       "dur": 0.5,
+       "at": 0.2
+      },
+      {
+       "do": "draw",
+       "target": "pp2",
+       "dur": 0.5,
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "sq",
+       "sound": false,
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "t_pp",
+       "sound": false,
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Window frames have perpendicular lines too.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "sq",
+       "dur": 1.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "These lines cross, but not at a right angle. They are intersecting lines.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "x1",
+       "dur": 0.5,
+       "at": 0.2
+      },
+      {
+       "do": "draw",
+       "target": "x2",
+       "dur": 0.5,
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "t_x",
+       "sound": false,
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      },
+      {
+       "do": "caption",
+       "text": "parallel · perpendicular · intersecting",
+       "style": "label",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "par1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "par2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sl0",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sl1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sl2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sl3",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sl4",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_par",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pp1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pp2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sq",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_pp",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "x1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "x2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t_x",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Turn-and-Name chant",
+   "music": "playful",
+   "musicGain": 0.22,
+   "beats": [
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.592,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.738,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.4,
+        0,
+        0.6
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "owl",
+       "to": [
+        3.4,
+        0,
+        0.6
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance"
+      },
+      {
+       "do": "show",
+       "target": "chant_a",
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Tiny turn is acute!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "open",
+       "target": "chant_a",
+       "to": 30,
+       "dur": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "owl#wing",
+       "to": [
+        0,
+        0,
+        30
+       ],
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "A corner's right!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "open",
+       "target": "chant_a",
+       "to": 90,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "owl#wing",
+       "to": [
+        0,
+        0,
+        90
+       ],
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wide is obtuse!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "open",
+       "target": "chant_a",
+       "to": 135,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "owl#wing",
+       "to": [
+        0,
+        0,
+        135
+       ],
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Flat is straight, hold it tight!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "open",
+       "target": "chant_a",
+       "to": 180,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "owl#wing",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quarter turn?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Quarter turn?",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Ninety degrees!",
+       "style": "label",
+       "dur": 1.5
+      },
+      {
+       "do": "open",
+       "target": "chant_a",
+       "to": 90,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Half turn?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Half turn?",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "caption",
+       "text": "One-eighty!",
+       "style": "label",
+       "dur": 1.5
+      },
+      {
+       "do": "open",
+       "target": "chant_a",
+       "to": 180,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle"
+      },
+      {
+       "do": "hide",
+       "target": "chant_a",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hunt",
+   "title": "Angle hunt challenge",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "show",
+       "target": "hclock",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.1,
+        1.617,
+        4.816
+       ],
+       "lookAt": [
+        0.1,
+        1.026,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Angle hunt! The clock is only a turning tool today. Look at the angle between the hands.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "hclock"
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "h3",
+       "dur": 0.3,
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "What angle do the hands make at three o'clock?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three o'clock. The hands make a right angle, ninety degrees.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ht3",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "ht3",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "hide",
+       "target": "h3",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ht3",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "clock",
+       "target": "hclock",
+       "to": "1:00",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "h1",
+       "dur": 0.3,
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now one o'clock. What kind of angle?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "One o'clock. A small turn: acute, thirty degrees.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ht1",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "ht1",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "hide",
+       "target": "h1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ht1",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "clock",
+       "target": "hclock",
+       "to": "5:00",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "h5",
+       "dur": 0.3,
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Now five o'clock. What kind of angle?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Five o'clock. Wider than a corner: obtuse, one hundred fifty degrees.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ht5",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "ht5",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "hide",
+       "target": "h5",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ht5",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "clock",
+       "target": "hclock",
+       "to": "6:00",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "h6",
+       "dur": 0.3,
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now six o'clock. What kind of angle?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Six o'clock. The hands make a straight line: one hundred eighty degrees.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ht6",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "mark",
+       "target": "ht6",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "hide",
+       "target": "h6",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ht6",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "hclock",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "lv",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ll",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.763,
+        4.675
+       ],
+       "lookAt": [
+        0,
+        1.189,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Letters have angles too. What about V and L?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "V is acute. L is a right angle!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "lvt",
+       "sound": false,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "llt",
+       "sound": false,
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "lv",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ll",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "lvt",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "llt",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "hex",
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Bonus fact: the corners inside a honeycomb cell are one hundred twenty degrees. Obtuse!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "hext",
+       "sound": false,
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "hex",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "hext",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.961,
+        4.637
+       ],
+       "lookAt": [
+        0,
+        1.392,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "q1",
+       "sound": false,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "a50l",
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quiz time! One: does making the arms longer make the angle bigger?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "No! The turn is the same, so the angle is the same.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "q1",
+       "result": "incorrect",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "a50l",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "hclock",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "clock",
+       "target": "hclock",
+       "to": "3:00",
+       "dur": 0.05
+      },
+      {
+       "do": "pop",
+       "target": "q2",
+       "sound": false,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two: a clock shows three o'clock. What kind of angle do the hands make?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "A right angle. Ninety degrees.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "h3",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "mark",
+       "target": "q2",
+       "result": "correct",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "hclock",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "h3",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q2",
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "q3",
+       "sound": false,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three: an angle is one hundred thirty degrees. Acute, right or obtuse?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Obtuse. It's between ninety and one hundred eighty.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "q3a",
+       "sound": false,
+       "at": 0.2
+      },
+      {
+       "do": "mark",
+       "target": "q3a",
+       "result": "correct",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q3",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q3a",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "q4",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "q4m",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "q4q",
+       "sound": false,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four: a right angle is split into fifty degrees and what?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Forty degrees. Ninety take away fifty is forty.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q4q",
+       "dur": 0.15,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "q4a",
+       "dur": 0.2,
+       "at": 0.25
+      },
+      {
+       "do": "mark",
+       "target": "q4a",
+       "result": "correct",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q4",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q4m",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q4a",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "recap",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.211,
+        4.937
+       ],
+       "lookAt": [
+        0,
+        1.642,
+        0.3
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "An angle is an amount of turn.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "An angle is an amount of turn",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Ninety is a quarter turn, one eighty a half turn, three sixty a full turn.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "90° is a quarter turn, 180° a half turn, 360° a full turn",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "With a protractor, count up from the zero on your ray. Then do a sense check!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "count up from 0",
+       "at": 0.2
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Sense check",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Measured and proven.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "owl"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "recap",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "home",
+   "title": "Your turn: paper corner tester",
+   "music": "playful",
+   "musicGain": 0.22,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "show",
+       "target": "home_card",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "fold",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.211,
+        4.637
+       ],
+       "lookAt": [
+        0,
+        1.642,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Fold a scrap of paper in half, and in half again.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "That corner is a right angle tester.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "emphasize",
+       "target": "home_card",
+       "words": "right angle tester",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Then hunt for angles at home. Is each one acute, right or obtuse?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "home_card",
+       "words": "acute, right or obtuse?",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Testing a door? Keep fingers away from the hinge. Let a grown-up swing it.",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "burst",
+       "target": "confetti"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave"
+      },
+      {
+       "do": "show",
+       "target": "skate",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "bunny",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "skate",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "spin",
+       "target": "skate",
+       "turns": 1,
+       "dur": 1.2,
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "A three-sixty victory spin! Bye, angle explorers!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

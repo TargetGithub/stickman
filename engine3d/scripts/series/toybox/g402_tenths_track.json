@@ -1,0 +1,6032 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "meta": {
+  "series": "toybox",
+  "episode": "g402",
+  "audience": "grade4",
+  "title": "Tenths Track",
+  "seed": 402,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "bouncy",
+  "musicGain": 0.18,
+  "skills": [
+   "decimals_tenths_4"
+  ],
+  "youtube": {
+   "title": "Decimals for Kids: Tenths on a Number Line | Grade 4 Math | Toy Box Friends",
+   "description": "Turtle's race is 1.5 metres long, but Robo built a 15-metre track! What does that little dot mean?\nKids learn what a tenth is (1/10 = 0.1), how the decimal point separates wholes from tenths, how to read 1.5 as one and five tenths, how to place tenths on a number line and a metre stick, how to compare decimals (wholes first), and how to add and take away tenths with ten tenths making one whole.\nTry at home: put a sticky note every 10 cm on a tape measure, roll a toy car and read where it stops as a decimal. Roll it on a clear floor away from stairs.",
+   "tags": [
+    "decimals for kids",
+    "tenths",
+    "decimal point",
+    "grade 4 math",
+    "4th grade decimals",
+    "compare decimals",
+    "add decimals",
+    "number line",
+    "place value",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "tenths",
+    "title": "TENTHS!",
+    "subtitle": "10 tenths = 1 whole",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 4",
+    "stage": "classroom",
+    "at": 1,
+    "camera": {
+     "position": [
+      0,
+      1.4,
+      6.9
+     ],
+     "lookAt": [
+      0,
+      0.85,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "nl",
+      "kind": "number_line",
+      "from": 0,
+      "to": 1,
+      "length": 2.6,
+      "step": 1,
+      "minor": 10,
+      "labels": [
+       "0",
+       "1"
+      ],
+      "color": "red",
+      "at": [
+       1.45,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "blk",
+      "kind": "shape",
+      "shape": "box",
+      "color": "gold",
+      "material": "glossy",
+      "at": [
+       1.45,
+       0.56,
+       0
+      ],
+      "scale": [
+       2.56,
+       0.08,
+       0.3
+      ]
+     },
+     {
+      "id": "tt",
+      "kind": "critter",
+      "species": "turtle",
+      "size": 0.6,
+      "at": [
+       2.55,
+       0.64,
+       0
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "owl",
+      "kind": "critter",
+      "species": "owl",
+      "size": 0.7,
+      "at": [
+       2.85,
+       0,
+       1.3
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "fifteen",
+    "title": "1.5 OR 15?",
+    "subtitle": "What does the dot mean?",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 4",
+    "stage": "classroom",
+    "at": 1,
+    "camera": {
+     "position": [
+      0,
+      1.5,
+      7.300000000000001
+     ],
+     "lookAt": [
+      0,
+      1.2,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "pv",
+      "kind": "place_value_chart",
+      "columns": [
+       "ones",
+       ".",
+       "tenths"
+      ],
+      "digits": "1.5",
+      "cell": 0.75,
+      "color": "blue",
+      "at": [
+       0.65,
+       0.8,
+       0
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       2.55,
+       0,
+       0.5
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "clip": "Jump",
+      "feeling": "surprised"
+     }
+    ]
+   }
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1.1,
+    "speed": 1
+   },
+   "owl": {
+    "voice": "deep",
+    "pitch": 0.9,
+    "speed": 0.95
+   },
+   "turtle": {
+    "voice": "squeaky",
+    "pitch": 1,
+    "speed": 0.92
+   }
+  }
+ },
+ "stage": {
+  "preset": "classroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.3,
+   9.2
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.4,
+    0,
+    0.6
+   ],
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "owl",
+   "kind": "critter",
+   "species": "owl",
+   "at": [
+    3.4,
+    0,
+    0.6
+   ],
+   "size": 0.8,
+   "rotation": [
+    0,
+    -25,
+    0
+   ]
+  },
+  {
+   "id": "notebook",
+   "kind": "prop",
+   "model": "notebook",
+   "parent": "owl",
+   "at": [
+    -0.3,
+    0.3,
+    0.35
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "turtle",
+   "kind": "critter",
+   "species": "turtle",
+   "at": [
+    2.3,
+    0,
+    1.4
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    -20,
+    0
+   ]
+  },
+  {
+   "id": "board",
+   "kind": "prop",
+   "model": "chalkboard",
+   "at": [
+    0,
+    0,
+    -1.4
+   ],
+   "size": 1.6
+  },
+  {
+   "id": "race",
+   "kind": "letter",
+   "text": "Race length:",
+   "size": 0.16,
+   "color": "white",
+   "at": [
+    0,
+    1.95,
+    -1.3
+   ],
+   "hidden": false,
+   "depth": 0.05
+  },
+  {
+   "id": "r1",
+   "kind": "letter",
+   "text": "1",
+   "size": 0.4,
+   "color": "yellow",
+   "at": [
+    -0.8,
+    1.3,
+    -1.3
+   ],
+   "hidden": false,
+   "depth": 0.08
+  },
+  {
+   "id": "rdot",
+   "kind": "letter",
+   "text": ".",
+   "size": 0.4,
+   "color": "yellow",
+   "at": [
+    -0.42,
+    1.3,
+    -1.3
+   ],
+   "hidden": false,
+   "depth": 0.08
+  },
+  {
+   "id": "r5",
+   "kind": "letter",
+   "text": "5",
+   "size": 0.4,
+   "color": "yellow",
+   "at": [
+    -0.04,
+    1.3,
+    -1.3
+   ],
+   "hidden": false,
+   "depth": 0.08
+  },
+  {
+   "id": "rm",
+   "kind": "letter",
+   "text": "m",
+   "size": 0.4,
+   "color": "yellow",
+   "at": [
+    0.62,
+    1.3,
+    -1.3
+   ],
+   "hidden": false,
+   "depth": 0.08
+  },
+  {
+   "id": "door",
+   "kind": "prop",
+   "model": "door",
+   "at": [
+    6.6,
+    0,
+    -0.6
+   ],
+   "rotation": [
+    0,
+    -20,
+    0
+   ]
+  },
+  {
+   "id": "track",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "material": "matte",
+   "at": [
+    -3,
+    0.01,
+    2.1
+   ],
+   "scale": [
+    14,
+    1,
+    0.55
+   ],
+   "pivot": [
+    -0.5,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t15",
+   "kind": "letter",
+   "text": "15 m",
+   "size": 0.35,
+   "color": "red",
+   "at": [
+    3,
+    0.05,
+    2.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bar10",
+   "kind": "fraction_bar",
+   "parts": 10,
+   "shaded": 0,
+   "length": 3.2,
+   "height": 0.5,
+   "color": "green",
+   "at": [
+    0,
+    1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f110",
+   "kind": "fraction_text",
+   "numerator": 1,
+   "denominator": 10,
+   "size": 0.42,
+   "at": [
+    -0.9,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "eq2",
+   "kind": "letter",
+   "text": "=",
+   "size": 0.4,
+   "color": "ink",
+   "at": [
+    -0.1,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d01",
+   "kind": "letter",
+   "text": "0.1",
+   "size": 0.4,
+   "color": "green",
+   "at": [
+    0.75,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f310",
+   "kind": "fraction_text",
+   "numerator": 3,
+   "denominator": 10,
+   "size": 0.42,
+   "at": [
+    -0.9,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d03",
+   "kind": "letter",
+   "text": "0.3",
+   "size": 0.4,
+   "color": "green",
+   "at": [
+    0.75,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f1010",
+   "kind": "fraction_text",
+   "numerator": 10,
+   "denominator": 10,
+   "size": 0.42,
+   "at": [
+    -0.9,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d10",
+   "kind": "letter",
+   "text": "1.0",
+   "size": 0.4,
+   "color": "green",
+   "at": [
+    0.75,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pv",
+   "kind": "place_value_chart",
+   "columns": [
+    "ones",
+    ".",
+    "tenths"
+   ],
+   "digits": "1.5",
+   "cell": 0.8,
+   "color": "blue",
+   "at": [
+    0,
+    1.4,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pv_one",
+   "kind": "fraction_bar",
+   "parts": 10,
+   "shaded": 0,
+   "length": 1.5,
+   "height": 0.32,
+   "color": "green",
+   "at": [
+    -0.85,
+    0.85,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pv_tenths",
+   "kind": "fraction_bar",
+   "parts": 10,
+   "shaded": 0,
+   "length": 1.5,
+   "height": 0.32,
+   "color": "green",
+   "at": [
+    0.85,
+    0.85,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pv15",
+   "kind": "place_value_chart",
+   "columns": [
+    "tens",
+    "ones",
+    ".",
+    "tenths"
+   ],
+   "digits": "15",
+   "cell": 0.8,
+   "color": "red",
+   "at": [
+    0,
+    1.4,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "comma",
+   "kind": "letter",
+   "text": "1,5",
+   "size": 0.4,
+   "color": "purple",
+   "at": [
+    0,
+    3.05,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl",
+   "kind": "number_line",
+   "from": 0,
+   "to": 2,
+   "length": 6,
+   "step": 0.5,
+   "minor": 5,
+   "labels": [
+    "0",
+    "0.5",
+    "1",
+    "1.5",
+    "2"
+   ],
+   "color": "red",
+   "at": [
+    0,
+    0,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st1",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.1
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st2",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.2
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st3",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.3
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st4",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.4
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st5",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.5
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st6",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.6
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st7",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.7
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st8",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.8
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st9",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 0.9
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "st10",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "mint",
+   "material": "toy",
+   "on": {
+    "line": "nl",
+    "value": 1
+   },
+   "scale": [
+    0.26,
+    0.06,
+    0.26
+   ],
+   "hidden": true
+  },
+  {
+   "id": "whole_block",
+   "kind": "shape",
+   "shape": "box",
+   "color": "gold",
+   "material": "glossy",
+   "at": [
+    -1.5,
+    0.56,
+    0.6
+   ],
+   "scale": [
+    2.96,
+    0.07,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "one_whole",
+   "kind": "letter",
+   "text": "1 whole",
+   "size": 0.3,
+   "color": "orange",
+   "at": [
+    -1.5,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tt",
+   "kind": "critter",
+   "species": "turtle",
+   "size": 0.42,
+   "on": {
+    "line": "nl",
+    "value": 0
+   },
+   "rotation": [
+    0,
+    70,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "finish",
+   "kind": "pointer",
+   "from": [
+    1.5,
+    0.56,
+    0.39999999999999997
+   ],
+   "to": [
+    1.5,
+    1.75,
+    0.39999999999999997
+   ],
+   "head": "none",
+   "width": 0.05,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "flag",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "red",
+   "at": [
+    1.72,
+    1.5,
+    0.39999999999999997
+   ],
+   "scale": [
+    0.45,
+    0.35,
+    0.05
+   ],
+   "rotation": [
+    0,
+    0,
+    -90
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ms1",
+   "kind": "prop",
+   "model": "metre_stick",
+   "at": [
+    -1.5,
+    1.2,
+    0.25
+   ],
+   "size": 3,
+   "hidden": true
+  },
+  {
+   "id": "ms2",
+   "kind": "prop",
+   "model": "metre_stick",
+   "at": [
+    1.5,
+    1.2,
+    0.25
+   ],
+   "size": 3,
+   "hidden": true
+  },
+  {
+   "id": "co40",
+   "kind": "letter",
+   "text": "0.4 m = 40 cm",
+   "size": 0.2,
+   "color": "blue",
+   "at": [
+    -1.7999999999999998,
+    1.75,
+    0.25
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co130",
+   "kind": "letter",
+   "text": "1.3 m = 130 cm",
+   "size": 0.2,
+   "color": "blue",
+   "at": [
+    0.9000000000000004,
+    1.75,
+    0.25
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c09",
+   "kind": "letter",
+   "text": "0.9",
+   "size": 0.24,
+   "color": "blue",
+   "at": [
+    -0.2999999999999998,
+    1.3,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c12",
+   "kind": "letter",
+   "text": "1.2",
+   "size": 0.24,
+   "color": "blue",
+   "at": [
+    0.5999999999999996,
+    1.3,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "claim",
+   "kind": "letter",
+   "text": "0.9 > 1.2",
+   "size": 0.34,
+   "color": "red",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "truth",
+   "kind": "letter",
+   "text": "1.2 > 0.9",
+   "size": 0.34,
+   "color": "green",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c14",
+   "kind": "letter",
+   "text": "1.4 > 1.2",
+   "size": 0.34,
+   "color": "green",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sum1",
+   "kind": "letter",
+   "text": "0.6 + 0.3 = 0.9",
+   "size": 0.3,
+   "color": "blue",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sum2",
+   "kind": "letter",
+   "text": "0.7 + 0.5 = ?",
+   "size": 0.3,
+   "color": "blue",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sum2r",
+   "kind": "letter",
+   "text": "0.7 + 0.5 = 1.2",
+   "size": 0.3,
+   "color": "blue",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "wrong",
+   "kind": "letter",
+   "text": "0.12 ?",
+   "size": 0.26,
+   "color": "red",
+   "at": [
+    2.3,
+    1.55,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sum3",
+   "kind": "letter",
+   "text": "1.5 − 0.4 = 1.1",
+   "size": 0.3,
+   "color": "blue",
+   "at": [
+    0,
+    2.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_a0",
+   "kind": "letter",
+   "text": "0",
+   "size": 0.38,
+   "color": "ink",
+   "at": [
+    -0.62,
+    2.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_ap",
+   "kind": "letter",
+   "text": ".",
+   "size": 0.38,
+   "color": "ink",
+   "at": [
+    0,
+    2.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_a7",
+   "kind": "letter",
+   "text": "7",
+   "size": 0.38,
+   "color": "ink",
+   "at": [
+    0.62,
+    2.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_bp_",
+   "kind": "letter",
+   "text": "+",
+   "size": 0.38,
+   "color": "ink",
+   "at": [
+    -1.45,
+    2.1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_b0",
+   "kind": "letter",
+   "text": "0",
+   "size": 0.38,
+   "color": "ink",
+   "at": [
+    -0.62,
+    2.1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_bp",
+   "kind": "letter",
+   "text": ".",
+   "size": 0.38,
+   "color": "ink",
+   "at": [
+    0,
+    2.1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_b5",
+   "kind": "letter",
+   "text": "5",
+   "size": 0.38,
+   "color": "ink",
+   "at": [
+    0.62,
+    2.1,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_c1",
+   "kind": "letter",
+   "text": "1",
+   "size": 0.38,
+   "color": "green",
+   "at": [
+    -0.62,
+    1.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_cp",
+   "kind": "letter",
+   "text": ".",
+   "size": 0.38,
+   "color": "green",
+   "at": [
+    0,
+    1.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_c2",
+   "kind": "letter",
+   "text": "2",
+   "size": 0.38,
+   "color": "green",
+   "at": [
+    0.62,
+    1.3,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "col_line",
+   "kind": "pointer",
+   "from": [
+    -1.8,
+    1.9,
+    0
+   ],
+   "to": [
+    1.1,
+    1.9,
+    0
+   ],
+   "head": "none",
+   "width": 0.05,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "hunt_table",
+   "kind": "shape",
+   "shape": "box",
+   "color": "wood_dark",
+   "material": "matte",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "scale": [
+    7,
+    0.85,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "hunt_top",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "cream",
+   "material": "matte",
+   "at": [
+    0,
+    0.85,
+    0
+   ],
+   "scale": [
+    7.2,
+    1,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jug",
+   "kind": "prop",
+   "model": "water_jug",
+   "at": [
+    -2.55,
+    0.85,
+    0
+   ],
+   "size": 2.4,
+   "hidden": true
+  },
+  {
+   "id": "pencil",
+   "kind": "prop",
+   "model": "pencil",
+   "at": [
+    -0.85,
+    0.92,
+    0.1
+   ],
+   "size": 3.2,
+   "hidden": true
+  },
+  {
+   "id": "jump_ms",
+   "kind": "prop",
+   "model": "metre_stick",
+   "at": [
+    0.85,
+    0.85,
+    0.1
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "thermo",
+   "kind": "prop",
+   "model": "thermometer",
+   "at": [
+    2.55,
+    0.85,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "co_jug",
+   "kind": "letter",
+   "text": "1.5 L",
+   "size": 0.22,
+   "color": "blue",
+   "at": [
+    -2.55,
+    2.35,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co_pen",
+   "kind": "letter",
+   "text": "14.5 cm",
+   "size": 0.2,
+   "color": "orange",
+   "at": [
+    -0.85,
+    1.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co_jump",
+   "kind": "letter",
+   "text": "1.2 m",
+   "size": 0.22,
+   "color": "green",
+   "at": [
+    0.85,
+    1.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co_thermo",
+   "kind": "letter",
+   "text": "37.0 °C",
+   "size": 0.2,
+   "color": "red",
+   "at": [
+    2.55,
+    2.6,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "k14",
+   "kind": "letter",
+   "text": "1.4",
+   "size": 0.34,
+   "color": "purple",
+   "at": [
+    -1.95,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "k08",
+   "kind": "letter",
+   "text": "0.8",
+   "size": 0.34,
+   "color": "purple",
+   "at": [
+    -0.65,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "k10",
+   "kind": "letter",
+   "text": "1.0",
+   "size": 0.34,
+   "color": "purple",
+   "at": [
+    0.65,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "k03",
+   "kind": "letter",
+   "text": "0.3",
+   "size": 0.34,
+   "color": "purple",
+   "at": [
+    1.95,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch2",
+   "kind": "letter",
+   "text": "0.4 + 0.8 = ?",
+   "size": 0.3,
+   "color": "blue",
+   "at": [
+    0,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch2r",
+   "kind": "letter",
+   "text": "0.4 + 0.8 = 1.2",
+   "size": 0.3,
+   "color": "blue",
+   "at": [
+    0,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch3",
+   "kind": "letter",
+   "text": "0.6 m + 0.7 m = ?",
+   "size": 0.24,
+   "color": "blue",
+   "at": [
+    0,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch3r",
+   "kind": "letter",
+   "text": "0.6 m + 0.7 m = 1.3 m",
+   "size": 0.24,
+   "color": "blue",
+   "at": [
+    0,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch4",
+   "kind": "letter",
+   "text": "1.1 m  or  0.9 m ?",
+   "size": 0.28,
+   "color": "blue",
+   "at": [
+    0,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch4r",
+   "kind": "letter",
+   "text": "1.1 m > 0.9 m",
+   "size": 0.28,
+   "color": "green",
+   "at": [
+    0,
+    2,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q710",
+   "kind": "fraction_text",
+   "numerator": 7,
+   "denominator": 10,
+   "size": 0.5,
+   "at": [
+    -0.8,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_eq",
+   "kind": "letter",
+   "text": "=",
+   "size": 0.5,
+   "color": "ink",
+   "at": [
+    0,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_qm",
+   "kind": "letter",
+   "text": "?",
+   "size": 0.5,
+   "color": "orange",
+   "at": [
+    0.8,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q07",
+   "kind": "letter",
+   "text": "0.7",
+   "size": 0.5,
+   "color": "green",
+   "at": [
+    0.85,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_cmp",
+   "kind": "letter",
+   "text": "1.2  or  0.9",
+   "size": 0.36,
+   "color": "ink",
+   "at": [
+    0,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_add",
+   "kind": "letter",
+   "text": "0.8 + 0.4 = ?",
+   "size": 0.3,
+   "color": "ink",
+   "at": [
+    0,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_addr",
+   "kind": "letter",
+   "text": "0.8 + 0.4 = 1.2",
+   "size": 0.3,
+   "color": "green",
+   "at": [
+    0,
+    1.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_cm",
+   "kind": "letter",
+   "text": "0.3 m = ? cm",
+   "size": 0.3,
+   "color": "ink",
+   "at": [
+    0,
+    2.4,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_cmr",
+   "kind": "letter",
+   "text": "0.3 m = 30 cm",
+   "size": 0.3,
+   "color": "green",
+   "at": [
+    0,
+    2.4,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_ms",
+   "kind": "prop",
+   "model": "metre_stick",
+   "at": [
+    0,
+    1.2,
+    0
+   ],
+   "size": 3,
+   "hidden": true
+  },
+  {
+   "id": "recap",
+   "kind": "text_card",
+   "text": "Tenths are 10 equal parts of a whole: 3/10 = 0.3.\nThe decimal point sits between wholes and tenths.\nCompare the wholes first.\nTen tenths make one whole.",
+   "width": 4.8,
+   "size": 0.21,
+   "at": [
+    0,
+    0.95,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "home_card",
+   "kind": "text_card",
+   "text": "Tenths walk: put a sticky note every 10 cm on a tape, from 0.1 m to 1.0 m. Roll a toy car and read where it stops!",
+   "width": 4.4,
+   "size": 0.2,
+   "at": [
+    0,
+    1.4,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 160,
+   "area": [
+    8,
+    3
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hook",
+   "title": "The 15-metre mistake",
+   "beats": [
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Tenths Track",
+       "style": "title",
+       "dur": 2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "turtle",
+       "text": "Race day! My race is one point five metres long.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": "board"
+      },
+      {
+       "do": "highlight",
+       "target": "r5",
+       "dur": 1.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And I built the track! Fifteen metres! It goes right out the door!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "track",
+       "dur": 0.8,
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "t15",
+       "dur": 0.4,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.75,
+        1.65,
+        10.878
+       ],
+       "lookAt": [
+        1.75,
+        0.413,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.6
+      },
+      {
+       "do": "turn",
+       "target": "door#door",
+       "to": [
+        0,
+        -80,
+        0
+       ],
+       "dur": 1,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Robo, look at the poster. What does this little dot mean?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.15,
+        1.476,
+        4.864
+       ],
+       "lookAt": [
+        1.15,
+        0.854,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "rdot",
+       "dur": 2.2,
+       "at": 0.6
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "rdot"
+      },
+      {
+       "do": "point",
+       "target": "owl",
+       "to": "rdot",
+       "at": 0.5,
+       "hold": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.781,
+        1.037
+       ],
+       "lookAt": [
+        0,
+        1.494,
+        -1.3
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "caption",
+       "text": "1.5",
+       "style": "count",
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Hmm. A dot? I thought it was a speck of chalk.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "rdot"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "That dot is the decimal point. Let's find out what it does.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "door#door",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tenths",
+   "title": "One whole into ten",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "board",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "race",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "r1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rdot",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "r5",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "rm",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "track",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "t15",
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "turtle",
+       "to": [
+        2.6,
+        0,
+        1.6
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "bar10",
+       "dur": 0.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here is one whole bar. Let's cut it into ten equal parts.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "bar10"
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "bar10"
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": "bar10"
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "build",
+       "target": "bar10",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Each part is one tenth. Ten equal parts make the whole.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bar10#p1",
+       "dur": 1.6,
+       "at": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "tenth",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Shade one part. One tenth. We can write it as a fraction, or as a decimal.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "bar10",
+       "to": 1,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "f110",
+       "sound": false,
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "eq2",
+       "sound": false,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "d01",
+       "sound": false,
+       "at": 1.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.114,
+        3.993
+       ],
+       "lookAt": [
+        0,
+        1.624,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Zero point one means zero wholes and one tenth.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "0.1 = one tenth",
+       "style": "label"
+      },
+      {
+       "do": "highlight",
+       "target": "d01",
+       "dur": 1.8,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "f110",
+       "dur": 0.15,
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "f310",
+       "dur": 0.2,
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "d01",
+       "dur": 0.15,
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "d03",
+       "dur": 0.2,
+       "at": 0.15000000000000002
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Shade three parts. Three tenths. Zero point three.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "bar10",
+       "to": 3,
+       "sound": "tick"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      },
+      {
+       "do": "caption",
+       "text": "All ten?",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.44999999999999996,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Shade all ten. Ten tenths make one whole. One point zero.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "bar10",
+       "to": 10,
+       "dur": 1.6,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "f310",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "f1010",
+       "dur": 0.2,
+       "at": 0.35
+      },
+      {
+       "do": "hide",
+       "target": "d03",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "d10",
+       "dur": 0.2,
+       "at": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "bar10",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "f1010",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "eq2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "d10",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "point",
+   "title": "The decimal point",
+   "music": "calm",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "show",
+       "target": "pv",
+       "dur": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "pv_one",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pv_tenths",
+       "dur": 0.4,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "This is a place value chart. Ones on the left, tenths on the right.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "pv",
+       "dur": 1.5,
+       "at": 0.3
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "pv"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "The decimal point sits between the wholes and the tenths.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "decimal point",
+       "style": "label"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.265,
+        3.311
+       ],
+       "lookAt": [
+        0,
+        1.859,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "So one point five is one whole, and five tenths!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "pv_one",
+       "to": 10,
+       "dur": 1,
+       "at": 0.4
+      },
+      {
+       "do": "shade",
+       "target": "pv_tenths",
+       "to": 5,
+       "dur": 0.8,
+       "at": 1.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.935,
+        3.896
+       ],
+       "lookAt": [
+        0,
+        1.457,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "1.5 = one and five tenths",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "We can read it two ways. One point five, or one and five tenths.",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Let's practise. How do we read this one?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "set",
+       "target": "pv",
+       "digits": "2.7",
+       "at": 0.3
+      },
+      {
+       "do": "shade",
+       "target": "pv_one",
+       "to": 0,
+       "dur": 0.3
+      },
+      {
+       "do": "shade",
+       "target": "pv_tenths",
+       "to": 0,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pv_one",
+       "dur": 0.3,
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pv_tenths",
+       "dur": 0.3,
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.265,
+        3.311
+       ],
+       "lookAt": [
+        0,
+        1.859,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two point seven. Two wholes and seven tenths!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "2.7 = two and seven tenths",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "And this one? Zero wholes, and four tenths.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "set",
+       "target": "pv",
+       "digits": "0.4",
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "0.4 = four tenths",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Back to one point five. Here is more evidence. Let's count every tenth.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "set",
+       "target": "pv",
+       "digits": "1.5",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "pv_one",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pv_tenths",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.935,
+        3.896
+       ],
+       "lookAt": [
+        0,
+        1.457,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "shade",
+       "target": "pv_one",
+       "to": 10,
+       "dur": 3,
+       "sound": "tick"
+      },
+      {
+       "do": "shade",
+       "target": "pv_tenths",
+       "to": 5,
+       "dur": 1.5,
+       "sound": "tick",
+       "at": 3.1
+      },
+      {
+       "do": "caption",
+       "text": "15 tenths",
+       "style": "count",
+       "at": 3.8,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Fifteen tenths! So one point five is also fifteen tenths.",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "But fifteen is one ten and five ones. That's ten times as far!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "pv",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pv_one",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pv_tenths",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "pv15",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "15 m is ten times 1.5 m",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.7999999999999999,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oops. My track is ten times too long. I'll roll it up.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried"
+      },
+      {
+       "do": "show",
+       "target": "track",
+       "dur": 0.2,
+       "at": 0.6
+      },
+      {
+       "do": "grow",
+       "target": "track",
+       "to": [
+        0.1,
+        1,
+        1
+       ],
+       "dur": 1.6,
+       "ease": "quadInOut",
+       "at": 0.7
+      },
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "volume": 0.5,
+       "at": 0.7
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.556
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Fun fact: in France, Germany and Brazil, people write a comma instead of a point.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "track",
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "comma",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.446,
+        5.649
+       ],
+       "lookAt": [
+        0,
+        1.753,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "pv15",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "comma",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "track",
+   "title": "The Tenths Track",
+   "beats": [
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "draw",
+       "target": "nl",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "tt",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "turtle",
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -5,
+        0,
+        -0.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "owl",
+       "to": [
+        5,
+        0,
+        -0.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.161,
+        6.864
+       ],
+       "lookAt": [
+        0,
+        0.416,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here's the real track: zero to two metres. Every tenth gets a stepping stone.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "nl"
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "nl"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "turtle",
+       "text": "Slow and steady. One tenth at a time!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "tt",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 5.8,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+       ],
+       "dur": 0.55,
+       "height": 0.35,
+       "sound": false,
+       "arcs": false
+      },
+      {
+       "do": "pop",
+       "target": "st1",
+       "sound": false,
+       "at": 0
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 0
+      },
+      {
+       "do": "pop",
+       "target": "st2",
+       "sound": false,
+       "at": 0.55
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 0.55
+      },
+      {
+       "do": "pop",
+       "target": "st3",
+       "sound": false,
+       "at": 1.1
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 1.1
+      },
+      {
+       "do": "pop",
+       "target": "st4",
+       "sound": false,
+       "at": 1.6500000000000001
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 1.6500000000000001
+      },
+      {
+       "do": "pop",
+       "target": "st5",
+       "sound": false,
+       "at": 2.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 2.2
+      },
+      {
+       "do": "pop",
+       "target": "st6",
+       "sound": false,
+       "at": 2.75
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 2.75
+      },
+      {
+       "do": "pop",
+       "target": "st7",
+       "sound": false,
+       "at": 3.3000000000000003
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 3.3000000000000003
+      },
+      {
+       "do": "pop",
+       "target": "st8",
+       "sound": false,
+       "at": 3.8500000000000005
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 3.8500000000000005
+      },
+      {
+       "do": "pop",
+       "target": "st9",
+       "sound": false,
+       "at": 4.4
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 4.4
+      },
+      {
+       "do": "caption",
+       "text": "0.1, 0.2, 0.3 ... 0.9",
+       "style": "label",
+       "dur": 5.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.5,
+        1.272,
+        4.472
+       ],
+       "lookAt": [
+        -1.5,
+        0.624,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 4.5
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Zero point nine. What comes after zero point nine?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "tt"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      },
+      {
+       "do": "caption",
+       "text": "?",
+       "style": "count",
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        1
+       ],
+       "dur": 0.6,
+       "height": 0.35,
+       "sound": false,
+       "arcs": false
+      },
+      {
+       "do": "pop",
+       "target": "st10",
+       "sound": false,
+       "at": 0
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "volume": 0.6,
+       "at": 0
+      },
+      {
+       "do": "move",
+       "target": "st1",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st2",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st3",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st4",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st5",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st6",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st7",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st8",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st9",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "st10",
+       "to": [
+        -1.5,
+        0.56,
+        0.6
+       ],
+       "dur": 0.6,
+       "ease": "quadIn",
+       "at": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "st1",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st2",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st3",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st4",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st5",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st6",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st7",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st8",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st9",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "st10",
+       "dur": 0.1,
+       "at": 1.35
+      },
+      {
+       "do": "show",
+       "target": "whole_block",
+       "dur": 0.2,
+       "at": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "one_whole",
+       "sound": false,
+       "at": 1.5
+      },
+      {
+       "do": "caption",
+       "text": "1.0",
+       "style": "count",
+       "at": 1.4,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Click! Ten tenths make one whole. One point zero.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "whole_block",
+       "dur": 1.6,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Ten tenths make?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Ten tenths make?",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "One whole!",
+       "style": "label",
+       "dur": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        1.1,
+        1.2,
+        1.3,
+        1.4,
+        1.5
+       ],
+       "dur": 0.55,
+       "height": 0.35,
+       "sound": "step",
+       "arcs": false
+      },
+      {
+       "do": "draw",
+       "target": "finish",
+       "dur": 0.6,
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "flag",
+       "sound": false,
+       "at": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "1.1, 1.2, 1.3, 1.4, 1.5",
+       "style": "label",
+       "dur": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "turtle",
+       "text": "One point five! One whole and five tenths. I finished!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "volume": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "tt",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Now find some points. Zero point four!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "one_whole",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ms1",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "ms2",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.311,
+        6.864
+       ],
+       "lookAt": [
+        0,
+        0.566,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        0.4
+       ],
+       "dur": 1,
+       "height": 0.6,
+       "sound": "boing",
+       "arcs": false
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four tenths of a metre. On the metre stick, that's forty centimetres.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "co40",
+       "sound": false,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "ms1#tenth_4",
+       "dur": 1.6,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.6,
+        1.249,
+        5.085
+       ],
+       "lookAt": [
+        -1.6,
+        0.723,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Each tenth of a metre is ten centimetres. Now, one point three!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "co40",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        1.3
+       ],
+       "dur": 1,
+       "height": 0.6,
+       "sound": "boing",
+       "arcs": false
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.311,
+        6.864
+       ],
+       "lookAt": [
+        0,
+        0.566,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One whole metre and three tenths. That's one hundred thirty centimetres.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "co130",
+       "sound": false,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "And one point seven?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "co130",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        1.7
+       ],
+       "dur": 0.9,
+       "height": 0.5,
+       "sound": "boing",
+       "arcs": false
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "turtle",
+       "text": "One and seven tenths. Easy!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ms1",
+       "dur": 0.3,
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "ms2",
+       "dur": 0.3,
+       "at": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mixup",
+   "title": "Robo's bigger-digit mix-up",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "finish",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "flag",
+       "dur": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.561,
+        6.664
+       ],
+       "lookAt": [
+        0,
+        0.816,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "claim",
+       "sound": false,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Zero point nine beats one point two, because nine is bigger than two!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp"
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "claim"
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Is that true? Turtle, stand on each one.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "tt"
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        0.9
+       ],
+       "dur": 0.9,
+       "height": 0.5,
+       "arcs": false
+      },
+      {
+       "do": "pop",
+       "target": "c09",
+       "sound": false,
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        1.2
+       ],
+       "dur": 0.9,
+       "height": 0.5,
+       "arcs": false
+      },
+      {
+       "do": "pop",
+       "target": "c12",
+       "sound": false,
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      },
+      {
+       "do": "caption",
+       "text": "Which is further?",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "One point two is further along. It's bigger.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "c12",
+       "dur": 1.6,
+       "at": 0.3
+      },
+      {
+       "do": "mark",
+       "target": "claim",
+       "result": "incorrect",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Compare the wholes first. Zero point nine has no whole. One point two has one.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "claim",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "truth",
+       "dur": 0.2,
+       "at": 0.35
+      },
+      {
+       "do": "mark",
+       "target": "truth",
+       "result": "correct",
+       "at": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "caption",
+       "text": "compare the wholes first",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.44999999999999996,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "If the wholes are the same, then compare the tenths. One point four beats one point two.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "truth",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "c14",
+       "dur": 0.2,
+       "at": 0.35
+      },
+      {
+       "do": "caption",
+       "text": "then compare the tenths",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wholes first, then tenths. Got it!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c14",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c09",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c12",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "adding",
+   "title": "Adding and taking away tenths",
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        0.6
+       ],
+       "dur": 0.9,
+       "height": 0.5,
+       "arcs": false
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.561,
+        6.664
+       ],
+       "lookAt": [
+        0,
+        0.816,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Zero point six plus zero point three. Start at zero point six, and take three leaps.",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        0.7,
+        0.8,
+        0.9
+       ],
+       "dur": 0.55,
+       "height": 0.35,
+       "sound": "step",
+       "arcs": false
+      },
+      {
+       "do": "pop",
+       "target": "sum1",
+       "sound": false,
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Six tenths plus three tenths is nine tenths. Zero point nine.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "sum1",
+       "result": "correct",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "sum1",
+       "dur": 0.3
+      },
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        0.7
+       ],
+       "dur": 0.7,
+       "height": 0.4,
+       "arcs": false,
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "sum2",
+       "sound": false,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Zero point seven plus zero point five. Seven plus five is twelve. So, zero point twelve!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "wrong",
+       "sound": false,
+       "at": 1.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp"
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Let's check on the track. Five leaps of one tenth.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "tt"
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        0.8,
+        0.9,
+        1,
+        1.1,
+        1.2
+       ],
+       "dur": 0.55,
+       "height": 0.35,
+       "sound": "step",
+       "arcs": false
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "whole_block",
+       "dur": 1,
+       "at": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "sum2",
+       "dur": 0.15,
+       "at": 3
+      },
+      {
+       "do": "show",
+       "target": "sum2r",
+       "dur": 0.2,
+       "at": 3.05
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "We passed one whole! It's one point two, not zero point twelve.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "wrong",
+       "result": "incorrect",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Zero point twelve is even less than both numbers. That can't be the sum.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "wrong",
+       "dur": 1.6,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "wrong",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sum2r",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "nl",
+       "dur": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "tt",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ms1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ms2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "whole_block",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "finish",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "flag",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "col_a0",
+       "dur": 0.2,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "col_ap",
+       "dur": 0.2,
+       "at": 0.48000000000000004
+      },
+      {
+       "do": "show",
+       "target": "col_a7",
+       "dur": 0.2,
+       "at": 0.56
+      },
+      {
+       "do": "show",
+       "target": "col_bp_",
+       "dur": 0.2,
+       "at": 0.64
+      },
+      {
+       "do": "show",
+       "target": "col_b0",
+       "dur": 0.2,
+       "at": 0.72
+      },
+      {
+       "do": "show",
+       "target": "col_bp",
+       "dur": 0.2,
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "col_b5",
+       "dur": 0.2,
+       "at": 0.88
+      },
+      {
+       "do": "draw",
+       "target": "col_line",
+       "dur": 0.5,
+       "at": 0.9
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.2,
+        2.233,
+        5.259
+       ],
+       "lookAt": [
+        -0.2,
+        1.587,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let me write it in columns. Line up the decimal points, so tenths add to tenths.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "col_ap",
+       "dur": 1.6,
+       "at": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "col_bp",
+       "dur": 1.6,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.9000000000000001,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Seven tenths plus five tenths is twelve tenths. That's one whole and two tenths.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "col_a7",
+       "dur": 1.2,
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "col_b5",
+       "dur": 1.2,
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "col_c1",
+       "dur": 0.2,
+       "at": 1.4
+      },
+      {
+       "do": "show",
+       "target": "col_cp",
+       "dur": 0.2,
+       "at": 1.5
+      },
+      {
+       "do": "show",
+       "target": "col_c2",
+       "dur": 0.2,
+       "at": 1.6
+      },
+      {
+       "do": "caption",
+       "text": "12 tenths = 1.2",
+       "style": "label",
+       "at": 1.8,
+       "pos": "right"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One point two. The point stays lined up.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "col_c2",
+       "result": "correct",
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "col_cp",
+       "dur": 1.6,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "col_a0",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_ap",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_a7",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_bp_",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_b0",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_bp",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_b5",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_c1",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_cp",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_c2",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "col_line",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "nl",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "whole_block",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "tt",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        1.5
+       ],
+       "dur": 0.05,
+       "height": 0.01,
+       "sound": false,
+       "arcs": false,
+       "at": 0.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.561,
+        6.664
+       ],
+       "lookAt": [
+        0,
+        0.816,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Taking away works the same way. One point five take away zero point four.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "sum3",
+       "sound": false,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "tt",
+       "line": "nl",
+       "values": [
+        1.4,
+        1.3,
+        1.2,
+        1.1
+       ],
+       "dur": 0.55,
+       "height": 0.35,
+       "sound": "step",
+       "color": "blue",
+       "arcs": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Four leaps back. One point one.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "sum3",
+       "result": "correct",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "sum3",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Tenths Track chant",
+   "music": "bouncy",
+   "musicGain": 0.22,
+   "beats": [
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.242,
+        7.956
+       ],
+       "lookAt": [
+        0,
+        0.388,
+        1
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Point one, point two, steady as I go!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.25,
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Ten little tenths make a whole, you know!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "spin",
+       "target": "tt",
+       "turns": 1,
+       "dur": 1,
+       "at": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "owl",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Tiny steps for tenths, a big jump for a whole!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.15,
+       "at": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.6,
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Point one, point two, steady as I go. Ten little tenths make a whole, you know!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "tt",
+       "height": 0.25,
+       "at": 0.5
+      },
+      {
+       "do": "spin",
+       "target": "tt",
+       "turns": 1,
+       "dur": 1,
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hunt",
+   "title": "Decimal hunt",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "tt",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "whole_block",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "hunt_table",
+       "dur": 0.4
+      },
+      {
+       "do": "show",
+       "target": "hunt_top",
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.4,
+        0,
+        0.6
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "owl",
+       "to": [
+        3.4,
+        0,
+        0.6
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Decimals are everywhere! Let's go on a decimal hunt.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "hunt_table"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "This juice bottle holds one point five litres. One and five tenths litres.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "jug",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "co_jug",
+       "sound": false,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2.55,
+        1.879,
+        3.701
+       ],
+       "lookAt": [
+        -2.55,
+        1.424,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "This pencil is fourteen point five centimetres. Fourteen and five tenths.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "pencil",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "co_pen",
+       "sound": false,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.85,
+        1.595,
+        2.727
+       ],
+       "lookAt": [
+        -0.85,
+        1.26,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Turtle's long jump: one point two metres. One and two tenths.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "jump_ms",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "co_jump",
+       "sound": false,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.85,
+        1.595,
+        2.727
+       ],
+       "lookAt": [
+        0.85,
+        1.26,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A thermometer reads thirty seven point zero degrees. That's normal body temperature!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "thermo",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "co_thermo",
+       "sound": false,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        2.55,
+        1.992,
+        4.09
+       ],
+       "lookAt": [
+        2.55,
+        1.49,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "move",
+       "target": "thermo#liquid",
+       "to": [
+        0,
+        0.05,
+        0
+       ],
+       "dur": 1.2,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Doctors measure it to a tenth of a degree.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "owl"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Fun fact: in 1585, Simon Stevin wrote a little book to teach everyone decimals.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "jug",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "co_jug",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pencil",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "co_pen",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "jump_ms",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "co_jump",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "thermo",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "co_thermo",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "hunt_table",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "hunt_top",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge round",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "pop",
+       "target": "k14",
+       "sound": "pop",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "k08",
+       "sound": false,
+       "at": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "k10",
+       "sound": false,
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "k03",
+       "sound": false,
+       "at": 0.6499999999999999
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.592,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.738,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Challenge one! Put these in order, from least to greatest.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "k14"
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      },
+      {
+       "do": "caption",
+       "text": "least to greatest",
+       "style": "label",
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "k14",
+       "to": [
+        1.9500000000000004,
+        2,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "k08",
+       "to": [
+        -0.6499999999999999,
+        2,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "k10",
+       "to": [
+        0.6500000000000001,
+        2,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "k03",
+       "to": [
+        -1.95,
+        2,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Zero point three, zero point eight, one point zero, one point four!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "k14",
+       "result": "correct",
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "0.3 < 0.8 < 1.0 < 1.4",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Wholes first: the zeros come first. Then the tenths decide.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "k14",
+       "dur": 0.3,
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "k08",
+       "dur": 0.3,
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "k10",
+       "dur": 0.3,
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "k03",
+       "dur": 0.3,
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "pop",
+       "target": "ch2",
+       "sound": false
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.711,
+        4.637
+       ],
+       "lookAt": [
+        0,
+        1.142,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Challenge two! Zero point four plus zero point eight?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Four tenths plus eight tenths is twelve tenths. One point two!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "ch2",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ch2r",
+       "dur": 0.2,
+       "at": 0.35
+      },
+      {
+       "do": "mark",
+       "target": "ch2r",
+       "result": "correct",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch2r",
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch3",
+       "sound": false,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "turtle",
+       "text": "Challenge three! I walked zero point six metres, then zero point seven. How far?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "turtle",
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "turtle",
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Six tenths plus seven tenths is thirteen tenths. One point three metres!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "ch3",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ch3r",
+       "dur": 0.2,
+       "at": 0.35
+      },
+      {
+       "do": "mark",
+       "target": "ch3r",
+       "result": "correct",
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch3r",
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch4",
+       "sound": false,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Last one! Which ribbon is longer, one point one metres or zero point nine metres?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "One point one. It has a whole metre, and zero point nine does not.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "ch4",
+       "dur": 0.15,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ch4r",
+       "dur": 0.2,
+       "at": 0.35
+      },
+      {
+       "do": "mark",
+       "target": "ch4r",
+       "result": "correct",
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch4r",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.105,
+        4.459
+       ],
+       "lookAt": [
+        0,
+        1.558,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "q710",
+       "sound": false,
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "q_eq",
+       "sound": false,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "q_qm",
+       "sound": false,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quiz time! One: write seven tenths as a decimal.",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Zero point seven.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q_qm",
+       "dur": 0.15,
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "q07",
+       "dur": 0.2,
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "mark",
+       "target": "q07",
+       "result": "correct",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q710",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q_eq",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q07",
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "q_cmp",
+       "sound": false,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two: which is greater, one point two or zero point nine? Why?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "One point two. It has one whole, and zero point nine has none.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "q_cmp",
+       "result": "correct",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q_cmp",
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "q_add",
+       "sound": false,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three: what is zero point eight plus zero point four?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Twelve tenths. One point two.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q_add",
+       "dur": 0.15,
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "q_addr",
+       "dur": 0.2,
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "mark",
+       "target": "q_addr",
+       "result": "correct",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q_addr",
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "q_cm",
+       "sound": false,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "q_ms",
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four: how many centimetres is zero point three metres?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.155,
+        4.459
+       ],
+       "lookAt": [
+        0,
+        1.608,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Three tenths of a metre is thirty centimetres.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q_cm",
+       "dur": 0.15,
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "q_cmr",
+       "dur": 0.2,
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "highlight",
+       "target": "q_ms#tenth_1",
+       "dur": 1.6,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "q_ms#tenth_2",
+       "dur": 1.4,
+       "at": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "q_ms#tenth_3",
+       "dur": 1.2,
+       "at": 0.7
+      },
+      {
+       "do": "mark",
+       "target": "q_cmr",
+       "result": "correct",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q_cmr",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q_ms",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "recap",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.206,
+        4.78
+       ],
+       "lookAt": [
+        0,
+        1.656,
+        0.3
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Tenths are ten equal parts of a whole.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Tenths are 10 equal parts of a whole",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "The decimal point sits between the wholes and the tenths.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "The decimal point sits between wholes and tenths",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Compare the wholes first. And ten tenths make one whole!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Compare the wholes first",
+       "at": 0.2
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Ten tenths make one whole",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Evidence: one point five metres. Turtle's race was just right.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "notebook#cover",
+       "to": [
+        0,
+        -150,
+        0
+       ],
+       "dur": 0.6,
+       "at": 0.3
+      },
+      {
+       "do": "nod",
+       "target": "owl"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "recap",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "home",
+   "title": "Your turn: tenths walk",
+   "music": "bouncy",
+   "musicGain": 0.22,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "show",
+       "target": "home_card",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "turn",
+       "target": "notebook#cover",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.955,
+        4.459
+       ],
+       "lookAt": [
+        0,
+        1.408,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Lay a tape measure on the floor. Put a sticky note every ten centimetres.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "home_card",
+       "words": "every 10 cm",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Roll a toy car and read where it stops, in tenths of a metre. Keep away from stairs.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "home_card",
+       "words": "Roll a toy car",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "burst",
+       "target": "confetti"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave"
+      },
+      {
+       "do": "hop",
+       "target": "turtle",
+       "height": 0.3,
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "turtle",
+       "text": "Slow and steady, one tenth at a time. Bye!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "turtle"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.742,
+        7.356
+       ],
+       "lookAt": [
+        0,
+        0.888,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

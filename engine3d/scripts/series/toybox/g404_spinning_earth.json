@@ -1,0 +1,4606 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "meta": {
+  "series": "toybox",
+  "episode": "g404",
+  "audience": "grade4",
+  "title": "Spinning Earth",
+  "seed": 404,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "calm",
+  "musicGain": 0.16,
+  "skills": [
+   "earth_space_4"
+  ],
+  "youtube": {
+   "title": "Why Do We Have Seasons? Day, Night and Earth's Tilt for Kids | Grade 4 Science | Toy Box Friends",
+   "description": "Is the Sun moving, or are we? Robo, Owl and Penguin build a model with a tilted globe and a sun lamp.\nKids learn that Earth spins on its axis about once every 24 hours (day and night), why shadows are long in the morning and evening and short at noon, that one orbit around the Sun takes about 365¼ days (and why we have leap days), and that the seasons come from Earth's 23.5° tilt, not from distance: Penguin's December summer and Earth being closest to the Sun in January are the evidence.\nTry at home: a shadow stick (mark the shadow tip in the morning, at noon and in the afternoon) and a flashlight on squared paper. Never look straight at the Sun, even with sunglasses; don't shine a flashlight into anyone's eyes; and ask a grown-up to set up a desk lamp, because bulbs get hot.",
+   "tags": [
+    "why do we have seasons",
+    "earth rotation",
+    "day and night",
+    "earth's tilt",
+    "earth orbit",
+    "seasons for kids",
+    "shadows",
+    "grade 4 science",
+    "space for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "seasons",
+    "title": "WHY SEASONS?",
+    "subtitle": "It's the tilt!",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 4",
+    "stage": "lab",
+    "at": 1,
+    "lights": {
+     "rig": "dim"
+    },
+    "camera": {
+     "position": [
+      0,
+      1.5,
+      6.300000000000001
+     ],
+     "lookAt": [
+      0,
+      1.05,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "lamp_p",
+      "kind": "prop",
+      "model": "sun_lamp",
+      "at": [
+       0.65,
+       0.2,
+       0
+      ],
+      "size": 1.6
+     },
+     {
+      "id": "globe",
+      "kind": "prop",
+      "model": "globe",
+      "at": [
+       1.85,
+       0.2,
+       0
+      ],
+      "size": 1.6
+     },
+     {
+      "id": "night",
+      "kind": "shape",
+      "shape": "dome",
+      "color": "midnight",
+      "material": "ice",
+      "at": [
+       2.03,
+       0.872,
+       0
+      ],
+      "size": 0.78,
+      "rotation": [
+       0,
+       180,
+       90
+      ]
+     },
+     {
+      "id": "sunlight",
+      "kind": "lamp",
+      "at": [
+       0.65,
+       0.9,
+       0
+      ],
+      "aim": [
+       2.02,
+       0.87,
+       0
+      ],
+      "angle": 18,
+      "intensity": 140,
+      "distance": 10
+     },
+     {
+      "id": "penguin",
+      "kind": "critter",
+      "species": "penguin",
+      "at": [
+       2.65,
+       0,
+       0.9
+      ],
+      "size": 0.65,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "daynight",
+    "title": "DAY OR NIGHT?",
+    "subtitle": "Is the Sun moving?",
+    "titleColor": "orange",
+    "side": "left",
+    "badge": "GRADE 4",
+    "stage": "lab",
+    "at": 1,
+    "lights": {
+     "rig": "dim"
+    },
+    "camera": {
+     "position": [
+      0,
+      1.45,
+      6.5
+     ],
+     "lookAt": [
+      0,
+      1.05,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "lamp_p",
+      "kind": "prop",
+      "model": "sun_lamp",
+      "at": [
+       0.65,
+       0.2,
+       0
+      ],
+      "size": 1.5
+     },
+     {
+      "id": "globe",
+      "kind": "prop",
+      "model": "globe",
+      "at": [
+       1.85,
+       0.2,
+       0
+      ],
+      "size": 1.5
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       2.5,
+       0,
+       0.2
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "clip": "Jump",
+      "feeling": "surprised"
+     }
+    ]
+   }
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1.1,
+    "speed": 1
+   },
+   "owl": {
+    "voice": "deep",
+    "pitch": 0.9,
+    "speed": 0.95
+   },
+   "penguin": {
+    "voice": "squeaky",
+    "pitch": 1.15,
+    "speed": 1
+   }
+  }
+ },
+ "stage": {
+  "preset": "lab"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.3,
+   9.2
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -4,
+    0,
+    0.4
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "owl",
+   "kind": "critter",
+   "species": "owl",
+   "at": [
+    4,
+    0,
+    0.4
+   ],
+   "size": 0.8,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "notebook",
+   "kind": "prop",
+   "model": "notebook",
+   "parent": "owl",
+   "at": [
+    -0.3,
+    0.3,
+    0.35
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "penguin",
+   "kind": "critter",
+   "species": "penguin",
+   "at": [
+    1.3,
+    0.8,
+    1.1
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    -25,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "win_frame",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    0,
+    1.9,
+    -1.6
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    3,
+    1,
+    1.9
+   ]
+  },
+  {
+   "id": "win_sky",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "sky",
+   "material": "matte",
+   "at": [
+    0,
+    1.9,
+    -1.55
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.8,
+    1,
+    1.7
+   ]
+  },
+  {
+   "id": "hills",
+   "kind": "shape",
+   "shape": "dome",
+   "color": "grass",
+   "material": "matte",
+   "at": [
+    0,
+    1.05,
+    -1.5
+   ],
+   "scale": [
+    2.8,
+    0.5,
+    0.05
+   ]
+  },
+  {
+   "id": "tl_sun",
+   "kind": "prop",
+   "model": "sun",
+   "at": [
+    -1.15,
+    1.25,
+    -1.45
+   ],
+   "size": 0.35
+  },
+  {
+   "id": "east",
+   "kind": "letter",
+   "text": "east",
+   "size": 0.16,
+   "color": "orange",
+   "at": [
+    -1,
+    0.75,
+    -1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "west",
+   "kind": "letter",
+   "text": "west",
+   "size": 0.16,
+   "color": "purple",
+   "at": [
+    1,
+    0.75,
+    -1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bench",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    0,
+    0,
+    -0.2
+   ],
+   "scale": [
+    4.4,
+    0.8,
+    4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lamp_p",
+   "kind": "prop",
+   "model": "sun_lamp",
+   "at": [
+    0,
+    0.8,
+    -0.2
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "sunlight",
+   "kind": "lamp",
+   "at": [
+    0,
+    1.372,
+    -0.2
+   ],
+   "aim": [
+    -1.457,
+    1.346,
+    -0.2
+   ],
+   "angle": 14,
+   "intensity": 160,
+   "distance": 12,
+   "soft": 0.2,
+   "hidden": true
+  },
+  {
+   "id": "globe",
+   "kind": "prop",
+   "model": "globe",
+   "at": [
+    -1.6,
+    0.8,
+    -0.2
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "night",
+   "kind": "shape",
+   "shape": "dome",
+   "color": "midnight",
+   "material": "ice",
+   "at": [
+    -1.457,
+    1.346,
+    -0.2
+   ],
+   "size": 0.7,
+   "rotation": [
+    0,
+    0,
+    90
+   ],
+   "hidden": true
+  },
+  {
+   "id": "town",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "red",
+   "material": "glow",
+   "parent": "globe",
+   "part": "globe",
+   "at": [
+    -0.158,
+    0,
+    0.158
+   ],
+   "size": 0.07,
+   "hidden": true
+  },
+  {
+   "id": "town_s",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "sky",
+   "material": "glow",
+   "parent": "globe",
+   "part": "globe",
+   "at": [
+    -0.158,
+    0,
+    -0.158
+   ],
+   "size": 0.07,
+   "hidden": true
+  },
+  {
+   "id": "star",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "material": "glow",
+   "at": [
+    1.2,
+    4.6,
+    -5.5
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "t_axis",
+   "kind": "letter",
+   "text": "axis",
+   "size": 0.12,
+   "color": "gold",
+   "at": [
+    -0.95,
+    2.2,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_np",
+   "kind": "letter",
+   "text": "North Pole",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    -1,
+    2.42,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_sp",
+   "kind": "letter",
+   "text": "South Pole",
+   "size": 0.1,
+   "color": "blue",
+   "at": [
+    -2.25,
+    0.98,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_axis",
+   "kind": "pointer",
+   "from": [
+    -1.1,
+    2.1,
+    -0.2
+   ],
+   "to": [
+    -1.307,
+    1.676,
+    -0.2
+   ],
+   "width": 0.03,
+   "color": "gold",
+   "hidden": true
+  },
+  {
+   "id": "t_time",
+   "kind": "letter",
+   "text": "sunrise",
+   "size": 0.15,
+   "color": "orange",
+   "at": [
+    -1.457,
+    2.096,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_noon",
+   "kind": "letter",
+   "text": "noon",
+   "size": 0.15,
+   "color": "gold",
+   "at": [
+    -1.457,
+    2.096,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_sunset",
+   "kind": "letter",
+   "text": "sunset",
+   "size": 0.15,
+   "color": "pink",
+   "at": [
+    -1.457,
+    2.096,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "t_nightw",
+   "kind": "letter",
+   "text": "night",
+   "size": 0.15,
+   "color": "blue",
+   "at": [
+    -1.457,
+    2.096,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ground",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "grass",
+   "material": "matte",
+   "at": [
+    0,
+    0.01,
+    1.2
+   ],
+   "scale": [
+    4.4,
+    1,
+    1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "stick",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "wood_dark",
+   "material": "matte",
+   "at": [
+    0,
+    0.02,
+    1.2
+   ],
+   "scale": [
+    0.07,
+    0.7,
+    0.07
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sky_sun",
+   "kind": "prop",
+   "model": "sun",
+   "at": [
+    -2.6,
+    0.9,
+    0.4
+   ],
+   "size": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "sunbeam",
+   "kind": "lamp",
+   "at": [
+    -2.6,
+    0.7,
+    1
+   ],
+   "aim": [
+    0,
+    0,
+    1.2
+   ],
+   "angle": 30,
+   "intensity": 120,
+   "distance": 12,
+   "soft": 0.3,
+   "hidden": true
+  },
+  {
+   "id": "g_east",
+   "kind": "letter",
+   "text": "east",
+   "size": 0.2,
+   "color": "orange",
+   "at": [
+    -1.7,
+    0.03,
+    1.95
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "g_west",
+   "kind": "letter",
+   "text": "west",
+   "size": 0.2,
+   "color": "purple",
+   "at": [
+    1.7,
+    0.03,
+    1.95
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "sh_long",
+   "kind": "letter",
+   "text": "long shadow",
+   "size": 0.15,
+   "color": "ink",
+   "at": [
+    0,
+    1.3,
+    1.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sh_short",
+   "kind": "letter",
+   "text": "short shadow",
+   "size": 0.15,
+   "color": "ink",
+   "at": [
+    0,
+    1.3,
+    1.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sh_long2",
+   "kind": "letter",
+   "text": "long shadow",
+   "size": 0.15,
+   "color": "ink",
+   "at": [
+    0,
+    1.3,
+    1.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "myth",
+   "kind": "letter",
+   "text": "closer = summer?",
+   "size": 0.18,
+   "color": "red",
+   "at": [
+    1.3,
+    2.05,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jan",
+   "kind": "text_card",
+   "text": "Earth is closest to the Sun in early January. That is winter in the north!",
+   "width": 3.8,
+   "size": 0.18,
+   "at": [
+    -0.6,
+    2.45,
+    -0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "grid",
+   "kind": "grid",
+   "rows": 6,
+   "cols": 6,
+   "cell": 0.3,
+   "color": "sky",
+   "at": [
+    0,
+    0.01,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "torch",
+   "kind": "prop",
+   "model": "flashlight",
+   "at": [
+    0,
+    1.55,
+    1
+   ],
+   "size": 0.8,
+   "rotation": [
+    0,
+    0,
+    -90
+   ],
+   "hidden": true
+  },
+  {
+   "id": "beam",
+   "kind": "lamp",
+   "at": [
+    0,
+    1.5,
+    1
+   ],
+   "aim": [
+    0,
+    0,
+    1
+   ],
+   "angle": 11,
+   "intensity": 90,
+   "distance": 6,
+   "soft": 0.25,
+   "beam": true,
+   "hidden": true
+  },
+  {
+   "id": "sq4",
+   "kind": "letter",
+   "text": "4 squares: bright",
+   "size": 0.13,
+   "color": "orange",
+   "at": [
+    1.9,
+    0.75,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sq8",
+   "kind": "letter",
+   "text": "8 squares: dimmer",
+   "size": 0.13,
+   "color": "blue",
+   "at": [
+    1.9,
+    0.75,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tf0",
+   "kind": "text_card",
+   "text": "The Sun goes round Earth every day.",
+   "width": 4.6,
+   "size": 0.23,
+   "at": [
+    0,
+    1.35,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tf1",
+   "kind": "text_card",
+   "text": "Earth spins once about every 24 hours.",
+   "width": 4.6,
+   "size": 0.23,
+   "at": [
+    0,
+    1.35,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tf2",
+   "kind": "text_card",
+   "text": "It is summer in the north when Earth is closest to the Sun.",
+   "width": 4.6,
+   "size": 0.23,
+   "at": [
+    0,
+    1.35,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tf3",
+   "kind": "text_card",
+   "text": "When it is summer in the north, it is winter in the south.",
+   "width": 4.6,
+   "size": 0.23,
+   "at": [
+    0,
+    1.35,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tf4",
+   "kind": "text_card",
+   "text": "Your shadow is shortest around noon.",
+   "width": 4.6,
+   "size": 0.23,
+   "at": [
+    0,
+    1.35,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q1",
+   "kind": "text_card",
+   "text": "What causes day and night?",
+   "width": 4.4,
+   "size": 0.24,
+   "at": [
+    0,
+    1.4,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q2",
+   "kind": "text_card",
+   "text": "How long does Earth take to go once round the Sun?",
+   "width": 4.4,
+   "size": 0.24,
+   "at": [
+    0,
+    1.4,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q3",
+   "kind": "text_card",
+   "text": "Why is it summer in the north in June?",
+   "width": 4.4,
+   "size": 0.24,
+   "at": [
+    0,
+    1.4,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q4",
+   "kind": "text_card",
+   "text": "Is summer caused by being closer to the Sun? What is your evidence?",
+   "width": 4.4,
+   "size": 0.24,
+   "at": [
+    0,
+    1.4,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "recap",
+   "kind": "text_card",
+   "text": "Spin = 1 day: day and night.\nOrbit = 1 year: about 365¼ days.\nTilt = the seasons: direct light and long days.\nNot distance! The south has winter when the north has summer.",
+   "width": 5.4,
+   "size": 0.2,
+   "at": [
+    0,
+    0.95,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "home_card",
+   "kind": "text_card",
+   "text": "Shadow stick: stand a pencil in clay on paper outside. Mark the shadow tip in the morning, at noon and in the afternoon. Which is shortest?",
+   "width": 4.8,
+   "size": 0.19,
+   "at": [
+    0,
+    1.2,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "stars_fx",
+   "kind": "confetti",
+   "count": 140,
+   "colors": [
+    "gold",
+    "yellow",
+    "white"
+   ],
+   "area": [
+    8,
+    3
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hook",
+   "title": "Is the Sun moving?",
+   "beats": [
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Spinning Earth",
+       "style": "title",
+       "dur": 2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.906,
+        2.98
+       ],
+       "lookAt": [
+        0,
+        1.356,
+        -1.5
+       ],
+       "fov": 40,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.3000000000000003,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look! The Sun comes up in the east, runs across the sky, and goes down in the west.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "east",
+       "sound": false,
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "west",
+       "sound": false,
+       "at": 0.5
+      },
+      {
+       "do": "path",
+       "target": "tl_sun",
+       "points": [
+        [
+         -1.15,
+         1.25,
+         -1.45
+        ],
+        [
+         -0.6,
+         2.25,
+         -1.45
+        ],
+        [
+         0,
+         2.55,
+         -1.45
+        ],
+        [
+         0.6,
+         2.25,
+         -1.45
+        ],
+        [
+         1.15,
+         1.25,
+         -1.45
+        ]
+       ],
+       "dur": 4.5,
+       "at": 0.3
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "dur": 1.6,
+       "at": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The Sun runs round us every day!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.573,
+        8.248
+       ],
+       "lookAt": [
+        0,
+        0.609,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Does it? Or are we the ones moving?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "win_frame"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "lights",
+       "rig": "dim",
+       "dur": 1.6
+      },
+      {
+       "do": "hide",
+       "target": "win_frame",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "win_sky",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "hills",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "tl_sun",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "east",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "west",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "bench",
+       "dur": 0.4,
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "lamp_p",
+       "dur": 0.4,
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "globe",
+       "dur": 0.4,
+       "at": 1.1
+      },
+      {
+       "do": "show",
+       "target": "sunlight",
+       "dur": 0.6,
+       "at": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "volume": 0.6,
+       "at": 1.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.992,
+        4.132
+       ],
+       "lookAt": [
+        0,
+        1.242,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Let's build a model and look for evidence.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "globe"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "globe"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "model",
+   "title": "Meet the model",
+   "music": "calm",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "This lamp is our Sun. This globe is our Earth.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "lamp_p",
+       "dur": 1.2,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "globe",
+       "dur": 1.2,
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Earth spins around an imaginary line called the axis.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "It goes through the North and South Poles.",
+       "voice": "deep",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "highlight",
+       "target": "globe#axis",
+       "dur": 1.6,
+       "at": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "axis: North Pole to South Pole",
+       "style": "label",
+       "at": 0.9
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.457,
+        1.504,
+        2.917
+       ],
+       "lookAt": [
+        -1.457,
+        1.122,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.2,
+     "do": [
+      {
+       "do": "orbit",
+       "around": [
+        -1.457,
+        1.346,
+        -0.2
+       ],
+       "degrees": -35,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The axis is tilted. It leans about twenty three and a half degrees.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "tilt: 23.5°",
+       "style": "label"
+      },
+      {
+       "do": "highlight",
+       "target": "globe#axis",
+       "dur": 1.6,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "And it always points the same way, toward the North Star.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "star",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "crystal_chime",
+       "volume": 0.6,
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.72,
+        5.87
+       ],
+       "lookAt": [
+        0,
+        2.047,
+        -2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The real Sun is about one hundred nine times wider than Earth.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And it is about one hundred fifty million kilometres away.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.992,
+        4.132
+       ],
+       "lookAt": [
+        0,
+        1.242,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Model not to scale",
+       "style": "label",
+       "dur": 2.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "spin",
+   "title": "One spin, one day",
+   "music": "calm",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "show",
+       "target": "night",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "town",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.457,
+        1.504,
+        2.917
+       ],
+       "lookAt": [
+        -1.457,
+        1.122,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.7000000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "This red dot is my town.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Right now it's on the dark side, facing away from the Sun. It's night.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "highlight",
+       "target": "town",
+       "dur": 1.6,
+       "at": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "night",
+       "dur": 1.6,
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Half of Earth is always lit. The other half is in darkness.",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Earth spins toward the east. Where will the town be at noon?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.157,
+        3.546,
+        1.1
+       ],
+       "lookAt": [
+        -1.457,
+        1.346,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Sunrise! The town turns into the light. The Sun seems to come up in the east.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "globe#globe",
+       "by": 90,
+       "axis": "z",
+       "dur": 1.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "sunrise",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Noon. The town faces the Sun. It's the middle of the day.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "globe#globe",
+       "by": 90,
+       "axis": "z",
+       "dur": 1.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "noon",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Sunset. The town turns away. The Sun seems to go down in the west.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "globe#globe",
+       "by": 90,
+       "axis": "z",
+       "dur": 1.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "sunset",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Night again. One full spin takes about twenty four hours. One day!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "globe#globe",
+       "by": 90,
+       "axis": "z",
+       "dur": 1.4,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "night",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "So the Sun only looks like it moves, because we spin!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.457,
+        1.504,
+        2.917
+       ],
+       "lookAt": [
+        -1.457,
+        1.122,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Evidence: the lamp never moved.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "lamp_p",
+       "dur": 1.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "spin",
+       "target": "globe#globe",
+       "axis": "z",
+       "turns": 2,
+       "dur": 3,
+       "ease": "linear"
+      },
+      {
+       "do": "caption",
+       "text": "1 spin = about 24 hours",
+       "style": "label",
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Fun fact:",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "at the equator, the ground spins at about one thousand six hundred seventy kilometres per hour!",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shadows",
+   "title": "Shadows through the day",
+   "beats": [
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "night",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "town",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "globe",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "lamp_p",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "bench",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sunlight",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ground",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "stick",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "sky_sun",
+       "dur": 0.4,
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "sunbeam",
+       "dur": 0.4,
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "g_east",
+       "dur": 0.4,
+       "at": 0.7
+      },
+      {
+       "do": "show",
+       "target": "g_west",
+       "dur": 0.4,
+       "at": 0.7
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.047,
+        6.037
+       ],
+       "lookAt": [
+        0,
+        0.66,
+        1.2
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Let's zoom in on the town. A stick stands in the ground.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Shadows always point away from the light.",
+       "voice": "deep",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "stick"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Morning. The Sun is low in the east. The shadow is long, and points west.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "sh_long",
+       "sound": false,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Where will the shadow be at noon? Long or short?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.7500000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Noon. The Sun is high. The shadow is short!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "sky_sun",
+       "points": [
+        [
+         -2.6,
+         0.9,
+         0.4
+        ],
+        [
+         -1.6,
+         2.3,
+         0.4
+        ],
+        [
+         0,
+         3.1,
+         0.4
+        ]
+       ],
+       "dur": 1.8,
+       "at": 0.2
+      },
+      {
+       "do": "path",
+       "target": "sunbeam",
+       "points": [
+        [
+         -2.6,
+         0.7,
+         1
+        ],
+        [
+         -1.6,
+         2.1,
+         1
+        ],
+        [
+         0,
+         2.9,
+         1
+        ]
+       ],
+       "dur": 1.8,
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "sh_long",
+       "dur": 0.15,
+       "at": 1.6
+      },
+      {
+       "do": "show",
+       "target": "sh_short",
+       "dur": 0.2,
+       "at": 1.6500000000000001
+      }
+     ]
+    },
+    {
+     "dur": 1.7500000000000002,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Evening. The Sun is low in the west. The shadow is long again, and points east.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "sky_sun",
+       "points": [
+        [
+         0,
+         3.1,
+         0.4
+        ],
+        [
+         1.6,
+         2.3,
+         0.4
+        ],
+        [
+         2.6,
+         0.9,
+         0.4
+        ]
+       ],
+       "dur": 1.8,
+       "at": 0.2
+      },
+      {
+       "do": "path",
+       "target": "sunbeam",
+       "points": [
+        [
+         0,
+         2.9,
+         1
+        ],
+        [
+         1.6,
+         2.1,
+         1
+        ],
+        [
+         2.6,
+         0.7,
+         1
+        ]
+       ],
+       "dur": 1.8,
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "sh_short",
+       "dur": 0.15,
+       "at": 1.6
+      },
+      {
+       "do": "show",
+       "target": "sh_long2",
+       "dur": 0.2,
+       "at": 1.6500000000000001
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Long, short, long. Because Earth spins, the Sun seems to cross the sky.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "long · short · long",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ground",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "stick",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sky_sun",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sunbeam",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "g_east",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "g_west",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sh_long2",
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "sky_sun",
+       "to": [
+        -2.6,
+        0.9,
+        0.4
+       ],
+       "dur": 0.05
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "year",
+   "title": "One trip, one year",
+   "music": "calm",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "show",
+       "target": "bench",
+       "dur": 0.4
+      },
+      {
+       "do": "show",
+       "target": "lamp_p",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "globe",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "sunlight",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.996,
+        3.821
+       ],
+       "lookAt": [
+        0,
+        0.854,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Earth does not only spin. It also travels around the Sun. That trip is called an orbit.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "globe"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Watch the globe go once around the lamp. The path is nearly a circle.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "volume": 0.5,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 8.4,
+     "do": [
+      {
+       "do": "path",
+       "target": "globe",
+       "points": [
+        [
+         -1.6,
+         0.8,
+         -0.2
+        ],
+        [
+         -1.386,
+         0.8,
+         0.6
+        ],
+        [
+         -0.8,
+         0.8,
+         1.186
+        ],
+        [
+         0,
+         0.8,
+         1.4
+        ],
+        [
+         0.8,
+         0.8,
+         1.186
+        ],
+        [
+         1.386,
+         0.8,
+         0.6
+        ],
+        [
+         1.6,
+         0.8,
+         -0.2
+        ],
+        [
+         1.386,
+         0.8,
+         -1
+        ],
+        [
+         0.8,
+         0.8,
+         -1.586
+        ],
+        [
+         0,
+         0.8,
+         -1.8
+        ],
+        [
+         -0.8,
+         0.8,
+         -1.586
+        ],
+        [
+         -1.386,
+         0.8,
+         -1
+        ],
+        [
+         -1.6,
+         0.8,
+         -0.2
+        ]
+       ],
+       "dur": 8,
+       "face": false
+      },
+      {
+       "do": "spin",
+       "target": "globe#globe",
+       "axis": "z",
+       "turns": 14,
+       "dur": 8,
+       "ease": "linear"
+      },
+      {
+       "do": "caption",
+       "text": "365¼ days",
+       "style": "count",
+       "at": 7.6,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "volume": 0.3,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One trip around the Sun takes about three hundred sixty five and a quarter days.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One year!",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "caption",
+       "text": "1 orbit = 1 year",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "And Earth spins about three hundred sixty five times on the way. Too fast to count here!",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Those extra quarter days add up.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "So every four years, we add a leap day: the twenty ninth of February.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "caption",
+       "text": "leap day: 29 February",
+       "style": "label"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "myth",
+   "title": "Robo's idea: closer means summer?",
+   "beats": [
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.875,
+        4.729
+       ],
+       "lookAt": [
+        0,
+        1.554,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "myth",
+       "sound": false,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I know why we have summer! Summer is when Earth is closest to the Sun.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp"
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "That sounds sensible. Let's check the evidence.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "owl",
+       "at": "myth"
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "show",
+       "target": "penguin",
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "penguin",
+       "height": 0.3
+      },
+      {
+       "do": "show",
+       "target": "town_s",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "town",
+       "dur": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": null,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "Hello! I live far in the south. At my home, December is summer!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "penguin",
+       "feeling": "happy"
+      },
+      {
+       "do": "look",
+       "target": "penguin",
+       "at": "globe"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "And in December, it is winter in the north. Same Earth, same distance from the Sun.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "town",
+       "dur": 1.4,
+       "at": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "town_s",
+       "dur": 1.4,
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oh. Both halves are the same distance away, but they have opposite seasons.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Evidence two. Earth is actually closest to the Sun in early January.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "jan",
+       "dur": 0.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "That's winter in the north! So distance can't be the reason.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "myth",
+       "result": "incorrect",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "myth",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "jan",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tilt",
+   "title": "The tilt makes the seasons",
+   "beats": [
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "bench",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "lamp_p",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "globe",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sunlight",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "town",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "town_s",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "penguin",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "grid",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "torch",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "beam",
+       "dur": 0.4,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.35,
+        3.495,
+        4.51
+       ],
+       "lookAt": [
+        0.35,
+        0.55,
+        1
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "So what does make the seasons? A flashlight test. First, shine the light straight down.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "grid",
+       "cells": [
+        15,
+        16,
+        21,
+        22
+       ],
+       "color": "yellow",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The spot covers about four squares. It looks bright.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "sq4",
+       "sound": false,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Now tilt the light. How many squares will the same light cover?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "beam",
+       "to": [
+        -1.25,
+        0.95,
+        1
+       ],
+       "dur": 1.2,
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "torch",
+       "to": [
+        -1.3,
+        1,
+        1
+       ],
+       "dur": 1.2,
+       "at": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "torch",
+       "to": [
+        0,
+        0,
+        -40
+       ],
+       "dur": 1.2,
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "sq4",
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "About eight squares!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The same light is spread out, so each square gets about half as much.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "shade",
+       "target": "grid",
+       "cells": [
+        14,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22,
+        23
+       ],
+       "color": "yellow",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "sq8",
+       "sound": false,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Direct light warms more. Slanted light warms less.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "direct light: warmer · slanted light: cooler",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "grid",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "torch",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "beam",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sq8",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "bench",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "lamp_p",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "globe",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "sunlight",
+       "dur": 0.4,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "night",
+       "dur": 0.4,
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "star",
+       "dur": 0.4,
+       "at": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "night",
+       "to": [
+        0,
+        0,
+        90
+       ],
+       "dur": 0.05,
+       "at": 0
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.245,
+        3.379
+       ],
+       "lookAt": [
+        0,
+        1.242,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now the four stops around the Sun. Watch the axis. It always points at the North Star.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "globe#axis",
+       "dur": 1.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "June. The north half leans toward the Sun.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Direct light and long days. Summer in the north!",
+       "voice": "deep",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "highlight",
+       "target": "town",
+       "dur": 1.2,
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "June: summer in the north",
+       "style": "label"
+      },
+      {
+       "do": "show",
+       "target": "town",
+       "dur": 0.4,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And winter in the south, because the south half leans away.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "town_s",
+       "dur": 0.4,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "town_s",
+       "dur": 1.2,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "night",
+       "dur": 0.2
+      },
+      {
+       "do": "path",
+       "target": "globe",
+       "points": [
+        [
+         -1.6,
+         0.8,
+         -0.2
+        ],
+        [
+         -1.386,
+         0.8,
+         0.6
+        ],
+        [
+         -0.8,
+         0.8,
+         1.186
+        ],
+        [
+         0,
+         0.8,
+         1.4
+        ]
+       ],
+       "dur": 2.4,
+       "face": false
+      },
+      {
+       "do": "aim",
+       "target": "sunlight",
+       "to": [
+        0.143,
+        1.346,
+        1.4
+       ],
+       "dur": 2.4
+      },
+      {
+       "do": "move",
+       "target": "night",
+       "to": [
+        0.143,
+        1.346,
+        1.4
+       ],
+       "dur": 0.05,
+       "at": 2.4
+      },
+      {
+       "do": "turn",
+       "target": "night",
+       "to": [
+        0,
+        95,
+        90
+       ],
+       "dur": 0.05,
+       "at": 2.4
+      },
+      {
+       "do": "show",
+       "target": "night",
+       "dur": 0.3,
+       "at": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "September. Neither half leans toward the Sun. Autumn in the north, spring in the south.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "September: autumn in the north",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "night",
+       "dur": 0.2
+      },
+      {
+       "do": "path",
+       "target": "globe",
+       "points": [
+        [
+         0,
+         0.8,
+         1.4
+        ],
+        [
+         0.8,
+         0.8,
+         1.186
+        ],
+        [
+         1.386,
+         0.8,
+         0.6
+        ],
+        [
+         1.6,
+         0.8,
+         -0.2
+        ]
+       ],
+       "dur": 2.4,
+       "face": false
+      },
+      {
+       "do": "aim",
+       "target": "sunlight",
+       "to": [
+        1.743,
+        1.346,
+        -0.2
+       ],
+       "dur": 2.4
+      },
+      {
+       "do": "move",
+       "target": "night",
+       "to": [
+        1.743,
+        1.346,
+        -0.2
+       ],
+       "dur": 0.05,
+       "at": 2.4
+      },
+      {
+       "do": "turn",
+       "target": "night",
+       "to": [
+        0,
+        180,
+        90
+       ],
+       "dur": 0.05,
+       "at": 2.4
+      },
+      {
+       "do": "show",
+       "target": "night",
+       "dur": 0.3,
+       "at": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "December. Now the north half leans away.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Slanted light and short days. Winter in the north.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "caption",
+       "text": "December: winter in the north",
+       "style": "label"
+      },
+      {
+       "do": "orbit",
+       "around": [
+        1.743,
+        1.346,
+        -0.2
+       ],
+       "degrees": -20,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "And summer for me in the south! In December, the Sun never sets at the South Pole.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "penguin",
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "penguin",
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "penguin",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "night",
+       "dur": 0.2
+      },
+      {
+       "do": "path",
+       "target": "globe",
+       "points": [
+        [
+         1.6,
+         0.8,
+         -0.2
+        ],
+        [
+         1.386,
+         0.8,
+         -1
+        ],
+        [
+         0.8,
+         0.8,
+         -1.586
+        ],
+        [
+         0,
+         0.8,
+         -1.8
+        ]
+       ],
+       "dur": 2.4,
+       "face": false
+      },
+      {
+       "do": "aim",
+       "target": "sunlight",
+       "to": [
+        0.143,
+        1.346,
+        -1.8
+       ],
+       "dur": 2.4
+      },
+      {
+       "do": "move",
+       "target": "night",
+       "to": [
+        0.143,
+        1.346,
+        -1.8
+       ],
+       "dur": 0.05,
+       "at": 2.4
+      },
+      {
+       "do": "turn",
+       "target": "night",
+       "to": [
+        0,
+        -95,
+        90
+       ],
+       "dur": 0.05,
+       "at": 2.4
+      },
+      {
+       "do": "show",
+       "target": "night",
+       "dur": 0.3,
+       "at": 2.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.245,
+        3.379
+       ],
+       "lookAt": [
+        0,
+        1.242,
+        -0.2
+       ],
+       "fov": 40,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "March. Neither half leans toward the Sun again.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Spring in the north, autumn in the south.",
+       "voice": "deep",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "caption",
+       "text": "March: spring in the north",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Places near the equator get fairly direct light all year, so their seasons change less.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "globe#globe",
+       "dur": 1.6,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "So the tilt makes the seasons, not the distance. That's the big idea!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "tilt → seasons",
+       "style": "label"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Spin-and-Tilt chant",
+   "music": "happy",
+   "musicGain": 0.22,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "lights",
+       "rig": "studio",
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "night",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sunlight",
+       "dur": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.573,
+        8.248
+       ],
+       "lookAt": [
+        0,
+        0.609,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Spin for the day!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "spin",
+       "target": "globe#globe",
+       "axis": "z",
+       "turns": 1,
+       "dur": 1.2,
+       "at": 0.2
+      },
+      {
+       "do": "spin",
+       "target": "penguin",
+       "turns": 1,
+       "dur": 1,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Go round for the year!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "globe",
+       "points": [
+        [
+         0,
+         0.8,
+         -1.8
+        ],
+        [
+         -1.386,
+         0.8,
+         -1
+        ],
+        [
+         -1.386,
+         0.8,
+         0.6
+        ],
+        [
+         0,
+         0.8,
+         1.4
+        ],
+        [
+         1.386,
+         0.8,
+         0.6
+        ],
+        [
+         1.386,
+         0.8,
+         -1
+        ],
+        [
+         0,
+         0.8,
+         -1.8
+        ]
+       ],
+       "dur": 2,
+       "face": false,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Lean to the Sun, and summer is here!",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        -12
+       ],
+       "dur": 0.5,
+       "at": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "dur": 0.5,
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Spin makes?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Spin makes?",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Day and night!",
+       "style": "label",
+       "dur": 1.5
+      },
+      {
+       "do": "hop",
+       "target": "penguin",
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Trip makes?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Trip makes?",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "caption",
+       "text": "A year!",
+       "style": "label",
+       "dur": 1.5
+      },
+      {
+       "do": "hop",
+       "target": "penguin",
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Tilt makes?",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Tilt makes?",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Seasons!",
+       "style": "label",
+       "dur": 1.5
+      },
+      {
+       "do": "hop",
+       "target": "penguin",
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Stand up, lean a little, and turn slowly on the spot. You are Earth!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "truefalse",
+   "title": "Challenge: true or false?",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "globe",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "lamp_p",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "bench",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "star",
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "penguin",
+       "dur": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.961,
+        5.237
+       ],
+       "lookAt": [
+        0,
+        1.392,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "show",
+       "target": "tf0",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One: The Sun goes round Earth every day. True or false?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "False. Earth spins. The Sun only looks like it moves.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "tf0",
+       "result": "incorrect",
+       "dur": 1.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "tf0",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "tf1",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Two: Earth spins once about every 24 hours. True or false?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "True. One spin is one day.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "tf1",
+       "result": "correct",
+       "dur": 1.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "tf1",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "tf2",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three: It is summer in the north when Earth is closest to the Sun. True or false?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "False. Earth is closest in January, during northern winter.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "tf2",
+       "result": "incorrect",
+       "dur": 1.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "tf2",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "tf3",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Four: When it is summer in the north, it is winter in the south. True or false?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "True. The halves lean the opposite way.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "tf3",
+       "result": "correct",
+       "dur": 1.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "tf3",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "tf4",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Five: Your shadow is shortest around noon. True or false?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "True. The Sun is highest then.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "tf4",
+       "result": "correct",
+       "dur": 1.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "tf4",
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.961,
+        5.237
+       ],
+       "lookAt": [
+        0,
+        1.392,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "show",
+       "target": "q1",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quiz time! One: what causes day and night?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Earth spinning on its axis.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "q1",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q1",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "q2",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two: how long does Earth take to go once round the Sun?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "About three hundred sixty five and a quarter days. One year.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "q2",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q2",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "q3",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three: why is it summer in the north in June?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "The north half leans toward the Sun. More direct light and longer days.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "q3",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q3",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "q4",
+       "dur": 0.4,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four: is summer caused by being closer to the Sun? What's your evidence?",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "No! The south has winter at the same time, and Earth is closest in January.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "q4",
+       "result": "correct",
+       "dur": 1.2,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q4",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "recap",
+       "dur": 0.4,
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.124,
+        5.594
+       ],
+       "lookAt": [
+        0,
+        1.51,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Spin makes day and night. One orbit makes a year.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": [
+        0,
+        3
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": [
+        7,
+        10
+       ],
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "The tilt makes the seasons. Not distance!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": [
+        14,
+        17
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Not distance!",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "recap",
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "penguin",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "penguin",
+       "to": [
+        2.6,
+        0,
+        1.4
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.573,
+        8.248
+       ],
+       "lookAt": [
+        0,
+        0.609,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "Bye from the south!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "penguin",
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "And hello from the north. The evidence agrees!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "owl",
+       "deg": 10
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "home",
+   "title": "Your turn: shadow stick",
+   "music": "happy",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "show",
+       "target": "home_card",
+       "dur": 0.4,
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.067,
+        5.416
+       ],
+       "lookAt": [
+        0,
+        1.476,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! On a sunny day, stand a pencil in clay on paper.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Mark the shadow tip three times.",
+       "voice": "soft",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "emphasize",
+       "target": "home_card",
+       "words": "Mark the shadow tip",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Never look straight at the Sun, even with sunglasses.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "owl",
+       "text": "Don't shine a flashlight in anyone's eyes.",
+       "voice": "deep",
+       "caption": true,
+       "at": "after"
+      },
+      {
+       "do": "caption",
+       "text": "Never look at the Sun!",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Using a desk lamp as the Sun? Ask a grown-up to set it up. Bulbs get hot.",
+       "voice": "soft",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "home_card",
+       "dur": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.573,
+        8.248
+       ],
+       "lookAt": [
+        0,
+        0.609,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "burst",
+       "target": "stars_fx"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave"
+      },
+      {
+       "do": "hop",
+       "target": "penguin",
+       "height": 0.3,
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Spin for the day, go round for the year. Bye, space explorers!",
+       "voice": "soft",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": []
+    }
+   ]
+  }
+ ]
+}
