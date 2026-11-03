@@ -1,0 +1,8524 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Robo directs a movie: the script's words spill into a pile, and Bear, Penguin and Frog sort naming words (person, animal, place, thing) into a blue basket and doing words into a red one, see the difference with the Freeze Camera, then join one of each into sentences.",
+ "meta": {
+  "title": "Naming Words and Doing Words",
+  "series": "toybox",
+  "episode": "g112",
+  "audience": "grade1",
+  "seed": 112,
+  "voice": "soft",
+  "voiceSpeed": 0.97,
+  "music": "happy",
+  "musicGain": 0.24,
+  "skills": [
+   "nouns_verbs_1"
+  ],
+  "youtube": {
+   "title": "Nouns and Verbs for Kids! Naming Words and Doing Words | Toy Box Friends",
+   "description": "Lights, camera... action! Robo's movie script has spilled into a messy pile, and Bear, Penguin and Frog don't know what to do. Kids sort naming words (nouns: a person, an animal, a place or a thing) into the blue basket and doing words (verbs: jump, clap, slide, swim) into the red basket. The Freeze Camera shows the difference: when we freeze, the bear is still there, but the clapping stops. Then one naming word plus one doing word makes a sentence: The bear claps.\n\nFor first graders (CCSS L.1.1.b, L.1.1.e).\n\nTry at home: with a grown-up, write naming words on blue paper and doing words on red paper. Act out a red card, then freeze! Make a sentence with one blue card and one red card. Act in a clear space with soft landings.",
+   "tags": [
+    "nouns and verbs",
+    "naming words",
+    "doing words",
+    "action words",
+    "first grade grammar",
+    "grade 1 English",
+    "parts of speech for kids",
+    "sentences for kids",
+    "kids learning video",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "a",
+    "title": "NAMING or DOING?",
+    "subtitle": "Nouns and verbs",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 1",
+    "stage": "theatre",
+    "lights": {
+     "rig": "studio"
+    },
+    "camera": {
+     "position": [
+      -0.4,
+      1.9,
+      8.6
+     ],
+     "lookAt": [
+      -0.4,
+      1.25,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "back",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "purple",
+      "material": "matte",
+      "at": [
+       0,
+       4,
+       -3
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       30,
+       1,
+       9
+      ]
+     },
+     {
+      "id": "bb",
+      "kind": "prop",
+      "model": "basket",
+      "color": "blue",
+      "size": 1.3,
+      "at": [
+       1.3,
+       0,
+       0.8
+      ]
+     },
+     {
+      "id": "rb",
+      "kind": "prop",
+      "model": "basket",
+      "color": "red",
+      "size": 1.3,
+      "at": [
+       3.1,
+       0,
+       0.8
+      ]
+     },
+     {
+      "id": "cb",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "blue",
+      "material": "matte",
+      "at": [
+       1.15,
+       2.15,
+       0.9
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       1.6,
+       1,
+       0.72
+      ]
+     },
+     {
+      "id": "cb_t",
+      "kind": "letter",
+      "text": "bear",
+      "color": "white",
+      "size": 0.26,
+      "at": [
+       1.15,
+       1.99,
+       0.9500000000000001
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "cr",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "red",
+      "material": "matte",
+      "at": [
+       3.15,
+       2.15,
+       0.9
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       1.6,
+       1,
+       0.72
+      ]
+     },
+     {
+      "id": "cr_t",
+      "kind": "letter",
+      "text": "claps",
+      "color": "white",
+      "size": 0.26,
+      "at": [
+       3.15,
+       1.99,
+       0.9500000000000001
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 1.2,
+      "at": [
+       2.2,
+       0,
+       -0.6
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.9,
+      "at": [
+       3.9,
+       0.55,
+       0.3
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "b",
+    "title": "FREEZE!",
+    "subtitle": "Doing words stop!",
+    "titleColor": "white",
+    "side": "right",
+    "badge": "GRADE 1",
+    "stage": "theatre",
+    "lights": {
+     "rig": "studio",
+     "background": "red"
+    },
+    "camera": {
+     "position": [
+      0.7,
+      1.8,
+      8.4
+     ],
+     "lookAt": [
+      0.7,
+      1.05,
+      0
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "back",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "red",
+      "material": "matte",
+      "at": [
+       0,
+       4,
+       -3
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       30,
+       1,
+       9
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       -3.0,
+       0,
+       0.3
+      ],
+      "rotation": [
+       0,
+       30,
+       0
+      ],
+      "clip": "Yes",
+      "feeling": "surprised"
+     },
+     {
+      "id": "fcam",
+      "kind": "shape",
+      "shape": "box",
+      "color": "black",
+      "material": "matte",
+      "at": [
+       -2.55,
+       0.85,
+       0.8
+      ],
+      "scale": [
+       0.42,
+       0.3,
+       0.26
+      ]
+     },
+     {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 1.1,
+      "at": [
+       -1.8,
+       0,
+       -0.5
+      ],
+      "feeling": "surprised"
+     },
+     {
+      "id": "penguin",
+      "kind": "critter",
+      "species": "penguin",
+      "size": 1.0,
+      "at": [
+       -0.9,
+       0,
+       -0.3
+      ],
+      "rotation": [
+       0,
+       15,
+       0
+      ],
+      "feeling": "surprised"
+     },
+     {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.85,
+      "at": [
+       -0.4,
+       0.35,
+       0.7
+      ],
+      "rotation": [
+       0,
+       -20,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "c",
+    "title": "Nouns & Verbs",
+    "subtitle": "Name it, do it!",
+    "titleColor": "orange",
+    "side": "left",
+    "badge": "GRADE 1",
+    "stage": "theatre",
+    "lights": {
+     "rig": "studio"
+    },
+    "camera": {
+     "position": [
+      -0.5,
+      1.9,
+      8.8
+     ],
+     "lookAt": [
+      -0.5,
+      1.35,
+      0
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "back",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "purple",
+      "material": "matte",
+      "at": [
+       0,
+       4,
+       -3
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       30,
+       1,
+       9
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       1.1,
+       0,
+       0.0
+      ],
+      "rotation": [
+       0,
+       20,
+       0
+      ],
+      "clip": "ThumbsUp",
+      "feeling": "happy"
+     },
+     {
+      "id": "cap",
+      "kind": "prop",
+      "model": "hat",
+      "at": [
+       1.1,
+       1.62,
+       0.02
+      ],
+      "size": 1.1,
+      "color": "red",
+      "recolor": {
+       "red": "gold"
+      }
+     },
+     {
+      "id": "clap",
+      "kind": "prop",
+      "model": "clapperboard",
+      "at": [
+       1.65,
+       0.0,
+       0.6
+      ],
+      "size": 1.2,
+      "rotation": [
+       0,
+       -10,
+       0
+      ]
+     },
+     {
+      "id": "cf",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "blue",
+      "material": "matte",
+      "at": [
+       1.9,
+       2.55,
+       0.6
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       1.45,
+       1,
+       0.72
+      ]
+     },
+     {
+      "id": "cf_t",
+      "kind": "letter",
+      "text": "frog",
+      "color": "white",
+      "size": 0.27,
+      "at": [
+       1.9,
+       2.3899999999999997,
+       0.65
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "cj",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "red",
+      "material": "matte",
+      "at": [
+       3.45,
+       2.55,
+       0.6
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       1.45,
+       1,
+       0.72
+      ]
+     },
+     {
+      "id": "cj_t",
+      "kind": "letter",
+      "text": "jumps",
+      "color": "white",
+      "size": 0.27,
+      "at": [
+       3.45,
+       2.3899999999999997,
+       0.65
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.9,
+      "at": [
+       3.0,
+       0.45,
+       0.9
+      ],
+      "rotation": [
+       0,
+       -20,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "theatre"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.4,
+   11
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "backdrop",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "purple",
+   "material": "matte",
+   "at": [
+    0,
+    4.5,
+    -3.4
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    34,
+    1,
+    9.5
+   ]
+  },
+  {
+   "id": "trim",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "gold",
+   "material": "glossy",
+   "at": [
+    0,
+    0.2,
+    -3.3
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    34,
+    1,
+    0.4
+   ]
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -4.3,
+    0,
+    0.8
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "bear",
+   "kind": "critter",
+   "species": "bear",
+   "size": 1.2,
+   "at": [
+    -2.3,
+    0,
+    -1.0
+   ],
+   "rotation": [
+    0,
+    15,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "frog",
+   "kind": "critter",
+   "species": "frog",
+   "size": 0.95,
+   "at": [
+    0,
+    0,
+    -0.9
+   ]
+  },
+  {
+   "id": "penguin",
+   "kind": "critter",
+   "species": "penguin",
+   "size": 1.15,
+   "at": [
+    2.3,
+    0,
+    -1.0
+   ],
+   "rotation": [
+    0,
+    -15,
+    0
+   ]
+  },
+  {
+   "id": "cap",
+   "kind": "prop",
+   "model": "hat",
+   "parent": "robo",
+   "at": [
+    0,
+    1.62,
+    0.02
+   ],
+   "size": 1.1,
+   "color": "red",
+   "recolor": {
+    "red": "gold"
+   }
+  },
+  {
+   "id": "clapper",
+   "kind": "prop",
+   "model": "clapperboard",
+   "at": [
+    -3.65,
+    0.55,
+    1.4
+   ],
+   "rotation": [
+    0,
+    20,
+    0
+   ],
+   "size": 1.0
+  },
+  {
+   "id": "fcam",
+   "kind": "group",
+   "at": [
+    -3.7,
+    0.8,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fcam_body",
+   "kind": "shape",
+   "shape": "box",
+   "color": "black",
+   "material": "matte",
+   "parent": "fcam",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "scale": [
+    0.42,
+    0.3,
+    0.26
+   ]
+  },
+  {
+   "id": "fcam_lens",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "grey",
+   "material": "metal",
+   "parent": "fcam",
+   "at": [
+    0.06,
+    0.03,
+    0.13
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.16,
+    0.12,
+    0.16
+   ]
+  },
+  {
+   "id": "fcam_btn",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "red",
+   "material": "glossy",
+   "parent": "fcam",
+   "at": [
+    -0.12,
+    0.15,
+    0
+   ],
+   "scale": [
+    0.07,
+    0.04,
+    0.07
+   ]
+  },
+  {
+   "id": "blue_b",
+   "kind": "prop",
+   "model": "basket",
+   "at": [
+    -1.45,
+    0,
+    1.3
+   ],
+   "size": 1.5,
+   "color": "blue"
+  },
+  {
+   "id": "red_b",
+   "kind": "prop",
+   "model": "basket",
+   "at": [
+    1.45,
+    0,
+    1.3
+   ],
+   "size": 1.5,
+   "color": "red"
+  },
+  {
+   "id": "lab_blue",
+   "kind": "group",
+   "at": [
+    -1.45,
+    0.0,
+    2.15
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab_blue_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "blue",
+   "material": "matte",
+   "parent": "lab_blue",
+   "at": [
+    0,
+    0.24,
+    0
+   ],
+   "rotation": [
+    80,
+    0,
+    0
+   ],
+   "scale": [
+    1.35,
+    1,
+    0.32
+   ]
+  },
+  {
+   "id": "lab_blue_t",
+   "kind": "letter",
+   "text": "naming words",
+   "color": "white",
+   "size": 0.13,
+   "parent": "lab_blue",
+   "at": [
+    0,
+    0.19,
+    0.06
+   ],
+   "depth": 0.12
+  },
+  {
+   "id": "lab_red",
+   "kind": "group",
+   "at": [
+    1.45,
+    0.0,
+    2.15
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab_red_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "material": "matte",
+   "parent": "lab_red",
+   "at": [
+    0,
+    0.24,
+    0
+   ],
+   "rotation": [
+    80,
+    0,
+    0
+   ],
+   "scale": [
+    1.35,
+    1,
+    0.32
+   ]
+  },
+  {
+   "id": "lab_red_t",
+   "kind": "letter",
+   "text": "doing words",
+   "color": "white",
+   "size": 0.13,
+   "parent": "lab_red",
+   "at": [
+    0,
+    0.19,
+    0.06
+   ],
+   "depth": 0.12
+  },
+  {
+   "id": "pile0",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -0.027972253442597128,
+    0.02,
+    2.828736251328628
+   ],
+   "rotation": [
+    0,
+    19.969256534980573,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile1",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -0.3931396117820955,
+    0.065,
+    2.505430221545034
+   ],
+   "rotation": [
+    0,
+    -15.02946095239627,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile2",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -0.24854704657383547,
+    0.11,
+    2.905174026117542
+   ],
+   "rotation": [
+    0,
+    22.871118364642143,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile3",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    0.11160274260050651,
+    0.155,
+    2.779095023876674
+   ],
+   "rotation": [
+    0,
+    19.358530304640126,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile4",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -0.39016692581888673,
+    0.19999999999999998,
+    2.720027395962385
+   ],
+   "rotation": [
+    0,
+    -40.527921313333366,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile5",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    0.44657027968225493,
+    0.24499999999999997,
+    2.529412163705433
+   ],
+   "rotation": [
+    0,
+    38.25841534104964,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile6",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -0.4679294030005348,
+    0.29000000000000004,
+    2.843472752046771
+   ],
+   "rotation": [
+    0,
+    -19.560048864987884,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile7",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -0.10492428855848601,
+    0.335,
+    2.921201683906281
+   ],
+   "rotation": [
+    0,
+    -57.767483962559666,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile8",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -0.48313683419213427,
+    0.38,
+    2.9575168217049734
+   ],
+   "rotation": [
+    0,
+    1.0711099713241765,
+    0
+   ],
+   "scale": [
+    0.9,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_frog",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_frog_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_frog",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_frog_t",
+   "kind": "letter",
+   "text": "frog",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_frog",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_bear",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_bear_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_bear",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_bear_t",
+   "kind": "letter",
+   "text": "bear",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_bear",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_penguin",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_penguin_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_penguin",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_penguin_t",
+   "kind": "letter",
+   "text": "penguin",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_penguin",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_ball",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_ball_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_ball",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_ball_t",
+   "kind": "letter",
+   "text": "ball",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_ball",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_drum",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_drum_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_drum",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_drum_t",
+   "kind": "letter",
+   "text": "drum",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_drum",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_hat",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_hat_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_hat",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_hat_t",
+   "kind": "letter",
+   "text": "hat",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_hat",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_teacher",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_teacher_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_teacher",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_teacher_t",
+   "kind": "letter",
+   "text": "teacher",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_teacher",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_baker",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_baker_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_baker",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_baker_t",
+   "kind": "letter",
+   "text": "baker",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_baker",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_friend",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_friend_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_friend",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_friend_t",
+   "kind": "letter",
+   "text": "friend",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_friend",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_pond",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_pond_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_pond",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_pond_t",
+   "kind": "letter",
+   "text": "pond",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_pond",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_house",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_house_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_house",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_house_t",
+   "kind": "letter",
+   "text": "house",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_house",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_park",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_park_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_park",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_park_t",
+   "kind": "letter",
+   "text": "park",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_park",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_jump",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_jump_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_jump",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_jump_t",
+   "kind": "letter",
+   "text": "jump",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_jump",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_clap",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_clap_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_clap",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_clap_t",
+   "kind": "letter",
+   "text": "clap",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_clap",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_slide",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_slide_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_slide",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_slide_t",
+   "kind": "letter",
+   "text": "slide",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_slide",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_swim",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_swim_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_swim",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_swim_t",
+   "kind": "letter",
+   "text": "swim",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_swim",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_read",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_read_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_read",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_read_t",
+   "kind": "letter",
+   "text": "read",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_read",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_sleep",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_sleep_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_sleep",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_sleep_t",
+   "kind": "letter",
+   "text": "sleep",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_sleep",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_claps",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_claps_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_claps",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_claps_t",
+   "kind": "letter",
+   "text": "claps",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_claps",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_sleeps",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_sleeps_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_sleeps",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_sleeps_t",
+   "kind": "letter",
+   "text": "sleeps",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_sleeps",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_slides",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_slides_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_slides",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_slides_t",
+   "kind": "letter",
+   "text": "slides",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_slides",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_jumps",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_jumps_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_jumps",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_jumps_t",
+   "kind": "letter",
+   "text": "jumps",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_jumps",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_hop",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_hop_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_hop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_hop_t",
+   "kind": "letter",
+   "text": "hop",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_hop",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_swims",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_swims_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_swims",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_swims_t",
+   "kind": "letter",
+   "text": "swims",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_swims",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "ball",
+   "kind": "prop",
+   "model": "ball",
+   "at": [
+    -0.65,
+    0,
+    0.3
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "drum",
+   "kind": "prop",
+   "model": "drum",
+   "at": [
+    0.05,
+    0,
+    0.3
+   ],
+   "size": 1.0,
+   "hidden": true
+  },
+  {
+   "id": "hat",
+   "kind": "prop",
+   "model": "hat",
+   "at": [
+    0.75,
+    0,
+    0.3
+   ],
+   "size": 2.0,
+   "hidden": true
+  },
+  {
+   "id": "i_book",
+   "kind": "prop",
+   "model": "book",
+   "at": [
+    2.0,
+    1.9,
+    1.0
+   ],
+   "size": 1.8,
+   "hidden": true
+  },
+  {
+   "id": "i_cake",
+   "kind": "prop",
+   "model": "cupcake",
+   "at": [
+    2.0,
+    1.9,
+    1.0
+   ],
+   "size": 2.6,
+   "hidden": true
+  },
+  {
+   "id": "i_heart",
+   "kind": "shape",
+   "shape": "heart",
+   "color": "pink",
+   "at": [
+    2.0,
+    2.2,
+    1.0
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "pond_set",
+   "kind": "group",
+   "at": [
+    -9,
+    0,
+    -2.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pond_w",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "pond",
+   "material": "glossy",
+   "parent": "pond_set",
+   "at": [
+    0,
+    0.01,
+    0
+   ],
+   "scale": [
+    2.6,
+    0.03,
+    1.4
+   ]
+  },
+  {
+   "id": "reed0",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "leaf",
+   "material": "matte",
+   "parent": "pond_set",
+   "at": [
+    -1.1,
+    0,
+    -0.3
+   ],
+   "scale": [
+    0.05,
+    1.0,
+    0.05
+   ]
+  },
+  {
+   "id": "reed1",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "leaf",
+   "material": "matte",
+   "parent": "pond_set",
+   "at": [
+    -0.9,
+    0,
+    -0.3
+   ],
+   "scale": [
+    0.05,
+    0.8,
+    0.05
+   ]
+  },
+  {
+   "id": "reed2",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "leaf",
+   "material": "matte",
+   "parent": "pond_set",
+   "at": [
+    1.15,
+    0,
+    -0.3
+   ],
+   "scale": [
+    0.05,
+    0.9,
+    0.05
+   ]
+  },
+  {
+   "id": "house",
+   "kind": "prop",
+   "model": "house",
+   "at": [
+    9,
+    0,
+    -2.2
+   ],
+   "size": 1.4,
+   "hidden": true
+  },
+  {
+   "id": "bench",
+   "kind": "prop",
+   "model": "bench",
+   "at": [
+    9,
+    0,
+    -2.0
+   ],
+   "size": 1.2,
+   "hidden": true
+  },
+  {
+   "id": "co_place",
+   "kind": "callout",
+   "text": "a place",
+   "target": "pond_set",
+   "offset": [
+    0.8,
+    1.6,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "book_r",
+   "kind": "prop",
+   "model": "book",
+   "at": [
+    -1.9,
+    0.5,
+    -0.5
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    15,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "frame0",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "glow",
+   "at": [
+    0.0,
+    2.5229,
+    7.2493
+   ],
+   "rotation": [
+    83.04704253182608,
+    0,
+    0
+   ],
+   "scale": [
+    1.2941163885020528,
+    0.2,
+    0.035
+   ],
+   "hidden": true
+  },
+  {
+   "id": "frame1",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "glow",
+   "at": [
+    0.0,
+    1.835,
+    7.1654
+   ],
+   "rotation": [
+    83.04704253182608,
+    0,
+    0
+   ],
+   "scale": [
+    1.2941163885020528,
+    0.2,
+    0.035
+   ],
+   "hidden": true
+  },
+  {
+   "id": "frame2",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "glow",
+   "at": [
+    -0.6296,
+    2.1789,
+    7.2074
+   ],
+   "rotation": [
+    83.04704253182608,
+    0,
+    0
+   ],
+   "scale": [
+    0.035,
+    0.2,
+    0.7279404685324047
+   ],
+   "hidden": true
+  },
+  {
+   "id": "frame3",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "glow",
+   "at": [
+    0.6296,
+    2.1789,
+    7.2074
+   ],
+   "rotation": [
+    83.04704253182608,
+    0,
+    0
+   ],
+   "scale": [
+    0.035,
+    0.2,
+    0.7279404685324047
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co_still",
+   "kind": "callout",
+   "text": "still here",
+   "target": "bear",
+   "offset": [
+    -0.6,
+    1.5,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co_stop",
+   "kind": "callout",
+   "text": "stopped!",
+   "target": "penguin",
+   "offset": [
+    0.6,
+    1.5,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_the",
+   "kind": "letter",
+   "text": "The",
+   "color": "ink",
+   "size": 0.28,
+   "at": [
+    -3.0,
+    2.29,
+    1.25
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_the_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -3.0,
+    2.45,
+    1.2
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    1.2,
+    1,
+    0.78
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_dot",
+   "kind": "letter",
+   "text": ".",
+   "color": "ink",
+   "size": 0.45,
+   "at": [
+    2.66,
+    2.29,
+    1.25
+   ],
+   "hidden": true
+  },
+  {
+   "id": "curt_l",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "material": "matte",
+   "at": [
+    -10,
+    3.2,
+    3.0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    5.2,
+    1,
+    6.4
+   ]
+  },
+  {
+   "id": "curt_r",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "material": "matte",
+   "at": [
+    10,
+    3.2,
+    3.0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    5.2,
+    1,
+    6.4
+   ]
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 160,
+   "colors": [
+    "red",
+    "gold",
+    "blue",
+    "white"
+   ]
+  },
+  {
+   "id": "c_s_bear",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_s_bear_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_s_bear",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_s_bear_t",
+   "kind": "letter",
+   "text": "bear",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_s_bear",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_s_sleeps",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_s_sleeps_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_s_sleeps",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_s_sleeps_t",
+   "kind": "letter",
+   "text": "sleeps",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_s_sleeps",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_s_penguin",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_s_penguin_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_s_penguin",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_s_penguin_t",
+   "kind": "letter",
+   "text": "penguin",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_s_penguin",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_q_pond",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_q_pond_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_q_pond",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_q_pond_t",
+   "kind": "letter",
+   "text": "pond",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_q_pond",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_q_swim",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_q_swim_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_q_swim",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_q_swim_t",
+   "kind": "letter",
+   "text": "swim",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_q_swim",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_q_hat",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_q_hat_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_q_hat",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_q_hat_t",
+   "kind": "letter",
+   "text": "hat",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_q_hat",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  },
+  {
+   "id": "c_q_hop",
+   "kind": "group",
+   "at": [
+    0,
+    2.4,
+    1.0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_q_hop_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "parent": "c_q_hop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    2.35,
+    1,
+    0.78
+   ]
+  },
+  {
+   "id": "c_q_hop_t",
+   "kind": "letter",
+   "text": "hop",
+   "color": "ink",
+   "size": 0.28,
+   "parent": "c_q_hop",
+   "at": [
+    0,
+    -0.16,
+    0.05
+   ],
+   "depth": 0.25
+  }
+ ],
+ "scenes": [
+  {
+   "id": "flop",
+   "title": "Lights, camera...",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 0
+      },
+      {
+       "do": "lights",
+       "at": 0.4,
+       "rig": "studio",
+       "dur": 1.6
+      },
+      {
+       "do": "caption",
+       "text": "Naming Words and Doing Words",
+       "style": "title",
+       "at": 0.5,
+       "dur": 2.0
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Lights, camera...",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": "robo"
+      },
+      {
+       "do": "look",
+       "target": "penguin",
+       "at": "robo"
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "turn",
+       "target": "clapper#clapper",
+       "at": 0.25,
+       "to": [
+        0,
+        0,
+        -18
+       ],
+       "dur": 0.15
+      },
+      {
+       "do": "turn",
+       "target": "clapper#clapper",
+       "at": 0.9,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "ACTION!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.1,
+       "clip": "Jump"
+      }
+     ]
+    },
+    {
+     "dur": 2.0,
+     "do": [
+      {
+       "do": "feel",
+       "target": "bear",
+       "at": 0.4,
+       "feeling": "worried"
+      },
+      {
+       "do": "feel",
+       "target": "penguin",
+       "at": 0.5,
+       "feeling": "worried"
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "at": 0.6,
+       "feeling": "surprised"
+      },
+      {
+       "do": "sound",
+       "sound": "sad_sting",
+       "at": 0.6,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "Um... what do we do?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let me check the script. Oh no!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.4,
+       "feeling": "surprised"
+      },
+      {
+       "do": "pop",
+       "target": "pile0",
+       "at": 0.8,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "pile1",
+       "at": 0.9,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pile2",
+       "at": 1.0,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pile3",
+       "at": 1.1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "pile4",
+       "at": 1.2,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pile5",
+       "at": 1.3,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pile6",
+       "at": 1.4,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "pile7",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pile8",
+       "at": 1.6,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "All the words fell out in a messy pile.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Our movie needs two kinds of words.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "lab_blue",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "lab_red",
+       "at": 1.2,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Words that name who is in it...",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "blue_b",
+       "at": 0.3,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "...and words that say what they do!",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "red_b",
+       "at": 0.3,
+       "dur": 1.6
+      },
+      {
+       "do": "feel",
+       "target": "bear",
+       "at": 0.3,
+       "feeling": "happy"
+      },
+      {
+       "do": "feel",
+       "target": "penguin",
+       "at": 0.3,
+       "feeling": "happy"
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "at": 0.3,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A clapperboard helps film makers match sound and picture.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.2,
+       "clip": "Yes"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "naming",
+   "title": "Naming words: animals and things",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "pile8",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "pile7",
+       "at": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A naming word names someone or something.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "naming word",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_frog",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        6.3
+       ],
+       "lookAt": [
+        0,
+        1.55,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.0
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.3,
+       "to": "c_frog"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Frog. Who is that?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Me! A frog is an animal!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "frog",
+       "at": 0.2,
+       "dur": 2
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "So frog is a naming word. Blue basket!",
+       "caption": true
+      },
+      {
+       "do": "paint",
+       "target": "c_frog_p",
+       "at": 0.6,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_frog_t",
+       "at": 0.6,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_frog",
+       "at": 1.1,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_frog",
+       "at": 1.1,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_frog",
+       "at": 2.3,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.3,
+       "volume": 0.6
+      },
+      {
+       "do": "camera",
+       "at": 0.6,
+       "position": [
+        0,
+        2.1,
+        6.3
+       ],
+       "lookAt": [
+        0,
+        1.55,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "hide",
+       "target": "pile6",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "c_bear",
+       "at": 0.2,
+       "sound": "pop"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.9,
+        1.4,
+        3.2
+       ],
+       "lookAt": [
+        -2.2,
+        0.9,
+        -1.0
+       ],
+       "fov": 40,
+       "dur": 1.0
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": 0.4,
+       "to": "c_bear"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "Bear! That names me. I'm an animal.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bear",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_bear_p",
+       "at": 0.2,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_bear_t",
+       "at": 0.2,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_bear",
+       "at": 0.7,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_bear",
+       "at": 0.7,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_bear",
+       "at": 1.9,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.9,
+       "volume": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "c_penguin",
+       "at": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "pile5",
+       "at": 1.4
+      },
+      {
+       "do": "look",
+       "target": "penguin",
+       "at": 1.6,
+       "to": "c_penguin"
+      },
+      {
+       "do": "camera",
+       "at": 1.3,
+       "position": [
+        1.9,
+        1.4,
+        3.2
+       ],
+       "lookAt": [
+        2.2,
+        0.9,
+        -1.0
+       ],
+       "fov": 40,
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "Penguin! Another animal. Blue basket!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "penguin",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.0,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_penguin_p",
+       "at": 0.1,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_penguin_t",
+       "at": 0.1,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_penguin",
+       "at": 0.6,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_penguin",
+       "at": 0.6,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_penguin",
+       "at": 1.8,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.8,
+       "volume": 0.6
+      },
+      {
+       "do": "camera",
+       "at": 0.6,
+       "position": [
+        0,
+        2.1,
+        6.3
+       ],
+       "lookAt": [
+        0,
+        1.55,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Naming words name things too.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ball",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "drum",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "hat",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_ball",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "pile2",
+       "at": 0.0
+      },
+      {
+       "do": "highlight",
+       "target": "ball",
+       "at": 0.3,
+       "dur": 1.8
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.3,
+       "to": "ball"
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Ball. A thing. Naming word!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_ball_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_ball_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_ball",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_ball",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_ball",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_drum",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "pile3",
+       "at": 0.0
+      },
+      {
+       "do": "highlight",
+       "target": "drum",
+       "at": 0.3,
+       "dur": 1.8
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.3,
+       "to": "drum"
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Drum. A thing. Naming word!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_drum_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_drum_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_drum",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_drum",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_drum",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_hat",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "pile4",
+       "at": 0.0
+      },
+      {
+       "do": "highlight",
+       "target": "hat",
+       "at": 0.3,
+       "dur": 1.8
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.3,
+       "to": "hat"
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Hat. A thing. Naming word!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_hat_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_hat_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_hat",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_hat",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_hat",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "Bear, bear! Name it!",
+       "voice": "deep",
+       "at": 0.3,
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.4,
+       "height": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "people",
+   "title": "Naming words: people and places",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Naming words name people, too.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "at": 0.0,
+       "position": [
+        0,
+        2.1,
+        6.3
+       ],
+       "lookAt": [
+        0,
+        1.55,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "ball",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "drum",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "hat",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_teacher",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "i_book",
+       "at": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Teacher. A person who helps us learn.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_teacher_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_teacher_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_teacher",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_teacher",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_teacher",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "i_book",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_baker",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "i_cake",
+       "at": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baker. A person who bakes yummy treats.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_baker_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_baker_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_baker",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_baker",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_baker",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "i_cake",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_friend",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "i_heart",
+       "at": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Friend. A person who plays with you.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_friend_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_friend_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_friend",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_friend",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_friend",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "i_heart",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Naming words name places, too!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "show",
+       "target": "pond_set",
+       "at": 0.0,
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "pond_set",
+       "at": 0.0,
+       "to": [
+        0,
+        0,
+        -2.1
+       ],
+       "dur": 1.6,
+       "ease": "backOut"
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.1,
+       "volume": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "co_place",
+       "at": 1.7,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_pond",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "pile1",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Pond. A place where frogs swim.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_pond_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_pond_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_pond",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_pond",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_pond",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "co_place",
+       "at": 0.0
+      },
+      {
+       "do": "move",
+       "target": "pond_set",
+       "at": 0.6,
+       "to": [
+        -9,
+        0,
+        -2.1
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "house",
+       "at": 0.6,
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "house",
+       "at": 0.6,
+       "to": [
+        0,
+        0,
+        -2.4
+       ],
+       "dur": 1.4,
+       "ease": "backOut"
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_house",
+       "at": 0.0,
+       "sound": "pop"
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "House. A place where you live.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_house_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_house_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_house",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_house",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_house",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "house",
+       "at": 0.6,
+       "to": [
+        -9,
+        0,
+        -2.4
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "bench",
+       "at": 0.6,
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "bench",
+       "at": 0.6,
+       "to": [
+        0,
+        0,
+        -2.2
+       ],
+       "dur": 1.4,
+       "ease": "backOut"
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_park",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "pile0",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Park. A place with benches and swings.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_park_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_park_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_park",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_park",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_park",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "bench",
+       "at": 0.8,
+       "to": [
+        9,
+        0,
+        -2.2
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Naming words name a person, animal, place or thing.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        5.4
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        1.3
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "person",
+       "style": "label",
+       "at": 0.6,
+       "dur": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "animal",
+       "style": "label",
+       "at": 1.5,
+       "dur": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "place",
+       "style": "label",
+       "at": 2.4,
+       "dur": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "thing",
+       "style": "label",
+       "at": 3.3,
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Grown-ups call a naming word a noun.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "naming word = noun",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "doing",
+   "title": "Doing words: show me!",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A doing word tells what someone does.",
+       "at": 0.3,
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "doing word",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Can you do it? Show me!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.2,
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_clap",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": 0.3,
+       "to": "c_clap"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Clap! Bear, show us.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "at": 0.2,
+       "position": [
+        -1.9,
+        1.4,
+        3.2
+       ],
+       "lookAt": [
+        -2.2,
+        0.9,
+        -1.0
+       ],
+       "fov": 40,
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "bear",
+       "at": 0.0,
+       "to": [
+        -2.3,
+        0.18,
+        -1.0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.3,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.8,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.3,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.8,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.45,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.95,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.45,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.95,
+       "volume": 0.4
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "at": 2.2,
+       "to": [
+        -2.3,
+        0,
+        -1.0
+       ],
+       "dur": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "Bears stand up tall to see and smell better!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "paint",
+       "target": "c_clap_p",
+       "at": 0.3,
+       "color": "red",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_clap_t",
+       "at": 0.3,
+       "color": "white",
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "c_clap",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         0.87,
+         2.9,
+         1.4
+        ],
+        [
+         1.45,
+         1.5,
+         1.3
+        ],
+        [
+         1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_clap",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_clap",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_slide",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "look",
+       "target": "penguin",
+       "at": 0.3,
+       "to": "c_slide"
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.9,
+        1.4,
+        3.2
+       ],
+       "lookAt": [
+        2.2,
+        0.9,
+        -1.0
+       ],
+       "fov": 40,
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "Slide! Watch my belly slide!",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.0,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 0.0,
+       "to": [
+        80,
+        90,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "penguin",
+       "at": 0.3,
+       "points": [
+        [
+         2.3,
+         0.25,
+         -1.0
+        ],
+        [
+         3.3,
+         0.25,
+         -0.6
+        ],
+        [
+         4.1,
+         0.25,
+         -0.3
+        ]
+       ],
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "at": 0.3,
+       "volume": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 2.0,
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "penguin",
+       "at": 2.0,
+       "to": [
+        4.1,
+        0,
+        -0.3
+       ],
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "Penguins slide on their bellies. It's called tobogganing!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "paint",
+       "target": "c_slide_p",
+       "at": 0.3,
+       "color": "red",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_slide_t",
+       "at": 0.3,
+       "color": "white",
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "c_slide",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         0.87,
+         2.9,
+         1.4
+        ],
+        [
+         1.45,
+         1.5,
+         1.3
+        ],
+        [
+         1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_slide",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_slide",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "path",
+       "target": "penguin",
+       "at": 0.4,
+       "points": [
+        [
+         4.1,
+         0,
+         -0.3
+        ],
+        [
+         3.2,
+         0,
+         -0.7
+        ],
+        [
+         2.3,
+         0,
+         -1.0
+        ]
+       ],
+       "dur": 1.2,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 1.6,
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "dur": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_swim",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "show",
+       "target": "pond_set",
+       "at": 0.1,
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "pond_set",
+       "at": 0.1,
+       "to": [
+        0,
+        0,
+        -2.1
+       ],
+       "dur": 1.2,
+       "ease": "backOut"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Swim! Swim your arms like this.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Dance"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "penguin",
+       "at": 0.0,
+       "points": [
+        [
+         2.3,
+         0,
+         -1.0
+        ],
+        [
+         1.4,
+         -0.25,
+         -2.0
+        ],
+        [
+         -0.6,
+         -0.25,
+         -2.1
+        ],
+        [
+         -1.2,
+         -0.25,
+         -2.0
+        ]
+       ],
+       "dur": 2.2,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "penguin#flipper",
+       "at": 0.7,
+       "deg": 30,
+       "dur": 1.5
+      },
+      {
+       "do": "paint",
+       "target": "c_swim_p",
+       "at": 1.2,
+       "color": "red",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_swim_t",
+       "at": 1.2,
+       "color": "white",
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "c_swim",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         0.87,
+         2.9,
+         1.4
+        ],
+        [
+         1.45,
+         1.5,
+         1.3
+        ],
+        [
+         1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_swim",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_swim",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "path",
+       "target": "penguin",
+       "at": 0.3,
+       "points": [
+        [
+         -1.2,
+         -0.25,
+         -2.0
+        ],
+        [
+         1.4,
+         0,
+         -1.4
+        ],
+        [
+         2.3,
+         0,
+         -1.0
+        ]
+       ],
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 1.7,
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "dur": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_read",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "pond_set",
+       "at": 0.2,
+       "to": [
+        -9,
+        0,
+        -2.1
+       ],
+       "dur": 1.0
+      },
+      {
+       "do": "pop",
+       "target": "book_r",
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.9,
+        1.4,
+        3.2
+       ],
+       "lookAt": [
+        -2.2,
+        0.9,
+        -1.0
+       ],
+       "fov": 40,
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "Read! I hold my book like this.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 0.6,
+       "deg": 12
+      },
+      {
+       "do": "paint",
+       "target": "c_read_p",
+       "at": 0.8,
+       "color": "red",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_read_t",
+       "at": 0.8,
+       "color": "white",
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "c_read",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         0.87,
+         2.9,
+         1.4
+        ],
+        [
+         1.45,
+         1.5,
+         1.3
+        ],
+        [
+         1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_read",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_read",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "book_r",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_sleep",
+       "at": 0.0,
+       "sound": "pop"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Sleep! Rest your head on your hands.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sleep",
+       "target": "bear",
+       "at": 0.0,
+       "dur": 2.2
+      },
+      {
+       "do": "paint",
+       "target": "c_sleep_p",
+       "at": 0.6,
+       "color": "red",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_sleep_t",
+       "at": 0.6,
+       "color": "white",
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "wake",
+       "target": "bear",
+       "at": 0.2
+      },
+      {
+       "do": "path",
+       "target": "c_sleep",
+       "at": 0.5,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         0.87,
+         2.9,
+         1.4
+        ],
+        [
+         1.45,
+         1.5,
+         1.3
+        ],
+        [
+         1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_sleep",
+       "at": 0.5,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_sleep",
+       "at": 1.7,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_jump",
+       "at": 0.0,
+       "sound": "pop"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        6.3
+       ],
+       "lookAt": [
+        0,
+        1.55,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.0
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.3,
+       "to": "c_jump"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Jump! That's my favourite!",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.1,
+       "height": 0.7,
+       "sound": "boing"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.7,
+       "height": 0.7,
+       "sound": "boing"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.3,
+       "height": 0.7,
+       "sound": "boing"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Jump goes in... the blue basket!",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "c_jump",
+       "at": 1.3,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.0
+      },
+      {
+       "do": "grow",
+       "target": "c_jump",
+       "at": 1.3,
+       "to": 0.35,
+       "dur": 0.9,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_jump",
+       "at": 2.3,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.3,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wait. Is that right?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_jump",
+       "at": 0.3,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "c_jump",
+       "at": 0.3,
+       "to": [
+        -1.45,
+        1.6,
+        1.3
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "grow",
+       "target": "c_jump",
+       "at": 0.3,
+       "to": 0.6,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "No, Robo! Jump is something you do!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "c_jump",
+       "at": 0.3,
+       "result": "incorrect"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "paint",
+       "target": "c_jump_p",
+       "at": 0.1,
+       "color": "red",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_jump_t",
+       "at": 0.1,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_jump",
+       "at": 0.5,
+       "points": [
+        [
+         -1.45,
+         1.6,
+         1.3
+        ],
+        [
+         0,
+         2.6,
+         1.6
+        ],
+        [
+         1.45,
+         1.6,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.5,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "c_jump",
+       "at": 1.8,
+       "result": "correct",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oops! Jump is a doing word. Red basket!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.1,
+       "feeling": "happy"
+      },
+      {
+       "do": "path",
+       "target": "c_jump",
+       "at": 0.6,
+       "points": [
+        [
+         1.45,
+         1.6,
+         1.3
+        ],
+        [
+         1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "c_jump",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Grown-ups call a doing word a verb.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "doing word = verb",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        5.4
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        1.3
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Claps, claps! Do it!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "freeze",
+   "title": "The Freeze Camera",
+   "musicGain": 0.12,
+   "beats": [
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "camera",
+       "at": 0.0,
+       "dur": 1.2,
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40
+      },
+      {
+       "do": "pop",
+       "target": "fcam",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "clapper",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "This is my Freeze Camera. Action, everyone!",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": "ahead"
+      },
+      {
+       "do": "look",
+       "target": "penguin",
+       "at": "ahead"
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "move",
+       "target": "bear",
+       "at": 0.0,
+       "to": [
+        -2.3,
+        0.18,
+        -1.0
+       ],
+       "dur": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.7,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.7,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 2.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.35,
+       "volume": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.85,
+       "volume": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.35,
+       "volume": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.85,
+       "volume": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 2.35,
+       "volume": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 0.0,
+       "to": [
+        80,
+        -90,
+        0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "penguin",
+       "at": 0.2,
+       "points": [
+        [
+         2.3,
+         0.25,
+         -1.0
+        ],
+        [
+         1.6,
+         0.25,
+         -0.5
+        ]
+       ],
+       "dur": 2.6
+      },
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "at": 0.3,
+       "volume": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.1,
+       "height": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.7,
+       "height": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.3,
+       "height": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.9,
+       "height": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.0,
+       "volume": 0.8
+      },
+      {
+       "do": "show",
+       "target": "frame0",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "show",
+       "target": "frame1",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "show",
+       "target": "frame2",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "show",
+       "target": "frame3",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "caption",
+       "text": "FREEZE!",
+       "style": "title",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.4,
+       "deg": 5,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.9,
+       "deg": 5,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 1.4,
+       "deg": 5,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 1.9,
+       "deg": 5,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 2.4,
+       "deg": 5,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 2.9,
+       "deg": 5,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 1.6,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Freeze! The bear is still here. The penguin is still here.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "co_still",
+       "at": 0.5,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bear, penguin, frog: naming words stay.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bear",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "penguin",
+       "at": 0.8,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "frog",
+       "at": 1.4,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "But the clapping and sliding stopped.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "co_stop",
+       "at": 0.5,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Clap and slide: doing words stop when we freeze.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wait. Frog, your toe is tapping!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.7,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 1.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 1.7,
+       "deg": 6,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "I can't help it! My toes love doing words!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "at": 0.2,
+       "feeling": "happy"
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 1.2,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "frame0",
+       "at": 0.1,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "frame1",
+       "at": 0.1,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "frame2",
+       "at": 0.1,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "frame3",
+       "at": 0.1,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "co_still",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "co_stop",
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.1,
+       "volume": 0.4
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "at": 0.2,
+       "to": [
+        -2.3,
+        0,
+        -1.0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 0.2,
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "penguin",
+       "at": 0.2,
+       "to": [
+        2.3,
+        0,
+        -1.0
+       ],
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Freeze game! Move like Frog, then freeze!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.1,
+       "height": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.6,
+       "height": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.1,
+       "height": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.0,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.0,
+       "volume": 0.8
+      },
+      {
+       "do": "show",
+       "target": "frame0",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "show",
+       "target": "frame1",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "show",
+       "target": "frame2",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "show",
+       "target": "frame3",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "frame0",
+       "at": 1.6,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "frame1",
+       "at": 1.6,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "frame2",
+       "at": 1.6,
+       "dur": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "frame3",
+       "at": 1.6,
+       "dur": 0.15
+      },
+      {
+       "do": "caption",
+       "text": "FREEZE!",
+       "style": "title",
+       "at": 0.1,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Did you stay still? Great freezing!",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sentence",
+   "title": "Naming + doing = a sentence",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        -0.25,
+        2.2,
+        6.8
+       ],
+       "lookAt": [
+        -0.25,
+        1.8,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "fcam",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "clapper",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now let's make movie sentences.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One blue naming card, plus one red doing card.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "s_the_p",
+       "at": 0.0
+      },
+      {
+       "do": "show",
+       "target": "s_the",
+       "at": 0.0
+      },
+      {
+       "do": "pop",
+       "target": "c_s_bear",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "c_s_bear",
+       "at": 0.0,
+       "to": [
+        -1.15,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_s_bear_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_s_bear_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.01
+      },
+      {
+       "do": "pop",
+       "target": "c_claps",
+       "at": 0.7
+      },
+      {
+       "do": "move",
+       "target": "c_claps",
+       "at": 0.0,
+       "to": [
+        1.3,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_claps_p",
+       "at": 0.0,
+       "color": "red",
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_claps_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.01
+      },
+      {
+       "do": "pop",
+       "target": "s_dot",
+       "at": 1.1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The bear claps.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "c_s_bear",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "c_claps",
+       "at": 0.7,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "bear",
+       "at": 0.0,
+       "to": [
+        -2.3,
+        0.18,
+        -1.0
+       ],
+       "dur": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.7,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.7,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.35,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.85,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.35,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.85,
+       "volume": 0.4
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "at": 2.2,
+       "to": [
+        -2.3,
+        0,
+        -1.0
+       ],
+       "dur": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let's swap the doing word.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_claps",
+       "at": 0.5,
+       "to": [
+        1.35,
+        -1.5,
+        1.2
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.5,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c_claps",
+       "at": 0.0
+      },
+      {
+       "do": "pop",
+       "target": "c_s_sleeps",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "c_s_sleeps",
+       "at": 0.0,
+       "to": [
+        1.3,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_s_sleeps_p",
+       "at": 0.0,
+       "color": "red",
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_s_sleeps_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.01
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The bear sleeps.",
+       "caption": true
+      },
+      {
+       "do": "sleep",
+       "target": "bear",
+       "at": 0.6,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Shh! Now swap the naming word!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "wake",
+       "target": "bear",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "c_s_bear",
+       "at": 0.0,
+       "to": [
+        -1.25,
+        -1.5,
+        1.2
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.0,
+       "volume": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "c_s_bear",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "c_s_penguin",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "c_s_penguin",
+       "at": 0.0,
+       "to": [
+        -1.15,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_s_penguin_p",
+       "at": 0.0,
+       "color": "blue",
+       "dur": 0.01
+      },
+      {
+       "do": "paint",
+       "target": "c_s_penguin_t",
+       "at": 0.0,
+       "color": "white",
+       "dur": 0.01
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The penguin sleeps.",
+       "caption": true
+      },
+      {
+       "do": "sleep",
+       "target": "penguin",
+       "at": 0.6,
+       "dur": 2.5
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": 0.4,
+       "to": "penguin"
+      }
+     ]
+    },
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "A sentence needs both: who, and what they do.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "wake",
+       "target": "penguin",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Name it, do it, that's a sentence!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Sort it out quiz",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c_s_penguin",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "c_s_sleeps",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "s_the",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "s_the_p",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "s_dot",
+       "at": 0.0
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        6.3
+       ],
+       "lookAt": [
+        0,
+        1.55,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quiz time! Blue basket or red basket?",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Question 1",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.5
+      },
+      {
+       "do": "pop",
+       "target": "c_q_pond",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Pond.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Blue! Pond is a place. A naming word!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "paint",
+       "target": "c_q_pond_p",
+       "at": 0.4,
+       "color": "blue",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_q_pond_t",
+       "at": 0.4,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_q_pond",
+       "at": 0.9,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         -0.87,
+         2.9,
+         1.4
+        ],
+        [
+         -1.45,
+         1.5,
+         1.3
+        ],
+        [
+         -1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_q_pond",
+       "at": 0.9,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_q_pond",
+       "at": 2.1,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.1,
+       "volume": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "blue_b",
+       "at": 1.8,
+       "result": "correct",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Question two. Swim.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Question 2",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.5
+      },
+      {
+       "do": "pop",
+       "target": "c_q_swim",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "Red! Swim is something I do.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "paint",
+       "target": "c_q_swim_p",
+       "at": 0.4,
+       "color": "red",
+       "dur": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_q_swim_t",
+       "at": 0.4,
+       "color": "white",
+       "dur": 0.4
+      },
+      {
+       "do": "path",
+       "target": "c_q_swim",
+       "at": 0.9,
+       "points": [
+        [
+         0,
+         2.4,
+         1.0
+        ],
+        [
+         0.87,
+         2.9,
+         1.4
+        ],
+        [
+         1.45,
+         1.5,
+         1.3
+        ],
+        [
+         1.45,
+         0.7,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "c_q_swim",
+       "at": 0.9,
+       "to": 0.35,
+       "dur": 1.08,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "c_q_swim",
+       "at": 2.1,
+       "dur": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.1,
+       "volume": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "red_b",
+       "at": 1.8,
+       "result": "correct",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "show",
+       "target": "s_the_p",
+       "at": 0.0
+      },
+      {
+       "do": "show",
+       "target": "s_the",
+       "at": 0.0
+      },
+      {
+       "do": "pop",
+       "target": "c_s_bear",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "c_s_bear",
+       "at": 0.0,
+       "to": [
+        -1.15,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "pop",
+       "target": "c_claps",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "c_claps",
+       "at": 0.0,
+       "to": [
+        1.3,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "show",
+       "target": "s_dot",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.25,
+        2.2,
+        6.8
+       ],
+       "lookAt": [
+        -0.25,
+        1.8,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1.0
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Question three. The bear claps. Which is the doing word?",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Question 3",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "Claps! That's what I do.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "c_claps",
+       "at": 0.3,
+       "result": "correct"
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.6,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.1,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.6,
+       "deg": 6,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c_s_bear",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "c_claps",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "s_the",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "s_the_p",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "s_dot",
+       "at": 0.0
+      },
+      {
+       "do": "pop",
+       "target": "c_q_hat",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "c_q_hat",
+       "at": 0.0,
+       "to": [
+        -1.15,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "pop",
+       "target": "c_q_hop",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "c_q_hop",
+       "at": 0.0,
+       "to": [
+        1.3,
+        2.45,
+        1.2
+       ],
+       "dur": 0.01
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Question four. Which is a naming word: hat or hop?",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Question 4",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Hat! A hat is a thing. Hop is a doing word.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "c_q_hat",
+       "at": 0.3,
+       "result": "correct"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 2.0,
+       "height": 0.4
+      },
+      {
+       "do": "paint",
+       "target": "c_q_hat_p",
+       "at": 0.4,
+       "color": "blue"
+      },
+      {
+       "do": "paint",
+       "target": "c_q_hat_t",
+       "at": 0.4,
+       "color": "white"
+      },
+      {
+       "do": "paint",
+       "target": "c_q_hop_p",
+       "at": 1.9,
+       "color": "red"
+      },
+      {
+       "do": "paint",
+       "target": "c_q_hop_t",
+       "at": 1.9,
+       "color": "white"
+      }
+     ]
+    },
+    {
+     "dur": 1.0,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c_q_hat",
+       "at": 0.0
+      },
+      {
+       "do": "hide",
+       "target": "c_q_hop",
+       "at": 0.0
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.9,
+        1.4,
+        3.2
+       ],
+       "lookAt": [
+        2.2,
+        0.9,
+        -1.0
+       ],
+       "fov": 40,
+       "dur": 1.0
+      },
+      {
+       "do": "look",
+       "target": "penguin",
+       "at": 0.3,
+       "to": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Last one. Say a doing word for Penguin!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Question 5",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "penguin",
+       "text": "Slides! Swims! Waddles! Flaps! They're all right!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "penguin#flipper",
+       "at": 0.5,
+       "deg": 35,
+       "dur": 1.6
+      },
+      {
+       "do": "wiggle",
+       "target": "penguin",
+       "at": 1.2,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "slides  swims  waddles  flaps",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wrap",
+   "title": "That's a wrap!",
+   "musicGain": 0.24,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "clapper",
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Our movie! Lights, camera, action!",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "clapper#clapper",
+       "at": 1.55,
+       "to": [
+        0,
+        0,
+        -18
+       ],
+       "dur": 0.15
+      },
+      {
+       "do": "turn",
+       "target": "clapper#clapper",
+       "at": 2.2,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The frog jumps.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "The frog jumps.",
+       "style": "title",
+       "at": 0.0,
+       "dur": 2.4
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.4,
+       "height": 0.6,
+       "sound": "boing"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.0,
+       "height": 0.6,
+       "sound": "boing"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.6,
+       "height": 0.6,
+       "sound": "boing"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The bear claps.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "The bear claps.",
+       "style": "title",
+       "at": 0.0,
+       "dur": 2.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.4,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.9,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.4,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 1.9,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.55,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.05,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 1.55,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 2.05,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The penguin slides.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "The penguin slides.",
+       "style": "title",
+       "at": 0.0,
+       "dur": 2.4
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 0.3,
+       "to": [
+        80,
+        -90,
+        0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "penguin",
+       "at": 0.5,
+       "points": [
+        [
+         2.3,
+         0.25,
+         -1.0
+        ],
+        [
+         1.4,
+         0.25,
+         -0.6
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "at": 0.5,
+       "volume": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "penguin",
+       "at": 1.9,
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "penguin",
+       "at": 1.9,
+       "to": [
+        1.4,
+        0,
+        -0.6
+       ],
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The bear sleeps.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "The bear sleeps.",
+       "style": "title",
+       "at": 0.0,
+       "dur": 2.4
+      },
+      {
+       "do": "sleep",
+       "target": "bear",
+       "at": 0.5,
+       "dur": 1.6
+      },
+      {
+       "do": "wake",
+       "target": "bear",
+       "at": 2.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Frog, can you freeze?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.3,
+        1.4,
+        4.2
+       ],
+       "lookAt": [
+        0,
+        0.75,
+        -0.9
+       ],
+       "fov": 40,
+       "dur": 1.0
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 3.0,
+     "do": [
+      {
+       "do": "feel",
+       "target": "frog",
+       "at": 0.2,
+       "feeling": "surprised"
+      },
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "Frog... freezes!",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "I did it! Freeze is a doing word too!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "at": 0.1,
+       "feeling": "happy"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.2,
+       "height": 0.7,
+       "sound": "boing"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        0
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Naming words name a person, animal, place or thing.",
+       "at": 0.4,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Doing words tell what they do. Together, a sentence!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 0.2,
+       "deg": 25,
+       "dur": 0.8
+      },
+      {
+       "do": "nod",
+       "target": "penguin",
+       "at": 0.4,
+       "deg": 25,
+       "dur": 0.8
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.3,
+       "volume": 0.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "Wave"
+      },
+      {
+       "do": "orbit",
+       "at": 0.0,
+       "around": [
+        0,
+        1,
+        0
+       ],
+       "degrees": 20,
+       "dur": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 3.0,
+     "do": [
+      {
+       "do": "say",
+       "who": "frog",
+       "text": "Name it, do it! Bye!",
+       "voice": "squeaky",
+       "at": 0.0,
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "curt_l",
+       "at": 0.8,
+       "to": [
+        -2.6,
+        3.2,
+        3.0
+       ],
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "curt_r",
+       "at": 0.8,
+       "to": [
+        2.6,
+        3.2,
+        3.0
+       ],
+       "dur": 1.8,
+       "ease": "sineInOut"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
