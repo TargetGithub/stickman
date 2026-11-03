@@ -5,18 +5,18 @@ import { BUILD_ORDERS, MAX_TICKS, pieceCount, pieceNames, withDefaults } from ".
 
 export const TEACH_FIELDS = {
   number_line: ["from", "to", "length", "step", "minor", "labels", "color"],
-  fraction_bar: ["parts", "shaded", "length", "height", "color", "empty", "label"],
-  fraction_circle: ["parts", "shaded", "radius", "color", "empty", "label"],
+  fraction_bar: ["parts", "shaded", "length", "height", "color", "empty", "label", "sizes"],
+  fraction_circle: ["parts", "shaded", "radius", "color", "empty", "label", "sizes"],
   array: ["rows", "cols", "item", "gap", "color", "size", "trays"],
-  grid: ["rows", "cols", "cell", "color", "upright"],
+  grid: ["rows", "cols", "cell", "color", "upright", "labels"],
   cubes: ["l", "w", "h", "cell", "color", "box"],
-  pointer: ["from", "to", "color", "width", "bend"],
+  pointer: ["from", "to", "color", "width", "bend", "head", "tail", "fromTarget", "toTarget"],
   callout: ["text", "point", "target", "offset", "color", "bg"],
   angle: ["degrees", "radius", "color", "arc", "label"],
 };
 
 export const TEACH_TARGETS = {
-  build: Object.keys(BUILD_ORDERS), shade: ["fraction_bar", "fraction_circle", "grid", "array"], draw: ["pointer", "number_line", "callout"],
+  build: Object.keys(BUILD_ORDERS), shade: ["fraction_bar", "fraction_circle", "grid", "array"], draw: ["pointer", "number_line", "callout", "stroke"],
   open: ["angle"], trace: ["grid"],
 };
 /** Actions that may target any piece ("pie#s2", "grid#c5") as well as whole objects. */
@@ -71,7 +71,11 @@ export function checkTeachObject(o, p, { err, warn, ids, catalog, name }) {
     for (const k of ["l", "w", "h"]) range(k, (v) => isInt(v, 1, 10), `${k} must be a whole number 1-10`);
   }
   if (o.kind === "pointer") {
-    for (const k of ["from", "to"]) if (!isVec(o[k])) err(o[k] == null ? "E3D_REQUIRED" : "E3D_VEC", `${p}.${k}`, `pointer needs ${k}: [x, y, z]`);
+    // With fromTarget / toTarget the end follows an object, and from / to are optional offsets from it.
+    for (const k of ["from", "to"]) {
+      const follows = o[`${k}Target`] != null;
+      if (follows ? o[k] != null && !isVec(o[k]) : !isVec(o[k])) err(o[k] == null ? "E3D_REQUIRED" : "E3D_VEC", `${p}.${k}`, `pointer needs ${k}: [x, y, z]${follows ? "" : ` (or ${k}Target)`}`);
+    }
     range("width", (v) => isNum(v, 0.01, 1), "width must be 0.01-1 m");
     range("bend", (v) => isNum(v, -10, 10), "bend must be -10 to 10 m");
   }
@@ -109,7 +113,7 @@ export function checkTeachAction(a, p, o, { err, ids, catalog }) {
   if (kinds && !kinds.includes(o.kind)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} needs a ${kinds.join(" or ")}, "${a.target}" is a ${o.kind}`);
   if (a.color != null && ["shade", "leap", "highlight"].includes(a.do) && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
   if (a.do === "build" && a.order != null && !BUILD_ORDERS[o.kind].includes(a.order)) err("E3D_ORDER", `${p}.order`, `a ${o.kind} builds in order ${BUILD_ORDERS[o.kind].join(", ")}`);
-  if (a.do === "shade") {
+  if (a.do === "shade" && a.cells == null) {
     const n = pieceCount(withDefaults(o));
     if (!isInt(a.to, 0, n)) err("E3D_SHADED", `${p}.to`, `shade to must be a whole number 0-${n} (the parts of "${a.target}")`);
   }

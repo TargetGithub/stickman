@@ -1,0 +1,21 @@
+{"expect": ["E3D_PV_RANGE", "E3D_PV_DIGITS", "E3D_EMPHASIZE", "E3D_REPARENT", "E3D_PART", "E3D_POINT", "E3D_AXIS", "E3D_CELLS", "E3D_TARGET_KIND", "E3D_REQUIRED"], "script": {"kind": "video3d", "version": 1, "objects": [
+  {"id": "pv", "kind": "place_value_chart", "columns": ["hundreds", "tens", "ones"], "digits": "35"},
+  {"id": "card", "kind": "text_card", "text": "The cat sat on the mat."},
+  {"id": "cat", "kind": "critter", "species": "cat"},
+  {"id": "hat", "kind": "prop", "model": "hat", "at": [2, 0, 0]},
+  {"id": "grid", "kind": "grid", "rows": 2, "cols": 2},
+  {"id": "robo", "kind": "character", "character": "robot", "at": [-2, 0, 0]}
+], "scenes": [{"id": "s", "beats": [{"dur": 2, "do": [
+  {"do": "shift", "target": "pv", "places": 1},
+  {"do": "shift", "target": "pv", "places": 1},
+  {"do": "set", "target": "pv", "digits": "abc"},
+  {"do": "emphasize", "target": "card", "words": "the dog"},
+  {"do": "emphasize", "target": "pv", "words": "the"},
+  {"do": "reparent", "target": "hat", "parent": "ghost"},
+  {"do": "reparent", "target": "hat", "parent": "cat", "part": "wing"},
+  {"do": "point", "target": "cat", "to": "hat"},
+  {"do": "point", "target": "robo", "to": "robo"},
+  {"do": "spin", "target": "hat", "axis": "w"},
+  {"do": "turn", "target": "hat"},
+  {"do": "shade", "target": "grid", "cells": [1, 9]}
+]}]}]}}

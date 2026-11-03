@@ -8,6 +8,7 @@ import { shapeGeometry } from "./geometry.js";
 
 const DEG = Math.PI / 180;
 const OPEN = 0.06; // below this the face keeps its own (feeling) mouth
+const MIN_WIDTH = 0.15; // narrowest open mouth, in the model's units (critter heads are about 0.5 across)
 
 /**
  * An open mouth: a dark oval (with a tongue once it is wide) that grows from a thin line as the voice gets
@@ -43,10 +44,10 @@ export function createTalkMouth(parent, { at, width: w, jaw }, material, fallbac
       lower.rotation.x = 12 * DEG * k;
     }
     if (!open) return;
-    const sx = w * (0.9 - 0.15 * k);
-    const sy = w * (0.14 + 0.78 * k);
-    // A beak opens downward: the mouth follows the lower beak.
-    const dy = lower ? -(jaw.drop ?? 0.06) * k * 0.5 : -sy * 0.15;
+    const sx = w * (0.95 - 0.12 * k);
+    const sy = w * (0.18 + 0.85 * k);
+    // A beak opens downward: the mouth follows the lower beak; other mouths open down, away from the nose.
+    const dy = lower ? -(jaw.drop ?? 0.06) * k * 0.5 : -sy * 0.3;
     oval.scale.set(sx, sy, w * 0.28);
     oval.position.y = at[1] + dy;
     tongue.scale.set(sx * 0.55, sy * 0.38, w * 0.12);
@@ -56,10 +57,55 @@ export function createTalkMouth(parent, { at, width: w, jaw }, material, fallbac
 
 /** Where a critter without a drawn mouth opens one: its catalog `talk` spec, else under the eyes. */
 export function talkSpec(model) {
-  if (model.mouth) return { at: model.mouth.at, width: model.mouth.size, jaw: model.talk?.jaw };
-  if (model.talk) return { at: model.talk.at, width: model.talk.size ?? 0.12, jaw: model.talk.jaw };
+  // Small smiles (a cat's is 0.1 of its size) open at least MIN_WIDTH wide, so the mouth reads in a medium shot.
+  const w = (x) => Math.max(x, MIN_WIDTH);
+  if (model.mouth) return { at: model.mouth.at, width: w(model.mouth.size), jaw: model.talk?.jaw };
+  if (model.talk) return { at: model.talk.at, width: w(model.talk.size ?? 0.12), jaw: model.talk.jaw };
   const e = model.eyes?.at ?? [0.12, 0.06, 0.25];
-  return { at: [0, e[1] - 0.2, e[2] + 0.03], width: 0.12 };
+  return { at: [0, e[1] - 0.2, e[2] + 0.03], width: w(0.12) };
+}
+
+/**
+ * point for a glTF character: turn the upper arm so the elbow lies on the line to the target, then the
+ * forearm so the hand does too (a straight arm), each blended by k on top of the clip's pose, in world space.
+ * Bones UpperArm.L / LowerArm.L (and .R), as in Robo's rig; .L is his own left (+x when he faces +z).
+ * @returns {(side:"L"|"R", target:number[], k:number) => void}
+ */
+function createArmAim(model) {
+  // GLTFLoader drops the "." from node names (UpperArm.L becomes UpperArmL); accept either.
+  const bone = (name) => {
+    let b = null;
+    model.traverse((n) => {
+      if (n.isBone && (n.name === name || n.name === name.replace(".", "")) && !b) b = n;
+    });
+    return b;
+  };
+  const arms = {};
+  for (const side of ["L", "R"]) {
+    const upper = bone(`UpperArm.${side}`);
+    const lower = bone(`LowerArm.${side}`);
+    const hand = lower?.children.find((c) => c.isBone) ?? null;
+    if (upper && lower && hand) arms[side] = [[upper, lower], [lower, hand]];
+  }
+  const [a, b, goal] = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()];
+  const [dq, qp, rel] = [new THREE.Quaternion(), new THREE.Quaternion(), new THREE.Quaternion()];
+  const id = new THREE.Quaternion();
+  return (side, target, k) => {
+    const arm = arms[side];
+    if (!arm) return;
+    goal.set(...target);
+    model.updateWorldMatrix(true, true);
+    for (const [from, to] of arm) {
+      from.getWorldPosition(a);
+      to.getWorldPosition(b);
+      dq.setFromUnitVectors(b.sub(a).normalize(), goal.clone().sub(a).normalize());
+      rel.copy(id).slerp(dq, Math.min(1, k));
+      from.parent.getWorldQuaternion(qp);
+      // A world-space turn, expressed in the bone's parent frame and put before its clip rotation.
+      from.quaternion.premultiply(qp.clone().invert().multiply(rel).multiply(qp));
+      from.updateWorldMatrix(false, true);
+    }
+  };
 }
 
 /**
@@ -77,7 +123,9 @@ export function createCharacterRig(model, faces) {
   const qp = new THREE.Quaternion();
   const e = new THREE.Euler(0, 0, 0, "YXZ");
   const surprised = faces.map((m) => m.morphTargetDictionary?.Surprised);
+  const point = createArmAim(model);
   return (t, s) => {
+    if (s.point > 0.001 && s.pointAt) point(s.pointArm === "left" ? "L" : "R", s.pointAt, s.point);
     const k = s.talk ?? 0;
     if (!head || (!s.look && !k)) return;
     const [yaw, pitch] = s.look ?? [0, 0];

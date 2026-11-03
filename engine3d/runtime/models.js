@@ -84,6 +84,31 @@ export function addFace(parent, { center, size, eyes, cheeks, mouth, talks = fal
 }
 
 /**
+ * A prop speaking (say with who): its "light" parts swell and glow brighter with the voice; without a light
+ * (and without a face) the whole body bobs and squashes a little instead. Set after the rest pose each frame.
+ * @returns {((k:number) => void) | null}
+ */
+function propVoice(lights, body) {
+  const meshes = (lights ?? []).flatMap((n) => n.children.filter((m) => m.isMesh));
+  const mats = new Map();
+  for (const m of meshes) {
+    if (!mats.has(m.material)) mats.set(m.material, m.material.clone());
+    m.material = mats.get(m.material);
+  }
+  const glow = [...mats.values()].map((m) => [m, m.emissiveIntensity]);
+  const scales = meshes.map((m) => m.scale.clone());
+  if (!meshes.length && !body) return null;
+  return (k) => {
+    meshes.forEach((m, i) => m.scale.copy(scales[i]).multiplyScalar(1 + 0.6 * k));
+    for (const [m, e] of glow) m.emissiveIntensity = e + 2 * k;
+    if (!meshes.length && body) {
+      body.scale.set(1 + 0.03 * k, 1 - 0.05 * k, 1 + 0.03 * k);
+      body.position.y += 0.04 * k;
+    }
+  };
+}
+
+/**
  * Build a critter or prop from its catalog model.
  * @returns {{ group: THREE.Group, update: (t:number, s:object, state:object) => void }}
  */
@@ -132,8 +157,11 @@ export function buildModel(o, model, material) {
     mouth.position.set(...model.mouth.at);
     head.add(mouth);
   }
-  const talk = o.talks ? createTalkMouth(head, talkSpec(model), paint, color) : null;
+  const hasFace = !!(model.mouth || model.eyes);
+  const talk = o.talks && (o.kind === "critter" || hasFace) ? createTalkMouth(head, talkSpec(model), paint, color) : null;
   const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material, talk }) : null;
+  // A talking prop's light part pulses with the voice; a prop with neither face nor light bobs instead.
+  const voice = o.talks && o.kind === "prop" ? propVoice(groups.get("light"), hasFace ? null : body) : null;
   // Each critter blinks on its own beat (from its id), every ~3.6 s for 0.14 s.
   const phase = (hash32(o.id) % 3600) / 1000;
   const bob = model.bob ?? 0;
@@ -170,8 +198,11 @@ export function buildModel(o, model, material) {
           const m = node.userData.mirrored ? -1 : 1;
           if (sub.rotation) node.rotation.set(node.rotation.x + sub.rotation[0] * DEG, node.rotation.y + m * sub.rotation[1] * DEG, node.rotation.z + m * sub.rotation[2] * DEG);
           if (sub.position) node.position.set(node.position.x + m * sub.position[0], node.position.y + sub.position[1], node.position.z + sub.position[2]);
+          // point: "lift" turns one copy only (liftSide 1: the part as listed, -1: its mirror image).
+          if (sub.lift && m === (sub.liftSide ?? 1)) node.rotation.set(node.rotation.x + sub.lift[0] * DEG, node.rotation.y + sub.lift[1] * DEG, node.rotation.z + sub.lift[2] * DEG);
         }
       }
+      if (voice) voice(s.talk ?? 0);
       const blink = ((t + phase) % 3.6) < 0.14 ? 0.12 : 1;
       if (face) {
         // A feeling also tilts the head: down when sad or sleepy, back when surprised.

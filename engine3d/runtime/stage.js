@@ -78,9 +78,17 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     // A child rides on its parent (or on one of the parent's named parts): its at is relative to it.
     const parent = o.parent ? handles.get(o.parent) : null;
     (parent ? parent.named?.get(o.part) ?? parent.group : scene).add(h.group);
+    h.parentRef = o.parent == null ? "" : o.part != null ? `${o.parent}#${o.part}` : o.parent;
     for (const w of h.world ?? []) scene.add(w);
     handles.set(o.id, h);
   }
+  /** reparent: hang an object on the node its "parentRef" prop names at t ("id", "id#part" or "" for the world). */
+  const attach = (h, ref) => {
+    const [pid, part] = ref.split("#");
+    const p = pid ? handles.get(pid) : null;
+    (p ? (part ? p.named?.get(part) ?? p.group : p.group) : scene).add(h.group);
+    h.parentRef = ref;
+  };
   const clipLen = (id) => (name) => handles.get(id).actions.get(name)?.getClip().duration ?? 1;
   const overlay = createOverlay(width, height, plan.captions);
   const tl = plan.timeline;
@@ -90,6 +98,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     for (const [id, h] of handles) {
       const s = state[id];
       const g = h.group;
+      if (s.parentRef != null && s.parentRef !== h.parentRef) attach(h, s.parentRef);
       g.position.set(s.position[0], s.position[1] + (s.hop ?? 0), s.position[2]);
       g.rotation.set(s.rotation[0] * DEG, s.rotation[1] * DEG, s.rotation[2] * DEG);
       g.scale.set(...s.scale.map((x) => Math.max(1e-4, x)));

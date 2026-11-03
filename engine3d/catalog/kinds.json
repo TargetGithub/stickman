@@ -36,7 +36,8 @@
         "material": "materials.json name",
         "font": "fonts.json name",
         "size": "type size, default 1: the cap height is about 1.41 x size, the x-height 0.98 x size, and descenders (g, j, p, q, y) reach 0.47 x size below the baseline (Andika; other fonts differ a little)",
-        "depth": "extrusion depth, default 0.35"
+        "depth": "extrusion depth, default 0.35",
+        "colors": "list of colors.json names, one per character (blend letters, rhyme endings); characters past the list use color"
       },
       "description": "Extruded 3D text, centred on x and standing on the font baseline: at is the baseline, so flat-bottomed letters touch it and g, j, p, q and y hang below it (letters, digits, short words).",
       "tags": [
@@ -213,7 +214,8 @@
         "height": "metres, default 0.5",
         "color": "shaded colour, default orange",
         "empty": "unshaded colour, default cream",
-        "label": "true shows \"shaded/parts\" over the bar (it follows shade)"
+        "label": "true shows \"shaded/parts\" over the bar (it follows shade)",
+        "sizes": "unequal parts: a share per part (left to right) adding up to 1, e.g. [0.5, 0.25, 0.25] for a not-fair split; default equal"
       },
       "description": "A bar standing up, facing the camera, cut into equal parts with gaps between them. Parts are targets <id>#p1 ... for move, turn, mark and highlight.",
       "tags": [
@@ -231,7 +233,8 @@
         "radius": "metres, default 1",
         "color": "shaded colour, default orange",
         "empty": "unshaded colour, default cream",
-        "label": "true shows \"shaded/parts\" over the circle"
+        "label": "true shows \"shaded/parts\" over the circle",
+        "sizes": "unequal slices: a share per slice (clockwise from 12 o'clock) adding up to 1; default equal"
       },
       "description": "A pie standing on its rim, facing the camera, cut into equal slices from 12 o'clock going clockwise. Slices are targets <id>#s1 ... for move (pull a slice out), turn, mark and highlight.",
       "tags": [
@@ -266,7 +269,8 @@
         "cols": "1-20 (default 4)",
         "cell": "square size in metres, default 0.5",
         "color": "square colour, default sky",
-        "upright": "true stands it like a wall chart; otherwise it lies flat on the floor (row 1 at the back)"
+        "upright": "true stands it like a wall chart; otherwise it lies flat on the floor (row 1 at the back)",
+        "labels": "\"numbers\" writes 1..rows x cols in the cells, row by row (a hundred chart); default none"
       },
       "description": "Unit squares on a white board for area and perimeter. Cells are targets <id>#c1 ... (row by row) for mark and highlight; shade colours them, trace runs round the edge.",
       "tags": [
@@ -297,13 +301,17 @@
     },
     "pointer": {
       "fields": {
-        "from": "[x, y, z] start (relative to at, so world when at is left out) (required)",
-        "to": "[x, y, z] tip (required)",
+        "from": "[x, y, z] start (relative to at, so world when at is left out) (required unless fromTarget)",
+        "to": "[x, y, z] tip (required unless toTarget)",
         "color": "default orange",
         "width": "shaft thickness in metres, default 0.1",
-        "bend": "arc height in metres, default 0 (straight)"
+        "bend": "arc height in metres, default 0 (straight)",
+        "head": "the to end: arrow (default), dot or none",
+        "tail": "the from end: none (default), arrow or dot. none/none is a line, dot/dot a segment, dot/arrow a ray, arrow/arrow a double arrow",
+        "fromTarget": "object id: the from end follows that object (the centre of its box; from becomes an offset in metres)",
+        "toTarget": "object id: the to end follows that object (to becomes an offset in metres)"
       },
-      "description": "A chunky 3D arrow (cause and effect, food chains, energy flow); draw grows it from start to tip.",
+      "description": "A chunky 3D arrow (cause and effect, food chains, energy flow); draw grows it from start to tip. With head and tail it is also a line, ray or segment, and its ends can follow moving objects (a kite string, food-web arrows).",
       "tags": [
         "teaching",
         "science",
@@ -340,6 +348,89 @@
         "teaching",
         "geometry",
         "grade4"
+      ]
+    },
+    "stroke": {
+      "fields": {
+        "points": "list of [x, y, z] (2-400) relative to at (required)",
+        "smooth": "true: a smooth curve through the points (waves, loops); default false: straight lines with sharp corners (zigzags)",
+        "closed": "true joins the last point back to the first",
+        "width": "tube thickness in metres, default 0.08",
+        "color": "default blue",
+        "pen": "true or \"pencil\": a pencil at the tip while it is drawn; \"dot\": a glowing dot; default none"
+      },
+      "description": "A line drawn as a round tube along points (prewriting strokes: straight, wavy, zigzag, loops; paths and tracing). draw reveals it from start to end, optionally with a pencil at the tip.",
+      "tags": [
+        "teaching",
+        "handwriting",
+        "lines"
+      ]
+    },
+    "flow": {
+      "fields": {
+        "points": "list of [x, y, z] (2-400) relative to at (required)",
+        "smooth": "true: a smooth curve through the points",
+        "closed": "true: a loop (dots go round and round)",
+        "count": "dots on the path, default 12",
+        "speed": "metres per second, default 0.6",
+        "size": "dot diameter in metres, default 0.14",
+        "color": "dot colour at the start, default red",
+        "changes": "list of { at: 0-1 along the path, color }: dots turn that colour from there (blue to red at the lungs)",
+        "track": "true draws the path faintly under the dots"
+      },
+      "description": "Evenly spaced dots moving along a path for as long as it is shown (blood round the body, air in and out, energy along a food chain).",
+      "tags": [
+        "teaching",
+        "science",
+        "diagrams"
+      ]
+    },
+    "fraction_text": {
+      "fields": {
+        "numerator": "whole number or up to 4 characters (required)",
+        "denominator": "whole number or up to 4 characters (required)",
+        "whole": "the whole number of a mixed number (1 in 1 3/4), optional",
+        "color": "default ink",
+        "size": "type size, as a letter's: default 0.5",
+        "depth": "extrusion depth as a share of size, default 0.2"
+      },
+      "description": "A stacked fraction (numerator over a bar over the denominator), with an optional whole number for mixed numbers. at is the baseline: give it the same y and size as the letters of an equation and its bar sits on the maths axis, level with + and =.",
+      "tags": [
+        "teaching",
+        "fractions",
+        "numbers"
+      ]
+    },
+    "place_value_chart": {
+      "fields": {
+        "columns": "header strings, left to right, with \".\" for the decimal point column; default [hundreds, tens, ones, ., tenths, hundredths]",
+        "digits": "a string such as \"35.2\": placed right-aligned at the decimal point (no \".\" column: the ones are the last column)",
+        "cell": "column width and digit row height in metres, default 0.8",
+        "color": "frame and header colour, default blue",
+        "bg": "digit cell colour, default white",
+        "digitColor": "default ink",
+        "zeroColor": "placeholder zeros a shift adds, default orange"
+      },
+      "description": "An upright place value chart: header labels over digit cells, with a fixed decimal point. shift slides the digits by powers of ten; set puts new digits in.",
+      "tags": [
+        "teaching",
+        "place value",
+        "decimals"
+      ]
+    },
+    "text_card": {
+      "fields": {
+        "text": "1-300 characters, at most 6 lines when wrapped; \\n starts a new line (required)",
+        "width": "card width in metres, default 4",
+        "size": "font size in metres, default 0.2 (a line is 1.4 x size)",
+        "color": "text colour, default ink",
+        "bg": "card colour, default white"
+      },
+      "description": "A card with a short reading passage, word-wrapped to its width and drawn crisply; at is its bottom centre. emphasize highlights a phrase with a marker sweep.",
+      "tags": [
+        "teaching",
+        "reading",
+        "text"
       ]
     }
   }

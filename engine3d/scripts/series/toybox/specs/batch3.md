@@ -115,6 +115,17 @@ Built in `engine3d` (README "Talking, looking and framing"): the names above are
 (what to look at) for when `at` is a number (the start time, as in every action); stage set pieces are
 targetable as `set_<id>`.
 
+**Round 2 (gaps the specs found; README "Teaching kit, round 2").** Kinds `stroke` (prewriting lines drawn with a
+pencil), `flow` (dots moving along a path, changing colour), `fraction_text` (stacked and mixed fractions),
+`place_value_chart` (with actions `shift` and `set`) and `text_card` (a reading passage; action `emphasize`).
+`pointer` takes `head`/`tail` (`arrow`, `dot`, `none`: lines, rays, segments) and `fromTarget`/`toTarget` (ends
+that follow moving objects: kite strings, food-web arrows). `fraction_bar`/`fraction_circle` take `sizes`
+(unequal parts); `shade` takes `cells`; `trace` takes `count: true`; `grid` takes `labels: "numbers"` (hundred
+chart); `letter` takes `colors` (one per character). Actions `reparent` (hand a hat from head to head) and
+`point` (Robo's arm; an owl's wing, a monkey's arm); `spin`/`turn` take `axis` (a tilted globe spins about its rod
+with `globe#globe` and `axis: "z"`). `say` `who` may name a prop (the `pattern_machine` talks with its face and
+light).
+
 **Thumbnails** (designed, never a video frame): `meta.thumbnails` is a list of 2–3 concepts, each a small scene
 of its own: `{ "name": "a", "title": "ARRAYS!", "subtitle": "Multiply with rows", "titleColor": "yellow",
 "side": "left", "stage": "garden", "camera": {...}, "objects": [...] }`. `tools/thumbnail3d.mjs` renders each one

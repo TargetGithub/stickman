@@ -7,13 +7,16 @@ import * as THREE from "three";
 import { shapeGeometry } from "./geometry.js";
 import { buildModel } from "./models.js";
 import { LINE_TOP, lineLabels, lineTicks, withDefaults, rowCol } from "./teach_layout.js";
-import { blendColor, builder, clamp01, colorRGB, labelMaker, ownMaterial, roundedBox, setPiece, solid } from "./teach_common.js";
-import { buildAngle, buildCallout, buildCubes, buildGrid, buildPointer } from "./teach_more.js";
+import { blendColor, builder, clamp01, colorRGB, labelMaker, ownMaterial, pieceShade, roundedBox, setPiece, solid } from "./teach_common.js";
+import { buildAngle, buildCallout, buildCubes, buildGrid } from "./teach_more.js";
 import { buildGlow, buildMark } from "./teach_marks.js";
+import { buildFlow, buildPointer, buildStroke } from "./teach_draw.js";
+import { buildFractionText, buildPlaceValueChart, buildTextCard } from "./teach_text.js";
 
 const BUILDERS = {
   number_line: buildNumberLine, fraction_bar: buildFractionBar, fraction_circle: buildFractionCircle, array: buildArray,
   grid: buildGrid, cubes: buildCubes, pointer: buildPointer, callout: buildCallout, angle: buildAngle, _mark: buildMark, _glow: buildGlow,
+  stroke: buildStroke, flow: buildFlow, fraction_text: buildFractionText, place_value_chart: buildPlaceValueChart, text_card: buildTextCard,
 };
 
 /** True for the kinds this module builds (the teaching kit plus the internal _mark and _glow helpers). */
@@ -111,14 +114,23 @@ function buildFractionBar(o, group, { catalog, material, font, textGeometry }) {
   const gap = Math.min(0.05, (o.length / n) * 0.1);
   const w = (o.length - gap * (n - 1)) / n;
   const geo = roundedBox(w, o.height, 0.3, Math.min(0.07, w * 0.18, o.height * 0.2));
+  // sizes: unequal parts (shares of the bar, left to right), for "not fair shares".
+  const ws = o.sizes ? o.sizes.map((k) => (o.length - gap * (n - 1)) * k) : null;
   const named = new Map();
   const rests = [];
   const mats = [];
+  let x = -o.length / 2;
   for (let i = 0; i < n; i++) {
     const g = new THREE.Group();
-    g.position.set(-o.length / 2 + w / 2 + i * (w + gap), o.height / 2, 0);
     const m = ownMaterial(material, o.empty);
-    g.add(solid(geo, m));
+    if (ws) {
+      g.position.set(x + ws[i] / 2, o.height / 2, 0);
+      x += ws[i] + gap;
+      g.add(solid(roundedBox(ws[i], o.height, 0.3, Math.min(0.07, ws[i] * 0.18, o.height * 0.2)), m));
+    } else {
+      g.position.set(-o.length / 2 + w / 2 + i * (w + gap), o.height / 2, 0);
+      g.add(solid(geo, m));
+    }
     group.add(g);
     named.set(`p${i + 1}`, g);
     rests.push(g.position.clone());
@@ -133,9 +145,9 @@ function buildFractionBar(o, group, { catalog, material, font, textGeometry }) {
       [...named.values()].forEach((g, i) => {
         offsetPiece(g, rests[i], state[`${o.id}#p${i + 1}`]);
         setPiece(g, built(i));
-        blendColor(mats[i], empty, s.shadeColor, (s.shaded ?? 0) - i);
+        blendColor(mats[i], empty, s.shadeColor, pieceShade(o, s, state, i));
       });
-      label?.(s, built(n - 1));
+      label?.(shadedCount(o, s, state), built(n - 1));
     },
   };
 }
@@ -153,9 +165,11 @@ function buildFractionCircle(o, group, { catalog, material, font, textGeometry }
   const named = new Map();
   const rests = [];
   const mats = [];
+  // sizes: unequal slices (shares of the circle, clockwise from 12 o'clock).
+  const from = (i) => (o.sizes ? o.sizes.slice(0, i).reduce((a, b) => a + b, 0) : i / n);
   for (let i = 0; i < n; i++) {
-    const a0 = Math.PI / 2 - (i * 2 * Math.PI) / n;
-    const a1 = a0 - (2 * Math.PI) / n;
+    const a0 = Math.PI / 2 - (o.sizes ? from(i) * 2 * Math.PI : (i * 2 * Math.PI) / n);
+    const a1 = a0 - (o.sizes ? o.sizes[i] * 2 * Math.PI : (2 * Math.PI) / n);
     const shape = new THREE.Shape();
     if (n === 1) shape.absarc(0, 0, R - bevel, 0, Math.PI * 2, false);
     else {
@@ -163,7 +177,8 @@ function buildFractionCircle(o, group, { catalog, material, font, textGeometry }
       shape.absarc(0, 0, R - bevel, a0, a1, true);
       shape.lineTo(0, 0);
     }
-    const geo = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel * 0.8, bevelSegments: 3, curveSegments: Math.max(8, Math.ceil(96 / n)) });
+    const segs = o.sizes ? Math.max(8, Math.ceil(96 * o.sizes[i])) : Math.max(8, Math.ceil(96 / n));
+    const geo = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel * 0.8, bevelSegments: 3, curveSegments: segs });
     geo.translate(0, 0, -depth / 2);
     const m = ownMaterial(material, o.empty);
     const g = new THREE.Group();
@@ -184,9 +199,9 @@ function buildFractionCircle(o, group, { catalog, material, font, textGeometry }
       [...named.values()].forEach((g, i) => {
         offsetPiece(g, rests[i], state[`${o.id}#s${i + 1}`]);
         setPiece(g, built(i));
-        blendColor(mats[i], empty, s.shadeColor, (s.shaded ?? 0) - i);
+        blendColor(mats[i], empty, s.shadeColor, pieceShade(o, s, state, i));
       });
-      label?.(s, built(n - 1));
+      label?.(shadedCount(o, s, state), built(n - 1));
     },
   };
 }
@@ -198,10 +213,17 @@ function fractionLabel(o, group, { material, font, textGeometry }, y, size) {
   const mesh = solid(make(`0/${o.parts}`), material("ink", "toy"));
   mesh.position.y = y;
   group.add(mesh);
-  return (s, k) => {
-    mesh.geometry = make(`${Math.round(s.shaded ?? 0)}/${o.parts}`);
+  return (count, k) => {
+    mesh.geometry = make(`${count}/${o.parts}`);
     setPiece(mesh, k);
   };
+}
+
+/** Pieces shaded at least half way (what a "shaded/parts" label reads). */
+function shadedCount(o, s, state) {
+  let n = 0;
+  for (let i = 0; i < o.parts; i++) if (pieceShade(o, s, state, i) >= 0.5) n++;
+  return n;
 }
 
 /** Rows and columns of equal things standing up like a pegboard (row 1 on top); trays: a tray under each row. */
@@ -246,11 +268,11 @@ function buildArray(o, group, { catalog, material, raw }) {
   const base = colorRGB(catalog, o.color);
   return {
     named,
-    update(t, s) {
+    update(t, s, state) {
       const built = builder(o, s);
       items.forEach(({ g, mat }, i) => {
         setPiece(g, built(i));
-        if (shadeable) blendColor(mat, base, s.shadeColor, (s.shaded ?? 0) - i);
+        if (shadeable) blendColor(mat, base, s.shadeColor, pieceShade(o, s, state, i));
       });
       // A tray comes in with the first item of its row.
       trays.forEach((tr, r) => setPiece(tr, built(r * o.cols)));

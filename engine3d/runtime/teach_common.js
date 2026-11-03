@@ -5,9 +5,14 @@ import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { EASES } from "./ease.js";
 import { rgb } from "./director_extras.js";
-import { buildSteps } from "./teach_layout.js";
+import { PIECE_PREFIX, buildSteps } from "./teach_layout.js";
 
 export const clamp01 = (k) => Math.max(0, Math.min(1, k));
+
+/** How shaded piece i is (0-1): shaded in order (shade to) or on its own (shade cells: "<id>#<piece>".shade). */
+export function pieceShade(o, s, state, i) {
+  return Math.max((s.shaded ?? 0) - i, state?.[`${o.id}#${PIECE_PREFIX[o.kind]}${i + 1}`]?.shade ?? 0);
+}
 
 /** Show a piece at build progress k (0 hidden, 1 full size), popping in with a small overshoot. */
 export function setPiece(node, k, base = 1) {

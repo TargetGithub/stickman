@@ -1,8 +1,12 @@
 // Teaching kit layout shared by the director (Node and page) and the three.js builders: number line ticks and
 // labels, value → position on a line, piece counts and the order pieces are built in. Pure: no three.js, no I/O.
 
+import { PV_COLUMNS } from "./place_value.js";
+
 /** Kinds of the teaching kit (catalog/kinds.json). */
 export const TEACH_KINDS = ["number_line", "fraction_bar", "fraction_circle", "array", "grid", "cubes", "pointer", "callout", "angle"];
+/** Round 2 of the kit (teach_draw.js, teach_text.js, director_kit2.js): strokes, flows and text pieces. */
+export const KIT2_KINDS = ["stroke", "flow", "fraction_text", "place_value_chart", "text_card"];
 /** Height of a number line's beam top above its at: objects placed `on` a line stand here. */
 export const LINE_TOP = 0.56;
 /** Most ticks a number line may have (labels stay readable). */
@@ -16,9 +20,14 @@ export const DEFAULTS = {
   array: { rows: 3, cols: 4, item: "dot", gap: 0.2, color: "red", size: 0.4, trays: false },
   grid: { rows: 3, cols: 4, cell: 0.5, color: "sky", upright: false },
   cubes: { l: 3, w: 2, h: 2, cell: 0.4, color: "orange", box: false },
-  pointer: { color: "orange", width: 0.1, bend: 0 },
+  pointer: { color: "orange", width: 0.1, bend: 0, head: "arrow", tail: "none" },
   callout: { offset: [1.2, 1, 0], color: "ink", bg: "white" },
   angle: { degrees: 45, radius: 1.2, color: "blue", arc: true, label: true },
+  stroke: { smooth: false, closed: false, width: 0.08, color: "blue", pen: false },
+  flow: { smooth: false, closed: false, count: 12, speed: 0.6, size: 0.14, color: "red", track: false },
+  fraction_text: { color: "ink", size: 0.5, depth: 0.2 },
+  place_value_chart: { columns: PV_COLUMNS, cell: 0.8, color: "blue", bg: "white", digitColor: "ink", zeroColor: "orange" },
+  text_card: { width: 4, size: 0.2, color: "ink", bg: "white" },
 };
 
 /** An object's fields with the kind's defaults filled in. */
@@ -144,13 +153,25 @@ export const cubeXYZ = (o, i) => [i % o.l, Math.floor(i / (o.l * o.w)), Math.flo
 
 /** About how tall an object stands (m): a callout with a target points at 0.6 of it. */
 export function approxHeight(obj) {
-  const o = TEACH_KINDS.includes(obj.kind) ? withDefaults(obj) : obj;
+  const o = TEACH_KINDS.includes(obj.kind) || KIT2_KINDS.includes(obj.kind) ? withDefaults(obj) : obj;
   const s = o.size ?? 1;
   const sy = Array.isArray(o.scale) ? o.scale[1] : typeof o.scale === "number" ? o.scale : 1;
   const h = {
     shape: s, number_block: s, letter: 1.41 * s, critter: 1.1 * s, prop: s, character: 1.7, clock: o.size ?? 2,
     number_line: 0.6, fraction_bar: o.height, fraction_circle: 2 * o.radius, array: o.rows * (o.size + o.gap),
     grid: o.upright ? o.rows * o.cell : 0.1, cubes: o.h * o.cell, angle: o.radius * 0.6, pointer: 0.3, callout: 0.5,
+    fraction_text: 2.2 * s, place_value_chart: 1.55 * o.cell, text_card: o.kind === "text_card" ? cardHeight(o) : 0,
   }[o.kind] ?? 1;
   return h * sy;
+}
+
+/**
+ * A text card's height (m) as the director guesses it before the page wraps the text: about 0.5 em per
+ * character, 1.4 em per line, 0.7 em of margin top and bottom (the page measures the real one).
+ */
+export function cardHeight(obj) {
+  const o = withDefaults(obj);
+  const perLine = Math.max(4, Math.floor((o.width - 1.4 * o.size) / (0.5 * o.size)));
+  const lines = String(o.text ?? "").split("\n").reduce((n, p) => n + Math.max(1, Math.ceil(p.length / perLine)), 0);
+  return lines * 1.4 * o.size + 1.4 * o.size;
 }

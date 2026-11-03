@@ -2,6 +2,9 @@
 // at. Boxes are axis-aligned, in metres, around the object's origin (its base). They are a little generous
 // on purpose: a shot that leaves a margin is better than one that crops an ear. Pure.
 
+import { pvLayout } from "./place_value.js";
+import { cardHeight } from "./teach_layout.js";
+
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
 
 /** Flat 2D shapes are thin in z; solids are about one unit in each direction. */
@@ -68,6 +71,24 @@ export function localBounds(o, catalog) {
       return scaleBox({ min: [-0.36 * h, 0, -0.3 * h], max: [0.36 * h, h * 1.04, 0.3 * h] }, sc);
     }
     case "clock": min = [-0.55, 0, -0.1]; max = [0.55, 1.1, 0.1]; break;
+    case "fraction_text": {
+      // Measured with Andika: 0.72 × size per figure of the longer number plus 0.36, a whole number before it.
+      const s = o.size ?? 0.5;
+      const len = (v) => String(v ?? "").length;
+      const w = (0.72 * Math.max(len(o.numerator), len(o.denominator), 1) + 0.36 + (o.whole != null ? 0.72 * len(o.whole) + 0.3 : 0)) / 2;
+      return scaleBox({ min: [-w * s, -0.5 * s, -0.15 * s], max: [w * s, 1.95 * s, 0.15 * s] }, sc);
+    }
+    case "place_value_chart": {
+      const L = pvLayout({ columns: o.columns, cell: o.cell });
+      return scaleBox({ min: [-L.width / 2 - 0.07, 0, -0.1], max: [L.width / 2 + 0.07, 1.6 * L.cell, 0.2] }, sc);
+    }
+    case "text_card": return scaleBox({ min: [-(o.width ?? 4) / 2, 0, -0.05], max: [(o.width ?? 4) / 2, cardHeight(o), 0.05] }, sc);
+    case "stroke":
+    case "flow": {
+      const pts = Array.isArray(o.points) && o.points.length ? o.points : [[0, 0, 0]];
+      const r = o.kind === "stroke" ? (o.width ?? 0.08) / 2 : (o.size ?? 0.14) / 2;
+      return scaleBox({ min: [0, 1, 2].map((i) => Math.min(...pts.map((p) => p[i])) - r), max: [0, 1, 2].map((i) => Math.max(...pts.map((p) => p[i])) + r) }, sc);
+    }
     default: min = [-0.3, 0, -0.3]; max = [0.3, 0.6, 0.3];
   }
   return scaleBox({ min: min.map((x) => x * size), max: max.map((x) => x * size) }, sc);

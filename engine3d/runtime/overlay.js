@@ -13,7 +13,8 @@ const STYLES = {
   // A word naming what is on screen (shape, colour, animal), above the subtitle line.
   label: { size: 0.1, x: 0.5, y: 0.22, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
 };
-const FONT = "Andika3D";
+/** The page's canvas font family (Andika Bold, loaded by loadCaptionFont); text cards draw with it too. */
+export const FONT = "Andika3D";
 
 /** Load the caption font into the document (FontFace), before the first caption is drawn. */
 export async function loadCaptionFont(url) {
