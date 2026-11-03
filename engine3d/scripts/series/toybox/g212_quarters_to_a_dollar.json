@@ -1,0 +1,8600 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Toy Box Friends G2-12 (grade 2): the quarter is worth 25 cents, four quarters make one dollar (the Dollar Grid), count by 25s, and count mixed coins starting with the coin worth the most.",
+ "meta": {
+  "title": "Quarters to a Dollar",
+  "series": "toybox",
+  "episode": "g212",
+  "audience": "grade2",
+  "seed": 212,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "bouncy",
+  "musicGain": 0.2,
+  "skills": [
+   "coins_quarters_2"
+  ],
+  "youtube": {
+   "title": "Quarters to a Dollar! Counting Coins for Kids | Grade 2 Math | Toy Box Friends",
+   "description": "Robo wants to ride the Big Loop train, and the ride costs one dollar. His jar has 13 coins, so is that 13 cents? No way! Cat shows that coins are worth different amounts: penny 1 cent, nickel 5 cents, dime 10 cents and the new coin, the quarter, 25 cents. The little dime is worth more than the big nickel, so size does not tell value. On the Dollar Grid of 100 squares, each quarter covers 25 squares and four quarters fill the whole dollar. We count by 25s on the Coin Ladder, sort coins and count the biggest value first, count Robo's jar to exactly one dollar, and check Dog's ticket piles.\n\nFor second graders (CCSS 2.MD.C.8: solve problems with dollars and coins).\n\nTry at home with a grown-up: sort a handful of play coins into quarters, dimes, nickels and pennies, then count the quarters first. Safety: coins are small, so keep them away from babies, never put them in your mouth, and wash your hands after counting real coins.",
+   "tags": [
+    "counting coins",
+    "quarters for kids",
+    "money for kids",
+    "US coins",
+    "count to a dollar",
+    "grade 2 math",
+    "2nd grade money",
+    "penny nickel dime quarter",
+    "coin counting",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "four",
+    "title": "4 = $1",
+    "subtitle": "Four quarters make a dollar",
+    "titleColor": "gold",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "town",
+    "camera": {
+     "position": [
+      0.1,
+      1.35,
+      6
+     ],
+     "lookAt": [
+      0.1,
+      1.1,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "bill",
+      "kind": "prop",
+      "model": "dollar_bill",
+      "size": 1.25,
+      "at": [
+       1,
+       0.95,
+       -0.4
+      ],
+      "rotation": [
+       0,
+       0,
+       6
+      ]
+     },
+     {
+      "id": "q1",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 3.2,
+      "at": [
+       -0.15,
+       0.25,
+       0.3
+      ],
+      "rotation": [
+       0,
+       0,
+       18
+      ]
+     },
+     {
+      "id": "q2",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 3.2,
+      "at": [
+       0.6,
+       0.45,
+       0.35
+      ],
+      "rotation": [
+       0,
+       0,
+       6
+      ]
+     },
+     {
+      "id": "q3",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 3.2,
+      "at": [
+       1.4,
+       0.45,
+       0.4
+      ],
+      "rotation": [
+       0,
+       0,
+       -6
+      ]
+     },
+     {
+      "id": "q4",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 3.2,
+      "at": [
+       2.15,
+       0.25,
+       0.45
+      ],
+      "rotation": [
+       0,
+       0,
+       -18
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       2.45,
+       0,
+       0.5
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "grid",
+    "title": "QUARTERS!",
+    "subtitle": "25 + 25 + 25 + 25",
+    "titleColor": "white",
+    "side": "top",
+    "badge": "GRADE 2",
+    "stage": "town",
+    "camera": {
+     "position": [
+      0.3,
+      1.45,
+      6.4
+     ],
+     "lookAt": [
+      0.3,
+      1.05,
+      0
+     ],
+     "fov": 34
+    },
+    "objects": [
+     {
+      "id": "g1",
+      "kind": "grid",
+      "rows": 5,
+      "cols": 5,
+      "cell": 0.2,
+      "upright": true,
+      "color": "orange",
+      "at": [
+       -0.56,
+       1.12,
+       0
+      ]
+     },
+     {
+      "id": "g2",
+      "kind": "grid",
+      "rows": 5,
+      "cols": 5,
+      "cell": 0.2,
+      "upright": true,
+      "color": "green",
+      "at": [
+       0.56,
+       1.12,
+       0
+      ]
+     },
+     {
+      "id": "g3",
+      "kind": "grid",
+      "rows": 5,
+      "cols": 5,
+      "cell": 0.2,
+      "upright": true,
+      "color": "purple",
+      "at": [
+       -0.56,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "g4",
+      "kind": "grid",
+      "rows": 5,
+      "cols": 5,
+      "cell": 0.2,
+      "upright": true,
+      "color": "blue",
+      "at": [
+       0.56,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "c1",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 2.4,
+      "at": [
+       -0.56,
+       1.36,
+       0.12
+      ]
+     },
+     {
+      "id": "c2",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 2.4,
+      "at": [
+       0.56,
+       1.36,
+       0.12
+      ]
+     },
+     {
+      "id": "c3",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 2.4,
+      "at": [
+       -0.56,
+       0.24,
+       0.12
+      ]
+     },
+     {
+      "id": "c4",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 2.4,
+      "at": [
+       0.56,
+       0.24,
+       0.12
+      ]
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 1,
+      "at": [
+       2.2,
+       0,
+       0.6
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "train",
+    "title": "COUNT TO $1",
+    "subtitle": "Penny, nickel, dime, quarter",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "town",
+    "camera": {
+     "position": [
+      0.2,
+      1.3,
+      6.4
+     ],
+     "lookAt": [
+      0.2,
+      0.9,
+      0
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "engine",
+      "kind": "prop",
+      "model": "train_engine",
+      "size": 1.7,
+      "at": [
+       2.9,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "car",
+      "kind": "prop",
+      "model": "train_car",
+      "size": 1.7,
+      "at": [
+       1.25,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       1.25,
+       0.37,
+       0
+      ],
+      "clip": "Wave"
+     },
+     {
+      "id": "p",
+      "kind": "prop",
+      "model": "penny",
+      "size": 2.6,
+      "at": [
+       -0.2,
+       0,
+       1
+      ]
+     },
+     {
+      "id": "n",
+      "kind": "prop",
+      "model": "nickel",
+      "size": 2.6,
+      "at": [
+       0.45,
+       0,
+       1.15
+      ]
+     },
+     {
+      "id": "d",
+      "kind": "prop",
+      "model": "dime",
+      "size": 2.6,
+      "at": [
+       1.1,
+       0,
+       1.3
+      ]
+     },
+     {
+      "id": "q",
+      "kind": "prop",
+      "model": "quarter",
+      "size": 2.6,
+      "at": [
+       1.8,
+       0,
+       1.45
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "town"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.6,
+   11.5
+  ],
+  "lookAt": [
+   0,
+   1.5,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "counter",
+   "kind": "shape",
+   "shape": "box",
+   "color": "wood",
+   "material": "matte",
+   "at": [
+    0,
+    0,
+    0.2
+   ],
+   "scale": [
+    5.6,
+    0.85,
+    1
+   ]
+  },
+  {
+   "id": "board",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "cream",
+   "material": "matte",
+   "at": [
+    0,
+    2.4,
+    -0.42
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    5.4,
+    1,
+    3.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "booth",
+   "kind": "prop",
+   "model": "table",
+   "at": [
+    4.2,
+    0,
+    0.5
+   ],
+   "size": 1
+  },
+  {
+   "id": "register",
+   "kind": "prop",
+   "model": "cash_register",
+   "at": [
+    4.2,
+    0.8,
+    0.5
+   ],
+   "size": 0.75,
+   "rotation": [
+    0,
+    -20,
+    0
+   ]
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "size": 1.05,
+   "at": [
+    5.35,
+    0,
+    0.5
+   ],
+   "rotation": [
+    0,
+    -35,
+    0
+   ]
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -4.6,
+    0,
+    0.7
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "size": 0.9,
+   "at": [
+    -3.55,
+    0,
+    1.75
+   ],
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "sign",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "matte",
+   "at": [
+    -3.4,
+    3,
+    -4.6
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    3,
+    1,
+    0.8
+   ]
+  },
+  {
+   "id": "sign_post",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "wood_dark",
+   "material": "matte",
+   "at": [
+    -3.4,
+    0,
+    -4.7
+   ],
+   "scale": [
+    0.12,
+    2.6,
+    0.12
+   ]
+  },
+  {
+   "id": "sign_txt",
+   "kind": "letter",
+   "text": "Big Loop Ride: $1",
+   "color": "red",
+   "size": 0.26,
+   "at": [
+    -3.4,
+    2.86,
+    -4.55
+   ]
+  },
+  {
+   "id": "engine",
+   "kind": "prop",
+   "model": "train_engine",
+   "size": 1.5,
+   "at": [
+    1.9,
+    0,
+    -4
+   ]
+  },
+  {
+   "id": "car1",
+   "kind": "prop",
+   "model": "train_car",
+   "size": 1.5,
+   "at": [
+    0.4,
+    0,
+    -4
+   ]
+  },
+  {
+   "id": "car2",
+   "kind": "prop",
+   "model": "train_car",
+   "size": 1.5,
+   "at": [
+    -1,
+    0,
+    -4
+   ]
+  },
+  {
+   "id": "jar",
+   "kind": "prop",
+   "model": "jar",
+   "size": 1.6,
+   "at": [
+    -1.9,
+    0.85,
+    0.3
+   ]
+  },
+  {
+   "id": "ticket",
+   "kind": "prop",
+   "model": "ticket",
+   "size": 1.1,
+   "at": [
+    4.5,
+    1.45,
+    0.75
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jq1",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": [
+    -0.9,
+    0.86,
+    0.1
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "jq2",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": [
+    0.5,
+    0.89,
+    0.22
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    37
+   ]
+  },
+  {
+   "id": "jd1",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    -0.2,
+    0.92,
+    0.34
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    74
+   ]
+  },
+  {
+   "id": "jd2",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    1.2,
+    0.86,
+    0.46
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    111
+   ]
+  },
+  {
+   "id": "jd3",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0.1,
+    0.89,
+    0.1
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    148
+   ]
+  },
+  {
+   "id": "jn1",
+   "kind": "prop",
+   "model": "nickel",
+   "size": 2.8,
+   "at": [
+    -1.3,
+    0.92,
+    0.22
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    5
+   ]
+  },
+  {
+   "id": "jn2",
+   "kind": "prop",
+   "model": "nickel",
+   "size": 2.8,
+   "at": [
+    0.9,
+    0.86,
+    0.34
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    42
+   ]
+  },
+  {
+   "id": "jn3",
+   "kind": "prop",
+   "model": "nickel",
+   "size": 2.8,
+   "at": [
+    -0.5,
+    0.89,
+    0.46
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    79
+   ]
+  },
+  {
+   "id": "jp1",
+   "kind": "prop",
+   "model": "penny",
+   "size": 2.8,
+   "at": [
+    1.6,
+    0.92,
+    0.1
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    116
+   ]
+  },
+  {
+   "id": "jp2",
+   "kind": "prop",
+   "model": "penny",
+   "size": 2.8,
+   "at": [
+    0.3,
+    0.86,
+    0.22
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    153
+   ]
+  },
+  {
+   "id": "jp3",
+   "kind": "prop",
+   "model": "penny",
+   "size": 2.8,
+   "at": [
+    -1,
+    0.89,
+    0.34
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    10
+   ]
+  },
+  {
+   "id": "jp4",
+   "kind": "prop",
+   "model": "penny",
+   "size": 2.8,
+   "at": [
+    1.9,
+    0.92,
+    0.46
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    47
+   ]
+  },
+  {
+   "id": "jp5",
+   "kind": "prop",
+   "model": "penny",
+   "size": 2.8,
+   "at": [
+    -0.1,
+    0.86,
+    0.1
+   ],
+   "hidden": true,
+   "rotation": [
+    -90,
+    0,
+    84
+   ]
+  },
+  {
+   "id": "row_quarter",
+   "kind": "letter",
+   "text": "25¢",
+   "color": "orange",
+   "size": 0.3,
+   "at": [
+    -2.2,
+    3.22,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row_dime",
+   "kind": "letter",
+   "text": "10¢",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -2.2,
+    2.5,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row_nickel",
+   "kind": "letter",
+   "text": "5¢",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -2.2,
+    1.78,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "row_penny",
+   "kind": "letter",
+   "text": "1¢",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -2.2,
+    1.06,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mp",
+   "kind": "prop",
+   "model": "penny",
+   "size": 2.8,
+   "at": [
+    -1.95,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mp_v",
+   "kind": "letter",
+   "text": "1¢",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -1.95,
+    1.5,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mn",
+   "kind": "prop",
+   "model": "nickel",
+   "size": 2.8,
+   "at": [
+    -0.65,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mn_v",
+   "kind": "letter",
+   "text": "5¢",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -0.65,
+    1.56,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "md",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0.65,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "md_v",
+   "kind": "letter",
+   "text": "10¢",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    0.65,
+    1.47,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mq",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": [
+    1.95,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mq_v",
+   "kind": "letter",
+   "text": "25¢",
+   "color": "orange",
+   "size": 0.3,
+   "at": [
+    1.95,
+    1.65,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ridge_d",
+   "kind": "callout",
+   "text": "ridges",
+   "point": [
+    0.89,
+    1.1,
+    0.5
+   ],
+   "offset": [
+    -0.75,
+    0.85,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ridge_q",
+   "kind": "callout",
+   "text": "ridges",
+   "point": [
+    2.28,
+    1.17,
+    0.5
+   ],
+   "offset": [
+    0.95,
+    0.45,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gq1",
+   "kind": "grid",
+   "rows": 5,
+   "cols": 5,
+   "cell": 0.2,
+   "upright": true,
+   "color": "sky",
+   "at": [
+    -0.56,
+    2.18,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gq2",
+   "kind": "grid",
+   "rows": 5,
+   "cols": 5,
+   "cell": 0.2,
+   "upright": true,
+   "color": "sky",
+   "at": [
+    0.56,
+    2.18,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gq3",
+   "kind": "grid",
+   "rows": 5,
+   "cols": 5,
+   "cell": 0.2,
+   "upright": true,
+   "color": "sky",
+   "at": [
+    -0.56,
+    1.06,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gq4",
+   "kind": "grid",
+   "rows": 5,
+   "cols": 5,
+   "cell": 0.2,
+   "upright": true,
+   "color": "sky",
+   "at": [
+    0.56,
+    1.06,
+    -0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gc1",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": [
+    -0.56,
+    2.42,
+    -0.24
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gc2",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": [
+    0.56,
+    2.42,
+    -0.24
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gc3",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": [
+    -0.56,
+    1.3,
+    -0.24
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gc4",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": [
+    0.56,
+    1.3,
+    -0.24
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ladder",
+   "kind": "number_line",
+   "from": 0,
+   "to": 100,
+   "length": 6,
+   "step": 25,
+   "minor": 5,
+   "color": "blue",
+   "at": [
+    0.5,
+    0,
+    1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lq",
+   "kind": "prop",
+   "model": "quarter",
+   "size": 2.8,
+   "at": null,
+   "hidden": true,
+   "on": {
+    "line": "ladder",
+    "value": 0
+   }
+  },
+  {
+   "id": "cd1",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd2",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd3",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd4",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd5",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd6",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd7",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd8",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd9",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cd10",
+   "kind": "prop",
+   "model": "dime",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cn1",
+   "kind": "prop",
+   "model": "nickel",
+   "size": 2.8,
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile_a",
+   "kind": "letter",
+   "text": "Pile A",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -2.15,
+    1.7,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile_b",
+   "kind": "letter",
+   "text": "Pile B",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -2.15,
+    1.7,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile_c",
+   "kind": "letter",
+   "text": "Pile C",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -2.15,
+    1.7,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pile_d",
+   "kind": "letter",
+   "text": "Pile D",
+   "color": "ink",
+   "size": 0.3,
+   "at": [
+    -2.15,
+    1.7,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_grid",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0.6,
+    1,
+    -0.4
+   ],
+   "scale": [
+    3.6,
+    2.4,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_meet",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "scale": [
+    4.6,
+    1.9,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_nd",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -0.3,
+    0.85,
+    0.45
+   ],
+   "scale": [
+    4.4,
+    1.8,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_ridge",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    1.55,
+    0.85,
+    0.45
+   ],
+   "scale": [
+    3.6,
+    1.9,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_board",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.8,
+    -0.4
+   ],
+   "scale": [
+    5.4,
+    3.1,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_ladder",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0.5,
+    0,
+    1.6
+   ],
+   "scale": [
+    7,
+    1.1,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_row",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.85,
+    0.45
+   ],
+   "scale": [
+    5.2,
+    1,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 160,
+   "area": [
+    10,
+    4
+   ],
+   "colors": [
+    "yellow",
+    "orange",
+    "green",
+    "sky",
+    "red"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hook",
+   "title": "The Big Loop ride",
+   "beats": [
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "engine",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "dur": 0
+      },
+      {
+       "do": "caption",
+       "text": "Quarters to a Dollar",
+       "style": "title",
+       "at": 0.3,
+       "dur": 2.4
+      },
+      {
+       "do": "sound",
+       "sound": "train_whistle",
+       "at": 0.4,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "engine",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "All aboard the Big Loop! One ride costs one dollar.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "dog",
+        "booth",
+        "engine"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "I've been saving my coins in this jar. Let's tip them out.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "jar"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "turn",
+       "target": "jar",
+       "to": [
+        0,
+        0,
+        -100
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jar",
+       "to": [
+        -2.1,
+        1.1,
+        0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "jq1",
+       "at": 0.5,
+       "to": [
+        -0.9,
+        0.86,
+        0.1
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": "clink"
+      },
+      {
+       "do": "drop",
+       "target": "jq2",
+       "at": 0.6,
+       "to": [
+        0.5,
+        0.89,
+        0.22
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jd1",
+       "at": 0.7,
+       "to": [
+        -0.2,
+        0.92,
+        0.34
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jd2",
+       "at": 0.8,
+       "to": [
+        1.2,
+        0.86,
+        0.46
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": "clink"
+      },
+      {
+       "do": "drop",
+       "target": "jd3",
+       "at": 0.9,
+       "to": [
+        0.1,
+        0.89,
+        0.1
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jn1",
+       "at": 1,
+       "to": [
+        -1.3,
+        0.92,
+        0.22
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jn2",
+       "at": 1.1,
+       "to": [
+        0.9,
+        0.86,
+        0.34
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": "clink"
+      },
+      {
+       "do": "drop",
+       "target": "jn3",
+       "at": 1.2000000000000002,
+       "to": [
+        -0.5,
+        0.89,
+        0.46
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jp1",
+       "at": 1.3,
+       "to": [
+        1.6,
+        0.92,
+        0.1
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jp2",
+       "at": 1.4,
+       "to": [
+        0.3,
+        0.86,
+        0.22
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": "clink"
+      },
+      {
+       "do": "drop",
+       "target": "jp3",
+       "at": 1.5,
+       "to": [
+        -1,
+        0.89,
+        0.34
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jp4",
+       "at": 1.6,
+       "to": [
+        1.9,
+        0.92,
+        0.46
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "jp5",
+       "at": 1.7000000000000002,
+       "to": [
+        -0.1,
+        0.86,
+        0.1
+       ],
+       "height": 0.9,
+       "dur": 0.5,
+       "sound": "clink"
+      },
+      {
+       "do": "shot",
+       "target": "counter",
+       "framing": "close",
+       "at": 0.4,
+       "dur": 1.6,
+       "height": 55
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "One, two, three... 13 coins. That's 13 cents. Not enough!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "turn",
+       "target": "jar",
+       "at": 0.2,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "jar",
+       "at": 0.2,
+       "to": [
+        -1.9,
+        0.85,
+        0.3
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 1.5,
+       "feeling": "sad"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wait. Coins are not all worth one cent. Let's count them properly.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "counter"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.86,
+     "do": [
+      {
+       "do": "say",
+       "text": "Really? Then my jar might be enough. Let's find out!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.2,
+       "feeling": "happy"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.6,
+       "clip": "Jump"
+      },
+      {
+       "do": "hide",
+       "target": "jq1",
+       "at": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "jq2",
+       "at": 1.43
+      },
+      {
+       "do": "hide",
+       "target": "jd1",
+       "at": 1.46
+      },
+      {
+       "do": "hide",
+       "target": "jd2",
+       "at": 1.49
+      },
+      {
+       "do": "hide",
+       "target": "jd3",
+       "at": 1.52
+      },
+      {
+       "do": "hide",
+       "target": "jn1",
+       "at": 1.5499999999999998
+      },
+      {
+       "do": "hide",
+       "target": "jn2",
+       "at": 1.5799999999999998
+      },
+      {
+       "do": "hide",
+       "target": "jn3",
+       "at": 1.6099999999999999
+      },
+      {
+       "do": "hide",
+       "target": "jp1",
+       "at": 1.64
+      },
+      {
+       "do": "hide",
+       "target": "jp2",
+       "at": 1.67
+      },
+      {
+       "do": "hide",
+       "target": "jp3",
+       "at": 1.7
+      },
+      {
+       "do": "hide",
+       "target": "jp4",
+       "at": 1.73
+      },
+      {
+       "do": "hide",
+       "target": "jp5",
+       "at": 1.7599999999999998
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "meet",
+   "title": "Meet the coins",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "engine"
+      },
+      {
+       "do": "hide",
+       "target": "car1"
+      },
+      {
+       "do": "hide",
+       "target": "car2"
+      },
+      {
+       "do": "hide",
+       "target": "sign"
+      },
+      {
+       "do": "hide",
+       "target": "sign_post"
+      },
+      {
+       "do": "hide",
+       "target": "sign_txt"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Meet the coins. A penny is worth one cent.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "jar"
+      },
+      {
+       "do": "pop",
+       "target": "mp",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "mp_v",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "f_meet",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 10
+      },
+      {
+       "do": "caption",
+       "text": "penny",
+       "style": "label",
+       "at": 0.5,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A nickel is worth five cents.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "mn",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "mn_v",
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "nickel",
+       "style": "label",
+       "at": 0.1,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A dime is worth ten cents.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "md",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "md_v",
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "dime",
+       "style": "label",
+       "at": 0.1,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "And here is a new coin. The quarter. A quarter is worth 25 cents!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "mq",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "mq_v",
+       "at": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "quarter = 25¢",
+       "style": "label",
+       "at": 1,
+       "dur": 3
+      },
+      {
+       "do": "highlight",
+       "target": "mq",
+       "at": 1.3,
+       "dur": 2.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "Wave"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "The quarter is the biggest of the four coins.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "mq",
+        "mq_v"
+       ],
+       "framing": "close",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "spin",
+       "target": "mq",
+       "at": 0.6,
+       "turns": 1,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact! The dime and the quarter have tiny ridges around the edge.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "ridge_d",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "draw",
+       "target": "ridge_q",
+       "at": 1.2,
+       "dur": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "f_ridge",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "The penny and the nickel are smooth. You can tell them apart by touch.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "ridge_d",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "ridge_q",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Easy! Bigger coins are worth more. So the nickel beats the dime.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": "f_nd",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "mn",
+       "at": 1,
+       "to": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "grow",
+       "target": "md",
+       "at": 1.2,
+       "to": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "mn",
+       "at": 1,
+       "to": [
+        -0.8,
+        0.85,
+        0.45
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "md",
+       "at": 1.2,
+       "to": [
+        0.65,
+        0.85,
+        0.45
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "mn_v",
+       "at": 1,
+       "to": [
+        -0.8,
+        1.85,
+        0.45
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "md_v",
+       "at": 1.2,
+       "to": [
+        0.65,
+        1.73,
+        0.45
+       ],
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Which is worth more?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Not so fast! The little dime is worth ten cents. The big nickel is only five.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_nd",
+        "robo"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "mark",
+       "target": "robo",
+       "at": 0.6,
+       "result": "incorrect"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.6,
+       "feeling": "surprised"
+      },
+      {
+       "do": "highlight",
+       "target": "md",
+       "at": 2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "The dime is the smallest, thinnest coin, but it's worth more. Size doesn't tell value.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "Size does not tell value",
+       "style": "label",
+       "dur": 4
+      },
+      {
+       "do": "highlight",
+       "target": "md_v",
+       "at": 0.5,
+       "dur": 2.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 2,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "grow",
+       "target": "mn",
+       "to": 1,
+       "dur": 0.4
+      },
+      {
+       "do": "grow",
+       "target": "md",
+       "to": 1,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "mn",
+       "to": [
+        -0.65,
+        0.85,
+        0.45
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "md",
+       "to": [
+        0.65,
+        0.85,
+        0.45
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "mn_v",
+       "to": [
+        -0.65,
+        1.56,
+        0.45
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "md_v",
+       "to": [
+        0.65,
+        1.47,
+        0.45
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "shot",
+       "target": "f_meet",
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Penny one cent, nickel five, dime ten, quarter 25. Got it!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "mp",
+       "at": 0.3,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "mn",
+       "at": 1.2,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "md",
+       "at": 2.1,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "mq",
+       "at": 3,
+       "dur": 0.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "why",
+   "title": "Why \"quarter\"?",
+   "beats": [
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why is it called a quarter? Let's build the Dollar Grid.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "mp"
+      },
+      {
+       "do": "hide",
+       "target": "mn"
+      },
+      {
+       "do": "hide",
+       "target": "md"
+      },
+      {
+       "do": "hide",
+       "target": "mq"
+      },
+      {
+       "do": "hide",
+       "target": "mp_v"
+      },
+      {
+       "do": "hide",
+       "target": "mn_v"
+      },
+      {
+       "do": "hide",
+       "target": "md_v"
+      },
+      {
+       "do": "hide",
+       "target": "mq_v"
+      },
+      {
+       "do": "show",
+       "target": "board",
+       "at": 0.4
+      },
+      {
+       "do": "build",
+       "target": "gq1",
+       "at": 0.8,
+       "dur": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "build",
+       "target": "gq2",
+       "at": 1.1,
+       "dur": 0.6,
+       "sound": false
+      },
+      {
+       "do": "build",
+       "target": "gq3",
+       "at": 1.4,
+       "dur": 0.6,
+       "sound": false
+      },
+      {
+       "do": "build",
+       "target": "gq4",
+       "at": 1.7,
+       "dur": 0.6,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "f_grid",
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "One dollar is worth 100 cents. This grid has 100 squares, one for every cent.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "gq1",
+       "at": 1.2,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "gq2",
+       "at": 1.6,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "gq3",
+       "at": 2,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "gq4",
+       "at": 2.4,
+       "dur": 1
+      },
+      {
+       "do": "caption",
+       "text": "100 squares = 100¢ = $1",
+       "style": "label",
+       "at": 0.5,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "A quarter is worth 25 cents, so it covers 25 squares.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.4
+      },
+      {
+       "do": "shade",
+       "target": "gq1",
+       "at": 0.8,
+       "to": 25,
+       "dur": 1.2,
+       "color": "orange"
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.8,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two quarters cover 50 squares.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.2
+      },
+      {
+       "do": "shade",
+       "target": "gq2",
+       "at": 0.5,
+       "to": 25,
+       "dur": 1,
+       "color": "green"
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 0.5,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "What comes after 50 when we count quarters?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "gq3",
+       "at": 0.5,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "75! Three quarters cover 75 squares.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.2
+      },
+      {
+       "do": "shade",
+       "target": "gq3",
+       "at": 0.5,
+       "to": 25,
+       "dur": 1,
+       "color": "purple"
+      },
+      {
+       "do": "caption",
+       "text": "75¢",
+       "style": "count",
+       "at": 0.5,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the fourth quarter fills the whole grid. 100 cents!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "gc4",
+       "at": 0.4
+      },
+      {
+       "do": "shade",
+       "target": "gq4",
+       "at": 0.7,
+       "to": 25,
+       "dur": 1,
+       "color": "blue"
+      },
+      {
+       "do": "caption",
+       "text": "100¢",
+       "style": "count",
+       "at": 0.7,
+       "dur": 2.5
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four quarters make one dollar. Each quarter is one fourth of a dollar.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "4 quarters = 100¢ = $1",
+       "style": "label",
+       "dur": 4.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "ThumbsUp"
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four equal parts are quarters, just like the four parts of a pizza.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "gq1",
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "gq2",
+       "at": 0.7,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "gq3",
+       "at": 1.2,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "gq4",
+       "at": 1.7,
+       "dur": 1
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ladder",
+   "title": "Counting by 25s",
+   "musicGain": 0.14,
+   "beats": [
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now let's count by 25s on the Coin Ladder.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "gq1"
+      },
+      {
+       "do": "hide",
+       "target": "gq2"
+      },
+      {
+       "do": "hide",
+       "target": "gq3"
+      },
+      {
+       "do": "hide",
+       "target": "gq4"
+      },
+      {
+       "do": "hide",
+       "target": "gc1"
+      },
+      {
+       "do": "hide",
+       "target": "gc2"
+      },
+      {
+       "do": "hide",
+       "target": "gc3"
+      },
+      {
+       "do": "hide",
+       "target": "gc4"
+      },
+      {
+       "do": "hide",
+       "target": "board",
+       "at": 0.2
+      },
+      {
+       "do": "draw",
+       "target": "ladder",
+       "at": 0.5,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "lq",
+       "at": 1.2
+      },
+      {
+       "do": "shot",
+       "target": "f_ladder",
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.4,
+       "height": 6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Each quarter is one big leap of 25.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "lq",
+       "at": 0.3,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "lq",
+       "at": 0.2,
+       "line": "ladder",
+       "values": [
+        25,
+        50,
+        75,
+        100
+       ],
+       "dur": 0.8,
+       "height": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "25",
+       "style": "count",
+       "at": 0.3,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50",
+       "style": "count",
+       "at": 1.1,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "75",
+       "style": "count",
+       "at": 1.9,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "100",
+       "style": "count",
+       "at": 2.7,
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "25, 50, 75, 100. Four leaps, one dollar!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "ladder",
+       "at": 0.5,
+       "dur": 2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Our Small Loop ride costs 50 cents. How many quarters is that?",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": "ladder"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_ladder",
+        "dog"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two quarters. 25, 50.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "lq",
+       "to": [
+        -3.2,
+        0.56,
+        1.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "leap",
+       "target": "lq",
+       "at": 0.4,
+       "line": "ladder",
+       "values": [
+        0,
+        25,
+        50
+       ],
+       "dur": 0.7,
+       "arcs": false
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 1.2,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "The Tunnel Ride costs 75 cents.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": "ladder"
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three quarters. 25, 50, 75.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "leap",
+       "target": "lq",
+       "at": 0.3,
+       "line": "ladder",
+       "values": [
+        0,
+        25,
+        50,
+        75
+       ],
+       "dur": 0.6,
+       "arcs": false
+      },
+      {
+       "do": "caption",
+       "text": "75¢",
+       "style": "count",
+       "at": 1.6,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Take a giant step for every quarter with me!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.6,
+       "clip": "Walking"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 2.4,
+       "clip": "Idle"
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1.6,
+       "height": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "biggest",
+   "title": "Biggest coin first",
+   "beats": [
+    {
+     "dur": 1.04,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here are four coins in a messy order. Let's count them.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "ladder"
+      },
+      {
+       "do": "hide",
+       "target": "lq"
+      },
+      {
+       "do": "move",
+       "target": "jp1",
+       "to": [
+        -1.5,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jq1",
+       "to": [
+        -0.88,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jq1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jn1",
+       "to": [
+        -0.26,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jn1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jd1",
+       "to": [
+        0.36,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jd1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "jp1",
+       "at": 0.4,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "jq1",
+       "at": 0.5800000000000001,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jn1",
+       "at": 0.76,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "jd1",
+       "at": 0.9400000000000001,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "f_row",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 10
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "One. 26. 31. 41. Phew, that was tricky.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "jp1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "1¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jq1",
+       "at": 0.95,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "26¢",
+       "style": "count",
+       "at": 0.95,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.95,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jn1",
+       "at": 1.7,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "31¢",
+       "style": "count",
+       "at": 1.7,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd1",
+       "at": 2.45,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "41¢",
+       "style": "count",
+       "at": 2.45,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.45,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 2.6,
+       "feeling": "worried"
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now let's sort them first, with the coin worth the most at the top.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "show",
+       "target": "board",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "row_quarter",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "row_dime",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "row_nickel",
+       "at": 1,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "row_penny",
+       "at": 1.2000000000000002,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_board",
+        "counter"
+       ],
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.5,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "jq1",
+       "at": 0.1,
+       "to": [
+        -1.35,
+        3.1,
+        -0.3
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "turn",
+       "target": "jq1",
+       "at": 0.1,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "move",
+       "target": "jd1",
+       "at": 0.5,
+       "to": [
+        -1.35,
+        2.38,
+        -0.3
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "turn",
+       "target": "jd1",
+       "at": 0.5,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "move",
+       "target": "jn1",
+       "at": 0.9,
+       "to": [
+        -1.35,
+        1.66,
+        -0.3
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "turn",
+       "target": "jn1",
+       "at": 0.9,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "move",
+       "target": "jp1",
+       "at": 1.3,
+       "to": [
+        -1.35,
+        0.94,
+        -0.3
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "turn",
+       "target": "jp1",
+       "at": 1.3,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.1,
+       "volume": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "row_quarter",
+       "at": 1.5,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quarter first. 25. Then 35. 40. 41!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "jq1",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.6,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd1",
+       "at": 1.35,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "35¢",
+       "style": "count",
+       "at": 1.35,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.35,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jn1",
+       "at": 2.1,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "40¢",
+       "style": "count",
+       "at": 2.1,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.1,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp1",
+       "at": 2.85,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "41¢",
+       "style": "count",
+       "at": 2.85,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.85,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "The same 41 cents, but the steps are much easier.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "board",
+       "at": 0.4,
+       "result": "correct"
+      },
+      {
+       "do": "caption",
+       "text": "Start with the coin worth the most",
+       "style": "label",
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cat, your ticket costs 60 cents. Count these.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "move",
+       "target": "jq2",
+       "at": 0.4,
+       "to": [
+        -0.65,
+        3.1,
+        -0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jq2",
+       "at": 0.4,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jq1",
+       "to": [
+        -1.35,
+        3.1,
+        -0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jq1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "hide",
+       "target": "jn1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "jp1",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "jq2",
+       "at": 0.6,
+       "sound": "clink"
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": "board"
+      }
+     ]
+    },
+    {
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quarters first. 25, 50. Then the dime makes 60!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "jq1",
+       "at": 0.5,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.5,
+       "dur": 0.95
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.5,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jq2",
+       "at": 1.45,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 1.45,
+       "dur": 0.95
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.45,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd1",
+       "at": 2.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "60¢",
+       "style": "count",
+       "at": 2.4,
+       "dur": 0.95
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.4,
+       "volume": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 3,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now a mix. What is the biggest coin here?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "jd2",
+       "to": [
+        -0.65,
+        2.38,
+        -0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jd2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jn1",
+       "to": [
+        -1.35,
+        1.66,
+        -0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jn1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp1",
+       "to": [
+        -1.35,
+        0.94,
+        -0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp2",
+       "to": [
+        -0.65,
+        0.94,
+        -0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp3",
+       "to": [
+        0.05,
+        0.94,
+        -0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "hide",
+       "target": "jq2",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "jd2",
+       "at": 0.3,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "jn1",
+       "at": 0.44999999999999996,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp1",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp2",
+       "at": 0.75,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp3",
+       "at": 0.8999999999999999,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "jq1",
+       "at": 0.8,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 5.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "The quarter! 25. Then the dimes, 35, 45. The nickel, 50. Pennies, 51, 52, 53.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "jq1",
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.4,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.4,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd1",
+       "at": 1.25,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "35¢",
+       "style": "count",
+       "at": 1.25,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.25,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd2",
+       "at": 2.1,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "45¢",
+       "style": "count",
+       "at": 2.1,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.1,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jn1",
+       "at": 2.9499999999999997,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 2.9499999999999997,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.9499999999999997,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp1",
+       "at": 3.8,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "51¢",
+       "style": "count",
+       "at": 3.8,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 3.8,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp2",
+       "at": 4.65,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "52¢",
+       "style": "count",
+       "at": 4.65,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 4.65,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp3",
+       "at": 5.5,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "53¢",
+       "style": "count",
+       "at": 5.5,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 5.5,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "53 cents. Sorting first makes counting easy!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "53¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 2.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "ThumbsUp"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Quarter chant",
+   "music": "playful",
+   "musicGain": 0.24,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "jq1"
+      },
+      {
+       "do": "hide",
+       "target": "jd1"
+      },
+      {
+       "do": "hide",
+       "target": "jd2"
+      },
+      {
+       "do": "hide",
+       "target": "jn1"
+      },
+      {
+       "do": "hide",
+       "target": "jp1"
+      },
+      {
+       "do": "hide",
+       "target": "jp2"
+      },
+      {
+       "do": "hide",
+       "target": "jp3"
+      },
+      {
+       "do": "hide",
+       "target": "row_quarter"
+      },
+      {
+       "do": "hide",
+       "target": "row_dime"
+      },
+      {
+       "do": "hide",
+       "target": "row_nickel"
+      },
+      {
+       "do": "hide",
+       "target": "row_penny"
+      },
+      {
+       "do": "show",
+       "target": "gq1",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "gq2",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "show",
+       "target": "gq3",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "gq4",
+       "at": 0.25
+      },
+      {
+       "do": "shade",
+       "target": "gq1",
+       "to": 0,
+       "dur": 0.1
+      },
+      {
+       "do": "shade",
+       "target": "gq2",
+       "to": 0,
+       "dur": 0.1
+      },
+      {
+       "do": "shade",
+       "target": "gq3",
+       "to": 0,
+       "dur": 0.1
+      },
+      {
+       "do": "shade",
+       "target": "gq4",
+       "to": 0,
+       "dur": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_grid",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0,
+        1.7,
+        0
+       ],
+       "degrees": 25,
+       "dur": 16,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "One quarter!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.1
+      },
+      {
+       "do": "shade",
+       "target": "gq1",
+       "at": 0.2,
+       "to": 25,
+       "dur": 0.4,
+       "color": "orange"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Twenty-five!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.2,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Twenty-five, fifty, seventy-five...",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.1
+      },
+      {
+       "do": "shade",
+       "target": "gq2",
+       "at": 0.2,
+       "to": 25,
+       "dur": 0.4,
+       "color": "green"
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.9
+      },
+      {
+       "do": "shade",
+       "target": "gq3",
+       "at": 1,
+       "to": 25,
+       "dur": 0.4,
+       "color": "purple"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.9,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "One whole dollar! Ride time, ride!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "gc4",
+       "at": 0.1
+      },
+      {
+       "do": "shade",
+       "target": "gq4",
+       "at": 0.2,
+       "to": 25,
+       "dur": 0.4,
+       "color": "blue"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.2,
+       "clip": "Dance"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four quarters!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "One dollar!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "cat",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.8,
+       "clip": "Idle"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jar",
+   "title": "Robo's jar: make a dollar",
+   "beats": [
+    {
+     "dur": 0.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now my jar! 13 coins. Let's sort them, biggest value first.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "gq1"
+      },
+      {
+       "do": "hide",
+       "target": "gq2"
+      },
+      {
+       "do": "hide",
+       "target": "gq3"
+      },
+      {
+       "do": "hide",
+       "target": "gq4"
+      },
+      {
+       "do": "hide",
+       "target": "gc1"
+      },
+      {
+       "do": "hide",
+       "target": "gc2"
+      },
+      {
+       "do": "hide",
+       "target": "gc3"
+      },
+      {
+       "do": "hide",
+       "target": "gc4"
+      },
+      {
+       "do": "pop",
+       "target": "row_quarter",
+       "at": 0.3,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "row_dime",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "row_nickel",
+       "at": 0.5,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "row_penny",
+       "at": 0.6000000000000001,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "jq1",
+       "to": [
+        -0.9,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jq2",
+       "to": [
+        0.5,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jd1",
+       "to": [
+        -0.2,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jd2",
+       "to": [
+        1.2,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jd3",
+       "to": [
+        0.1,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jn1",
+       "to": [
+        -1.3,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jn2",
+       "to": [
+        0.9,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jn3",
+       "to": [
+        -0.5,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp1",
+       "to": [
+        1.6,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp2",
+       "to": [
+        0.3,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp3",
+       "to": [
+        -1,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp4",
+       "to": [
+        1.9,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp5",
+       "to": [
+        -0.1,
+        0.86,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jq1",
+       "to": [
+        -90,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jq2",
+       "to": [
+        -90,
+        0,
+        37
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jd1",
+       "to": [
+        -90,
+        0,
+        74
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jd2",
+       "to": [
+        -90,
+        0,
+        111
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jd3",
+       "to": [
+        -90,
+        0,
+        148
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jn1",
+       "to": [
+        -90,
+        0,
+        5
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jn2",
+       "to": [
+        -90,
+        0,
+        42
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jn3",
+       "to": [
+        -90,
+        0,
+        79
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp1",
+       "to": [
+        -90,
+        0,
+        116
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp2",
+       "to": [
+        -90,
+        0,
+        153
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp3",
+       "to": [
+        -90,
+        0,
+        10
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp4",
+       "to": [
+        -90,
+        0,
+        47
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp5",
+       "to": [
+        -90,
+        0,
+        84
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "jq1",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "jq2",
+       "at": 0.24000000000000002
+      },
+      {
+       "do": "show",
+       "target": "jd1",
+       "at": 0.28
+      },
+      {
+       "do": "show",
+       "target": "jd2",
+       "at": 0.32
+      },
+      {
+       "do": "show",
+       "target": "jd3",
+       "at": 0.36
+      },
+      {
+       "do": "show",
+       "target": "jn1",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "jn2",
+       "at": 0.44
+      },
+      {
+       "do": "show",
+       "target": "jn3",
+       "at": 0.48000000000000004
+      },
+      {
+       "do": "show",
+       "target": "jp1",
+       "at": 0.52
+      },
+      {
+       "do": "show",
+       "target": "jp2",
+       "at": 0.56
+      },
+      {
+       "do": "show",
+       "target": "jp3",
+       "at": 0.6000000000000001
+      },
+      {
+       "do": "show",
+       "target": "jp4",
+       "at": 0.64
+      },
+      {
+       "do": "show",
+       "target": "jp5",
+       "at": 0.6799999999999999
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_board",
+        "counter"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "jq1",
+       "at": 0.2,
+       "to": [
+        -1.35,
+        3.1,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jq1",
+       "at": 0.2,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jq2",
+       "at": 0.42000000000000004,
+       "to": [
+        -0.65,
+        3.1,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jq2",
+       "at": 0.42000000000000004,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jd1",
+       "at": 0.64,
+       "to": [
+        -1.35,
+        2.38,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jd1",
+       "at": 0.64,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jd2",
+       "at": 0.8600000000000001,
+       "to": [
+        -0.65,
+        2.38,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jd2",
+       "at": 0.8600000000000001,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jd3",
+       "at": 1.08,
+       "to": [
+        0.05,
+        2.38,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jd3",
+       "at": 1.08,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jn1",
+       "at": 1.3,
+       "to": [
+        -1.35,
+        1.66,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jn1",
+       "at": 1.3,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jn2",
+       "at": 1.52,
+       "to": [
+        -0.65,
+        1.66,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jn2",
+       "at": 1.52,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jn3",
+       "at": 1.74,
+       "to": [
+        0.05,
+        1.66,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jn3",
+       "at": 1.74,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jp1",
+       "at": 1.96,
+       "to": [
+        -1.35,
+        0.94,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jp1",
+       "at": 1.96,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jp2",
+       "at": 2.18,
+       "to": [
+        -0.65,
+        0.94,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jp2",
+       "at": 2.18,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jp3",
+       "at": 2.4000000000000004,
+       "to": [
+        0.05,
+        0.94,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jp3",
+       "at": 2.4000000000000004,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jp4",
+       "at": 2.62,
+       "to": [
+        0.75,
+        0.94,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jp4",
+       "at": 2.62,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "jp5",
+       "at": 2.8400000000000003,
+       "to": [
+        1.45,
+        0.94,
+        -0.3
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "jp5",
+       "at": 2.8400000000000003,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.5,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 2.8,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two quarters, three dimes, three nickels, five pennies. Count with me!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "row_quarter",
+       "at": 0.5,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "row_dime",
+       "at": 1.6,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "row_nickel",
+       "at": 2.6,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "row_penny",
+       "at": 3.6,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "text": "25, 50.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "jq1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.7
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jq2",
+       "at": 0.8999999999999999,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 0.8999999999999999,
+       "dur": 0.7
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8999999999999999,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "60, 70, 80.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "jd1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "60¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd2",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "70¢",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd3",
+       "at": 1.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "80¢",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.4,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "85, 90, 95.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "jn1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "85¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jn2",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "90¢",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jn3",
+       "at": 1.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "95¢",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.4,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "96, 97, 98, 99... 100!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "jp1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "96¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.55
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp2",
+       "at": 0.75,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "97¢",
+       "style": "count",
+       "at": 0.75,
+       "dur": 0.55
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.75,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp3",
+       "at": 1.3,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "98¢",
+       "style": "count",
+       "at": 1.3,
+       "dur": 0.55
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.3,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp4",
+       "at": 1.85,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "99¢",
+       "style": "count",
+       "at": 1.85,
+       "dur": 0.55
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.85,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp5",
+       "at": 2.4000000000000004,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "100¢",
+       "style": "count",
+       "at": 2.4000000000000004,
+       "dur": 0.55
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.4000000000000004,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 3,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "100 cents. That's exactly one dollar! Only 13 coins, but worth 100 cents.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "board",
+       "at": 0.4,
+       "result": "correct"
+      },
+      {
+       "do": "caption",
+       "text": "13 coins = 100¢ = $1",
+       "style": "label",
+       "at": 0.4,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! I can ride the Big Loop!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.2,
+       "clip": "Jump"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "One dollar, thank you. Here is your ticket!",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "dog",
+        "booth",
+        "register",
+        "ticket"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "register#drawer",
+       "at": 0.6,
+       "to": [
+        0,
+        0,
+        0.18
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "cha_ching",
+       "at": 0.7,
+       "volume": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "ticket",
+       "at": 1.4
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "register#drawer",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: Dog's ticket booth",
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ticket check! Which piles make one dollar? Count each one.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "hide",
+       "target": "ticket"
+      },
+      {
+       "do": "hide",
+       "target": "board"
+      },
+      {
+       "do": "hide",
+       "target": "jq1"
+      },
+      {
+       "do": "hide",
+       "target": "jq2"
+      },
+      {
+       "do": "hide",
+       "target": "jd1"
+      },
+      {
+       "do": "hide",
+       "target": "jd2"
+      },
+      {
+       "do": "hide",
+       "target": "jd3"
+      },
+      {
+       "do": "hide",
+       "target": "jn1"
+      },
+      {
+       "do": "hide",
+       "target": "jn2"
+      },
+      {
+       "do": "hide",
+       "target": "jn3"
+      },
+      {
+       "do": "hide",
+       "target": "jp1"
+      },
+      {
+       "do": "hide",
+       "target": "jp2"
+      },
+      {
+       "do": "hide",
+       "target": "jp3"
+      },
+      {
+       "do": "hide",
+       "target": "jp4"
+      },
+      {
+       "do": "hide",
+       "target": "jp5"
+      },
+      {
+       "do": "hide",
+       "target": "row_quarter"
+      },
+      {
+       "do": "hide",
+       "target": "row_dime"
+      },
+      {
+       "do": "hide",
+       "target": "row_nickel"
+      },
+      {
+       "do": "hide",
+       "target": "row_penny"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "dog"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.04,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pile A. Four quarters.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "show",
+       "target": "pile_a",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "gc1",
+       "to": [
+        -1.2,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc2",
+       "to": [
+        -0.58,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc3",
+       "to": [
+        0.04,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc4",
+       "to": [
+        0.66,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc4",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.4,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.5800000000000001,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.76,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc4",
+       "at": 0.9400000000000001,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_row",
+        "pile_a"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1,
+       "height": 10
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "25, 50, 75, 100. One dollar!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "gc1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc2",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc3",
+       "at": 1.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "75¢",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.4,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc4",
+       "at": 1.9999999999999998,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "100¢",
+       "style": "count",
+       "at": 1.9999999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.9999999999999998,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "counter",
+       "at": 2.6,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pile B. Three quarters, two dimes and a nickel.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "hide",
+       "target": "pile_a"
+      },
+      {
+       "do": "show",
+       "target": "pile_b",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gc1"
+      },
+      {
+       "do": "hide",
+       "target": "gc2",
+       "at": 0.03
+      },
+      {
+       "do": "hide",
+       "target": "gc3",
+       "at": 0.06
+      },
+      {
+       "do": "hide",
+       "target": "gc4",
+       "at": 0.09
+      },
+      {
+       "do": "move",
+       "target": "gc1",
+       "to": [
+        -1.2,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc2",
+       "to": [
+        -0.6,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc3",
+       "to": [
+        0,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd1",
+       "to": [
+        0.6,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd2",
+       "to": [
+        1.2,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cn1",
+       "to": [
+        1.8,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cn1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.4,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.7,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 1,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cn1",
+       "at": 1.15,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4,
+     "do": [
+      {
+       "do": "say",
+       "text": "25, 50, 75. Then 85, 95. And the nickel makes 100!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "gc1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.62
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc2",
+       "at": 0.8200000000000001,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 0.8200000000000001,
+       "dur": 0.62
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8200000000000001,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc3",
+       "at": 1.44,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "75¢",
+       "style": "count",
+       "at": 1.44,
+       "dur": 0.62
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.44,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd1",
+       "at": 2.06,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "85¢",
+       "style": "count",
+       "at": 2.06,
+       "dur": 0.62
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.06,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd2",
+       "at": 2.68,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "95¢",
+       "style": "count",
+       "at": 2.68,
+       "dur": 0.62
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.68,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cn1",
+       "at": 3.3000000000000003,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "100¢",
+       "style": "count",
+       "at": 3.3000000000000003,
+       "dur": 0.62
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 3.3000000000000003,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "counter",
+       "at": 3.9,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pile C. Three quarters and two dimes.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "hide",
+       "target": "pile_b"
+      },
+      {
+       "do": "show",
+       "target": "pile_c",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gc1"
+      },
+      {
+       "do": "hide",
+       "target": "gc2",
+       "at": 0.03
+      },
+      {
+       "do": "hide",
+       "target": "gc3",
+       "at": 0.06
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 0.09
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 0.12
+      },
+      {
+       "do": "hide",
+       "target": "cn1",
+       "at": 0.15
+      },
+      {
+       "do": "move",
+       "target": "gc1",
+       "to": [
+        -1.2,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc2",
+       "to": [
+        -0.6,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc3",
+       "to": [
+        0,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd1",
+       "to": [
+        0.6,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd2",
+       "to": [
+        1.2,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.4,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.7,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 1,
+       "sound": "clink"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Is pile C a dollar?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "25, 50, 75, 85, 95. Only 95 cents. Five cents short!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "gc1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc2",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc3",
+       "at": 1.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "75¢",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.4,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd1",
+       "at": 1.9999999999999998,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "85¢",
+       "style": "count",
+       "at": 1.9999999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.9999999999999998,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd2",
+       "at": 2.6,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "95¢",
+       "style": "count",
+       "at": 2.6,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.6,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "counter",
+       "at": 3.2,
+       "result": "incorrect"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which coin is missing?",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": "counter"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "A nickel! Five more cents makes 100.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "cn1",
+       "to": [
+        1.8,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "cn1",
+       "at": 0.3,
+       "sound": "clink"
+      },
+      {
+       "do": "caption",
+       "text": "100¢",
+       "style": "count",
+       "at": 0.6,
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "counter",
+       "at": 1.6,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 1.22,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pile D. Ten dimes.",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "hide",
+       "target": "pile_c"
+      },
+      {
+       "do": "show",
+       "target": "pile_d",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gc1"
+      },
+      {
+       "do": "hide",
+       "target": "gc2",
+       "at": 0.03
+      },
+      {
+       "do": "hide",
+       "target": "gc3",
+       "at": 0.06
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 0.09
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 0.12
+      },
+      {
+       "do": "hide",
+       "target": "cn1"
+      },
+      {
+       "do": "move",
+       "target": "cd1",
+       "to": [
+        -2.3,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd2",
+       "to": [
+        -1.78,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd3",
+       "to": [
+        -1.26,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd4",
+       "to": [
+        -0.74,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd4",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd5",
+       "to": [
+        -0.22,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd5",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd6",
+       "to": [
+        0.3,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd6",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd7",
+       "to": [
+        0.82,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd7",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd8",
+       "to": [
+        1.34,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd8",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd9",
+       "to": [
+        1.86,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd9",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cd10",
+       "to": [
+        2.38,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cd10",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 0.4,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.48000000000000004,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.56,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cd4",
+       "at": 0.64,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "cd5",
+       "at": 0.72,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cd6",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "cd7",
+       "at": 0.88,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cd8",
+       "at": 0.9600000000000001,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "cd9",
+       "at": 1.04,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "cd10",
+       "at": 1.12,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 5.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Count by tens. 10, 20, 30, 40, 50, 60, 70, 80, 90, 100!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "cd1",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "10¢",
+       "style": "count",
+       "at": 0.6,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd2",
+       "at": 1.08,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "20¢",
+       "style": "count",
+       "at": 1.08,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.08,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd3",
+       "at": 1.56,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "30¢",
+       "style": "count",
+       "at": 1.56,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.56,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd4",
+       "at": 2.04,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "40¢",
+       "style": "count",
+       "at": 2.04,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.04,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd5",
+       "at": 2.52,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 2.52,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.52,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd6",
+       "at": 3,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "60¢",
+       "style": "count",
+       "at": 3,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 3,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd7",
+       "at": 3.48,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "70¢",
+       "style": "count",
+       "at": 3.48,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 3.48,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd8",
+       "at": 3.96,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "80¢",
+       "style": "count",
+       "at": 3.96,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 3.96,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd9",
+       "at": 4.4399999999999995,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "90¢",
+       "style": "count",
+       "at": 4.4399999999999995,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 4.4399999999999995,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "cd10",
+       "at": 4.92,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "100¢",
+       "style": "count",
+       "at": 4.92,
+       "dur": 0.48
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 4.92,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "counter",
+       "at": 5.4,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "100 pennies make a dollar too. But that takes a long time to count!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pile_d",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.3,
+       "feeling": "surprised"
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 2.2,
+       "volume": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! How much is a quarter worth?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "cd1"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 0.03
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.06
+      },
+      {
+       "do": "hide",
+       "target": "cd4",
+       "at": 0.09
+      },
+      {
+       "do": "hide",
+       "target": "cd5",
+       "at": 0.12
+      },
+      {
+       "do": "hide",
+       "target": "cd6",
+       "at": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "cd7",
+       "at": 0.18
+      },
+      {
+       "do": "hide",
+       "target": "cd8",
+       "at": 0.21
+      },
+      {
+       "do": "hide",
+       "target": "cd9",
+       "at": 0.24
+      },
+      {
+       "do": "hide",
+       "target": "cd10",
+       "at": 0.27
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "move",
+       "target": "mq",
+       "to": [
+        0,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "mq",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": "f_row",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 10
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "25 cents!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "mq_v",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "mq_v",
+       "to": [
+        0,
+        1.65,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.76,
+     "do": [
+      {
+       "do": "say",
+       "text": "How much are three quarters?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "mq"
+      },
+      {
+       "do": "hide",
+       "target": "mq_v"
+      },
+      {
+       "do": "move",
+       "target": "gc1",
+       "to": [
+        -0.62,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc2",
+       "to": [
+        0,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc3",
+       "to": [
+        0.62,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.3,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.48,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.6599999999999999,
+       "sound": "clink"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "25, 50, 75. 75 cents!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "gc1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc2",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "50¢",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "gc3",
+       "at": 1.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "75¢",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.4,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.94,
+     "do": [
+      {
+       "do": "say",
+       "text": "One quarter, one dime and two pennies. How much?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "gc1"
+      },
+      {
+       "do": "hide",
+       "target": "gc2",
+       "at": 0.03
+      },
+      {
+       "do": "hide",
+       "target": "gc3",
+       "at": 0.06
+      },
+      {
+       "do": "move",
+       "target": "jq1",
+       "to": [
+        -0.93,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jq1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jd1",
+       "to": [
+        -0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jd1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp1",
+       "to": [
+        0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "jp2",
+       "to": [
+        0.93,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "jp2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "jq1",
+       "at": 0.3,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "jd1",
+       "at": 0.48,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp1",
+       "at": 0.6599999999999999,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "jp2",
+       "at": 0.8400000000000001,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "25, 35, 36, 37. 37 cents!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "jq1",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "25¢",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jd1",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "35¢",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp1",
+       "at": 1.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "36¢",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.4,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "jp2",
+       "at": 1.9999999999999998,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "37¢",
+       "style": "count",
+       "at": 1.9999999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.9999999999999998,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "How many quarters make one dollar?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "jq1"
+      },
+      {
+       "do": "hide",
+       "target": "jd1",
+       "at": 0.03
+      },
+      {
+       "do": "hide",
+       "target": "jp1",
+       "at": 0.06
+      },
+      {
+       "do": "hide",
+       "target": "jp2",
+       "at": 0.09
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.56,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four quarters!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "gc1",
+       "to": [
+        -0.93,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc2",
+       "to": [
+        -0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc3",
+       "to": [
+        0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc4",
+       "to": [
+        0.93,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc4",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.1,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.22,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.33999999999999997,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc4",
+       "at": 0.45999999999999996,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which do you count first, a dime or a quarter?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "gc1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gc2",
+       "at": 0.13
+      },
+      {
+       "do": "hide",
+       "target": "gc3",
+       "at": 0.16
+      },
+      {
+       "do": "hide",
+       "target": "gc4",
+       "at": 0.19
+      },
+      {
+       "do": "move",
+       "target": "md",
+       "to": [
+        -0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "md",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "mq",
+       "to": [
+        0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "mq",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "md",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "mq",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "The quarter, because it's worth the most.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "mq",
+       "at": 0.2,
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "mq",
+       "at": 0.6,
+       "result": "correct",
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's remember. A quarter is 25 cents. Four quarters make one dollar.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "md"
+      },
+      {
+       "do": "hide",
+       "target": "mq"
+      },
+      {
+       "do": "move",
+       "target": "gc1",
+       "to": [
+        -0.93,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc2",
+       "to": [
+        -0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc3",
+       "to": [
+        0.31,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "gc4",
+       "to": [
+        0.93,
+        0.85,
+        0.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "gc4",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "gc1",
+       "at": 0.6,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc2",
+       "at": 0.75,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "gc3",
+       "at": 0.8999999999999999,
+       "sound": "clink"
+      },
+      {
+       "do": "pop",
+       "target": "gc4",
+       "at": 1.0499999999999998,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.69,
+     "do": [
+      {
+       "do": "say",
+       "text": "Sort first, and start with the coin worth the most. Size doesn't tell value.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "gc1",
+       "at": 3.5
+      },
+      {
+       "do": "hide",
+       "target": "gc2",
+       "at": 3.53
+      },
+      {
+       "do": "hide",
+       "target": "gc3",
+       "at": 3.56
+      },
+      {
+       "do": "hide",
+       "target": "gc4",
+       "at": 3.59
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try it at home with a grown-up. Sort play coins, then count the quarters first.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "Coins are small: keep them away from babies",
+       "style": "label",
+       "at": 0.4,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Never put coins in your mouth, and wash your hands after counting.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ride",
+   "title": "All aboard",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "show",
+       "target": "engine"
+      },
+      {
+       "do": "show",
+       "target": "car1",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "car2",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "sign"
+      },
+      {
+       "do": "show",
+       "target": "sign_post"
+      },
+      {
+       "do": "show",
+       "target": "sign_txt"
+      },
+      {
+       "do": "hide",
+       "target": "counter",
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.1,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "All aboard the Big Loop!",
+       "caption": true,
+       "who": "dog",
+       "voice": "deep"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "engine",
+        "car2",
+        "robo",
+        "cat",
+        "sign"
+       ],
+       "framing": "medium",
+       "at": 0.1,
+       "dur": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "train_whistle",
+       "at": 0.4,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": "engine"
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "path",
+       "target": "robo",
+       "points": [
+        [
+         -4.6,
+         0,
+         0.7
+        ],
+        [
+         -3.6,
+         0,
+         -2.6
+        ],
+        [
+         0.4,
+         0.35,
+         -4
+        ]
+       ],
+       "dur": 2.6,
+       "face": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 2.6,
+       "clip": "Idle"
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "at": 2.6,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "cat",
+       "at": 0.2,
+       "points": [
+        [
+         -3.55,
+         0,
+         1.75
+        ],
+        [
+         -3,
+         0,
+         -2.4
+        ],
+        [
+         -1,
+         0.35,
+         -4
+        ]
+       ],
+       "dur": 2.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "at": 2.6,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Counted, checked, all aboard!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "engine"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 4.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "engine",
+       "points": [
+        [
+         1.9,
+         0,
+         -4
+        ],
+        [
+         9.5,
+         0,
+         -4
+        ]
+       ],
+       "dur": 4.4
+      },
+      {
+       "do": "path",
+       "target": "car1",
+       "points": [
+        [
+         0.4,
+         0,
+         -4
+        ],
+        [
+         8,
+         0,
+         -4
+        ]
+       ],
+       "dur": 4.4
+      },
+      {
+       "do": "path",
+       "target": "car2",
+       "points": [
+        [
+         -1,
+         0,
+         -4
+        ],
+        [
+         6.6,
+         0,
+         -4
+        ]
+       ],
+       "dur": 4.4
+      },
+      {
+       "do": "path",
+       "target": "robo",
+       "points": [
+        [
+         0.4,
+         0.35,
+         -4
+        ],
+        [
+         8,
+         0.35,
+         -4
+        ]
+       ],
+       "dur": 4.4
+      },
+      {
+       "do": "path",
+       "target": "cat",
+       "points": [
+        [
+         -1,
+         0.35,
+         -4
+        ],
+        [
+         6.6,
+         0.35,
+         -4
+        ]
+       ],
+       "dur": 4.4
+      },
+      {
+       "do": "spin",
+       "target": "engine#wheels",
+       "turns": 6,
+       "dur": 4.4,
+       "axis": "z",
+       "ease": "linear"
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "train_whistle",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "orbit",
+       "around": [
+        2,
+        1,
+        -3
+       ],
+       "degrees": 20,
+       "dur": 4.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bye, friends! Twenty-five, fifty, seventy-five, one whole dollar!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.2,
+       "clip": "Wave"
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

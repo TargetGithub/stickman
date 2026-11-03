@@ -1,0 +1,8558 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Toy Box Friends G2-15 (grade 2): find the rule of a growing or shrinking number pattern (add or take away the same number), check every jump on the shelf and on a number line, continue it, fill a gap and fix a broken pattern.",
+ "meta": {
+  "title": "Number Pattern Machine",
+  "series": "toybox",
+  "episode": "g215",
+  "audience": "grade2",
+  "seed": 215,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "playful",
+  "musicGain": 0.2,
+  "skills": [
+   "number_sequences_2"
+  ],
+  "youtube": {
+   "title": "Number Pattern Machine! Find the Rule | Grade 2 Math | Toy Box Friends",
+   "description": "The Pattern Machine in the lab is jammed: 2, 5, 8, 11... what comes next? Robo guesses 12, but the machine only accepts the right number! Cat shows how to find the rule: check the jump from every number to the next (add 3, add 3, add 3), then see the same equal jumps on a number line. We catch Robo changing the rule halfway, count down with take away 2 and take away 5, fill missing numbers, spot odd and even patterns, make our own pattern with Mouse, and fix the Broken Machine.\n\nFor second graders (CCSS 2.NBT.B.8, 2.OA.C.3: number patterns, add and take away, odd and even).\n\nTry at home: build block towers 2, 4 and 6 blocks tall and predict the next one. Then pick a start number and a rule, say four numbers, and let a grown-up find your rule. Keep small blocks away from babies.",
+   "tags": [
+    "number patterns",
+    "find the rule",
+    "growing patterns",
+    "number sequences",
+    "skip counting",
+    "odd and even",
+    "grade 2 math",
+    "2nd grade math",
+    "what comes next",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "next",
+    "title": "WHAT'S NEXT?",
+    "subtitle": "2, 5, 8, 11 ...",
+    "titleColor": "yellow",
+    "side": "top",
+    "badge": "GRADE 2",
+    "stage": "lab",
+    "camera": {
+     "position": [
+      -1.2,
+      1.75,
+      6.6
+     ],
+     "lookAt": [
+      -1.2,
+      1.4,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "machine",
+      "kind": "prop",
+      "model": "pattern_machine",
+      "size": 1.5,
+      "at": [
+       -2.6,
+       0,
+       -0.4
+      ],
+      "rotation": [
+       0,
+       15,
+       0
+      ]
+     },
+     {
+      "id": "b1",
+      "kind": "number_block",
+      "value": 2,
+      "color": "teal",
+      "size": 0.55,
+      "at": [
+       -1.2,
+       0,
+       0.6
+      ]
+     },
+     {
+      "id": "b2",
+      "kind": "number_block",
+      "value": 5,
+      "color": "teal",
+      "size": 0.55,
+      "at": [
+       -0.55,
+       0,
+       0.6
+      ]
+     },
+     {
+      "id": "b3",
+      "kind": "number_block",
+      "value": 8,
+      "color": "teal",
+      "size": 0.55,
+      "at": [
+       0.1,
+       0,
+       0.6
+      ]
+     },
+     {
+      "id": "b4",
+      "kind": "number_block",
+      "value": 11,
+      "color": "teal",
+      "size": 0.55,
+      "at": [
+       0.75,
+       0,
+       0.6
+      ]
+     },
+     {
+      "id": "q",
+      "kind": "letter",
+      "text": "?",
+      "color": "orange",
+      "size": 0.75,
+      "at": [
+       -1.55,
+       1.2,
+       0.2
+      ]
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 0.95,
+      "at": [
+       -3.7,
+       0,
+       0.8
+      ],
+      "rotation": [
+       0,
+       35,
+       0
+      ],
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "plus3",
+    "title": "+3 +3 +3",
+    "subtitle": "Find the rule!",
+    "titleColor": "white",
+    "side": "top",
+    "badge": "GRADE 2",
+    "stage": "lab",
+    "camera": {
+     "position": [
+      0.3,
+      1.2,
+      6.2
+     ],
+     "lookAt": [
+      0.3,
+      0.65,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "b1",
+      "kind": "number_block",
+      "value": 2,
+      "color": "teal",
+      "size": 0.6,
+      "at": [
+       -1.7,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "b2",
+      "kind": "number_block",
+      "value": 5,
+      "color": "teal",
+      "size": 0.6,
+      "at": [
+       -0.6,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "b3",
+      "kind": "number_block",
+      "value": 8,
+      "color": "teal",
+      "size": 0.6,
+      "at": [
+       0.5,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "b4",
+      "kind": "number_block",
+      "value": 11,
+      "color": "teal",
+      "size": 0.6,
+      "at": [
+       1.6,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "a1",
+      "kind": "pointer",
+      "from": [
+       -1.5,
+       0.75,
+       0.1
+      ],
+      "to": [
+       -0.8,
+       0.75,
+       0.1
+      ],
+      "bend": 0.35,
+      "width": 0.06,
+      "color": "orange"
+     },
+     {
+      "id": "a2",
+      "kind": "pointer",
+      "from": [
+       -0.4,
+       0.75,
+       0.1
+      ],
+      "to": [
+       0.3,
+       0.75,
+       0.1
+      ],
+      "bend": 0.35,
+      "width": 0.06,
+      "color": "orange"
+     },
+     {
+      "id": "a3",
+      "kind": "pointer",
+      "from": [
+       0.7,
+       0.75,
+       0.1
+      ],
+      "to": [
+       1.4,
+       0.75,
+       0.1
+      ],
+      "bend": 0.35,
+      "width": 0.06,
+      "color": "orange"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       2.9,
+       0,
+       0.3
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "rule",
+    "title": "FIND THE RULE!",
+    "subtitle": "Add or take away?",
+    "titleColor": "orange",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "lab",
+    "camera": {
+     "position": [
+      1,
+      1.3,
+      6
+     ],
+     "lookAt": [
+      1,
+      0.95,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "machine",
+      "kind": "prop",
+      "model": "pattern_machine",
+      "size": 1.6,
+      "at": [
+       2.1,
+       0,
+       -0.5
+      ]
+     },
+     {
+      "id": "mouse",
+      "kind": "critter",
+      "species": "mouse",
+      "size": 0.7,
+      "at": [
+       1.2,
+       0,
+       0.7
+      ],
+      "rotation": [
+       0,
+       30,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "card",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "orange",
+      "material": "toy",
+      "at": [
+       1.5,
+       0.95,
+       0.7
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       0.6,
+       1,
+       0.42
+      ]
+     },
+     {
+      "id": "card_t",
+      "kind": "letter",
+      "text": "+5",
+      "color": "white",
+      "size": 0.24,
+      "at": [
+       1.5,
+       0.85,
+       0.75
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       3.7,
+       0,
+       0.4
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "clip": "ThumbsUp"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "lab"
+ },
+ "camera": {
+  "position": [
+   0.6,
+   2.6,
+   12
+  ],
+  "lookAt": [
+   0.6,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "machine",
+   "kind": "prop",
+   "model": "pattern_machine",
+   "size": 1.4,
+   "at": [
+    -4.3,
+    0,
+    -0.9
+   ],
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "bench",
+   "kind": "shape",
+   "shape": "box",
+   "color": "lab_teal",
+   "material": "matte",
+   "at": [
+    1.15,
+    0,
+    -0.2
+   ],
+   "scale": [
+    6.9,
+    0.9,
+    0.8
+   ]
+  },
+  {
+   "id": "bench_top",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "material": "glossy",
+   "at": [
+    1.15,
+    0.9,
+    -0.2
+   ],
+   "scale": [
+    7.1,
+    1,
+    0.95
+   ]
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    6.3,
+    0,
+    0.8
+   ],
+   "rotation": [
+    0,
+    -35,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "size": 0.9,
+   "at": [
+    5.4,
+    0,
+    2.3
+   ],
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "mouse",
+   "kind": "critter",
+   "species": "mouse",
+   "size": 0.6,
+   "at": [
+    -2.75,
+    0,
+    0.7
+   ],
+   "rotation": [
+    0,
+    -40,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "line",
+   "kind": "number_line",
+   "from": 0,
+   "to": 40,
+   "length": 7,
+   "step": 5,
+   "minor": 5,
+   "color": "blue",
+   "at": [
+    1.15,
+    0,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "hopper",
+   "kind": "prop",
+   "model": "ball",
+   "size": 0.32,
+   "on": {
+    "line": "line",
+    "value": 2
+   },
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 150,
+   "area": [
+    9,
+    4
+   ],
+   "colors": [
+    "yellow",
+    "orange",
+    "teal",
+    "purple",
+    "sky"
+   ]
+  },
+  {
+   "id": "f_main",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    1.15,
+    0,
+    0.4
+   ],
+   "scale": [
+    7.6,
+    2.6,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_shelf",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    1.15,
+    0.9,
+    -0.2
+   ],
+   "scale": [
+    7,
+    1.5,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_mach",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -3.9,
+    0,
+    -0.6
+   ],
+   "scale": [
+    3.4,
+    2.2,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_cal",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    1.15,
+    0.4,
+    -0.2
+   ],
+   "scale": [
+    3.6,
+    2.9,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_ab",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "scale": [
+    3.2,
+    1.4,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n2_0",
+   "kind": "number_block",
+   "value": 2,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n5_1",
+   "kind": "number_block",
+   "value": 5,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n8_2",
+   "kind": "number_block",
+   "value": 8,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n11_3",
+   "kind": "number_block",
+   "value": 11,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q4",
+   "kind": "letter",
+   "text": "?",
+   "color": "orange",
+   "size": 0.5,
+   "at": [
+    2.8,
+    0.95,
+    -0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n12_4",
+   "kind": "number_block",
+   "value": 12,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "arc0",
+   "kind": "pointer",
+   "from": [
+    -1.4200000000000002,
+    1.62,
+    -0.1
+   ],
+   "to": [
+    -0.6799999999999999,
+    1.62,
+    -0.1
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "j0_p3",
+   "kind": "letter",
+   "text": "+3",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "arc1",
+   "kind": "pointer",
+   "from": [
+    -0.32,
+    1.62,
+    -0.1
+   ],
+   "to": [
+    0.4200000000000001,
+    1.62,
+    -0.1
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "j1_p3",
+   "kind": "letter",
+   "text": "+3",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "arc2",
+   "kind": "pointer",
+   "from": [
+    0.78,
+    1.62,
+    -0.1
+   ],
+   "to": [
+    1.5200000000000002,
+    1.62,
+    -0.1
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "j2_p3",
+   "kind": "letter",
+   "text": "+3",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "arc3",
+   "kind": "pointer",
+   "from": [
+    1.8800000000000001,
+    1.62,
+    -0.1
+   ],
+   "to": [
+    2.62,
+    1.62,
+    -0.1
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "j3_p3",
+   "kind": "letter",
+   "text": "+3",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    2.25,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n14_4",
+   "kind": "number_block",
+   "value": 14,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "arc4",
+   "kind": "pointer",
+   "from": [
+    2.9800000000000004,
+    1.62,
+    -0.1
+   ],
+   "to": [
+    3.7199999999999998,
+    1.62,
+    -0.1
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "j4_p3",
+   "kind": "letter",
+   "text": "+3",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    3.35,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n17_5",
+   "kind": "number_block",
+   "value": 17,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    3.9,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n3_0",
+   "kind": "number_block",
+   "value": 3,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n6_1",
+   "kind": "number_block",
+   "value": 6,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n9_2",
+   "kind": "number_block",
+   "value": 9,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n13_3",
+   "kind": "number_block",
+   "value": 13,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_p4",
+   "kind": "letter",
+   "text": "+4",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n12_3",
+   "kind": "number_block",
+   "value": 12,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n20_0",
+   "kind": "number_block",
+   "value": 20,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n18_1",
+   "kind": "number_block",
+   "value": 18,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n16_2",
+   "kind": "number_block",
+   "value": 16,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n14_3",
+   "kind": "number_block",
+   "value": 14,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_m2",
+   "kind": "letter",
+   "text": "−2",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_m2",
+   "kind": "letter",
+   "text": "−2",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_m2",
+   "kind": "letter",
+   "text": "−2",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n10_5",
+   "kind": "number_block",
+   "value": 10,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    3.9,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j3_m2",
+   "kind": "letter",
+   "text": "−2",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    2.25,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j4_m2",
+   "kind": "letter",
+   "text": "−2",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    3.35,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n35_0",
+   "kind": "number_block",
+   "value": 35,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n33_1",
+   "kind": "number_block",
+   "value": 33,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n31_2",
+   "kind": "number_block",
+   "value": 31,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n29_3",
+   "kind": "number_block",
+   "value": 29,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n27_4",
+   "kind": "number_block",
+   "value": 27,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n100_0",
+   "kind": "number_block",
+   "value": 100,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n95_1",
+   "kind": "number_block",
+   "value": 95,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n90_2",
+   "kind": "number_block",
+   "value": 90,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n85_3",
+   "kind": "number_block",
+   "value": 85,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_m5",
+   "kind": "letter",
+   "text": "−5",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_m5",
+   "kind": "letter",
+   "text": "−5",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_m5",
+   "kind": "letter",
+   "text": "−5",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n80_4",
+   "kind": "number_block",
+   "value": 80,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j3_m5",
+   "kind": "letter",
+   "text": "−5",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    2.25,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n4_0",
+   "kind": "number_block",
+   "value": 4,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n8_1",
+   "kind": "number_block",
+   "value": 8,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n16_3",
+   "kind": "number_block",
+   "value": 16,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n20_4",
+   "kind": "number_block",
+   "value": 20,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q2",
+   "kind": "letter",
+   "text": "?",
+   "color": "orange",
+   "size": 0.5,
+   "at": [
+    0.6,
+    0.95,
+    -0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_p4",
+   "kind": "letter",
+   "text": "+4",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j3_p4",
+   "kind": "letter",
+   "text": "+4",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    2.25,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n12_2",
+   "kind": "number_block",
+   "value": 12,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_p4",
+   "kind": "letter",
+   "text": "+4",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n15_0",
+   "kind": "number_block",
+   "value": 15,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n20_1",
+   "kind": "number_block",
+   "value": 20,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n30_3",
+   "kind": "number_block",
+   "value": 30,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n25_2",
+   "kind": "number_block",
+   "value": 25,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_p5",
+   "kind": "letter",
+   "text": "+5",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_p5",
+   "kind": "letter",
+   "text": "+5",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_p5",
+   "kind": "letter",
+   "text": "+5",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n7_0",
+   "kind": "number_block",
+   "value": 7,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n17_1",
+   "kind": "number_block",
+   "value": 17,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n27_2",
+   "kind": "number_block",
+   "value": 27,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n37_3",
+   "kind": "number_block",
+   "value": 37,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_p10",
+   "kind": "letter",
+   "text": "+10",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_p10",
+   "kind": "letter",
+   "text": "+10",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_p10",
+   "kind": "letter",
+   "text": "+10",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n47_4",
+   "kind": "number_block",
+   "value": 47,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j3_p10",
+   "kind": "letter",
+   "text": "+10",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    2.25,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cal",
+   "kind": "grid",
+   "rows": 5,
+   "cols": 7,
+   "cell": 0.42,
+   "upright": true,
+   "labels": "numbers",
+   "color": "sky",
+   "at": [
+    1.15,
+    0.95,
+    -0.05
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n1_0",
+   "kind": "number_block",
+   "value": 1,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n3_1",
+   "kind": "number_block",
+   "value": 3,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n5_2",
+   "kind": "number_block",
+   "value": 5,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n7_3",
+   "kind": "number_block",
+   "value": 7,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n9_4",
+   "kind": "number_block",
+   "value": 9,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_p2",
+   "kind": "letter",
+   "text": "+2",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_p2",
+   "kind": "letter",
+   "text": "+2",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_p2",
+   "kind": "letter",
+   "text": "+2",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j3_p2",
+   "kind": "letter",
+   "text": "+2",
+   "color": "orange",
+   "size": 0.26,
+   "at": [
+    2.25,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n2_0b",
+   "kind": "number_block",
+   "value": 2,
+   "color": "purple",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0,
+    1.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n4_1b",
+   "kind": "number_block",
+   "value": 4,
+   "color": "purple",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0,
+    1.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n6_2b",
+   "kind": "number_block",
+   "value": 6,
+   "color": "purple",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0,
+    1.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n8_3b",
+   "kind": "number_block",
+   "value": 8,
+   "color": "purple",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0,
+    1.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n10_4b",
+   "kind": "number_block",
+   "value": 10,
+   "color": "purple",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0,
+    1.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "arc0b",
+   "kind": "pointer",
+   "from": [
+    -1.4200000000000002,
+    0.75,
+    1.4000000000000001
+   ],
+   "to": [
+    -0.6799999999999999,
+    0.75,
+    1.4000000000000001
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "arc1b",
+   "kind": "pointer",
+   "from": [
+    -0.32,
+    0.75,
+    1.4000000000000001
+   ],
+   "to": [
+    0.4200000000000001,
+    0.75,
+    1.4000000000000001
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "arc2b",
+   "kind": "pointer",
+   "from": [
+    0.78,
+    0.75,
+    1.4000000000000001
+   ],
+   "to": [
+    1.5200000000000002,
+    0.75,
+    1.4000000000000001
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "arc3b",
+   "kind": "pointer",
+   "from": [
+    1.8800000000000001,
+    0.75,
+    1.4000000000000001
+   ],
+   "to": [
+    2.62,
+    0.75,
+    1.4000000000000001
+   ],
+   "bend": 0.38,
+   "width": 0.06,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "pair8",
+   "kind": "array",
+   "rows": 2,
+   "cols": 4,
+   "item": "dot",
+   "color": "purple",
+   "size": 0.22,
+   "gap": 0.08,
+   "at": [
+    3.35,
+    0,
+    1.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pair7",
+   "kind": "array",
+   "rows": 2,
+   "cols": 3,
+   "item": "dot",
+   "color": "teal",
+   "size": 0.22,
+   "gap": 0.08,
+   "at": [
+    3.1,
+    0.9,
+    0.05
+   ],
+   "hidden": true
+  },
+  {
+   "id": "left1",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "orange",
+   "material": "toy",
+   "size": 0.22,
+   "at": [
+    3.72,
+    0.94,
+    0.05
+   ],
+   "hidden": true
+  },
+  {
+   "id": "card_start",
+   "kind": "group",
+   "at": [
+    -2.4,
+    0.75,
+    0.75
+   ],
+   "hidden": true
+  },
+  {
+   "id": "card_start_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "yellow",
+   "material": "toy",
+   "parent": "card_start",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.5,
+    1,
+    0.38
+   ]
+  },
+  {
+   "id": "card_start_t",
+   "kind": "letter",
+   "text": "6",
+   "color": "ink",
+   "size": 0.2,
+   "parent": "card_start",
+   "at": [
+    0,
+    -0.12,
+    0.04
+   ]
+  },
+  {
+   "id": "card_rule",
+   "kind": "group",
+   "at": [
+    -2.4,
+    0.75,
+    0.75
+   ],
+   "hidden": true
+  },
+  {
+   "id": "card_rule_p",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "orange",
+   "material": "toy",
+   "parent": "card_rule",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.5,
+    1,
+    0.38
+   ]
+  },
+  {
+   "id": "card_rule_t",
+   "kind": "letter",
+   "text": "+5",
+   "color": "ink",
+   "size": 0.2,
+   "parent": "card_rule",
+   "at": [
+    0,
+    -0.12,
+    0.04
+   ]
+  },
+  {
+   "id": "n6_0",
+   "kind": "number_block",
+   "value": 6,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n11_1",
+   "kind": "number_block",
+   "value": 11,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n21_3",
+   "kind": "number_block",
+   "value": 21,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n26_4",
+   "kind": "number_block",
+   "value": 26,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n13_1",
+   "kind": "number_block",
+   "value": 13,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n23_2",
+   "kind": "number_block",
+   "value": 23,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n33_3",
+   "kind": "number_block",
+   "value": 33,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n30_0",
+   "kind": "number_block",
+   "value": 30,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n27_1",
+   "kind": "number_block",
+   "value": 27,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n24_2",
+   "kind": "number_block",
+   "value": 24,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_m3",
+   "kind": "letter",
+   "text": "−3",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_m3",
+   "kind": "letter",
+   "text": "−3",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_m3",
+   "kind": "letter",
+   "text": "−3",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n18_4",
+   "kind": "number_block",
+   "value": 18,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    2.8,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j3_m3",
+   "kind": "letter",
+   "text": "−3",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    2.25,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n12_0",
+   "kind": "number_block",
+   "value": 12,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n22_2",
+   "kind": "number_block",
+   "value": 22,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n27_3",
+   "kind": "number_block",
+   "value": 27,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q1",
+   "kind": "letter",
+   "text": "?",
+   "color": "orange",
+   "size": 0.5,
+   "at": [
+    -0.5,
+    0.95,
+    -0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n9_1",
+   "kind": "number_block",
+   "value": 9,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n15_3",
+   "kind": "number_block",
+   "value": 15,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n10_0",
+   "kind": "number_block",
+   "value": 10,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n14_1",
+   "kind": "number_block",
+   "value": 14,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n18_2",
+   "kind": "number_block",
+   "value": 18,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n22_3",
+   "kind": "number_block",
+   "value": 22,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n50_0",
+   "kind": "number_block",
+   "value": 50,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n40_1",
+   "kind": "number_block",
+   "value": 40,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n30_2",
+   "kind": "number_block",
+   "value": 30,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n20_3",
+   "kind": "number_block",
+   "value": 20,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j0_m10",
+   "kind": "letter",
+   "text": "−10",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    -1.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j1_m10",
+   "kind": "letter",
+   "text": "−10",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    0.05,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2_m10",
+   "kind": "letter",
+   "text": "−10",
+   "color": "purple",
+   "size": 0.26,
+   "at": [
+    1.15,
+    2.15,
+    -0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n5_0",
+   "kind": "number_block",
+   "value": 5,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -1.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n11_2",
+   "kind": "number_block",
+   "value": 11,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n4_1",
+   "kind": "number_block",
+   "value": 4,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    -0.5,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n7_2",
+   "kind": "number_block",
+   "value": 7,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    0.6,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n9_3",
+   "kind": "number_block",
+   "value": 9,
+   "color": "teal",
+   "digitColor": "white",
+   "size": 0.62,
+   "at": [
+    1.7,
+    0.9,
+    -0.2
+   ],
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "jam",
+   "title": "The jammed machine",
+   "beats": [
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "f_shelf",
+        "robo"
+       ],
+       "framing": "medium",
+       "dur": 0
+      },
+      {
+       "do": "caption",
+       "text": "Number Pattern Machine",
+       "style": "title",
+       "at": 0.3,
+       "dur": 2.5
+      },
+      {
+       "do": "wiggle",
+       "target": "machine#dial",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "at": 0.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "n2_0",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n2_0",
+       "at": 0.2,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n2_0",
+       "at": 0.2,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -2.475,
+         1.9,
+         -0.4
+        ],
+        [
+         -1.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n5_1",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n5_1",
+       "at": 0.8999999999999999,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n5_1",
+       "at": 0.8999999999999999,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.925,
+         1.9,
+         -0.4
+        ],
+        [
+         -0.5,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.5,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n8_2",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n8_2",
+       "at": 1.5999999999999999,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n8_2",
+       "at": 1.5999999999999999,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.375,
+         1.9,
+         -0.4
+        ],
+        [
+         0.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.1999999999999997,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n11_3",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n11_3",
+       "at": 2.3,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n11_3",
+       "at": 2.3,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -0.825,
+         1.9,
+         -0.4
+        ],
+        [
+         1.7,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.9,
+       "volume": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "2, 5, 8, 11...",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "f_shelf"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "wiggle",
+       "target": "machine",
+       "at": 0.1,
+       "deg": 6,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "clang",
+       "at": 0.2,
+       "volume": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "q4",
+       "at": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.4,
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Jammed! Next number, please.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "shot",
+       "target": "f_mach",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Easy! 11, then 12. The answer is 12!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "q4",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "n12_4",
+       "at": 0.7
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_shelf",
+        "robo"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "ThumbsUp"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try again.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "sound",
+       "sound": "buzz",
+       "volume": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "n12_4",
+       "at": 0.2,
+       "result": "incorrect",
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Robo, you guessed before you checked. Let's find the machine's rule first.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "n12_4",
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.4,
+       "feeling": "worried"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "f_shelf"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_shelf",
+        "cat",
+        "robo"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jump",
+   "title": "Find the jump",
+   "beats": [
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A number pattern follows a rule. The rule tells us the jump.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "pattern rule = the same jump",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "From 2 to 5. How much is the jump?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "n2_0",
+       "at": 0.3,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "n5_1",
+       "at": 1,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "What's the jump?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "2, then 3, 4, 5. That's a jump of 3. Add 3.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p3",
+       "at": 1.7,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.2,
+       "volume": 0.35
+      },
+      {
+       "do": "caption",
+       "text": "+3",
+       "style": "count",
+       "at": 1.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "So the rule is add 3!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Not yet! We check every jump, not just the first one.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "Check every jump",
+       "style": "label",
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "5 to 8: add 3. 8 to 11: add 3.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p3",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.6,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p3",
+       "at": 2.1,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.6,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Another way: count on. From 5, say 6, 7, 8. That's three steps.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "n5_1",
+       "at": 0.4,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "n8_2",
+       "at": 2.6,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "6, 7, 8",
+       "style": "label",
+       "at": 1.2,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Every jump is the same. Add 3, every step!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "j0_p3",
+       "at": 0.4,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "j1_p3",
+       "at": 0.9,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "j2_p3",
+       "at": 1.4,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now watch the same pattern on a number line.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "line",
+       "at": 0.3,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "hopper",
+       "at": 1.2
+      },
+      {
+       "do": "shot",
+       "target": "f_main",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "hopper",
+       "at": 0.2,
+       "line": "line",
+       "values": [
+        5,
+        8,
+        11
+       ],
+       "dur": 0.9,
+       "height": 0.7
+      },
+      {
+       "do": "caption",
+       "text": "+3",
+       "style": "count",
+       "at": 0.3,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "+3",
+       "style": "count",
+       "at": 1.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "+3",
+       "style": "count",
+       "at": 2.1,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Every leap is the same length. Same rule, same jump!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "line",
+       "at": 0.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Where will the ball land next?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "hopper"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Where will it land?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "hopper",
+       "at": 0.1,
+       "line": "line",
+       "values": [
+        14
+       ],
+       "dur": 0.9,
+       "height": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_p3",
+       "at": 0.7,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.2,
+       "volume": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "n14_4",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "11 add 3 is 14.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "14",
+       "style": "count",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "And 14 add 3 is 17!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "leap",
+       "target": "hopper",
+       "at": 0.6,
+       "line": "line",
+       "values": [
+        17
+       ],
+       "dur": 0.9,
+       "height": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "arc4",
+       "at": 0.6,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j4_p3",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.6,
+       "volume": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "n17_5",
+       "at": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "17",
+       "style": "count",
+       "at": 1.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Rule accepted! Add 3.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "f_shelf"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "same",
+   "title": "Same rule every step",
+   "beats": [
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "My turn! I made a pattern. 3, 6, 9, 13.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc4"
+      },
+      {
+       "do": "hide",
+       "target": "j4_p3"
+      },
+      {
+       "do": "hide",
+       "target": "n2_0"
+      },
+      {
+       "do": "hide",
+       "target": "n5_1"
+      },
+      {
+       "do": "hide",
+       "target": "n8_2"
+      },
+      {
+       "do": "hide",
+       "target": "n11_3"
+      },
+      {
+       "do": "hide",
+       "target": "n14_4"
+      },
+      {
+       "do": "hide",
+       "target": "n17_5"
+      },
+      {
+       "do": "hide",
+       "target": "hopper"
+      },
+      {
+       "do": "hide",
+       "target": "line"
+      },
+      {
+       "do": "pop",
+       "target": "n3_0",
+       "at": 1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n6_1",
+       "at": 1.4,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n9_2",
+       "at": 1.8,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n13_3",
+       "at": 2.2,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's check every jump. 3 to 6, add 3. 6 to 9, add 3.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 1,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p3",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 2.4,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p3",
+       "at": 2.9,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.4,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "9 to 13... that's add 4!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p4",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "mark",
+       "target": "j2_p4",
+       "at": 1.2,
+       "result": "incorrect"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oops. I changed the rule halfway.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.2,
+       "feeling": "worried"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A pattern keeps the same rule at every step. So what should come after 9?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "Same rule every step",
+       "style": "label",
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "9 add 3 is 12!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "n13_3",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "j2_p4",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "n12_3",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "j2_p3",
+       "at": 0.9
+      },
+      {
+       "do": "mark",
+       "target": "n12_3",
+       "at": 1,
+       "result": "correct"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 1,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's why we check every jump, not just the first one.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "down",
+   "title": "Going down",
+   "beats": [
+    {
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Patterns can go down too. 20, 18, 16, 14.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p3"
+      },
+      {
+       "do": "hide",
+       "target": "n3_0"
+      },
+      {
+       "do": "hide",
+       "target": "n6_1"
+      },
+      {
+       "do": "hide",
+       "target": "n9_2"
+      },
+      {
+       "do": "hide",
+       "target": "n12_3"
+      },
+      {
+       "do": "move",
+       "target": "n20_0",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n20_0",
+       "at": 0.6,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n20_0",
+       "at": 0.6,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -2.475,
+         1.9,
+         -0.4
+        ],
+        [
+         -1.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n18_1",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n18_1",
+       "at": 1.2,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n18_1",
+       "at": 1.2,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.925,
+         1.9,
+         -0.4
+        ],
+        [
+         -0.5,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.7999999999999998,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n16_2",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n16_2",
+       "at": 1.7999999999999998,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n16_2",
+       "at": 1.7999999999999998,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.375,
+         1.9,
+         -0.4
+        ],
+        [
+         0.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.4,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n14_3",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n14_3",
+       "at": 2.4,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n14_3",
+       "at": 2.4,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -0.825,
+         1.9,
+         -0.4
+        ],
+        [
+         1.7,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 3,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "f_shelf"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "What's the jump? Each number is smaller.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Take away 2, every step.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_m2",
+       "at": 0.7,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.2,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.8999999999999999,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_m2",
+       "at": 1.4,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.8999999999999999,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.5999999999999999,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_m2",
+       "at": 2.0999999999999996,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.5999999999999999,
+       "volume": 0.35
+      },
+      {
+       "do": "caption",
+       "text": "−2",
+       "style": "count",
+       "at": 0.4,
+       "dur": 2
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "at": 1.6,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's step back on the number line. Next comes 12, then 10.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "draw",
+       "target": "line",
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "hopper",
+       "to": [
+        0.1,
+        0.56,
+        1.4
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "hopper",
+       "at": 0.6
+      },
+      {
+       "do": "shot",
+       "target": "f_main",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "leap",
+       "target": "hopper",
+       "at": 0.2,
+       "line": "line",
+       "values": [
+        12,
+        10
+       ],
+       "dur": 0.9,
+       "height": 0.6,
+       "color": "purple"
+      },
+      {
+       "do": "pop",
+       "target": "n12_4",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "n10_5",
+       "at": 1.8
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 0.6,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_m2",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.6,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc4",
+       "at": 1.5,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j4_m2",
+       "at": 2,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.5,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Your turn! 35, 33, 31, 29. What comes next?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_m2"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_m2"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_m2"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_m2"
+      },
+      {
+       "do": "hide",
+       "target": "arc4"
+      },
+      {
+       "do": "hide",
+       "target": "j4_m2"
+      },
+      {
+       "do": "hide",
+       "target": "n20_0"
+      },
+      {
+       "do": "hide",
+       "target": "n18_1"
+      },
+      {
+       "do": "hide",
+       "target": "n16_2"
+      },
+      {
+       "do": "hide",
+       "target": "n14_3"
+      },
+      {
+       "do": "hide",
+       "target": "n12_4"
+      },
+      {
+       "do": "hide",
+       "target": "n10_5"
+      },
+      {
+       "do": "hide",
+       "target": "hopper"
+      },
+      {
+       "do": "hide",
+       "target": "line"
+      },
+      {
+       "do": "pop",
+       "target": "n35_0",
+       "at": 1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n33_1",
+       "at": 1.3,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n31_2",
+       "at": 1.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n29_3",
+       "at": 1.9,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "q4",
+       "at": 2.2
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Take away 2 each time. 29 take away 2 is 27!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_m2",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.8999999999999999,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_m2",
+       "at": 1.4,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.8999999999999999,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.5,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_m2",
+       "at": 2,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.5,
+       "volume": 0.35
+      },
+      {
+       "do": "hide",
+       "target": "q4",
+       "at": 2
+      },
+      {
+       "do": "pop",
+       "target": "n27_4",
+       "at": 2.1
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 2.1,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_m2",
+       "at": 2.6,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.1,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Big numbers work too. 100, 95, 90, 85.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_m2"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_m2"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_m2"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_m2"
+      },
+      {
+       "do": "hide",
+       "target": "n35_0"
+      },
+      {
+       "do": "hide",
+       "target": "n33_1"
+      },
+      {
+       "do": "hide",
+       "target": "n31_2"
+      },
+      {
+       "do": "hide",
+       "target": "n29_3"
+      },
+      {
+       "do": "hide",
+       "target": "n27_4"
+      },
+      {
+       "do": "pop",
+       "target": "n100_0",
+       "at": 1.2,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n95_1",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n90_2",
+       "at": 1.7999999999999998,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n85_3",
+       "at": 2.0999999999999996,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Take away 5 each time. Next is 80!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_m5",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.8999999999999999,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_m5",
+       "at": 1.4,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.8999999999999999,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.5,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_m5",
+       "at": 2,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.5,
+       "volume": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "n80_4",
+       "at": 2.4
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 2.4,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_m5",
+       "at": 2.9,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.4,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Jump forward three hops for add 3. Step back two for take away 2!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "Jump"
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1.2,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1.6,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 2,
+       "height": 0.25
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "missing",
+   "title": "Missing numbers",
+   "beats": [
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A number is missing! 4, 8, something, 16, 20.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_m5"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_m5"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_m5"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_m5"
+      },
+      {
+       "do": "hide",
+       "target": "n100_0"
+      },
+      {
+       "do": "hide",
+       "target": "n95_1"
+      },
+      {
+       "do": "hide",
+       "target": "n90_2"
+      },
+      {
+       "do": "hide",
+       "target": "n85_3"
+      },
+      {
+       "do": "hide",
+       "target": "n80_4"
+      },
+      {
+       "do": "pop",
+       "target": "n4_0",
+       "at": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n8_1",
+       "at": 0.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n16_3",
+       "at": 1.05,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n20_4",
+       "at": 1.3,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "q2",
+       "at": 1
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Find the rule first. 4 to 8 is add 4. 16 to 20 is add 4.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 1,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p4",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_p4",
+       "at": 3.5,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 3,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "What's missing?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "8 add 4 is 12. And 12 add 4 is 16. It checks out!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "q2",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "n12_2",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p4",
+       "at": 1.7,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.2,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 2.5999999999999996,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p4",
+       "at": 3.0999999999999996,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.5999999999999996,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try this one. 15, 20, something, 30.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p4"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p4"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p4"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_p4"
+      },
+      {
+       "do": "hide",
+       "target": "n4_0"
+      },
+      {
+       "do": "hide",
+       "target": "n8_1"
+      },
+      {
+       "do": "hide",
+       "target": "n12_2"
+      },
+      {
+       "do": "hide",
+       "target": "n16_3"
+      },
+      {
+       "do": "hide",
+       "target": "n20_4"
+      },
+      {
+       "do": "pop",
+       "target": "n15_0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n20_1",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n30_3",
+       "at": 1.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "q2",
+       "at": 1.1
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Add 5. 20 add 5 is 25, and 25 add 5 is 30.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "q2",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "n25_2",
+       "at": 0.4
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.6,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p5",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.6,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 1.2999999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p5",
+       "at": 1.7999999999999998,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.2999999999999998,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p5",
+       "at": 2.5,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's a fun one. 7, 17, 27, 37.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p5"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p5"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p5"
+      },
+      {
+       "do": "hide",
+       "target": "n15_0"
+      },
+      {
+       "do": "hide",
+       "target": "n20_1"
+      },
+      {
+       "do": "hide",
+       "target": "n25_2"
+      },
+      {
+       "do": "hide",
+       "target": "n30_3"
+      },
+      {
+       "do": "pop",
+       "target": "n7_0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n17_1",
+       "at": 0.8999999999999999,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n27_2",
+       "at": 1.2,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n37_3",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Add 10 each time. The tens digit grows by one, and the ones digit stays 7.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p10",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 1,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p10",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.7,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p10",
+       "at": 2.2,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.7,
+       "volume": 0.35
+      },
+      {
+       "do": "highlight",
+       "target": "n7_0",
+       "at": 3,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "n17_1",
+       "at": 3.4,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "n27_2",
+       "at": 3.8,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "n37_3",
+       "at": 4.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "text": "So next is 47!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "n47_4",
+       "at": 0.4
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 0.4,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_p10",
+       "at": 0.9,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.4,
+       "volume": 0.35
+      },
+      {
+       "do": "caption",
+       "text": "47",
+       "style": "count",
+       "at": 0.5,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact! A calendar hides a pattern. Go down one row, and you add 7.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p10"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p10"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p10"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_p10"
+      },
+      {
+       "do": "hide",
+       "target": "n7_0"
+      },
+      {
+       "do": "hide",
+       "target": "n17_1"
+      },
+      {
+       "do": "hide",
+       "target": "n27_2"
+      },
+      {
+       "do": "hide",
+       "target": "n37_3"
+      },
+      {
+       "do": "hide",
+       "target": "n47_4"
+      },
+      {
+       "do": "show",
+       "target": "cal",
+       "at": 0.5
+      },
+      {
+       "do": "shot",
+       "target": "f_cal",
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "shade",
+       "target": "cal",
+       "at": 0.1,
+       "cells": [
+        3,
+        10,
+        17,
+        24,
+        31
+       ],
+       "color": "yellow",
+       "dur": 1.6,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "3, 10, 17, 24, 31: add 7",
+       "style": "label",
+       "at": 0.3,
+       "dur": 2.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Because a week has 7 days!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "cal",
+       "at": 0.3,
+       "dur": 1.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Pattern chant",
+   "musicGain": 0.24,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "cal"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_shelf",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "orbit",
+       "around": [
+        1.15,
+        1.2,
+        0
+       ],
+       "degrees": 22,
+       "dur": 14,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "n2_0",
+       "at": 0.2,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n5_1",
+       "at": 0.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n8_2",
+       "at": 0.5,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n11_3",
+       "at": 0.6499999999999999,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Start!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "at": 0.1,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.2,
+       "volume": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "n2_0",
+       "at": 0.1,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Jump!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.2,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "The same jump again!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 0.5,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check every step, and you'll know the plan!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "at": 1.4,
+       "volume": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.2,
+       "clip": "Dance"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check the jump!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Every step!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "cat",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.8,
+       "clip": "Idle"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "oddeven",
+   "title": "Pattern spotlight: odd and even",
+   "beats": [
+    {
+     "dur": 3.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two patterns with the same rule, add 2. One starts at 1.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "n2_0"
+      },
+      {
+       "do": "hide",
+       "target": "n5_1"
+      },
+      {
+       "do": "hide",
+       "target": "n8_2"
+      },
+      {
+       "do": "hide",
+       "target": "n11_3"
+      },
+      {
+       "do": "pop",
+       "target": "n1_0",
+       "at": 0.8,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n3_1",
+       "at": 1.05,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n5_2",
+       "at": 1.3,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n7_3",
+       "at": 1.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n9_4",
+       "at": 1.8,
+       "sound": "pop"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 1.6,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p2",
+       "at": 2.1,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.6,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 1.9500000000000002,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p2",
+       "at": 2.45,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.9500000000000002,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 2.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p2",
+       "at": 2.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.3,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 2.65,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_p2",
+       "at": 3.15,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.65,
+       "volume": 0.35
+      },
+      {
+       "do": "shot",
+       "target": "f_main",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "The other starts at 2.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "n2_0b",
+       "at": 0.2,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n4_1b",
+       "at": 0.45,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n6_2b",
+       "at": 0.7,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n8_3b",
+       "at": 0.95,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n10_4b",
+       "at": 1.2,
+       "sound": "pop"
+      },
+      {
+       "do": "draw",
+       "target": "arc0b",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.8,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1b",
+       "at": 1.15,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.15,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2b",
+       "at": 1.5,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.5,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc3b",
+       "at": 1.8499999999999999,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.8499999999999999,
+       "volume": 0.35
+      },
+      {
+       "do": "caption",
+       "text": "+2 each time",
+       "style": "label",
+       "at": 0.8,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "1, 3, 5, 7, 9. Add 2 from an odd number, and every number is odd.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "n1_0",
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n3_1",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n5_2",
+       "at": 1.2000000000000002,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n7_3",
+       "at": 1.6,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n9_4",
+       "at": 2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "odd",
+       "style": "label",
+       "at": 2.4,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "2, 4, 6, 8, 10. Start even, and every number is even.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "n2_0b",
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n4_1b",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n6_2b",
+       "at": 1.2000000000000002,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n8_3b",
+       "at": 1.6,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "n10_4b",
+       "at": 2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "even",
+       "style": "label",
+       "at": 2.4,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Even numbers make pairs. Odd numbers have one left over.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p2"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p2"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p2"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_p2"
+      },
+      {
+       "do": "hide",
+       "target": "arc0b"
+      },
+      {
+       "do": "hide",
+       "target": "arc1b"
+      },
+      {
+       "do": "hide",
+       "target": "arc2b"
+      },
+      {
+       "do": "hide",
+       "target": "arc3b"
+      },
+      {
+       "do": "hide",
+       "target": "n1_0"
+      },
+      {
+       "do": "hide",
+       "target": "n3_1"
+      },
+      {
+       "do": "hide",
+       "target": "n5_2"
+      },
+      {
+       "do": "hide",
+       "target": "n9_4"
+      },
+      {
+       "do": "hide",
+       "target": "n2_0b"
+      },
+      {
+       "do": "hide",
+       "target": "n4_1b"
+      },
+      {
+       "do": "hide",
+       "target": "n6_2b"
+      },
+      {
+       "do": "hide",
+       "target": "n10_4b"
+      },
+      {
+       "do": "show",
+       "target": "pair8",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pair7",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "left1",
+       "at": 1
+      },
+      {
+       "do": "highlight",
+       "target": "left1",
+       "at": 1.4,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_main"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact! On many streets, one side has odd house numbers. The other side is even.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "left1",
+       "at": 0.6,
+       "dur": 1.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "own",
+   "title": "Make your own",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Mouse, our lab helper, will load a start number and a rule.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "n7_3"
+      },
+      {
+       "do": "hide",
+       "target": "n8_3b"
+      },
+      {
+       "do": "hide",
+       "target": "pair8"
+      },
+      {
+       "do": "hide",
+       "target": "pair7"
+      },
+      {
+       "do": "hide",
+       "target": "left1"
+      },
+      {
+       "do": "show",
+       "target": "mouse",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 0.9,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "mouse"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "pop",
+       "target": "card_start",
+       "at": 0.1
+      },
+      {
+       "do": "path",
+       "target": "card_start",
+       "at": 0.4,
+       "points": [
+        [
+         -2.4,
+         0.75,
+         0.75
+        ],
+        [
+         -3.4,
+         2.4,
+         0
+        ],
+        [
+         -4.55,
+         1.75,
+         -0.95
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "hide",
+       "target": "card_start",
+       "at": 1.5
+      },
+      {
+       "do": "pop",
+       "target": "card_rule",
+       "at": 1.6
+      },
+      {
+       "do": "path",
+       "target": "card_rule",
+       "at": 1.8,
+       "points": [
+        [
+         -2.4,
+         0.75,
+         0.75
+        ],
+        [
+         -3.4,
+         2.4,
+         0
+        ],
+        [
+         -4.55,
+         1.75,
+         -0.95
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "hide",
+       "target": "card_rule",
+       "at": 2.9
+      },
+      {
+       "do": "hop",
+       "target": "mouse",
+       "at": 0.2,
+       "height": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 2.9,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Start at 6, and add 5.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "start 6, rule +5",
+       "style": "label",
+       "at": 0.2,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "n6_0",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n6_0",
+       "at": 0.2,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n6_0",
+       "at": 0.2,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -2.475,
+         1.9,
+         -0.4
+        ],
+        [
+         -1.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n11_1",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n11_1",
+       "at": 0.8999999999999999,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n11_1",
+       "at": 0.8999999999999999,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.925,
+         1.9,
+         -0.4
+        ],
+        [
+         -0.5,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.5,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n16_2",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n16_2",
+       "at": 1.5999999999999999,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n16_2",
+       "at": 1.5999999999999999,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.375,
+         1.9,
+         -0.4
+        ],
+        [
+         0.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.1999999999999997,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n21_3",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n21_3",
+       "at": 2.3,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n21_3",
+       "at": 2.3,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -0.825,
+         1.9,
+         -0.4
+        ],
+        [
+         1.7,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.9,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "f_shelf"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "6, 11, 16, 21. Look at the ones digits: 6, 1, 6, 1. They take turns!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "n6_0",
+       "at": 1.6,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "n11_1",
+       "at": 2,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "n16_2",
+       "at": 2.4000000000000004,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "n21_3",
+       "at": 2.8000000000000003,
+       "dur": 0.9
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "So next is 26!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "n26_4",
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "26",
+       "style": "count",
+       "at": 0.5,
+       "dur": 2
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "mouse",
+       "at": 0.8,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Make your own! Pick a start, like 3, and a rule, like add 10.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "n6_0"
+      },
+      {
+       "do": "hide",
+       "target": "n11_1"
+      },
+      {
+       "do": "hide",
+       "target": "n16_2"
+      },
+      {
+       "do": "hide",
+       "target": "n21_3"
+      },
+      {
+       "do": "hide",
+       "target": "n26_4"
+      },
+      {
+       "do": "caption",
+       "text": "start 3, rule +10",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "n3_0",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n3_0",
+       "at": 0.2,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n3_0",
+       "at": 0.2,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -2.475,
+         1.9,
+         -0.4
+        ],
+        [
+         -1.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n13_1",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n13_1",
+       "at": 0.8999999999999999,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n13_1",
+       "at": 0.8999999999999999,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.925,
+         1.9,
+         -0.4
+        ],
+        [
+         -0.5,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.5,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n23_2",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n23_2",
+       "at": 1.5999999999999999,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n23_2",
+       "at": 1.5999999999999999,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -1.375,
+         1.9,
+         -0.4
+        ],
+        [
+         0.6,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.1999999999999997,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "n33_3",
+       "to": [
+        -3.35,
+        0.45,
+        -0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "show",
+       "target": "n33_3",
+       "at": 2.3,
+       "dur": 0.15
+      },
+      {
+       "do": "path",
+       "target": "n33_3",
+       "at": 2.3,
+       "points": [
+        [
+         -3.35,
+         0.45,
+         -0.6
+        ],
+        [
+         -0.825,
+         1.9,
+         -0.4
+        ],
+        [
+         1.7,
+         0.9,
+         -0.2
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.9,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 0.3,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "3, 13, 23, 33. The tens digit grows by one each time!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "n3_0",
+       "at": 0.4,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "n13_1",
+       "at": 0.9,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "n23_2",
+       "at": 1.4,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "n33_3",
+       "at": 1.9,
+       "dur": 0.9
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 2.4,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p10",
+       "at": 2.9,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.4,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 2.8,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p10",
+       "at": 3.3,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.8,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 3.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p10",
+       "at": 3.7,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 3.2,
+       "volume": 0.35
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fix",
+   "title": "Challenge: Fix the machine",
+   "beats": [
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge mode! Find the next number.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "hide",
+       "target": "n3_0"
+      },
+      {
+       "do": "hide",
+       "target": "n13_1"
+      },
+      {
+       "do": "hide",
+       "target": "n23_2"
+      },
+      {
+       "do": "hide",
+       "target": "n33_3"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p10"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p10"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p10"
+      },
+      {
+       "do": "pop",
+       "target": "n30_0",
+       "at": 0.8,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n27_1",
+       "at": 1.05,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n24_2",
+       "at": 1.3,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n21_3",
+       "at": 1.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "q4",
+       "at": 1.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "f_shelf"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "30, 27, 24, 21, and then?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": "f_shelf",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Take away 3 every time. 21 take away 3 is 18!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_m3",
+       "at": 0.7,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.2,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_m3",
+       "at": 1.3,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.8,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_m3",
+       "at": 1.9,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.4,
+       "volume": 0.35
+      },
+      {
+       "do": "hide",
+       "target": "q4",
+       "at": 2
+      },
+      {
+       "do": "pop",
+       "target": "n18_4",
+       "at": 2.1
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 2.1,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_m3",
+       "at": 2.6,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.1,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Rule accepted.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next. Find the missing number.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_m3"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_m3"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_m3"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_m3"
+      },
+      {
+       "do": "hide",
+       "target": "n30_0"
+      },
+      {
+       "do": "hide",
+       "target": "n27_1"
+      },
+      {
+       "do": "hide",
+       "target": "n24_2"
+      },
+      {
+       "do": "hide",
+       "target": "n21_3"
+      },
+      {
+       "do": "hide",
+       "target": "n18_4"
+      },
+      {
+       "do": "pop",
+       "target": "n12_0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n22_2",
+       "at": 1.1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n27_3",
+       "at": 1.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "q1",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4,
+     "do": [
+      {
+       "do": "say",
+       "text": "22 to 27 is add 5. So 12 add 5 is 17. And 17 add 5 is 22!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p5",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "hide",
+       "target": "q1",
+       "at": 1.8
+      },
+      {
+       "do": "pop",
+       "target": "n17_1",
+       "at": 2
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 2.4,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p5",
+       "at": 2.9,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.4,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 3.4,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p5",
+       "at": 3.9,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 3.4,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Warning! Broken pattern. One number is wrong.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p5"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p5"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p5"
+      },
+      {
+       "do": "hide",
+       "target": "n12_0"
+      },
+      {
+       "do": "hide",
+       "target": "n17_1"
+      },
+      {
+       "do": "hide",
+       "target": "n22_2"
+      },
+      {
+       "do": "hide",
+       "target": "n27_3"
+      },
+      {
+       "do": "pop",
+       "target": "n6_0",
+       "at": 1.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n9_1",
+       "at": 1.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n12_2",
+       "at": 2.1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n14_3",
+       "at": 2.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n18_4",
+       "at": 2.6,
+       "sound": "pop"
+      },
+      {
+       "do": "sound",
+       "sound": "clang",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "machine",
+       "at": 0.4,
+       "deg": 5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which number is broken? Check every jump.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "f_shelf"
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Which one is broken?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 3.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Add 3, add 3, then add 2, then add 4. The jumps change at 14!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p3",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 1.1,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p3",
+       "at": 1.6,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.1,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.9000000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p2",
+       "at": 2.4000000000000004,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.9000000000000001,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 2.7,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_p4",
+       "at": 3.2,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.7,
+       "volume": 0.35
+      },
+      {
+       "do": "highlight",
+       "target": "n14_3",
+       "at": 3.4,
+       "dur": 1.6
+      },
+      {
+       "do": "mark",
+       "target": "n14_3",
+       "at": 3.6,
+       "result": "incorrect",
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "With add 3, 12 add 3 is 15. Swap in 15!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "n14_3",
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "j2_p2",
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "j3_p4",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "n15_3",
+       "at": 1.3
+      },
+      {
+       "do": "pop",
+       "target": "j2_p3",
+       "at": 1.5
+      },
+      {
+       "do": "pop",
+       "target": "j3_p3",
+       "at": 1.6
+      },
+      {
+       "do": "mark",
+       "target": "n15_3",
+       "at": 1.8,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Rule accepted! Machine fixed.",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "volume": 0.5
+      },
+      {
+       "do": "orbit",
+       "around": [
+        -4,
+        1,
+        -0.6
+       ],
+       "degrees": 25,
+       "dur": 3.5,
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": "f_mach",
+       "framing": "medium",
+       "dur": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! 10, 14, 18, 22. What comes next?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_p3"
+      },
+      {
+       "do": "hide",
+       "target": "n6_0"
+      },
+      {
+       "do": "hide",
+       "target": "n9_1"
+      },
+      {
+       "do": "hide",
+       "target": "n12_2"
+      },
+      {
+       "do": "hide",
+       "target": "n15_3"
+      },
+      {
+       "do": "hide",
+       "target": "n18_4"
+      },
+      {
+       "do": "pop",
+       "target": "n10_0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n14_1",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n18_2",
+       "at": 1.1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n22_3",
+       "at": 1.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "q4",
+       "at": 1.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_shelf",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "26. The rule is add 4.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "q4",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "n26_4",
+       "at": 0.3
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.6,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p4",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.6,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.95,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p4",
+       "at": 1.45,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.95,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.2999999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p4",
+       "at": 1.7999999999999998,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.2999999999999998,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc3",
+       "at": 1.65,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j3_p4",
+       "at": 2.15,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.65,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "What is the rule? 50, 40, 30, 20.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p4"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p4"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p4"
+      },
+      {
+       "do": "hide",
+       "target": "arc3"
+      },
+      {
+       "do": "hide",
+       "target": "j3_p4"
+      },
+      {
+       "do": "hide",
+       "target": "n10_0"
+      },
+      {
+       "do": "hide",
+       "target": "n14_1"
+      },
+      {
+       "do": "hide",
+       "target": "n18_2"
+      },
+      {
+       "do": "hide",
+       "target": "n22_3"
+      },
+      {
+       "do": "hide",
+       "target": "n26_4"
+      },
+      {
+       "do": "pop",
+       "target": "n50_0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n40_1",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n30_2",
+       "at": 1.1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n20_3",
+       "at": 1.35,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Take away 10.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_m10",
+       "at": 0.7,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.2,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.55,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_m10",
+       "at": 1.05,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.55,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 0.8999999999999999,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_m10",
+       "at": 1.4,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.8999999999999999,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "5, 8, something, 14. What's missing?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_m10"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_m10"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_m10"
+      },
+      {
+       "do": "hide",
+       "target": "n50_0"
+      },
+      {
+       "do": "hide",
+       "target": "n40_1"
+      },
+      {
+       "do": "hide",
+       "target": "n30_2"
+      },
+      {
+       "do": "hide",
+       "target": "n20_3"
+      },
+      {
+       "do": "pop",
+       "target": "n5_0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n8_1",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n14_3",
+       "at": 1.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "q2",
+       "at": 1.1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "11. The rule is add 3.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "q2",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "n11_2",
+       "at": 0.3
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.6,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p3",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.6,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 0.95,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p3",
+       "at": 1.45,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.95,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.2999999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p3",
+       "at": 1.7999999999999998,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.2999999999999998,
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is 2, 4, 7, 9 a pattern with one rule?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p3"
+      },
+      {
+       "do": "hide",
+       "target": "n5_0"
+      },
+      {
+       "do": "hide",
+       "target": "n8_1"
+      },
+      {
+       "do": "hide",
+       "target": "n11_2"
+      },
+      {
+       "do": "hide",
+       "target": "n14_3"
+      },
+      {
+       "do": "pop",
+       "target": "n2_0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n4_1",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n7_2",
+       "at": 1.1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n9_3",
+       "at": 1.35,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "No. The jumps are add 2, add 3, add 2. They change.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "arc0",
+       "at": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j0_p2",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc1",
+       "at": 1,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j1_p3",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1,
+       "volume": 0.35
+      },
+      {
+       "do": "draw",
+       "target": "arc2",
+       "at": 1.7,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "j2_p2",
+       "at": 2.2,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.7,
+       "volume": 0.35
+      },
+      {
+       "do": "mark",
+       "target": "j1_p3",
+       "at": 2.4,
+       "result": "incorrect",
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Start at 1 and add 2: 1, 3, 5, 7. Odd or even?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "arc0"
+      },
+      {
+       "do": "hide",
+       "target": "j0_p2"
+      },
+      {
+       "do": "hide",
+       "target": "arc1"
+      },
+      {
+       "do": "hide",
+       "target": "j1_p3"
+      },
+      {
+       "do": "hide",
+       "target": "arc2"
+      },
+      {
+       "do": "hide",
+       "target": "j2_p2"
+      },
+      {
+       "do": "hide",
+       "target": "n2_0"
+      },
+      {
+       "do": "hide",
+       "target": "n4_1"
+      },
+      {
+       "do": "hide",
+       "target": "n7_2"
+      },
+      {
+       "do": "hide",
+       "target": "n9_3"
+      },
+      {
+       "do": "pop",
+       "target": "n1_0",
+       "at": 1.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n3_1",
+       "at": 1.85,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "n5_2",
+       "at": 2.1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "n7_3",
+       "at": 2.35,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "All odd!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "odd",
+       "style": "label",
+       "at": 0.1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's remember. Find the jump. Check every step. Then continue the pattern, or fill the gap.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mach",
+        "f_shelf",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A rule can add or take away. Checked every step!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try it at home! Build block towers 2, 4 and 6 tall. How tall is the next one?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "Keep small blocks away from babies",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Rule accepted! Thank you, friends!",
+       "caption": true,
+       "who": "machine",
+       "voice": "robot"
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "volume": 0.4
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.7,
+       "volume": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "Dance"
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.8,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "Wave"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

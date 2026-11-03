@@ -1,0 +1,5553 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Toy Box Friends G2-14 (grade 2): needs (food, water, shelter, clothing) and wants, goods and services (the Basket Test), and choosing needs first when there are not enough tokens for everything.",
+ "meta": {
+  "title": "Needs and Wants Market",
+  "series": "toybox",
+  "episode": "g214",
+  "audience": "grade2",
+  "seed": 214,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "playful",
+  "musicGain": 0.2,
+  "skills": [
+   "needs_wants_2"
+  ],
+  "youtube": {
+   "title": "Needs and Wants for Kids! Goods and Services | Grade 2 Social Studies | Toy Box Friends",
+   "description": "Robo and Cat are getting ready for a sleep-out in the back garden, but Robo's shopping list only has fun things on it! At Bear's market stall we learn that needs are what we must have to live and stay healthy (food, water, shelter and warm clothing), and wants are nice extras. We sort things with the Can we live without it? test, use the Basket Test to tell goods (things you can hold) from services (work someone does for you), and help Robo choose with only 5 tokens: needs first, then one want. Ends with a quick-fire challenge and a quiz.\n\nFor second graders (C3 economics, grades K-2: needs and wants, goods and services, making choices).\n\nTry at home with a grown-up: cut pictures from a shop flyer and sort them into NEED and WANT. Ask a grown-up to help with the scissors.",
+   "tags": [
+    "needs and wants",
+    "goods and services",
+    "economics for kids",
+    "grade 2 social studies",
+    "2nd grade social studies",
+    "making choices",
+    "scarcity for kids",
+    "shopping for kids",
+    "money choices",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "need",
+    "title": "NEED OR WANT?",
+    "subtitle": "Can we live without it?",
+    "titleColor": "yellow",
+    "side": "top",
+    "badge": "GRADE 2",
+    "stage": "town",
+    "camera": {
+     "position": [
+      0,
+      1.25,
+      6
+     ],
+     "lookAt": [
+      0,
+      0.75,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "mat_n",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "green",
+      "material": "toy",
+      "at": [
+       -1.1,
+       0,
+       0.2
+      ],
+      "scale": [
+       1.6,
+       1,
+       1
+      ]
+     },
+     {
+      "id": "mat_w",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "sky",
+      "material": "toy",
+      "at": [
+       1.1,
+       0,
+       0.2
+      ],
+      "scale": [
+       1.6,
+       1,
+       1
+      ]
+     },
+     {
+      "id": "water",
+      "kind": "prop",
+      "model": "water_jug",
+      "size": 1.9,
+      "at": [
+       -1.15,
+       0.04,
+       0.2
+      ]
+     },
+     {
+      "id": "balloon",
+      "kind": "prop",
+      "model": "balloon",
+      "size": 0.7,
+      "at": [
+       1.1,
+       0.04,
+       0.2
+      ]
+     },
+     {
+      "id": "ln",
+      "kind": "letter",
+      "text": "NEED",
+      "color": "green",
+      "size": 0.3,
+      "at": [
+       -1.1,
+       0.06,
+       0.85
+      ]
+     },
+     {
+      "id": "lw",
+      "kind": "letter",
+      "text": "WANT",
+      "color": "blue",
+      "size": 0.3,
+      "at": [
+       1.1,
+       0.06,
+       0.85
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       -2.45,
+       0,
+       0.5
+      ],
+      "rotation": [
+       0,
+       25,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "surprised"
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 0.95,
+      "at": [
+       2.75,
+       0,
+       0.4
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "shop",
+    "title": "SMART SHOPPING",
+    "subtitle": "Needs first, then wants",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "town",
+    "camera": {
+     "position": [
+      1.3,
+      1.5,
+      6.6
+     ],
+     "lookAt": [
+      1.3,
+      1.1,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "stall",
+      "kind": "prop",
+      "model": "market_stall",
+      "size": 1,
+      "at": [
+       2.1,
+       0,
+       -0.9
+      ]
+     },
+     {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 0.95,
+      "at": [
+       2.85,
+       0,
+       0.1
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       3.95,
+       0,
+       0.8
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "clip": "ThumbsUp"
+     },
+     {
+      "id": "t1",
+      "kind": "prop",
+      "model": "token",
+      "size": 1.4,
+      "at": [
+       1.6,
+       0,
+       1.3
+      ]
+     },
+     {
+      "id": "t2",
+      "kind": "prop",
+      "model": "token",
+      "size": 1.4,
+      "at": [
+       2.05,
+       0,
+       1.4
+      ]
+     },
+     {
+      "id": "t3",
+      "kind": "prop",
+      "model": "token",
+      "size": 1.4,
+      "at": [
+       2.5,
+       0,
+       1.5
+      ]
+     }
+    ]
+   },
+   {
+    "name": "goods",
+    "title": "GOODS OR SERVICES?",
+    "subtitle": "The Basket Test",
+    "titleColor": "orange",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "town",
+    "camera": {
+     "position": [
+      1.2,
+      1.3,
+      5.6
+     ],
+     "lookAt": [
+      1.2,
+      0.9,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "basket",
+      "kind": "prop",
+      "model": "basket",
+      "size": 2,
+      "at": [
+       2,
+       0,
+       0.3
+      ]
+     },
+     {
+      "id": "apple",
+      "kind": "prop",
+      "model": "apple",
+      "size": 0.5,
+      "at": [
+       1.85,
+       0.35,
+       0.3
+      ]
+     },
+     {
+      "id": "socks",
+      "kind": "prop",
+      "model": "socks",
+      "size": 1.1,
+      "at": [
+       2.25,
+       0.4,
+       0.35
+      ]
+     },
+     {
+      "id": "bus",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "sky",
+      "material": "toy",
+      "at": [
+       2,
+       1.75,
+       0.3
+      ],
+      "rotation": [
+       90,
+       0,
+       0
+      ],
+      "scale": [
+       1.4,
+       1,
+       0.45
+      ]
+     },
+     {
+      "id": "bus_txt",
+      "kind": "letter",
+      "text": "BUS RIDE",
+      "color": "ink",
+      "size": 0.22,
+      "at": [
+       2,
+       1.65,
+       0.37
+      ]
+     },
+     {
+      "id": "cross",
+      "kind": "shape",
+      "shape": "cross",
+      "color": "red",
+      "material": "glossy",
+      "at": [
+       2.85,
+       1.95,
+       0.45
+      ],
+      "size": 0.35
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 1,
+      "at": [
+       3.7,
+       0,
+       0.6
+      ],
+      "rotation": [
+       0,
+       -35,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "town"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.6,
+   11.5
+  ],
+  "lookAt": [
+   0,
+   1.4,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "stall",
+   "kind": "prop",
+   "model": "market_stall",
+   "size": 1.25,
+   "at": [
+    0,
+    0,
+    -2.3
+   ]
+  },
+  {
+   "id": "counter",
+   "kind": "shape",
+   "shape": "box",
+   "color": "wood",
+   "material": "matte",
+   "at": [
+    0,
+    0,
+    0.2
+   ],
+   "scale": [
+    6,
+    0.8,
+    0.95
+   ]
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -4.3,
+    0,
+    0.9
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "size": 0.9,
+   "at": [
+    -3.25,
+    0,
+    1.75
+   ],
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "bear",
+   "kind": "critter",
+   "species": "bear",
+   "size": 1.05,
+   "at": [
+    3.85,
+    0,
+    -0.5
+   ],
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "list",
+   "kind": "text_card",
+   "text": "Robo's list:\nballoon\nkite\ncupcake\ntoy robot\nmore balloons!",
+   "width": 1.6,
+   "size": 0.16,
+   "at": [
+    -1.6,
+    0.8,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "water",
+   "kind": "prop",
+   "model": "water_jug",
+   "size": 1.2,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sandwich",
+   "kind": "prop",
+   "model": "sandwich",
+   "size": 2.6,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "apple",
+   "kind": "prop",
+   "model": "apple",
+   "size": 0.45,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "banana",
+   "kind": "prop",
+   "model": "banana",
+   "size": 2.2,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "socks",
+   "kind": "prop",
+   "model": "socks",
+   "size": 1.1,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mittens",
+   "kind": "prop",
+   "model": "mittens",
+   "size": 1.05,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "balloon",
+   "kind": "prop",
+   "model": "balloon",
+   "size": 0.45,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kite",
+   "kind": "prop",
+   "model": "kite",
+   "size": 0.45,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cupcake",
+   "kind": "prop",
+   "model": "cupcake",
+   "size": 2.2,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ball",
+   "kind": "prop",
+   "model": "ball",
+   "size": 0.45,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ttent",
+   "kind": "prop",
+   "model": "tent",
+   "size": 0.42,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab0",
+   "kind": "letter",
+   "text": "FOOD",
+   "color": "white",
+   "size": 0.12,
+   "depth": 0.06,
+   "at": [
+    -2.25,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab1",
+   "kind": "letter",
+   "text": "WATER",
+   "color": "white",
+   "size": 0.12,
+   "depth": 0.06,
+   "at": [
+    -0.75,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab2",
+   "kind": "letter",
+   "text": "CLOTHING",
+   "color": "white",
+   "size": 0.12,
+   "depth": 0.06,
+   "at": [
+    0.75,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab3",
+   "kind": "letter",
+   "text": "SHELTER",
+   "color": "white",
+   "size": 0.12,
+   "depth": 0.06,
+   "at": [
+    2.25,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tray_need",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "green",
+   "material": "toy",
+   "at": [
+    -1.5,
+    0.8,
+    0.2
+   ],
+   "scale": [
+    2.6,
+    1,
+    0.85
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tray_want",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "sky",
+   "material": "toy",
+   "at": [
+    1.5,
+    0.8,
+    0.2
+   ],
+   "scale": [
+    2.6,
+    1,
+    0.85
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab_need",
+   "kind": "letter",
+   "text": "NEED",
+   "color": "white",
+   "size": 0.3,
+   "depth": 0.06,
+   "at": [
+    -1.5,
+    0.28,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab_want",
+   "kind": "letter",
+   "text": "WANT",
+   "color": "white",
+   "size": 0.3,
+   "depth": 0.06,
+   "at": [
+    1.5,
+    0.28,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "basket",
+   "kind": "prop",
+   "model": "basket",
+   "size": 1.7,
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bus",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "sky",
+   "material": "toy",
+   "at": [
+    0,
+    2.2,
+    0.3
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    1.3,
+    1,
+    0.42
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bus_txt",
+   "kind": "letter",
+   "text": "BUS RIDE",
+   "color": "ink",
+   "size": 0.2,
+   "depth": 0.05,
+   "at": [
+    0,
+    2.1,
+    0.36
+   ],
+   "hidden": true
+  },
+  {
+   "id": "oil",
+   "kind": "prop",
+   "model": "oil_can",
+   "size": 0.9,
+   "at": [
+    3.1,
+    0.8,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tok1",
+   "kind": "prop",
+   "model": "token",
+   "size": 1.1,
+   "at": [
+    -2.75,
+    0.8,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tok2",
+   "kind": "prop",
+   "model": "token",
+   "size": 1.1,
+   "at": [
+    -2.37,
+    0.8,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tok3",
+   "kind": "prop",
+   "model": "token",
+   "size": 1.1,
+   "at": [
+    -1.99,
+    0.8,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tok4",
+   "kind": "prop",
+   "model": "token",
+   "size": 1.1,
+   "at": [
+    -1.61,
+    0.8,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tok5",
+   "kind": "prop",
+   "model": "token",
+   "size": 1.1,
+   "at": [
+    -1.23,
+    0.8,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_water",
+   "kind": "letter",
+   "text": "1",
+   "color": "yellow",
+   "size": 0.28,
+   "depth": 0.06,
+   "at": [
+    -0.75,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_sandwich",
+   "kind": "letter",
+   "text": "2",
+   "color": "yellow",
+   "size": 0.28,
+   "depth": 0.06,
+   "at": [
+    -0.05,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_socks",
+   "kind": "letter",
+   "text": "1",
+   "color": "yellow",
+   "size": 0.28,
+   "depth": 0.06,
+   "at": [
+    0.65,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_cupcake",
+   "kind": "letter",
+   "text": "1",
+   "color": "yellow",
+   "size": 0.28,
+   "depth": 0.06,
+   "at": [
+    1.3,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_balloon",
+   "kind": "letter",
+   "text": "1",
+   "color": "yellow",
+   "size": 0.28,
+   "depth": 0.06,
+   "at": [
+    1.9,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_kite",
+   "kind": "letter",
+   "text": "3",
+   "color": "yellow",
+   "size": 0.28,
+   "depth": 0.06,
+   "at": [
+    2.55,
+    0.3,
+    0.69
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q1",
+   "kind": "text_card",
+   "text": "A warm coat on a snowy day",
+   "width": 3.6,
+   "size": 0.24,
+   "at": [
+    -0.5,
+    0.85,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q2",
+   "kind": "text_card",
+   "text": "A video game",
+   "width": 3.6,
+   "size": 0.24,
+   "at": [
+    -0.5,
+    0.85,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q3",
+   "kind": "text_card",
+   "text": "A check-up at the doctor",
+   "width": 3.6,
+   "size": 0.24,
+   "at": [
+    -0.5,
+    0.85,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q4",
+   "kind": "text_card",
+   "text": "A skateboard",
+   "width": 3.6,
+   "size": 0.24,
+   "at": [
+    -0.5,
+    0.85,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q5",
+   "kind": "text_card",
+   "text": "A bus ride to school",
+   "width": 3.6,
+   "size": 0.24,
+   "at": [
+    -0.5,
+    0.85,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "skate",
+   "kind": "prop",
+   "model": "skateboard",
+   "size": 1.1,
+   "at": [
+    2.4,
+    0.8,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tent",
+   "kind": "prop",
+   "model": "tent",
+   "size": 1,
+   "at": [
+    -1.4,
+    0,
+    -0.6
+   ],
+   "rotation": [
+    0,
+    15,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "moon",
+   "kind": "prop",
+   "model": "moon",
+   "size": 0.8,
+   "at": [
+    2.4,
+    2.8,
+    -4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sky",
+   "kind": "stars",
+   "count": 120,
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 120,
+   "area": [
+    9,
+    4
+   ],
+   "colors": [
+    "yellow",
+    "orange",
+    "green",
+    "sky"
+   ]
+  },
+  {
+   "id": "f_counter",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0,
+    0.2
+   ],
+   "scale": [
+    6,
+    1.9,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_mid",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.8,
+    0.2
+   ],
+   "scale": [
+    3.4,
+    1.7,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_list",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -1.6,
+    0.8,
+    0.35
+   ],
+   "scale": [
+    1.8,
+    1.2,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_card",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.8,
+    0.3
+   ],
+   "scale": [
+    3.8,
+    1.5,
+    0.3
+   ],
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hook",
+   "title": "Robo's shopping list",
+   "beats": [
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "stall",
+        "robo",
+        "cat",
+        "bear"
+       ],
+       "framing": "medium",
+       "dur": 0
+      },
+      {
+       "do": "caption",
+       "text": "Needs and Wants Market",
+       "style": "title",
+       "at": 0.3,
+       "dur": 2.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking"
+      },
+      {
+       "do": "path",
+       "target": "robo",
+       "points": [
+        [
+         -5.6,
+         0,
+         1.4
+        ],
+        [
+         -4.3,
+         0,
+         0.9
+        ]
+       ],
+       "dur": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 1.6,
+       "clip": "Wave"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Good morning! Welcome to my market stall.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": "robo"
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bear",
+        "stall"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cat and I are having a sleep-out in a tent tonight, in the back garden.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "cat",
+        "f_list"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.4
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 3.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here is my shopping list. Balloon, kite, cupcake, a toy robot, more balloons!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "list",
+       "at": 0.3
+      },
+      {
+       "do": "emphasize",
+       "target": "list",
+       "at": 1.3,
+       "words": "balloon",
+       "dur": 0.4
+      },
+      {
+       "do": "emphasize",
+       "target": "list",
+       "at": 1.9,
+       "words": "kite",
+       "dur": 0.3
+      },
+      {
+       "do": "emphasize",
+       "target": "list",
+       "at": 2.4,
+       "words": "cupcake",
+       "dur": 0.4
+      },
+      {
+       "do": "emphasize",
+       "target": "list",
+       "at": 3.1,
+       "words": "toy robot",
+       "dur": 0.4
+      },
+      {
+       "do": "emphasize",
+       "target": "list",
+       "at": 3.8,
+       "words": "more balloons",
+       "dur": 0.5
+      },
+      {
+       "do": "shot",
+       "target": "f_list",
+       "framing": "medium",
+       "at": 0.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Robo, what will we drink? What will keep us warm tonight?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "list"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "cat",
+        "robo",
+        "f_list"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oh. I only wrote down fun things.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.1,
+       "feeling": "surprised"
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.6,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's learn the difference between needs and wants.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 1,
+       "feeling": "happy"
+      },
+      {
+       "do": "hide",
+       "target": "list",
+       "at": 2.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "needs",
+   "title": "Needs: what we must have",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Needs are things we must have to live and stay healthy.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "need",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "We need food. Food gives us energy to live and grow.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "sandwich",
+       "to": [
+        -2.5,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "sandwich",
+       "at": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "apple",
+       "to": [
+        -1.9,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "apple",
+       "at": 0.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "lab0",
+       "at": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "sandwich",
+       "at": 1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "We need water. Our bodies need water every day.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -0.75,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "lab1",
+       "at": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "water",
+       "at": 0.8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "We need clothing that keeps us warm and safe in the weather.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "socks",
+       "to": [
+        0.43,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "socks",
+       "at": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "mittens",
+       "to": [
+        1.08,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "mittens",
+       "at": 0.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "lab2",
+       "at": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "mittens",
+       "at": 1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "And we need shelter. Shelter keeps us safe and dry.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "ttent",
+       "to": [
+        2.25,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "ttent",
+       "at": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "lab3",
+       "at": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "ttent",
+       "at": 0.8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food, water, clothing, shelter. Four needs!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "lab0",
+       "at": 0.5,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "lab1",
+       "at": 1,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "lab2",
+       "at": 1.5,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "lab3",
+       "at": 2.1,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's my test. Ask: can we live and stay healthy without it?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "Can we live without it?",
+       "style": "label",
+       "dur": 4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mid",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water. Can we live without water?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "sandwich"
+      },
+      {
+       "do": "hide",
+       "target": "apple"
+      },
+      {
+       "do": "hide",
+       "target": "socks"
+      },
+      {
+       "do": "hide",
+       "target": "mittens"
+      },
+      {
+       "do": "hide",
+       "target": "ttent"
+      },
+      {
+       "do": "hide",
+       "target": "lab0"
+      },
+      {
+       "do": "hide",
+       "target": "lab1"
+      },
+      {
+       "do": "hide",
+       "target": "lab2"
+      },
+      {
+       "do": "hide",
+       "target": "lab3"
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "at": 0.2,
+       "to": [
+        -0.8,
+        0.8,
+        0.2
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        0.9,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "balloon",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": "f_mid",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! So water is a need.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "water",
+       "at": 0.3,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "People can go weeks without food, but only a few days without water.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "water",
+       "at": 0.4,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "A balloon. Can we live without a balloon?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "balloon"
+      },
+      {
+       "do": "wiggle",
+       "target": "balloon",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes, we can. So a balloon is a want.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "balloon",
+       "at": 0.3,
+       "result": "incorrect",
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "want",
+       "style": "label",
+       "at": 0.3,
+       "dur": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wants",
+   "title": "Wants: nice extras",
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wants are nice extras. Fun, but we can live without them.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "water"
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        -1.5,
+        0.8,
+        0.2
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "kite",
+       "to": [
+        -0.5,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "kite",
+       "at": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "ball",
+       "to": [
+        0.5,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "ball",
+       "at": 0.65,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "cupcake",
+       "to": [
+        1.4,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "cupcake",
+       "at": 0.9,
+       "sound": "pop"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_mid",
+        "robo"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "want = a nice extra",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "A balloon, a kite, a ball. Wants!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "balloon",
+       "at": 0.3,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "kite",
+       "at": 1.1,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "ball",
+       "at": 1.8,
+       "dur": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "balloon",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Are wants bad? Oh no, I love my wants!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.2,
+       "feeling": "worried"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wants are fine! They're just not musts. We get needs first.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.5,
+       "feeling": "happy"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "What about the cupcake? It's food, and food is a need.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "cupcake",
+       "at": 0.3,
+       "dur": 2.4
+      },
+      {
+       "do": "shot",
+       "target": "cupcake",
+       "framing": "close",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 12
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Need or want?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food is a need, but a cupcake is a treat. The treat is extra, so it's a want.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "cupcake"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "So a sandwich is a need, and a cupcake is a want. Got it!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "sandwich",
+       "to": [
+        -2.4,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "sandwich",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.6,
+       "clip": "ThumbsUp"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sort",
+   "title": "The Needs Sorter",
+   "beats": [
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's sort eight things. Green mat for needs, blue mat for wants.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "balloon"
+      },
+      {
+       "do": "hide",
+       "target": "kite"
+      },
+      {
+       "do": "hide",
+       "target": "ball"
+      },
+      {
+       "do": "hide",
+       "target": "cupcake"
+      },
+      {
+       "do": "hide",
+       "target": "sandwich"
+      },
+      {
+       "do": "pop",
+       "target": "tray_need",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "tray_want",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "lab_need",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "lab_want",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 18
+      }
+     ]
+    },
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "I'll do it fast! Water, sandwich, apple on need.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -0.4,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 0.1,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "at": 0.6,
+       "to": [
+        -2.5,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sandwich",
+       "to": [
+        -0.3,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "sandwich",
+       "at": 0.2,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "sandwich",
+       "at": 1.2,
+       "to": [
+        -1.95,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "apple",
+       "to": [
+        -0.2,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "apple",
+       "at": 0.30000000000000004,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "apple",
+       "at": 1.7999999999999998,
+       "to": [
+        -1.4,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.8,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Balloon on want. Kite on need!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        0,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "kite",
+       "to": [
+        0.2,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "balloon",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "kite",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "at": 0.4,
+       "to": [
+        0.55,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "kite",
+       "at": 1.4,
+       "to": [
+        -0.85,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Mittens on want. Socks on need, cupcake on want. Done!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "mittens",
+       "to": [
+        -0.2,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "mittens",
+       "at": 0.1,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "mittens",
+       "at": 0.4,
+       "to": [
+        1.15,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "socks",
+       "to": [
+        0,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "socks",
+       "at": 0.1,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "socks",
+       "at": 1.2000000000000002,
+       "to": [
+        -0.45,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cupcake",
+       "to": [
+        0.2,
+        2.2,
+        2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "cupcake",
+       "at": 0.1,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "cupcake",
+       "at": 2,
+       "to": [
+        1.75,
+        0.8,
+        0.25
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 2.6,
+       "clip": "Jump"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let me check. The kite is on need.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "kite"
+      },
+      {
+       "do": "highlight",
+       "target": "kite",
+       "at": 0.6,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "tray_need",
+        "lab_need"
+       ],
+       "framing": "close",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "I need it! I really, really want it!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "hop",
+       "target": "robo",
+       "at": 0.5,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Could you live and stay healthy without a kite?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes. So the kite is a want.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "kite",
+       "at": 0.2,
+       "result": "incorrect"
+      },
+      {
+       "do": "move",
+       "target": "kite",
+       "at": 1,
+       "to": [
+        2.9,
+        0.8,
+        0.25
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1,
+       "volume": 0.4
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.6,
+       "dur": 1.2,
+       "height": 18
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the mittens? We're sleeping outside on a cool night.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "mittens",
+       "at": 0.4,
+       "dur": 2.2
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "mittens"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Mittens keep us warm, so tonight they are a need.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "mittens",
+       "at": 0.3,
+       "result": "correct"
+      },
+      {
+       "do": "move",
+       "target": "mittens",
+       "at": 1.2,
+       "to": [
+        -0.1,
+        0.8,
+        0.25
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.2,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Clothes that keep us warm are needs. A fancy costume would be a want.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Five needs, three wants. Sorted!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "tray_need",
+       "at": 0.4,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "tray_want",
+       "at": 1.4,
+       "dur": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.6,
+       "volume": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "goods",
+   "title": "Goods and services",
+   "beats": [
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "At my stall, you can buy goods. Goods are things you can hold.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "hide",
+       "target": "tray_need"
+      },
+      {
+       "do": "hide",
+       "target": "tray_want"
+      },
+      {
+       "do": "hide",
+       "target": "lab_need"
+      },
+      {
+       "do": "hide",
+       "target": "lab_want"
+      },
+      {
+       "do": "hide",
+       "target": "water"
+      },
+      {
+       "do": "hide",
+       "target": "sandwich"
+      },
+      {
+       "do": "hide",
+       "target": "balloon"
+      },
+      {
+       "do": "hide",
+       "target": "kite"
+      },
+      {
+       "do": "hide",
+       "target": "mittens"
+      },
+      {
+       "do": "hide",
+       "target": "cupcake"
+      },
+      {
+       "do": "move",
+       "target": "apple",
+       "to": [
+        -1.3,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "socks",
+       "to": [
+        1.3,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_counter",
+        "bear"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "goods = things you can hold",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's the Basket Test. If it fits in the basket, it's a good.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "basket",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "f_mid",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 20
+      },
+      {
+       "do": "caption",
+       "text": "Can it go in the basket?",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "path",
+       "target": "apple",
+       "points": [
+        [
+         -1.3,
+         0.8,
+         0.2
+        ],
+        [
+         -0.6,
+         2,
+         0.2
+        ],
+        [
+         0,
+         0.9,
+         0.2
+        ]
+       ],
+       "dur": 0.9
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 0.9,
+       "volume": 0.6
+      },
+      {
+       "do": "path",
+       "target": "socks",
+       "at": 1,
+       "points": [
+        [
+         1.3,
+         0.8,
+         0.2
+        ],
+        [
+         0.6,
+         2,
+         0.2
+        ],
+        [
+         0.05,
+         0.92,
+         0.2
+        ]
+       ],
+       "dur": 0.9
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 1.9,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "An apple and socks. Goods! Now I'll put in a bus ride.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "basket",
+       "at": 0.3,
+       "dur": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "bus",
+       "at": 2.2
+      },
+      {
+       "do": "pop",
+       "target": "bus_txt",
+       "at": 2.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Can a bus ride go in the basket?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      },
+      {
+       "do": "move",
+       "target": "bus",
+       "at": 0.3,
+       "to": [
+        0,
+        1.75,
+        0.3
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "bus_txt",
+       "at": 0.3,
+       "to": [
+        0,
+        1.65,
+        0.36
+       ],
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! You can't hold a ride. A bus ride is a service.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "bus_txt",
+       "at": 0.3,
+       "result": "incorrect"
+      },
+      {
+       "do": "caption",
+       "text": "service",
+       "style": "label",
+       "at": 1.2,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A service is work someone does for you.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "services = work someone does for you",
+       "style": "label",
+       "at": 0.2,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Like a haircut, or a check-up at the doctor's!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "bus",
+       "at": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "bus_txt",
+       "at": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oh! My knee is squeaky.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "at": 0.3,
+       "to": [
+        -1.9,
+        0,
+        2.4
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 0.2,
+       "volume": 0.7
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 1,
+       "volume": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "robo",
+       "at": 0.2,
+       "height": 0.08
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.5,
+       "feeling": "worried"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "I can fix that. Oiling your knee is my service.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "path",
+       "target": "bear",
+       "at": 0.2,
+       "points": [
+        [
+         3.85,
+         0,
+         -0.5
+        ],
+        [
+         3.4,
+         0,
+         1.2
+        ],
+        [
+         -3.25,
+         0,
+         0.6
+        ]
+       ],
+       "dur": 2.4,
+       "face": true
+      },
+      {
+       "do": "pop",
+       "target": "oil",
+       "at": 2.6
+      },
+      {
+       "do": "move",
+       "target": "oil",
+       "at": 2.6,
+       "to": [
+        -3.75,
+        0.45,
+        1.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "bear",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 1,
+       "dur": 1.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 2,
+       "to": "bear"
+      },
+      {
+       "do": "turn",
+       "target": "bear",
+       "at": 2.6,
+       "to": [
+        0,
+        -90,
+        0
+       ],
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "wiggle",
+       "target": "oil",
+       "at": 0.1,
+       "deg": 20
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "pour",
+       "at": 0.6,
+       "volume": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 1.2,
+       "feeling": "happy"
+      },
+      {
+       "do": "hop",
+       "target": "robo",
+       "at": 1.4,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "No more squeak! Here is one token for your work.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "tok1",
+       "to": [
+        -3.4,
+        0.9,
+        1.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok1",
+       "at": 0.6
+      },
+      {
+       "do": "path",
+       "target": "tok1",
+       "at": 1.4,
+       "points": [
+        [
+         -3.4,
+         0.9,
+         1.2
+        ],
+        [
+         -3.3,
+         1.5,
+         1
+        ],
+        [
+         -3.25,
+         0.9,
+         0.85
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "cha_ching",
+       "at": 2.8,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "oil",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Robo paid for work, not for a thing. That's a service.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "tok1",
+       "at": 0.3
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 0.8
+      },
+      {
+       "do": "path",
+       "target": "bear",
+       "at": 1.2,
+       "points": [
+        [
+         -3.25,
+         0,
+         0.6
+        ],
+        [
+         3.4,
+         0,
+         1.2
+        ],
+        [
+         3.85,
+         0,
+         -0.5
+        ]
+       ],
+       "dur": 2.2,
+       "face": true
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "at": 2,
+       "to": [
+        -3.25,
+        0,
+        1.75
+       ],
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "bear",
+       "at": 3.4,
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Market chant",
+   "musicGain": 0.24,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "basket"
+      },
+      {
+       "do": "hide",
+       "target": "apple"
+      },
+      {
+       "do": "hide",
+       "target": "socks"
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -1,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        1,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "balloon",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "cat",
+        "water",
+        "balloon"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "orbit",
+       "around": [
+        -1.5,
+        1,
+        0.6
+       ],
+       "degrees": 18,
+       "dur": 14,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Need it to live?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "water",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Put it first!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "water",
+       "at": 0.2,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Want it for fun?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "balloon",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wait your turn!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "balloon",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Dance"
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hug yourself for a need. Wave your hand for a want!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.6,
+       "height": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 2.4,
+       "clip": "Wave"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tokens",
+   "title": "The Five-Token Choice",
+   "beats": [
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Prices today. Water 1 token, sandwich 2, socks 1.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "hide",
+       "target": "water"
+      },
+      {
+       "do": "hide",
+       "target": "balloon"
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -0.75,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "sandwich",
+       "to": [
+        -0.05,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "sandwich",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "socks",
+       "to": [
+        0.65,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "socks",
+       "at": 0.8999999999999999,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "p_water",
+       "at": 1.2,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "p_sandwich",
+       "at": 1.7999999999999998,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "p_socks",
+       "at": 2.4,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 14
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cupcake 1, balloon 1, and the kite costs 3 tokens.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "move",
+       "target": "cupcake",
+       "to": [
+        1.3,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "cupcake",
+       "at": 0.2,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        1.9,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "balloon",
+       "at": 0.5,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "kite",
+       "to": [
+        2.55,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "kite",
+       "at": 0.8,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "p_cupcake",
+       "at": 0.9,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "p_balloon",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "p_kite",
+       "at": 2.1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "I have 5 tokens. Will that be enough for everything?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "tok1",
+       "to": [
+        -2.75,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok1",
+       "at": 0.62,
+       "sound": "clink"
+      },
+      {
+       "do": "move",
+       "target": "tok2",
+       "to": [
+        -2.37,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok2",
+       "at": 0.74,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "tok3",
+       "to": [
+        -1.99,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok3",
+       "at": 0.86,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "tok4",
+       "to": [
+        -1.61,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok4",
+       "at": 0.98,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "tok5",
+       "to": [
+        -1.23,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok5",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 0.6,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Is 5 tokens enough?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "No. Everything costs 9 tokens. So we must choose. Needs first!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "not enough for everything",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water, 1 token.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "tok5",
+       "at": 0.2,
+       "points": [
+        [
+         -1.23,
+         0.8,
+         0.35
+        ],
+        [
+         -1,
+         1.6,
+         0.4
+        ],
+        [
+         -0.75,
+         0.8,
+         0.55
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "cha_ching",
+       "at": 1,
+       "volume": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "4 left",
+       "style": "count",
+       "at": 1,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Sandwich, 2 tokens.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "tok4",
+       "at": 0.1,
+       "points": [
+        [
+         -1.61,
+         0.8,
+         0.35
+        ],
+        [
+         -0.6,
+         1.6,
+         0.4
+        ],
+        [
+         -0.22,
+         0.8,
+         0.55
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "path",
+       "target": "tok3",
+       "at": 0.4,
+       "points": [
+        [
+         -1.99,
+         0.8,
+         0.35
+        ],
+        [
+         -0.6,
+         1.8,
+         0.4
+        ],
+        [
+         0.12,
+         0.8,
+         0.55
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "cha_ching",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "2 left",
+       "style": "count",
+       "at": 1.2,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Warm socks, 1 token.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "tok2",
+       "at": 0.2,
+       "points": [
+        [
+         -2.37,
+         0.8,
+         0.35
+        ],
+        [
+         -0.2,
+         1.8,
+         0.4
+        ],
+        [
+         0.65,
+         0.8,
+         0.55
+        ]
+       ],
+       "dur": 0.9
+      },
+      {
+       "do": "sound",
+       "sound": "cha_ching",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "1 left",
+       "style": "count",
+       "at": 1.1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four tokens for needs. Five take away four leaves one token.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "tok1",
+       "at": 0.5,
+       "dur": 2
+      },
+      {
+       "do": "caption",
+       "text": "5 - 4 = 1",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "One token left. The balloon or the cupcake?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "tok1",
+       "to": [
+        -2.75,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok1",
+       "at": 0.1,
+       "sound": false
+      },
+      {
+       "do": "highlight",
+       "target": "balloon",
+       "at": 0.6,
+       "dur": 1.5
+      },
+      {
+       "do": "highlight",
+       "target": "cupcake",
+       "at": 1.6,
+       "dur": 1.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "cupcake",
+        "balloon",
+        "tok1",
+        "kite"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Not both. And the kite costs 3 tokens, too much today.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "kite",
+       "at": 0.6,
+       "result": "incorrect"
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hmm. It's hard to choose. I'll pick the balloon!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.1,
+       "feeling": "worried"
+      },
+      {
+       "do": "path",
+       "target": "tok1",
+       "at": 1.4,
+       "points": [
+        [
+         -2.75,
+         0.8,
+         0.35
+        ],
+        [
+         0,
+         2,
+         0.4
+        ],
+        [
+         1.9,
+         0.8,
+         0.55
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "cha_ching",
+       "at": 2.4,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 2.4,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Choosing means giving something up. That's okay. We can save for the kite.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "kite"
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact! The word economy comes from a Greek word for running a home.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.6,
+       "clip": "Yes"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: Need, Want, Good or Service?",
+   "beats": [
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quick-fire challenge! Is it a need or a want? A good or a service?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "water"
+      },
+      {
+       "do": "hide",
+       "target": "p_water"
+      },
+      {
+       "do": "hide",
+       "target": "sandwich"
+      },
+      {
+       "do": "hide",
+       "target": "p_sandwich"
+      },
+      {
+       "do": "hide",
+       "target": "socks"
+      },
+      {
+       "do": "hide",
+       "target": "p_socks"
+      },
+      {
+       "do": "hide",
+       "target": "cupcake"
+      },
+      {
+       "do": "hide",
+       "target": "p_cupcake"
+      },
+      {
+       "do": "hide",
+       "target": "balloon"
+      },
+      {
+       "do": "hide",
+       "target": "p_balloon"
+      },
+      {
+       "do": "hide",
+       "target": "kite"
+      },
+      {
+       "do": "hide",
+       "target": "p_kite"
+      },
+      {
+       "do": "hide",
+       "target": "tok1"
+      },
+      {
+       "do": "hide",
+       "target": "tok2"
+      },
+      {
+       "do": "hide",
+       "target": "tok3"
+      },
+      {
+       "do": "hide",
+       "target": "tok4"
+      },
+      {
+       "do": "hide",
+       "target": "tok5"
+      },
+      {
+       "do": "shot",
+       "target": "f_card",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": 0.6,
+       "to": "f_card"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A warm coat on a snowy day.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "q1"
+      },
+      {
+       "do": "move",
+       "target": "mittens",
+       "to": [
+        2.3,
+        0.8,
+        0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "mittens",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A need, because it keeps us warm. And a good: you can hold it.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "need + good",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "mark",
+       "target": "q1",
+       "at": 0.4,
+       "result": "correct",
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.4,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q1"
+      },
+      {
+       "do": "hide",
+       "target": "mittens"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A video game.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "q2"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A want. It's fun, but we can live without it. And it's a good.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "want + good",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.4,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q2"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A check-up at the doctor.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "q3"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A service: the doctor does the work. And staying healthy is a need.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "service + need",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "mark",
+       "target": "q3",
+       "at": 0.4,
+       "result": "correct",
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.4,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q3"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A skateboard.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "q4"
+      },
+      {
+       "do": "move",
+       "target": "skate",
+       "to": [
+        2.3,
+        0.8,
+        0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "skate",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A want, and a good. You can hold a skateboard.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "want + good",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.4,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q4"
+      },
+      {
+       "do": "hide",
+       "target": "skate"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A bus ride to school.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "q5"
+      },
+      {
+       "do": "pop",
+       "target": "bus",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "bus_txt",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "bus",
+       "to": [
+        2.3,
+        1.35,
+        0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "bus_txt",
+       "to": [
+        2.3,
+        1.25,
+        0.36
+       ],
+       "dur": 0
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A service! Someone drives the bus for you.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "service",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "mark",
+       "target": "q5",
+       "at": 0.4,
+       "result": "correct",
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.4,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q5"
+      },
+      {
+       "do": "hide",
+       "target": "bus"
+      },
+      {
+       "do": "hide",
+       "target": "bus_txt"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Great sorting! You know needs, wants, goods and services.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_counter",
+        "robo",
+        "cat",
+        "bear"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "ThumbsUp"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! Name two needs.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "sandwich",
+       "to": [
+        -2.25,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "sandwich",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -0.75,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 0.75,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "socks",
+       "to": [
+        0.75,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "socks",
+       "at": 0.8999999999999999,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "ttent",
+       "to": [
+        2.25,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "ttent",
+       "at": 1.0499999999999998,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food, water, clothing and shelter. Any two!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "lab0",
+       "at": 0.3,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "lab1",
+       "at": 0.7,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "lab2",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "lab3",
+       "at": 1.5000000000000002,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is a balloon a need or a want?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "sandwich"
+      },
+      {
+       "do": "hide",
+       "target": "water"
+      },
+      {
+       "do": "hide",
+       "target": "socks"
+      },
+      {
+       "do": "hide",
+       "target": "ttent"
+      },
+      {
+       "do": "hide",
+       "target": "lab0"
+      },
+      {
+       "do": "hide",
+       "target": "lab1"
+      },
+      {
+       "do": "hide",
+       "target": "lab2"
+      },
+      {
+       "do": "hide",
+       "target": "lab3"
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        0,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "balloon",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "f_mid",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A want!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "want",
+       "style": "label",
+       "at": 0.1,
+       "dur": 2
+      },
+      {
+       "do": "wiggle",
+       "target": "balloon",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is a haircut a good or a service?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "balloon"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A service. It's work someone does for you.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "service",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "I have 3 tokens. Water costs 1, a sandwich 2, a kite 3. What should I buy?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": "f_counter",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -1.2,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 0.5,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "sandwich",
+       "to": [
+        0,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "sandwich",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "kite",
+       "to": [
+        1.2,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "kite",
+       "at": 1.1,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "tok1",
+       "to": [
+        -2.75,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok1",
+       "at": 1.7000000000000002,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "tok2",
+       "to": [
+        -2.37,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok2",
+       "at": 1.8,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "tok3",
+       "to": [
+        -1.99,
+        0.8,
+        0.35
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "tok3",
+       "at": 1.9000000000000001,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water and a sandwich. Needs first! One plus two makes three.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "water",
+       "at": 0.4,
+       "result": "correct",
+       "sound": false
+      },
+      {
+       "do": "mark",
+       "target": "sandwich",
+       "at": 0.8,
+       "result": "correct",
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "1 + 2 = 3 tokens",
+       "style": "label",
+       "at": 1.6,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is it bad to have wants?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "water"
+      },
+      {
+       "do": "hide",
+       "target": "sandwich"
+      },
+      {
+       "do": "hide",
+       "target": "kite"
+      },
+      {
+       "do": "hide",
+       "target": "tok1"
+      },
+      {
+       "do": "hide",
+       "target": "tok2"
+      },
+      {
+       "do": "hide",
+       "target": "tok3"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! Wants are fine. We just choose needs first.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's remember. Needs keep us alive and healthy. Wants are nice extras.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "cat",
+        "f_mid"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.3
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -1,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        1,
+        0.8,
+        0.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "balloon",
+       "at": 0.8999999999999999,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Goods are things. Services are work. And choosing means giving something up.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try it at home! Sort pictures from a shop flyer into needs and wants.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "Ask a grown-up to help with scissors",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Smart shopping! Here's a sticker for everyone.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_counter",
+        "bear"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.6,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.4,
+       "height": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "night",
+   "title": "Sleep-out night",
+   "music": "calm",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "counter",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "stall",
+       "at": 0.1
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "at": 0.1,
+       "dur": 2.4,
+       "background": "night",
+       "floor": "charcoal"
+      },
+      {
+       "do": "show",
+       "target": "sky",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "moon",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "tent",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "water",
+       "to": [
+        -0.25,
+        0,
+        0.9
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "socks",
+       "to": [
+        0.25,
+        0,
+        1
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "balloon",
+       "to": [
+        1,
+        0,
+        0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "water",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "socks",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "balloon",
+       "at": 1.6
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -2.7,
+        0,
+        1.1
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        0.7,
+        0,
+        1.4
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "hide",
+       "target": "bear"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "tent",
+        "robo",
+        "cat",
+        "balloon"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water to drink, warm socks, a tent, and one balloon. Checked!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "tent"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Needs first, then a want. Good night, friends!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Wave"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "orbit",
+       "around": [
+        -0.8,
+        0.8,
+        0
+       ],
+       "degrees": 12,
+       "dur": 3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

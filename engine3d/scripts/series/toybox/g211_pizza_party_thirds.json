@@ -1,0 +1,4867 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Toy Box Friends G2-11 (grade 2): thirds are three equal parts of one whole; three thirds make the whole; more equal parts means smaller parts; compare parts only when the wholes are the same size.",
+ "meta": {
+  "title": "Pizza Party Thirds",
+  "series": "toybox",
+  "episode": "g211",
+  "audience": "grade2",
+  "seed": 211,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "happy",
+  "musicGain": 0.2,
+  "skills": [
+   "thirds_2"
+  ],
+  "youtube": {
+   "title": "Pizza Party Thirds! Equal Parts for Kids | Halves, Thirds, Fourths | Toy Box Friends",
+   "description": "One pizza, three hungry friends! Robo, Cat and Bear learn that thirds are three EQUAL parts of one whole. Cat's Fair-Share Scanner stacks the slices to check them, Bear eats one third so we can see two thirds left, and three thirds make the whole pizza again. We cut a flatbread into tall strips and flat strips (both are thirds), line up a half, a third and a fourth (more parts, smaller parts), and catch Robo's Same Size Whole mistake: a half of a tiny pizza is NOT bigger than a third of a giant one. Ends with a Fair Share or Not? challenge and a quiz.\n\nFor second graders (CCSS 2.G.A.3: partition circles and rectangles into halves, thirds and fourths).\n\nTry at home: draw a big Y on a paper circle and ask a grown-up to cut along it (grown-ups do the cutting). Stack the three slices: do they match? Then colour one third, then two thirds.",
+   "tags": [
+    "thirds for kids",
+    "fractions for kids",
+    "equal parts",
+    "halves thirds fourths",
+    "fair share",
+    "grade 2 math",
+    "2nd grade math",
+    "fraction pizza",
+    "partition shapes",
+    "math cartoon",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "thirds",
+    "title": "THIRDS!",
+    "subtitle": "Fair shares of one pizza",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "classroom",
+    "camera": {
+     "position": [
+      -0.5,
+      1.7,
+      6.4
+     ],
+     "lookAt": [
+      -0.5,
+      1.2,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "counter",
+      "kind": "shape",
+      "shape": "box",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+       1.2,
+       0,
+       0
+      ],
+      "scale": [
+       3.6,
+       0.6,
+       1.1
+      ]
+     },
+     {
+      "id": "pie",
+      "kind": "fraction_circle",
+      "parts": 3,
+      "radius": 0.85,
+      "color": "orange",
+      "empty": "yellow",
+      "shaded": 1,
+      "at": [
+       0.85,
+       0.6,
+       0
+      ]
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 1.05,
+      "at": [
+       2,
+       0,
+       1
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 0.9,
+      "at": [
+       2.2,
+       0,
+       -0.9
+      ],
+      "rotation": [
+       0,
+       -20,
+       0
+      ],
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "fair",
+    "title": "FAIR SHARE?",
+    "subtitle": "Equal parts or not?",
+    "titleColor": "white",
+    "side": "top",
+    "badge": "GRADE 2",
+    "stage": "classroom",
+    "camera": {
+     "position": [
+      0,
+      1.7,
+      7.4
+     ],
+     "lookAt": [
+      0,
+      1.45,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "good",
+      "kind": "fraction_circle",
+      "parts": 3,
+      "radius": 0.8,
+      "color": "orange",
+      "empty": "yellow",
+      "at": [
+       -1.95,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "bad",
+      "kind": "fraction_circle",
+      "parts": 3,
+      "sizes": [
+       0.5,
+       0.25,
+       0.25
+      ],
+      "radius": 0.8,
+      "color": "orange",
+      "empty": "yellow",
+      "at": [
+       1.95,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "tick",
+      "kind": "shape",
+      "shape": "tick",
+      "color": "green",
+      "material": "glossy",
+      "at": [
+       -1.95,
+       0.5,
+       0.45
+      ],
+      "size": 0.7
+     },
+     {
+      "id": "cross",
+      "kind": "shape",
+      "shape": "cross",
+      "color": "red",
+      "material": "glossy",
+      "at": [
+       1.95,
+       0.5,
+       0.45
+      ],
+      "size": 0.6
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       0,
+       0,
+       0.6
+      ],
+      "clip": "Wave",
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "friends",
+    "title": "1 PIZZA, 3 FRIENDS",
+    "subtitle": "Cut it into thirds!",
+    "titleColor": "orange",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "classroom",
+    "camera": {
+     "position": [
+      -0.6,
+      1.6,
+      6.6
+     ],
+     "lookAt": [
+      -0.6,
+      1,
+      0
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "counter",
+      "kind": "shape",
+      "shape": "box",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+       2.2,
+       0,
+       0
+      ],
+      "scale": [
+       2.4,
+       0.6,
+       1.1
+      ]
+     },
+     {
+      "id": "pizza",
+      "kind": "prop",
+      "model": "pizza",
+      "size": 1.9,
+      "at": [
+       2.2,
+       0.6,
+       0.1
+      ],
+      "rotation": [
+       20,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       0.75,
+       0,
+       0.8
+      ],
+      "rotation": [
+       0,
+       25,
+       0
+      ],
+      "clip": "ThumbsUp"
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 0.95,
+      "at": [
+       3.55,
+       0,
+       0.8
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 1,
+      "at": [
+       2.2,
+       0,
+       -1
+      ],
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "classroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.5,
+   11
+  ],
+  "lookAt": [
+   0,
+   1.4,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "board_txt",
+   "kind": "letter",
+   "text": "Pizza Party!",
+   "color": "yellow",
+   "size": 0.42,
+   "depth": 0.04,
+   "at": [
+    0,
+    3.2,
+    -6.42
+   ]
+  },
+  {
+   "id": "board_rule",
+   "kind": "letter",
+   "text": "3 equal parts = thirds",
+   "color": "white",
+   "size": 0.3,
+   "depth": 0.04,
+   "at": [
+    0,
+    2.2,
+    -6.42
+   ],
+   "hidden": true
+  },
+  {
+   "id": "counter",
+   "kind": "shape",
+   "shape": "box",
+   "color": "wood_dark",
+   "material": "matte",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "scale": [
+    5.4,
+    0.8,
+    1.1
+   ]
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.55,
+    0,
+    0.7
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "size": 0.95,
+   "at": [
+    3.4,
+    0,
+    0.8
+   ],
+   "rotation": [
+    0,
+    -35,
+    0
+   ]
+  },
+  {
+   "id": "bear",
+   "kind": "critter",
+   "species": "bear",
+   "size": 1.05,
+   "at": [
+    4.45,
+    0,
+    -0.35
+   ],
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "pig",
+   "kind": "critter",
+   "species": "pig",
+   "size": 0.85,
+   "at": [
+    8.5,
+    0,
+    1
+   ],
+   "rotation": [
+    0,
+    -60,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_pie",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "scale": [
+    1.7,
+    1.75,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_bar",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "scale": [
+    2.8,
+    1,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_two",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0.4,
+    0.8,
+    0
+   ],
+   "scale": [
+    4,
+    1.6,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_three",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "scale": [
+    5,
+    2.3,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_stk",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0.3,
+    1.8,
+    0
+   ],
+   "scale": [
+    1.7,
+    1.6,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_bear",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    1.1,
+    0.8,
+    0
+   ],
+   "scale": [
+    3.9,
+    1.75,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_piel",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    1.2,
+    0.8,
+    0
+   ],
+   "scale": [
+    4.3,
+    1.75,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_stack",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "scale": [
+    4.8,
+    2.7,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_same",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -0.1,
+    0.8,
+    0
+   ],
+   "scale": [
+    4.4,
+    2,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_giant",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    1.2,
+    0.8,
+    0
+   ],
+   "scale": [
+    1.8,
+    1.7,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_q",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0,
+    0.3,
+    0
+   ],
+   "scale": [
+    5,
+    1.8,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pizza",
+   "kind": "prop",
+   "model": "pizza",
+   "size": 2.2,
+   "at": [
+    0,
+    0.8,
+    0
+   ]
+  },
+  {
+   "id": "pz2",
+   "kind": "fraction_circle",
+   "parts": 2,
+   "radius": 0.75,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pzc",
+   "kind": "fraction_circle",
+   "parts": 3,
+   "radius": 0.75,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "hidden": true,
+   "sizes": [
+    0.5,
+    0.25,
+    0.25
+   ]
+  },
+  {
+   "id": "pz3",
+   "kind": "fraction_circle",
+   "parts": 3,
+   "radius": 0.75,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fb3",
+   "kind": "fraction_bar",
+   "parts": 3,
+   "length": 2.7,
+   "height": 0.9,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fbt",
+   "kind": "fraction_bar",
+   "parts": 3,
+   "length": 1.5,
+   "height": 1.5,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    -1.4,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fbf",
+   "kind": "fraction_bar",
+   "parts": 3,
+   "length": 1.5,
+   "height": 1.5,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    2.15,
+    1.55,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    90
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sq0",
+   "kind": "shape",
+   "shape": "box",
+   "color": "red",
+   "material": "toy",
+   "at": [
+    -1.915,
+    0.835,
+    0.26
+   ],
+   "scale": [
+    0.42,
+    0.42,
+    0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sq1",
+   "kind": "shape",
+   "shape": "box",
+   "color": "red",
+   "material": "toy",
+   "at": [
+    -1.915,
+    1.335,
+    0.26
+   ],
+   "scale": [
+    0.42,
+    0.42,
+    0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sq2",
+   "kind": "shape",
+   "shape": "box",
+   "color": "red",
+   "material": "toy",
+   "at": [
+    -1.915,
+    1.835,
+    0.26
+   ],
+   "scale": [
+    0.42,
+    0.42,
+    0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "h2",
+   "kind": "fraction_circle",
+   "parts": 2,
+   "radius": 0.6,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    -2,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "h3",
+   "kind": "fraction_circle",
+   "parts": 3,
+   "radius": 0.6,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "h4",
+   "kind": "fraction_circle",
+   "parts": 4,
+   "radius": 0.6,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    2,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_half",
+   "kind": "callout",
+   "text": "half",
+   "point": [
+    -2,
+    1.65,
+    0.15
+   ],
+   "offset": [
+    0,
+    0.75,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_thd",
+   "kind": "callout",
+   "text": "third",
+   "point": [
+    0,
+    1.65,
+    0.15
+   ],
+   "offset": [
+    0,
+    0.75,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_frth",
+   "kind": "callout",
+   "text": "fourth",
+   "point": [
+    2,
+    1.65,
+    0.15
+   ],
+   "offset": [
+    0,
+    0.75,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tiny",
+   "kind": "fraction_circle",
+   "parts": 2,
+   "radius": 0.25,
+   "color": "red",
+   "empty": "yellow",
+   "at": [
+    -1.7,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "giant",
+   "kind": "fraction_circle",
+   "parts": 3,
+   "radius": 0.8,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    1.2,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_tiny",
+   "kind": "callout",
+   "text": "tiny pizza",
+   "point": [
+    -1.7,
+    1.3,
+    0.1
+   ],
+   "offset": [
+    0,
+    0.75,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_giant",
+   "kind": "callout",
+   "text": "giant pizza",
+   "point": [
+    1.2,
+    2.4000000000000004,
+    0.15
+   ],
+   "offset": [
+    0,
+    0.45,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qa",
+   "kind": "fraction_circle",
+   "parts": 3,
+   "radius": 0.5,
+   "color": "orange",
+   "empty": "yellow",
+   "at": [
+    -2.45,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qb",
+   "kind": "fraction_bar",
+   "parts": 3,
+   "sizes": [
+    0.5,
+    0.25,
+    0.25
+   ],
+   "length": 1.3,
+   "height": 0.85,
+   "color": "orange",
+   "empty": "cream",
+   "at": [
+    -0.82,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qc",
+   "kind": "fraction_bar",
+   "parts": 4,
+   "length": 1,
+   "height": 1,
+   "shaded": 1,
+   "color": "green",
+   "empty": "cream",
+   "at": [
+    0.82,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qd",
+   "kind": "fraction_bar",
+   "parts": 3,
+   "length": 1.3,
+   "height": 0.85,
+   "shaded": 2,
+   "color": "blue",
+   "empty": "cream",
+   "at": [
+    2.45,
+    0.8,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ql0",
+   "kind": "letter",
+   "text": "A",
+   "color": "white",
+   "size": 0.3,
+   "depth": 0.06,
+   "at": [
+    -2.45,
+    0.25,
+    0.56
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ql1",
+   "kind": "letter",
+   "text": "B",
+   "color": "white",
+   "size": 0.3,
+   "depth": 0.06,
+   "at": [
+    -0.82,
+    0.25,
+    0.56
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ql2",
+   "kind": "letter",
+   "text": "C",
+   "color": "white",
+   "size": 0.3,
+   "depth": 0.06,
+   "at": [
+    0.82,
+    0.25,
+    0.56
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ql3",
+   "kind": "letter",
+   "text": "D",
+   "color": "white",
+   "size": 0.3,
+   "depth": 0.06,
+   "at": [
+    2.45,
+    0.25,
+    0.56
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fq0",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -2.45,
+    0.2,
+    0
+   ],
+   "scale": [
+    1.5,
+    1.7,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fq1",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -0.82,
+    0.2,
+    0
+   ],
+   "scale": [
+    1.5,
+    1.7,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fq2",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    0.82,
+    0.2,
+    0
+   ],
+   "scale": [
+    1.5,
+    1.7,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fq3",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    2.45,
+    0.2,
+    0
+   ],
+   "scale": [
+    1.5,
+    1.7,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 160,
+   "area": [
+    9,
+    4
+   ],
+   "colors": [
+    "yellow",
+    "orange",
+    "red",
+    "green",
+    "sky"
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hook",
+   "title": "One pizza, three friends",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat",
+        "bear"
+       ],
+       "framing": "medium",
+       "dur": 0
+      },
+      {
+       "do": "caption",
+       "text": "Pizza Party Thirds",
+       "style": "title",
+       "at": 0.3,
+       "dur": 2.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "Wave"
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": 0.5,
+       "to": "pizza"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": 0.6,
+       "to": "pizza"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pizza party! One yummy pizza and three hungry friends.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 3,
+       "yaw": -12
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "I am SO hungry. Can we share it?",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.3,
+       "height": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bear",
+        "cat",
+        "pizza"
+       ],
+       "framing": "medium",
+       "dur": 1.2,
+       "yaw": 15
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's stand it on the pizza board, so we can all see.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pizza",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "pz2",
+       "at": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "shot",
+       "target": "f_pie",
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "pz2#s1",
+       "at": 0.6,
+       "to": [
+        0.18,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz2#s2",
+       "at": 0.6,
+       "to": [
+        -0.18,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "One cut, straight down the middle. Two pieces!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "pz2",
+       "at": 0.6,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two pieces... but there are three of us.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": "pz2"
+      },
+      {
+       "do": "feel",
+       "target": "bear",
+       "at": 0.4,
+       "feeling": "worried"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_pie",
+        "bear",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oops! I'll cut it again. Now there are three pieces.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pz2",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "pzc",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.3,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": "f_pie",
+       "framing": "medium",
+       "at": 1,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "One piece is huge, and two are tiny. Three pieces, but not fair shares.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "pzc"
+      },
+      {
+       "do": "highlight",
+       "target": "pzc#s1",
+       "at": 1.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "So how do we share one pizza fairly with three friends?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat",
+        "bear"
+       ],
+       "framing": "medium",
+       "at": 0.5,
+       "dur": 1.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fair",
+   "title": "What is a fair share?",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, a quick look back. Here is one whole pizza.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pzc"
+      },
+      {
+       "do": "show",
+       "target": "pz2",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "f_pie",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "whole",
+       "style": "label",
+       "at": 0.6,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "The whole is everything we started with.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "pz2",
+       "at": 0.3,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cut it into two equal parts, and each part is one half.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "pz2#s1",
+       "at": 0.5,
+       "to": [
+        0.18,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz2#s2",
+       "at": 0.5,
+       "to": [
+        -0.18,
+        0,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "half",
+       "style": "label",
+       "at": 1.2,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Equal? Let me check with my Fair-Share Scanner.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "pz2"
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "shade",
+       "target": "pz2",
+       "cells": [
+        2
+       ],
+       "color": "orange",
+       "dur": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "pz2#s2",
+       "at": 0.1,
+       "to": [
+        0,
+        0,
+        180
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "pz2#s2",
+       "at": 0.1,
+       "to": [
+        0.18,
+        0,
+        0.32
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.1,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "pz2#s2",
+       "at": 1.3,
+       "result": "correct"
+      },
+      {
+       "do": "sound",
+       "sound": "crystal_chime",
+       "at": 1.3,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "They match exactly. Equal parts are the same size.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "equal parts = same size",
+       "style": "label",
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Equal parts make fair shares. Nobody gets less.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "turn",
+       "target": "pz2#s2",
+       "at": 0.4,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "pz2#s2",
+       "at": 0.4,
+       "to": [
+        -0.18,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shade",
+       "target": "pz2",
+       "at": 1.2,
+       "cells": []
+      },
+      {
+       "do": "caption",
+       "text": "fair share",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "But two halves only work for two friends. We have three.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "bear"
+      },
+      {
+       "do": "feel",
+       "target": "bear",
+       "at": 0.3,
+       "feeling": "worried"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cut",
+   "title": "Cutting thirds",
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's try my three-piece cut again. Is it fair?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pz2"
+      },
+      {
+       "do": "show",
+       "target": "pzc",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": "f_pie",
+       "framing": "medium",
+       "at": 0.1,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Is this fair?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": "pzc"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "pzc"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Scanner time. I'll put a small piece on the big one.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "pzc"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "shade",
+       "target": "pzc",
+       "cells": [
+        3
+       ],
+       "color": "orange",
+       "dur": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "pzc#s3",
+       "at": 0.1,
+       "to": [
+        0,
+        0,
+        -90
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "pzc#s3",
+       "at": 0.1,
+       "to": [
+        0.05,
+        0.05,
+        0.32
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.1,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "pzc#s1",
+       "at": 1.3,
+       "result": "incorrect"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 1.3,
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "It doesn't cover it. The big piece is a half. The small ones are fourths.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "pzc#s1",
+       "at": 0.5,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three parts, but not equal. So they are not thirds.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "turn",
+       "target": "pzc#s3",
+       "at": 0.3,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "pzc#s3",
+       "at": 0.3,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shade",
+       "target": "pzc",
+       "at": 1.1,
+       "cells": []
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 1.2,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now the fair cut. Three cuts from the middle, like the letter Y.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pzc"
+      },
+      {
+       "do": "build",
+       "target": "pz3",
+       "at": 1,
+       "dur": 1.4
+      },
+      {
+       "do": "shot",
+       "target": "f_pie",
+       "framing": "close",
+       "at": 0.5,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "pz3#s1",
+       "to": [
+        0.06,
+        0.1,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz3#s2",
+       "to": [
+        0.09,
+        -0.06,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz3#s3",
+       "to": [
+        -0.09,
+        -0.06,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "Draw a big Y in the air!",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three slices. Let's scan them. Slice two goes on slice one.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "pz3"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "shade",
+       "target": "pz3",
+       "cells": [
+        2
+       ],
+       "color": "orange",
+       "dur": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "pz3#s2",
+       "at": 0.1,
+       "to": [
+        0,
+        0,
+        120
+       ],
+       "dur": 1.1
+      },
+      {
+       "do": "move",
+       "target": "pz3#s2",
+       "at": 0.1,
+       "to": [
+        0.06,
+        0.1,
+        0.3
+       ],
+       "dur": 1.1
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.1,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "pz3#s2",
+       "at": 1.4,
+       "result": "correct"
+      },
+      {
+       "do": "sound",
+       "sound": "crystal_chime",
+       "at": 1.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "A perfect match! And slice three matches too.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "turn",
+       "target": "pz3#s2",
+       "at": 1,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "pz3#s2",
+       "at": 1,
+       "to": [
+        0.09,
+        -0.06,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 1.4,
+       "cells": [
+        3
+       ],
+       "color": "orange",
+       "dur": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "pz3#s3",
+       "at": 1.6,
+       "to": [
+        0,
+        0,
+        240
+       ],
+       "dur": 1.1
+      },
+      {
+       "do": "move",
+       "target": "pz3#s3",
+       "at": 1.6,
+       "to": [
+        0.06,
+        0.1,
+        0.3
+       ],
+       "dur": 1.1
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "mark",
+       "target": "pz3#s3",
+       "at": 0.1,
+       "result": "correct"
+      },
+      {
+       "do": "turn",
+       "target": "pz3#s3",
+       "at": 0.9,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "pz3#s3",
+       "at": 0.9,
+       "to": [
+        -0.09,
+        -0.06,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 1.5,
+       "cells": []
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three equal parts of one whole are called thirds.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "3 equal parts = thirds",
+       "style": "label",
+       "dur": 4
+      },
+      {
+       "do": "show",
+       "target": "board_rule",
+       "at": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "Yes"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Each part is one third of the pizza.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.3,
+       "cells": [
+        1
+       ]
+      },
+      {
+       "do": "caption",
+       "text": "one third",
+       "style": "label",
+       "at": 0.3,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact! The word fraction comes from a Latin word that means to break.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Thirds work for long shapes too. Here is a flatbread.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pz3"
+      },
+      {
+       "do": "build",
+       "target": "fb3",
+       "at": 1,
+       "dur": 1.2
+      },
+      {
+       "do": "shot",
+       "target": "f_bar",
+       "framing": "medium",
+       "at": 0.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two cuts, the same distance apart, make three equal strips.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "fb3",
+       "at": 0.6,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Each strip is one third of the flatbread.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "shade",
+       "target": "fb3",
+       "at": 0.2,
+       "cells": [
+        1
+       ]
+      },
+      {
+       "do": "highlight",
+       "target": "fb3#p1",
+       "at": 0.4,
+       "dur": 2
+      },
+      {
+       "do": "caption",
+       "text": "one third",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2.5
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "fb3"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": []
+    }
+   ]
+  },
+  {
+   "id": "count",
+   "title": "One third, two thirds, three thirds",
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's count the thirds. Tap each slice with me.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "fb3"
+      },
+      {
+       "do": "show",
+       "target": "pz3",
+       "at": 0.2
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.2,
+       "cells": []
+      },
+      {
+       "do": "shot",
+       "target": "f_piel",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "highlight",
+       "target": "pz3#s1",
+       "dur": 1.4
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.2,
+       "cells": [
+        1
+       ]
+      },
+      {
+       "do": "caption",
+       "text": "1 third",
+       "style": "count",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "One third.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "highlight",
+       "target": "pz3#s2",
+       "dur": 1.3
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.2,
+       "cells": [
+        1,
+        2
+       ]
+      },
+      {
+       "do": "caption",
+       "text": "2 thirds",
+       "style": "count",
+       "at": 0.2,
+       "dur": 1.3
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two thirds.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "highlight",
+       "target": "pz3#s3",
+       "dur": 1.3
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.2,
+       "cells": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "do": "caption",
+       "text": "3 thirds",
+       "style": "count",
+       "at": 0.2,
+       "dur": 1.3
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.2,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three thirds. That's the whole pizza.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "May I have one third, please?",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.2,
+       "cells": []
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": "pz3"
+      },
+      {
+       "do": "feel",
+       "target": "bear",
+       "at": 0.3,
+       "feeling": "happy"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_pie",
+        "bear"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "move",
+       "target": "pz3#s1",
+       "to": [
+        1.9,
+        -0.3,
+        0.5
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.1,
+       "volume": 0.5
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 1.3
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": 0.4,
+       "to": [
+        2.6,
+        1.3,
+        0.6
+       ]
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bear took one third. How much pizza is left?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": "f_bear",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "How much is left?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two thirds are left. One, two.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "pz3#s2",
+       "at": 0.6,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "pz3#s3",
+       "at": 1.3,
+       "dur": 1
+      },
+      {
+       "do": "caption",
+       "text": "2 thirds left",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yum! Wait, I'll save mine for later.",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_bear",
+        "bear"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's push the slice back. Three thirds make one whole pizza again!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "move",
+       "target": "pz3#s1",
+       "at": 0.6,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.8,
+       "volume": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "3 thirds = 1 whole",
+       "style": "label",
+       "at": 1.6,
+       "dur": 3
+      },
+      {
+       "do": "shot",
+       "target": "f_pie",
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three the same? That's thirds! All three back? That's whole!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.6,
+       "clip": "Jump"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same with the flatbread. Three thirds fill the whole thing.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "pz3"
+      },
+      {
+       "do": "show",
+       "target": "fb3",
+       "at": 0.2
+      },
+      {
+       "do": "shade",
+       "target": "fb3",
+       "at": 0.6,
+       "to": 3,
+       "dur": 1.2,
+       "sound": "pop"
+      },
+      {
+       "do": "shot",
+       "target": "f_bar",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shapes",
+   "title": "Thirds in different shapes",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "board_rule"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here are two flatbreads, exactly the same size.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "fb3"
+      },
+      {
+       "do": "show",
+       "target": "fbt",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "fbf",
+       "at": 0.5
+      },
+      {
+       "do": "shot",
+       "target": "f_two",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "This one has tall strips. That one has flat strips.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "fbt",
+       "at": 0.2,
+       "dur": 1.6
+      },
+      {
+       "do": "highlight",
+       "target": "fbf",
+       "at": 1.6,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "They look different, so they can't both be thirds. Right?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.3,
+       "feeling": "worried"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's check. I'll cut one tall strip into three little squares.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "fbt"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "show",
+       "target": "sq0",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "sq1",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "sq2",
+       "at": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "sq0",
+       "at": 0.1,
+       "to": [
+        0.9,
+        0.84,
+        0.26
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "sq1",
+       "at": 0.4,
+       "to": [
+        1.4,
+        0.84,
+        0.26
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "sq2",
+       "at": 0.7,
+       "to": [
+        1.9,
+        0.84,
+        0.26
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "mark",
+       "target": "fbf#p1",
+       "at": 0.1,
+       "result": "correct"
+      },
+      {
+       "do": "sound",
+       "sound": "crystal_chime",
+       "at": 0.1,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "The squares cover one flat strip exactly. Same amount, different shape.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "same amount, different shape",
+       "style": "label",
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "So both flatbreads are cut into thirds. Three equal parts each!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shade",
+       "target": "fbt",
+       "at": 0.4,
+       "to": 3,
+       "dur": 0.9
+      },
+      {
+       "do": "shade",
+       "target": "fbf",
+       "at": 0.6,
+       "to": 3,
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Some pizza shops cut round pizzas into little squares. It's called a party cut.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "sq0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "sq1",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sq2",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "more",
+   "title": "Halves, thirds, fourths",
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Knock knock! Look who is here. Pig wants to join the party!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "fbt"
+      },
+      {
+       "do": "hide",
+       "target": "fbf"
+      },
+      {
+       "do": "show",
+       "target": "pig",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "pig",
+       "at": 0.2,
+       "to": [
+        5.3,
+        0,
+        1.2
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "cat",
+        "pig"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now there are four friends. We need fourths: four equal parts.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "pig"
+      },
+      {
+       "do": "look",
+       "target": "pig",
+       "at": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "If we cut a pizza into four, will each slice be bigger or smaller?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "show",
+       "target": "h2",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "h3",
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "h4",
+       "at": 0.7
+      },
+      {
+       "do": "shot",
+       "target": "f_three",
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Bigger or smaller?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three pizzas, all the same size. Halves, thirds and fourths.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "c_half",
+       "at": 0.3,
+       "dur": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "c_thd",
+       "at": 0.9,
+       "dur": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "c_frth",
+       "at": 1.5,
+       "dur": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "One slice from each pizza slides up so we can compare.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "shade",
+       "target": "h2",
+       "at": 0.2,
+       "cells": [
+        1
+       ],
+       "color": "red"
+      },
+      {
+       "do": "shade",
+       "target": "h3",
+       "at": 0.4,
+       "cells": [
+        1
+       ],
+       "color": "orange"
+      },
+      {
+       "do": "shade",
+       "target": "h4",
+       "at": 0.6,
+       "cells": [
+        1
+       ],
+       "color": "green"
+      },
+      {
+       "do": "hide",
+       "target": "c_half",
+       "at": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "c_thd",
+       "at": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "c_frth",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "h2#s1",
+       "to": [
+        2,
+        1.4,
+        0.05
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "move",
+       "target": "h3#s1",
+       "at": 0.3,
+       "to": [
+        0,
+        1.4,
+        0.3
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "move",
+       "target": "h4#s1",
+       "at": 0.6,
+       "to": [
+        -2,
+        1.4,
+        0.55
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": "f_stk",
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "The half is biggest. Then the third. The fourth is smallest.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "h2#s1",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "h3#s1",
+       "at": 1.4,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "h4#s1",
+       "at": 2.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "More equal parts means smaller parts.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "More parts, smaller parts",
+       "style": "label",
+       "dur": 3.5
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why? The same pizza is shared by more friends.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "pig"
+      },
+      {
+       "do": "shot",
+       "target": "f_stack",
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "h4#s1",
+       "to": [
+        1.7,
+        -0.5,
+        1
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.3,
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "pig",
+       "at": 1.2,
+       "feeling": "happy"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "pig",
+        "cat"
+       ],
+       "framing": "medium",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "One fourth for Pig. Four friends, four equal parts.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 0.5,
+       "volume": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "same",
+   "title": "The Same Size Whole trick",
+   "beats": [
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "A trick! Here is a tiny snack pizza and a giant party pizza.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "h2"
+      },
+      {
+       "do": "hide",
+       "target": "h3"
+      },
+      {
+       "do": "hide",
+       "target": "h4"
+      },
+      {
+       "do": "show",
+       "target": "tiny",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "giant",
+       "at": 0.5
+      },
+      {
+       "do": "draw",
+       "target": "c_tiny",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "draw",
+       "target": "c_giant",
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": "f_same",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "I take one half of the tiny pizza.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shade",
+       "target": "tiny",
+       "at": 0.3,
+       "cells": [
+        1
+       ]
+      },
+      {
+       "do": "highlight",
+       "target": "tiny#s1",
+       "at": 0.4,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "And I take one third of the giant pizza.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "shade",
+       "target": "giant",
+       "at": 0.3,
+       "cells": [
+        1
+       ]
+      },
+      {
+       "do": "highlight",
+       "target": "giant#s1",
+       "at": 0.4,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A half is bigger than a third, so I win!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Jump"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Who has more?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "c_tiny"
+      },
+      {
+       "do": "hide",
+       "target": "c_giant"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "tiny#s1",
+       "at": 0.1,
+       "to": [
+        3.2,
+        0.73,
+        0.35
+       ],
+       "dur": 1.5
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": "f_giant",
+       "framing": "medium",
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "mark",
+       "target": "robo",
+       "at": 0.1,
+       "result": "incorrect"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.1,
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "My third is much bigger. Your whole pizza was tiny.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "giant"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A half is bigger than a third only when the wholes are the same size.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "Same size whole, then compare",
+       "style": "label",
+       "dur": 4.5
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same whole, then compare. Got it!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.2,
+       "feeling": "happy"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "ThumbsUp"
+      },
+      {
+       "do": "move",
+       "target": "tiny#s1",
+       "at": 0.6,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Thirds chant",
+   "music": "playful",
+   "musicGain": 0.24,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "tiny"
+      },
+      {
+       "do": "hide",
+       "target": "giant"
+      },
+      {
+       "do": "show",
+       "target": "pz3",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat",
+        "bear"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0,
+        1.2,
+        0
+       ],
+       "degrees": 24,
+       "dur": 18,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Clap along! Three the same?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz3#s1",
+       "at": 0.3,
+       "to": [
+        0.1,
+        0.18,
+        0.2
+       ],
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's thirds!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz3#s1",
+       "at": 0.3,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.2,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "All three back?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz3#s2",
+       "at": 0.1,
+       "to": [
+        0.16,
+        -0.1,
+        0.2
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "pz3#s3",
+       "at": 0.1,
+       "to": [
+        -0.16,
+        -0.1,
+        0.2
+       ],
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's whole!",
+       "caption": true,
+       "who": "bear",
+       "voice": "deep"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pz3#s2",
+       "at": 0.3,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "pz3#s3",
+       "at": 0.3,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.2,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "More parts?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Smaller parts!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "cat",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three the same? That's thirds! All three back? That's whole!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 3.5,
+       "clip": "Idle"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: Fair Share or Not?",
+   "beats": [
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge time! Four pictures. Is each one fair, and what is it?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "pz3"
+      },
+      {
+       "do": "show",
+       "target": "ql0",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ql1",
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "ql2",
+       "at": 0.7
+      },
+      {
+       "do": "show",
+       "target": "ql3",
+       "at": 0.9000000000000001
+      },
+      {
+       "do": "show",
+       "target": "qa",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "qb",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "qc",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "qd",
+       "at": 1
+      },
+      {
+       "do": "shot",
+       "target": "f_q",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Picture A. A circle in three slices. Thirds?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "qa",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": "fq0",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! Three equal slices are thirds.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "qa#s1",
+       "at": 0.3,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Picture B. A rectangle in three parts. Thirds?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "qb",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": "fq1",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "No. One part is wider, so they are not equal. Not thirds.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "qb#p1",
+       "at": 0.3,
+       "result": "incorrect"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Picture C. One part is shaded. Is that one third?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "qc",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": "fq2",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! Count all the equal parts. There are four, so it's one fourth.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "qc#p1",
+       "at": 0.3,
+       "result": "incorrect"
+      },
+      {
+       "do": "caption",
+       "text": "4 equal parts: one fourth",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Picture D. Three equal strips, two are shaded.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "qd",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": "fq3",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's two thirds. Checked and fair!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "qd#p2",
+       "at": 0.3,
+       "result": "correct"
+      },
+      {
+       "do": "caption",
+       "text": "two thirds",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "You found the fair shares. Great checking!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_q",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.4,
+       "clip": "ThumbsUp"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! How many thirds make one whole pizza?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "qa"
+      },
+      {
+       "do": "hide",
+       "target": "qb"
+      },
+      {
+       "do": "hide",
+       "target": "qc"
+      },
+      {
+       "do": "hide",
+       "target": "qd"
+      },
+      {
+       "do": "hide",
+       "target": "ql0"
+      },
+      {
+       "do": "hide",
+       "target": "ql1"
+      },
+      {
+       "do": "hide",
+       "target": "ql2"
+      },
+      {
+       "do": "hide",
+       "target": "ql3"
+      },
+      {
+       "do": "show",
+       "target": "pz3",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "f_pie",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three thirds make one whole.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.2,
+       "to": 3,
+       "dur": 0.9,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bear ate one third. How much is left?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "cells": []
+      },
+      {
+       "do": "move",
+       "target": "pz3#s1",
+       "at": 0.4,
+       "to": [
+        1.9,
+        -0.3,
+        0.5
+       ],
+       "dur": 1
+      },
+      {
+       "do": "shot",
+       "target": "f_bear",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two thirds are left.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "two thirds",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.2
+      },
+      {
+       "do": "move",
+       "target": "pz3#s1",
+       "at": 1.6,
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which is bigger, one half or one third of the same pizza?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "show",
+       "target": "h2",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "h3",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "pz3",
+       "at": 0.1
+      },
+      {
+       "do": "shade",
+       "target": "h2",
+       "at": 0.4,
+       "cells": [
+        1
+       ],
+       "color": "red"
+      },
+      {
+       "do": "shade",
+       "target": "h3",
+       "at": 0.4,
+       "cells": [
+        1
+       ],
+       "color": "orange"
+      },
+      {
+       "do": "move",
+       "target": "h2#s1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "h3#s1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "f_three",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "One half. Fewer parts means bigger parts.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "h2#s1",
+       "at": 0.2,
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "h2#s1",
+       "at": 0.6,
+       "result": "correct",
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A sandwich is cut into three pieces, but one is bigger. Thirds?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "h2"
+      },
+      {
+       "do": "hide",
+       "target": "h3"
+      },
+      {
+       "do": "show",
+       "target": "qb",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "fq1",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "No. Thirds must be equal.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "qb#p1",
+       "at": 0.2,
+       "result": "incorrect"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is a third of a giant pizza the same as a third of a tiny pizza?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "qb"
+      },
+      {
+       "do": "show",
+       "target": "tiny",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "giant",
+       "at": 0.3
+      },
+      {
+       "do": "shade",
+       "target": "tiny",
+       "cells": []
+      },
+      {
+       "do": "shade",
+       "target": "giant",
+       "cells": []
+      },
+      {
+       "do": "move",
+       "target": "tiny#s1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "f_same",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! The wholes are different sizes.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "giant",
+       "at": 0.3,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's remember. Three equal parts are thirds. Three thirds make one whole.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "tiny"
+      },
+      {
+       "do": "hide",
+       "target": "giant"
+      },
+      {
+       "do": "show",
+       "target": "pz3",
+       "at": 0.2
+      },
+      {
+       "do": "shade",
+       "target": "pz3",
+       "at": 0.3,
+       "to": 3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "counter",
+        "robo",
+        "cat",
+        "bear",
+        "pig"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "More parts means smaller parts. And compare only with same-size wholes.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try it at home! Draw a Y on a paper circle. A grown-up does the cutting.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "Grown-ups do the cutting",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then stack your slices to check. Checked and fair!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bye, friends! Enjoy your fair share!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "pz3",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "pizza",
+       "at": 0.3
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "Dance"
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.8,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Wave"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

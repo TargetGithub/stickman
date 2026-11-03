@@ -1,0 +1,5883 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Toy Box Friends G2-13 (grade 2): retell a story in order with first, next, then, last (beginning, middle, end) on the Story Stairs, and use one clue at a time to explain why a character acts.",
+ "meta": {
+  "title": "First, Next, Then, Last",
+  "series": "toybox",
+  "episode": "g213",
+  "audience": "grade2",
+  "seed": 213,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "playful",
+  "musicGain": 0.22,
+  "skills": [
+   "sequence_inference_2"
+  ],
+  "youtube": {
+   "title": "First, Next, Then, Last! Story Order for Kids | Grade 2 Reading | Toy Box Friends",
+   "description": "Four story cards land in a jumble, and Robo reads them in a silly order. Cat says: that can't be right! We watch Turtle's Windy Kite Day, an original story, then put the cards on the Story Stairs: first, next, then, last (beginning, middle and end). Cat the Why Detective uses her magnifier to find the clue for each why question: why Turtle flew his kite, why he asked Squirrel for help, and why he shared his apple. Then Robo makes a sandwich in the wrong order, and we finish with a what-comes-next challenge and a quiz.\n\nFor second graders (CCSS RL.2.1, RL.2.3, RL.2.5: retell events in order, explain why characters act).\n\nTry at home: retell a favourite story on four fingers, first, next, then, last. Then say one why with because and the clue. Fly kites only in open spaces, away from trees and power lines, with a grown-up.",
+   "tags": [
+    "sequencing for kids",
+    "story order",
+    "first next then last",
+    "beginning middle end",
+    "retelling",
+    "reading comprehension",
+    "grade 2 reading",
+    "2nd grade ELA",
+    "inference for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "next",
+    "title": "WHAT'S NEXT?",
+    "subtitle": "First, next, then, last",
+    "titleColor": "yellow",
+    "side": "top",
+    "badge": "GRADE 2",
+    "stage": "forest",
+    "camera": {
+     "position": [
+      1.4,
+      1.85,
+      6.4
+     ],
+     "lookAt": [
+      1.4,
+      1.45,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "s1",
+      "kind": "shape",
+      "shape": "box",
+      "color": "red",
+      "material": "toy",
+      "at": [
+       -0.3,
+       0,
+       0
+      ],
+      "scale": [
+       0.85,
+       0.3,
+       0.9
+      ]
+     },
+     {
+      "id": "s2",
+      "kind": "shape",
+      "shape": "box",
+      "color": "orange",
+      "material": "toy",
+      "at": [
+       0.55,
+       0,
+       0
+      ],
+      "scale": [
+       0.85,
+       0.6,
+       0.9
+      ]
+     },
+     {
+      "id": "s3",
+      "kind": "shape",
+      "shape": "box",
+      "color": "yellow",
+      "material": "toy",
+      "at": [
+       1.4,
+       0,
+       0
+      ],
+      "scale": [
+       0.85,
+       0.9,
+       0.9
+      ]
+     },
+     {
+      "id": "s4",
+      "kind": "shape",
+      "shape": "box",
+      "color": "green",
+      "material": "toy",
+      "at": [
+       2.25,
+       0,
+       0
+      ],
+      "scale": [
+       0.85,
+       1.2,
+       0.9
+      ]
+     },
+     {
+      "id": "c1",
+      "kind": "prop",
+      "model": "story_card",
+      "size": 0.66,
+      "at": [
+       -0.3,
+       0.3,
+       0.05
+      ]
+     },
+     {
+      "id": "c2",
+      "kind": "prop",
+      "model": "story_card",
+      "size": 0.66,
+      "at": [
+       0.55,
+       0.6,
+       0.05
+      ]
+     },
+     {
+      "id": "c3",
+      "kind": "prop",
+      "model": "story_card",
+      "size": 0.66,
+      "at": [
+       1.4,
+       0.9,
+       0.05
+      ]
+     },
+     {
+      "id": "q",
+      "kind": "letter",
+      "text": "?",
+      "color": "orange",
+      "size": 0.75,
+      "at": [
+       2.25,
+       1.35,
+       0.1
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       3.3,
+       0,
+       0.5
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "kite",
+    "title": "FIRST, NEXT, LAST",
+    "subtitle": "Turtle's windy kite day",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "forest",
+    "camera": {
+     "position": [
+      1.4,
+      1.5,
+      6
+     ],
+     "lookAt": [
+      1.4,
+      1.35,
+      0
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "tree",
+      "kind": "prop",
+      "model": "tree",
+      "size": 1.6,
+      "at": [
+       2.8,
+       0,
+       -0.9
+      ]
+     },
+     {
+      "id": "kite",
+      "kind": "prop",
+      "model": "kite",
+      "size": 0.8,
+      "at": [
+       2,
+       1.15,
+       -0.1
+      ]
+     },
+     {
+      "id": "turtle",
+      "kind": "critter",
+      "species": "turtle",
+      "size": 0.95,
+      "at": [
+       3.4,
+       0,
+       0.9
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "worried"
+     },
+     {
+      "id": "squirrel",
+      "kind": "critter",
+      "species": "squirrel",
+      "size": 0.75,
+      "at": [
+       2.8,
+       0.9,
+       -0.45
+      ],
+      "rotation": [
+       0,
+       -20,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "clue",
+    "title": "STORY ORDER",
+    "subtitle": "Find the clue!",
+    "titleColor": "orange",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "forest",
+    "camera": {
+     "position": [
+      1.2,
+      1.3,
+      5.4
+     ],
+     "lookAt": [
+      1.2,
+      1,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "card",
+      "kind": "prop",
+      "model": "story_card",
+      "size": 1.35,
+      "at": [
+       2,
+       0.2,
+       -0.3
+      ]
+     },
+     {
+      "id": "l1",
+      "kind": "shape",
+      "shape": "leaf",
+      "color": "orange",
+      "material": "toy",
+      "at": [
+       1.85,
+       0.95,
+       -0.05
+      ],
+      "size": 0.22,
+      "rotation": [
+       0,
+       0,
+       40
+      ]
+     },
+     {
+      "id": "l2",
+      "kind": "shape",
+      "shape": "leaf",
+      "color": "yellow",
+      "material": "toy",
+      "at": [
+       2.25,
+       0.75,
+       -0.05
+      ],
+      "size": 0.2,
+      "rotation": [
+       0,
+       0,
+       80
+      ]
+     },
+     {
+      "id": "lens",
+      "kind": "prop",
+      "model": "magnifier",
+      "size": 1.2,
+      "at": [
+       2.05,
+       0.1,
+       0.35
+      ]
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 1.05,
+      "at": [
+       3.6,
+       0,
+       0.6
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "forest"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.6,
+   11.5
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "step1",
+   "kind": "shape",
+   "shape": "box",
+   "color": "red",
+   "material": "toy",
+   "at": [
+    -4.6,
+    0,
+    0
+   ],
+   "scale": [
+    1.25,
+    0.3,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "word1",
+   "kind": "letter",
+   "text": "FIRST",
+   "color": "white",
+   "size": 0.17,
+   "depth": 0.05,
+   "at": [
+    -4.6,
+    0.06,
+    0.52
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step2",
+   "kind": "shape",
+   "shape": "box",
+   "color": "orange",
+   "material": "toy",
+   "at": [
+    -3.3,
+    0,
+    0
+   ],
+   "scale": [
+    1.25,
+    0.6,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "word2",
+   "kind": "letter",
+   "text": "NEXT",
+   "color": "white",
+   "size": 0.17,
+   "depth": 0.05,
+   "at": [
+    -3.3,
+    0.36,
+    0.52
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step3",
+   "kind": "shape",
+   "shape": "box",
+   "color": "yellow",
+   "material": "toy",
+   "at": [
+    -2,
+    0,
+    0
+   ],
+   "scale": [
+    1.25,
+    0.9,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "word3",
+   "kind": "letter",
+   "text": "THEN",
+   "color": "ink",
+   "size": 0.17,
+   "depth": 0.05,
+   "at": [
+    -2,
+    0.66,
+    0.52
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step4",
+   "kind": "shape",
+   "shape": "box",
+   "color": "green",
+   "material": "toy",
+   "at": [
+    -0.7,
+    0,
+    0
+   ],
+   "scale": [
+    1.25,
+    1.2,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "word4",
+   "kind": "letter",
+   "text": "LAST",
+   "color": "white",
+   "size": 0.17,
+   "depth": 0.05,
+   "at": [
+    -0.7,
+    0.96,
+    0.52
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_beg",
+   "kind": "callout",
+   "text": "beginning",
+   "point": [
+    -4.6,
+    0.35,
+    0.5
+   ],
+   "offset": [
+    0,
+    1.25,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_mid",
+   "kind": "callout",
+   "text": "middle",
+   "point": [
+    -2.65,
+    0.65,
+    0.5
+   ],
+   "offset": [
+    0,
+    1.5,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_end",
+   "kind": "callout",
+   "text": "end",
+   "point": [
+    -0.7,
+    1.25,
+    0.5
+   ],
+   "offset": [
+    0.3,
+    1.15,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -6.4,
+    0,
+    0.6
+   ],
+   "rotation": [
+    0,
+    35,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "size": 0.9,
+   "at": [
+    -5.3,
+    0,
+    2.1
+   ],
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "lens",
+   "kind": "prop",
+   "model": "magnifier",
+   "size": 0.8,
+   "at": [
+    1.6,
+    0,
+    2.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "house",
+   "kind": "prop",
+   "model": "house",
+   "size": 0.95,
+   "at": [
+    6.7,
+    0,
+    -2
+   ],
+   "rotation": [
+    0,
+    -20,
+    0
+   ]
+  },
+  {
+   "id": "hill",
+   "kind": "shape",
+   "shape": "dome",
+   "color": "grass",
+   "material": "matte",
+   "at": [
+    2.4,
+    0,
+    -1.2
+   ],
+   "scale": [
+    2.8,
+    1,
+    2
+   ]
+  },
+  {
+   "id": "tree",
+   "kind": "prop",
+   "model": "tree",
+   "size": 1.7,
+   "at": [
+    5,
+    0,
+    -2.7
+   ]
+  },
+  {
+   "id": "turtle",
+   "kind": "critter",
+   "species": "turtle",
+   "size": 0.85,
+   "at": [
+    5.9,
+    0,
+    0.4
+   ],
+   "rotation": [
+    0,
+    -40,
+    0
+   ]
+  },
+  {
+   "id": "squirrel",
+   "kind": "critter",
+   "species": "squirrel",
+   "size": 0.75,
+   "at": [
+    1,
+    0,
+    0.8
+   ],
+   "rotation": [
+    0,
+    40,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kite",
+   "kind": "prop",
+   "model": "kite",
+   "size": 0.9,
+   "at": [
+    6.25,
+    0.35,
+    0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "leaves",
+   "kind": "weather",
+   "type": "leaves",
+   "count": 40,
+   "area": [
+    9,
+    3
+   ],
+   "height": 5,
+   "colors": [
+    "orange",
+    "yellow",
+    "leaf"
+   ],
+   "at": [
+    3.6,
+    0,
+    -0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ap0",
+   "kind": "shape",
+   "shape": "wedge",
+   "color": "red",
+   "material": "toy",
+   "at": [
+    4.5,
+    0,
+    -0.9
+   ],
+   "scale": [
+    0.2,
+    0.13,
+    0.15
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ap1",
+   "kind": "shape",
+   "shape": "wedge",
+   "color": "cream",
+   "material": "toy",
+   "at": [
+    4.68,
+    0,
+    -0.9
+   ],
+   "scale": [
+    0.2,
+    0.13,
+    0.15
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ap2",
+   "kind": "shape",
+   "shape": "wedge",
+   "color": "red",
+   "material": "toy",
+   "at": [
+    4.86,
+    0,
+    -0.9
+   ],
+   "scale": [
+    0.2,
+    0.13,
+    0.15
+   ],
+   "hidden": true
+  },
+  {
+   "id": "card1",
+   "kind": "prop",
+   "model": "story_card",
+   "size": 1,
+   "at": [
+    0.6,
+    0.5,
+    -1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "card2",
+   "kind": "prop",
+   "model": "story_card",
+   "size": 1,
+   "at": [
+    0.6,
+    0.5,
+    -1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "card3",
+   "kind": "prop",
+   "model": "story_card",
+   "size": 1,
+   "at": [
+    0.6,
+    0.5,
+    -1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "card4",
+   "kind": "prop",
+   "model": "story_card",
+   "size": 1,
+   "at": [
+    0.6,
+    0.5,
+    -1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "m1t",
+   "kind": "critter",
+   "parent": "card1",
+   "species": "turtle",
+   "size": 0.336,
+   "at": [
+    -0.239,
+    0.133,
+    0.16
+   ],
+   "feeling": "happy",
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "m1k",
+   "kind": "prop",
+   "parent": "card1",
+   "model": "kite",
+   "size": 0.224,
+   "at": [
+    0.027,
+    0.16,
+    0.17
+   ]
+  },
+  {
+   "id": "m1l0",
+   "kind": "shape",
+   "parent": "card1",
+   "shape": "leaf",
+   "color": "yellow",
+   "material": "toy",
+   "at": [
+    0.32,
+    0.69,
+    0.13
+   ],
+   "size": 0.126,
+   "rotation": [
+    0,
+    0,
+    30
+   ]
+  },
+  {
+   "id": "m1l1",
+   "kind": "shape",
+   "parent": "card1",
+   "shape": "leaf",
+   "color": "orange",
+   "material": "toy",
+   "at": [
+    0.44,
+    0.53,
+    0.13
+   ],
+   "size": 0.126,
+   "rotation": [
+    0,
+    0,
+    70
+   ]
+  },
+  {
+   "id": "m1l2",
+   "kind": "shape",
+   "parent": "card1",
+   "shape": "leaf",
+   "color": "orange",
+   "material": "toy",
+   "at": [
+    0.21,
+    0.82,
+    0.13
+   ],
+   "size": 0.126,
+   "rotation": [
+    0,
+    0,
+    110
+   ]
+  },
+  {
+   "id": "m2h",
+   "kind": "shape",
+   "parent": "card2",
+   "shape": "dome",
+   "color": "grass",
+   "material": "matte",
+   "at": [
+    -0.106,
+    0.106,
+    0.1
+   ],
+   "scale": [
+    0.8,
+    0.4,
+    0.16
+   ]
+  },
+  {
+   "id": "m2t",
+   "kind": "critter",
+   "parent": "card2",
+   "species": "turtle",
+   "size": 0.252,
+   "at": [
+    -0.16,
+    0.266,
+    0.17
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "m2k",
+   "kind": "prop",
+   "parent": "card2",
+   "model": "kite",
+   "size": 0.378,
+   "at": [
+    -0.04,
+    0.293,
+    0.2
+   ]
+  },
+  {
+   "id": "m3tr",
+   "kind": "prop",
+   "parent": "card3",
+   "model": "tree",
+   "size": 0.378,
+   "at": [
+    0.226,
+    0.106,
+    0.1
+   ]
+  },
+  {
+   "id": "m3k",
+   "kind": "prop",
+   "parent": "card3",
+   "model": "kite",
+   "size": 0.196,
+   "at": [
+    0.067,
+    0.399,
+    0.2
+   ]
+  },
+  {
+   "id": "m3t",
+   "kind": "critter",
+   "parent": "card3",
+   "species": "turtle",
+   "size": 0.252,
+   "at": [
+    -0.293,
+    0.106,
+    0.18
+   ],
+   "feeling": "worried",
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "m4t",
+   "kind": "critter",
+   "parent": "card4",
+   "species": "turtle",
+   "size": 0.28,
+   "at": [
+    -0.266,
+    0.106,
+    0.16
+   ],
+   "feeling": "happy",
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "m4s",
+   "kind": "critter",
+   "parent": "card4",
+   "species": "squirrel",
+   "size": 0.336,
+   "at": [
+    0.266,
+    0.106,
+    0.16
+   ],
+   "feeling": "happy",
+   "rotation": [
+    0,
+    -25,
+    0
+   ]
+  },
+  {
+   "id": "m4a",
+   "kind": "prop",
+   "parent": "card4",
+   "model": "apple",
+   "size": 0.168,
+   "at": [
+    0,
+    0.106,
+    0.2
+   ]
+  },
+  {
+   "id": "m4k",
+   "kind": "prop",
+   "parent": "card4",
+   "model": "kite",
+   "size": 0.168,
+   "at": [
+    0.399,
+    0.133,
+    0.12
+   ]
+  },
+  {
+   "id": "shelf",
+   "kind": "prop",
+   "model": "shelf",
+   "size": 1.1,
+   "at": [
+    0.6,
+    0,
+    -1.6
+   ]
+  },
+  {
+   "id": "detect",
+   "kind": "callout",
+   "text": "leaves blowing",
+   "point": [
+    2.8,
+    1.15,
+    1.6
+   ],
+   "offset": [
+    -0.3,
+    1,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "clue2",
+   "kind": "callout",
+   "text": "short legs, heavy shell",
+   "point": [
+    4.3,
+    0.35,
+    -1.15
+   ],
+   "offset": [
+    -0.6,
+    1.4,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "clue3",
+   "kind": "callout",
+   "text": "apple shared",
+   "point": [
+    4.9,
+    0.12,
+    -1
+   ],
+   "offset": [
+    0.4,
+    1.1,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "table",
+   "kind": "prop",
+   "model": "table",
+   "size": 1,
+   "at": [
+    2.6,
+    0,
+    1.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "soap",
+   "kind": "prop",
+   "model": "soap",
+   "size": 0.6,
+   "at": [
+    2.1,
+    0.8,
+    1.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bread1",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "sand",
+   "material": "matte",
+   "at": [
+    2.75,
+    0.8,
+    1.2
+   ],
+   "scale": [
+    0.42,
+    1.8,
+    0.42
+   ],
+   "hidden": true
+  },
+  {
+   "id": "filling",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "material": "toy",
+   "at": [
+    2.75,
+    0.88,
+    1.2
+   ],
+   "scale": [
+    0.4,
+    1.4,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lettuce",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "leaf",
+   "material": "toy",
+   "at": [
+    2.75,
+    0.94,
+    1.2
+   ],
+   "scale": [
+    0.44,
+    0.8,
+    0.44
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bread2",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "sand",
+   "material": "matte",
+   "at": [
+    2.75,
+    0.98,
+    1.2
+   ],
+   "scale": [
+    0.42,
+    1.8,
+    0.42
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cup1",
+   "kind": "text_card",
+   "text": "Mix the batter.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    -4.6,
+    0.3,
+    0.05
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cup2",
+   "kind": "text_card",
+   "text": "Pour it into cups.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    -3.3,
+    0.6,
+    0.05
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cup3",
+   "kind": "text_card",
+   "text": "A grown-up bakes them.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    -2,
+    0.9,
+    0.05
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cup4",
+   "kind": "text_card",
+   "text": "Add frosting when they are cool.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    -0.7,
+    1.2,
+    0.05
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cupcake",
+   "kind": "prop",
+   "model": "cupcake",
+   "size": 1.6,
+   "at": [
+    0.3,
+    0,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bath1",
+   "kind": "text_card",
+   "text": "Get Dog wet.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    -1.25,
+    0,
+    1.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bath2",
+   "kind": "text_card",
+   "text": "Rub in the soap.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    -2.6,
+    0,
+    1.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bath3",
+   "kind": "text_card",
+   "text": "Rinse off the bubbles.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    0.1,
+    0,
+    1.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bath4",
+   "kind": "text_card",
+   "text": "Dry with a towel.",
+   "width": 1.2,
+   "size": 0.14,
+   "at": [
+    -3.95,
+    0,
+    1.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tub",
+   "kind": "prop",
+   "model": "bathtub",
+   "size": 1,
+   "at": [
+    3.6,
+    0,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "size": 0.8,
+   "at": [
+    3.6,
+    0.2,
+    0.9
+   ],
+   "rotation": [
+    0,
+    -20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "drops",
+   "kind": "weather",
+   "type": "rain",
+   "count": 60,
+   "area": [
+    1.4,
+    1
+   ],
+   "height": 1.5,
+   "speed": 0.6,
+   "at": [
+    4.7,
+    0,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "stars",
+   "kind": "confetti",
+   "count": 140,
+   "area": [
+    9,
+    4
+   ],
+   "colors": [
+    "yellow",
+    "orange",
+    "leaf",
+    "sky"
+   ]
+  },
+  {
+   "id": "f_stairs",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -2.65,
+    0,
+    0
+   ],
+   "scale": [
+    5.4,
+    2.4,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_row",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    -2.3,
+    0,
+    1.45
+   ],
+   "scale": [
+    5.6,
+    1.1,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_story",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    4.3,
+    0,
+    -1.2
+   ],
+   "scale": [
+    6,
+    3.4,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_tree",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    4.5,
+    0,
+    -2
+   ],
+   "scale": [
+    3.2,
+    3.4,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_desk",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    2.2,
+    0,
+    1.3
+   ],
+   "scale": [
+    2.6,
+    2.6,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_table",
+   "kind": "shape",
+   "shape": "box",
+   "color": "white",
+   "material": "glass",
+   "at": [
+    2.6,
+    0,
+    1.2
+   ],
+   "scale": [
+    1.8,
+    1.4,
+    0.3
+   ],
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "jumble",
+   "title": "The jumbled story",
+   "beats": [
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "shelf",
+        "robo",
+        "cat",
+        "f_row"
+       ],
+       "framing": "medium",
+       "dur": 0
+      },
+      {
+       "do": "caption",
+       "text": "First, Next, Then, Last",
+       "style": "title",
+       "at": 0.3,
+       "dur": 2.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.5,
+       "clip": "Wave"
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "pop",
+       "target": "card1",
+       "at": 0.1,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card2",
+       "at": 0.22,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card3",
+       "at": 0.33999999999999997,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card4",
+       "at": 0.45999999999999996,
+       "sound": false
+      },
+      {
+       "do": "path",
+       "target": "card1",
+       "at": 0.5,
+       "points": [
+        [
+         0.6,
+         0.5,
+         -1.4
+        ],
+        [
+         -0.325,
+         2.2,
+         0
+        ],
+        [
+         -1.25,
+         0,
+         1.45
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "path",
+       "target": "card2",
+       "at": 0.8,
+       "points": [
+        [
+         0.6,
+         0.5,
+         -1.4
+        ],
+        [
+         0.35,
+         2.2,
+         0
+        ],
+        [
+         0.1,
+         0,
+         1.45
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "path",
+       "target": "card3",
+       "at": 1.1,
+       "points": [
+        [
+         0.6,
+         0.5,
+         -1.4
+        ],
+        [
+         -1,
+         2.2,
+         0
+        ],
+        [
+         -2.6,
+         0,
+         1.45
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "path",
+       "target": "card4",
+       "at": 1.4,
+       "points": [
+        [
+         0.6,
+         0.5,
+         -1.4
+        ],
+        [
+         -1.675,
+         2.2,
+         0
+        ],
+        [
+         -3.95,
+         0,
+         1.45
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.5,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.6,
+       "feeling": "surprised"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.6,
+       "to": "f_row"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": 0.8,
+       "to": "f_row"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Whoa! The story cards flew off the shelf. Let me read them.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_row",
+        "robo"
+       ],
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.4,
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Turtle says thank you to Squirrel.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card4",
+       "dur": 2.4
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "card4"
+      },
+      {
+       "do": "shot",
+       "target": "f_row",
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then Turtle's kite gets stuck.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card3",
+       "dur": 2.2
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": "card3"
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then Turtle takes out his kite. Then he flies it.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card1",
+       "dur": 1.8
+      },
+      {
+       "do": "highlight",
+       "target": "card2",
+       "at": 1.6,
+       "dur": 1.8
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 1.6,
+       "to": "card2"
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.1,
+       "feeling": "worried"
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.2,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Saying thank you before anyone helped? That can't be the right order.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "cat",
+        "f_row"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "A story only makes sense when things happen in order.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stairs",
+   "title": "The Story Stairs",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's build the Story Stairs. One step for each part of the story.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "hide",
+       "target": "shelf",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "card1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "card2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "card3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "card4",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "step1",
+       "at": 1,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "step2",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "step3",
+       "at": 2,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "step4",
+       "at": 2.5,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "robo"
+       ],
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "First.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "word1"
+      },
+      {
+       "do": "highlight",
+       "target": "step1",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "word2"
+      },
+      {
+       "do": "highlight",
+       "target": "step2",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "word3"
+      },
+      {
+       "do": "highlight",
+       "target": "step3",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "word4"
+      },
+      {
+       "do": "highlight",
+       "target": "step4",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "These are signal words. They tell us the order things happen.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "signal words",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "You can't skip to the top. Each step needs the one below it.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "step4"
+      },
+      {
+       "do": "caption",
+       "text": "first, next, then, last",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "The first part of a story is the beginning.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "draw",
+       "target": "c_beg",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "step1",
+       "at": 0.6,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next and then are the middle.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "draw",
+       "target": "c_mid",
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "step2",
+       "at": 0.4,
+       "dur": 2
+      },
+      {
+       "do": "highlight",
+       "target": "step3",
+       "at": 0.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "And last is the end.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "draw",
+       "target": "c_end",
+       "at": 0.3,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "step4",
+       "at": 0.3,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Beginning, middle, end. Now let's watch the real story, in order.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "c_beg",
+       "at": 1.5
+      },
+      {
+       "do": "hide",
+       "target": "c_mid",
+       "at": 1.6
+      },
+      {
+       "do": "hide",
+       "target": "c_end",
+       "at": 1.7
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "story",
+   "title": "Turtle's Windy Kite Day",
+   "music": "calm",
+   "musicGain": 0.18,
+   "beats": [
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "f_story",
+        "turtle",
+        "house"
+       ],
+       "framing": "medium",
+       "dur": 1.6
+      },
+      {
+       "do": "caption",
+       "text": "Turtle's Windy Kite Day",
+       "style": "title",
+       "at": 0.4,
+       "dur": 2.4
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": 0.4,
+       "to": "house"
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, Turtle sees leaves blowing past his house.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "show",
+       "target": "leaves",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.5,
+       "volume": 0.5
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": 1,
+       "to": [
+        1.5,
+        2.2,
+        -0.5
+       ]
+      },
+      {
+       "do": "feel",
+       "target": "turtle",
+       "at": 1,
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "What a windy day! Perfect for flying my kite.",
+       "caption": true,
+       "who": "turtle",
+       "voice": "deep"
+      },
+      {
+       "do": "feel",
+       "target": "turtle",
+       "at": 0.3,
+       "feeling": "happy"
+      },
+      {
+       "do": "pop",
+       "target": "kite",
+       "at": 1.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "turtle",
+        "kite"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "What do you think happens next?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_story",
+        "turtle"
+       ],
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next, Turtle walks slowly up the hill and flies his kite high.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "turtle",
+       "at": 0.5,
+       "points": [
+        [
+         5.9,
+         0,
+         0.4
+        ],
+        [
+         4.2,
+         0.25,
+         -0.3
+        ],
+        [
+         2.7,
+         0.5,
+         -1.1
+        ]
+       ],
+       "dur": 3.2,
+       "face": true
+      },
+      {
+       "do": "path",
+       "target": "kite",
+       "at": 0.5,
+       "points": [
+        [
+         6.25,
+         0.35,
+         0.55
+        ],
+        [
+         4.6,
+         0.6,
+         -0.2
+        ],
+        [
+         3.05,
+         0.85,
+         -1
+        ]
+       ],
+       "dur": 3.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.8,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 1.8,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 2.8,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "kite",
+       "to": [
+        3.2,
+        1.6,
+        -1
+       ],
+       "dur": 1.6,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "turn",
+       "target": "turtle",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": 0.4,
+       "to": "kite"
+      },
+      {
+       "do": "caption",
+       "text": "The string pulls tight!",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "turtle",
+        "kite",
+        "hill"
+       ],
+       "framing": "medium",
+       "dur": 1.6,
+       "height": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wheee! Look how high it flies!",
+       "caption": true,
+       "who": "turtle",
+       "voice": "deep"
+      },
+      {
+       "do": "feel",
+       "target": "turtle",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Remember, fly kites in open spaces, away from trees and power lines.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "Fly kites with a grown-up, in open spaces",
+       "style": "label",
+       "at": 0.5,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "What happens next?",
+       "caption": true,
+       "who": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then, a big gust pushes the kite into a tall tree. It is stuck!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.8,
+       "volume": 0.8
+      },
+      {
+       "do": "path",
+       "target": "kite",
+       "at": 1,
+       "points": [
+        [
+         3.2,
+         1.6,
+         -1
+        ],
+        [
+         3.6,
+         2.2,
+         -1.6
+        ],
+        [
+         4.45,
+         1,
+         -2
+        ]
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "wiggle",
+       "target": "kite",
+       "at": 2.6
+      },
+      {
+       "do": "feel",
+       "target": "turtle",
+       "at": 2.4,
+       "feeling": "worried"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_tree",
+        "turtle"
+       ],
+       "framing": "medium",
+       "at": 0.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "turtle",
+       "points": [
+        [
+         2.7,
+         0.5,
+         -1.1
+        ],
+        [
+         3.6,
+         0.2,
+         -1.2
+        ],
+        [
+         4.3,
+         0,
+         -1.3
+        ]
+       ],
+       "dur": 1.6,
+       "face": true
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": 1.6,
+       "to": "kite"
+      },
+      {
+       "do": "hop",
+       "target": "turtle",
+       "at": 1.8,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "turtle",
+       "at": 2.3,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oh no. My legs are short, and my shell is heavy. I can't climb.",
+       "caption": true,
+       "who": "turtle",
+       "voice": "deep"
+      },
+      {
+       "do": "feel",
+       "target": "turtle",
+       "feeling": "worried"
+      },
+      {
+       "do": "draw",
+       "target": "clue2",
+       "at": 1.2,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "How does Turtle feel now? Worried.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "clue2",
+       "at": 2.4
+      },
+      {
+       "do": "caption",
+       "text": "worried",
+       "style": "label",
+       "at": 1.6,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "What happens last?",
+       "caption": true,
+       "who": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Squirrel! You are a good climber. Can you help me, please?",
+       "caption": true,
+       "who": "turtle",
+       "voice": "deep"
+      },
+      {
+       "do": "show",
+       "target": "squirrel",
+       "at": 0.2
+      },
+      {
+       "do": "path",
+       "target": "squirrel",
+       "at": 0.3,
+       "points": [
+        [
+         1,
+         0,
+         0.8
+        ],
+        [
+         2.6,
+         0,
+         0.6
+        ],
+        [
+         3.6,
+         0,
+         -0.6
+        ]
+       ],
+       "dur": 1.6,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 1.6,
+       "volume": 0.5
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": 0.6,
+       "to": "squirrel"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_tree",
+        "turtle",
+        "squirrel"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "path",
+       "target": "squirrel",
+       "points": [
+        [
+         3.6,
+         0,
+         -0.6
+        ],
+        [
+         4.8,
+         0,
+         -2.1
+        ],
+        [
+         4.85,
+         1.2,
+         -2.05
+        ],
+        [
+         4.75,
+         1.9,
+         -2
+        ]
+       ],
+       "dur": 1.6,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 0.4,
+       "volume": 0.5
+      },
+      {
+       "do": "look",
+       "target": "turtle",
+       "at": 0.6,
+       "to": "squirrel"
+      },
+      {
+       "do": "wiggle",
+       "target": "kite",
+       "at": 1.7
+      },
+      {
+       "do": "path",
+       "target": "kite",
+       "at": 2,
+       "points": [
+        [
+         4.45,
+         1,
+         -2
+        ],
+        [
+         4.3,
+         0.6,
+         -1.7
+        ],
+        [
+         4,
+         0.15,
+         -1.3
+        ]
+       ],
+       "dur": 1.1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "path",
+       "target": "squirrel",
+       "points": [
+        [
+         4.75,
+         1.9,
+         -2
+        ],
+        [
+         4.85,
+         1,
+         -2.05
+        ],
+        [
+         4.8,
+         0,
+         -2.1
+        ],
+        [
+         5.15,
+         0,
+         -1.25
+        ]
+       ],
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "feel",
+       "target": "turtle",
+       "at": 0.6,
+       "feeling": "happy"
+      },
+      {
+       "do": "turn",
+       "target": "squirrel",
+       "at": 1.5,
+       "to": [
+        0,
+        -60,
+        0
+       ],
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact! Squirrels can climb down head first. They turn their back feet around.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "squirrel"
+      }
+     ]
+    },
+    {
+     "dur": 0.94,
+     "do": [
+      {
+       "do": "say",
+       "text": "Thank you, Squirrel! Please share my apple slices.",
+       "caption": true,
+       "who": "turtle",
+       "voice": "deep"
+      },
+      {
+       "do": "pop",
+       "target": "ap0",
+       "at": 0.6,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "ap1",
+       "at": 0.72,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "ap2",
+       "at": 0.84,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "turtle",
+        "squirrel",
+        "ap1"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "ap1",
+       "to": [
+        4.95,
+        0,
+        -1.05
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "ap2",
+       "at": 0.2,
+       "to": [
+        5,
+        0,
+        -1.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "squirrel",
+       "at": 0.6,
+       "feeling": "happy"
+      },
+      {
+       "do": "nod",
+       "target": "squirrel",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last, Turtle says thank you and shares his apple. The end!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "ap0",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "ap1",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "ap2",
+       "at": 2.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_story",
+        "turtle",
+        "squirrel"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "leaves",
+       "at": 2.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "order",
+   "title": "Put it in order",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now, which card goes first?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "card1",
+       "to": [
+        -1.25,
+        0,
+        1.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "card2",
+       "to": [
+        0.1,
+        0,
+        1.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "card3",
+       "to": [
+        -2.6,
+        0,
+        1.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "card4",
+       "to": [
+        -3.95,
+        0,
+        1.45
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "card1",
+       "at": 0.2,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card2",
+       "at": 0.30000000000000004,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card3",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card4",
+       "at": 0.5,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "f_row"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "f_row"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "Which card goes first?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, Turtle sees the leaves and takes out his kite.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "card1",
+       "at": 0.3,
+       "points": [
+        [
+         -1.25,
+         0,
+         1.45
+        ],
+        [
+         -1.25,
+         1.2,
+         0.8
+        ],
+        [
+         -4.6,
+         0.3,
+         0.05
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 1.3,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "card1",
+       "at": 1.4,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next, he walks up the hill and flies it high.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "card2",
+       "at": 0.3,
+       "points": [
+        [
+         0.1,
+         0,
+         1.45
+        ],
+        [
+         -2.6,
+         1.8,
+         0.8
+        ],
+        [
+         -3.3,
+         0.6,
+         0.05
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 1.3,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "card2",
+       "at": 1.4,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then... Turtle says thank you!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "card4",
+       "at": 0.3,
+       "points": [
+        [
+         -3.95,
+         0,
+         1.45
+        ],
+        [
+         -1.5,
+         2.2,
+         0.8
+        ],
+        [
+         -2,
+         0.9,
+         0.05
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 1.3,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "mark",
+       "target": "card4",
+       "at": 0.1,
+       "result": "incorrect"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "at": 0.2,
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Not yet! Nobody has helped him. The kite must get stuck first.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "card4"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "card4",
+       "points": [
+        [
+         -2,
+         0.9,
+         0.05
+        ],
+        [
+         -1.6,
+         2.4,
+         0.8
+        ],
+        [
+         -0.7,
+         1.2,
+         0.05
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "path",
+       "target": "card3",
+       "at": 0.3,
+       "points": [
+        [
+         -2.6,
+         0,
+         1.45
+        ],
+        [
+         -2,
+         2,
+         0.9
+        ],
+        [
+         -2,
+         0.9,
+         0.05
+        ]
+       ],
+       "dur": 1.1
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "card3",
+       "at": 1.6,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then the kite gets stuck. Last, Squirrel helps, and Turtle says thank you.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "mark",
+       "target": "card4",
+       "at": 2.2,
+       "result": "correct"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's retell the whole story, using the signal words.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": "f_stairs",
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "first, next, then, last",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, Turtle sees the windy leaves and takes out his kite.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card1",
+       "at": 0.2,
+       "dur": 2.6
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next, he flies it high on the hill.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card2",
+       "at": 0.2,
+       "dur": 2.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then, a gust blows it into a tree.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card3",
+       "at": 0.2,
+       "dur": 2.2
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last, Squirrel helps, and Turtle shares his apple.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card4",
+       "at": 0.2,
+       "dur": 2.4
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.1,
+       "volume": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 1.2,
+       "clip": "Yes"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "why",
+   "title": "The Why Detective",
+   "musicGain": 0.18,
+   "beats": [
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "I'm the Why Detective. Why did Turtle fly his kite today?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "lens",
+       "at": 0.4
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "card1"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "path",
+       "target": "card1",
+       "points": [
+        [
+         -4.6,
+         0.3,
+         0.05
+        ],
+        [
+         -1,
+         1.4,
+         1.4
+        ],
+        [
+         2.2,
+         0,
+         1.3
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "card1",
+       "at": 0.6,
+       "to": 1.5,
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": "f_desk",
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "cat"
+      },
+      {
+       "do": "show",
+       "target": "cat",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        0.6,
+        0,
+        2.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "dur": 0
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "lens",
+       "points": [
+        [
+         1.6,
+         0,
+         2.1
+        ],
+        [
+         2.2,
+         0.8,
+         2.2
+        ],
+        [
+         2.8,
+         0.65,
+         1.8
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "lens",
+       "at": 0.2,
+       "to": 1.3,
+       "dur": 0.8
+      },
+      {
+       "do": "draw",
+       "target": "detect",
+       "at": 1.3,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ooh",
+       "at": 1.3,
+       "volume": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "m1l0",
+       "at": 1.4,
+       "dur": 2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_desk",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Clue: the leaves are blowing. It was windy, and kites need wind to fly.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "because it was windy",
+       "style": "label",
+       "at": 1,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact! Moving air pushes up on a kite and lifts it.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "detect",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "grow",
+       "target": "card1",
+       "to": 1,
+       "dur": 0.6
+      },
+      {
+       "do": "path",
+       "target": "card1",
+       "points": [
+        [
+         2.2,
+         0,
+         1.3
+        ],
+        [
+         -1,
+         1.4,
+         1.4
+        ],
+        [
+         -4.6,
+         0.3,
+         0.05
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "lens",
+       "to": 1,
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "lens",
+       "to": [
+        1.6,
+        0,
+        2.1
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_story",
+        "turtle"
+       ],
+       "framing": "medium",
+       "at": 0.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why did Turtle ask Squirrel for help?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "turtle"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Because Turtle can't climb trees. His legs are short. Squirrel is a good climber.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "draw",
+       "target": "clue2",
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "squirrel",
+       "at": 2.6,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why did Turtle share his apple?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "clue2",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "ap0",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ap1",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "ap2",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "ap0",
+       "to": [
+        4.5,
+        0,
+        -0.9
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "ap1",
+       "to": [
+        4.68,
+        0,
+        -0.9
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "ap2",
+       "to": [
+        4.86,
+        0,
+        -0.9
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        -5.3,
+        0,
+        2.1
+       ],
+       "dur": 0
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "To say thank you. He felt thankful, so he shared.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "apple shared = thank you",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "move",
+       "target": "ap1",
+       "at": 0.8,
+       "to": [
+        4.95,
+        0,
+        -1.05
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "turtle",
+        "squirrel"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Turtle felt excited at the beginning, worried in the middle, and thankful at the end.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "ap0",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ap1",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "ap2",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.3
+      },
+      {
+       "do": "highlight",
+       "target": "step1",
+       "at": 0.4,
+       "dur": 1.5
+      },
+      {
+       "do": "highlight",
+       "target": "step3",
+       "at": 2,
+       "dur": 1.5
+      },
+      {
+       "do": "highlight",
+       "target": "step4",
+       "at": 3.4,
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "When you answer why, say because, and name the clue.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "because + the clue",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Clue found, case closed!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "lens",
+       "at": 0.8
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.3,
+       "height": 0.25
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Order chant",
+   "music": "playful",
+   "musicGain": 0.24,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "robo"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "orbit",
+       "around": [
+        -2.6,
+        1,
+        0
+       ],
+       "degrees": 26,
+       "dur": 14,
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "at": 0.2,
+       "to": [
+        -5.6,
+        0,
+        0.6
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "card1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "card2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "card3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "card4",
+       "at": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "at": 0.2,
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "First step!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "path",
+       "target": "robo",
+       "at": 0.2,
+       "points": [
+        [
+         -5.6,
+         0,
+         0.6
+        ],
+        [
+         -4.6,
+         0.3,
+         0.1
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next step!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "path",
+       "target": "robo",
+       "at": 0.2,
+       "points": [
+        [
+         -4.6,
+         0.3,
+         0.1
+        ],
+        [
+         -3.3,
+         0.6,
+         0.1
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then the top!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "path",
+       "target": "robo",
+       "at": 0.2,
+       "points": [
+        [
+         -3.3,
+         0.6,
+         0.1
+        ],
+        [
+         -2,
+         0.9,
+         0.1
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last is where the story stops!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "path",
+       "target": "robo",
+       "at": 0.2,
+       "points": [
+        [
+         -2,
+         0.9,
+         0.1
+        ],
+        [
+         -0.7,
+         1.2,
+         0.1
+        ]
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 1,
+       "clip": "Jump"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "First!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.2,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "robo",
+       "points": [
+        [
+         -0.7,
+         1.2,
+         0.1
+        ],
+        [
+         -0.1,
+         0.6,
+         0.8
+        ],
+        [
+         0.2,
+         0,
+         1
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 1,
+       "clip": "Idle"
+      },
+      {
+       "do": "pop",
+       "target": "card1",
+       "at": 1,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card2",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card3",
+       "at": 1.2,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card4",
+       "at": 1.3,
+       "sound": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sandwich",
+   "title": "Robo's sandwich mix-up",
+   "beats": [
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Order matters in real life too. I'll make a sandwich!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "show",
+       "target": "table",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        1.2,
+        0,
+        0.3
+       ],
+       "dur": 0
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_table",
+        "robo"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "path",
+       "target": "cat",
+       "at": 0.2,
+       "points": [
+        [
+         -5.3,
+         0,
+         2.1
+        ],
+        [
+         0,
+         0,
+         2.2
+        ],
+        [
+         4,
+         0,
+         0.6
+        ]
+       ],
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "at": 1.6,
+       "to": [
+        0,
+        -40,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        40,
+        0
+       ],
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Top slice first... then the filling on top!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "bread2",
+       "at": 0.5
+      },
+      {
+       "do": "move",
+       "target": "bread2",
+       "at": 0.5,
+       "to": [
+        2.75,
+        0.8,
+        1.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "filling",
+       "at": 1.6
+      },
+      {
+       "do": "move",
+       "target": "filling",
+       "at": 1.6,
+       "to": [
+        2.75,
+        0.88,
+        1.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_table",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2,
+       "height": 22
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "path",
+       "target": "filling",
+       "at": 0.2,
+       "points": [
+        [
+         2.75,
+         0.88,
+         1.2
+        ],
+        [
+         3.15,
+         0.9,
+         1.4
+        ],
+        [
+         3.35,
+         0,
+         1.65
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.9,
+       "volume": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "at": 0.9,
+       "feeling": "surprised"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Where is the bottom slice? Each step needs the one before it.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "table"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, wash your hands.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "bread2"
+      },
+      {
+       "do": "hide",
+       "target": "filling"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "pop",
+       "target": "soap",
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "1. Wash your hands",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next, take two slices of bread.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "soap"
+      },
+      {
+       "do": "pop",
+       "target": "bread1",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "bread2",
+       "to": [
+        3.45,
+        0.8,
+        1.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "bread2",
+       "at": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "2. Two slices of bread",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then, put the filling on one slice.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "move",
+       "target": "filling",
+       "to": [
+        2.75,
+        0.88,
+        1.2
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "filling",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "lettuce",
+       "at": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "3. Filling on one slice",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last, put the other slice on top.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "path",
+       "target": "bread2",
+       "at": 0.3,
+       "points": [
+        [
+         3.45,
+         0.8,
+         1.2
+        ],
+        [
+         3.1,
+         1.3,
+         1.2
+        ],
+        [
+         2.75,
+         0.98,
+         1.2
+        ]
+       ],
+       "dur": 0.9
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.3,
+       "volume": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "4. The other slice on top",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A real sandwich! The right order makes it work.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "ThumbsUp"
+      },
+      {
+       "do": "mark",
+       "target": "table",
+       "at": 0.4,
+       "result": "correct",
+       "sound": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: What comes next?",
+   "beats": [
+    {
+     "dur": 1.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge time! Cupcakes. Here are three steps. What comes last?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "hide",
+       "target": "bread1"
+      },
+      {
+       "do": "hide",
+       "target": "bread2"
+      },
+      {
+       "do": "hide",
+       "target": "filling"
+      },
+      {
+       "do": "hide",
+       "target": "lettuce"
+      },
+      {
+       "do": "hide",
+       "target": "table"
+      },
+      {
+       "do": "hide",
+       "target": "card1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "card2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "card3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "card4",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -6.4,
+        0,
+        0.6
+       ],
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        35,
+        0
+       ],
+       "dur": 0
+      },
+      {
+       "do": "path",
+       "target": "cat",
+       "at": 0.3,
+       "points": [
+        [
+         4,
+         0,
+         0.6
+        ],
+        [
+         0,
+         0,
+         2.2
+        ],
+        [
+         -5.3,
+         0,
+         2.1
+        ]
+       ],
+       "dur": 1.2,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "at": 1.5,
+       "to": [
+        0,
+        25,
+        0
+       ],
+       "dur": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "cup1",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "cup2",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "cup3",
+       "at": 1.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "cupcake"
+       ],
+       "framing": "medium",
+       "at": 0.4,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Mix the batter. Pour it into cups. A grown-up bakes them.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "emphasize",
+       "target": "cup1",
+       "at": 0.1,
+       "words": "Mix the batter"
+      },
+      {
+       "do": "emphasize",
+       "target": "cup2",
+       "at": 1.4,
+       "words": "Pour it into cups"
+      },
+      {
+       "do": "emphasize",
+       "target": "cup3",
+       "at": 2.7,
+       "words": "A grown-up bakes them"
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "What comes last?",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Add the frosting, once they are cool!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "pop",
+       "target": "cup4",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cupcake",
+       "at": 0.8
+      },
+      {
+       "do": "mark",
+       "target": "cup4",
+       "at": 1.2,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 1.06,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next, Dog's bath. These cards are jumbled.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "cup1"
+      },
+      {
+       "do": "hide",
+       "target": "cup2"
+      },
+      {
+       "do": "hide",
+       "target": "cup3"
+      },
+      {
+       "do": "hide",
+       "target": "cup4"
+      },
+      {
+       "do": "hide",
+       "target": "cupcake"
+      },
+      {
+       "do": "show",
+       "target": "tub",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "dog",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "bath1",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "bath2",
+       "at": 0.72,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "bath3",
+       "at": 0.84,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "bath4",
+       "at": 0.96,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "f_row"
+       ],
+       "framing": "medium",
+       "at": 0.3,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "I know! Dry Dog with a towel first.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "bath4",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why would that not work?",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "look",
+       "target": "cat",
+       "at": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Dog isn't wet yet! You dry him after the bath.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "mark",
+       "target": "bath4",
+       "at": 0.3,
+       "result": "incorrect"
+      }
+     ]
+    },
+    {
+     "dur": 1.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, get Dog wet. Next, rub in the soap.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "path",
+       "target": "bath1",
+       "at": 0.1,
+       "points": [
+        [
+         -1.25,
+         0,
+         1.45
+        ],
+        [
+         -3,
+         1.2,
+         0.8
+        ],
+        [
+         -4.6,
+         0.3,
+         0.05
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "path",
+       "target": "bath2",
+       "at": 1.8,
+       "points": [
+        [
+         -2.6,
+         0,
+         1.45
+        ],
+        [
+         -2.6,
+         1.6,
+         0.8
+        ],
+        [
+         -3.3,
+         0.6,
+         0.05
+        ]
+       ],
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then, rinse off the bubbles. Last, dry him with a towel.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "path",
+       "target": "bath3",
+       "at": 0.1,
+       "points": [
+        [
+         0.1,
+         0,
+         1.45
+        ],
+        [
+         -2.2,
+         2,
+         0.8
+        ],
+        [
+         -2,
+         0.9,
+         0.05
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "path",
+       "target": "bath4",
+       "at": 1.9,
+       "points": [
+        [
+         -3.95,
+         0,
+         1.45
+        ],
+        [
+         -1.8,
+         2.4,
+         0.8
+        ],
+        [
+         -0.7,
+         1.2,
+         0.05
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "mark",
+       "target": "bath4",
+       "at": 2.9,
+       "result": "correct"
+      }
+     ]
+    },
+    {
+     "dur": 1.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "After the bath, Dog shakes. Why did Dog shake?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "path",
+       "target": "dog",
+       "at": 0.2,
+       "points": [
+        [
+         3.6,
+         0.2,
+         0.9
+        ],
+        [
+         4.2,
+         0.6,
+         1.2
+        ],
+        [
+         4.7,
+         0,
+         1.4
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "show",
+       "target": "drops",
+       "at": 1
+      },
+      {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 1.2,
+       "deg": 20,
+       "dur": 1.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "tub",
+        "dog"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "He was wet. The clue is the water drops flying off him.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "dog",
+       "at": 0.4,
+       "dur": 2
+      },
+      {
+       "do": "hide",
+       "target": "drops",
+       "at": 2.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! What happened first in Turtle's story?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "hide",
+       "target": "bath1"
+      },
+      {
+       "do": "hide",
+       "target": "bath2"
+      },
+      {
+       "do": "hide",
+       "target": "bath3"
+      },
+      {
+       "do": "hide",
+       "target": "bath4"
+      },
+      {
+       "do": "hide",
+       "target": "tub"
+      },
+      {
+       "do": "hide",
+       "target": "dog"
+      },
+      {
+       "do": "move",
+       "target": "card1",
+       "to": [
+        -4.6,
+        0.3,
+        0.05
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "card2",
+       "to": [
+        -3.3,
+        0.6,
+        0.05
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "card3",
+       "to": [
+        -2,
+        0.9,
+        0.05
+       ],
+       "dur": 0
+      },
+      {
+       "do": "move",
+       "target": "card4",
+       "to": [
+        -0.7,
+        1.2,
+        0.05
+       ],
+       "dur": 0
+      },
+      {
+       "do": "pop",
+       "target": "card1",
+       "at": 0.2,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card2",
+       "at": 0.30000000000000004,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card3",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "card4",
+       "at": 0.5,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "He saw the windy leaves and took out his kite.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "card1",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "What happened right after the kite got stuck?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "card3",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Turtle asked Squirrel for help, and Squirrel climbed up.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "card4",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why did Turtle ask Squirrel for help?",
+       "caption": true,
+       "who": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Because Squirrel can climb, and Turtle can't.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "How did Turtle feel in the middle?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "step2",
+       "at": 0.2,
+       "dur": 1.5
+      },
+      {
+       "do": "highlight",
+       "target": "step3",
+       "at": 0.2,
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Worried!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "caption",
+       "text": "worried",
+       "style": "label",
+       "at": 0.1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which word comes after next? First, then or last?",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "highlight",
+       "target": "word2",
+       "at": 0.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1,
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then!",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      },
+      {
+       "do": "highlight",
+       "target": "word3",
+       "at": 0.1,
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "step3",
+       "at": 0.2,
+       "result": "correct",
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's remember. Stories go first, next, then, last. Beginning, middle, end.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "robo",
+        "cat"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "step1",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "step2",
+       "at": 1.2,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "step3",
+       "at": 1.7999999999999998,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "step4",
+       "at": 2.4,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "And clues tell us why. Say because, and name the clue.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try it at home! Retell a story on four fingers: first, next, then, last.",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "first, next, then, last",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Or fold a paper into four boxes, and draw your day in order.",
+       "caption": true,
+       "who": "cat",
+       "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bye, friends! See you next time!",
+       "caption": true,
+       "who": "robo"
+      },
+      {
+       "do": "pop",
+       "target": "kite"
+      },
+      {
+       "do": "move",
+       "target": "kite",
+       "to": [
+        4.75,
+        0.35,
+        0.4
+       ],
+       "dur": 0
+      },
+      {
+       "do": "path",
+       "target": "turtle",
+       "points": [
+        [
+         4.3,
+         0,
+         -1.3
+        ],
+        [
+         4.4,
+         0,
+         0.3
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "burst",
+       "target": "stars",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.5,
+       "volume": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "at": 0.3,
+       "clip": "Wave"
+      },
+      {
+       "do": "hop",
+       "target": "squirrel",
+       "at": 0.6,
+       "height": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_stairs",
+        "robo",
+        "cat",
+        "turtle",
+        "squirrel",
+        "kite"
+       ],
+       "framing": "medium",
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "kite",
+       "to": [
+        4.95,
+        1,
+        0.2
+       ],
+       "dur": 2,
+       "ease": "cubicOut"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
