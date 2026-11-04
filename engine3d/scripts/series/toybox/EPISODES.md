@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-70 episodes: 0 spec, 24 scripted, 46 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
+70 episodes: 0 spec, 16 scripted, 54 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -38,7 +38,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | pk13 | Opposites Playground | Pre-K | English | `opposites_k` | `pk13_opposites_playground.json` | rendered | disk1:PREK-PLAYLIST/pk13_opposites_playground |
 | pk14 | Where Is Duck? | Pre-K | Math | `position_words_prek` | `pk14_where_is_duck.json` | rendered | disk1:PREK-PLAYLIST/pk14_where_is_duck |
 | pk15 | How Do You Feel? | Pre-K | Social-emotional | `feelings_prek`, `listening_prek` | `pk15_how_do_you_feel.json` | rendered | disk1:PREK-PLAYLIST/pk15_how_do_you_feel |
-| pk16 | Healthy Habits: Wash, Brush, Sleep | Pre-K | Health | `healthy_habits_prek` | `pk16_healthy_habits.json` | rendered | out:pk16_healthy_habits |
+| pk16 | Healthy Habits: Wash, Brush, Sleep | Pre-K | Health | `healthy_habits_prek` | `pk16_healthy_habits.json` | rendered | disk1:PREK-PLAYLIST/pk16_healthy_habits |
 | pk17 | Letters M to S | Pre-K | English | `capital_letters_prek`, `letter_look_alikes_prek` | `pk17_letters_m_to_s.json` | rendered | disk1:PREK-PLAYLIST/pk17_letters_m_to_s |
 | pk18 | Dot Dice: Zero to Five | Pre-K | Math | `count_to_5_prek`, `number_order_prek` | `pk18_dot_dice.json` | rendered | disk1:PREK-PLAYLIST/pk18_dot_dice |
 | pk19 | Lines and Curves | Pre-K | Handwriting readiness | `prewriting_strokes_prek` | `pk19_lines_and_curves.json` | rendered | disk1:PREK-PLAYLIST/pk19_lines_and_curves |
@@ -60,10 +60,10 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g109 | Shadow Puppets and Humming Strings | Grade 1 | Science | `nonfiction_facts_1` | `g109_shadows_and_sounds.json` | rendered | disk1:GRADE1-PLAYLIST/g109_shadows_and_sounds |
 | g110 | Town Rules and Good Citizens | Grade 1 | Social studies | `rules_citizenship_1` | `g110_town_rules.json` | rendered | disk1:GRADE1-PLAYLIST/g110_town_rules |
 | g111 | Blend Bridges | Grade 1 | English | `blends_1` | `g111_blend_bridges.json` | rendered | disk1:GRADE1-PLAYLIST/g111_blend_bridges |
-| g112 | Naming Words and Doing Words | Grade 1 | English | `nouns_verbs_1` | `g112_naming_and_doing_words.json` | scripted | – |
-| g113 | Sentence Builders | Grade 1 | English | `sentences_1` | `g113_sentence_builders.json` | scripted | – |
-| g114 | Skip Count Parade | Grade 1 | Math | `skip_count_patterns_1` | `g114_skip_count_parade.json` | scripted | – |
-| g115 | Story Detectives | Grade 1 | English | `story_details_1` | `g115_story_detectives.json` | scripted | – |
+| g112 | Naming Words and Doing Words | Grade 1 | English | `nouns_verbs_1` | `g112_naming_and_doing_words.json` | rendered | disk1:GRADE1-PLAYLIST/g112_naming_and_doing_words |
+| g113 | Sentence Builders | Grade 1 | English | `sentences_1` | `g113_sentence_builders.json` | rendered | disk1:GRADE1-PLAYLIST/g113_sentence_builders |
+| g114 | Skip Count Parade | Grade 1 | Math | `skip_count_patterns_1` | `g114_skip_count_parade.json` | rendered | disk1:GRADE1-PLAYLIST/g114_skip_count_parade |
+| g115 | Story Detectives | Grade 1 | English | `story_details_1` | `g115_story_detectives.json` | rendered | disk1:GRADE1-PLAYLIST/g115_story_detectives |
 
 ## Grade 2 (15)
 
@@ -79,10 +79,10 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g208 | Habitat Hop | Grade 2 | Science | `habitats_2` | `g208_habitat_hop.json` | rendered | disk1:GRADE2-PLAYLIST/g208_habitat_hop |
 | g209 | Treasure Map Quest | Grade 2 | Social studies | `maps_2` | `g209_treasure_map_quest.json` | rendered | disk1:GRADE2-PLAYLIST/g209_treasure_map_quest |
 | g210 | Melt, Freeze, Fizz! | Grade 2 | Science | `states_of_matter_2` | `g210_melt_freeze_fizz.json` | rendered | disk1:GRADE2-PLAYLIST/g210_melt_freeze_fizz |
-| g211 | Pizza Party Thirds | Grade 2 | Math | `thirds_2` | `g211_pizza_party_thirds.json` | scripted | – |
-| g212 | Quarters to a Dollar | Grade 2 | Math | `coins_quarters_2` | `g212_quarters_to_a_dollar.json` | scripted | – |
-| g213 | First, Next, Then, Last | Grade 2 | English | `sequence_inference_2` | `g213_first_next_then_last.json` | scripted | – |
-| g214 | Needs and Wants Market | Grade 2 | Social studies | `needs_wants_2` | `g214_needs_and_wants_market.json` | scripted | – |
+| g211 | Pizza Party Thirds | Grade 2 | Math | `thirds_2` | `g211_pizza_party_thirds.json` | rendered | disk1:GRADE2-PLAYLIST/g211_pizza_party_thirds |
+| g212 | Quarters to a Dollar | Grade 2 | Math | `coins_quarters_2` | `g212_quarters_to_a_dollar.json` | rendered | disk1:GRADE2-PLAYLIST/g212_quarters_to_a_dollar |
+| g213 | First, Next, Then, Last | Grade 2 | English | `sequence_inference_2` | `g213_first_next_then_last.json` | rendered | disk1:GRADE2-PLAYLIST/g213_first_next_then_last |
+| g214 | Needs and Wants Market | Grade 2 | Social studies | `needs_wants_2` | `g214_needs_and_wants_market.json` | rendered | disk1:GRADE2-PLAYLIST/g214_needs_and_wants_market |
 | g215 | Number Pattern Machine | Grade 2 | Math | `number_sequences_2` | `g215_number_pattern_machine.json` | scripted | – |
 
 ## Grade 3 (5)
