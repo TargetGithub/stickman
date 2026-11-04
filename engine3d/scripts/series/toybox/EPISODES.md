@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-70 episodes: 0 spec, 30 scripted, 40 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
+70 episodes: 0 spec, 24 scripted, 46 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -39,11 +39,11 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | pk14 | Where Is Duck? | Pre-K | Math | `position_words_prek` | `pk14_where_is_duck.json` | rendered | disk1:PREK-PLAYLIST/pk14_where_is_duck |
 | pk15 | How Do You Feel? | Pre-K | Social-emotional | `feelings_prek`, `listening_prek` | `pk15_how_do_you_feel.json` | rendered | disk1:PREK-PLAYLIST/pk15_how_do_you_feel |
 | pk16 | Healthy Habits: Wash, Brush, Sleep | Pre-K | Health | `healthy_habits_prek` | `pk16_healthy_habits.json` | rendered | out:pk16_healthy_habits |
-| pk17 | Letters M to S | Pre-K | English | `capital_letters_prek`, `letter_look_alikes_prek` | `pk17_letters_m_to_s.json` | scripted | – |
-| pk18 | Dot Dice: Zero to Five | Pre-K | Math | `count_to_5_prek`, `number_order_prek` | `pk18_dot_dice.json` | scripted | – |
-| pk19 | Lines and Curves | Pre-K | Handwriting readiness | `prewriting_strokes_prek` | `pk19_lines_and_curves.json` | scripted | – |
-| pk20 | Rhyme Time | Pre-K | English | `rhyming_k` | `pk20_rhyme_time.json` | scripted | – |
-| pk21 | Alive or Not? | Pre-K | Science | `living_things_k` | `pk21_alive_or_not.json` | scripted | – |
+| pk17 | Letters M to S | Pre-K | English | `capital_letters_prek`, `letter_look_alikes_prek` | `pk17_letters_m_to_s.json` | rendered | disk1:PREK-PLAYLIST/pk17_letters_m_to_s |
+| pk18 | Dot Dice: Zero to Five | Pre-K | Math | `count_to_5_prek`, `number_order_prek` | `pk18_dot_dice.json` | rendered | disk1:PREK-PLAYLIST/pk18_dot_dice |
+| pk19 | Lines and Curves | Pre-K | Handwriting readiness | `prewriting_strokes_prek` | `pk19_lines_and_curves.json` | rendered | disk1:PREK-PLAYLIST/pk19_lines_and_curves |
+| pk20 | Rhyme Time | Pre-K | English | `rhyming_k` | `pk20_rhyme_time.json` | rendered | disk1:PREK-PLAYLIST/pk20_rhyme_time |
+| pk21 | Alive or Not? | Pre-K | Science | `living_things_k` | `pk21_alive_or_not.json` | rendered | disk1:PREK-PLAYLIST/pk21_alive_or_not |
 
 ## Grade 1 (15)
 
@@ -59,7 +59,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g108 | Four Seasons Tree | Grade 1 | Science | `weather_seasons_1` | `g108_four_seasons_tree.json` | rendered | disk1:GRADE1-PLAYLIST/g108_four_seasons_tree |
 | g109 | Shadow Puppets and Humming Strings | Grade 1 | Science | `nonfiction_facts_1` | `g109_shadows_and_sounds.json` | rendered | disk1:GRADE1-PLAYLIST/g109_shadows_and_sounds |
 | g110 | Town Rules and Good Citizens | Grade 1 | Social studies | `rules_citizenship_1` | `g110_town_rules.json` | rendered | disk1:GRADE1-PLAYLIST/g110_town_rules |
-| g111 | Blend Bridges | Grade 1 | English | `blends_1` | `g111_blend_bridges.json` | scripted | – |
+| g111 | Blend Bridges | Grade 1 | English | `blends_1` | `g111_blend_bridges.json` | rendered | disk1:GRADE1-PLAYLIST/g111_blend_bridges |
 | g112 | Naming Words and Doing Words | Grade 1 | English | `nouns_verbs_1` | `g112_naming_and_doing_words.json` | scripted | – |
 | g113 | Sentence Builders | Grade 1 | English | `sentences_1` | `g113_sentence_builders.json` | scripted | – |
 | g114 | Skip Count Parade | Grade 1 | Math | `skip_count_patterns_1` | `g114_skip_count_parade.json` | scripted | – |
