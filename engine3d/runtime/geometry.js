@@ -175,6 +175,157 @@ function ellipse(rx, ry) {
   return s;
 }
 
+/** An open-mouthed grin (a D: lip line curving up at the corners, round below), width 1, facing +z. */
+function grin() {
+  const s = new THREE.Shape();
+  s.moveTo(-0.5, 0.1);
+  s.quadraticCurveTo(0, -0.02, 0.5, 0.1);
+  s.bezierCurveTo(0.44, -0.42, -0.44, -0.42, -0.5, 0.1);
+  return s;
+}
+
+/** A thick arched eyebrow: a tube along a gentle arch with round ends, width 1. */
+function brow() {
+  const curve = new THREE.QuadraticBezierCurve3(new THREE.Vector3(-0.5, -0.08, 0), new THREE.Vector3(0, 0.2, 0), new THREE.Vector3(0.5, -0.08, 0));
+  const parts = [new THREE.TubeGeometry(curve, 24, 0.1, 12, false)];
+  for (const t of [0, 1]) parts.push(new THREE.SphereGeometry(0.1, 12, 8).translate(...curve.getPoint(t).toArray()));
+  return mergeGeometries(parts.map((g) => (g.index ? g.toNonIndexed() : g))).center();
+}
+
+/** A cap brim: a flat rounded peak, its inner edge hugging the crown, pointing +z and curving down a little. */
+function brim() {
+  const s = new THREE.Shape();
+  s.moveTo(-0.5, 0);
+  s.bezierCurveTo(-0.5, 0.42, -0.25, 0.62, 0, 0.62);
+  s.bezierCurveTo(0.25, 0.62, 0.5, 0.42, 0.5, 0);
+  s.quadraticCurveTo(0, 0.16, -0.5, 0);
+  const g = new THREE.ExtrudeGeometry(s, { depth: 0.035, bevelEnabled: true, bevelThickness: 0.015, bevelSize: 0.015, bevelSegments: 3, curveSegments: 32 });
+  g.rotateX(Math.PI / 2);
+  const p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) p.setY(i, p.getY(i) - 0.14 * p.getZ(i) * p.getZ(i));
+  g.computeVertexNormals();
+  return g.center();
+}
+
+/**
+ * The same surface seen from both sides: the geometry plus an inset copy facing inward (flipped triangles),
+ * so a cape or a mask has a solid back without double-sided materials.
+ */
+function twoSided(geo, inset) {
+  // Smooth normals from the shared vertices first (a non-indexed geometry would get flat ones).
+  if (geo.index) geo.computeVertexNormals();
+  const a = geo.index ? geo.toNonIndexed() : geo;
+  if (!a.attributes.normal) a.computeVertexNormals();
+  const b = a.clone();
+  const p = b.attributes.position;
+  const n = b.attributes.normal;
+  for (let i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) - n.getX(i) * inset, p.getY(i) - n.getY(i) * inset, p.getZ(i) - n.getZ(i) * inset);
+  for (let i = 0; i < p.count; i += 3) {
+    for (const attr of Object.values(b.attributes)) {
+      const w = attr.itemSize;
+      for (let c = 0; c < w; c++) {
+        const t = attr.array[(i + 1) * w + c];
+        attr.array[(i + 1) * w + c] = attr.array[(i + 2) * w + c];
+        attr.array[(i + 2) * w + c] = t;
+      }
+    }
+  }
+  for (let i = 0; i < n.count; i++) n.setXYZ(i, -n.getX(i), -n.getY(i), -n.getZ(i));
+  return mergeGeometries([a, b]);
+}
+
+/** A cape: the back two thirds of a flared cone, open in front, hanging from the top (1 tall, 1 wide at the hem). */
+function cape() {
+  const g = new THREE.CylinderGeometry(0.3, 0.5, 1, 40, 8, true, Math.PI * 0.62, Math.PI * 0.76);
+  // A soft wave along the hem.
+  const p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) {
+    const down = 0.5 - p.getY(i);
+    const a = Math.atan2(p.getX(i), p.getZ(i));
+    const k = 1 + 0.06 * down * Math.sin(a * 7);
+    p.setX(i, p.getX(i) * k);
+    p.setZ(i, p.getZ(i) * k);
+  }
+  return twoSided(g, 0.02).center();
+}
+
+/** A domino eye mask: two eye holes, pointed wings, bent round a head (width 1). */
+function mask() {
+  const s = new THREE.Shape();
+  s.moveTo(-0.5, 0.1);
+  s.bezierCurveTo(-0.36, 0.22, -0.12, 0.2, 0, 0.1);
+  s.bezierCurveTo(0.12, 0.2, 0.36, 0.22, 0.5, 0.1);
+  s.bezierCurveTo(0.44, -0.14, 0.18, -0.2, 0.04, -0.08);
+  s.quadraticCurveTo(0, -0.05, -0.04, -0.08);
+  s.bezierCurveTo(-0.18, -0.2, -0.44, -0.14, -0.5, 0.1);
+  for (const x of [-0.21, 0.21]) {
+    const h = new THREE.Path();
+    h.absellipse(x, 0.02, 0.12, 0.1, 0, Math.PI * 2, true, 0);
+    s.holes.push(h);
+  }
+  const g = new THREE.ExtrudeGeometry(s, { depth: 0.03, bevelEnabled: true, bevelThickness: 0.012, bevelSize: 0.012, bevelSegments: 3, curveSegments: 24 });
+  return bend(g, 0.42);
+}
+
+/** Wrap a flat geometry (in x/y, facing +z) round a vertical cylinder of radius r, its front at z = 0. */
+function bend(g, r) {
+  const p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) {
+    const a = p.getX(i) / r;
+    const rr = r + p.getZ(i);
+    p.setX(i, rr * Math.sin(a));
+    p.setZ(i, rr * Math.cos(a) - r);
+  }
+  g.computeVertexNormals();
+  return g.center();
+}
+
+/** A pleated dumpling (bao): a squat ball whose top gathers in twisting pleats to a little point. */
+function bao() {
+  const g = new THREE.SphereGeometry(0.5, 96, 64);
+  const p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) {
+    const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
+    const up = Math.max(0, y / 0.5); // 0 at the middle, 1 at the top
+    const a = Math.atan2(z, x) + up * 0.9;
+    const pleat = 1 + 0.07 * up * up * Math.cos(a * 14);
+    // Gathered to a point at the top, a soft flat belly at the bottom.
+    const pinch = 1 - 0.25 * up ** 3;
+    const k = pleat * pinch;
+    p.setXYZ(i, x * k, y < 0 ? y * 0.82 : y * (1 + 0.12 * up * up), z * k);
+  }
+  g.computeVertexNormals();
+  return g.center();
+}
+
+/** A gumdrop (Yogurt Man's soft body): round top, sides widening a little to a rounded base, 1 tall. */
+function gumdrop() {
+  const curve = new THREE.SplineCurve([[0, 0], [0.38, 0.005], [0.49, 0.08], [0.5, 0.25], [0.47, 0.55], [0.4, 0.78], [0.25, 0.94], [0.001, 1]].map(([x, y]) => new THREE.Vector2(x, y)));
+  return new THREE.LatheGeometry(curve.getPoints(48), 64).center();
+}
+
+const EGG = new THREE.SplineCurve([[0, 0], [0.2, 0.01], [0.34, 0.06], [0.44, 0.16], [0.49, 0.29], [0.5, 0.4], [0.47, 0.6], [0.4, 0.76], [0.27, 0.9], [0.12, 0.98], [0.001, 1]].map(([x, y]) => new THREE.Vector2(x, y)));
+
+/** An egg (Fluffy's body): a narrow round bottom, widest 40% of the way up, a narrower round top, 1 tall. */
+function egg() {
+  return new THREE.LatheGeometry(EGG.getPoints(64), 72).center();
+}
+
+/**
+ * A band of the egg body between two heights (shares of its height, 0 bottom .. 1 top). Not centred: it sits
+ * where the egg does, so give it the egg's centre and a slightly bigger scale. closed: a flat lid on top (the
+ * seat of a pair of shorts); otherwise an open band with a solid inside (a shirt).
+ */
+function eggBand(lo, hi, closed) {
+  const pts = EGG.getPoints(256).filter((p) => p.y >= lo && p.y <= hi);
+  if (closed) {
+    const rim = pts[pts.length - 1];
+    pts.push(new THREE.Vector2(rim.x * 0.6, hi), new THREE.Vector2(0.001, hi));
+    return new THREE.LatheGeometry(pts, 72).translate(0, -0.5, 0);
+  }
+  return twoSided(new THREE.LatheGeometry(pts, 72), 0.012).translate(0, -0.5, 0);
+}
+
 function make(name) {
   switch (name) {
     // Solids.
@@ -211,6 +362,17 @@ function make(name) {
     case "cross": return bars([[1, 0.24, 45], [1, 0.24, -45]]);
     // A tick mark (right answers): a short arm down to the joint and a long arm up to the right.
     case "tick": return bars([[0.42, 0.2, -45, -0.21, -0.07], [0.78, 0.2, 48, 0.13, 0.05]]);
+    // Plush character parts (Fluffy): a grin, arched brows, a cap brim, a cape, an eye mask, body shapes and a shirt band.
+    case "grin": return puffy(grin(), 0.06, 0.03);
+    case "brow": return brow();
+    case "brim": return brim();
+    case "cape": return cape();
+    case "mask": return mask();
+    case "bao": return bao();
+    case "gumdrop": return gumdrop();
+    case "egg": return egg();
+    case "egg_seat": return eggBand(0, 0.23, true);
+    case "egg_shirt": return eggBand(0.08, 0.35, false);
     case "snowflake": return snowflake();
     case "drop": return puffy(drop());
     case "leaf": return puffy(leaf(), 0.08, 0.04);

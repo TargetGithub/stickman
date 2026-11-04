@@ -9,7 +9,7 @@ export const PAINT_KIT = ["stroke", "pointer", "number_line", "fraction_bar", "f
 const FRACTIONS = ["fraction_bar", "fraction_circle"];
 
 /** Feelings a face can show (critters, shapes with face: true, and Robo through his face morphs). */
-export const FEELINGS = ["happy", "sad", "surprised", "angry", "worried", "sleepy"];
+export const FEELINGS = ["happy", "sad", "surprised", "angry", "worried", "sleepy", "joyful"];
 
 /** "3:25" → minutes after 12:00 (0-719). */
 export function parseClock(text) {

@@ -43,6 +43,8 @@ export function createMaterials(catalog) {
       cache.set(key, new THREE.MeshPhysicalMaterial({
         color: c, roughness: s.roughness, metalness: s.metalness, clearcoat: s.clearcoat ?? 0, clearcoatRoughness: s.clearcoatRoughness ?? 0,
         emissive: s.emissive ? c : new THREE.Color(0), emissiveIntensity: s.emissive ?? 0,
+        // Cloth and plush: a velvety sheen in a lighter tint of the colour, strongest at grazing angles.
+        ...(s.sheen ? { sheen: s.sheen, sheenRoughness: s.sheenRoughness ?? 0.5, sheenColor: c.clone().lerp(new THREE.Color(1, 1, 1), 0.55) } : {}),
         // See-through styles (water, glass, ice): drawn after solids, and thin ones skip the depth buffer so
         // what is inside a glass still shows.
         ...(s.opacity != null ? { transparent: true, opacity: s.opacity, depthWrite: s.opacity > 0.5 } : {}),

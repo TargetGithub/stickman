@@ -9,6 +9,7 @@ import { shadowed, shapeGeometry } from "./geometry.js";
 import { hash32 } from "./rng.js";
 import { createFaceRig } from "./faces.js";
 import { createTalkMouth, talkSpec } from "./talk.js";
+import { addFur } from "./fur.js";
 
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
@@ -33,6 +34,10 @@ function addPart(parent, p, material, fallbackColor) {
     mesh.scale.set(...vec(p.s, 0.2));
     // A part can hang from its pivot (ears, tails, wings): offset the mesh inside the pivot.
     if (p.hang) mesh.position.set(c.mirrored ? -p.hang[0] : p.hang[0], p.hang[1], p.hang[2]);
+    // hr turns the mesh inside its pivot (a thumb on a hand that swings from the shoulder).
+    if (p.hr) mesh.rotation.set(p.hr[0] * DEG, (c.mirrored ? -p.hr[1] : p.hr[1]) * DEG, (c.mirrored ? -p.hr[2] : p.hr[2]) * DEG);
+    // fur: plush shells (fur.js) that move with the part.
+    if (p.fur) addFur(mesh, p.fur);
     pivot.add(mesh);
     pivot.userData = { rest: pivot.rotation.clone(), idle: p.idle, mirrored: !!c.mirrored };
     parent.add(pivot);
@@ -41,22 +46,59 @@ function addPart(parent, p, material, fallbackColor) {
   return made;
 }
 
-/** Shiny button eyes with a highlight; returns the eye groups (scaled on y to blink). */
-function addEyes(parent, { at, size = 0.1, color = "ink" }, material) {
+/**
+ * Shiny button eyes with a highlight; returns the eye groups (scaled on y to blink). With iris (a colour),
+ * a big cartoon eye instead: a white ball, a coloured iris with a dark pupil and two highlights.
+ */
+function addEyes(parent, { at, size = 0.1, color = "ink", iris }, material) {
   const eyes = [];
   for (const side of [1, -1]) {
     const g = new THREE.Group();
     g.position.set(side * at[0], at[1], at[2]);
-    const ball = shadowed(new THREE.Mesh(shapeGeometry("sphere"), material(color, "glossy")));
-    ball.scale.set(size, size * 1.15, size * 0.6);
-    const shine = new THREE.Mesh(shapeGeometry("sphere"), material("white", "glow"));
-    shine.scale.setScalar(size * 0.32);
-    shine.position.set(-size * 0.18, size * 0.22, size * 0.26);
-    g.add(ball, shine);
+    if (iris) {
+      const white = shadowed(new THREE.Mesh(shapeGeometry("sphere"), material("white", "glossy")));
+      white.scale.set(size, size * 1.12, size * 0.62);
+      const ring = new THREE.Mesh(shapeGeometry("sphere"), material(iris, "glossy"));
+      ring.scale.set(size * 0.72, size * 0.8, size * 0.3);
+      ring.position.set(side * size * 0.04, -size * 0.02, size * 0.2);
+      const pupil = new THREE.Mesh(shapeGeometry("sphere"), material(color, "glossy"));
+      pupil.scale.set(size * 0.4, size * 0.46, size * 0.2);
+      pupil.position.set(side * size * 0.04, -size * 0.02, size * 0.27);
+      const shine = new THREE.Mesh(shapeGeometry("sphere"), material("white", "glow"));
+      shine.scale.setScalar(size * 0.2);
+      shine.position.set(side * size * 0.04 - size * 0.14, size * 0.14, size * 0.33);
+      const dot = new THREE.Mesh(shapeGeometry("sphere"), material("white", "glow"));
+      dot.scale.setScalar(size * 0.09);
+      dot.position.set(side * size * 0.04 + size * 0.13, -size * 0.14, size * 0.32);
+      g.add(white, ring, pupil, shine, dot);
+    } else {
+      const ball = shadowed(new THREE.Mesh(shapeGeometry("sphere"), material(color, "glossy")));
+      ball.scale.set(size, size * 1.15, size * 0.6);
+      const shine = new THREE.Mesh(shapeGeometry("sphere"), material("white", "glow"));
+      shine.scale.setScalar(size * 0.32);
+      shine.position.set(-size * 0.18, size * 0.22, size * 0.26);
+      g.add(ball, shine);
+    }
     parent.add(g);
     eyes.push(g);
   }
   return eyes;
+}
+
+/** A plush grin: the open mouth (its own colour) with a row of top teeth and a tongue, for faces with mouth.open. */
+function addGrin(parent, spec, paint) {
+  const m = new THREE.Mesh(shapeGeometry("grin"), paint(spec.color ?? "mouth", "matte"));
+  m.scale.set(spec.size, spec.size, spec.size * 0.6);
+  m.position.set(...spec.at);
+  const teeth = new THREE.Mesh(shapeGeometry("box"), paint("white", "toy"));
+  teeth.scale.set(0.6, 0.11, 0.06);
+  teeth.position.set(0, 0.1, 0.06);
+  const tongue = new THREE.Mesh(shapeGeometry("sphere"), paint(spec.tongue ?? "rose", "matte"));
+  tongue.scale.set(0.46, 0.2, 0.1);
+  tongue.position.set(0.02, -0.11, 0.05);
+  m.add(teeth, tongue);
+  parent.add(m);
+  return m;
 }
 
 /** Eyes, cheeks and a smile on the front of anything (shapes with face: true); returns the face's feeling rig. */
@@ -151,7 +193,8 @@ export function buildModel(o, model, material) {
     }
   }
   let mouth;
-  if (model.mouth) {
+  if (model.mouth?.open) mouth = addGrin(head, model.mouth, paint);
+  else if (model.mouth) {
     mouth = new THREE.Mesh(shapeGeometry("smile"), paint(model.mouth.color ?? "ink", "matte"));
     mouth.scale.set(model.mouth.size, model.mouth.size * 0.8, model.mouth.size * 0.6);
     mouth.position.set(...model.mouth.at);
@@ -159,7 +202,7 @@ export function buildModel(o, model, material) {
   }
   const hasFace = !!(model.mouth || model.eyes);
   const talk = o.talks && (o.kind === "critter" || hasFace) ? createTalkMouth(head, talkSpec(model), paint, color) : null;
-  const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material, talk }) : null;
+  const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material, talk, brows: model.brows, open: !!model.mouth?.open }) : null;
   // A talking prop's light part pulses with the voice; a prop with neither face nor light bobs instead.
   const voice = o.talks && o.kind === "prop" ? propVoice(groups.get("light"), hasFace ? null : body) : null;
   // Each critter blinks on its own beat (from its id), every ~3.6 s for 0.14 s.
