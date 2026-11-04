@@ -32,7 +32,58 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "rainbow",
+        "title": "COLOURS!",
+        "subtitle": "Red, yellow, blue and more",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.2, 6.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          { "id": "rainbow", "kind": "prop", "model": "rainbow", "at": [2, 0, -1.2], "size": 2.4 },
+          { "id": "r", "kind": "prop", "model": "ball", "at": [0.9, 0, 0.7], "size": 0.55, "color": "red" },
+          { "id": "y", "kind": "prop", "model": "ball", "at": [1.45, 0, 0.7], "size": 0.55, "color": "yellow" },
+          { "id": "g", "kind": "prop", "model": "ball", "at": [2, 0, 0.7], "size": 0.55, "color": "green" },
+          { "id": "b", "kind": "prop", "model": "ball", "at": [2.55, 0, 0.7], "size": 0.55, "color": "blue" },
+          { "id": "p", "kind": "prop", "model": "ball", "at": [3.1, 0, 0.7], "size": 0.55, "color": "purple" }
+        ]
+      },
+      {
+        "name": "match",
+        "title": "WHAT COLOUR?",
+        "subtitle": "Red apple, yellow duck",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.2, 6.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          { "id": "apple", "kind": "prop", "model": "apple", "at": [1, 0, 0.5], "size": 0.9 },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [1.95, 0, 0.4],
+            "size": 0.8,
+            "rotation": [0, -15, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "frog",
+            "kind": "critter",
+            "species": "frog",
+            "at": [2.9, 0, 0.3],
+            "size": 0.8,
+            "rotation": [0, -25, 0],
+            "feeling": "surprised"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

@@ -35,7 +35,96 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "faces",
+        "title": "SHAPES!",
+        "subtitle": "Circle, square, triangle",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "studio",
+        "camera": { "position": [0, 1.2, 6.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "tri",
+            "kind": "shape",
+            "shape": "triangle",
+            "color": "yellow",
+            "at": [1, 0, 0.3],
+            "size": 0.85,
+            "face": true
+          },
+          {
+            "id": "cir",
+            "kind": "shape",
+            "shape": "circle",
+            "color": "red",
+            "at": [1.95, 0, 0.3],
+            "size": 0.85,
+            "face": true
+          },
+          {
+            "id": "sq",
+            "kind": "shape",
+            "shape": "square",
+            "color": "blue",
+            "at": [2.9, 0, 0.3],
+            "size": 0.85,
+            "face": true
+          },
+          {
+            "id": "star",
+            "kind": "shape",
+            "shape": "star",
+            "color": "purple",
+            "at": [1.5, 0.95, 0],
+            "size": 0.75,
+            "face": true
+          },
+          {
+            "id": "heart",
+            "kind": "shape",
+            "shape": "heart",
+            "color": "pink",
+            "at": [2.45, 0.95, 0],
+            "size": 0.75,
+            "face": true
+          }
+        ]
+      },
+      {
+        "name": "star",
+        "title": "WHAT SHAPE?",
+        "subtitle": "Shapes with happy faces",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "studio",
+        "camera": { "position": [0, 1.1, 5.8], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "star",
+            "kind": "shape",
+            "shape": "star",
+            "color": "gold",
+            "at": [1.2, 0, 0.3],
+            "size": 1.45,
+            "face": true
+          },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [2.4, 0, -0.1],
+            "rotation": [0, -30, 0],
+            "clip": "Wave",
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "studio"

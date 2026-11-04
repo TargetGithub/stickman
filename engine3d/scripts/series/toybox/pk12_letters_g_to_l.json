@@ -37,7 +37,72 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "train",
+        "title": "G to L!",
+        "subtitle": "Ride the letter train",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "studio",
+        "camera": { "position": [0, 1.3, 6.4], "lookAt": [0, 0.7, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "engine",
+            "kind": "prop",
+            "model": "train_engine",
+            "at": [2.95, 0, 0.2],
+            "size": 1,
+            "rotation": [0, -90, 0]
+          },
+          { "id": "l0", "kind": "letter", "text": "G", "color": "red", "size": 0.4, "at": [0.65, 0.8, 0.3] },
+          { "id": "l1", "kind": "letter", "text": "H", "color": "orange", "size": 0.4, "at": [1.27, 0.8, 0.3] },
+          {
+            "id": "l2",
+            "kind": "letter",
+            "text": "I",
+            "color": "yellow",
+            "size": 0.4,
+            "at": [1.8900000000000001, 0.8, 0.3]
+          },
+          { "id": "l3", "kind": "letter", "text": "J", "color": "green", "size": 0.4, "at": [0.65, 0, 0.3] },
+          { "id": "l4", "kind": "letter", "text": "K", "color": "blue", "size": 0.4, "at": [1.27, 0, 0.3] },
+          {
+            "id": "l5",
+            "kind": "letter",
+            "text": "L",
+            "color": "purple",
+            "size": 0.4,
+            "at": [1.8900000000000001, 0, 0.3]
+          }
+        ]
+      },
+      {
+        "name": "igloo",
+        "title": "I is for IGLOO",
+        "subtitle": "Letters G to L",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "studio",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "i", "kind": "letter", "text": "I", "color": "yellow", "size": 0.85, "at": [0.7, 0, 0.3] },
+          { "id": "igloo", "kind": "prop", "model": "igloo", "at": [1.85, 0, -0.3], "size": 0.95 },
+          {
+            "id": "pig",
+            "kind": "critter",
+            "species": "pig",
+            "at": [2.15, 0, 0.9],
+            "size": 0.6,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "studio"

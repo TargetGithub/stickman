@@ -32,7 +32,86 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "bubbles",
+        "title": "BUBBLES!",
+        "subtitle": "Calm colours for babies",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "BABY",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.9, 0], "fov": 36 },
+        "objects": [
+          { "id": "r", "kind": "prop", "model": "ball", "at": [0.85, 0, 0.6], "size": 0.7, "color": "red" },
+          { "id": "y", "kind": "prop", "model": "ball", "at": [1.45, 0, 0.9], "size": 0.7, "color": "yellow" },
+          { "id": "b", "kind": "prop", "model": "ball", "at": [1.3, 0, 0], "size": 0.7, "color": "blue" },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [2.15, 0, 0.4],
+            "size": 0.9,
+            "rotation": [0, -25, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "u1",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "white",
+            "at": [1, 1.5, 0.3],
+            "size": 0.45,
+            "material": "glass"
+          },
+          {
+            "id": "u2",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "white",
+            "at": [1.6, 1.9, 0],
+            "size": 0.35,
+            "material": "glass"
+          },
+          {
+            "id": "u3",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "white",
+            "at": [2.3, 1.45, 0.2],
+            "size": 0.5,
+            "material": "glass"
+          },
+          {
+            "id": "u4",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "white",
+            "at": [2, 2.3, -0.2],
+            "size": 0.3,
+            "material": "glass"
+          }
+        ]
+      },
+      {
+        "name": "colours",
+        "title": "COLOURS!",
+        "subtitle": "Bouncy balls, soft music",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "BABY",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.7, 0], "fov": 36 },
+        "objects": [
+          { "id": "r", "kind": "prop", "model": "ball", "at": [0.9, 0, 0.6], "size": 0.9, "color": "red" },
+          { "id": "y", "kind": "prop", "model": "ball", "at": [1.75, 0, 0.6], "size": 0.9, "color": "yellow" },
+          { "id": "b", "kind": "prop", "model": "ball", "at": [1.3, 0, -0.3], "size": 0.9, "color": "blue" },
+          { "id": "g", "kind": "prop", "model": "ball", "at": [2.2, 0, -0.3], "size": 0.9, "color": "green" },
+          { "id": "fl", "kind": "prop", "model": "flower", "at": [2.55, 0, 0.7], "size": 0.9 }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

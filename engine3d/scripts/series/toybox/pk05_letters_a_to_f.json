@@ -34,7 +34,41 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "abc",
+        "title": "A to F!",
+        "subtitle": "Learn your letters",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "studio",
+        "camera": { "position": [0, 1.2, 6.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          { "id": "t0", "kind": "letter", "text": "A", "color": "red", "size": 0.55, "at": [1, 0.95, 0.2] },
+          { "id": "t1", "kind": "letter", "text": "B", "color": "orange", "size": 0.55, "at": [1.85, 0.95, 0.2] },
+          { "id": "t2", "kind": "letter", "text": "C", "color": "yellow", "size": 0.55, "at": [2.7, 0.95, 0.2] },
+          { "id": "b0", "kind": "letter", "text": "D", "color": "green", "size": 0.55, "at": [1, 0, 0.2] },
+          { "id": "b1", "kind": "letter", "text": "E", "color": "blue", "size": 0.55, "at": [1.85, 0, 0.2] },
+          { "id": "b2", "kind": "letter", "text": "F", "color": "purple", "size": 0.55, "at": [2.7, 0, 0.2] }
+        ]
+      },
+      {
+        "name": "apple",
+        "title": "A is for APPLE",
+        "subtitle": "A, B, C, D, E, F",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "studio",
+        "camera": { "position": [0, 1.1, 5.8], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "a", "kind": "letter", "text": "A", "color": "red", "size": 0.95, "at": [0.75, 0, 0] },
+          { "id": "apple", "kind": "prop", "model": "apple", "at": [2.1, 0, 0.4], "size": 1.2 }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "studio"

@@ -35,7 +35,73 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "updown",
+        "title": "UP or DOWN?",
+        "subtitle": "Opposites playground",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.2, 6], "lookAt": [0, 0.9, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "slide",
+            "kind": "prop",
+            "model": "slide",
+            "at": [1.7, 0, -0.2],
+            "size": 1.6,
+            "rotation": [0, -90, 0]
+          },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [2.25, 1.15, -0.2],
+            "size": 0.6,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "frog",
+            "kind": "critter",
+            "species": "frog",
+            "at": [0.9, 0, 0.6],
+            "size": 0.7,
+            "rotation": [0, 10, 0],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "fullempty",
+        "title": "FULL or EMPTY?",
+        "subtitle": "Opposites for kids",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.7, 0], "fov": 36 },
+        "objects": [
+          { "id": "b1", "kind": "prop", "model": "bucket", "at": [0.95, 0, 0.4], "size": 2 },
+          { "id": "ball1", "kind": "prop", "model": "ball", "at": [0.85, 0.5, 0.45], "size": 0.35, "color": "red" },
+          { "id": "ball2", "kind": "prop", "model": "ball", "at": [1.08, 0.5, 0.5], "size": 0.35, "color": "blue" },
+          { "id": "ball3", "kind": "prop", "model": "ball", "at": [0.97, 0.7, 0.4], "size": 0.35, "color": "yellow" },
+          { "id": "b2", "kind": "prop", "model": "bucket", "at": [1.85, 0, 0.4], "size": 2 },
+          {
+            "id": "dog",
+            "kind": "critter",
+            "species": "dog",
+            "at": [2.6, 0, -0.1],
+            "size": 1,
+            "rotation": [0, -30, 0],
+            "feeling": "surprised"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

@@ -35,7 +35,72 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "balloons",
+        "title": "BIGGEST!",
+        "subtitle": "Big, bigger, biggest",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.6, 6.6], "lookAt": [0, 1.35, 0], "fov": 36 },
+        "objects": [
+          { "id": "s", "kind": "prop", "model": "balloon", "at": [0.85, 0, 0.3], "size": 0.6, "color": "green" },
+          { "id": "m", "kind": "prop", "model": "balloon", "at": [1.5, 0, 0.3], "size": 1, "color": "blue" },
+          { "id": "l", "kind": "prop", "model": "balloon", "at": [2.35, 0, 0.3], "size": 1.5, "color": "red" },
+          {
+            "id": "chick",
+            "kind": "critter",
+            "species": "chick",
+            "at": [1.2, 0, 1],
+            "size": 0.45,
+            "rotation": [0, 0, 0],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "animals",
+        "title": "WHO IS BIGGEST?",
+        "subtitle": "Big, bigger, biggest",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.15, 5.8], "lookAt": [0, 0.9, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "chick",
+            "kind": "critter",
+            "species": "chick",
+            "at": [0.8, 0, 0.6],
+            "size": 0.45,
+            "rotation": [0, -10, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [1.4, 0, 0.4],
+            "size": 0.8,
+            "rotation": [0, -15, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "cow",
+            "kind": "critter",
+            "species": "cow",
+            "at": [2.35, 0, 0],
+            "size": 1.5,
+            "rotation": [0, -25, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "playroom"

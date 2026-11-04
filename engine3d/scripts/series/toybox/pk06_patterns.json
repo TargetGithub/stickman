@@ -34,7 +34,75 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "next",
+        "title": "WHAT'S NEXT?",
+        "subtitle": "Red, blue, red, blue...",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.2, 6.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          { "id": "k0", "kind": "shape", "shape": "block", "color": "red", "at": [0.95, 0, 0.4], "size": 0.45 },
+          { "id": "k1", "kind": "shape", "shape": "block", "color": "blue", "at": [1.47, 0, 0.4], "size": 0.45 },
+          { "id": "k2", "kind": "shape", "shape": "block", "color": "red", "at": [1.99, 0, 0.4], "size": 0.45 },
+          { "id": "k3", "kind": "shape", "shape": "block", "color": "blue", "at": [2.51, 0, 0.4], "size": 0.45 },
+          { "id": "q", "kind": "letter", "text": "?", "color": "gold", "size": 0.55, "at": [3.05, 0, 0.4] },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [2.3, 0, -1.3],
+            "rotation": [0, -20, 0],
+            "clip": "Yes",
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "animals",
+        "title": "DUCK, CAT, DUCK...",
+        "subtitle": "Find the pattern!",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "playroom",
+        "camera": { "position": [0.25, 0.95, 5.2], "lookAt": [0.25, 0.6, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "d1",
+            "kind": "critter",
+            "species": "duck",
+            "at": [0.85, 0, 0.4],
+            "size": 0.7,
+            "rotation": [0, -10, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "c1",
+            "kind": "critter",
+            "species": "cat",
+            "at": [1.45, 0, 0.4],
+            "size": 0.7,
+            "rotation": [0, -10, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "d2",
+            "kind": "critter",
+            "species": "duck",
+            "at": [2.05, 0, 0.4],
+            "size": 0.7,
+            "rotation": [0, -10, 0],
+            "feeling": "happy"
+          },
+          { "id": "q", "kind": "letter", "text": "?", "color": "gold", "size": 0.6, "at": [2.6, 0, 0.4] }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "playroom"

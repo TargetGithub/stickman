@@ -36,7 +36,66 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "sum",
+        "title": "2 + 1 = 3",
+        "subtitle": "Picnic adding to 5",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "a1", "kind": "prop", "model": "apple", "at": [0.8, 0, 0.7], "size": 0.65 },
+          { "id": "a2", "kind": "prop", "model": "apple", "at": [1.3, 0, 0.7], "size": 0.65 },
+          { "id": "a3", "kind": "prop", "model": "apple", "at": [2.05, 0, 0.7], "size": 0.65 },
+          {
+            "id": "bear",
+            "kind": "critter",
+            "species": "bear",
+            "at": [2.45, 0, -0.9],
+            "size": 1.2,
+            "rotation": [0, -25, 0],
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "picnic",
+        "title": "PICNIC MATH!",
+        "subtitle": "Add up to 5 with Robo",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "basket", "kind": "prop", "model": "basket", "at": [0.95, 0, 0.6], "size": 1.6 },
+          { "id": "cake1", "kind": "prop", "model": "cupcake", "at": [1.6, 0, 0.9], "size": 1.5 },
+          { "id": "berry", "kind": "prop", "model": "strawberry", "at": [2.05, 0, 1], "size": 1.3 },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [2.3, 0, -0.3],
+            "size": 0.9,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [1.75, 0, -0.6],
+            "size": 1,
+            "rotation": [0, -15, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

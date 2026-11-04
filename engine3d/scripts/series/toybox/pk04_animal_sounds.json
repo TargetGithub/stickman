@@ -34,7 +34,87 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "farm",
+        "title": "MOO! OINK!",
+        "subtitle": "Farm animal sounds",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.2, 6.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "barn",
+            "kind": "prop",
+            "model": "house",
+            "at": [2.6, 0, -2.6],
+            "size": 1.6,
+            "rotation": [0, -10, 0],
+            "color": "red"
+          },
+          {
+            "id": "cow",
+            "kind": "critter",
+            "species": "cow",
+            "at": [1.35, 0, -0.1],
+            "size": 1.2,
+            "rotation": [0, -10, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "pig",
+            "kind": "critter",
+            "species": "pig",
+            "at": [2.6, 0, 0.5],
+            "size": 0.9,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "chick",
+            "kind": "critter",
+            "species": "chick",
+            "at": [1, 0, 1],
+            "size": 0.5,
+            "rotation": [0, 15, 0],
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "quack",
+        "title": "WHO SAYS QUACK?",
+        "subtitle": "Guess the animal sound!",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": { "position": [0, 1.2, 6.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [1.6, 0, 0.5],
+            "size": 1.3,
+            "rotation": [0, -10, 0],
+            "feeling": "surprised"
+          },
+          {
+            "id": "sheep",
+            "kind": "critter",
+            "species": "sheep",
+            "at": [2.95, 0, -0.4],
+            "size": 1,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

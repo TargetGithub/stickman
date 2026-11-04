@@ -34,7 +34,79 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "peek",
+        "title": "PEEKABOO!",
+        "subtitle": "Who is hiding?",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "BABY",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "bush", "kind": "prop", "model": "bush", "at": [1.35, 0, 0.4], "size": 1.3 },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [1.35, 0.05, -0.2],
+            "size": 1,
+            "rotation": [0, -10, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [2.3, 0, 0.8],
+            "size": 0.7,
+            "rotation": [0, -35, 0],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "friends",
+        "title": "HELLO, ANIMALS!",
+        "subtitle": "Duck, bunny, pig and more",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "BABY",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [0.9, 0, 0.6],
+            "size": 0.75,
+            "rotation": [0, -5, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [1.6, 0, 0.3],
+            "size": 0.95,
+            "rotation": [0, -15, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "pig",
+            "kind": "critter",
+            "species": "pig",
+            "at": [2.4, 0, 0.4],
+            "size": 0.85,
+            "rotation": [0, -25, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

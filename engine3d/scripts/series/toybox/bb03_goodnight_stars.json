@@ -32,7 +32,73 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "moon",
+        "title": "GOODNIGHT!",
+        "subtitle": "A calm lullaby for babies",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "BABY",
+        "stage": "night",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 1, 0], "fov": 36 },
+        "objects": [
+          { "id": "stars", "kind": "stars" },
+          { "id": "moon", "kind": "prop", "model": "moon", "at": [1.85, 1.9, -0.8], "size": 1.1 },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [1.2, 0, 0.5],
+            "size": 0.9,
+            "rotation": [0, -10, 0],
+            "feeling": "sleepy"
+          },
+          {
+            "id": "bear",
+            "kind": "critter",
+            "species": "bear",
+            "at": [2.2, 0, 0.3],
+            "size": 1,
+            "rotation": [0, -25, 0],
+            "feeling": "sleepy"
+          }
+        ]
+      },
+      {
+        "name": "twinkle",
+        "title": "TWINKLE STAR",
+        "subtitle": "Sleepy time for babies",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "BABY",
+        "stage": "night",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 1, 0], "fov": 36 },
+        "objects": [
+          { "id": "stars", "kind": "stars" },
+          {
+            "id": "star",
+            "kind": "shape",
+            "shape": "star",
+            "color": "gold",
+            "at": [1.45, 0.75, 0],
+            "size": 1.4,
+            "face": true,
+            "feeling": "happy"
+          },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [2.45, 0, -0.4],
+            "size": 0.85,
+            "rotation": [0, -30, 0],
+            "feeling": "sleepy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "night"
