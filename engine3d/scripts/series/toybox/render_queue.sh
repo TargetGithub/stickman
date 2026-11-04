@@ -23,6 +23,7 @@ free_gb() { df -g "$1" | tail -1 | awk '{print $4}'; }
 swap_free_mb() { sysctl vm.swapusage | sed -E 's/.*free = ([0-9.]+)M.*/\1/' | cut -d. -f1; }
 playlist() { case $1 in pk*) echo PREK-PLAYLIST;; bb*) echo "PREK-INITIAL VIDEOS";; g1*) echo GRADE1-PLAYLIST;; g2*) echo GRADE2-PLAYLIST;; g3*) echo GRADE3-PLAYLIST;; g4*) echo GRADE4-PLAYLIST;; g5*) echo GRADE5-PLAYLIST;; esac; }
 
+USE_EXT=$([ -d "$EXT" ] && [ -w "$EXT" ] && echo 1)
 for id in $IDS; do
   script=$(ls $DIR/${id}_*.json 2>/dev/null | head -1)
   if [ -z "$script" ]; then echo "$(stamp) $id: no script, skipped"; continue; fi
@@ -30,14 +31,22 @@ for id in $IDS; do
   pl=$(playlist $id)
   if [ -f "$EXT/$pl/$name/final_4k60.mp4" ] || [ -f "$INT/$name/final_4k60.mp4" ]; then echo "$(stamp) $id: already rendered"; continue; fi
   while pgrep -f "tools/record.mjs" > /dev/null; do echo "$(stamp) $id waits: another heavy render is running"; sleep 120; done
-  if [ -d "$EXT" ] && [ -w "$EXT" ]; then base="$EXT/$pl"; loc="disk1:$pl/$name"; else base="$INT"; loc="out:$name"; fi
+  # A drive that was there when the queue started and drops out (USB) is waited for, not swapped for the full internal disk.
+  w=0; while [ -n "$USE_EXT" ] && ! { [ -d "$EXT" ] && [ -w "$EXT" ]; } && [ $w -lt 20 ]; do echo "$(stamp) $id waits: $EXT not writable"; sleep 30; w=$((w + 1)); done
+  if [ -d "$EXT" ] && [ -w "$EXT" ]; then base="$EXT/$pl"; loc="disk1:$pl/$name"; elif [ -n "$USE_EXT" ]; then echo "$(stamp) STOPPED: $EXT is gone"; exit 1; else base="$INT"; loc="out:$name"; fi
   mkdir -p "$base"
   f=$(free_gb "$base")
   if [ "$f" -lt 6 ]; then echo "$(stamp) STOPPED: only ${f} GB free on $base"; exit 1; fi
   s=$(swap_free_mb); w=0
-  while [ "$s" -lt 1024 ] && [ $w -lt 30 ]; do echo "$(stamp) $id waits: swap free ${s} MB"; sleep 60; w=$((w + 1)); s=$(swap_free_mb); done
+  while [ "$s" -lt 512 ] && [ $w -lt 30 ]; do echo "$(stamp) $id waits: swap free ${s} MB"; sleep 60; w=$((w + 1)); s=$(swap_free_mb); done
   echo "$(stamp) $id start -> $base/$name (${f} GB free, swap free ${s} MB)"
-  if node engine3d/tools/episode3d.mjs $script --final --out-dir "$base/$name" > $L/toybox_${id}.log 2>&1 && [ -f "$base/$name/final_4k60.mp4" ]; then
+  ok=
+  for try in 1 2; do
+    # A write error on the drive (EIO) fails the render: wait a minute and draw it again once.
+    if node engine3d/tools/episode3d.mjs $script --final --out-dir "$base/$name" > $L/toybox_${id}.log 2>&1 && [ -f "$base/$name/final_4k60.mp4" ]; then ok=1; break; fi
+    [ $try = 1 ] && { cp $L/toybox_${id}.log $L/toybox_${id}_try1.log; echo "$(stamp) $id failed, trying again (log $L/toybox_${id}_try1.log)"; sleep 60; }
+  done
+  if [ -n "$ok" ]; then
     node engine3d/tools/episodes.mjs --set $id rendered "$loc" > /dev/null
     echo "$(stamp) $id done ($(du -h "$base/$name/final_4k60.mp4" | cut -f1))"
   else
