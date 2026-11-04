@@ -116,6 +116,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
       g.visible = s.visible && s.scale.some((x) => x > 1e-3) && (s.fade == null || s.fade > 0.002);
       if (s.fade != null) fadeTo(g, s.fade); // set pieces of a stage change
       if (h.actions) {
+        h.beforeMix?.(); // the clip pose under last frame's look/point/talk turns (talk.js)
         for (const a of h.actions.values()) a.setEffectiveWeight(0);
         for (const c of tl.clipsAt(id, t, clipLen(id))) {
           const a = h.actions.get(c.name);

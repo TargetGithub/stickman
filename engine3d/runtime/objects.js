@@ -183,7 +183,7 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080,
     const faces = [];
     model.traverse((m) => m.isMesh && m.morphTargetDictionary && faces.push(m));
     const rig = createCharacterRig(model, faces); // look and lip-sync on the head bone (talk.js)
-    return { group, mixer, actions, update: (t, s) => (morphFeeling(faces, t, s), rig(t, s)) };
+    return { group, mixer, actions, beforeMix: rig.restore, update: (t, s) => (morphFeeling(faces, t, s), rig(t, s)) };
   } else if (o.kind === "clock") {
     return { group, update: buildClock(o, group, { material, font: assets.fonts.get(o.font ?? "andika_bold"), textGeometry }) };
   } else if (o.kind === "lamp") {

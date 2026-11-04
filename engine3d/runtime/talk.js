@@ -69,9 +69,10 @@ export function talkSpec(model) {
  * point for a glTF character: turn the upper arm so the elbow lies on the line to the target, then the
  * forearm so the hand does too (a straight arm), each blended by k on top of the clip's pose, in world space.
  * Bones UpperArm.L / LowerArm.L (and .R), as in Robo's rig; .L is his own left (+x when he faces +z).
+ * @param {(bone:THREE.Object3D) => void} keep  called before a bone is turned, so its clip pose can be put back
  * @returns {(side:"L"|"R", target:number[], k:number) => void}
  */
-function createArmAim(model) {
+function createArmAim(model, keep) {
   // GLTFLoader drops the "." from node names (UpperArm.L becomes UpperArmL); accept either.
   const bone = (name) => {
     let b = null;
@@ -101,6 +102,7 @@ function createArmAim(model) {
       dq.setFromUnitVectors(b.sub(a).normalize(), goal.clone().sub(a).normalize());
       rel.copy(id).slerp(dq, Math.min(1, k));
       from.parent.getWorldQuaternion(qp);
+      keep(from);
       // A world-space turn, expressed in the bone's parent frame and put before its clip rotation.
       from.quaternion.premultiply(qp.clone().invert().multiply(rel).multiply(qp));
       from.updateWorldMatrix(false, true);
@@ -112,7 +114,11 @@ function createArmAim(model) {
  * Robo (a glTF character): look turns his head bone ([yaw, pitch] degrees in his own frame, after the clip
  * pose), and talk nods it a little and tips it side to side; the Surprised face morph opens slightly on loud
  * syllables.
- * @returns {(t:number, s:object) => void}
+ * These turns go on top of the clip pose, and the mixer only writes a bone again when the clip's value changes
+ * (a held key, a paused clip, the same t twice), so the rig keeps the clip pose of every bone and face it
+ * changed and `restore()` puts it back; call it before each mixer.update, or the turns add up frame on frame
+ * and the head spins.
+ * @returns {((t:number, s:object) => void) & { restore: () => void }}
  */
 export function createCharacterRig(model, faces) {
   let head = null;
@@ -123,8 +129,11 @@ export function createCharacterRig(model, faces) {
   const qp = new THREE.Quaternion();
   const e = new THREE.Euler(0, 0, 0, "YXZ");
   const surprised = faces.map((m) => m.morphTargetDictionary?.Surprised);
-  const point = createArmAim(model);
-  return (t, s) => {
+  const kept = new Map(); // bone -> its clip quaternion
+  const keep = (b) => kept.has(b) || kept.set(b, b.quaternion.clone());
+  const keptFaces = new Map(); // face mesh -> its Surprised influence before the talk boost
+  const point = createArmAim(model, keep);
+  const rig = (t, s) => {
     if (s.point > 0.001 && s.pointAt) point(s.pointArm === "left" ? "L" : "R", s.pointAt, s.point);
     const k = s.talk ?? 0;
     if (!head || (!s.look && !k)) return;
@@ -138,11 +147,21 @@ export function createCharacterRig(model, faces) {
     head.parent.updateWorldMatrix(true, false);
     const qm = model.getWorldQuaternion(new THREE.Quaternion());
     head.parent.getWorldQuaternion(qp);
+    keep(head);
     q.setFromEuler(e);
     const rel = qp.clone().invert().multiply(qm).multiply(q).multiply(qm.clone().invert()).multiply(qp);
     head.quaternion.premultiply(rel);
     faces.forEach((m, i) => {
-      if (surprised[i] != null) m.morphTargetInfluences[surprised[i]] = Math.min(1, m.morphTargetInfluences[surprised[i]] + 0.3 * k);
+      if (surprised[i] == null) return;
+      if (!keptFaces.has(m)) keptFaces.set(m, m.morphTargetInfluences[surprised[i]]);
+      m.morphTargetInfluences[surprised[i]] = Math.min(1, m.morphTargetInfluences[surprised[i]] + 0.3 * k);
     });
   };
+  rig.restore = () => {
+    for (const [b, q0] of kept) b.quaternion.copy(q0);
+    kept.clear();
+    faces.forEach((m, i) => keptFaces.has(m) && (m.morphTargetInfluences[surprised[i]] = keptFaces.get(m)));
+    keptFaces.clear();
+  };
+  return rig;
 }
