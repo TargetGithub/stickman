@@ -15,7 +15,8 @@ EXT="/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox"
 INT="out/series3d/toybox"
 L=out/logs
 mkdir -p $L $INT
-IDS=(${@:-pk17 pk18 pk19 pk20 pk21 g111 g112 g113 g114 g115 g211 g212 g213 g214 g215 g301 g302 g303 g304 g305 g401 g402 g403 g404 g405 g501 g502 g503 g504 g505})
+IDS=(pk17 pk18 pk19 pk20 pk21 g111 g112 g113 g114 g115 g211 g212 g213 g214 g215 g301 g302 g303 g304 g305 g401 g402 g403 g404 g405 g501 g502 g503 g504 g505)
+(( $# )) && IDS=($@)
 
 stamp() { date +%H:%M; }
 free_gb() { df -g "$1" | tail -1 | awk '{print $4}'; }
