@@ -35,7 +35,53 @@
         "kids learning video",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "clock",
+        "title": "WHAT TIME IS IT?",
+        "subtitle": "Hour and half hour",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 1, 0], "fov": 36 },
+        "objects": [
+          { "id": "clock", "kind": "clock", "time": "3:00", "size": 1.6, "at": [1, 0.15, 0] },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [2.25, 0, 0.4],
+            "rotation": [0, -30, 0],
+            "clip": "Wave",
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "half",
+        "title": "HALF PAST 3",
+        "subtitle": "3:30 with Robo",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 1, 0], "fov": 36 },
+        "objects": [
+          { "id": "clock", "kind": "clock", "time": "3:30", "size": 1.6, "at": [1, 0.15, 0], "color": "blue" },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [2.25, 0, 0.4],
+            "rotation": [0, -30, 0],
+            "clip": "Yes",
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "playroom"

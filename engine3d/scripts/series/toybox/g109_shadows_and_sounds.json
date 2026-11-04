@@ -35,7 +35,75 @@
         "kids learning video",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "shadow",
+        "title": "SHADOW PUPPETS!",
+        "subtitle": "Light makes shadows",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "theatre",
+        "camera": { "position": [0, 1.2, 5.8], "lookAt": [0, 1, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "screen",
+            "kind": "shape",
+            "shape": "rectangle",
+            "color": "white",
+            "at": [1.6, 0.15, -1.6],
+            "size": 2.6,
+            "material": "matte",
+            "scale": [1, 1, 0.08]
+          },
+          {
+            "id": "lamp",
+            "kind": "lamp",
+            "at": [0.2, 0.9, 2.2],
+            "aim": [1.8, 1.2, -1.6],
+            "angle": 30,
+            "intensity": 140,
+            "soft": 0.3
+          },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [1.35, 0, 0.4],
+            "size": 1.1,
+            "rotation": [0, -10, 0],
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "rice",
+        "title": "DANCING RICE!",
+        "subtitle": "Sound makes things shake",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "theatre",
+        "camera": { "position": [0, 1.2, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "drum", "kind": "prop", "model": "drum", "at": [1.3, 0, 0.3], "size": 1.8 },
+          { "id": "r0", "kind": "shape", "shape": "capsule", "color": "white", "at": [1.15, 0.9, 0.4], "size": 0.12 },
+          { "id": "r1", "kind": "shape", "shape": "capsule", "color": "white", "at": [1.35, 0.97, 0.4], "size": 0.12 },
+          { "id": "r2", "kind": "shape", "shape": "capsule", "color": "white", "at": [1.5, 0.87, 0.4], "size": 0.12 },
+          { "id": "r3", "kind": "shape", "shape": "capsule", "color": "white", "at": [1.25, 1.03, 0.4], "size": 0.12 },
+          {
+            "id": "dog",
+            "kind": "critter",
+            "species": "dog",
+            "at": [2.45, 0, 0.1],
+            "size": 1,
+            "rotation": [0, -30, 0],
+            "feeling": "surprised"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "theatre"

@@ -35,7 +35,78 @@
         "kids learning video",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "halves",
+        "title": "FAIR SHARES!",
+        "subtitle": "Halves and quarters",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.9, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "pie",
+            "kind": "fraction_circle",
+            "parts": 2,
+            "shaded": 1,
+            "radius": 0.65,
+            "color": "orange",
+            "at": [1.3, 0.15, 0.2]
+          },
+          {
+            "id": "bear",
+            "kind": "critter",
+            "species": "bear",
+            "at": [2.4, 0, -0.1],
+            "size": 1.1,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [0.65, 0, 0.9],
+            "size": 0.8,
+            "rotation": [0, 15, 0],
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "quarters",
+        "title": "4 EQUAL PARTS",
+        "subtitle": "Quarters for kids",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.9, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "pie",
+            "kind": "fraction_circle",
+            "parts": 4,
+            "shaded": 1,
+            "radius": 0.75,
+            "color": "green",
+            "at": [1.35, 0.15, 0.2]
+          },
+          {
+            "id": "frog",
+            "kind": "critter",
+            "species": "frog",
+            "at": [2.45, 0, 0.1],
+            "size": 0.9,
+            "rotation": [0, -30, 0],
+            "feeling": "surprised"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

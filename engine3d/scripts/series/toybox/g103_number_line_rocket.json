@@ -38,7 +38,54 @@
         "kids learning video",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "rocket",
+        "title": "NUMBER LINE ROCKET",
+        "subtitle": "Add and subtract to 20",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "space",
+        "camera": { "position": [0, 1.2, 5.8], "lookAt": [0, 1, 0], "fov": 36 },
+        "objects": [
+          { "id": "rocket", "kind": "prop", "model": "rocket", "at": [1.6, 0.4, -0.2], "size": 1.9 },
+          { "id": "stars", "kind": "stars" },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [2.55, 0, 0],
+            "rotation": [0, -30, 0],
+            "clip": "Wave",
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "sum",
+        "title": "8 + 5 = 13",
+        "subtitle": "Hop on the number line!",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.3, 6.2], "lookAt": [0, 0.55, 0], "fov": 36 },
+        "objects": [
+          { "id": "line", "kind": "number_line", "from": 8, "to": 13, "length": 2.2, "at": [1.55, 0, 0.3] },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [2.65, 0.56, 0.3],
+            "size": 0.55,
+            "rotation": [0, -15, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "playroom"

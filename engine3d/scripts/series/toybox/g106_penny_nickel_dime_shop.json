@@ -35,7 +35,57 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "coins",
+        "title": "COUNT COINS!",
+        "subtitle": "Penny, nickel, dime",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.1, 5], "lookAt": [0, 0.6, 0], "fov": 36 },
+        "objects": [
+          { "id": "penny", "kind": "prop", "model": "penny", "at": [0.75, 0.5, 0.3], "size": 2.8 },
+          { "id": "nickel", "kind": "prop", "model": "nickel", "at": [1.4, 0.5, 0.3], "size": 2.8 },
+          { "id": "dime", "kind": "prop", "model": "dime", "at": [2.05, 0.5, 0.3], "size": 2.8 },
+          { "id": "p", "kind": "letter", "text": "1¢", "color": "orange", "size": 0.2, "at": [0.75, 0, 0.5] },
+          { "id": "n", "kind": "letter", "text": "5¢", "color": "ink", "size": 0.2, "at": [1.4, 0, 0.5] },
+          { "id": "d", "kind": "letter", "text": "10¢", "color": "ink", "size": 0.2, "at": [2.05, 0, 0.5] }
+        ]
+      },
+      {
+        "name": "shop",
+        "title": "COIN SHOP!",
+        "subtitle": "What can 15¢ buy?",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "playroom",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "reg", "kind": "prop", "model": "cash_register", "at": [1.05, 0, 0.3], "size": 1.4 },
+          {
+            "id": "pig",
+            "kind": "prop",
+            "model": "piggy_bank",
+            "at": [1.75, 0, 0.9],
+            "size": 1,
+            "rotation": [0, -20, 0]
+          },
+          {
+            "id": "frog",
+            "kind": "critter",
+            "species": "frog",
+            "at": [2.55, 0, -0.3],
+            "size": 0.95,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "playroom"

@@ -35,7 +35,91 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "detectives",
+        "title": "DIGRAPH DETECTIVES",
+        "subtitle": "sh, ch, th, wh",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "studio",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "t1",
+            "kind": "letter",
+            "text": "sh ch",
+            "color": "red",
+            "size": 0.3,
+            "at": [1.15, 0.8, 0.2],
+            "colors": ["red", "red", "ink", "blue", "blue"]
+          },
+          {
+            "id": "t2",
+            "kind": "letter",
+            "text": "th wh",
+            "color": "green",
+            "size": 0.3,
+            "at": [1.15, 0, 0.2],
+            "colors": ["green", "green", "ink", "purple", "purple"]
+          },
+          {
+            "id": "mag",
+            "kind": "prop",
+            "model": "magnifier",
+            "at": [2.4, 0, 0.8],
+            "size": 1.6,
+            "rotation": [0, -20, 0]
+          }
+        ]
+      },
+      {
+        "name": "ship",
+        "title": "s + h = sh",
+        "subtitle": "Two letters, one sound!",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "studio",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          { "id": "sh", "kind": "letter", "text": "sh", "color": "purple", "size": 0.75, "at": [1.1, 0, 0.3] },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [2.5, 0, -0.4],
+            "rotation": [0, -30, 0],
+            "clip": "Yes",
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "whale",
+        "title": "wh is for WHALE",
+        "subtitle": "Phonics detectives",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "beach",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.85, 0], "fov": 36 },
+        "objects": [
+          { "id": "wh", "kind": "letter", "text": "wh", "color": "purple", "size": 0.5, "at": [1.75, 1.45, -0.3] },
+          {
+            "id": "whale",
+            "kind": "critter",
+            "species": "whale",
+            "at": [1.75, 0, 0],
+            "size": 1.25,
+            "rotation": [0, -25, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "studio"

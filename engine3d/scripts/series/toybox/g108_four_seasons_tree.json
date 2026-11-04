@@ -35,7 +35,49 @@
         "3D cartoon for kids",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "seasons",
+        "title": "4 SEASONS!",
+        "subtitle": "Spring to winter",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "garden",
+        "camera": { "position": [0, 1.1, 5.6], "lookAt": [0, 0.8, 0], "fov": 36 },
+        "objects": [
+          { "id": "sp", "kind": "prop", "model": "tree", "at": [0.75, 0, 0.3], "size": 0.6, "color": "leaf" },
+          { "id": "su", "kind": "prop", "model": "tree", "at": [1.3, 0, -0.3], "size": 0.6, "color": "grass" },
+          { "id": "au", "kind": "prop", "model": "tree", "at": [1.85, 0, 0.3], "size": 0.6, "color": "orange" },
+          { "id": "wi", "kind": "prop", "model": "tree", "at": [2.4, 0, -0.3], "size": 0.6, "color": "white" },
+          { "id": "snow", "kind": "prop", "model": "snowman", "at": [2.3, 0, 0.7], "size": 0.6 }
+        ]
+      },
+      {
+        "name": "autumn",
+        "title": "WHAT SEASON?",
+        "subtitle": "Watch one tree change",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "garden",
+        "camera": { "position": [0, 1.2, 5.6], "lookAt": [0, 1, 0], "fov": 36 },
+        "objects": [
+          { "id": "tree", "kind": "prop", "model": "tree", "at": [1.35, 0, -0.4], "size": 1.5, "color": "orange" },
+          { "id": "leaves", "kind": "prop", "model": "leaf_pile", "at": [1.6, 0, 0.6], "size": 1 },
+          {
+            "id": "bear",
+            "kind": "critter",
+            "species": "bear",
+            "at": [2.45, 0, 0.3],
+            "size": 1,
+            "rotation": [0, -30, 0],
+            "feeling": "surprised"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "garden"

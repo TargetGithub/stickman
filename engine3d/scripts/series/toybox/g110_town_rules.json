@@ -35,7 +35,79 @@
         "kids learning video",
         "Toy Box Friends"
       ]
-    }
+    },
+    "thumbnails": [
+      {
+        "name": "rules",
+        "title": "TOWN RULES!",
+        "subtitle": "Be a good citizen",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "town",
+        "camera": { "position": [0, 1.2, 5.8], "lookAt": [0, 0.9, 0], "fov": 36 },
+        "objects": [
+          {
+            "id": "house",
+            "kind": "prop",
+            "model": "house",
+            "at": [2.2, 0, -2.4],
+            "size": 1.6,
+            "rotation": [0, -10, 0]
+          },
+          { "id": "light", "kind": "prop", "model": "traffic_light", "at": [0.85, 0, 0.1], "size": 1.4 },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [1.75, 0, 0.2],
+            "rotation": [0, -20, 0],
+            "clip": "ThumbsUp",
+            "feeling": "happy"
+          },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [2.4, 0, 0.5],
+            "size": 0.6,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "crossing",
+        "title": "STOP OR GO?",
+        "subtitle": "Rules keep us safe",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 1",
+        "stage": "town",
+        "camera": { "position": [0, 1.2, 5.8], "lookAt": [0, 0.9, 0], "fov": 36 },
+        "objects": [
+          { "id": "stop", "kind": "prop", "model": "stop_sign", "at": [1, 0, 0.2], "size": 1.5 },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [1.7, 0, 0.6],
+            "size": 0.9,
+            "rotation": [0, -15, 0],
+            "feeling": "surprised"
+          },
+          {
+            "id": "frog",
+            "kind": "critter",
+            "species": "frog",
+            "at": [2.55, 0, -0.1],
+            "size": 0.9,
+            "rotation": [0, -30, 0],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
   },
   "stage": {
     "preset": "town"
