@@ -35,7 +35,130 @@
   "thumbnail": {
    "scene": "read",
    "at": 52.48
-  }
+  },
+  "thumbnails": [
+   {
+    "name": "train",
+    "title": "CATCH THE 3:25!",
+    "subtitle": "Tell time to 5 minutes",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "playroom",
+    "camera": {
+     "position": [
+      0,
+      1.1,
+      5.8
+     ],
+     "lookAt": [
+      0,
+      0.95,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "clock",
+      "kind": "clock",
+      "time": "3:25",
+      "size": 1.5,
+      "at": [
+       1.15,
+       0.6,
+       -0.4
+      ]
+     },
+     {
+      "id": "train",
+      "kind": "prop",
+      "model": "train_engine",
+      "at": [
+       1.85,
+       0,
+       0.6
+      ],
+      "size": 1.1,
+      "rotation": [
+       0,
+       -60,
+       0
+      ]
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "at": [
+       2.55,
+       0,
+       -0.9
+      ],
+      "size": 0.9,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "five",
+    "title": "COUNT BY 5s!",
+    "subtitle": "5, 10, 15, 20...",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "playroom",
+    "camera": {
+     "position": [
+      0,
+      1.1,
+      5.6
+     ],
+     "lookAt": [
+      0,
+      0.95,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "clock",
+      "kind": "clock",
+      "time": "12:20",
+      "size": 1.7,
+      "at": [
+       1.2,
+       0.15,
+       0.1
+      ],
+      "color": "green"
+     },
+     {
+      "id": "chick",
+      "kind": "critter",
+      "species": "chick",
+      "at": [
+       2.3,
+       0,
+       0.5
+      ],
+      "size": 0.7,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
  },
  "stage": {
   "preset": "playroom"

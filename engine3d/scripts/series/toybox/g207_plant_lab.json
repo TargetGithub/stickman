@@ -34,7 +34,271 @@
   "thumbnail": {
    "scene": "mystery",
    "at": 19.51
-  }
+  },
+  "thumbnails": [
+   {
+    "name": "lab",
+    "title": "PLANT LAB!",
+    "subtitle": "What do plants need?",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "garden",
+    "camera": {
+     "position": [
+      0,
+      1.35,
+      5.6
+     ],
+     "lookAt": [
+      0,
+      1.05,
+      0
+     ],
+     "fov": 34
+    },
+    "objects": [
+     {
+      "id": "plant",
+      "kind": "prop",
+      "model": "flowering_plant",
+      "at": [
+       0.85,
+       0,
+       0
+      ],
+      "size": 2.6,
+      "rotation": [
+       0,
+       -15,
+       0
+      ]
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "at": [
+       2.05,
+       0,
+       0.9
+      ],
+      "size": 1.1,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+       2.45,
+       2.35,
+       -1.2
+      ],
+      "size": 0.75
+     },
+     {
+      "id": "can",
+      "kind": "prop",
+      "model": "watering_can",
+      "at": [
+       -0.15,
+       0,
+       0.9
+      ],
+      "size": 0.85,
+      "rotation": [
+       0,
+       20,
+       0
+      ]
+     }
+    ]
+   },
+   {
+    "name": "dark",
+    "title": "LIGHT OR DARK?",
+    "subtitle": "Which plant grows best?",
+    "titleColor": "yellow",
+    "side": "right",
+    "badge": "GRADE 2",
+    "stage": "garden",
+    "camera": {
+     "position": [
+      0,
+      1.45,
+      6.2
+     ],
+     "lookAt": [
+      0,
+      1.05,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "green",
+      "kind": "prop",
+      "model": "plant",
+      "at": [
+       -2.5,
+       0,
+       0.7
+      ],
+      "size": 2.2
+     },
+     {
+      "id": "pale",
+      "kind": "prop",
+      "model": "plant",
+      "at": [
+       -0.95,
+       0,
+       0.7
+      ],
+      "size": 2.2,
+      "recolor": {
+       "leaf": "sand"
+      },
+      "scale": [
+       0.85,
+       1.45,
+       0.85
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       -1.8,
+       0,
+       -0.7
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "happy"
+     },
+     {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+       -3.3,
+       2.6,
+       -1.4
+      ],
+      "size": 0.6
+     }
+    ]
+   },
+   {
+    "name": "grow",
+    "title": "SEED TO PLANT",
+    "subtitle": "10 days in 40 seconds!",
+    "titleColor": "green",
+    "side": "top",
+    "badge": "GRADE 2",
+    "stage": "garden",
+    "camera": {
+     "position": [
+      0,
+      1.15,
+      6.4
+     ],
+     "lookAt": [
+      0,
+      1.2,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "s1",
+      "kind": "prop",
+      "model": "seed",
+      "at": [
+       -1.75,
+       0,
+       0
+      ],
+      "size": 1.9
+     },
+     {
+      "id": "s2",
+      "kind": "prop",
+      "model": "sprout",
+      "at": [
+       -0.6,
+       0,
+       0
+      ],
+      "size": 1.9
+     },
+     {
+      "id": "s3",
+      "kind": "prop",
+      "model": "seedling",
+      "at": [
+       0.55,
+       0,
+       0
+      ],
+      "size": 1.9
+     },
+     {
+      "id": "s4",
+      "kind": "prop",
+      "model": "plant",
+      "at": [
+       1.7,
+       0,
+       0
+      ],
+      "size": 1.9
+     },
+     {
+      "id": "s5",
+      "kind": "prop",
+      "model": "flowering_plant",
+      "at": [
+       2.85,
+       0,
+       0
+      ],
+      "size": 1.9
+     },
+     {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+       -2.75,
+       0,
+       0.6
+      ],
+      "size": 0.95,
+      "rotation": [
+       0,
+       25,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
  },
  "stage": {
   "preset": "garden"

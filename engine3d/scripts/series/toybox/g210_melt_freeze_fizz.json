@@ -34,7 +34,188 @@
   "thumbnail": {
    "scene": "fizz",
    "at": 45.16
-  }
+  },
+  "thumbnails": [
+   {
+    "name": "states",
+    "title": "SOLID, LIQUID, GAS",
+    "subtitle": "Melt, freeze, fizz!",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "playroom",
+    "camera": {
+     "position": [
+      0,
+      1,
+      4.6
+     ],
+     "lookAt": [
+      0,
+      0.55,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "ice",
+      "kind": "prop",
+      "model": "ice_cube",
+      "at": [
+       0.75,
+       0,
+       0.4
+      ],
+      "size": 2.6
+     },
+     {
+      "id": "cup",
+      "kind": "shape",
+      "shape": "cup",
+      "color": "white",
+      "at": [
+       1.4,
+       0,
+       0.4
+      ],
+      "size": 0.8,
+      "material": "glass"
+     },
+     {
+      "id": "water",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "blue",
+      "at": [
+       1.4,
+       0.04,
+       0.4
+      ],
+      "size": 0.5,
+      "material": "water",
+      "scale": [
+       1,
+       0.8,
+       1
+      ]
+     },
+     {
+      "id": "g0",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "white",
+      "at": [
+       1.95,
+       0.35,
+       0.4
+      ],
+      "size": 0.26,
+      "material": "glass"
+     },
+     {
+      "id": "g1",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "white",
+      "at": [
+       2.1,
+       0.75,
+       0.4
+      ],
+      "size": 0.2,
+      "material": "glass"
+     },
+     {
+      "id": "g2",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "white",
+      "at": [
+       1.9,
+       1.05,
+       0.4
+      ],
+      "size": 0.16,
+      "material": "glass"
+     }
+    ]
+   },
+   {
+    "name": "melt",
+    "title": "WILL IT MELT?",
+    "subtitle": "Ice in the sun",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 2",
+    "stage": "playroom",
+    "camera": {
+     "position": [
+      0,
+      1,
+      4.8
+     ],
+     "lookAt": [
+      0,
+      0.65,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "pop",
+      "kind": "prop",
+      "model": "ice_pop",
+      "at": [
+       0.9,
+       0,
+       0.4
+      ],
+      "size": 3
+     },
+     {
+      "id": "ice",
+      "kind": "prop",
+      "model": "ice_cube",
+      "at": [
+       1.4,
+       0,
+       0.5
+      ],
+      "size": 2.4
+     },
+     {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+       1.7,
+       1.75,
+       -1
+      ],
+      "size": 0.7
+     },
+     {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+       1.95,
+       0,
+       1
+      ],
+      "size": 0.55,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "surprised"
+     }
+    ]
+   }
+  ]
  },
  "stage": {
   "preset": "playroom"
