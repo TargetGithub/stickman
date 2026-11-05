@@ -1,6 +1,6 @@
-// Bao Buddy model sheet (catalog/models/bao_buddy.json): one still per panel, each at its own time with its own
+// DumpyDoo model sheet (catalog/models/dumpydoo.json): one still per panel, each at its own time with its own
 // camera. Panels: turnaround (front, 3/4, side, back) and feelings (happy, joyful, surprised, sad).
-//   node engine3d/tools/render3d.mjs engine3d/scenes/bao_buddy_sheet.js --speech off --music off --stills 1,3,5,7,9,11,13,15
+//   node engine3d/tools/render3d.mjs engine3d/scenes/dumpydoo_sheet.js --speech off --music off --stills 1,3,5,7,9,11,13,15
 // The panel times are in PANELS (exported) for tools that tile the stills into one sheet.
 
 // A grey studio like the reference picture, so the cream dough reads against it.
@@ -15,11 +15,11 @@ export const PANELS = [
   ["sad", 15, "Sad", -12, "sad", [12, 0, -14], [-0.4, -1]],
 ];
 
-export default function baoBuddySheet(d) {
+export default function dumpyDooSheet(d) {
   // Each panel's critter stands in its own spot far from the others; the camera cuts to it.
   PANELS.forEach(([, t, , ry, feeling, arm, gaze, forearm], i) => {
     const x = i * 6;
-    d.add({ id: `b${i}`, kind: "critter", species: "bao_buddy", at: [x, 0, 0], rotation: [0, ry, 0], ...(feeling ? { feeling } : {}) });
+    d.add({ id: `b${i}`, kind: "critter", species: "dumpydoo", at: [x, 0, 0], rotation: [0, ry, 0], ...(feeling ? { feeling } : {}) });
     if (arm) d.set(`b${i}#arm`, "rotation", arm);
     if (forearm) d.set(`b${i}#forearm`, "rotation", forearm);
     if (gaze) d.set(`b${i}`, "gaze", gaze);

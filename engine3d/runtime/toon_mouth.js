@@ -1,4 +1,4 @@
-// A 3D toon mouth (Bao Buddy), talking the bouncy Minion way: an opening in the face you can see into, with soft
+// A 3D toon mouth (DumpyDoo), talking the bouncy Minion way: an opening in the face you can see into, with soft
 // rolled lips round it. The jaw lowers the bottom lip; while speaking the mouth also squashes and stretches (taller
 // means narrower), the top lip lifts, and each vowel shapes it: round "oo" pulls the corners in to an O, wide
 // "ee" stretches it flat. Behind the opening a lit cavity gives depth, upper teeth sit under the top lip and a

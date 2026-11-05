@@ -329,7 +329,7 @@ function eggBand(lo, hi, closed) {
 }
 
 function make(name) {
-  // Dough character shapes (Bao Buddy) live in dough.js.
+  // Dough character shapes (DumpyDoo) live in dough.js.
   if (Object.hasOwn(DOUGH_SHAPES, name)) return DOUGH_SHAPES[name]();
   if (Object.hasOwn(CLOTHES_SHAPES, name)) return CLOTHES_SHAPES[name]();
   switch (name) {

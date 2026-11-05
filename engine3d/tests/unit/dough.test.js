@@ -1,6 +1,6 @@
-// Dough shapes and Bao Buddy (runtime/dough.js, catalog/models/bao_buddy.json): the bun profile and pleats are
+// Dough shapes and DumpyDoo (runtime/dough.js, catalog/models/dumpydoo.json): the bun profile and pleats are
 // closed-form and sound, the head and belly overlap at the collar, the collar flaps out at the sides, the lid
-// blinks with the eye, and Bao Buddy builds with named parts and every feeling. Node only (no canvas).
+// blinks with the eye, and DumpyDoo builds with named parts and every feeling. Node only (no canvas).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import * as THREE from "three";
@@ -8,7 +8,7 @@ import { loadCatalog3d } from "../../catalog/index.mjs";
 import { createMaterials } from "../../runtime/objects.js";
 import { buildModel } from "../../runtime/models.js";
 import { shapeGeometry } from "../../runtime/geometry.js";
-import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
+import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, LIMBS, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
 import { FEELINGS } from "../../runtime/director_extras.js";
 import { grinOpen } from "../../runtime/talk.js";
 
@@ -84,10 +84,10 @@ test("the dough material has a warm sheen colour of its own", () => {
   assert.equal(m.sheenColor.getHexString(), new THREE.Color(catalog.materials.dough.sheenColor).getHexString());
 });
 
-test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, every feeling works", () => {
-  const model = catalog.critters.bao_buddy;
+test("DumpyDoo builds: named parts move, the collar comes off, the lids blink, every feeling works", () => {
+  const model = catalog.critters.dumpydoo;
   assert.ok(model?.description && model.tags.length);
-  const o = { id: "bao", kind: "critter", species: "bao_buddy" };
+  const o = { id: "bao", kind: "critter", species: "dumpydoo" };
   const m = buildModel(o, model, material);
   for (const n of ["head", "arm", "leg_left", "leg_right", "collar", "jeans", "knot", "nose", "cheeks"]) assert.ok(m.named.get(n), n);
   const nodes = [];
@@ -139,7 +139,7 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   // Overalls, open at the sides: every piece named jeans, none on the arms (no arm rings).
   for (const n of ["bao_pants", "bao_bib", "bao_back", "bao_straps", "bao_pocket", "bao_stitches"]) assert.ok(model.parts.some((p) => p.p === n && p.name === "jeans"), n);
   assert.ok(!model.parts.some((p) => p.name === "arm" && /denim/.test(p.c)), "no denim on the arms");
-  assert.ok(model.parts.some((p) => p.name === "arm" && p.p === "bao_arm"), "curvy arms");
+  assert.ok(model.parts.some((p) => p.name === "arm" && p.p === "dd_upper_arm") && model.parts.some((p) => p.name === "forearm" && p.p === "dd_forearm"), "curvy arms");
   // Longer legs ending in black shoes.
   for (const n of ["leg_left", "leg_right"]) assert.ok(model.parts.some((p) => p.name === n && p.c === "shoe_black"), `${n} shoe`);
   // The pink top knot with a black hair tie.
@@ -148,8 +148,12 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   // three fingers, thumb); the forearm swings with the arm and bends on its own.
   const fore = model.parts.filter((p) => p.name === "forearm");
   assert.ok(fore.length >= 7 && fore.every((p) => p.on === "arm" && p.mirror), "forearm and hand on the arm");
-  const upper = model.parts.find((p) => p.name === "arm" && p.p === "bao_arm");
-  near(fore[0].at[1], -upper.s[1], 1e-9, "the elbow is at the upper arm's end");
+  // The elbow is at the upper arm's end, and both segments run straight down there, so the bend has no kink.
+  const elbowAt = LIMBS.upper.curve.getPoint(1);
+  near(fore[0].at[1], elbowAt.y, 1e-9, "the elbow is at the upper arm's end");
+  const down = (c, t) => c.getTangent(t).normalize().y;
+  assert.ok(down(LIMBS.upper.curve, 1) < -0.999 && down(LIMBS.fore.curve, 0) < -0.999, "smooth through the elbow");
+  near(LIMBS.upper.r1, LIMBS.fore.r0, 0.003, "same thickness either side of the elbow");
   const elbowOf = (mm) => mm.named.get("forearm").parent;
   assert.equal(elbowOf(m), m.named.get("arm"), "the forearm pivot hangs on the arm pivot");
   const wristAt = (st) => {

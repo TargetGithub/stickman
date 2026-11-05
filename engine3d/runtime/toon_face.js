@@ -1,4 +1,4 @@
-// Toon face shapes drawn as thin layers on a round face (Bao Buddy): an anime eye (a cool dome-shaped white, shaded
+// Toon face shapes drawn as thin layers on a round face (DumpyDoo): an anime eye (a cool dome-shaped white, shaded
 // under the lid, sitting on
 // a straight lower lash line, a tall iris toward the nose with a dark rim, a navy pupil that turns blue below, a
 // tan crescent and two shines, a thin upper lid line and a thick lower one with an outer tail), a thin arched

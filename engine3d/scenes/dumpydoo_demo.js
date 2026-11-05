@@ -1,6 +1,6 @@
-// Bao Buddy in motion (catalog/models/bao_buddy.json): the eyes glance around on their own, then follow a scripted
+// DumpyDoo in motion (catalog/models/dumpydoo.json): the eyes glance around on their own, then follow a scripted
 // gaze (left, right, up, down), lead a head look at a ball, the long arm waves hello, and the grin talks.
-//   node engine3d/tools/render3d.mjs engine3d/scenes/bao_buddy_demo.js --res 720p --fps 30 --speech off --music off
+//   node engine3d/tools/render3d.mjs engine3d/scenes/dumpydoo_demo.js --res 720p --fps 30 --speech off --music off
 
 export const meta = { seed: 12, stage: { preset: "studio", lights: "portrait", fog: [5, 11], background: "grey", floor: "grey" }, music: false };
 
@@ -11,8 +11,8 @@ function swing(d, target, prop, a, b, { at, n, dur, rest }) {
   return at + (n + 1) * dur;
 }
 
-export default function baoBuddyDemo(d) {
-  d.add({ id: "bao", kind: "critter", species: "bao_buddy", at: [0, 0, 0] });
+export default function dumpyDooDemo(d) {
+  d.add({ id: "bao", kind: "critter", species: "dumpydoo", at: [0, 0, 0] });
   d.add({ id: "ball", kind: "prop", model: "basketball", at: [1.6, 0, 0.6], size: 0.5 });
   d.set("camera", "position", [0, 1.05, 2.9]).set("camera", "lookAt", [0, 0.68, 0]).set("camera", "fov", 32);
 
@@ -37,6 +37,6 @@ export default function baoBuddyDemo(d) {
   d.tween("bao#arm", "lift", [0, 0, 0], { at: t, dur: 0.4 }).tween("bao#forearm", "lift", [0, 0, 0], { at: t, dur: 0.4 });
   // Then a line: the grin shuts to a smile and opens with each syllable, and rests on the full grin after.
   t += 0.5;
-  t += d.say("Hi! I'm Bao Buddy. Let's learn and play together!", { at: t, who: "bao" });
+  t += d.say("Hi! I'm DumpyDoo. Let's learn and play together!", { at: t, who: "bao" });
   d.end(t + 1.2);
 }

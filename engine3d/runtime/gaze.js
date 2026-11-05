@@ -1,4 +1,4 @@
-// Where a toon critter's irises point (Bao Buddy's eyes): they glance around on their own in quick, deterministic
+// Where a toon critter's irises point (DumpyDoo's eyes): they glance around on their own in quick, deterministic
 // darts (from the critter's id and t, no randomness), lead a head `look` (the eyes get there first and go further),
 // and follow a timeline `gaze` prop when a script sets one. Pure: no three.js, no clocks.
 // The result is an iris offset in eye widths, in the critter's own axes: x + toward its left (+x), y + up.

@@ -322,7 +322,7 @@ export function buildModel(o, model, material) {
       }
       if (face) {
         // A feeling also tilts the head: down when sad or sleepy, back when surprised.
-        // head.tilt scales it (a head that is most of the body, like Bao Buddy's, tips less).
+        // head.tilt scales it (a head that is most of the body, like DumpyDoo's, tips less).
         const [pitch, roll] = face(t, s, blink);
         const k = model.head?.tilt ?? 1;
         head.rotation.x += pitch * k * DEG;

@@ -1,4 +1,4 @@
-// Dough character shapes (Bao Buddy): an onion-shaped steamed bun whose top gathers in soft twisting pleats to
+// Dough character shapes (DumpyDoo): an onion-shaped steamed bun whose top gathers in soft twisting pleats to
 // a pinched knot, cut at the collar into a head and a belly that overlap (so the head can tilt without a gap), a
 // ruched top knot, an upright leaf collar band with a rolled lip, cupped leaf flaps, a thin arched brow and a
 // cartoon upper-lid line. All closed-form: no randomness. geometry.js registers them by name (DOUGH_SHAPES).
@@ -219,15 +219,23 @@ export function leafFlap() {
 export const ARM_CURVE = new THREE.CubicBezierCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -0.3, 0.2), new THREE.Vector3(0, -0.65, 0.18), new THREE.Vector3(0, -1, 0));
 
 /**
- * A curvy arm, 1 long (scale it by the arm's length): a tube along ARM_CURVE, a little thinner at the wrist, with
- * round ends. Not centred: the shoulder is at the origin. The bend is front to back, so a mirrored arm matches.
+ * DumpyDoo's two arm segments, at their true size (no scaling, so the tube stays round however it bends): the
+ * upper arm leaves the shoulder a little forward and ends pointing straight down; the forearm starts straight
+ * down and bows gently forward to the wrist. So at the elbow both run the same way, and the elbow ball (the same
+ * thickness as the tube there) only has to fill the bend: no kink.
  */
-export function baoArm() {
-  const n = 40, radial = 14, r0 = 0.145, r1 = 0.125;
-  const tube = new THREE.TubeGeometry(ARM_CURVE, n, 1, radial, false);
+export const LIMBS = {
+  upper: { curve: new THREE.CubicBezierCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -0.06, 0.03), new THREE.Vector3(0, -0.11, 0), new THREE.Vector3(0, -0.17, 0)), r0: 0.038, r1: 0.036 },
+  fore: { curve: new THREE.CubicBezierCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -0.04, 0), new THREE.Vector3(0, -0.085, 0.022), new THREE.Vector3(0, -0.12, 0.006)), r0: 0.036, r1: 0.031 },
+};
+
+/** A round tube along a curve, its radius going from r0 to r1, with round ends. Not centred: it starts at the origin. */
+export function limb(curve, r0, r1) {
+  const n = 40, radial = 16;
+  const tube = new THREE.TubeGeometry(curve, n, 1, radial, false);
   const p = tube.attributes.position;
   for (let i = 0; i <= n; i++) {
-    const c = ARM_CURVE.getPointAt(i / n);
+    const c = curve.getPointAt(i / n);
     const r = r0 + (r1 - r0) * (i / n);
     for (let j = 0; j <= radial; j++) {
       const v = i * (radial + 1) + j;
@@ -235,9 +243,12 @@ export function baoArm() {
     }
   }
   tube.computeVertexNormals();
-  const end = (t, r) => new THREE.SphereGeometry(r, 16, 12).translate(...ARM_CURVE.getPointAt(t).toArray());
+  const end = (t, r) => new THREE.SphereGeometry(r, 20, 14).translate(...curve.getPointAt(t).toArray());
   return merge([tube, end(0, r0), end(1, r1)]);
 }
+
+/** A curvy arm, 1 long (scale it by the arm's length): a tube along ARM_CURVE. */
+export const baoArm = () => limb(ARM_CURVE, 0.145, 0.125);
 
 /** Shapes this module adds, by catalog name. */
 export const DOUGH_SHAPES = {
@@ -249,5 +260,7 @@ export const DOUGH_SHAPES = {
   collar_lip: collarLip,
   leaf_flap: leafFlap,
   bao_arm: baoArm,
+  dd_upper_arm: () => limb(LIMBS.upper.curve, LIMBS.upper.r0, LIMBS.upper.r1),
+  dd_forearm: () => limb(LIMBS.fore.curve, LIMBS.fore.r0, LIMBS.fore.r1),
   ...TOON_SHAPES,
 };

@@ -1,4 +1,4 @@
-// Bao Buddy's overalls, Minion style, in the bun's own frame (give each the bun's centre and scale): pants up to
+// DumpyDoo's overalls, Minion style, in the bun's own frame (give each the bun's centre and scale): pants up to
 // a waist, a bib in front and a panel behind, and straps running up from them under the collar, so the sides
 // stay open and the arms come straight out of the dough. The denim has a twill pattern in its surface (fine
 // diagonal ridges that catch the light), gold dashed stitching along its seams and a pocket on the bib.

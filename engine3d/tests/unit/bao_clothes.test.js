@@ -1,4 +1,4 @@
-// Bao Buddy's overalls (runtime/bao_clothes.js): every piece builds and is in shapes.json; the twill is a pattern
+// DumpyDoo's overalls (runtime/bao_clothes.js): every piece builds and is in shapes.json; the twill is a pattern
 // in range; each piece stands on the dough over its own stretch (pants low all round, bib in front, back panel
 // behind, open sides where the arms come out); straps reach up under the collar band, which stays outside them;
 // the stitching lies on the cloth. Node only (no canvas).
