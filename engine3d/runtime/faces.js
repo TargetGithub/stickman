@@ -26,16 +26,17 @@ const smooth = (k) => k * k * (3 - 2 * k);
 
 /**
  * @param {{ parent: THREE.Object3D, eyes: THREE.Object3D[], eyeSize: number, mouth?: THREE.Mesh, head?: THREE.Object3D,
- *   material: Function, talk?: Function, brows?: { color?: string, size?: number, lift?: number, dz?: number, shape?: string }, open?: boolean }} o
+ *   material: Function, talk?: Function, line?: string, brows?: { color?: string, size?: number, lift?: number, dz?: number, shape?: string }, open?: boolean }} o
  *   eyes: the two eye groups (x > 0 first or second, either way); mouth: the smile mesh;
  *   talk: the open mouth for lip-sync (talk.js createTalkMouth), driven by the "talk" prop;
  *   brows: arched brows that always show (plush faces; dz sets them back from the eyes onto a round brow; shape:
  *   the brow shape, "brow" thick or "brow_thin"),
  *   else thin bars that show only for some feelings;
- *   open: an open-mouth face (a grin): its surprised "o" is a filled dark oval, not a ring
+ *   open: an open-mouth face (a grin): its surprised "o" is a filled dark oval, not a ring;
+ *   line: the colour of the shut happy-eye arcs (default ink)
  * @returns {(t:number, s:object, blink:number) => number[]}  sets brows, mouth and eye scale; returns the head tilt [pitch, roll] in degrees
  */
-export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, brows: arch, open: grin = false }) {
+export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, brows: arch, open: grin = false, line = "ink" }) {
   const browMat = material(arch?.color ?? "ink", "matte");
   const browSize = eyeSize * (arch?.size ?? 1.5);
   const brows = eyes.map((e) => {
@@ -50,7 +51,7 @@ export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, br
   });
   // Shut happy eyes (joyful): an arc where each eye is, shown as the eye closes.
   const arcs = eyes.map((e) => {
-    const a = new THREE.Mesh(FROWN, material("ink", "matte"));
+    const a = new THREE.Mesh(FROWN, material(line, "matte"));
     a.scale.set(eyeSize * 1.5, eyeSize * 1.1, eyeSize * 0.5);
     a.position.set(e.position.x, e.position.y - eyeSize * 0.2, e.position.z + eyeSize * 0.35);
     a.visible = false;

@@ -379,7 +379,7 @@
       ]
     },
     "bao_drop": {
-      "description": "A teardrop steamed bun: widest low, pleats twisting up into a pinched top, soft folds near the bottom (spans y -0.5..0.5).",
+      "description": "An onion-shaped steamed bun: round belly, a tuck at the collar, widest just above it, soft pleats gathering into a pinch on top (spans y -0.5..0.5).",
       "tags": [
         "solid",
         "parts",
@@ -412,7 +412,7 @@
       ]
     },
     "leaf_collar": {
-      "description": "A green leaf collar: a band (top radius 0.5 at y 0) with pointed leaf flaps at the sides, a scalloped hem and a rolled lip.",
+      "description": "An upright leaf collar band (top radius 0.5 at y 0, 0.1 deep) dipping in front, with a seam where the leaf overlaps; add collar_lip and leaf_flap.",
       "tags": [
         "parts",
         "clothes",
@@ -429,7 +429,33 @@
       ]
     },
     "eyelid": {
-      "description": "A cartoon upper-lid line with an outer flick and a thin lower line, sized to a unit cartoon eye (models.js eyes.lid).",
+      "description": "A cartoon upper-lid line with an outer flick and a thin lower line, for the wide anime eye (models.js eyes.iris + eyes.lid).",
+      "tags": [
+        "parts",
+        "face",
+        "bao"
+      ]
+    },
+    "collar_lip": {
+      "description": "A thin rolled ring of radius 0.5 lying flat: the lip on top of leaf_collar.",
+      "tags": [
+        "parts",
+        "clothes",
+        "plant",
+        "bao"
+      ]
+    },
+    "leaf_flap": {
+      "description": "A cupped pointed leaf, 1 long down -y from its stem end, faces toward +x, edges curling up: a collar's side flap.",
+      "tags": [
+        "parts",
+        "clothes",
+        "plant",
+        "bao"
+      ]
+    },
+    "grin_wide": {
+      "description": "A big open grin: the lip line curving up at the corners, a deep round bottom (width 1, about 0.5 tall).",
       "tags": [
         "parts",
         "face",

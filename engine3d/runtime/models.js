@@ -10,6 +10,7 @@ import { hash32 } from "./rng.js";
 import { createFaceRig } from "./faces.js";
 import { createTalkMouth, talkSpec } from "./talk.js";
 import { addFur } from "./fur.js";
+import { LID_EYE } from "./dough.js";
 
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
@@ -49,14 +50,15 @@ function addPart(parent, p, material, fallbackColor) {
 /**
  * Shiny button eyes with a highlight; returns the eye groups (scaled on y to blink). With iris (a colour),
  * a big cartoon eye instead: a white ball, a coloured iris with a dark pupil and two highlights. With lid (a
- * colour), a thick upper-lid line with a flick at the outer corner (and a thin lower line) that blinks with the eye.
+ * colour) too, a wide anime eye (lidEye) under a thick upper-lid line that blinks with it.
  */
 function addEyes(parent, { at, size = 0.1, color = "ink", iris, lid }, material) {
   const eyes = [];
   for (const side of [1, -1]) {
     const g = new THREE.Group();
     g.position.set(side * at[0], at[1], at[2]);
-    if (iris) {
+    if (iris && lid) g.add(...lidEye(side, size, iris, color, lid, material));
+    else if (iris) {
       const white = shadowed(new THREE.Mesh(shapeGeometry("sphere"), material("white", "glossy")));
       white.scale.set(size, size * 1.12, size * 0.62);
       const ring = new THREE.Mesh(shapeGeometry("sphere"), material(iris, "glossy"));
@@ -80,29 +82,51 @@ function addEyes(parent, { at, size = 0.1, color = "ink", iris, lid }, material)
       shine.position.set(-size * 0.18, size * 0.22, size * 0.26);
       g.add(ball, shine);
     }
-    if (lid) {
-      const l = new THREE.Mesh(shapeGeometry("eyelid"), material(lid, "matte"));
-      l.scale.set(side * size, size, size); // the flick points out on both sides
-      g.add(l);
-    }
     parent.add(g);
     eyes.push(g);
   }
   return eyes;
 }
 
+/**
+ * A wide anime eye (dough.js LID_EYE: wider than tall): a white, a big tall iris set toward the nose and tucked
+ * under the lid, a dark pupil, a big shine up and out and a small one low, and the thick lid line (eyelid shape,
+ * mirrored so its flick points out on both sides). Returns the meshes for the eye group.
+ */
+function lidEye(side, size, iris, color, lid, material) {
+  const { rx, ry, rz } = LID_EYE;
+  const mesh = (shape, c, style, s, at) => {
+    const m = new THREE.Mesh(shapeGeometry(shape), material(c, style));
+    m.scale.set(...s.map((v) => v * size));
+    m.position.set(...at.map((v) => v * size));
+    return m;
+  };
+  const ix = -side * 0.13; // toward the nose
+  return [
+    shadowed(mesh("sphere", "white", "glossy", [rx * 2, ry * 2, rz * 2], [0, 0, 0])),
+    mesh("sphere", iris, "glossy", [0.58, 0.8, 0.22], [ix, 0.0, rz - 0.075]),
+    mesh("sphere", color, "glossy", [0.36, 0.5, 0.14], [ix, -0.01, rz - 0.03]),
+    mesh("sphere", "white", "glow", [0.18, 0.18, 0.08], [ix - 0.09, 0.12, rz + 0.02]),
+    mesh("sphere", "white", "glow", [0.08, 0.08, 0.04], [ix + 0.11, -0.2, rz + 0.01]),
+    mesh("eyelid", lid, "matte", [side, 1, 1], [0, 0, 0]),
+  ];
+}
+
 /** A plush grin: the open mouth (its own colour) with a row of top teeth and a tongue, for faces with mouth.open. */
 function addGrin(parent, spec, paint) {
-  const m = new THREE.Mesh(shapeGeometry("grin"), paint(spec.color ?? "mouth", "matte"));
-  m.scale.set(spec.size, spec.size, spec.size * 0.6);
+  // Options: shape (default "grin"; "grin_wide"), tilt (degrees about x), tall (deeper mouth), teeth [width, height] (their top stays under the lip line), tongueSize [w, h].
+  const m = new THREE.Mesh(shapeGeometry(spec.shape ?? "grin"), paint(spec.color ?? "mouth", "matte"));
+  m.scale.set(spec.size, spec.size * (spec.tall ?? 1), spec.size * 0.6);
   m.position.set(...spec.at);
+  m.rotation.x = (spec.tilt ?? 0) * DEG; // lean back with a face that slopes (degrees, + tips the top back)
   const teeth = new THREE.Mesh(shapeGeometry("box"), paint("white", "toy"));
-  const th = spec.teeth ?? 0.11; // teeth height (a sliver: 0.05); their top stays under the lip line
-  teeth.scale.set(0.6, th, 0.06);
+  const [tw, th] = Array.isArray(spec.teeth) ? spec.teeth : [0.6, spec.teeth ?? 0.11];
+  teeth.scale.set(tw, th, 0.06);
   teeth.position.set(0, 0.155 - th / 2, 0.06);
   const tongue = new THREE.Mesh(shapeGeometry("sphere"), paint(spec.tongue ?? "rose", "matte"));
-  tongue.scale.set(0.46, 0.2, 0.1);
-  tongue.position.set(0.02, -0.11, 0.05);
+  const [gw, gh] = spec.tongueSize ?? [0.46, 0.2];
+  tongue.scale.set(gw, gh, 0.1);
+  tongue.position.set(0.02, -0.21 + gh / 2, 0.05);
   m.add(teeth, tongue);
   parent.add(m);
   return m;
@@ -193,7 +217,7 @@ export function buildModel(o, model, material) {
     if (model.cheeks) {
       for (const side of [1, -1]) {
         const c = new THREE.Mesh(shapeGeometry("sphere"), paint(model.cheeks.color ?? "pink", "matte"));
-        c.scale.set(model.cheeks.size, model.cheeks.size * 0.6, model.cheeks.size * 0.35);
+        c.scale.set(model.cheeks.size, model.cheeks.size * (model.cheeks.tall ?? 0.6), model.cheeks.size * 0.35);
         c.position.set(side * model.cheeks.at[0], model.cheeks.at[1], model.cheeks.at[2]);
         head.add(c);
       }
@@ -209,7 +233,7 @@ export function buildModel(o, model, material) {
   }
   const hasFace = !!(model.mouth || model.eyes);
   const talk = o.talks && (o.kind === "critter" || hasFace) ? createTalkMouth(head, talkSpec(model), paint, color) : null;
-  const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material, talk, brows: model.brows, open: !!model.mouth?.open }) : null;
+  const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material, talk, brows: model.brows, open: !!model.mouth?.open, line: model.eyes.lid }) : null;
   // A talking prop's light part pulses with the voice; a prop with neither face nor light bobs instead.
   const voice = o.talks && o.kind === "prop" ? propVoice(groups.get("light"), hasFace ? null : body) : null;
   // Each critter blinks on its own beat (from its id), every ~3.6 s for 0.14 s.
@@ -256,9 +280,11 @@ export function buildModel(o, model, material) {
       const blink = ((t + phase) % 3.6) < 0.14 ? 0.12 : 1;
       if (face) {
         // A feeling also tilts the head: down when sad or sleepy, back when surprised.
+        // head.tilt scales it (a head that is most of the body, like Bao Buddy's, tips less).
         const [pitch, roll] = face(t, s, blink);
-        head.rotation.x += pitch * DEG;
-        head.rotation.z += roll * DEG;
+        const k = model.head?.tilt ?? 1;
+        head.rotation.x += pitch * k * DEG;
+        head.rotation.z += roll * k * DEG;
       }
     },
   };

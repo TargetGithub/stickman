@@ -27,5 +27,8 @@ shines), `brows` (`{ color, size, lift, dz }`: thick arched brows that always sh
 `mouth.open: true` (a grin with teeth and a tongue; its surprised mouth is a filled oval).
 
 More face options: `eyes.lid` (a colour: a thick upper-lid line with an outer flick and a thin lower line, blinking with
-the eye), `brows.shape` (`"brow"` thick, `"brow_thin"`), `mouth.teeth` (the grin's teeth height, default 0.11).
+the eye), `brows.shape` (`"brow"` thick, `"brow_thin"`), `mouth.shape` (`"grin"` or `"grin_wide"`), `mouth.tilt` (degrees
+about x, to lie on a sloping face), `mouth.tall`, `mouth.teeth` (height, or `[width, height]`), `mouth.tongueSize`
+(`[w, h]`), `cheeks.tall` (height share, default 0.6) and `head.tilt` (scales the head tilt feelings add, default 1).
+With `eyes.lid` set, the iris eye becomes a wide anime eye and the joyful arcs take the lid colour.
 A material may set `sheenColor` (hex) for its sheen tint (the `dough` style glows warm).
