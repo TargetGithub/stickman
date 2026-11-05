@@ -9,7 +9,8 @@
 import { writeFileSync } from "node:fs";
 import * as THREE from "three";
 import { shapeGeometry } from "../runtime/geometry.js";
-import { BAO_COLLAR, COLLAR_BAND, JEANS } from "../runtime/dough.js";
+import { BAO_COLLAR, COLLAR_BAND } from "../runtime/dough.js";
+import { OVERALLS } from "../runtime/bao_clothes.js";
 
 const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
 const DEG = Math.PI / 180;
@@ -61,7 +62,9 @@ function baoBuddy() {
   // sits in the pinch on top.
   add({ p: "bao_head", on: "head", at: rel(C), s: BODY.s, c: BODY.c, m: BODY.m });
   add({ p: "bao_belly", at: r3(C), s: BODY.s, c: BODY.c, m: BODY.m, name: "belly" });
-  add({ p: "bao_knot", on: "head", at: rel([0, S.top() + 0.045, 0]), s: [0.18, 0.15, 0.17], c: BODY.c, m: BODY.m, name: "knot" });
+  // The top knot: bubblegum pink with a black hair tie at its base (recolor knot_pink to change it).
+  add({ p: "bao_knot", on: "head", at: rel([0, S.top() + 0.045, 0]), s: [0.18, 0.15, 0.17], c: "knot_pink", m: "glossy", name: "knot" });
+  add({ p: "torus", on: "head", at: rel([0, S.top() - 0.012, 0]), r: [90, 0, 0], s: [0.135, 0.135, 0.14], c: "glove_black", m: "rubber", name: "knot" });
 
   // Nose: two short slanted dashes, \ /, rising outward.
   const noseY = share(0.676);
@@ -90,7 +93,7 @@ function baoBuddy() {
   const sh = r3([S.side(shY, 0.17) - 0.035, shY, 0.17]);
   const arm = { at: sh, r: [-30, 0, 18], mirror: true, name: "arm", c: BODY.c, m: BODY.m, idle: { r: [3, 0, 4], hz: 0.5 } };
   const L = ARM_LENGTH;
-  add({ ...arm, p: "capsule", s: r3([0.075, L + 0.02, 0.075]), hang: r3([0, -L / 2, 0]) });
+  add({ ...arm, p: "bao_arm", s: r3([L, L, L]) }); // a curvy arm, bowing forward like a soft elbow
   // Black rubber gloves (Minion style): a flared cuff, the glove's wrist, a puffy palm, three fingers, a thumb.
   // They stay on the arm pivot (name "arm"), coloured glove_black: recolor { glove_black: "bao_dough" } takes them off.
   const glove = { ...arm, c: "glove_black", m: "rubber" };
@@ -102,23 +105,17 @@ function baoBuddy() {
   }
   add({ ...glove, p: "capsule", s: [0.046, 0.085, 0.046], hang: r3([-0.024, -L - 0.025, 0.062]), hr: [-62, 0, 18] });
 
-  // Jeans: denim over the belly from the bottom up under the collar (the collar sits on them like a belt), fly
-  // stitching down the front, an arm hole where each arm comes out (a rolled hem with a dark inside, standing on
-  // the body, not on the arm), all named "jeans"; a denim leg with a rolled cuff rides each leg pivot.
-  const waist = share(COLLAR_BAND.lo);
-  add({ p: "bao_jeans", at: r3(C), s: BODY.s, c: "denim", m: "denim", name: "jeans" });
-  // The arm hole: a rolled denim hem round the arm where it leaves the body, riding the arm's pivot (name "arm"),
-  // so the arm always comes out of it however it is posed (the shoulder pivot sits just inside the body).
-  const outside = (p) => Math.hypot(p.x, p.z) > S.around(p.y, Math.atan2(p.x, p.z)) + JEANS.off;
-  const armDir = new THREE.Vector3(0, -1, 0).applyEuler(new THREE.Euler(...arm.r.map((v) => v * DEG)));
-  const exit = new THREE.Vector3(...sh);
-  let reach = 0;
-  while (!outside(exit)) (exit.addScaledVector(armDir, 0.002), (reach += 0.002));
-  add({ ...arm, p: "torus", s: [0.16, 0.16, 0.12], hang: r3([0, -reach + 0.004, 0]), hr: [90, 0, 0], c: "denim_light", m: "denim" }); // the rolled hem
-  add({ ...arm, p: "cylinder", s: [0.085, 0.03, 0.085], hang: r3([0, -reach + 0.012, 0]), c: "denim_shadow", m: "matte" }); // its dark inside
-  const flyY = waist - 0.11;
-  const ft = S.turn(0.014, flyY);
-  add({ p: "capsule", at: r3([0.014, flyY, S.front(0.014, flyY) + 0.016]), r: [ft[0], 0, 0], s: [0.007, 0.085, 0.005], c: "stitch_gold", m: "matte", name: "jeans" });
+  // Overalls (runtime/bao_clothes.js, Minion style): twill-patterned denim pants to the waist, a bib in front and
+  // a panel behind, straps up from them under the collar with a gold button where each meets its panel, a bib
+  // pocket and gold stitching, all named "jeans". The sides are open: the arms come straight out of the dough.
+  for (const p of ["bao_pants", "bao_bib", "bao_back", "bao_straps", "bao_pocket"]) add({ p, at: r3(C), s: BODY.s, c: "denim", m: "denim", name: "jeans" });
+  add({ p: "bao_stitches", at: r3(C), s: BODY.s, c: "stitch_gold", m: "matte", name: "jeans" });
+  for (const [a, y] of [[OVERALLS.strapFront, OVERALLS.bibTop], [-OVERALLS.strapFront, OVERALLS.bibTop], [Math.PI - OVERALLS.strapBack, OVERALLS.backTop], [Math.PI + OVERALLS.strapBack, OVERALLS.backTop]]) {
+    const by2 = share(y - 0.03);
+    const rr = S.around(by2, a) + OVERALLS.off + 0.016;
+    add({ p: "sphere", at: r3([Math.sin(a) * rr, by2, Math.cos(a) * rr]), r: [0, r3([a / DEG])[0], 0], s: [0.042, 0.042, 0.018], c: "stitch_gold", m: "metal", name: "jeans" });
+  }
+
 
   // Feet: a short round stump and a soft rounded toe each, on hip pivots named apart (for walks).
   for (const [side, name] of [[1, "leg_left"], [-1, "leg_right"]]) {
@@ -140,7 +137,7 @@ function baoBuddy() {
   return {
     color: BODY.c,
     sound: "Bao bao!",
-    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long Minion-style arms in black rubber gloves, in jeans with rolled cuffs. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
+    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long curvy Minion-style arms in black rubber gloves, in Minion-style denim overalls (open at the sides) with rolled cuffs, a pink top knot with a black hair tie. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
     tags: ["bao", "bao_buddy", "mascot", "dumpling", "food", "friend", "lead"],
     head: { at: r3(HEAD), tilt: 0.4, look: [0.4, 0.15] }, // feelings tip the bun gently, so the collar stays in view
     eyes: { at: rel([eye.x, eye.y, eye.z]), size: eye.size, turn: S.turn(eye.x, eye.y), iris: "bao_iris", rim: "bao_iris_rim", color: "bao_pupil", pupilLow: "bao_pupil_blue", crescent: "bao_glint", white: "eye_white_cool", shade: "eye_shade_cool", lid: "bao_line" },

@@ -144,9 +144,9 @@ export function squeeze(y) {
 }
 
 /** The bun's radius under the collar, squeeze included (pleats and folds are zero there). */
-const hugged = (y) => baoRadius(y) * (1 - squeeze(y));
+export const hugged = (y) => baoRadius(y) * (1 - squeeze(y));
 
-/** How far the collar band stands off the dough: clear of the jeans tucked under it (JEANS.off). */
+/** How far the collar band stands off the dough: clear of the overalls' straps tucked under it (bao_clothes.js). */
 const COLLAR_OUT = 0.025;
 
 /**
@@ -215,22 +215,28 @@ export function leafFlap() {
   return merge([top, under]);
 }
 
-/** The jeans: they reach up under the collar band (which sits on them like a belt), a little off the dough. */
-export const JEANS = { top: COLLAR_BAND.lo + 0.035, off: 0.012 };
+/** The arm's path: from the shoulder (0, 0, 0) down to the wrist (0, -1, 0), bowing forward (+z) like a soft elbow. */
+export const ARM_CURVE = new THREE.CubicBezierCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -0.3, 0.2), new THREE.Vector3(0, -0.65, 0.18), new THREE.Vector3(0, -1, 0));
 
 /**
- * Denim over the belly, in the bun's frame: the bun's lower surface (squeeze included, so the collar band
- * still sits over it) from its bottom up under the collar, a little out.
+ * A curvy arm, 1 long (scale it by the arm's length): a tube along ARM_CURVE, a little thinner at the wrist, with
+ * round ends. Not centred: the shoulder is at the origin. The bend is front to back, so a mirrored arm matches.
  */
-export function baoJeans() {
-  const rows = 80;
-  const g = revolve(rows + 2, (i, a) => {
-    if (i === 0) return [0, -0.5 - JEANS.off];
-    const y = (JEANS.top * (i - 1)) / rows;
-    return [hugged(y) + JEANS.off * (1 + 0.12 * Math.sin(a * 2)), y - 0.5];
-  }, 128);
-  g.computeBoundingBox();
-  return g;
+export function baoArm() {
+  const n = 40, radial = 14, r0 = 0.145, r1 = 0.125;
+  const tube = new THREE.TubeGeometry(ARM_CURVE, n, 1, radial, false);
+  const p = tube.attributes.position;
+  for (let i = 0; i <= n; i++) {
+    const c = ARM_CURVE.getPointAt(i / n);
+    const r = r0 + (r1 - r0) * (i / n);
+    for (let j = 0; j <= radial; j++) {
+      const v = i * (radial + 1) + j;
+      p.setXYZ(v, c.x + (p.getX(v) - c.x) * r, c.y + (p.getY(v) - c.y) * r, c.z + (p.getZ(v) - c.z) * r);
+    }
+  }
+  tube.computeVertexNormals();
+  const end = (t, r) => new THREE.SphereGeometry(r, 16, 12).translate(...ARM_CURVE.getPointAt(t).toArray());
+  return merge([tube, end(0, r0), end(1, r1)]);
 }
 
 /** Shapes this module adds, by catalog name. */
@@ -242,6 +248,6 @@ export const DOUGH_SHAPES = {
   leaf_collar: leafCollar,
   collar_lip: collarLip,
   leaf_flap: leafFlap,
-  bao_jeans: baoJeans,
+  bao_arm: baoArm,
   ...TOON_SHAPES,
 };

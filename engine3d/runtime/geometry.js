@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { DOUGH_SHAPES } from "./dough.js";
+import { CLOTHES_SHAPES } from "./bao_clothes.js";
 
 const cache = new Map();
 
@@ -330,6 +331,7 @@ function eggBand(lo, hi, closed) {
 function make(name) {
   // Dough character shapes (Bao Buddy) live in dough.js.
   if (Object.hasOwn(DOUGH_SHAPES, name)) return DOUGH_SHAPES[name]();
+  if (Object.hasOwn(CLOTHES_SHAPES, name)) return CLOTHES_SHAPES[name]();
   switch (name) {
     // Solids.
     case "cube": return new THREE.BoxGeometry(1, 1, 1);

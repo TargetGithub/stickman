@@ -8,7 +8,7 @@ import { loadCatalog3d } from "../../catalog/index.mjs";
 import { createMaterials } from "../../runtime/objects.js";
 import { buildModel } from "../../runtime/models.js";
 import { shapeGeometry } from "../../runtime/geometry.js";
-import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, JEANS, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
+import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
 import { FEELINGS } from "../../runtime/director_extras.js";
 import { grinOpen } from "../../runtime/talk.js";
 
@@ -65,18 +65,11 @@ test("dough shapes build, fit their boxes, and the head and belly overlap at the
   const hug = baoRadius(COLLAR_BAND.hi) * (1 - squeeze(COLLAR_BAND.hi));
   assert.ok(c.max.x > hug && c.max.x < hug + 0.04, `band sits on the dough: ${c.max.x} vs ${hug}`);
   near(box("collar_lip").min.y + 0.016, COLLAR_BAND.hi - 0.5, 0.003, "lip on the band's top");
-  // The jeans reach up under the collar band, and the band stands outside them there (it sits on them like a belt).
-  const j = box("bao_jeans");
-  assert.ok(j.max.y > COLLAR_BAND.lo - 0.5 && j.max.y < COLLAR_BAND.hi - 0.5, `jeans top ${j.max.y} tucked under the band`);
-  near(j.min.y, -0.5 - JEANS.off, 1e-3, "jeans bottom");
-  const radiusAt = (name, y) => {
-    const p = shapeGeometry(name).attributes.position;
-    let r = 0;
-    for (let i = 0; i < p.count; i++) if (Math.abs(p.getY(i) - y) < 0.004) r = Math.max(r, Math.hypot(p.getX(i), p.getZ(i)));
-    return r;
-  };
-  const yy = COLLAR_BAND.lo + 0.015 - 0.5;
-  assert.ok(radiusAt("leaf_collar", yy) > radiusAt("bao_jeans", yy) + 0.005, "the collar band is outside the jeans");
+  // The curvy arm: 1 long from the shoulder, bowing forward (+z) and not sideways (so a mirrored arm matches).
+  const arm = box("bao_arm");
+  near(arm.max.y, 0.145, 0.01, "shoulder end");
+  near(arm.min.y, -1.125, 0.01, "wrist end");
+  assert.ok(arm.max.z > 0.2 && Math.abs(arm.max.x + arm.min.x) < 1e-6, "bows forward, symmetric side to side");
   const f = box("leaf_flap");
   near(f.min.y, -1, 1e-3); near(f.max.y, 0, 1e-3);
   assert.ok(f.max.z < 0.32 && f.max.x > 0.1, "a narrow leaf whose tip curls toward +x");
@@ -139,19 +132,20 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   const L = at([1, 0]), R = at([-1, 0]);
   for (let i = 0; i < 2; i++) assert.ok(L[i] > R[i] + 0.02, `eye ${i}: gaze left (+x) moves its iris that way`);
   // Black rubber gloves ride the arms (removable by recolouring glove_black); jeans legs ride the legs.
-  const gloveParts = model.parts.filter((p) => p.c === "glove_black");
+  const gloveParts = model.parts.filter((p) => p.c === "glove_black" && p.name !== "knot"); // (the hair tie shares the black)
   assert.ok(gloveParts.length >= 6 && gloveParts.every((p) => p.name === "arm" && p.m === "rubber"), "gloves on the arms");
   assert.ok(["leg_left", "leg_right"].every((n) => model.parts.some((p) => p.name === n && p.c === "denim")), "jeans legs");
   assert.ok(catalog.props.black_glove?.description, "a glove prop too");
-  // An arm hole each side: a denim hem ring with a dark inside riding the arm, just past the shoulder pivot
-  // (where the arm leaves the body), so the arm always comes out of it.
-  const holes = model.parts.filter((p) => p.name === "arm" && (p.c === "denim_light" || p.c === "denim_shadow"));
-  assert.equal(holes.length, 2, "a hem and its dark inside, on the mirrored arm");
-  for (const h of holes) assert.ok(h.mirror && h.hang[1] < 0 && h.hang[1] > -0.1, "close to the shoulder, along the arm");
+  // Overalls, open at the sides: every piece named jeans, none on the arms (no arm rings).
+  for (const n of ["bao_pants", "bao_bib", "bao_back", "bao_straps", "bao_pocket", "bao_stitches"]) assert.ok(model.parts.some((p) => p.p === n && p.name === "jeans"), n);
+  assert.ok(!model.parts.some((p) => p.name === "arm" && /denim/.test(p.c)), "no denim on the arms");
+  assert.ok(model.parts.some((p) => p.name === "arm" && p.p === "bao_arm"), "curvy arms");
+  // The pink top knot with a black hair tie.
+  assert.deepEqual(model.parts.filter((p) => p.name === "knot").map((p) => p.c).sort(), ["glove_black", "knot_pink"]);
   // The long arms end in a hand with three fingers and a thumb.
   const armParts = model.parts.filter((p) => p.name === "arm");
   assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");
-  assert.ok(Math.min(...armParts.map((p) => p.hang[1])) < -0.3, "a long arm");
+  assert.ok(Math.min(...armParts.map((p) => p.hang?.[1] ?? 0)) < -0.3, "a long arm");
   // A talking 3D mouth (mouth.talk "grin", shape "mouth3d"): while speaking the jaw shuts to a thin smile and
   // opens with the voice; nothing is scaled (the tongue rides on the jaw); not speaking, it rests wide open.
   const talker = buildModel({ ...o, id: "bao2", talks: true }, model, material);

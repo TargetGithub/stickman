@@ -4,7 +4,7 @@
   "bao_buddy": {
    "color": "bao_dough",
    "sound": "Bao bao!",
-   "description": "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long Minion-style arms in black rubber gloves, in jeans with rolled cuffs. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
+   "description": "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long curvy Minion-style arms in black rubber gloves, in Minion-style denim overalls (open at the sides) with rolled cuffs, a pink top knot with a black hair tie. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
    "tags": [
     "bao",
     "bao_buddy",
@@ -115,8 +115,30 @@
       0.15,
       0.17
      ],
-     "c": "bao_dough",
-     "m": "dough",
+     "c": "knot_pink",
+     "m": "glossy",
+     "name": "knot"
+    },
+    {
+     "p": "torus",
+     "on": "head",
+     "at": [
+      0,
+      0.678,
+      0
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "s": [
+      0.135,
+      0.135,
+      0.14
+     ],
+     "c": "glove_black",
+     "m": "rubber",
      "name": "knot"
     },
     {
@@ -374,16 +396,11 @@
       ],
       "hz": 0.5
      },
-     "p": "capsule",
+     "p": "bao_arm",
      "s": [
-      0.075,
-      0.28,
-      0.075
-     ],
-     "hang": [
-      0,
-      -0.13,
-      0
+      0.26,
+      0.26,
+      0.26
      ]
     },
     {
@@ -657,7 +674,7 @@
      ]
     },
     {
-     "p": "bao_jeans",
+     "p": "bao_pants",
      "at": [
       0,
       0.62,
@@ -673,99 +690,167 @@
      "name": "jeans"
     },
     {
+     "p": "bao_bib",
      "at": [
-      0.335,
-      0.345,
-      0.17
-     ],
-     "r": [
-      -30,
       0,
-      18
+      0.62,
+      0
      ],
-     "mirror": true,
-     "name": "arm",
-     "c": "denim_light",
+     "s": [
+      1.03,
+      1,
+      1.03
+     ],
+     "c": "denim",
      "m": "denim",
-     "idle": {
-      "r": [
-       3,
-       0,
-       4
-      ],
-      "hz": 0.5
-     },
-     "p": "torus",
-     "s": [
-      0.16,
-      0.16,
-      0.12
-     ],
-     "hang": [
-      0,
-      -0.066,
-      0
-     ],
-     "hr": [
-      90,
-      0,
-      0
-     ]
+     "name": "jeans"
     },
     {
+     "p": "bao_back",
      "at": [
-      0.335,
-      0.345,
-      0.17
-     ],
-     "r": [
-      -30,
       0,
-      18
-     ],
-     "mirror": true,
-     "name": "arm",
-     "c": "denim_shadow",
-     "m": "matte",
-     "idle": {
-      "r": [
-       3,
-       0,
-       4
-      ],
-      "hz": 0.5
-     },
-     "p": "cylinder",
-     "s": [
-      0.085,
-      0.03,
-      0.085
-     ],
-     "hang": [
-      0,
-      -0.058,
+      0.62,
       0
-     ]
+     ],
+     "s": [
+      1.03,
+      1,
+      1.03
+     ],
+     "c": "denim",
+     "m": "denim",
+     "name": "jeans"
     },
     {
-     "p": "capsule",
+     "p": "bao_straps",
      "at": [
-      0.014,
-      0.265,
-      0.405
-     ],
-     "r": [
-      19.823,
       0,
+      0.62,
       0
      ],
      "s": [
-      0.007,
-      0.085,
-      0.005
+      1.03,
+      1,
+      1.03
+     ],
+     "c": "denim",
+     "m": "denim",
+     "name": "jeans"
+    },
+    {
+     "p": "bao_pocket",
+     "at": [
+      0,
+      0.62,
+      0
+     ],
+     "s": [
+      1.03,
+      1,
+      1.03
+     ],
+     "c": "denim",
+     "m": "denim",
+     "name": "jeans"
+    },
+    {
+     "p": "bao_stitches",
+     "at": [
+      0,
+      0.62,
+      0
+     ],
+     "s": [
+      1.03,
+      1,
+      1.03
      ],
      "c": "stitch_gold",
      "m": "matte",
+     "name": "jeans"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.185,
+      0.295,
+      0.383
+     ],
+     "r": [
+      0,
+      25.783,
+      0
+     ],
+     "s": [
+      0.042,
+      0.042,
+      0.018
+     ],
+     "c": "stitch_gold",
+     "m": "metal",
+     "name": "jeans"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.186,
+      0.295,
+      0.385
+     ],
+     "r": [
+      0,
+      -25.783,
+      0
+     ],
+     "s": [
+      0.042,
+      0.042,
+      0.018
+     ],
+     "c": "stitch_gold",
+     "m": "metal",
+     "name": "jeans"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.249,
+      0.305,
+      -0.349
+     ],
+     "r": [
+      0,
+      144.477,
+      0
+     ],
+     "s": [
+      0.042,
+      0.042,
+      0.018
+     ],
+     "c": "stitch_gold",
+     "m": "metal",
+     "name": "jeans"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.25,
+      0.305,
+      -0.351
+     ],
+     "r": [
+      0,
+      215.523,
+      0
+     ],
+     "s": [
+      0.042,
+      0.042,
+      0.018
+     ],
+     "c": "stitch_gold",
+     "m": "metal",
      "name": "jeans"
     },
     {
