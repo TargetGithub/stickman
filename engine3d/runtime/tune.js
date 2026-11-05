@@ -1,7 +1,8 @@
 // Tunes for sung rhymes. A `say` with `tune` ("G4 G4 G4 D4 E4 E4 D4:2") gets one melody note per syllable, each
 // lasting its beats (":2" = two beats, default 1) at the line's `tempo`. By default the voice is chanted on that
-// beat: each syllable of the clip is cut out, gently stretched and placed at its note's start, with a short rest
-// after it (tools/lib/tts/psola.mjs chant), and a toy glockenspiel plays the note there (tools/lib/tune3d.mjs).
+// beat, legato: each syllable of the clip is cut out, its vowel held to fill the note, placed at the note's start
+// and crossfaded into the next (tools/lib/tts/chant.mjs), and a toy glockenspiel plays the note there
+// (tools/lib/tune3d.mjs).
 // `rhythm: false` keeps the voice's own timing and puts the notes on its syllables instead. With `sing` the voice
 // is also moved onto the notes' pitches. Pure: Node and the page.
 

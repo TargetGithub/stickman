@@ -7,7 +7,8 @@ import { compileScript } from "../../runtime/compile.js";
 import { validateScript } from "../../runtime/validate.js";
 import { countSyllables, parseTune } from "../../runtime/tune.js";
 import { placeNotes, tuneSlots } from "../../tools/lib/tune3d.mjs";
-import { chant, medianPitch, psola, stretch, syllables, trackPitch } from "../../../tools/lib/tts/psola.mjs";
+import { medianPitch, psola, stretch, syllables, trackPitch } from "../../../tools/lib/tts/psola.mjs";
+import { chant, wsola } from "../../../tools/lib/tts/chant.mjs";
 
 const catalog = loadCatalog3d();
 const script = (objects, actions, extra = {}) => ({ kind: "video3d", version: 1, meta: { title: "t", seed: 1 }, objects, scenes: [{ id: "s", beats: [{ dur: 1, do: actions }] }], ...extra });
@@ -121,9 +122,19 @@ test("stretch keeps the pitch; chant puts each syllable at its slot's start", ()
   const segs = [[0.05, 0.25], [0.32, 0.5], [0.58, 0.8]];
   const z = chant(voiced(sr, 220, segs), sr, [0.5, 0.5, 1]);
   assert.ok(z.length >= 1 * sr);
-  // Loud at each slot start (0, 0.5, 1.0 s), quiet just before the next slot.
+  // Legato: each syllable starts at its slot (0, 0.5, 1.0 s) and is held to the end of it, with no gap.
   const rms = (a, b) => Math.sqrt(z.subarray(a * sr, b * sr).reduce((m, v) => m + v * v, 0) / ((b - a) * sr));
-  for (const t of [0, 0.5, 1.0]) assert.ok(rms(t + 0.02, t + 0.12) > 4 * rms(t + 0.42, t + 0.48), `slot at ${t}`);
+  for (const t of [0, 0.5, 1.0]) assert.ok(rms(t + 0.38, t + 0.46) > 0.3 * rms(t + 0.05, t + 0.15), `slot at ${t} held`);
+});
+
+test("wsola stretches sounds without a pitch to the asked length", () => {
+  const sr = 48000;
+  let r = 1;
+  const x = Float32Array.from({ length: 0.1 * sr }, () => ((r = (r * 16807) % 2147483647) / 2147483647 - 0.5) * 0.4);
+  const y = wsola(x, sr, 4);
+  assert.equal(y.length, Math.round(x.length * 4));
+  const rms = (a) => Math.sqrt(a.reduce((m, v) => m + v * v, 0) / a.length);
+  assert.ok(rms(y) > 0.5 * rms(x) && rms(y) < 1.5 * rms(x));
 });
 
 function near(a, b, eps) {

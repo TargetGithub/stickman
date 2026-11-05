@@ -16,7 +16,7 @@ import { REPO } from "./server.mjs";
 import { applyMusicCues, musicTimeline, renderMusicBed } from "./music3d.mjs";
 import { ensurePhonemes } from "../phonemes.mjs";
 import { renderTunes, tuneSlots } from "./tune3d.mjs";
-import { CHANT_VERSION } from "../../../tools/lib/tts/psola.mjs";
+import { CHANT_VERSION } from "../../../tools/lib/tts/chant.mjs";
 
 /**
  * Render (or reuse) a clip for every spoken line of a plan.

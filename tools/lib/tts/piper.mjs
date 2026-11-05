@@ -8,7 +8,8 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { renderSettings } from "./synth.mjs";
 import { readWav, writeWav } from "../wav.mjs";
-import { chant, medianPitch, psola, singContour, syllables, trackPitch } from "./psola.mjs";
+import { medianPitch, psola, singContour, syllables, trackPitch } from "./psola.mjs";
+import { chant } from "./chant.mjs";
 
 export const PIPER_DIR = fileURLToPath(new URL("../../bin/piper/", import.meta.url));
 export const MODELS_DIR = fileURLToPath(new URL("../../../assets/speech/models/", import.meta.url));
