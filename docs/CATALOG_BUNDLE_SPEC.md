@@ -142,7 +142,7 @@ A preset wraps a v2 cast entry (`engine/validator/schema_v2.js` `castEntry`) wit
 
 ### 2.10 Music moods (`catalog/story/music_moods.json`, `tools/lib/music_gen.mjs`, `patterns.mjs`, `instruments.mjs`)
 
-- `patches` from `PATCHES` (19: `square_soft`, `square`, `toy`, `flute`, `reed`, `brass`, `soft_bass`, `bouncy_bass`, `saw_bass`, `pulse_bass`, `warm_pad`, `soft_pad`, `dark_pad`, `bell`, `music_box`, `glass`, `pluck`, `pluck_high`, `pluck_dark`).
+- `patches` from `PATCHES` (20: `square_soft`, `square`, `toy`, `flute`, `reed`, `brass`, `soft_bass`, `bouncy_bass`, `saw_bass`, `pulse_bass`, `warm_pad`, `soft_pad`, `dark_pad`, `bell`, `music_box`, `glock`, `glass`, `pluck`, `pluck_high`, `pluck_dark`).
 - Pattern strings: bass `.`, `r` (root), `5` (fifth), `o` (octave); drums `.`, `k`, `s`, `h`, `o` (`DRUM_OF`); melody rhythms `x` (note), `-` (hold), `.` (rest).
 - `scale` names a base scale or one of the bundle's own `scales` (5-12 semitone steps 0-11).
 - Music renders in tools only (Node), never in the browser or the engine.
@@ -1132,7 +1132,7 @@ Semantic rules: `rally` exactly when `runner` is `rally`; `dur` or `reps`, not b
     }
   },
   "$defs": {
-    "patch": { "enum": ["square_soft", "square", "toy", "flute", "reed", "brass", "soft_bass", "bouncy_bass", "saw_bass", "pulse_bass", "warm_pad", "soft_pad", "dark_pad", "bell", "music_box", "glass", "pluck", "pluck_high", "pluck_dark"] }
+    "patch": { "enum": ["square_soft", "square", "toy", "flute", "reed", "brass", "soft_bass", "bouncy_bass", "saw_bass", "pulse_bass", "warm_pad", "soft_pad", "dark_pad", "bell", "music_box", "glock", "glass", "pluck", "pluck_high", "pluck_dark"] }
   }
 }
 ```

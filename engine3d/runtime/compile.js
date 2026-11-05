@@ -23,6 +23,8 @@ export function compileScript(script, { catalog, speech = {} }) {
     for (const k of ["position", "lookAt", "fov"]) if (script.camera[k] != null) d.set("camera", k, script.camera[k], 0);
   }
   for (const o of script.objects ?? []) d.add(o);
+  const speakerVoice = characterVoices(script, catalog);
+  const host = hostOf(script, catalog);
 
   let t = 0;
   const scenes = [];
@@ -39,10 +41,13 @@ export function compileScript(script, { catalog, speech = {} }) {
         const rel = a.do === "say" && a.at === "after" ? sayEnd + (sayEnd > 0 ? SAY_GAP : 0) : typeof a.at === "number" ? a.at : 0;
         const start = t + rel;
         if (a.do === "say") {
-          // meta.cast gives a speaker its own voice, pitch and speed; the line's own settings win.
-          const cast = a.who != null ? meta.cast?.[a.who] ?? {} : {};
-          const voice = { voice: a.voice ?? cast.voice, pitch: a.pitch ?? cast.pitch, speed: a.speed ?? cast.speed };
-          const dur = d.say(a.text, { at: start, ...voice, id: a.id ?? `${beatId}.${ai + 1}`, who: a.who });
+          // The speaker is `who`, else the episode's host (Robo, see hostOf). A character's own catalog voice (Robo's
+          // toddler voice) comes first, then meta.cast; the line's own settings win over both.
+          const speaker = a.who ?? host;
+          const own = speaker != null ? speakerVoice.get(speaker) ?? {} : {};
+          const cast = speaker != null ? meta.cast?.[speaker] ?? {} : {};
+          const voice = { voice: a.voice ?? own.voice ?? cast.voice, pitch: a.pitch ?? own.pitch ?? cast.pitch, speed: a.speed ?? cast.speed ?? own.speed };
+          const dur = d.say(a.text, { at: start, ...voice, id: a.id ?? `${beatId}.${ai + 1}`, who: a.who, tune: a.tune, sing: a.sing, tunePatch: a.tunePatch, tuneGain: a.tuneGain });
           sayEnd = Math.max(sayEnd, rel + dur);
           len = Math.max(len, (a.at === "after" ? rel : a.at ?? 0) + dur + SAY_TAIL);
           if (a.caption) later.push({ do: "caption", text: a.text, at: rel, dur: a.dur ?? dur + SAY_TAIL });
@@ -56,6 +61,28 @@ export function compileScript(script, { catalog, speech = {} }) {
   }
   d.end(t);
   return { ...d.plan(), scenes };
+}
+
+/** Object id → its catalog voice ({ voice, pitch, speed }) for characters whose catalog entry has one (Robo). */
+function characterVoices(script, catalog) {
+  const out = new Map();
+  for (const o of script.objects ?? []) {
+    const v = o.kind === "character" ? catalog.characters?.[o.character]?.voice : null;
+    if (v) out.set(o.id, { voice: v.voice, pitch: v.pitch, speed: v.speed });
+  }
+  return out;
+}
+
+/**
+ * Who speaks the lines without `who`: meta.host (an object id, or null for the plain meta.voice narrator), else
+ * the episode's one character with a catalog voice (Robo hosts every Toy Box episode he is in), else nobody. Host
+ * lines take the host's voice but do not lip-sync (no `who`).
+ */
+export function hostOf(script, catalog) {
+  const meta = script.meta ?? {};
+  if (meta.host !== undefined) return meta.host;
+  const voiced = [...characterVoices(script, catalog).keys()];
+  return voiced.length === 1 ? voiced[0] : null;
 }
 
 function run(d, a, start) {

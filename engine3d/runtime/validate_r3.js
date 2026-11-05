@@ -5,6 +5,7 @@
 import { PAINT_KIT } from "./director_extras.js";
 import { canTalk } from "./validate_look.js";
 import { rectCells, withDefaults } from "./teach_layout.js";
+import { countSyllables, parseTune, TUNE_PATCHES } from "./tune.js";
 
 /** shot fit: "exact" uses thin shapes' real heights and every turn. */
 export const FITS = ["approx", "exact"];
@@ -29,6 +30,12 @@ function checkVoiceNums(v, p, err) {
  * @param {{ err, warn, ids: Map, catalog }} k
  */
 export function checkCast(meta, { err, warn, ids, catalog }) {
+  // meta.host: who speaks the lines without `who` (an id that can talk, or null for the narrator voice).
+  if (meta?.host != null) {
+    const h = ids.get(meta.host);
+    if (typeof meta.host !== "string" || !h) err("E3D_CAST", "meta.host", `host must be the id of an object listed in objects (or null), not ${JSON.stringify(meta.host)}`);
+    else if (!canTalk(h)) err("E3D_CAST", "meta.host", `"${meta.host}" is a ${h.kind}: only things that can speak can host`);
+  }
   const cast = meta?.cast;
   if (cast == null) return;
   if (typeof cast !== "object" || Array.isArray(cast)) return err("E3D_CAST", "meta.cast", 'cast must map object ids to voices, e.g. { "bunny": { "voice": "soft", "pitch": 1.25 } }');
@@ -47,12 +54,34 @@ export function checkCast(meta, { err, warn, ids, catalog }) {
   }
 }
 
+/** A sung line's tune, sing, tunePatch and tuneGain (runtime/tune.js). */
+function checkTune(a, p, { err, warn }) {
+  if (a.tune == null) {
+    for (const k of ["sing", "tunePatch", "tuneGain"]) if (a[k] != null) err("E3D_TUNE", `${p}.${k}`, `${k} goes with tune`);
+    return;
+  }
+  const { notes, bad } = typeof a.tune === "string" ? parseTune(a.tune) : { notes: [], bad: [String(a.tune)] };
+  if (bad.length) err("E3D_TUNE", `${p}.tune`, `not notes: ${bad.slice(0, 4).join(", ")} (write note names like C4, F#4, Bb3 between C2 and C7)`);
+  else if (!notes.length) err("E3D_TUNE", `${p}.tune`, "a tune needs at least one note");
+  else {
+    const syl = countSyllables(a.text ?? "");
+    if (Math.abs(syl - notes.length) > 1) warn("W3D_TUNE_SYLLABLES", `${p}.tune`, `${notes.length} notes for about ${syl} syllables in "${a.text}": one note per syllable`);
+  }
+  if (a.sing != null && a.sing !== true && a.sing !== false && !isNum(a.sing, 0.3, 1)) err("E3D_RANGE", `${p}.sing`, "sing must be true or 0.3-1");
+  if (a.tunePatch != null && !TUNE_PATCHES.includes(a.tunePatch)) err("E3D_TUNE", `${p}.tunePatch`, `tunePatch must be one of ${TUNE_PATCHES.join(", ")}`);
+  if (a.tuneGain != null && !isNum(a.tuneGain, 0, 1)) err("E3D_RANGE", `${p}.tuneGain`, "tuneGain must be 0-1");
+}
+
 /**
  * Round 3 action checks. Returns true when validate.js should skip its own target checks (stage has none).
  * @param {{ err, ids: Map, catalog }} k
  */
-export function checkR3Action(a, p, { err, ids, catalog }) {
-  if (a.do === "say") checkVoiceNums(a, p, err);
+export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
+  if (a.do === "say") {
+    checkVoiceNums(a, p, err);
+    checkTune(a, p, { err, warn });
+  }
+  if (a.do === "shot") for (const id of [a.target].flat()) if (ids.get(id)?.hud) err("E3D_HUD", `${p}.target`, `"${id}" is on the HUD (screen space): the camera cannot frame it`);
   if (a.do === "shot" && a.pad != null && !isNum(a.pad, 0, 2)) err("E3D_RANGE", `${p}.pad`, "pad must be 0-2 (0.2: a 20% bigger box)");
   if (a.do === "shot" && a.fit != null && !FITS.includes(a.fit)) err("E3D_FIT", `${p}.fit`, `fit must be ${FITS.join(" or ")}`);
   if (a.do === "caption" && a.pos != null && !CAPTION_POS.includes(a.pos)) err("E3D_POS", `${p}.pos`, `pos must be ${CAPTION_POS.join(", ")}`);

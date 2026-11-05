@@ -40,8 +40,8 @@ export function renderSettings(line) {
   return {
     rate: Math.round(Math.max(MIN_RATE, Math.min(MAX_RATE, v.rate * (t.rate ?? 1) * (line.bubble === "shout" ? 1.08 : 1))) * 1000) / 1000,
     pitch: Math.max(-12, Math.min(12, (v.pitch ?? 0) + (t.pitch ?? 0))),
-    noise: t.noise ?? NOISE.scale,
-    noiseW: NOISE.w,
+    noise: t.noise ?? v.noise ?? NOISE.scale,
+    noiseW: v.noiseW ?? NOISE.w,
     pause: t.pause ?? 0,
   };
 }
@@ -50,7 +50,10 @@ export function renderSettings(line) {
 export function cacheKey(backend, line) {
   const v = line.voice;
   const parts = { backend: backend.id, version: backend.version, model: v.model, speaker: v.speaker, rate: v.rate, pitch: v.pitch, filter: v.filter ?? null,
-    noise: NOISE, style: line.bubble ?? "speech", text: line.spoken, post: POST, ...(line.tone ? { tone: line.tone } : {}) };
+    noise: NOISE, style: line.bubble ?? "speech", text: line.spoken, post: POST, ...(line.tone ? { tone: line.tone } : {}),
+    // Newer voice settings join the key only when set, so clips of older voices stay cached.
+    ...(v.lift != null ? { lift: v.lift } : {}), ...(v.noise != null ? { vnoise: v.noise } : {}), ...(v.noiseW != null ? { vnoiseW: v.noiseW } : {}),
+    ...(line.sing ? { sing: line.sing } : {}) };
   const canon = JSON.stringify(sorted(parts));
   return createHash("sha256").update(canon).digest("hex");
 }

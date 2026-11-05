@@ -11,7 +11,7 @@ import { KIT2_FIELDS, checkKit2Object, createKit2Checker } from "./validate_kit2
 import { PAINT_KINDS, checkCast, checkLift, checkR3Action } from "./validate_r3.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
-const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit"]);
+const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit", "hud"]);
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
@@ -35,7 +35,7 @@ const TARGETS = {
 };
 // Moves that can target a named part of a critter or prop ("box#lid", "dog#head").
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
-const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast"]);
+const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast", "host"]);
 const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2", "grade3", "grade4", "grade5"];
 const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
@@ -94,6 +94,9 @@ export function validateScript(script, catalog) {
       // size): a toy is about 1.1 units tall, so an offset of 1.5 or more is almost always a world position.
       else if (o.part != null && isVec(o.at) && Math.hypot(...o.at) >= 1.5) warn("W3D_PART_FAR", `${p}.at`, `at is relative to "${o.parent}#${o.part}" (its pivot, in "${o.parent}"'s units), not a world position`);
     } else if (o.part != null) err("E3D_PART", `${p}.part`, "part needs a parent");
+    // hud: drawn in screen space over the 3D picture (stage.js createHud); a child shares its parent's layer.
+    if (o.hud != null && typeof o.hud !== "boolean") err("E3D_HUD", `${p}.hud`, "hud must be true or false");
+    if (o.parent != null && ids.get(o.parent) && !!ids.get(o.parent).hud !== !!o.hud) err("E3D_HUD", `${p}.hud`, `"${o.id}" and its parent "${o.parent}" must both be on the HUD or both in the scene`);
     if (o.pivot != null && !isVec(o.pivot)) err("E3D_VEC", `${p}.pivot`, "must be [x, y, z]");
     ids.set(o.id, o);
     if (!catalog.kinds[o.kind]) return err("E3D_OBJ_KIND", `${p}.kind`, `unknown kind "${o.kind}" (known: ${Object.keys(catalog.kinds).join(", ")})`);
@@ -166,7 +169,7 @@ export function validateScript(script, catalog) {
     if (a.at != null && timed && beat.dur != null && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
-    if (checkR3Action(a, p, { err, ids, catalog })) return; // stage, voices, shot pad, paint from on fractions
+    if (checkR3Action(a, p, { err, warn, ids, catalog })) return; // stage, voices, shot pad, paint from on fractions
     if (checkLookCamera(a, p, ids, err)) return;
     if (kit2(a, p)) return; // shift, set, emphasize, reparent, point (validate_kit2.js)
     for (const k of ["to", "position", "lookAt"]) {

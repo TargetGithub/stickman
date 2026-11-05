@@ -1,0 +1,6502 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Sing Old MacDonald Had a Farm with Robo and learn animal sounds! Five animal friends are hiding on the farm: listen to the sound, guess who it is, count down 3, 2, 1, and see them jump out. Then sing each verse together, say the sound on your turn, and fill up the animal tracker. A big surprise is waiting in the barn at the end, then a quick point-to-it quiz.",
+ "meta": {
+  "title": "Old MacDonald Had a Farm",
+  "series": "toybox",
+  "episode": "br01",
+  "audience": "babies",
+  "seed": 301,
+  "voice": "soft",
+  "voiceSpeed": 0.92,
+  "music": "playful",
+  "musicGain": 0.17,
+  "skills": [
+   "listening_prek"
+  ],
+  "cast": {
+   "cow": {
+    "voice": "deep",
+    "pitch": 0.9,
+    "speed": 0.9
+   },
+   "duck": {
+    "voice": "squeaky",
+    "pitch": 1.2,
+    "speed": 1.05
+   },
+   "pig": {
+    "voice": "squeaky",
+    "pitch": 0.95,
+    "speed": 1
+   },
+   "sheep": {
+    "voice": "soft",
+    "pitch": 1.3,
+    "speed": 0.95
+   },
+   "dog": {
+    "voice": "deep",
+    "pitch": 1.05,
+    "speed": 1.05
+   },
+   "horse": {
+    "voice": "deep",
+    "pitch": 0.85,
+    "speed": 0.95
+   }
+  },
+  "youtube": {
+   "title": "Old MacDonald Had a Farm 🐮 Animal Sounds Sing-Along for Toddlers | Toy Box Friends",
+   "description": "Sing Old MacDonald Had a Farm with Robo and learn animal sounds! Five animal friends are hiding on the farm: listen to the sound, guess who it is, count down 3, 2, 1, and see them jump out. Then sing each verse together, say the sound on your turn, and fill up the animal tracker. A big surprise is waiting in the barn at the end, then a quick point-to-it quiz.\n\nAnimals and sounds: cow (moo), duck (quack), pig (oink), sheep (baa), dog (woof) and horse (neigh).\n\nSing at home: make the sounds together, then ask \"Who says moo?\" and let your little one point or answer. Old MacDonald is a traditional public-domain rhyme.\n\nMade for kids. Toy Box Friends: 3D learning videos for babies, toddlers and preschool.",
+   "tags": [
+    "old macdonald had a farm",
+    "nursery rhymes",
+    "animal sounds for toddlers",
+    "farm animals",
+    "baby songs",
+    "toddler learning",
+    "sing along for kids",
+    "kids songs",
+    "preschool",
+    "3D cartoon for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "farm",
+    "title": "OLD MACDONALD",
+    "subtitle": "Animal sounds sing-along",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "farm",
+    "camera": {
+     "position": [
+      0.9,
+      1.5,
+      7.2
+     ],
+     "lookAt": [
+      1.6,
+      1.15,
+      -0.6
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "barn",
+      "kind": "prop",
+      "model": "barn",
+      "at": [
+       3,
+       0,
+       -2.6
+      ]
+     },
+     {
+      "id": "horse",
+      "kind": "critter",
+      "species": "horse",
+      "at": [
+       2.3,
+       0,
+       0
+      ],
+      "size": 1,
+      "rotation": [
+       0,
+       -15,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+       3.05,
+       0,
+       1.5
+      ],
+      "size": 0.75,
+      "rotation": [
+       0,
+       -15,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "cow",
+      "kind": "critter",
+      "species": "cow",
+      "at": [
+       3.95,
+       0,
+       0.6
+      ],
+      "size": 0.95,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       4.9,
+       0,
+       -0.4
+      ],
+      "rotation": [
+       0,
+       -35,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "moo",
+    "title": "WHO SAYS MOO?",
+    "subtitle": "Guess the farm animal!",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "farm",
+    "camera": {
+     "position": [
+      1.4,
+      1.25,
+      5.4
+     ],
+     "lookAt": [
+      1.7,
+      0.9,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "hay",
+      "kind": "prop",
+      "model": "hay_bale",
+      "at": [
+       2.75,
+       0,
+       0.7
+      ],
+      "size": 1.45
+     },
+     {
+      "id": "cow",
+      "kind": "critter",
+      "species": "cow",
+      "at": [
+       2.75,
+       0.02,
+       0.05
+      ],
+      "size": 1.2,
+      "feeling": "joyful"
+     },
+     {
+      "id": "bubble",
+      "kind": "prop",
+      "model": "word_bubble",
+      "at": [
+       3.5,
+       2,
+       0.3
+      ],
+      "size": 0.95
+     },
+     {
+      "id": "moo",
+      "kind": "letter",
+      "text": "MOO!",
+      "color": "ink",
+      "parent": "bubble",
+      "at": [
+       0,
+       -0.12,
+       0.12
+      ],
+      "size": 0.2
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "farm"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.1,
+   9.4
+  ],
+  "lookAt": [
+   0,
+   1.35,
+   -0.4
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -4.7,
+    0,
+    0.9
+   ],
+   "rotation": [
+    0,
+    35,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "barn",
+   "kind": "prop",
+   "model": "barn",
+   "at": [
+    0,
+    0,
+    -1.5
+   ]
+  },
+  {
+   "id": "horse",
+   "kind": "critter",
+   "species": "horse",
+   "at": [
+    0,
+    0,
+    -1.2
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "hay_l",
+   "kind": "prop",
+   "model": "hay_bale",
+   "at": [
+    -1.9,
+    0,
+    0.4
+   ],
+   "size": 1.3,
+   "rotation": [
+    0,
+    8,
+    0
+   ]
+  },
+  {
+   "id": "hay_r",
+   "kind": "prop",
+   "model": "hay_bale",
+   "at": [
+    1.9,
+    0,
+    0.4
+   ],
+   "size": 1.3,
+   "rotation": [
+    0,
+    -8,
+    0
+   ]
+  },
+  {
+   "id": "cow",
+   "kind": "critter",
+   "species": "cow",
+   "at": [
+    -1.9,
+    -1.0999999999999999,
+    -0.05
+   ],
+   "rotation": [
+    0,
+    15.2,
+    0
+   ]
+  },
+  {
+   "id": "duck",
+   "kind": "critter",
+   "species": "duck",
+   "at": [
+    1.9,
+    -0.85,
+    -0.05
+   ],
+   "rotation": [
+    0,
+    -15.2,
+    0
+   ]
+  },
+  {
+   "id": "pig",
+   "kind": "critter",
+   "species": "pig",
+   "at": [
+    -1.9,
+    -0.8999999999999999,
+    -0.05
+   ],
+   "rotation": [
+    0,
+    15.2,
+    0
+   ]
+  },
+  {
+   "id": "sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "at": [
+    1.9,
+    -0.95,
+    -0.05
+   ],
+   "rotation": [
+    0,
+    -15.2,
+    0
+   ]
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "at": [
+    -1.9,
+    -0.95,
+    -0.05
+   ],
+   "rotation": [
+    0,
+    15.2,
+    0
+   ]
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "at": [
+    0,
+    3.2,
+    1
+   ]
+  },
+  {
+   "id": "slot1",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "blue",
+   "hud": true,
+   "at": [
+    -7.15,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot2",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    -6.2,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot3",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "green",
+   "hud": true,
+   "at": [
+    -5.25,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot4",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "pink",
+   "hud": true,
+   "at": [
+    -4.300000000000001,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot5",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "purple",
+   "hud": true,
+   "at": [
+    -3.3500000000000005,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot6",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "yellow",
+   "hud": true,
+   "at": [
+    -2.4000000000000004,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "mini_cow",
+   "kind": "critter",
+   "species": "cow",
+   "hud": true,
+   "parent": "slot1",
+   "at": [
+    0,
+    -0.4,
+    0.3
+   ],
+   "size": 0.46,
+   "hidden": true,
+   "rotation": [
+    0,
+    -12,
+    0
+   ]
+  },
+  {
+   "id": "mini_duck",
+   "kind": "critter",
+   "species": "duck",
+   "hud": true,
+   "parent": "slot2",
+   "at": [
+    0,
+    -0.4,
+    0.3
+   ],
+   "size": 0.46,
+   "hidden": true,
+   "rotation": [
+    0,
+    -12,
+    0
+   ]
+  },
+  {
+   "id": "mini_pig",
+   "kind": "critter",
+   "species": "pig",
+   "hud": true,
+   "parent": "slot3",
+   "at": [
+    0,
+    -0.4,
+    0.3
+   ],
+   "size": 0.46,
+   "hidden": true,
+   "rotation": [
+    0,
+    -12,
+    0
+   ]
+  },
+  {
+   "id": "mini_sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "hud": true,
+   "parent": "slot4",
+   "at": [
+    0,
+    -0.4,
+    0.3
+   ],
+   "size": 0.46,
+   "hidden": true,
+   "rotation": [
+    0,
+    -12,
+    0
+   ]
+  },
+  {
+   "id": "mini_dog",
+   "kind": "critter",
+   "species": "dog",
+   "hud": true,
+   "parent": "slot5",
+   "at": [
+    0,
+    -0.4,
+    0.3
+   ],
+   "size": 0.46,
+   "hidden": true,
+   "rotation": [
+    0,
+    -12,
+    0
+   ]
+  },
+  {
+   "id": "mini_horse",
+   "kind": "critter",
+   "species": "horse",
+   "hud": true,
+   "parent": "slot6",
+   "at": [
+    0,
+    -0.4,
+    0.3
+   ],
+   "size": 0.46,
+   "hidden": true,
+   "rotation": [
+    0,
+    -12,
+    0
+   ]
+  },
+  {
+   "id": "qmark",
+   "kind": "letter",
+   "text": "?",
+   "color": "orange",
+   "hud": true,
+   "parent": "slot6",
+   "at": [
+    0,
+    -0.26,
+    0.2
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "cd_bg",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "white",
+   "hud": true,
+   "at": [
+    0,
+    -0.2,
+    1.5
+   ],
+   "size": 2.7,
+   "hidden": true
+  },
+  {
+   "id": "cd3",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd2",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd1",
+   "kind": "letter",
+   "text": "1",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "bubble",
+   "kind": "prop",
+   "model": "word_bubble",
+   "hud": true,
+   "at": [
+    5.6,
+    2.05,
+    0
+   ],
+   "size": 1.75,
+   "hidden": true
+  },
+  {
+   "id": "w_cow",
+   "kind": "letter",
+   "text": "MOO!",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_duck",
+   "kind": "letter",
+   "text": "QUACK!",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "w_pig",
+   "kind": "letter",
+   "text": "OINK!",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_sheep",
+   "kind": "letter",
+   "text": "BAA!",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_dog",
+   "kind": "letter",
+   "text": "WOOF!",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_horse",
+   "kind": "letter",
+   "text": "NEIGH!",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hello",
+   "title": "Sing with Robo",
+   "music": false,
+   "beats": [
+    {
+     "id": "h1",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.4,
+        13.5
+       ],
+       "lookAt": [
+        0,
+        1.5,
+        -1
+       ],
+       "fov": 40,
+       "dur": 0
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 3.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": 0.15,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_left",
+       "at": 1.2,
+       "deg": 6,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_right",
+       "at": 1.3,
+       "deg": 6,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "h2",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Five animal friends are hiding! Can you find them?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "slot1",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot2",
+       "at": 0.52,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot3",
+       "at": 0.74,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot4",
+       "at": 0.96,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot5",
+       "at": 1.18,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "h3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And a BIG surprise is in the barn!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "slot6",
+       "at": 0.2,
+       "dur": 0.4,
+       "sound": "magic_sparkle"
+      },
+      {
+       "do": "pop",
+       "target": "qmark",
+       "at": 0.4,
+       "dur": 0.4,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "barn",
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_left",
+       "at": 0.9,
+       "deg": 9,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_right",
+       "at": 1,
+       "deg": 9,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 1,
+       "volume": 0.6
+      },
+      {
+       "do": "grow",
+       "target": "slot6",
+       "to": 1.2,
+       "at": 1.4,
+       "dur": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "slot6",
+       "to": 1,
+       "at": 1.8,
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cow_find",
+   "title": "Who says moo?",
+   "beats": [
+    {
+     "id": "cow_f1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_l",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Listen! Who is hiding behind the hay?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_l"
+      }
+     ]
+    },
+    {
+     "id": "cow_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "cow",
+       "to": [
+        -1.9,
+        -0.16999999999999993,
+        -0.05
+       ],
+       "at": 0.1,
+       "dur": 0.35,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "cow",
+       "text": "Moo! Moo!",
+       "at": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_cow",
+       "at": 0.45,
+       "dur": 0.25
+      },
+      {
+       "do": "wiggle",
+       "target": "cow",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "cow_f3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I see two little horns! Who says moo?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "cow",
+       "to": [
+        -1.9,
+        -1.0999999999999999,
+        -0.05
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "cow_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_cow",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "cow_f5",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "cow",
+       "points": [
+        [
+         -1.9,
+         -1.0999999999999999,
+         -0.05
+        ],
+        [
+         -1.9,
+         1.15,
+         0.45
+        ],
+        [
+         -1.045,
+         0,
+         1.75
+        ]
+       ],
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.75
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.8,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "cow",
+       "feeling": "joyful",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "cow",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's a cow!",
+       "at": 0.95,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "COW",
+       "style": "label",
+       "at": 0.95,
+       "dur": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cow_song",
+   "title": "Sing: the cow",
+   "music": false,
+   "beats": [
+    {
+     "id": "cow_s1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "cow",
+        "robo"
+       ],
+       "framing": "wide",
+       "yaw": -10,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "id": "cow_s2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1,
+       "height": 0.35
+      }
+     ]
+    },
+    {
+     "id": "cow_s3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And on that farm he had a cow,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "shot",
+       "target": "cow",
+       "framing": "medium",
+       "yaw": 15,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "cow",
+       "feeling": "joyful",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "id": "cow_s4",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1,
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "cow",
+       "feeling": "happy",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "id": "cow_s5",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "With a moo moo here, and a moo moo there,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.15,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_cow",
+       "at": 0.2,
+       "dur": 0.25
+      },
+      {
+       "do": "turn",
+       "target": "cow",
+       "to": [
+        0,
+        -35,
+        0
+       ],
+       "at": 0.4,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.55,
+       "height": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "cow",
+       "to": [
+        0,
+        35,
+        0
+       ],
+       "at": 1.6,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1.75,
+       "height": 0.3
+      },
+      {
+       "do": "orbit",
+       "around": [
+        -1.045,
+        0.7,
+        1.75
+       ],
+       "degrees": 18,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "id": "cow_s6",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here a moo, there a moo, everywhere a moo moo!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+      },
+      {
+       "do": "turn",
+       "target": "cow",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.4,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1,
+       "height": 0.25
+      },
+      {
+       "do": "spin",
+       "target": "cow",
+       "at": 1.6,
+       "dur": 0.9
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "cow_s7",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hide",
+       "target": "w_cow",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 2.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 2
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 2.2,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cow_turn",
+   "title": "Say moo!",
+   "beats": [
+    {
+     "id": "cow_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say moo!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "cow",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_cow",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "cow_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "cow_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "cow",
+       "text": "Moo!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yay! Great mooing!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "cow_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_cow",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_cow",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "cow",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "duck_find",
+   "title": "Who says quack?",
+   "beats": [
+    {
+     "id": "duck_f1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_r",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Shh... listen! Who's next?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_r"
+      },
+      {
+       "do": "path",
+       "target": "cow",
+       "points": [
+        [
+         -1.045,
+         0,
+         1.75
+        ],
+        [
+         -1.045,
+         0,
+         0.2
+        ],
+        [
+         -2.9,
+         0,
+         -2.4
+        ]
+       ],
+       "dur": 1.8,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "cow",
+       "to": [
+        0,
+        17.4,
+        0
+       ],
+       "at": 1.9,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "duck_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "duck",
+       "to": [
+        1.9,
+        0.07999999999999996,
+        -0.05
+       ],
+       "at": 0.1,
+       "dur": 0.35,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "duck",
+       "text": "Quack! Quack!",
+       "at": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_duck",
+       "at": 0.45,
+       "dur": 0.25
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "duck_f3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I see a yellow head! Who says quack?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "duck",
+       "to": [
+        1.9,
+        -0.85,
+        -0.05
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "duck_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_duck",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "duck_f5",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         1.9,
+         -0.85,
+         -0.05
+        ],
+        [
+         1.9,
+         1.15,
+         0.45
+        ],
+        [
+         1.045,
+         0,
+         1.75
+        ]
+       ],
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.75
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.8,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "joyful",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "duck",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's a duck!",
+       "at": 0.95,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "DUCK",
+       "style": "label",
+       "at": 0.95,
+       "dur": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "duck_song",
+   "title": "Sing: the duck",
+   "music": false,
+   "beats": [
+    {
+     "id": "duck_s1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "duck",
+        "robo"
+       ],
+       "framing": "wide",
+       "yaw": -10,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "id": "duck_s2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1,
+       "height": 0.35
+      }
+     ]
+    },
+    {
+     "id": "duck_s3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And on that farm he had a duck,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "shot",
+       "target": "duck",
+       "framing": "medium",
+       "yaw": 15,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "joyful",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "id": "duck_s4",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1,
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "happy",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "id": "duck_s5",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "With a quack quack here, and a quack quack there,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.15,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_duck",
+       "at": 0.2,
+       "dur": 0.25
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        -35,
+        0
+       ],
+       "at": 0.4,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.55,
+       "height": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        35,
+        0
+       ],
+       "at": 1.6,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1.75,
+       "height": 0.3
+      },
+      {
+       "do": "orbit",
+       "around": [
+        1.045,
+        0.7,
+        1.75
+       ],
+       "degrees": 18,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "id": "duck_s6",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here a quack, there a quack, everywhere a quack quack!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.4,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1,
+       "height": 0.25
+      },
+      {
+       "do": "spin",
+       "target": "duck",
+       "at": 1.6,
+       "dur": 0.9
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "duck_s7",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hide",
+       "target": "w_duck",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 2.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 2
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 2.2,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "duck_turn",
+   "title": "Say quack!",
+   "beats": [
+    {
+     "id": "duck_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say quack!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_duck",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "duck_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "duck_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "duck",
+       "text": "Quack!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wow! Super quacking!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "duck_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_duck",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_duck",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pig_find",
+   "title": "Who says oink?",
+   "beats": [
+    {
+     "id": "pig_f1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_l",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Who is hiding now? Listen!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_l"
+      },
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         1.045,
+         0,
+         1.75
+        ],
+        [
+         1.045,
+         0,
+         0.2
+        ],
+        [
+         2.9,
+         0,
+         -2.4
+        ]
+       ],
+       "dur": 1.8,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        -17.4,
+        0
+       ],
+       "at": 1.9,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "pig_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "pig",
+       "to": [
+        -1.9,
+        0.030000000000000027,
+        -0.05
+       ],
+       "at": 0.1,
+       "dur": 0.35,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "pig",
+       "text": "Oink! Oink!",
+       "at": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_pig",
+       "at": 0.45,
+       "dur": 0.25
+      },
+      {
+       "do": "wiggle",
+       "target": "pig",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "pig_f3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I see pink ears! Who says oink?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pig",
+       "to": [
+        -1.9,
+        -0.8999999999999999,
+        -0.05
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "pig_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_pig",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "pig_f5",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "pig",
+       "points": [
+        [
+         -1.9,
+         -0.8999999999999999,
+         -0.05
+        ],
+        [
+         -1.9,
+         1.15,
+         0.45
+        ],
+        [
+         -1.045,
+         0,
+         1.75
+        ]
+       ],
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.75
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.8,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "pig",
+       "feeling": "joyful",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "pig",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's a pig!",
+       "at": 0.95,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "PIG",
+       "style": "label",
+       "at": 0.95,
+       "dur": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pig_song",
+   "title": "Sing: the pig",
+   "music": false,
+   "beats": [
+    {
+     "id": "pig_s1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "pig",
+        "robo"
+       ],
+       "framing": "wide",
+       "yaw": -10,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "id": "pig_s2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1,
+       "height": 0.35
+      }
+     ]
+    },
+    {
+     "id": "pig_s3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And on that farm he had a pig,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "shot",
+       "target": "pig",
+       "framing": "medium",
+       "yaw": 15,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "pig",
+       "feeling": "joyful",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "id": "pig_s4",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1,
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "pig",
+       "feeling": "happy",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "id": "pig_s5",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "With an oink oink here, and an oink oink there,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.15,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_pig",
+       "at": 0.2,
+       "dur": 0.25
+      },
+      {
+       "do": "turn",
+       "target": "pig",
+       "to": [
+        0,
+        -35,
+        0
+       ],
+       "at": 0.4,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.55,
+       "height": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "pig",
+       "to": [
+        0,
+        35,
+        0
+       ],
+       "at": 1.6,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.75,
+       "height": 0.3
+      },
+      {
+       "do": "orbit",
+       "around": [
+        -1.045,
+        0.7,
+        1.75
+       ],
+       "degrees": 18,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "id": "pig_s6",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here an oink, there an oink, everywhere an oink oink!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+      },
+      {
+       "do": "turn",
+       "target": "pig",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.4,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1,
+       "height": 0.25
+      },
+      {
+       "do": "spin",
+       "target": "pig",
+       "at": 1.6,
+       "dur": 0.9
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "pig_s7",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hide",
+       "target": "w_pig",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 2.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 2
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 2.2,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pig_turn",
+   "title": "Say oink!",
+   "beats": [
+    {
+     "id": "pig_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say oink!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "pig",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_pig",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "pig_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "pig_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "pig",
+       "text": "Oink!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! Great oinking!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "pig_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_pig",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_pig",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "pig",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sheep_find",
+   "title": "Who says baa?",
+   "beats": [
+    {
+     "id": "sheep_f1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_r",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Listen carefully... who is it?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_r"
+      },
+      {
+       "do": "path",
+       "target": "pig",
+       "points": [
+        [
+         -1.045,
+         0,
+         1.75
+        ],
+        [
+         -1.045,
+         0,
+         0.2
+        ],
+        [
+         -3.9,
+         0,
+         -2
+        ]
+       ],
+       "dur": 1.8,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "pig",
+       "to": [
+        0,
+        23.4,
+        0
+       ],
+       "at": 1.9,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "sheep_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "sheep",
+       "to": [
+        1.9,
+        -0.020000000000000018,
+        -0.05
+       ],
+       "at": 0.1,
+       "dur": 0.35,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "sheep",
+       "text": "Baa! Baa!",
+       "at": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_sheep",
+       "at": 0.45,
+       "dur": 0.25
+      },
+      {
+       "do": "wiggle",
+       "target": "sheep",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "sheep_f3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I see fluffy white wool! Who says baa?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "sheep",
+       "to": [
+        1.9,
+        -0.95,
+        -0.05
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "sheep_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_sheep",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "sheep_f5",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "sheep",
+       "points": [
+        [
+         1.9,
+         -0.95,
+         -0.05
+        ],
+        [
+         1.9,
+         1.15,
+         0.45
+        ],
+        [
+         1.045,
+         0,
+         1.75
+        ]
+       ],
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.75
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.8,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "joyful",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "sheep",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's a sheep!",
+       "at": 0.95,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "SHEEP",
+       "style": "label",
+       "at": 0.95,
+       "dur": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sheep_song",
+   "title": "Sing: the sheep",
+   "music": false,
+   "beats": [
+    {
+     "id": "sheep_s1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "sheep",
+        "robo"
+       ],
+       "framing": "wide",
+       "yaw": -10,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "id": "sheep_s2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1,
+       "height": 0.35
+      }
+     ]
+    },
+    {
+     "id": "sheep_s3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And on that farm he had a sheep,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "shot",
+       "target": "sheep",
+       "framing": "medium",
+       "yaw": 15,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "joyful",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "id": "sheep_s4",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1,
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "happy",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "id": "sheep_s5",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "With a baa baa here, and a baa baa there,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.15,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_sheep",
+       "at": 0.2,
+       "dur": 0.25
+      },
+      {
+       "do": "turn",
+       "target": "sheep",
+       "to": [
+        0,
+        -35,
+        0
+       ],
+       "at": 0.4,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.55,
+       "height": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "sheep",
+       "to": [
+        0,
+        35,
+        0
+       ],
+       "at": 1.6,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.75,
+       "height": 0.3
+      },
+      {
+       "do": "orbit",
+       "around": [
+        1.045,
+        0.7,
+        1.75
+       ],
+       "degrees": 18,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "id": "sheep_s6",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here a baa, there a baa, everywhere a baa baa!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+      },
+      {
+       "do": "turn",
+       "target": "sheep",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.4,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1,
+       "height": 0.25
+      },
+      {
+       "do": "spin",
+       "target": "sheep",
+       "at": 1.6,
+       "dur": 0.9
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "sheep_s7",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hide",
+       "target": "w_sheep",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 2.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 2
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 2.2,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sheep_turn",
+   "title": "Say baa!",
+   "beats": [
+    {
+     "id": "sheep_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say baa!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "sheep",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_sheep",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "sheep_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "sheep_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "sheep",
+       "text": "Baa!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Hooray! Lovely baa-ing!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "sheep_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_sheep",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_sheep",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "sheep",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dog_find",
+   "title": "Who says woof?",
+   "beats": [
+    {
+     "id": "dog_f1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_l",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One more friend! Listen!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_l"
+      },
+      {
+       "do": "path",
+       "target": "sheep",
+       "points": [
+        [
+         1.045,
+         0,
+         1.75
+        ],
+        [
+         1.045,
+         0,
+         0.2
+        ],
+        [
+         4,
+         0,
+         -1.9
+        ]
+       ],
+       "dur": 1.8,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "sheep",
+       "to": [
+        0,
+        -24,
+        0
+       ],
+       "at": 1.9,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "dog_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -1.9,
+        -0.020000000000000018,
+        -0.05
+       ],
+       "at": 0.1,
+       "dur": 0.35,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "Woof! Woof!",
+       "at": 0.35
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_dog",
+       "at": 0.45,
+       "dur": 0.25
+      },
+      {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "dog_f3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I see a waggy tail! Who says woof?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -1.9,
+        -0.95,
+        -0.05
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "dog_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_dog",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "dog_f5",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "dog",
+       "points": [
+        [
+         -1.9,
+         -0.95,
+         -0.05
+        ],
+        [
+         -1.9,
+         1.15,
+         0.45
+        ],
+        [
+         -1.045,
+         0,
+         1.75
+        ]
+       ],
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.75
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.8,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "joyful",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "dog",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's a dog!",
+       "at": 0.95,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "DOG",
+       "style": "label",
+       "at": 0.95,
+       "dur": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dog_song",
+   "title": "Sing: the dog",
+   "music": false,
+   "beats": [
+    {
+     "id": "dog_s1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "dog",
+        "robo"
+       ],
+       "framing": "wide",
+       "yaw": -10,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "id": "dog_s2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1,
+       "height": 0.35
+      }
+     ]
+    },
+    {
+     "id": "dog_s3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And on that farm he had a dog,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "shot",
+       "target": "dog",
+       "framing": "medium",
+       "yaw": 15,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "joyful",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "id": "dog_s4",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1,
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "happy",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "id": "dog_s5",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "With a woof woof here, and a woof woof there,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.15,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_dog",
+       "at": 0.2,
+       "dur": 0.25
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        -35,
+        0
+       ],
+       "at": 0.4,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.55,
+       "height": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        35,
+        0
+       ],
+       "at": 1.6,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.75,
+       "height": 0.3
+      },
+      {
+       "do": "orbit",
+       "around": [
+        -1.045,
+        0.7,
+        1.75
+       ],
+       "degrees": 18,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "id": "dog_s6",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here a woof, there a woof, everywhere a woof woof!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1,
+       "height": 0.25
+      },
+      {
+       "do": "spin",
+       "target": "dog",
+       "at": 1.6,
+       "dur": 0.9
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "dog_s7",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hide",
+       "target": "w_dog",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 2.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 2
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 2.2,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dog_turn",
+   "title": "Say woof!",
+   "beats": [
+    {
+     "id": "dog_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say woof!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_dog",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "dog_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "dog_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "Woof!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Good job! Big woofs!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "dog_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_dog",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_dog",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot5",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "horse_find",
+   "title": "The surprise in the barn",
+   "beats": [
+    {
+     "id": "horse_f1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "dog",
+       "points": [
+        [
+         -1.045,
+         0,
+         1.75
+        ],
+        [
+         0.45500000000000007,
+         0,
+         0.6
+        ],
+        [
+         4.9,
+         0,
+         -1.2
+        ]
+       ],
+       "dur": 1.8,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        -25,
+        0
+       ],
+       "at": 1.9,
+       "dur": 0.4
+      },
+      {
+       "do": "shot",
+       "target": "barn",
+       "framing": "medium",
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now... the BIG surprise! Who is in the barn?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "cow",
+       "at": 0.4,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.5,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "pig",
+       "at": 0.6000000000000001,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "sheep",
+       "at": 0.7000000000000001,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": 0.8,
+       "to": "barn"
+      }
+     ]
+    },
+    {
+     "id": "horse_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "horse",
+       "text": "Neigh! Neigh!",
+       "at": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_left",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_right",
+       "at": 0.35,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_horse",
+       "at": 0.45,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "horse_f3",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Who says neigh? Let's open the doors!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "slot6",
+       "at": 0.3,
+       "deg": 12,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "id": "horse_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_horse",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "horse_f5",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "turn",
+       "target": "barn#door_left",
+       "to": [
+        0,
+        -100,
+        0
+       ],
+       "at": 0,
+       "dur": 0.9,
+       "ease": "backOut"
+      },
+      {
+       "do": "turn",
+       "target": "barn#door_right",
+       "to": [
+        0,
+        100,
+        0
+       ],
+       "at": 0,
+       "dur": 0.9,
+       "ease": "backOut"
+      },
+      {
+       "do": "sound",
+       "sound": "door_open",
+       "at": 0
+      },
+      {
+       "do": "path",
+       "target": "horse",
+       "points": [
+        [
+         0,
+         0,
+         -1.2
+        ],
+        [
+         0,
+         0,
+         0.2
+        ],
+        [
+         0,
+         0,
+         1.4
+        ]
+       ],
+       "dur": 1.6,
+       "at": 0.9
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.95,
+       "height": 0.12,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.35,
+       "height": 0.12,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.75,
+       "height": 0.12,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 2.1500000000000004,
+       "height": 0.12,
+       "dur": 0.38
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2.5
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 2.5,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "horse",
+       "feeling": "joyful",
+       "at": 2.5
+      },
+      {
+       "do": "shot",
+       "target": "horse",
+       "framing": "medium",
+       "at": 1.6,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's a horse!",
+       "at": 2.6,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "HORSE",
+       "style": "label",
+       "at": 2.6,
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 2.7,
+       "volume": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "horse_song",
+   "title": "Sing: the horse",
+   "music": false,
+   "beats": [
+    {
+     "id": "horse_s1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "horse",
+        "robo"
+       ],
+       "framing": "wide",
+       "yaw": -10,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "id": "horse_s2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1,
+       "height": 0.35
+      }
+     ]
+    },
+    {
+     "id": "horse_s3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And on that farm he had a horse,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+      },
+      {
+       "do": "shot",
+       "target": "horse",
+       "framing": "medium",
+       "yaw": 15,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "horse",
+       "feeling": "joyful",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "id": "horse_s4",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.3,
+       "height": 0.35
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1,
+       "height": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "horse",
+       "feeling": "happy",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "id": "horse_s5",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "With a neigh neigh here, and a neigh neigh there,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.15,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_horse",
+       "at": 0.2,
+       "dur": 0.25
+      },
+      {
+       "do": "turn",
+       "target": "horse",
+       "to": [
+        0,
+        -35,
+        0
+       ],
+       "at": 0.4,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.55,
+       "height": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "horse",
+       "to": [
+        0,
+        35,
+        0
+       ],
+       "at": 1.6,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.75,
+       "height": 0.3
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0,
+        0.7,
+        1.4
+       ],
+       "degrees": 18,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "id": "horse_s6",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here a neigh, there a neigh, everywhere a neigh neigh!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+      },
+      {
+       "do": "turn",
+       "target": "horse",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.4,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1,
+       "height": 0.25
+      },
+      {
+       "do": "spin",
+       "target": "horse",
+       "at": 1.6,
+       "dur": 0.9
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "horse_s7",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "hide",
+       "target": "w_horse",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 2.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 2
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 2.2,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "horse_turn",
+   "title": "Say neigh!",
+   "beats": [
+    {
+     "id": "horse_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say neigh!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "horse",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_horse",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "horse_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "horse_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "horse",
+       "text": "Neigh!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Amazing! What a big neigh!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "horse_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_horse",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "qmark",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "mini_horse",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot6",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "horse",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Point to it!",
+   "beats": [
+    {
+     "id": "q0",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "You found everyone! Now a quick game.",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.2
+      },
+      {
+       "do": "path",
+       "target": "horse",
+       "points": [
+        [
+         0,
+         0,
+         1.4
+        ],
+        [
+         1.2,
+         0,
+         -0.2
+        ],
+        [
+         1.2,
+         0,
+         -0.6
+        ]
+       ],
+       "dur": 1.6,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "horse",
+       "to": [
+        0,
+        -20,
+        0
+       ],
+       "at": 1.7,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "q1a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "pig",
+       "to": [
+        -1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "duck",
+       "to": [
+        1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "turn",
+       "target": "pig",
+       "to": [
+        0,
+        10,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        -10,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "pig",
+        "duck"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which one says oink? Point to it!",
+       "at": 0.5,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "q1b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.2,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.95,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.7,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "q1c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "pig",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "say",
+       "who": "pig",
+       "text": "Oink! Oink!",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.3,
+       "height": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "pig",
+       "feeling": "joyful",
+       "at": 0.3
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The pig!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q1d",
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "pig",
+       "to": [
+        -3.9,
+        0,
+        -2
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "duck",
+       "to": [
+        2.9,
+        0,
+        -2.4
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "feel",
+       "target": "pig",
+       "feeling": "happy",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q2a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "cow",
+       "to": [
+        -1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "sheep",
+       "to": [
+        1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "turn",
+       "target": "cow",
+       "to": [
+        0,
+        10,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sheep",
+       "to": [
+        0,
+        -10,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "cow",
+        "sheep"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Who says baa? Point to it!",
+       "at": 0.5,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "q2b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.2,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.95,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1.7,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "q2c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "sheep",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "say",
+       "who": "sheep",
+       "text": "Baa!",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.3,
+       "height": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "joyful",
+       "at": 0.3
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The sheep!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q2d",
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "cow",
+       "to": [
+        -2.9,
+        0,
+        -2.4
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "sheep",
+       "to": [
+        4,
+        0,
+        -1.9
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "happy",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q3a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "horse",
+       "to": [
+        1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        10,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "horse",
+       "to": [
+        0,
+        -10,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "dog",
+        "horse"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Who says woof? Point to it!",
+       "at": 0.5,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "q3b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.2,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.95,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.7,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "q3c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "dog",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "Woof! Woof!",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.3,
+       "height": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "joyful",
+       "at": 0.3
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The dog!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q3d",
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        4.9,
+        0,
+        -1.2
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "horse",
+       "to": [
+        1.2,
+        0,
+        -0.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "happy",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "finale",
+   "title": "Everybody sing!",
+   "music": false,
+   "beats": [
+    {
+     "id": "z1",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Everybody sing!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Old MacDonald had a farm, E-I-E-I-O!",
+       "at": "after",
+       "caption": true,
+       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.6,
+        11
+       ],
+       "lookAt": [
+        0,
+        1.2,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 2.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.6,
+       "height": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.88,
+       "height": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.1600000000000001,
+       "height": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.44,
+       "height": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.7200000000000002,
+       "height": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 2,
+       "height": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "cow",
+       "feeling": "joyful",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "joyful",
+       "at": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "pig",
+       "feeling": "joyful",
+       "at": 0.6000000000000001
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "joyful",
+       "at": 0.7000000000000001
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "joyful",
+       "at": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "horse",
+       "feeling": "joyful",
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "id": "z2",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.1,
+       "dur": 2.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Moo, quack, oink, baa, woof, and neigh!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 0.3,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.6499999999999999,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.3499999999999999,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.7,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 2.05,
+       "height": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.6499999999999999,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 1,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 1.3499999999999999,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot5",
+       "at": 1.7,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot6",
+       "at": 2.05,
+       "deg": 10,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "id": "z3",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bye-bye, friends! See you on the farm!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "cow",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.5,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "pig",
+       "at": 0.6000000000000001,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "sheep",
+       "at": 0.7000000000000001,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "horse",
+       "at": 0.9,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "caption",
+       "text": "Bye-bye!",
+       "style": "title",
+       "at": 0.6,
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.6,
+        14.5
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        -1
+       ],
+       "fov": 40,
+       "dur": 3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

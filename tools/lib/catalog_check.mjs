@@ -88,9 +88,12 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
   for (const [k, v] of Object.entries(files["characters/appearance.json"])) if (k !== "conflicts") uniq("characters/appearance.json", v, k);
   for (const [rel, key] of [["characters/voices.json", "timbres"], ["characters/roles.json", "roles"], ["world/ambience.json", "beds"]]) uniq(rel, files[rel][key], key);
 
-  // Spoken voices (SPEECH_SPEC 5): one entry per engine timbre.
-  const ttsTimbres = Object.keys(files["story/tts_voices.json"].timbres).sort();
-  if (ttsTimbres.join() !== [...V2_ENUMS.timbre].sort().join()) bad("story/tts_voices.json", "timbres", `needs exactly the timbres ${V2_ENUMS.timbre.join(", ")}`);
+  // Spoken voices (SPEECH_SPEC 5): one entry per engine timbre, plus speech-only timbres for engine3d (tagged "engine3d",
+  // e.g. toddler, Robo's voice), which the 2D engine never names.
+  const ttsTable = files["story/tts_voices.json"].timbres;
+  const missing = V2_ENUMS.timbre.filter((t) => !ttsTable[t]);
+  if (missing.length) bad("story/tts_voices.json", "timbres", `needs the timbres ${V2_ENUMS.timbre.join(", ")} (missing ${missing.join(", ")})`);
+  for (const [k, v] of Object.entries(ttsTable)) if (!V2_ENUMS.timbre.includes(k) && !v.tags?.includes("engine3d")) bad("story/tts_voices.json", `timbres.${k}`, `"${k}" is not a 2D timbre: tag it "engine3d" or add it to the engine`);
   for (const m of Object.keys(files["story/tts_voices.json"].moods || {})) if (!catalog.faces[m]) bad("story/tts_voices.json", `moods.${m}`, `"${m}" is not a face (moods are keyed by face name)`);
   if (!files["story/tts_voices.json"].moods?.neutral) bad("story/tts_voices.json", "moods", "needs a neutral mood (the fallback)");
 

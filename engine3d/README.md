@@ -326,6 +326,19 @@ cheaper pass (blurred background layer) if a spec needs it.
 `scripts/look_tour.json` shows lip-sync (Robo, Duck, Cat and a talking circle), `look`, `shot` and `orbit` in
 the classroom in about 45 seconds.
 
+### Baby rhymes (sung lines, the HUD, Robo's toddler voice)
+
+Built for the baby and toddler rhyme series (`scripts/series/toybox/specs/baby_rhymes.md`, br01–br20).
+`tests/unit/rhymes.test.js` covers them.
+
+| Need | How |
+|---|---|
+| Robo's voice | Robo speaks in his own catalog voice (`characters.json` robot `voice`: the `toddler` timbre at pitch 1.1) in every script, old ones included: it wins over `meta.cast`; a `say`'s own `voice`/`pitch` still overrides it. The `toddler` timbre (`catalog/story/tts_voices.json`, tagged `engine3d`) is kristin with her formants lifted a little (ffmpeg, +3 semitones at pitch 1.1) and her pitch lifted 7 more by PSOLA (`lift`, `tools/lib/tts/psola.mjs`, which keeps the formants), with livelier Piper intonation (`noise` 0.6, `noiseW` 0.75): about 257 Hz against the old 155 Hz. `lift`, `noise` and `noiseW` join the TTS cache key only when set, so other voices keep their clips. |
+| Who speaks lines without `who` | `meta.host`: an object id, or `null` for the plain `meta.voice` narrator. By default the host is the script's one character with a catalog voice (Robo), so the narration of Robo-hosted episodes (pk01–pk16, g1, g2) is in his voice too; host lines do not lip-sync. Episodes without Robo (bb01–bb04) are unchanged. |
+| A sung line | `say` with `tune: "G4 G4 G4 D4 E4 E4 D4"` (one note per syllable, `C4` = middle C, `#`/`b`, `|` ignored; `runtime/tune.js`). The mix (`tools/lib/tune3d.mjs`) cuts the measured clip into as many syllables as notes and plays each note on a toy glockenspiel on a steady beat pulled toward the syllable starts, so tune and words start and end together at any voice speed. `tunePatch` (glock, bell, music_box, toy, pluck_high, flute, glass), `tuneGain` (0.5). `sing: true` (or 0.3–1) also moves the voice onto the notes with PSOLA: experimental, check it by ear. Turn the music bed off in sung scenes (`"music": false`): the procedural bed is in its own key. Validator: `E3D_TUNE`, `W3D_TUNE_SYLLABLES` (notes vs syllables off by more than 1). |
+| Trackers and word pops that stay put | `hud: true` on any object draws it in screen space after the 3D picture (`stage.js` `createHud`): `at` in HUD units, the frame 16 wide and 9 tall with (0, 0) at its centre (x −8…8, y −4.5…4.5, z toward the viewer for layering); a size-1 critter is about 1 unit tall. Front-lit, no shadows or fog; every action works on it (`pop`, `hide`, `wiggle`, `grow`). A child and its parent share a layer; `shot` cannot frame a HUD object (`E3D_HUD`). Props for it: `tracker_slot` (a card whose rim takes `color`) and `word_bubble`. br01 has a six-slot tracker top left, a 3-2-1 countdown (letters on a white `circle`) and a word bubble top right. |
+| A farm | Stage `farm` (sky, grass, a dirt yard, fence, trees, hills, sun and clouds behind z = −2.4) and `catalog/models/farm.json`: `horse`, `barn` (doors `barn#door_left` / `barn#door_right`, open with `turn` to [0, −100, 0] / [0, 100, 0]), `hay_bale`. Camera for a barn at [0, 0, −1.5]: position [0, 2.1, 9.4], lookAt [0, 1.35, −0.4], fov 40. |
+
 ## Rules (as for /engine)
 
 - No `Math.random`, `Date.now`, `performance.now`, `requestAnimationFrame` in `runtime/` or `scenes/` (a test

@@ -74,6 +74,8 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   }
 
   const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 200);
+  const hud = createHud(width, height, scene.environment);
+  const rootOf = (o) => (o.hud ? hud.scene : scene);
   const look = new THREE.Vector3();
   const handles = new Map();
   for (const o of plan.objects) {
@@ -88,9 +90,10 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     h.tints = (o.paintParts ?? []).map((c) => [`tint:${c}`, paintable(h.group, catalog.colors[c].hex)]);
     // A child rides on its parent (or on one of the parent's named parts): its at is relative to it.
     const parent = o.parent ? handles.get(o.parent) : null;
-    (parent ? parent.named?.get(o.part) ?? parent.group : scene).add(h.group);
+    (parent ? parent.named?.get(o.part) ?? parent.group : rootOf(o)).add(h.group);
     h.parentRef = o.parent == null ? "" : o.part != null ? `${o.parent}#${o.part}` : o.parent;
-    for (const w of h.world ?? []) scene.add(w);
+    h.root = rootOf(o);
+    for (const w of h.world ?? []) h.root.add(w);
     h.group.userData.handle = true;
     handles.set(o.id, h);
   }
@@ -98,7 +101,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   const attach = (h, ref) => {
     const [pid, part] = ref.split("#");
     const p = pid ? handles.get(pid) : null;
-    (p ? (part ? p.named?.get(part) ?? p.group : p.group) : scene).add(h.group);
+    (p ? (part ? p.named?.get(part) ?? p.group : p.group) : h.root).add(h.group);
     h.parentRef = ref;
   };
   const clipLen = (id) => (name) => handles.get(id).actions.get(name)?.getClip().duration ?? 1;
@@ -227,8 +230,38 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
       pose(t);
       renderer.clear();
       renderer.render(scene, camera);
+      if (hud.scene.children.length > 2) {
+        renderer.clearDepth();
+        renderer.render(hud.scene, hud.camera);
+      }
       renderer.clearDepth();
       renderer.render(overlay.scene, overlay.camera);
     },
   };
+}
+
+/** Size of the HUD layer in its own units: the frame is 16 wide and 9 tall, (0, 0) at its centre. */
+export const HUD_SIZE = [16, 9];
+
+/**
+ * The HUD layer: objects with hud: true are drawn after the 3D scene with a fixed orthographic camera, so they
+ * keep their place on screen while the camera moves (progress trackers, word pops). Their at is [x, y, z] in HUD
+ * units (x -8..8 left to right, y -4.5..4.5 bottom to top; z toward the viewer, for layering); a size-1 critter
+ * is about 1 unit tall. Lit from the front, no shadows, no fog.
+ */
+function createHud(width, height, environment) {
+  const [w, h] = HUD_SIZE;
+  const aspect = width / height;
+  // Wider or narrower frames keep the 9-unit height and show more or less width.
+  const camera = new THREE.OrthographicCamera((-h * aspect) / 2, (h * aspect) / 2, h / 2, -h / 2, -50, 50);
+  camera.position.set(0, 0, 20);
+  camera.lookAt(0, 0, 0);
+  const scene = new THREE.Scene();
+  scene.environment = environment;
+  scene.environmentIntensity = 0.45;
+  const key = new THREE.DirectionalLight(0xffffff, 1.6);
+  key.position.set(-3, 5, 10);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xd8d0c8, 1.15), key);
+  void w;
+  return { scene, camera };
 }

@@ -144,7 +144,7 @@ test("hoop, letter lift and painted letters build in Node", () => {
   near(mats[1].color.b, 1);
 });
 
-test("character voices: meta.cast, say overrides, defaults leave lines as before", () => {
+test("character voices: Robo's catalog voice, meta.cast, say overrides, the host", () => {
   const objs = [{ id: "robo", kind: "character", character: "robot" }, { id: "bun", kind: "critter", species: "bunny" }];
   const s = script(objs, [
     { do: "say", text: "Low.", who: "robo" },
@@ -155,10 +155,18 @@ test("character voices: meta.cast, say overrides, defaults leave lines as before
   assert.deepEqual(validateScript(s, catalog).errors, []);
   const p = compileScript(s, { catalog, speech: { "s.1.1": { dur: 1 }, "s.1.2": { dur: 2 } } });
   const [a, b, c, n] = p.lines;
-  assert.deepEqual([a.voice, a.pitch, a.speed], ["soft", 0.85, undefined]);
+  // Robo always speaks in his own catalog voice (the toddler timbre), even where an old cast entry names another.
+  assert.deepEqual([a.voice, a.pitch, a.speed], ["toddler", 1.1, undefined]);
   assert.deepEqual([b.voice, b.pitch, b.speed], ["squeaky", 1.3, 1.1]);
   assert.equal(c.pitch, 1.2);
-  assert.ok(!("pitch" in n) && !("speed" in n));
+  // A line without who is the host's (Robo, the episode's one voiced character): his voice, no lip-sync.
+  assert.deepEqual([n.voice, n.pitch, n.who], ["toddler", 1.1, undefined]);
+  // meta.host: null keeps those lines in meta.voice with the default pitch, as before.
+  const q = compileScript({ ...s, meta: { ...s.meta, host: null } }, { catalog });
+  assert.ok(!("pitch" in q.lines[3]) && q.lines[3].voice === "soft");
+  // A say's own voice still wins over Robo's.
+  const r = compileScript(script(objs, [{ do: "say", text: "Hm.", who: "robo", voice: "deep", pitch: 0.9 }]), { catalog });
+  assert.deepEqual([r.lines[0].voice, r.lines[0].pitch], ["deep", 0.9]);
   near(b.t, 1 + 0.25); // queued after Robo's 1 s clip
   near(c.t, 1 + 0.25 + 2 + 0.25);
 });

@@ -4,20 +4,40 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-70 episodes: 0 spec, 16 scripted, 54 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
+90 episodes: 19 spec, 1 scripted, 69 rendered, 1 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
 Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location]`; find renders on disk: `--scan`.
 
-## Babies (4)
+## Babies (24)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
 | bb01 | Bubbles and Colours | Babies | Colours (sensory) | – | `bb01_bubbles_and_colours.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb01_bubbles_and_colours |
+| br01 | Old MacDonald Had a Farm | Babies | Animals and sounds (rhyme) | `listening_prek` | `br01_old_macdonald.json` | scripted | – |
 | bb02 | Peekaboo Animals | Babies | Listening (sensory) | `listening_prek` | `bb02_peekaboo_animals.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb02_peekaboo_animals |
+| br02 | Baa Baa Black Sheep: Colour Wool | Babies | Colours (rhyme) | – | spec: specs/baby_rhymes.md br02 | spec | – |
 | bb03 | Goodnight, Little Star | Babies | Music / bedtime | – | `bb03_goodnight_stars.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb03_goodnight_stars |
+| br03 | Five Little Ducks Go Splash | Babies | Counting (rhyme) | `count_to_5_prek` | spec: specs/baby_rhymes.md br03 | spec | – |
 | bb04 | Black and White Shapes | Babies | Shapes (sensory) | `basic_shapes_prek` | `bb04_contrast_shapes.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb04_contrast_shapes |
+| br04 | Head, Shoulders, Knees and Toes | Babies | Body parts (rhyme) | – | spec: specs/baby_rhymes.md br04 | spec | – |
+| br05 | Hickory Dickory Dock | Babies | Counting and time (rhyme) | `count_to_5_prek` | spec: specs/baby_rhymes.md br05 | spec | – |
+| br06 | Row, Row, Row Your Boat | Babies | Opposites (rhyme) | `opposites_k` | spec: specs/baby_rhymes.md br06 | spec | – |
+| br07 | Itsy Bitsy Spider: Rain and Sun | Babies | Weather (rhyme) | – | spec: specs/baby_rhymes.md br07 | spec | – |
+| br08 | Humpty Dumpty: Fix It Together | Babies | Shapes and cause and effect (rhyme) | `basic_shapes_prek` | spec: specs/baby_rhymes.md br08 | spec | – |
+| br09 | Hot Cross Buns | Babies | Counting and sharing (rhyme) | `count_to_5_prek` | spec: specs/baby_rhymes.md br09 | spec | – |
+| br10 | Rainbow Colours Song | Babies | Colours (rhyme) | – | spec: specs/baby_rhymes.md br10 | spec | – |
+| br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek` | spec: specs/baby_rhymes.md br11 | spec | – |
+| br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek` | spec: specs/baby_rhymes.md br12 | spec | – |
+| br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek` | spec: specs/baby_rhymes.md br13 | spec | – |
+| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | – | spec: specs/baby_rhymes.md br14 | spec | – |
+| br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | spec: specs/baby_rhymes.md br15 | spec | – |
+| br16 | Mary Had a Little Lamb | Babies | Listening (rhyme) | `listening_prek` | spec: specs/baby_rhymes.md br16 | spec | – |
+| br17 | B-I-N-G-O Clap Along | Babies | Letters and patterns (rhyme) | `capital_letters_prek` | spec: specs/baby_rhymes.md br17 | spec | – |
+| br18 | Hey Diddle Diddle | Babies | Position words (rhyme) | `position_words_prek` | spec: specs/baby_rhymes.md br18 | spec | – |
+| br19 | Once I Caught a Fish Alive | Babies | Counting to 10 (rhyme) | `count_to_10_k` | spec: specs/baby_rhymes.md br19 | spec | – |
+| br20 | Opposites Hop | Babies | Opposites (rhyme) | `opposites_k` | spec: specs/baby_rhymes.md br20 | spec | – |
 
 ## Pre-K (21)
 
@@ -38,7 +58,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | pk13 | Opposites Playground | Pre-K | English | `opposites_k` | `pk13_opposites_playground.json` | rendered | disk1:PREK-PLAYLIST/pk13_opposites_playground |
 | pk14 | Where Is Duck? | Pre-K | Math | `position_words_prek` | `pk14_where_is_duck.json` | rendered | disk1:PREK-PLAYLIST/pk14_where_is_duck |
 | pk15 | How Do You Feel? | Pre-K | Social-emotional | `feelings_prek`, `listening_prek` | `pk15_how_do_you_feel.json` | rendered | disk1:PREK-PLAYLIST/pk15_how_do_you_feel |
-| pk16 | Healthy Habits: Wash, Brush, Sleep | Pre-K | Health | `healthy_habits_prek` | `pk16_healthy_habits.json` | rendered | disk1:PREK-PLAYLIST/pk16_healthy_habits |
+| pk16 | Healthy Habits: Wash, Brush, Sleep | Pre-K | Health | `healthy_habits_prek` | `pk16_healthy_habits.json` | uploaded | disk1:PREK-PLAYLIST/pk16_healthy_habits |
 | pk17 | Letters M to S | Pre-K | English | `capital_letters_prek`, `letter_look_alikes_prek` | `pk17_letters_m_to_s.json` | rendered | disk1:PREK-PLAYLIST/pk17_letters_m_to_s |
 | pk18 | Dot Dice: Zero to Five | Pre-K | Math | `count_to_5_prek`, `number_order_prek` | `pk18_dot_dice.json` | rendered | disk1:PREK-PLAYLIST/pk18_dot_dice |
 | pk19 | Lines and Curves | Pre-K | Handwriting readiness | `prewriting_strokes_prek` | `pk19_lines_and_curves.json` | rendered | disk1:PREK-PLAYLIST/pk19_lines_and_curves |
@@ -83,37 +103,37 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g212 | Quarters to a Dollar | Grade 2 | Math | `coins_quarters_2` | `g212_quarters_to_a_dollar.json` | rendered | disk1:GRADE2-PLAYLIST/g212_quarters_to_a_dollar |
 | g213 | First, Next, Then, Last | Grade 2 | English | `sequence_inference_2` | `g213_first_next_then_last.json` | rendered | disk1:GRADE2-PLAYLIST/g213_first_next_then_last |
 | g214 | Needs and Wants Market | Grade 2 | Social studies | `needs_wants_2` | `g214_needs_and_wants_market.json` | rendered | disk1:GRADE2-PLAYLIST/g214_needs_and_wants_market |
-| g215 | Number Pattern Machine | Grade 2 | Math | `number_sequences_2` | `g215_number_pattern_machine.json` | scripted | – |
+| g215 | Number Pattern Machine | Grade 2 | Math | `number_sequences_2` | `g215_number_pattern_machine.json` | rendered | disk1:GRADE2-PLAYLIST/g215_number_pattern_machine |
 
 ## Grade 3 (5)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
-| g301 | Array Garden | Grade 3 | Math | `times_tables_3`, `missing_factor_3` | `g301_array_garden.json` | scripted | – |
-| g302 | Fractions on a Number Line | Grade 3 | Math | `fractions_3` | `g302_fractions_on_a_number_line.json` | scripted | – |
-| g303 | Area and Perimeter Playground | Grade 3 | Math | `area_perimeter_3` | `g303_area_and_perimeter_playground.json` | scripted | – |
-| g304 | Word Builder Workshop | Grade 3 | English | `prefixes_suffixes_3` | `g304_word_builder_workshop.json` | scripted | – |
-| g305 | Life Cycles: Frog, Butterfly, Bean | Grade 3 | Science | `life_cycles_3` | `g305_life_cycles.json` | scripted | – |
+| g301 | Array Garden | Grade 3 | Math | `times_tables_3`, `missing_factor_3` | `g301_array_garden.json` | rendered | disk1:GRADE3-PLAYLIST/g301_array_garden |
+| g302 | Fractions on a Number Line | Grade 3 | Math | `fractions_3` | `g302_fractions_on_a_number_line.json` | rendered | disk1:GRADE3-PLAYLIST/g302_fractions_on_a_number_line |
+| g303 | Area and Perimeter Playground | Grade 3 | Math | `area_perimeter_3` | `g303_area_and_perimeter_playground.json` | rendered | disk1:GRADE3-PLAYLIST/g303_area_and_perimeter_playground |
+| g304 | Word Builder Workshop | Grade 3 | English | `prefixes_suffixes_3` | `g304_word_builder_workshop.json` | rendered | disk1:GRADE3-PLAYLIST/g304_word_builder_workshop |
+| g305 | Life Cycles: Frog, Butterfly, Bean | Grade 3 | Science | `life_cycles_3` | `g305_life_cycles.json` | rendered | disk1:GRADE3-PLAYLIST/g305_life_cycles |
 
 ## Grade 4 (5)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
-| g401 | Equivalent Fractions Bakery | Grade 4 | Math | `equivalent_fractions_4` | `g401_equivalent_fractions_bakery.json` | scripted | – |
-| g402 | Tenths Track | Grade 4 | Math | `decimals_tenths_4` | `g402_tenths_track.json` | scripted | – |
-| g403 | Angle Explorers | Grade 4 | Math | `angles_4` | `g403_angle_explorers.json` | scripted | – |
-| g404 | Spinning Earth | Grade 4 | Science | `earth_space_4` | `g404_spinning_earth.json` | scripted | – |
-| g405 | Chain Reaction | Grade 4 | English | `cause_effect_4` | `g405_chain_reaction.json` | scripted | – |
+| g401 | Equivalent Fractions Bakery | Grade 4 | Math | `equivalent_fractions_4` | `g401_equivalent_fractions_bakery.json` | rendered | disk1:GRADE4-PLAYLIST/g401_equivalent_fractions_bakery |
+| g402 | Tenths Track | Grade 4 | Math | `decimals_tenths_4` | `g402_tenths_track.json` | rendered | disk1:GRADE4-PLAYLIST/g402_tenths_track |
+| g403 | Angle Explorers | Grade 4 | Math | `angles_4` | `g403_angle_explorers.json` | rendered | disk1:GRADE4-PLAYLIST/g403_angle_explorers |
+| g404 | Spinning Earth | Grade 4 | Science | `earth_space_4` | `g404_spinning_earth.json` | rendered | disk1:GRADE4-PLAYLIST/g404_spinning_earth |
+| g405 | Chain Reaction | Grade 4 | English | `cause_effect_4` | `g405_chain_reaction.json` | rendered | disk1:GRADE4-PLAYLIST/g405_chain_reaction |
 
 ## Grade 5 (5)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
-| g501 | Adding Fractions with Unlike Denominators | Grade 5 | Math | `fraction_operations_5` | `g501_smoothie_fractions.json` | scripted | – |
-| g502 | Powers of Ten Elevator | Grade 5 | Math | `powers_of_ten_5` | `g502_powers_of_ten_elevator.json` | scripted | – |
-| g503 | Volume Box Factory | Grade 5 | Math | `volume_conversion_5` | `g503_volume_box_factory.json` | scripted | – |
-| g504 | Body Systems Tour: heart and lungs | Grade 5 | Science | `body_systems_5` | `g504_heart_and_lungs.json` | scripted | – |
-| g505 | Ecosystem Energy: food chains and webs | Grade 5 | Science | `ecosystems_5` | `g505_ecosystem_energy.json` | scripted | – |
+| g501 | Adding Fractions with Unlike Denominators | Grade 5 | Math | `fraction_operations_5` | `g501_smoothie_fractions.json` | rendered | disk1:GRADE5-PLAYLIST/g501_smoothie_fractions |
+| g502 | Powers of Ten Elevator | Grade 5 | Math | `powers_of_ten_5` | `g502_powers_of_ten_elevator.json` | rendered | disk1:GRADE5-PLAYLIST/g502_powers_of_ten_elevator |
+| g503 | Volume Box Factory | Grade 5 | Math | `volume_conversion_5` | `g503_volume_box_factory.json` | rendered | disk1:GRADE5-PLAYLIST/g503_volume_box_factory |
+| g504 | Body Systems Tour: heart and lungs | Grade 5 | Science | `body_systems_5` | `g504_heart_and_lungs.json` | rendered | disk1:GRADE5-PLAYLIST/g504_heart_and_lungs |
+| g505 | Ecosystem Energy: food chains and webs | Grade 5 | Science | `ecosystems_5` | `g505_ecosystem_energy.json` | rendered | disk1:GRADE5-PLAYLIST/g505_ecosystem_energy |
 
 ## Compilations
 
@@ -134,6 +154,7 @@ for the next batches (`ideas` in episodes.json). Pick the next episodes from her
 - Music-box shapes
 - A colour rainbow lullaby
 - A 30-minute baby calm mix 2 from bb01-bb04 and new baby episodes
+- A baby rhymes mix 1 from br01-br06 once they are rendered
 
 ### Pre-K
 

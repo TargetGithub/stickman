@@ -1,0 +1,1879 @@
+{
+ "description": "Farm models for Old MacDonald Had a Farm and other farm rhymes: a toy horse, a red barn with opening doors, a hay bale, and two UI pieces (a progress tracker slot and a speech bubble). Same format as ../models.json. Props face +z and stand on y = 0 unless the description says otherwise.",
+ "critters": {
+  "horse": {
+   "color": "horse_brown",
+   "sound": "Neigh!",
+   "description": "A friendly chestnut toy horse with a dark brown mane and tail, a tan muzzle, big eyes and four legs on dark hooves; about 1.5 m tall to the ear tips and 1.1 m nose to tail at size 1 (a little taller than the cow). Faces +z. Named parts: tail (swishes on its own), leg_front_left, leg_front_right, leg_back_left, leg_back_right (each leg and its hoof turn about the hip: turn [±25, 0, 0] about x to trot), mane (the neck ridge). Talks (say with who) with its own mouth on the muzzle.",
+   "tags": [
+    "farm",
+    "mammal",
+    "old_macdonald",
+    "rhymes"
+   ],
+   "head": {
+    "at": [
+     0,
+     1.24,
+     0.5
+    ],
+    "tilt": 0.8
+   },
+   "eyes": {
+    "at": [
+     0.13,
+     0.16,
+     0.19
+    ],
+    "size": 0.1,
+    "iris": "eye_brown"
+   },
+   "cheeks": {
+    "at": [
+     0.185,
+     -0.02,
+     0.15
+    ],
+    "size": 0.075,
+    "color": "rose"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.15,
+     0.425
+    ],
+    "size": 0.12
+   },
+   "bob": 0.012,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.66,
+      -0.02
+     ],
+     "s": [
+      0.66,
+      0.6,
+      1
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.56,
+      0
+     ],
+     "s": [
+      0.54,
+      0.38,
+      0.84
+     ],
+     "c": "horse_tan"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.17,
+      0.5,
+      0.25
+     ],
+     "s": [
+      0.19,
+      0.44,
+      0.19
+     ],
+     "hang": [
+      0,
+      -0.2,
+      0
+     ],
+     "name": "leg_front_left"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.17,
+      0.5,
+      0.25
+     ],
+     "s": [
+      0.225,
+      0.12,
+      0.225
+     ],
+     "hang": [
+      0,
+      -0.44,
+      0
+     ],
+     "c": "hoof",
+     "m": "glossy",
+     "name": "leg_front_left"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.17,
+      0.5,
+      0.25
+     ],
+     "s": [
+      0.19,
+      0.44,
+      0.19
+     ],
+     "hang": [
+      0,
+      -0.2,
+      0
+     ],
+     "name": "leg_front_right"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.17,
+      0.5,
+      0.25
+     ],
+     "s": [
+      0.225,
+      0.12,
+      0.225
+     ],
+     "hang": [
+      0,
+      -0.44,
+      0
+     ],
+     "c": "hoof",
+     "m": "glossy",
+     "name": "leg_front_right"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.17,
+      0.5,
+      -0.3
+     ],
+     "s": [
+      0.19,
+      0.44,
+      0.19
+     ],
+     "hang": [
+      0,
+      -0.2,
+      0
+     ],
+     "name": "leg_back_left"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.17,
+      0.5,
+      -0.3
+     ],
+     "s": [
+      0.225,
+      0.12,
+      0.225
+     ],
+     "hang": [
+      0,
+      -0.44,
+      0
+     ],
+     "c": "hoof",
+     "m": "glossy",
+     "name": "leg_back_left"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.17,
+      0.5,
+      -0.3
+     ],
+     "s": [
+      0.19,
+      0.44,
+      0.19
+     ],
+     "hang": [
+      0,
+      -0.2,
+      0
+     ],
+     "name": "leg_back_right"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.17,
+      0.5,
+      -0.3
+     ],
+     "s": [
+      0.225,
+      0.12,
+      0.225
+     ],
+     "hang": [
+      0,
+      -0.44,
+      0
+     ],
+     "c": "hoof",
+     "m": "glossy",
+     "name": "leg_back_right"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.98,
+      0.3
+     ],
+     "s": [
+      0.3,
+      0.52,
+      0.32
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.829,
+      0.073
+     ],
+     "s": [
+      0.14,
+      0.16,
+      0.12
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "name": "mane"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.935,
+      0.129
+     ],
+     "s": [
+      0.14,
+      0.19,
+      0.14250000000000002
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "name": "mane"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.041,
+      0.185
+     ],
+     "s": [
+      0.14,
+      0.2,
+      0.15000000000000002
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "name": "mane"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.147,
+      0.242
+     ],
+     "s": [
+      0.14,
+      0.2,
+      0.15000000000000002
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "name": "mane"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.244,
+      0.293
+     ],
+     "s": [
+      0.14,
+      0.18,
+      0.135
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "name": "mane"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.324,
+      0.335
+     ],
+     "s": [
+      0.14,
+      0.15,
+      0.11249999999999999
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "name": "mane"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.8,
+      -0.46
+     ],
+     "s": [
+      0.13,
+      0.34,
+      0.13
+     ],
+     "r": [
+      30,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      -0.14,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "idle": {
+      "r": [
+       0,
+       0,
+       12
+      ],
+      "hz": 0.6
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.8,
+      -0.46
+     ],
+     "s": [
+      0.2,
+      0.36,
+      0.18
+     ],
+     "r": [
+      30,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      -0.36,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "idle": {
+      "r": [
+       0,
+       0,
+       12
+      ],
+      "hz": 0.6
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.06,
+      0
+     ],
+     "s": [
+      0.48,
+      0.46,
+      0.48
+     ],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.13,
+      0.22
+     ],
+     "s": [
+      0.38,
+      0.32,
+      0.44
+     ],
+     "on": "head",
+     "c": "horse_tan"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.08,
+      -0.09,
+      0.405
+     ],
+     "s": [
+      0.055,
+      0.04,
+      0.03
+     ],
+     "on": "head",
+     "c": "horse_mane",
+     "m": "matte",
+     "mirror": true,
+     "r": [
+      0,
+      0,
+      20
+     ]
+    },
+    {
+     "p": "cone",
+     "at": [
+      0.12,
+      0.31,
+      -0.03
+     ],
+     "s": [
+      0.1,
+      0.19,
+      0.08
+     ],
+     "on": "head",
+     "r": [
+      -8,
+      0,
+      -14
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.4
+     }
+    },
+    {
+     "p": "cone",
+     "at": [
+      0.12,
+      0.3,
+      -0.008
+     ],
+     "s": [
+      0.055,
+      0.12,
+      0.03
+     ],
+     "on": "head",
+     "c": "pig",
+     "m": "matte",
+     "r": [
+      -8,
+      0,
+      -14
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.4
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.27,
+      0.1
+     ],
+     "s": [
+      0.16,
+      0.11,
+      0.17
+     ],
+     "on": "head",
+     "r": [
+      30,
+      0,
+      0
+     ],
+     "c": "horse_mane",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.055,
+      0.26,
+      0.07
+     ],
+     "s": [
+      0.11,
+      0.09,
+      0.13
+     ],
+     "on": "head",
+     "r": [
+      30,
+      0,
+      -20
+     ],
+     "c": "horse_mane",
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.1,
+      0.226
+     ],
+     "s": [
+      0.075,
+      0.15,
+      0.04
+     ],
+     "on": "head",
+     "r": [
+      -14,
+      0,
+      0
+     ],
+     "c": "white",
+     "m": "matte"
+    }
+   ]
+  }
+ },
+ "props": {
+  "barn": {
+   "color": "barn_red",
+   "description": "A classic red toy barn with white trim, a gambrel roof and a hay-loft door, facing +z: 3 m wide, 2.4 m deep, 3.05 m tall at size 1, origin at the middle of its floor (front wall at z = 1.2, door opening 1.5 m wide and 1.6 m tall). Hollow inside with a wooden floor and a little hay. Two front doors, named door_left and door_right, hinged at their outer edges: turn door_left to [0, -100, 0] and door_right to [0, 100, 0] to swing them open toward the viewer (back to [0, 0, 0] to close). An animal of size 1 stands inside at about z = 0.4.",
+   "tags": [
+    "farm",
+    "building",
+    "old_macdonald",
+    "rhymes",
+    "peekaboo"
+   ],
+   "parts": [
+    {
+     "p": "plate",
+     "at": [
+      0,
+      0.012,
+      0
+     ],
+     "s": [
+      2.9,
+      0.6,
+      2.3
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.9,
+      -1.15
+     ],
+     "s": [
+      3,
+      1.8,
+      0.1
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      1.45,
+      0.9,
+      0
+     ],
+     "s": [
+      0.1,
+      1.8,
+      2.4
+     ],
+     "mirror": true
+    },
+    {
+     "p": "plate",
+     "at": [
+      0,
+      0.9,
+      -1.0879999999999999
+     ],
+     "s": [
+      2.8,
+      0.6,
+      1.78
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "barn_inside",
+     "m": "matte"
+    },
+    {
+     "p": "plate",
+     "at": [
+      1.388,
+      0.9,
+      0
+     ],
+     "s": [
+      1.78,
+      0.6,
+      2.1999999999999997
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "barn_inside",
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      1.125,
+      0.9,
+      1.15
+     ],
+     "s": [
+      0.75,
+      1.8,
+      0.1
+     ],
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.7000000000000002,
+      1.15
+     ],
+     "s": [
+      1.5,
+      0.19999999999999996,
+      0.1
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.175,
+      1.15
+     ],
+     "s": [
+      2.12,
+      0.7499999999999998,
+      0.1
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      1.275,
+      2.175,
+      1.15
+     ],
+     "s": [
+      0.44999999999999996,
+      0.7499999999999998,
+      0.1
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      -1.275,
+      2.175,
+      1.15
+     ],
+     "s": [
+      0.44999999999999996,
+      0.7499999999999998,
+      0.1
+     ],
+     "r": [
+      0,
+      180,
+      0
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      0.525,
+      2.775,
+      1.15
+     ],
+     "s": [
+      1.05,
+      0.4500000000000002,
+      0.1
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      -0.525,
+      2.775,
+      1.15
+     ],
+     "s": [
+      1.05,
+      0.4500000000000002,
+      0.1
+     ],
+     "r": [
+      0,
+      180,
+      0
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.175,
+      -1.15
+     ],
+     "s": [
+      2.12,
+      0.7499999999999998,
+      0.1
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      1.275,
+      2.175,
+      -1.15
+     ],
+     "s": [
+      0.44999999999999996,
+      0.7499999999999998,
+      0.1
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      -1.275,
+      2.175,
+      -1.15
+     ],
+     "s": [
+      0.44999999999999996,
+      0.7499999999999998,
+      0.1
+     ],
+     "r": [
+      0,
+      180,
+      0
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      0.525,
+      2.775,
+      -1.15
+     ],
+     "s": [
+      1.05,
+      0.4500000000000002,
+      0.1
+     ]
+    },
+    {
+     "p": "wedge",
+     "at": [
+      -0.525,
+      2.775,
+      -1.15
+     ],
+     "s": [
+      1.05,
+      0.4500000000000002,
+      0.1
+     ],
+     "r": [
+      0,
+      180,
+      0
+     ]
+    },
+    {
+     "p": "plate",
+     "at": [
+      0.537,
+      2.715,
+      0
+     ],
+     "s": [
+      1.212,
+      2.5,
+      2.6999999999999997
+     ],
+     "r": [
+      0,
+      0,
+      -23.199
+     ],
+     "c": "barn_roof",
+     "mirror": true
+    },
+    {
+     "p": "plate",
+     "at": [
+      1.268,
+      2.089,
+      0
+     ],
+     "s": [
+      1.055,
+      2.5,
+      2.6999999999999997
+     ],
+     "r": [
+      0,
+      0,
+      -59.036
+     ],
+     "c": "barn_roof",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      0.537,
+      2.715,
+      1.33
+     ],
+     "s": [
+      1.212,
+      0.15,
+      0.07
+     ],
+     "r": [
+      0,
+      0,
+      -23.199
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      1.268,
+      2.089,
+      1.33
+     ],
+     "s": [
+      1.055,
+      0.15,
+      0.07
+     ],
+     "r": [
+      0,
+      0,
+      -59.036
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      0.537,
+      2.715,
+      -1.33
+     ],
+     "s": [
+      1.212,
+      0.15,
+      0.07
+     ],
+     "r": [
+      0,
+      0,
+      -23.199
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      1.268,
+      2.089,
+      -1.33
+     ],
+     "s": [
+      1.055,
+      0.15,
+      0.07
+     ],
+     "r": [
+      0,
+      0,
+      -59.036
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      3.04,
+      0
+     ],
+     "s": [
+      0.13,
+      2.7199999999999998,
+      0.13
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "white"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      1.09,
+      2.585,
+      0
+     ],
+     "s": [
+      0.11,
+      2.7199999999999998,
+      0.11
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.8,
+      1.212
+     ],
+     "s": [
+      3,
+      0.1,
+      0.05
+     ],
+     "c": "white"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.8,
+      -1.212
+     ],
+     "s": [
+      3,
+      0.1,
+      0.05
+     ],
+     "c": "white"
+    },
+    {
+     "p": "box",
+     "at": [
+      1.46,
+      0.9,
+      1.15
+     ],
+     "s": [
+      0.14,
+      1.8,
+      0.14
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      1.46,
+      0.9,
+      -1.15
+     ],
+     "s": [
+      0.14,
+      1.8,
+      0.14
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.6300000000000001,
+      1.212
+     ],
+     "s": [
+      1.74,
+      0.1,
+      0.05
+     ],
+     "c": "white"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.28,
+      1.21
+     ],
+     "s": [
+      0.66,
+      0.62,
+      0.05
+     ],
+     "c": "white"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.28,
+      1.23
+     ],
+     "s": [
+      0.52,
+      0.48,
+      0.04
+     ],
+     "c": "barn_red_dark"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.28,
+      1.255
+     ],
+     "s": [
+      0.595,
+      0.06,
+      0.02
+     ],
+     "r": [
+      0,
+      0,
+      42.274
+     ],
+     "c": "white"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.28,
+      1.256
+     ],
+     "s": [
+      0.595,
+      0.06,
+      0.02
+     ],
+     "r": [
+      0,
+      0,
+      -42.274
+     ],
+     "c": "white"
+    },
+    {
+     "p": "box",
+     "at": [
+      1.512,
+      1.1,
+      0
+     ],
+     "s": [
+      0.05,
+      0.56,
+      0.56
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      1.53,
+      1.1,
+      0
+     ],
+     "s": [
+      0.04,
+      0.42,
+      0.42
+     ],
+     "c": "barn_red_dark",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      1.552,
+      1.1,
+      0
+     ],
+     "s": [
+      0.02,
+      0.05,
+      0.52
+     ],
+     "r": [
+      45,
+      0,
+      0
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      1.553,
+      1.1,
+      0
+     ],
+     "s": [
+      0.02,
+      0.05,
+      0.52
+     ],
+     "r": [
+      -45,
+      0,
+      0
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.9,
+      0.12,
+      -0.8
+     ],
+     "s": [
+      0.9,
+      0.4,
+      0.6
+     ],
+     "c": "hay",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.55,
+      0.08,
+      -0.85
+     ],
+     "s": [
+      0.6,
+      0.26,
+      0.5
+     ],
+     "c": "hay",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.74,
+      1.57,
+      0.08
+     ],
+     "hang": [
+      0.37,
+      0,
+      0
+     ],
+     "name": "door_left"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.74,
+      0.08,
+      0.03
+     ],
+     "hang": [
+      0.37,
+      0.745,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_left"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.74,
+      0.08,
+      0.03
+     ],
+     "hang": [
+      0.37,
+      -0.745,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_left"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.08,
+      1.57,
+      0.03
+     ],
+     "hang": [
+      0.04,
+      0,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_left"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.08,
+      1.57,
+      0.03
+     ],
+     "hang": [
+      0.7,
+      0,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_left"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      1.465,
+      0.075,
+      0.025
+     ],
+     "hang": [
+      0.37,
+      0,
+      0.045
+     ],
+     "hr": [
+      0,
+      0,
+      67.64
+     ],
+     "c": "white",
+     "name": "door_left"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      1.465,
+      0.075,
+      0.025
+     ],
+     "hang": [
+      0.37,
+      0,
+      0.046
+     ],
+     "hr": [
+      0,
+      0,
+      -67.64
+     ],
+     "c": "white",
+     "name": "door_left"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.05,
+      0.2,
+      0.05
+     ],
+     "hang": [
+      0.6,
+      0,
+      0.075
+     ],
+     "c": "charcoal",
+     "m": "metal",
+     "name": "door_left"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.74,
+      1.57,
+      0.08
+     ],
+     "hang": [
+      -0.37,
+      0,
+      0
+     ],
+     "name": "door_right"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.74,
+      0.08,
+      0.03
+     ],
+     "hang": [
+      -0.37,
+      0.745,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_right"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.74,
+      0.08,
+      0.03
+     ],
+     "hang": [
+      -0.37,
+      -0.745,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_right"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.08,
+      1.57,
+      0.03
+     ],
+     "hang": [
+      -0.7,
+      0,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_right"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.08,
+      1.57,
+      0.03
+     ],
+     "hang": [
+      -0.04,
+      0,
+      0.05
+     ],
+     "c": "white",
+     "name": "door_right"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      1.465,
+      0.075,
+      0.025
+     ],
+     "hang": [
+      -0.37,
+      0,
+      0.045
+     ],
+     "hr": [
+      0,
+      0,
+      67.64
+     ],
+     "c": "white",
+     "name": "door_right"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      1.465,
+      0.075,
+      0.025
+     ],
+     "hang": [
+      -0.37,
+      0,
+      0.046
+     ],
+     "hr": [
+      0,
+      0,
+      -67.64
+     ],
+     "c": "white",
+     "name": "door_right"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.75,
+      0.805,
+      1.25
+     ],
+     "s": [
+      0.05,
+      0.2,
+      0.05
+     ],
+     "hang": [
+      -0.6,
+      0,
+      0.075
+     ],
+     "c": "charcoal",
+     "m": "metal",
+     "name": "door_right"
+    }
+   ]
+  },
+  "hay_bale": {
+   "color": "hay",
+   "description": "A golden rectangular hay bale with rounded edges and two twine bands, 1.1 m long, 0.6 m deep and 0.6 m tall at size 1, standing on y = 0 (long side facing +z). A size-1 critter can hide behind it (size 1.3 hides the cow).",
+   "tags": [
+    "farm",
+    "peekaboo",
+    "old_macdonald",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "block",
+     "at": [
+      0,
+      0.3,
+      0
+     ],
+     "s": [
+      1.1,
+      0.6,
+      0.6
+     ],
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.28,
+      0.3,
+      0
+     ],
+     "s": [
+      0.05,
+      0.615,
+      0.615
+     ],
+     "c": "twine",
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.12,
+      0.6,
+      0.08
+     ],
+     "s": [
+      0.025,
+      0.2,
+      0.025
+     ],
+     "r": [
+      0,
+      30,
+      80
+     ],
+     "c": "hay_light",
+     "m": "matte"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.05,
+      0.605,
+      -0.06
+     ],
+     "s": [
+      0.025,
+      0.24,
+      0.025
+     ],
+     "r": [
+      0,
+      -40,
+      75
+     ],
+     "c": "hay_light",
+     "m": "matte"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.42,
+      0.6,
+      0.12
+     ],
+     "s": [
+      0.025,
+      0.18,
+      0.025
+     ],
+     "r": [
+      0,
+      70,
+      82
+     ],
+     "c": "hay_light",
+     "m": "matte"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.4,
+      0.6,
+      -0.1
+     ],
+     "s": [
+      0.025,
+      0.2,
+      0.025
+     ],
+     "r": [
+      0,
+      -10,
+      78
+     ],
+     "c": "hay_light",
+     "m": "matte"
+    }
+   ]
+  },
+  "tracker_slot": {
+   "color": "blue",
+   "description": "An empty slot for a progress tracker row: a rounded square card about 1.06 × 1.06 m and 0.1 m thick at size 1, a white face (named face) inside a coloured rim (the main colour: set color), standing up facing +z with no rotation. Floats: its origin is the card's middle; the face's front is at z = 0.06 (put a filling animal or picture at about z = 0.15).",
+   "tags": [
+    "ui",
+    "tracker",
+    "progress",
+    "old_macdonald"
+   ],
+   "parts": [
+    {
+     "p": "square",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": [
+      1,
+      1,
+      0.22
+     ]
+    },
+    {
+     "p": "square",
+     "at": [
+      0,
+      0,
+      0.022
+     ],
+     "s": [
+      0.8,
+      0.8,
+      0.2
+     ],
+     "c": "white",
+     "name": "face"
+    }
+   ]
+  },
+  "word_bubble": {
+   "color": "white",
+   "description": "A puffy white speech bubble, about 1.4 m wide and 1 m tall at size 1 (with its tail 1.25 m tall), facing +z, with a little tail at the bottom left and a thin soft outline. Floats: its origin is the middle of the round body; its front is at z = 0.08, so a short word (\"MOO!\") goes at about z = 0.12.",
+   "tags": [
+    "ui",
+    "speech",
+    "words",
+    "old_macdonald"
+   ],
+   "parts": [
+    {
+     "p": "oval",
+     "at": [
+      0,
+      0,
+      -0.035
+     ],
+     "s": [
+      1.055,
+      1.07,
+      0.2
+     ],
+     "c": "bubble_line",
+     "m": "matte",
+     "name": "outline"
+    },
+    {
+     "p": "triangle",
+     "at": [
+      -0.39,
+      -0.47,
+      -0.035
+     ],
+     "s": [
+      0.36,
+      0.42,
+      0.2
+     ],
+     "r": [
+      0,
+      0,
+      28
+     ],
+     "c": "bubble_line",
+     "m": "matte",
+     "name": "outline"
+    },
+    {
+     "p": "triangle",
+     "at": [
+      -0.38,
+      -0.45,
+      0
+     ],
+     "s": [
+      0.3,
+      0.36,
+      0.36
+     ],
+     "r": [
+      0,
+      0,
+      28
+     ]
+    },
+    {
+     "p": "oval",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": [
+      1,
+      1,
+      0.4
+     ]
+    }
+   ]
+  }
+ }
+}

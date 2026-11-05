@@ -1,0 +1,46 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Model sheet for the farm assets (catalog/models/farm.json) on the farm stage: horse next to the cow, the barn with its doors closed and then open with a horse inside, a hay bale, tracker slots and a word bubble; then a side view and a close-up.",
+ "meta": { "title": "Farm model sheet", "seed": 7, "voice": "soft", "music": false },
+ "stage": { "preset": "farm" },
+ "camera": { "position": [0, 2.1, 9.4], "lookAt": [0, 1.35, -0.4], "fov": 40 },
+ "objects": [
+  { "id": "barn", "kind": "prop", "model": "barn", "at": [0, 0, -1.5] },
+  { "id": "inside", "kind": "critter", "species": "horse", "at": [0, 0, -1.2] },
+  { "id": "cow", "kind": "critter", "species": "cow", "at": [-3.3, 0, 0.9], "rotation": [0, 20, 0] },
+  { "id": "horse", "kind": "critter", "species": "horse", "at": [-1.9, 0, 0.9], "rotation": [0, 15, 0] },
+  { "id": "hay", "kind": "prop", "model": "hay_bale", "at": [2.3, 0, 0.7], "rotation": [0, -15, 0] },
+  { "id": "slot1", "kind": "prop", "model": "tracker_slot", "at": [2.2, 2.9, 0.4], "size": 0.55 },
+  { "id": "slot2", "kind": "prop", "model": "tracker_slot", "at": [2.9, 2.9, 0.4], "size": 0.55, "color": "orange" },
+  { "id": "slot3", "kind": "prop", "model": "tracker_slot", "at": [3.6, 2.9, 0.4], "size": 0.55, "color": "green" },
+  { "id": "bubble", "kind": "prop", "model": "word_bubble", "at": [-2.6, 2.35, 0.9], "size": 0.8 },
+  { "id": "moo", "kind": "letter", "text": "MOO!", "color": "ink", "size": 0.13, "at": [-2.62, 2.27, 1.0] }
+ ],
+ "scenes": [
+  {
+   "id": "sheet",
+   "beats": [
+    { "dur": 2, "do": [] },
+    { "dur": 2.5, "do": [
+     { "do": "turn", "target": "barn#door_left", "to": [0, -100, 0], "dur": 1.2 },
+     { "do": "turn", "target": "barn#door_right", "to": [0, 100, 0], "dur": 1.2 },
+     { "do": "say", "who": "horse", "text": "Neigh!" }
+    ] },
+    { "dur": 2.5, "do": [
+     { "do": "camera", "position": [7.2, 2.6, 6.2], "lookAt": [0, 1.2, -0.6], "fov": 40, "dur": 1 }
+    ] },
+    { "dur": 2.5, "do": [
+     { "do": "camera", "position": [-2.4, 1.3, 4.6], "lookAt": [-2.55, 0.8, 0.9], "fov": 36, "dur": 1 },
+     { "do": "say", "who": "horse", "text": "Neigh, neigh, neigh!", "at": 1.2 }
+    ] },
+    { "dur": 2.5, "do": [
+     { "do": "camera", "position": [-6.5, 2.2, 4.5], "lookAt": [-1.5, 1.0, -0.4], "fov": 40, "dur": 1 }
+    ] },
+    { "dur": 2.5, "do": [
+     { "do": "camera", "position": [2.6, 2.0, 5.2], "lookAt": [2.7, 1.7, 0.5], "fov": 40, "dur": 1 }
+    ] }
+   ]
+  }
+ ]
+}

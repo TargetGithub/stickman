@@ -7,6 +7,8 @@ import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { renderSettings } from "./synth.mjs";
+import { readWav, writeWav } from "../wav.mjs";
+import { medianPitch, psola, singContour, syllables, trackPitch } from "./psola.mjs";
 
 export const PIPER_DIR = fileURLToPath(new URL("../../bin/piper/", import.meta.url));
 export const MODELS_DIR = fileURLToPath(new URL("../../../assets/speech/models/", import.meta.url));
@@ -101,6 +103,7 @@ export function createPiperBackend({ bin = findPiper(), modelsDir = MODELS_DIR }
             const voice = { ...j.line.voice, pitch: renderSettings(j.line).pitch };
             const ff = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", raw, "-af", postFilters(inputRate, voice, j.line.bubble, j.line.tone), "-ac", "1", "-c:a", "pcm_s16le", j.out]);
             if (ff.status !== 0) throw new Error(`ffmpeg failed on a speech clip: ${String(ff.stderr).trim()}`);
+            if (voice.lift || j.line.sing) shapePitch(j.out, voice.lift ?? 0, j.line.sing);
           } finally {
             rmSync(raw, { force: true });
           }
@@ -114,4 +117,24 @@ const rates = new Map();
 function sampleRateOf(config) {
   if (!rates.has(config)) rates.set(config, JSON.parse(readFileSync(config, "utf8")).audio?.sample_rate ?? 22050);
   return rates.get(config);
+}
+
+/**
+ * Formant-keeping pitch work on a finished clip, in place (psola.mjs): `lift` semitones up (the toddler voice), or
+ * with `sing` ({ notes: midi[], amount?, shift? }) the voice follows the melody, one note per syllable. The tune is
+ * moved by whole octaves to sit nearest the (lifted) voice, plus `shift` semitones.
+ */
+export function shapePitch(file, lift, sing) {
+  const w = readWav(file);
+  const x = w.samples;
+  const track = trackPitch(x, w.sampleRate);
+  let y;
+  if (sing?.notes?.length) {
+    const voiceHz = medianPitch(track) * 2 ** (lift / 12) || 260;
+    const sorted = [...sing.notes].sort((a, b) => a - b);
+    const tuneHz = 440 * 2 ** ((sorted[sorted.length >> 1] - 69) / 12);
+    const octave = 12 * Math.round(Math.log2(voiceHz / tuneHz));
+    y = psola(x, w.sampleRate, singContour(syllables(x, w.sampleRate, track, sing.notes.length), sing.notes, { shift: octave + (sing.shift ?? 0), amount: sing.amount ?? 1 }), { track });
+  } else y = psola(x, w.sampleRate, 2 ** (lift / 12), { track });
+  writeWav(file, y, w.sampleRate, 1);
 }

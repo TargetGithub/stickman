@@ -72,6 +72,7 @@ const SYNTH = {
 const FM = {
   bell: { ratio: 3.5, index: 1.5, decay: 1.4, gain: 0.45 },
   music_box: { ratio: 5.0, index: 1.6, decay: 1.1, gain: 0.5 },
+  glock: { ratio: 4.0, index: 1.1, decay: 0.85, gain: 0.55 }, // a toy glockenspiel: sung-rhyme melodies (engine3d tune)
   glass: { ratio: 2.0, index: 1.4, decay: 1.8, gain: 0.45 },
 };
 /** Plucked strings: brightness (low-pass in the loop) and loss. */

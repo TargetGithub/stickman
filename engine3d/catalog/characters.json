@@ -1,29 +1,38 @@
 {
-  "description": "Rigged glTF characters. Every file is CC0 or another licence that allows commercial YouTube use; record the source and licence here and in assets/characters/LICENSES.md.",
-  "characters": {
-    "robot": {
-      "file": "engine3d/assets/characters/robot_expressive/RobotExpressive.glb",
-      "license": "CC0 1.0",
-      "author": "Tomás Laulhé (Quaternius); morph targets by Don McCurdy",
-      "source": "github.com/mrdoob/three.js r170 examples/models/gltf/RobotExpressive",
-      "height": 1.6,
-      "scale": 0.36,
-      "idle": "Idle",
-      "clips": {
-        "Idle": "Stand and breathe (loops).",
-        "Wave": "Wave hello with one arm.",
-        "Yes": "Nod yes.",
-        "No": "Shake the head no.",
-        "ThumbsUp": "Thumbs up: well done.",
-        "Jump": "A happy jump on the spot.",
-        "Dance": "A dance loop for celebrations.",
-        "Walking": "Walk cycle (loops).",
-        "Running": "Run cycle (loops).",
-        "Sitting": "Sit down.",
-        "Standing": "Stand up from sitting."
-      },
-      "description": "Robo, a friendly round-headed robot with a big face: waves, nods, cheers and dances.",
-      "tags": ["host", "robot", "friendly"]
-    }
+ "description": "Rigged glTF characters. Every file is CC0 or another licence that allows commercial YouTube use; record the source and licence here and in assets/characters/LICENSES.md.",
+ "characters": {
+  "robot": {
+   "file": "engine3d/assets/characters/robot_expressive/RobotExpressive.glb",
+   "license": "CC0 1.0",
+   "author": "Tomás Laulhé (Quaternius); morph targets by Don McCurdy",
+   "source": "github.com/mrdoob/three.js r170 examples/models/gltf/RobotExpressive",
+   "height": 1.6,
+   "scale": 0.36,
+   "idle": "Idle",
+   "clips": {
+    "Idle": "Stand and breathe (loops).",
+    "Wave": "Wave hello with one arm.",
+    "Yes": "Nod yes.",
+    "No": "Shake the head no.",
+    "ThumbsUp": "Thumbs up: well done.",
+    "Jump": "A happy jump on the spot.",
+    "Dance": "A dance loop for celebrations.",
+    "Walking": "Walk cycle (loops).",
+    "Running": "Run cycle (loops).",
+    "Sitting": "Sit down.",
+    "Standing": "Stand up from sitting."
+   },
+   "voice": {
+    "voice": "toddler",
+    "pitch": 1.1,
+    "description": "Robo's own voice everywhere: a bright little-kid voice (catalog/story/tts_voices.json toddler). It wins over meta.cast; a say's own voice/pitch still overrides it."
+   },
+   "description": "Robo, a friendly round-headed robot with a big face: waves, nods, cheers and dances.",
+   "tags": [
+    "host",
+    "robot",
+    "friendly"
+   ]
   }
+ }
 }

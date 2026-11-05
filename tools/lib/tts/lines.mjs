@@ -53,8 +53,15 @@ export function resolveVoice(voice, table, override = {}) {
     rate: round2(override.rate ?? tts.rate ?? v.speed * (t.rateScale ?? 1)),
     pitch,
     filter: override.filter ?? tts.filter ?? t.filter ?? null,
+    // Optional (only when the timbre or cast sets them, so older voices keep their cache keys): lift = semitones of
+    // formant-keeping pitch lift (psola.mjs; the toddler timbre), noise / noiseW = Piper's expressiveness.
+    ...optional("lift", override.lift ?? tts.lift ?? t.lift),
+    ...optional("noise", override.noise ?? tts.noise ?? t.noise),
+    ...optional("noiseW", override.noiseW ?? tts.noiseW ?? t.noiseW),
   };
 }
+
+const optional = (k, v) => (v == null ? {} : { [k]: v });
 
 /** The narrator's voice: override file, then meta.narrator, then the table's narrator. */
 export function narratorVoice(meta, table, override = {}) {

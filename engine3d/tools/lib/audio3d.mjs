@@ -15,6 +15,7 @@ import { loadCatalogSync } from "../../../catalog/index.js";
 import { REPO } from "./server.mjs";
 import { applyMusicCues, musicTimeline, renderMusicBed } from "./music3d.mjs";
 import { ensurePhonemes } from "../phonemes.mjs";
+import { renderTunes } from "./tune3d.mjs";
 
 /**
  * Render (or reuse) a clip for every spoken line of a plan.
@@ -31,6 +32,8 @@ export function speakPlan(plan, { log = () => {} } = {}) {
     // semitones (soft: round(12 log2(pitch) x 0.6), so 0.8 is -2, 1.1 +1, 1.3 +3) and speed scales the rate.
     // Both are in the TTS cache key (synth.mjs cacheKey: pitch, rate), so characters on one timbre get their own clips.
     voice: l.voice === "narrator" ? narratorVoice({}, table) : resolveVoice({ timbre: l.voice, pitch: l.pitch ?? 1.1, speed: (plan.meta?.voiceSpeed ?? 0.95) * (l.speed ?? 1) }, table),
+    // A sung line (say tune + sing): the voice is moved onto the notes (piper.mjs shapePitch); part of the cache key.
+    ...(l.tune?.sing ? { sing: { notes: l.tune.notes, amount: l.tune.sing } } : {}),
   }));
   // A timbre that is off in the table (bark keeps 2D babble woofs) has no TTS model, so a 3D line cannot use it.
   const mute = lines.find((l) => !l.voice);
@@ -66,10 +69,14 @@ export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy
   const sfxDir = join(REPO, "assets/sfx/generated");
   const tts = clipSampler();
   const sfx = new Map();
+  const tunes = renderTunes(plan.lines, speech); // sung lines' melodies (tune3d.mjs), started with their lines
   const events = plan.audio.map((a) => (a.speech ? { t: a.t, sfx: speech[a.speech] ? `tts:${speech[a.speech].key}` : null, volume: 1, pan: 0 } : { t: a.t, sfx: a.sound, volume: a.volume * 0.7, pan: a.pan }))
-    .filter((e) => e.sfx);
+    .concat(plan.lines.filter((l) => tunes.has(`tune:${l.id}`)).map((l) => ({ t: l.t, sfx: `tune:${l.id}`, volume: 1, pan: 0 })))
+    .filter((e) => e.sfx)
+    .sort((a, b) => a.t - b.t);
   const sampleFor = (name) => {
     if (name.startsWith("tts:")) return tts(name);
+    if (tunes.has(name)) return tunes.get(name);
     if (!sfx.has(name)) {
       const w = readWav(join(sfxDir, `${name}.wav`));
       if (w.sampleRate !== SR) throw new Error(`${name}.wav is ${w.sampleRate} Hz; expected ${SR}`);
