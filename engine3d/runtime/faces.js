@@ -26,10 +26,11 @@ const smooth = (k) => k * k * (3 - 2 * k);
 
 /**
  * @param {{ parent: THREE.Object3D, eyes: THREE.Object3D[], eyeSize: number, mouth?: THREE.Mesh, head?: THREE.Object3D,
- *   material: Function, talk?: Function, brows?: { color?: string, size?: number, lift?: number, dz?: number }, open?: boolean }} o
+ *   material: Function, talk?: Function, brows?: { color?: string, size?: number, lift?: number, dz?: number, shape?: string }, open?: boolean }} o
  *   eyes: the two eye groups (x > 0 first or second, either way); mouth: the smile mesh;
  *   talk: the open mouth for lip-sync (talk.js createTalkMouth), driven by the "talk" prop;
- *   brows: thick arched brows that always show (plush faces; dz sets them back from the eyes onto a round brow),
+ *   brows: arched brows that always show (plush faces; dz sets them back from the eyes onto a round brow; shape:
+ *   the brow shape, "brow" thick or "brow_thin"),
  *   else thin bars that show only for some feelings;
  *   open: an open-mouth face (a grin): its surprised "o" is a filled dark oval, not a ring
  * @returns {(t:number, s:object, blink:number) => number[]}  sets brows, mouth and eye scale; returns the head tilt [pitch, roll] in degrees
@@ -38,7 +39,7 @@ export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, br
   const browMat = material(arch?.color ?? "ink", "matte");
   const browSize = eyeSize * (arch?.size ?? 1.5);
   const brows = eyes.map((e) => {
-    const b = new THREE.Mesh(shapeGeometry(arch ? "brow" : "box"), browMat);
+    const b = new THREE.Mesh(shapeGeometry(arch ? (arch.shape ?? "brow") : "box"), browMat);
     if (arch) b.scale.setScalar(browSize);
     else b.scale.set(eyeSize * 1.5, eyeSize * 0.32, eyeSize * 0.3);
     b.visible = !!arch;

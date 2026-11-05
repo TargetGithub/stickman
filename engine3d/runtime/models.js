@@ -48,9 +48,10 @@ function addPart(parent, p, material, fallbackColor) {
 
 /**
  * Shiny button eyes with a highlight; returns the eye groups (scaled on y to blink). With iris (a colour),
- * a big cartoon eye instead: a white ball, a coloured iris with a dark pupil and two highlights.
+ * a big cartoon eye instead: a white ball, a coloured iris with a dark pupil and two highlights. With lid (a
+ * colour), a thick upper-lid line with a flick at the outer corner (and a thin lower line) that blinks with the eye.
  */
-function addEyes(parent, { at, size = 0.1, color = "ink", iris }, material) {
+function addEyes(parent, { at, size = 0.1, color = "ink", iris, lid }, material) {
   const eyes = [];
   for (const side of [1, -1]) {
     const g = new THREE.Group();
@@ -79,6 +80,11 @@ function addEyes(parent, { at, size = 0.1, color = "ink", iris }, material) {
       shine.position.set(-size * 0.18, size * 0.22, size * 0.26);
       g.add(ball, shine);
     }
+    if (lid) {
+      const l = new THREE.Mesh(shapeGeometry("eyelid"), material(lid, "matte"));
+      l.scale.set(side * size, size, size); // the flick points out on both sides
+      g.add(l);
+    }
     parent.add(g);
     eyes.push(g);
   }
@@ -91,8 +97,9 @@ function addGrin(parent, spec, paint) {
   m.scale.set(spec.size, spec.size, spec.size * 0.6);
   m.position.set(...spec.at);
   const teeth = new THREE.Mesh(shapeGeometry("box"), paint("white", "toy"));
-  teeth.scale.set(0.6, 0.11, 0.06);
-  teeth.position.set(0, 0.1, 0.06);
+  const th = spec.teeth ?? 0.11; // teeth height (a sliver: 0.05); their top stays under the lip line
+  teeth.scale.set(0.6, th, 0.06);
+  teeth.position.set(0, 0.155 - th / 2, 0.06);
   const tongue = new THREE.Mesh(shapeGeometry("sphere"), paint(spec.tongue ?? "rose", "matte"));
   tongue.scale.set(0.46, 0.2, 0.1);
   tongue.position.set(0.02, -0.11, 0.05);
