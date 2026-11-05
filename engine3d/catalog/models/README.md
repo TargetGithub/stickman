@@ -34,5 +34,6 @@ the joyful arcs take the lid colour. `brows.shape` (`"brow"` thick, `"brow_thin"
 `grin_wide_tongue`: built in the mouth's frame), `mouth.tilt` (degrees about x), `mouth.tall`, `mouth.teeth`,
 `mouth.tongueSize`; `cheeks.tall`; `head.tilt` (scales the head tilt feelings add, default 1), `head.look` (scales
 how far a look turns the head, default 1, or `[yaw, pitch]` factors). Toon eyes also move (`runtime/gaze.js`): they glance around on their own,
-lead a `look`, and follow a `gaze` prop (`d.tween(id, "gaze", [x, y])`, -1..1, x + toward the critter's left, y + up). Soft blush: stack a
+lead a `look`, and follow a `gaze` prop (`d.tween(id, "gaze", [x, y])`, -1..1, x + toward the critter's left, y + up). `mouth.talk: "grin"`: when the
+critter speaks (`say` with `who`), its own grin talks (thin smile to full grin with the voice) instead of a dark oval. Soft blush: stack a
 few flat ovals in the see-through `blush` material. A material may set `sheenColor` (hex) for its sheen tint.

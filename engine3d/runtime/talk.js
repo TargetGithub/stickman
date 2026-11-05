@@ -15,9 +15,13 @@ const MIN_WIDTH = 0.15; // narrowest open mouth, in the model's units (critter h
  * louder, replacing the smile while it shows. jaw: an extra part (a lower beak) that drops as it opens.
  * @param {THREE.Object3D} parent  the head (or the shape's group)
  * @param {{ at:number[], width:number, jaw?: { p?:string, at:number[], s:number[], c?:string, drop?:number } }} spec
- * @returns {(k:number, feelingMouth?: THREE.Object3D) => void}
+ * With grin (a face resting on a big open grin, mouth.talk "grin"), no oval: the face's own mouth (teeth and
+ * tongue with it) talks instead, shutting to a thin curved smile and opening with each loud syllable while a
+ * line is spoken (s.speaking), and resting on its full grin otherwise.
+ * @returns {(k:number, feelingMouth?: THREE.Object3D, s?: object) => void}
  */
-export function createTalkMouth(parent, { at, width: w, jaw }, material, fallbackColor = "orange") {
+export function createTalkMouth(parent, { at, width: w, jaw, grin }, material, fallbackColor = "orange") {
+  if (grin) return (k, feelingMouth, s) => grinTalk(feelingMouth, k, (s?.speaking ?? 0) > 0);
   const oval = new THREE.Mesh(shapeGeometry("sphere"), material("ink", "matte"));
   oval.position.set(...at);
   oval.visible = false;
@@ -55,11 +59,21 @@ export function createTalkMouth(parent, { at, width: w, jaw }, material, fallbac
   };
 }
 
+/** How tall a talking grin is, as a share of its full height, at openness k (0 a thin smile, 1 the full grin). */
+export const grinOpen = (k) => 0.2 + 0.85 * Math.min(1, Math.max(0, k));
+
+/** Set a grin's height for openness k while speaking; put it back to its full height otherwise. */
+function grinTalk(mouth, k, speaking) {
+  if (!mouth) return;
+  const full = (mouth.userData.fullY ??= mouth.scale.y);
+  mouth.scale.y = speaking ? full * Math.min(1.05, grinOpen(k)) : full;
+}
+
 /** Where a critter without a drawn mouth opens one: its catalog `talk` spec, else under the eyes. */
 export function talkSpec(model) {
   // Small smiles (a cat's is 0.1 of its size) open at least MIN_WIDTH wide, so the mouth reads in a medium shot.
   const w = (x) => Math.max(x, MIN_WIDTH);
-  if (model.mouth) return { at: model.mouth.at, width: w(model.mouth.size), jaw: model.talk?.jaw };
+  if (model.mouth) return { at: model.mouth.at, width: w(model.mouth.size), jaw: model.talk?.jaw, grin: model.mouth.talk === "grin" };
   if (model.talk) return { at: model.talk.at, width: w(model.talk.size ?? 0.12), jaw: model.talk.jaw };
   const e = model.eyes?.at ?? [0.12, 0.06, 0.25];
   return { at: [0, e[1] - 0.2, e[2] + 0.03], width: w(0.12) };

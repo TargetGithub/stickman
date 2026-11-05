@@ -105,7 +105,7 @@ export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, br
       const sq = 1 - 0.35 * Math.sin(Math.PI * u);
       mouths[which].scale.x = (mouths[which].userData.sx ??= mouths[which].scale.x) * sq;
     }
-    talk?.(s.talk ?? 0, mouth ? mouths[(u < 0.5 ? from : to).mouth] : null);
+    talk?.(s.talk ?? 0, mouth ? mouths[(u < 0.5 ? from : to).mouth] : null, s);
     const open = Math.max(0.08, Math.min(1, s.eyes ?? 1)) * blink;
     const big = lerp(from.eye, to.eye, k);
     const shut = lerp(from.shut ?? 0, to.shut ?? 0, k);

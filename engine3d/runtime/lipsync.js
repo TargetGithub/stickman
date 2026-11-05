@@ -111,7 +111,9 @@ export function sampleMouth(track, u) {
 
 /**
  * Record a spoken line's mouth on the timeline: prop "talk" of the speaker, a curve segment over the line
- * (it reads 0 before the line and again once it ends; a newer line takes over from its start).
+ * (it reads 0 before the line and again once it ends; a newer line takes over from its start), and prop
+ * "speaking" (1 for the whole line, pauses between words included; 0 otherwise), so a face that rests on an
+ * open grin can tell a pause in a line from not talking at all.
  * @param {object} tl  the timeline
  * @param {{ env?: number[], hz?: number }} [clip]  the measured clip (speech[lineId]); else the text fallback
  */
@@ -120,7 +122,9 @@ export function addTalk(tl, who, { t, dur, text, clip, bases }) {
   if (!bases.has(who)) {
     bases.add(who);
     tl.base(who, "talk", 0);
+    tl.base(who, "speaking", 0);
   }
+  tl.tween(who, "speaking", { start: t, dur, from: 0, to: 0, ease: "linear", curve: (_, k) => (k >= 1 ? 0 : 1) });
   tl.tween(who, "talk", { start: t, dur, from: 0, to: 0, ease: "linear", curve: (_, k) => (k >= 1 ? 0 : sampleMouth(track, k * dur)) });
   return track;
 }

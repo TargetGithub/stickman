@@ -1,5 +1,5 @@
 // Bao Buddy in motion (catalog/models/bao_buddy.json): the eyes glance around on their own, then follow a scripted
-// gaze (left, right, up, down), lead a head look at a ball, and the long arm waves hello.
+// gaze (left, right, up, down), lead a head look at a ball, the long arm waves hello, and the grin talks.
 //   node engine3d/tools/render3d.mjs engine3d/scenes/bao_buddy_demo.js --res 720p --fps 30 --speech off --music off
 
 export const meta = { seed: 12, stage: { preset: "studio", lights: "portrait", fog: [5, 11], background: "grey", floor: "grey" }, music: false };
@@ -32,5 +32,8 @@ export default function baoBuddyDemo(d) {
   d.tween("bao#arm", "lift", [0, 0, -140], { at: t, dur: 0.4, ease: "quadOut" });
   t = swing(d, "bao#arm", "lift", [0, 0, -160], [0, 0, -120], { at: t + 0.4, n: 6, dur: 0.22, rest: [0, 0, -140] });
   d.tween("bao#arm", "lift", [0, 0, 0], { at: t, dur: 0.4 });
-  d.end(t + 1);
+  // Then a line: the grin shuts to a smile and opens with each syllable, and rests on the full grin after.
+  t += 0.5;
+  t += d.say("Hi! I'm Bao Buddy. Let's learn and play together!", { at: t, who: "bao" });
+  d.end(t + 1.2);
 }

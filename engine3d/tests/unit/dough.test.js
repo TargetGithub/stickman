@@ -10,6 +10,7 @@ import { buildModel } from "../../runtime/models.js";
 import { shapeGeometry } from "../../runtime/geometry.js";
 import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
 import { FEELINGS } from "../../runtime/director_extras.js";
+import { grinOpen } from "../../runtime/talk.js";
 
 const catalog = loadCatalog3d();
 const material = createMaterials(catalog);
@@ -129,6 +130,25 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   const armParts = model.parts.filter((p) => p.name === "arm");
   assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");
   assert.ok(Math.min(...armParts.map((p) => p.hang[1])) < -0.3, "a long arm");
+  // A talking grin (mouth.talk "grin"): while speaking it shuts to a thin smile and opens with the voice, the
+  // teeth and tongue with it; not speaking, it keeps its full grin. No dark oval.
+  const talker = buildModel({ ...o, id: "bao2", talks: true }, model, material);
+  const grinMesh = [];
+  talker.group.traverse((x) => x.isMesh && x.geometry === shapeGeometry("grin_wide") && grinMesh.push(x));
+  const smile = grinMesh.find((x) => x.children.length) ?? grinMesh[0];
+  const say = (talk, speaking) => {
+    talker.update(5, { eyes: 1, feeling: "happy", feelingFrom: "happy", feelAt: -1, talk, speaking }, {});
+    return smile.scale.y;
+  };
+  const full = say(0, 0);
+  near(say(0, 1), full * grinOpen(0), 1e-9, "a pause in a line: a thin smile");
+  near(say(1, 1), full * grinOpen(1), 1e-9, "a loud syllable: the full grin");
+  assert.ok(say(0.5, 1) > say(0.1, 1), "opens with the voice");
+  near(say(0, 0), full, 1e-12, "after the line: back to the full grin");
+  assert.ok(smile.visible, "the grin stays");
+  const ovals = [];
+  talker.group.traverse((x) => x.isMesh && x.material === material("ink", "matte") && x.geometry === shapeGeometry("sphere") && x.visible && ovals.push(x));
+  assert.equal(ovals.length, 0, "no dark talking oval");
   // Sub-targets: an arm lifts both copies, the head tilts the face and the top of the bun together.
   m.update(1, { eyes: 1 }, { "bao#arm": { rotation: [0, 0, 40] }, "bao#head": { rotation: [10, 0, 0] } });
   const arm = m.named.get("arm");

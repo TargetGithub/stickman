@@ -90,12 +90,12 @@ function baoBuddy() {
     add({ p: "leaf_flap", at: r3([side * Math.sin(fa) * fr, top - 0.04, Math.cos(fa) * fr]), r: [-58, side * 26, side * 86], hr: [0, -90, 0], s: [0.31, 0.31, 0.31], c: "leaf_lime", m: "toy", name: "collar" });
   }
 
-  // Arms: long thin Minion-style arms hanging at the sides from under the leaves, each on a shoulder pivot
+  // Arms: long thin Minion-style arms hanging at the front corners (so the hands show), from under the leaves, each on a shoulder pivot
   // (mirrored): the arm, a round palm, three fingers fanned front to back and a thumb pointing forward. In the
   // arm's frame the arm hangs down -y and +z is the front.
   const shY = share(0.225);
-  const sh = r3([S.side(shY, 0.1) - 0.035, shY, 0.1]);
-  const arm = { at: sh, r: [-10, 0, 20], mirror: true, name: "arm", c: BODY.c, m: BODY.m, idle: { r: [3, 0, 4], hz: 0.5 } };
+  const sh = r3([S.side(shY, 0.17) - 0.035, shY, 0.17]);
+  const arm = { at: sh, r: [-30, 0, 18], mirror: true, name: "arm", c: BODY.c, m: BODY.m, idle: { r: [3, 0, 4], hz: 0.5 } };
   const L = ARM_LENGTH;
   add({ ...arm, p: "capsule", s: r3([0.075, L + 0.02, 0.075]), hang: r3([0, -L / 2, 0]) });
   add({ ...arm, p: "sphere", s: [0.115, 0.1, 0.095], hang: r3([0, -L - 0.015, 0]) });
@@ -126,7 +126,7 @@ function baoBuddy() {
     head: { at: r3(HEAD), tilt: 0.4, look: [0.4, 0.15] }, // feelings tip the bun gently, so the collar stays in view
     eyes: { at: rel([eye.x, eye.y, eye.z]), size: eye.size, turn: S.turn(eye.x, eye.y), iris: "bao_iris", rim: "bao_iris_rim", color: "bao_pupil", pupilLow: "bao_pupil_blue", crescent: "bao_glint", white: "eye_white_cool", shade: "eye_shade_cool", lid: "bao_line" },
     brows: { shape: "brow_thin", color: "bao_brow", size: 0.74, lift: r3([(browY - eye.y) / eye.size - 1.25])[0], dz: r3([S.front(eye.x, browY) - eye.z + 0.006])[0] },
-    mouth: { open: true, at: rel([0, mouthY, S.front(0, mouthY) - 0.012]), tilt: -lean, size: 0.28, shape: "grin_wide", teethShape: "grin_wide_teeth", tongueShape: "grin_wide_tongue", color: "bao_mouth", tongue: "bao_tongue" },
+    mouth: { open: true, at: rel([0, mouthY, S.front(0, mouthY) - 0.012]), tilt: -lean, size: 0.28, shape: "grin_wide", teethShape: "grin_wide_teeth", tongueShape: "grin_wide_tongue", color: "bao_mouth", tongue: "bao_tongue", talk: "grin" },
     bob: 0.012,
     parts,
   };

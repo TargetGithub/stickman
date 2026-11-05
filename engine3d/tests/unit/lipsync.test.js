@@ -116,6 +116,10 @@ test("say who: critters, characters and face shapes talk; the talk prop is 0 out
     assert.ok(open > 0.5, `${who} opens its mouth`);
     assert.equal(tl.valueAt(who, "talk", l.t + l.dur + 0.01), 0, `${who} shuts after the line`);
     assert.equal(tl.valueAt(who, "talk", l.t - 0.01), 0);
+    // speaking: 1 all through the line (pauses between words too), 0 before and after.
+    for (let t = l.t + 0.01; t < l.t + l.dur - 0.01; t += 0.05) assert.equal(tl.valueAt(who, "speaking", t), 1, `${who} speaking at ${t}`);
+    assert.equal(tl.valueAt(who, "speaking", l.t - 0.01), 0);
+    assert.equal(tl.valueAt(who, "speaking", l.t + l.dur + 0.01), 0);
   }
   assert.equal(line("d").who, undefined);
   assert.ok(plan.objects.find((o) => o.id === "duck").talks);
