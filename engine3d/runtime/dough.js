@@ -146,6 +146,9 @@ export function squeeze(y) {
 /** The bun's radius under the collar, squeeze included (pleats and folds are zero there). */
 const hugged = (y) => baoRadius(y) * (1 - squeeze(y));
 
+/** How far the collar band stands off the dough: clear of the jeans tucked under it (JEANS.off). */
+const COLLAR_OUT = 0.025;
+
 /**
  * The leaf collar band, in the bun's own frame (give it the bun's centre and scale): a tight glossy band over
  * the squeezed dough from COLLAR_BAND.lo to .hi, bulging a little, dipping in front, with a seam where one end
@@ -163,9 +166,9 @@ export function leafCollar() {
     return [hugged(Math.max(lo, y)) + off + (off > 0 ? 0.005 * Math.sin(Math.PI * t) + 0.007 * lap(a) : 0), y - 0.5];
   };
   // Rows run top to bottom, so the outside is flipped to face out and the inside left facing in.
-  const outer = flip(revolve(rows + 1, (i, a) => at(i / rows, a, 0.017), segs));
+  const outer = flip(revolve(rows + 1, (i, a) => at(i / rows, a, COLLAR_OUT), segs));
   const inner = revolve(rows + 1, (i, a) => at(i / rows, a, -0.004), segs);
-  const hem = revolve(2, (i, a) => at(1, a, i ? -0.004 : 0.017), segs);
+  const hem = revolve(2, (i, a) => at(1, a, i ? -0.004 : COLLAR_OUT), segs);
   return merge([outer, inner, hem, flip(hem.clone())]);
 }
 
@@ -175,7 +178,7 @@ export function collarLip() {
   const n = 16, r = 0.016;
   const g = revolve(n + 1, (i, a) => {
     const f = (i / n) * TAU;
-    return [hugged(hi) + 0.014 + r * Math.cos(f), hi - 0.5 + r * Math.sin(f)];
+    return [hugged(hi) + COLLAR_OUT - 0.004 + r * Math.cos(f), hi - 0.5 + r * Math.sin(f)];
   }, 192);
   g.computeBoundingBox();
   return g;
@@ -212,29 +215,19 @@ export function leafFlap() {
   return merge([top, under]);
 }
 
-/** Where the jeans' waist sits, as a share of the bun's height (below the arms, which come out above it). */
-export const JEANS = { top: 0.205, off: 0.013 };
+/** The jeans: they reach up under the collar band (which sits on them like a belt), a little off the dough. */
+export const JEANS = { top: COLLAR_BAND.lo + 0.035, off: 0.012 };
 
-/** Denim over the belly, in the bun's frame: the bun's lower surface from its bottom to the waist, a little out. */
+/**
+ * Denim over the belly, in the bun's frame: the bun's lower surface (squeeze included, so the collar band
+ * still sits over it) from its bottom up under the collar, a little out.
+ */
 export function baoJeans() {
-  const rows = 60;
+  const rows = 80;
   const g = revolve(rows + 2, (i, a) => {
     if (i === 0) return [0, -0.5 - JEANS.off];
     const y = (JEANS.top * (i - 1)) / rows;
-    return [baoRadius(y) + JEANS.off * (1 + 0.15 * Math.sin(a * 2)), y - 0.5];
-  }, 128);
-  g.computeBoundingBox();
-  return g;
-}
-
-/** The jeans' waistband, in the bun's frame: a rounded band round the waist, standing a little proud. */
-export function baoWaistband() {
-  const n = 20, h = 0.022, w = 0.012;
-  const sp = (v) => Math.sign(v) * Math.abs(v) ** 0.4; // a soft rounded rectangle in cross-section
-  const g = revolve(n + 1, (i) => {
-    const f = (i / n) * TAU;
-    const y = JEANS.top - h + h * sp(Math.sin(f));
-    return [baoRadius(y) + JEANS.off + w + w * sp(Math.cos(f)), y - 0.5];
+    return [hugged(y) + JEANS.off * (1 + 0.12 * Math.sin(a * 2)), y - 0.5];
   }, 128);
   g.computeBoundingBox();
   return g;
@@ -250,6 +243,5 @@ export const DOUGH_SHAPES = {
   collar_lip: collarLip,
   leaf_flap: leafFlap,
   bao_jeans: baoJeans,
-  bao_waistband: baoWaistband,
   ...TOON_SHAPES,
 };

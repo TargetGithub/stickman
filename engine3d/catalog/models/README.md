@@ -40,5 +40,5 @@ under the top lip and a tongue riding a moving jaw (drawn through the opening wi
 `mouth.talk: "grin"`: when the critter speaks (`say` with `who`), its own mouth talks instead of a dark oval: the
 3D mouth Minion style, with rolled lips, the jaw following the voice, squash and stretch, and each vowel's shape
 (round "oo", open "ah", wide "ee": the `mouthShape` prop from `lipsync.js`). `bao_buddy.json` also has a
-`black_glove` prop; Bao Buddy wears black rubber gloves (`rubber` material) and jeans (`bao_jeans`, `bao_waistband`). Soft blush: stack a
+`black_glove` prop; Bao Buddy wears black rubber gloves (`rubber` material) and jeans (`bao_jeans`, up under the collar, with arm holes). Soft blush: stack a
 few flat ovals in the see-through `blush` material. A material may set `sheenColor` (hex) for its sheen tint.

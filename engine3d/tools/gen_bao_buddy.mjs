@@ -109,18 +109,25 @@ function baoBuddy() {
   }
   add({ ...glove, p: "capsule", s: [0.046, 0.085, 0.046], hang: r3([-0.024, -L - 0.025, 0.062]), hr: [-62, 0, 18] });
 
-  // Jeans: denim over the lower belly to a waistband (below the arms), belt loops, a gold button and fly
-  // stitching (name "jeans"), and a denim leg with a rolled cuff on each leg (those ride the hip pivots).
-  const waist = share(JEANS.top);
+  // Jeans: denim over the belly from the bottom up under the collar (the collar sits on them like a belt), fly
+  // stitching down the front, an arm hole where each arm comes out (a rolled hem with a dark inside, standing on
+  // the body, not on the arm), all named "jeans"; a denim leg with a rolled cuff rides each leg pivot.
+  const waist = share(COLLAR_BAND.lo);
   add({ p: "bao_jeans", at: r3(C), s: BODY.s, c: "denim", m: "denim", name: "jeans" });
-  add({ p: "bao_waistband", at: r3(C), s: BODY.s, c: "denim", m: "denim", name: "jeans" });
-  for (const a of [-2.3, -0.75, 0.75, 2.3]) {
-    const rr = S.around(waist - 0.012, a) + 0.03;
-    add({ p: "box", at: r3([Math.sin(a) * rr, waist - 0.012, Math.cos(a) * rr]), r: [0, r3([a / DEG])[0], 0], s: [0.022, 0.05, 0.012], c: "denim", m: "denim", name: "jeans" });
-  }
-  const wt = S.turn(0, waist - 0.022);
-  add({ p: "disc", at: r3([0, waist - 0.022, S.front(0, waist - 0.022) + 0.04]), r: [90 + wt[0], 0, 0], s: [0.034, 0.034, 0.034], c: "stitch_gold", m: "metal", name: "jeans" });
-  const flyY = waist - 0.085;
+  // The hole sits where the resting arm leaves the denim (marched out along the arm), facing out of the belly.
+  const outside = (p) => Math.hypot(p.x, p.z) > S.around(p.y, Math.atan2(p.x, p.z)) + JEANS.off;
+  const armDir = new THREE.Vector3(0, -1, 0).applyEuler(new THREE.Euler(...arm.r.map((v) => v * DEG)));
+  const exit = new THREE.Vector3(...sh);
+  while (!outside(exit)) exit.addScaledVector(armDir, 0.002);
+  const ea = Math.atan2(exit.x, exit.z), dy = 0.01;
+  const slope = (S.around(exit.y + dy, ea) - S.around(exit.y - dy, ea)) / (2 * dy);
+  const normal = new THREE.Vector3(Math.sin(ea), -slope, Math.cos(ea)).normalize();
+  const face = new THREE.Euler().setFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal));
+  const holeR = r3([face.x / DEG, face.y / DEG, face.z / DEG]);
+  const at = (k) => r3(exit.clone().addScaledVector(normal, k).toArray());
+  add({ p: "torus", at: at(0.003), r: holeR, s: [0.2, 0.2, 0.12], c: "denim_light", m: "denim", mirror: true, name: "jeans" }); // the rolled hem
+  add({ p: "sphere", at: at(-0.002), r: holeR, s: [0.1, 0.1, 0.02], c: "denim_shadow", m: "matte", mirror: true, name: "jeans" }); // its dark inside
+  const flyY = waist - 0.11;
   const ft = S.turn(0.014, flyY);
   add({ p: "capsule", at: r3([0.014, flyY, S.front(0.014, flyY) + 0.016]), r: [ft[0], 0, 0], s: [0.007, 0.085, 0.005], c: "stitch_gold", m: "matte", name: "jeans" });
 

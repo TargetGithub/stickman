@@ -8,7 +8,7 @@ import { loadCatalog3d } from "../../catalog/index.mjs";
 import { createMaterials } from "../../runtime/objects.js";
 import { buildModel } from "../../runtime/models.js";
 import { shapeGeometry } from "../../runtime/geometry.js";
-import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
+import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, JEANS, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
 import { FEELINGS } from "../../runtime/director_extras.js";
 import { grinOpen } from "../../runtime/talk.js";
 
@@ -65,6 +65,18 @@ test("dough shapes build, fit their boxes, and the head and belly overlap at the
   const hug = baoRadius(COLLAR_BAND.hi) * (1 - squeeze(COLLAR_BAND.hi));
   assert.ok(c.max.x > hug && c.max.x < hug + 0.04, `band sits on the dough: ${c.max.x} vs ${hug}`);
   near(box("collar_lip").min.y + 0.016, COLLAR_BAND.hi - 0.5, 0.003, "lip on the band's top");
+  // The jeans reach up under the collar band, and the band stands outside them there (it sits on them like a belt).
+  const j = box("bao_jeans");
+  assert.ok(j.max.y > COLLAR_BAND.lo - 0.5 && j.max.y < COLLAR_BAND.hi - 0.5, `jeans top ${j.max.y} tucked under the band`);
+  near(j.min.y, -0.5 - JEANS.off, 1e-3, "jeans bottom");
+  const radiusAt = (name, y) => {
+    const p = shapeGeometry(name).attributes.position;
+    let r = 0;
+    for (let i = 0; i < p.count; i++) if (Math.abs(p.getY(i) - y) < 0.004) r = Math.max(r, Math.hypot(p.getX(i), p.getZ(i)));
+    return r;
+  };
+  const yy = COLLAR_BAND.lo + 0.015 - 0.5;
+  assert.ok(radiusAt("leaf_collar", yy) > radiusAt("bao_jeans", yy) + 0.005, "the collar band is outside the jeans");
   const f = box("leaf_flap");
   near(f.min.y, -1, 1e-3); near(f.max.y, 0, 1e-3);
   assert.ok(f.max.z < 0.32 && f.max.x > 0.1, "a narrow leaf whose tip curls toward +x");
@@ -131,6 +143,12 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   assert.ok(gloveParts.length >= 6 && gloveParts.every((p) => p.name === "arm" && p.m === "rubber"), "gloves on the arms");
   assert.ok(["leg_left", "leg_right"].every((n) => model.parts.some((p) => p.name === n && p.c === "denim")), "jeans legs");
   assert.ok(catalog.props.black_glove?.description, "a glove prop too");
+  // An arm hole each side: a denim hem ring with a dark inside, on the body (not on the arm), near the shoulder.
+  const holes = model.parts.filter((p) => p.name === "jeans" && (p.c === "denim_light" || p.c === "denim_shadow"));
+  assert.equal(holes.length, 2, "a hem and its dark inside, mirrored");
+  assert.ok(holes.every((p) => p.mirror && !p.on));
+  const shoulder = model.parts.find((p) => p.name === "arm").at;
+  for (const h of holes) assert.ok(Math.hypot(h.at[0] - shoulder[0], h.at[1] - shoulder[1], h.at[2] - shoulder[2]) < 0.12, "the hole is where the arm comes out");
   // The long arms end in a hand with three fingers and a thumb.
   const armParts = model.parts.filter((p) => p.name === "arm");
   assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");
