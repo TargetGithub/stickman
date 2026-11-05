@@ -29,8 +29,9 @@ export default function baoBuddyDemo(d) {
   t += 0.6;
   // 9.5 s: wave hello with the long right arm (the mirrored copy).
   d.set("bao#arm", "liftSide", -1, t);
-  d.tween("bao#arm", "lift", [0, 0, -140], { at: t, dur: 0.4, ease: "quadOut" });
-  t = swing(d, "bao#arm", "lift", [0, 0, -160], [0, 0, -120], { at: t + 0.4, n: 6, dur: 0.22, rest: [0, 0, -140] });
+  // The hand comes up beside the cheek, in front of the face, and waves side to side (the middle angle swings).
+  d.tween("bao#arm", "lift", [-15, 60, -85], { at: t, dur: 0.4, ease: "quadOut" });
+  t = swing(d, "bao#arm", "lift", [-15, 40, -85], [-15, 80, -85], { at: t + 0.4, n: 6, dur: 0.22, rest: [-15, 60, -85] });
   d.tween("bao#arm", "lift", [0, 0, 0], { at: t, dur: 0.4 });
   // Then a line: the grin shuts to a smile and opens with each syllable, and rests on the full grin after.
   t += 0.5;

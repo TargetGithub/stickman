@@ -5,14 +5,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import * as THREE from "three";
-import { MOUTH, bottomLip, createMouth3d, topLip } from "../../runtime/toon_mouth.js";
+import { MOUTH, bottomLip, createMouth3d, mouthOutline, topLip } from "../../runtime/toon_mouth.js";
 
 const near = (a, b, eps, what = "") => assert.ok(Math.abs(a - b) < eps, `${what} ${a} != ${b}`);
 const paint = (c) => new THREE.MeshStandardMaterial({ name: c });
 const make = () => createMouth3d({ at: [0, 1, 0.4], size: 0.3, tilt: -8, color: "mouth", tongue: "pink" }, paint);
 const parts = (m) => {
-  const [mask, cavity, teeth, tongue] = m.children;
-  return { mask, cavity, teeth, tongue };
+  const [mask, cavity, teeth, tongue, lips] = m.children;
+  return { mask, cavity, teeth, tongue, lips };
 };
 
 test("lips: they meet at the corners; the top lip dips in the middle; the bottom lip hangs lower as it opens", () => {
@@ -25,13 +25,33 @@ test("lips: they meet at the corners; the top lip dips in the middle; the bottom
   for (let x = -0.45; x < 0.5; x += 0.05) assert.ok(bottomLip(x, 0.3) < topLip(x), `bottom below top at ${x}`);
 });
 
-test("the mouth group: placed, tilted, sized; a mask, a cavity, teeth and a tongue", () => {
+test("mouthOutline: rest is the plain grin; speaking squashes and stretches; vowels shape it", () => {
+  const rest = mouthOutline(1, 0, 0);
+  near(rest.half, 0.5, 1e-12);
+  for (const u of [-1, -0.5, 0, 0.5, 1]) near(rest.top(u), topLip(u / 2), 1e-12, `rest top at ${u}`);
+  const deep = (o) => o.top(0) - o.bottom(0);
+  // Speaking and opening: narrower (taller means narrower) and the top lip lifts.
+  const talkOpen = mouthOutline(1, 0, 1);
+  assert.ok(talkOpen.half < rest.half && talkOpen.top(0) > rest.top(0));
+  // "oo" pulls the corners in and arches the top lip; "ee" stretches it wider and flatter.
+  const oo = mouthOutline(0.7, 1, 1), ah = mouthOutline(0.7, 0, 1), ee = mouthOutline(0.7, -1, 1);
+  assert.ok(oo.half < ah.half && ah.half < ee.half, "width: oo < ah < ee");
+  assert.ok(oo.top(0) > ah.top(0), "an O arches its top lip");
+  assert.ok(deep(ee) < deep(ah) && deep(ah) < deep(oo), "depth: ee < ah < oo");
+  // Lips always meet at the corners and the bottom stays under the top.
+  for (const o of [rest, talkOpen, oo, ah, ee, mouthOutline(0, 0.5, 1)]) {
+    for (const u of [-1, 1]) near(o.top(u), o.bottom(u), 1e-9, "corners meet");
+    for (let u = -0.9; u < 1; u += 0.1) assert.ok(o.bottom(u) < o.top(u), `bottom under top at ${u}`);
+  }
+});
+
+test("the mouth group: placed, tilted, sized; a mask, a cavity, teeth, a tongue and lips", () => {
   const m = make();
   assert.deepEqual(m.position.toArray(), [0, 1, 0.4]);
   near(m.rotation.x, (-8 * Math.PI) / 180, 1e-12);
   assert.ok(m.scale.equals(new THREE.Vector3(0.3, 0.3, 0.3)));
   assert.ok(m.material, "a mouth colour for other feelings' mouths");
-  assert.equal(m.children.length, 4);
+  assert.equal(m.children.length, 5);
   assert.equal(m.userData.open, 1, "rests wide open");
 });
 
@@ -53,6 +73,35 @@ test("stencil: the mask marks this mouth's pixels unseen; the inside draws only 
   assert.equal(cavity.material.depthFunc, THREE.AlwaysDepth, "the cavity replaces the face's depth in the opening");
   assert.equal(cavity.material.side, THREE.BackSide, "its inside shows");
   assert.ok(cavity.renderOrder < teeth.renderOrder && cavity.renderOrder < tongue.renderOrder);
+  const { lips } = parts(a);
+  assert.equal(lips.material.stencilWrite, false, "the lips draw everywhere, over the opening's edge");
+  assert.ok(lips.renderOrder > cavity.renderOrder, "after the cavity");
+});
+
+test("lips: two rolled tubes along the edges, never joined across the mouth, following its shape", () => {
+  const m = make();
+  const { lips } = parts(m);
+  m.userData.setShape(0.8, 1, 1);
+  const o = mouthOutline(0.8, 1, 1);
+  const p = lips.geometry.attributes.position;
+  // Every lip point sits within a lip's thickness of the top or bottom edge.
+  const edge = [];
+  for (let k = 0; k <= 400; k++) {
+    const u = -1 + k / 200;
+    edge.push([u * o.half, o.top(u)], [u * o.half, o.bottom(u)]);
+  }
+  for (let i = 0; i < p.count; i += 3) {
+    const x = p.getX(i), y = p.getY(i);
+    const d = Math.min(...edge.map(([ex, ey]) => Math.hypot(x - ex, y - ey)));
+    assert.ok(d < MOUTH.lip * 1.5, `lip point ${i} is ${d} from an edge`);
+  }
+  // No face spans from one corner to the other (the two tubes are apart).
+  const ix = lips.geometry.index.array;
+  for (let i = 0; i < ix.length; i += 3) {
+    const xs = [0, 1, 2].map((k) => p.getX(ix[i + k]));
+    assert.ok(Math.max(...xs) - Math.min(...xs) < 0.2, `face ${i / 3} spans ${Math.max(...xs) - Math.min(...xs)}`);
+  }
+  assert.deepEqual([m.userData.open, m.userData.shape, m.userData.talk], [0.8, 1, 1]);
 });
 
 test("the jaw: the opening follows it, the teeth stay, the tongue rides it at full size", () => {

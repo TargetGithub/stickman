@@ -21,7 +21,7 @@ const MIN_WIDTH = 0.15; // narrowest open mouth, in the model's units (critter h
  * @returns {(k:number, feelingMouth?: THREE.Object3D, s?: object) => void}
  */
 export function createTalkMouth(parent, { at, width: w, jaw, grin }, material, fallbackColor = "orange") {
-  if (grin) return (k, feelingMouth, s) => grinTalk(feelingMouth, k, (s?.speaking ?? 0) > 0);
+  if (grin) return (k, feelingMouth, s) => grinTalk(feelingMouth, k, (s?.speaking ?? 0) > 0, s?.mouthShape ?? 0);
   const oval = new THREE.Mesh(shapeGeometry("sphere"), material("ink", "matte"));
   oval.position.set(...at);
   oval.visible = false;
@@ -63,12 +63,13 @@ export function createTalkMouth(parent, { at, width: w, jaw, grin }, material, f
 export const grinOpen = (k) => 0.2 + 0.85 * Math.min(1, Math.max(0, k));
 
 /** Set a grin's height for openness k while speaking; put it back to its full height otherwise. */
-function grinTalk(mouth, k, speaking) {
+function grinTalk(mouth, k, speaking, shape = 0) {
   if (!mouth) return;
-  // A 3D mouth (toon_mouth.js) talks with its jaw: the opening, tongue and all move, nothing shrinks.
-  if (mouth.userData.setOpen) {
-    const want = speaking ? Math.min(1, grinOpen(k)) : 1;
-    if (mouth.userData.open !== want) mouth.userData.setOpen(want);
+  // A 3D mouth (toon_mouth.js) talks with its jaw, squash and stretch and the vowel's shape; nothing shrinks.
+  if (mouth.userData.setShape) {
+    const [open, sh, tk] = speaking ? [Math.min(1, grinOpen(k)), shape, 1] : [1, 0, 0];
+    const u = mouth.userData;
+    if (u.open !== open || u.shape !== sh || u.talk !== tk) u.setShape(open, sh, tk);
     return;
   }
   const full = (mouth.userData.fullY ??= mouth.scale.y);

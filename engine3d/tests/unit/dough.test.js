@@ -84,7 +84,7 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   assert.ok(model?.description && model.tags.length);
   const o = { id: "bao", kind: "critter", species: "bao_buddy" };
   const m = buildModel(o, model, material);
-  for (const n of ["head", "arm", "leg_left", "leg_right", "collar", "knot", "nose", "cheeks"]) assert.ok(m.named.get(n), n);
+  for (const n of ["head", "arm", "leg_left", "leg_right", "collar", "jeans", "knot", "nose", "cheeks"]) assert.ok(m.named.get(n), n);
   const nodes = [];
   m.group.traverse((x) => x.isMesh && nodes.push(x));
   const lids = nodes.filter((x) => x.geometry === shapeGeometry("eyelid"));
@@ -126,6 +126,11 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   };
   const L = at([1, 0]), R = at([-1, 0]);
   for (let i = 0; i < 2; i++) assert.ok(L[i] > R[i] + 0.02, `eye ${i}: gaze left (+x) moves its iris that way`);
+  // Black rubber gloves ride the arms (removable by recolouring glove_black); jeans legs ride the legs.
+  const gloveParts = model.parts.filter((p) => p.c === "glove_black");
+  assert.ok(gloveParts.length >= 6 && gloveParts.every((p) => p.name === "arm" && p.m === "rubber"), "gloves on the arms");
+  assert.ok(["leg_left", "leg_right"].every((n) => model.parts.some((p) => p.name === n && p.c === "denim")), "jeans legs");
+  assert.ok(catalog.props.black_glove?.description, "a glove prop too");
   // The long arms end in a hand with three fingers and a thumb.
   const armParts = model.parts.filter((p) => p.name === "arm");
   assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");

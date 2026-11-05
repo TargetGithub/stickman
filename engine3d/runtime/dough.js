@@ -212,6 +212,34 @@ export function leafFlap() {
   return merge([top, under]);
 }
 
+/** Where the jeans' waist sits, as a share of the bun's height (below the arms, which come out above it). */
+export const JEANS = { top: 0.205, off: 0.013 };
+
+/** Denim over the belly, in the bun's frame: the bun's lower surface from its bottom to the waist, a little out. */
+export function baoJeans() {
+  const rows = 60;
+  const g = revolve(rows + 2, (i, a) => {
+    if (i === 0) return [0, -0.5 - JEANS.off];
+    const y = (JEANS.top * (i - 1)) / rows;
+    return [baoRadius(y) + JEANS.off * (1 + 0.15 * Math.sin(a * 2)), y - 0.5];
+  }, 128);
+  g.computeBoundingBox();
+  return g;
+}
+
+/** The jeans' waistband, in the bun's frame: a rounded band round the waist, standing a little proud. */
+export function baoWaistband() {
+  const n = 20, h = 0.022, w = 0.012;
+  const sp = (v) => Math.sign(v) * Math.abs(v) ** 0.4; // a soft rounded rectangle in cross-section
+  const g = revolve(n + 1, (i) => {
+    const f = (i / n) * TAU;
+    const y = JEANS.top - h + h * sp(Math.sin(f));
+    return [baoRadius(y) + JEANS.off + w + w * sp(Math.cos(f)), y - 0.5];
+  }, 128);
+  g.computeBoundingBox();
+  return g;
+}
+
 /** Shapes this module adds, by catalog name. */
 export const DOUGH_SHAPES = {
   bao_drop: () => baoBody(0, 1),
@@ -221,5 +249,7 @@ export const DOUGH_SHAPES = {
   leaf_collar: leafCollar,
   collar_lip: collarLip,
   leaf_flap: leafFlap,
+  bao_jeans: baoJeans,
+  bao_waistband: baoWaistband,
   ...TOON_SHAPES,
 };

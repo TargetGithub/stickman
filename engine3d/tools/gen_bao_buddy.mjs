@@ -9,7 +9,7 @@
 import { writeFileSync } from "node:fs";
 import * as THREE from "three";
 import { shapeGeometry } from "../runtime/geometry.js";
-import { BAO_COLLAR, COLLAR_BAND } from "../runtime/dough.js";
+import { BAO_COLLAR, COLLAR_BAND, JEANS } from "../runtime/dough.js";
 
 const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
 const DEG = Math.PI / 180;
@@ -98,17 +98,39 @@ function baoBuddy() {
   const arm = { at: sh, r: [-30, 0, 18], mirror: true, name: "arm", c: BODY.c, m: BODY.m, idle: { r: [3, 0, 4], hz: 0.5 } };
   const L = ARM_LENGTH;
   add({ ...arm, p: "capsule", s: r3([0.075, L + 0.02, 0.075]), hang: r3([0, -L / 2, 0]) });
-  add({ ...arm, p: "sphere", s: [0.115, 0.1, 0.095], hang: r3([0, -L - 0.015, 0]) });
-  for (const [dz, tilt] of [[-0.034, 18], [0, 0], [0.034, -18]]) {
-    add({ ...arm, p: "capsule", s: [0.04, 0.09, 0.04], hang: r3([0.004, -L - 0.075, dz]), hr: [tilt, 0, 6] });
+  // Black rubber gloves (Minion style): a flared cuff, the glove's wrist, a puffy palm, three fingers, a thumb.
+  // They stay on the arm pivot (name "arm"), coloured glove_black: recolor { glove_black: "bao_dough" } takes them off.
+  const glove = { ...arm, c: "glove_black", m: "rubber" };
+  add({ ...glove, p: "torus", s: [0.125, 0.125, 0.11], hang: r3([0, -L + 0.035, 0]), hr: [90, 0, 0] });
+  add({ ...glove, p: "cylinder", s: [0.088, 0.06, 0.088], hang: r3([0, -L + 0.005, 0]) });
+  add({ ...glove, p: "sphere", s: [0.125, 0.11, 0.105], hang: r3([0, -L - 0.015, 0]) });
+  for (const [dz, tilt] of [[-0.036, 18], [0, 0], [0.036, -18]]) {
+    add({ ...glove, p: "capsule", s: [0.044, 0.095, 0.044], hang: r3([0.004, -L - 0.08, dz]), hr: [tilt, 0, 6] });
   }
-  add({ ...arm, p: "capsule", s: [0.042, 0.08, 0.042], hang: r3([-0.022, -L - 0.025, 0.058]), hr: [-62, 0, 18] });
+  add({ ...glove, p: "capsule", s: [0.046, 0.085, 0.046], hang: r3([-0.024, -L - 0.025, 0.062]), hr: [-62, 0, 18] });
+
+  // Jeans: denim over the lower belly to a waistband (below the arms), belt loops, a gold button and fly
+  // stitching (name "jeans"), and a denim leg with a rolled cuff on each leg (those ride the hip pivots).
+  const waist = share(JEANS.top);
+  add({ p: "bao_jeans", at: r3(C), s: BODY.s, c: "denim", m: "denim", name: "jeans" });
+  add({ p: "bao_waistband", at: r3(C), s: BODY.s, c: "denim", m: "denim", name: "jeans" });
+  for (const a of [-2.3, -0.75, 0.75, 2.3]) {
+    const rr = S.around(waist - 0.012, a) + 0.03;
+    add({ p: "box", at: r3([Math.sin(a) * rr, waist - 0.012, Math.cos(a) * rr]), r: [0, r3([a / DEG])[0], 0], s: [0.022, 0.05, 0.012], c: "denim", m: "denim", name: "jeans" });
+  }
+  const wt = S.turn(0, waist - 0.022);
+  add({ p: "disc", at: r3([0, waist - 0.022, S.front(0, waist - 0.022) + 0.04]), r: [90 + wt[0], 0, 0], s: [0.034, 0.034, 0.034], c: "stitch_gold", m: "metal", name: "jeans" });
+  const flyY = waist - 0.085;
+  const ft = S.turn(0.014, flyY);
+  add({ p: "capsule", at: r3([0.014, flyY, S.front(0.014, flyY) + 0.016]), r: [ft[0], 0, 0], s: [0.007, 0.085, 0.005], c: "stitch_gold", m: "matte", name: "jeans" });
 
   // Feet: a short round stump and a soft rounded toe each, on hip pivots named apart (for walks).
   for (const [side, name] of [[1, "leg_left"], [-1, "leg_right"]]) {
     const hip = { at: r3([side * 0.165, 0.2, 0.0]), name, c: BODY.c, m: BODY.m };
     add({ ...hip, p: "capsule", s: [0.155, 0.27, 0.155], hang: [0, -0.105, 0] });
     add({ ...hip, p: "sphere", s: [0.155, 0.1, 0.15], hang: [0, -0.19, 0.06] });
+    add({ ...hip, p: "cylinder", s: [0.19, 0.11, 0.19], hang: [0, -0.08, 0], c: "denim", m: "denim" }); // jeans leg
+    add({ ...hip, p: "torus", s: [0.215, 0.215, 0.16], hang: [0, -0.13, 0], hr: [90, 0, 0], c: "denim_light", m: "denim" }); // rolled cuff
   }
 
   // Eye frame (toon_face.js): width 1 = size, origin at the dome's centre line, the lash line 0.3 below it.
@@ -122,20 +144,37 @@ function baoBuddy() {
   return {
     color: BODY.c,
     sound: "Bao bao!",
-    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on stubby arms and feet. Named parts: arm (mirrored), leg_left, leg_right, collar (band, lip, button and leaf flaps: remove or swap it), knot, belly, nose.",
+    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long Minion-style arms in black rubber gloves, in jeans with rolled cuffs. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip, button and leaf flaps: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
     tags: ["bao", "bao_buddy", "mascot", "dumpling", "food", "friend", "lead"],
     head: { at: r3(HEAD), tilt: 0.4, look: [0.4, 0.15] }, // feelings tip the bun gently, so the collar stays in view
     eyes: { at: rel([eye.x, eye.y, eye.z]), size: eye.size, turn: S.turn(eye.x, eye.y), iris: "bao_iris", rim: "bao_iris_rim", color: "bao_pupil", pupilLow: "bao_pupil_blue", crescent: "bao_glint", white: "eye_white_cool", shade: "eye_shade_cool", lid: "bao_line" },
     brows: { shape: "brow_thin", color: "bao_brow", size: 0.74, lift: r3([(browY - eye.y) / eye.size - 1.25])[0], dz: r3([S.front(eye.x, browY) - eye.z + 0.006])[0] },
-    mouth: { open: true, at: rel([0, mouthTop, S.front(0, mouthTop) + 0.002]), tilt: -lean, size: 0.29, shape: "mouth3d", color: "bao_mouth", tongue: "bao_tongue", talk: "grin" },
+    mouth: { open: true, at: rel([0, mouthTop, S.front(0, mouthTop) + 0.002]), tilt: -lean, size: 0.29, shape: "mouth3d", lip: "bao_lip", color: "bao_mouth", tongue: "bao_tongue", talk: "grin" },
     bob: 0.012,
     parts,
   };
 }
 
+/** A black rubber glove on its own (a prop): the cuff at the bottom, fingers up. */
+const blackGlove = {
+  color: "glove_black",
+  description: "A black rubber glove, Minion style: a flared cuff, a puffy palm, three fingers and a thumb (dress-up, helpers, cleaning).",
+  tags: ["clothes", "glove", "dress-up", "bao"],
+  parts: [
+    { p: "torus", at: [0, 0.03, 0], r: [90, 0, 0], s: [0.3, 0.3, 0.26], m: "rubber" },
+    { p: "cylinder", at: [0, 0.09, 0], s: [0.21, 0.12, 0.21], m: "rubber" },
+    { p: "sphere", at: [0, 0.2, 0], s: [0.3, 0.26, 0.24], m: "rubber" },
+    { p: "capsule", at: [-0.085, 0.36, 0], r: [0, 0, 12], s: [0.1, 0.22, 0.1], m: "rubber" },
+    { p: "capsule", at: [0, 0.38, 0], s: [0.1, 0.22, 0.1], m: "rubber" },
+    { p: "capsule", at: [0.085, 0.36, 0], r: [0, 0, -12], s: [0.1, 0.22, 0.1], m: "rubber" },
+    { p: "capsule", at: [0.15, 0.22, 0.05], r: [0, 0, -55], s: [0.11, 0.2, 0.11], m: "rubber" },
+  ],
+};
+
 const out = {
   description: "Bao Buddy: a smooth steamed-bun mascot (dough body, leaf collar, anime eyes, open grin). Generated by tools/gen_bao_buddy.mjs: edit that, not this file.",
   critters: { bao_buddy: baoBuddy() },
+  props: { black_glove: blackGlove },
 };
 writeFileSync(new URL("../catalog/models/bao_buddy.json", import.meta.url), JSON.stringify(out, null, 1) + "\n");
 console.log("bao_buddy.json: 1 critter");

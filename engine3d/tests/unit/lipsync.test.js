@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { loadCatalog3d } from "../../catalog/index.mjs";
-import { MOUTH_HZ, mouthFromEnvelope, mouthFromText, sampleMouth, syllableCount } from "../../runtime/lipsync.js";
+import { MOUTH_HZ, mouthFromEnvelope, mouthFromText, sampleMouth, shapeFromText, syllableCount, vowelShape } from "../../runtime/lipsync.js";
 import { compileScript } from "../../runtime/compile.js";
 import { validateScript } from "../../runtime/validate.js";
 import { envelope, LIP_HZ } from "../../../tools/lib/tts/lipsync.mjs";
@@ -37,6 +37,22 @@ function fastestSwing(track) {
   }
   return best;
 }
+
+test("vowel shapes: o and u round, a open, e i y wide", () => {
+  for (const [v, want] of [["o", 1], ["u", 1], ["oo", 1], ["ou", 1], ["a", 0], ["ai", 0], ["ea", 0], ["e", -0.8], ["i", -0.8], ["ee", -0.8], ["y", -0.8]]) assert.equal(vowelShape(v), want, v);
+});
+
+test("shapeFromText: one value per mouth sample, in range, rounding on o/u and widening on e/i", () => {
+  const dur = 2;
+  const s = shapeFromText("Ooh! Hee hee.", dur);
+  assert.equal(s.length, Math.round(dur * MOUTH_HZ));
+  assert.ok(s.every((v) => v >= -1 && v <= 1));
+  const first = s.slice(0, s.length / 3), rest = s.slice(s.length / 3);
+  assert.ok(Math.max(...first) > 0.6, "Ooh rounds");
+  assert.ok(Math.min(...rest) < -0.5, "hee widens");
+  assert.deepEqual(shapeFromText("Ooh! Hee hee.", dur), s, "deterministic");
+  assert.ok(shapeFromText("", 1).every((v) => v === 0));
+});
 
 test("syllable counts", () => {
   for (const [w, n] of [["cat", 1], ["apple", 2], ["Robo", 2], ["banana!", 3], ["the", 1], ["make", 1], ["hello,", 2], ["123", 4], ["5", 1], ["--", 0]]) assert.equal(syllableCount(w), n, w);
@@ -120,6 +136,7 @@ test("say who: critters, characters and face shapes talk; the talk prop is 0 out
     for (let t = l.t + 0.01; t < l.t + l.dur - 0.01; t += 0.05) assert.equal(tl.valueAt(who, "speaking", t), 1, `${who} speaking at ${t}`);
     assert.equal(tl.valueAt(who, "speaking", l.t - 0.01), 0);
     assert.equal(tl.valueAt(who, "speaking", l.t + l.dur + 0.01), 0);
+    assert.equal(tl.valueAt(who, "mouthShape", l.t + l.dur + 0.01), 0, "shape back to neutral after the line");
   }
   assert.equal(line("d").who, undefined);
   assert.ok(plan.objects.find((o) => o.id === "duck").talks);

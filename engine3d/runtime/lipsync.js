@@ -69,13 +69,52 @@ export function syllableCount(word) {
  * look mechanical.
  * @returns {number[]} openness 0-1 at MOUTH_HZ
  */
-export function mouthFromText(text, dur) {
+/**
+ * A line's syllables and rests in order: { len, open, vowel } (len in relative units; vowel: the syllable's vowel
+ * letters, for its mouth shape).
+ */
+function syllableUnits(text) {
   const units = [];
   for (const tok of String(text).split(/\s+/).filter(Boolean)) {
     const n = syllableCount(tok);
-    for (let i = 0; i < n; i++) units.push({ len: 1, open: true }, ...(i < n - 1 ? [{ len: 0.15, open: false }] : []));
+    const groups = tok.toLowerCase().replace(/[^a-z]/g, "").match(/[aeiouy]+/g) ?? [];
+    for (let i = 0; i < n; i++) units.push({ len: 1, open: true, vowel: groups[i] ?? "a" }, ...(i < n - 1 ? [{ len: 0.15, open: false }] : []));
     units.push({ len: /[.!?]$/.test(tok) ? 1.6 : /[,;:]$/.test(tok) ? 1.1 : 0.45, open: false });
   }
+  return units;
+}
+
+/** A vowel's mouth shape: +1 round (o, u, "oo"), 0 open (a, "ah"), -0.8 wide (e, i, y, "ee"). */
+export function vowelShape(v) {
+  if (/[ou]/.test(v)) return 1;
+  if (/[eiy]/.test(v) && !/a/.test(v)) return -0.8;
+  return 0;
+}
+
+/**
+ * The shape track for a line, laid out like mouthFromText: each syllable's vowel shape over its span (0 in
+ * rests), eased so one shape blends into the next. Used with either openness track (with TTS it lines up with
+ * the voice only roughly, which reads fine at speaking speed).
+ * @returns {number[]} shape -1..1 at MOUTH_HZ
+ */
+export function shapeFromText(text, dur) {
+  const units = syllableUnits(text);
+  const n = Math.max(1, Math.round(dur * MOUTH_HZ));
+  const out = new Array(n).fill(0);
+  const total = units.reduce((a, u) => a + u.len, 0);
+  if (!total) return out;
+  const span = dur * 0.94;
+  let x = dur * 0.03;
+  for (const u of units) {
+    const len = (u.len / total) * span;
+    if (u.open) for (let i = Math.max(0, Math.floor(x * MOUTH_HZ)); i < Math.min(n, Math.ceil((x + len) * MOUTH_HZ)); i++) out[i] = vowelShape(u.vowel);
+    x += len;
+  }
+  return smooth(out, 7).map(round);
+}
+
+export function mouthFromText(text, dur) {
+  const units = syllableUnits(text);
   const n = Math.max(1, Math.round(dur * MOUTH_HZ));
   const out = new Array(n).fill(0);
   const total = units.reduce((a, u) => a + u.len, 0);
@@ -113,7 +152,8 @@ export function sampleMouth(track, u) {
  * Record a spoken line's mouth on the timeline: prop "talk" of the speaker, a curve segment over the line
  * (it reads 0 before the line and again once it ends; a newer line takes over from its start), and prop
  * "speaking" (1 for the whole line, pauses between words included; 0 otherwise), so a face that rests on an
- * open grin can tell a pause in a line from not talking at all.
+ * open grin can tell a pause in a line from not talking at all, and prop "mouthShape" (shapeFromText: -1 wide
+ * "ee" .. 1 round "oo"), for faces that shape their mouths.
  * @param {object} tl  the timeline
  * @param {{ env?: number[], hz?: number }} [clip]  the measured clip (speech[lineId]); else the text fallback
  */
@@ -123,7 +163,10 @@ export function addTalk(tl, who, { t, dur, text, clip, bases }) {
     bases.add(who);
     tl.base(who, "talk", 0);
     tl.base(who, "speaking", 0);
+    tl.base(who, "mouthShape", 0);
   }
+  const shape = shapeFromText(text, dur);
+  tl.tween(who, "mouthShape", { start: t, dur, from: 0, to: 0, ease: "linear", curve: (_, k) => (k >= 1 ? 0 : sampleMouth(shape, k * dur) * 1) });
   tl.tween(who, "speaking", { start: t, dur, from: 0, to: 0, ease: "linear", curve: (_, k) => (k >= 1 ? 0 : 1) });
   tl.tween(who, "talk", { start: t, dur, from: 0, to: 0, ease: "linear", curve: (_, k) => (k >= 1 ? 0 : sampleMouth(track, k * dur)) });
   return track;
