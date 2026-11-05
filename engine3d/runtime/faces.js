@@ -26,25 +26,27 @@ const smooth = (k) => k * k * (3 - 2 * k);
 
 /**
  * @param {{ parent: THREE.Object3D, eyes: THREE.Object3D[], eyeSize: number, mouth?: THREE.Mesh, head?: THREE.Object3D,
- *   material: Function, talk?: Function, line?: string, brows?: { color?: string, size?: number, lift?: number, dz?: number, shape?: string }, open?: boolean }} o
+ *   material: Function, talk?: Function, line?: string, flat?: boolean, brows?: { color?: string, size?: number, lift?: number, dz?: number, shape?: string, tilt?: number }, open?: boolean }} o
  *   eyes: the two eye groups (x > 0 first or second, either way); mouth: the smile mesh;
  *   talk: the open mouth for lip-sync (talk.js createTalkMouth), driven by the "talk" prop;
  *   brows: arched brows that always show (plush faces; dz sets them back from the eyes onto a round brow; shape:
  *   the brow shape, "brow" thick or "brow_thin"),
  *   else thin bars that show only for some feelings;
  *   open: an open-mouth face (a grin): its surprised "o" is a filled dark oval, not a ring;
- *   line: the colour of the shut happy-eye arcs (default ink)
+ *   line: the colour of the shut happy-eye arcs (default ink); flat: toon eyes drawn on the face (arcs sit close to it)
  * @returns {(t:number, s:object, blink:number) => number[]}  sets brows, mouth and eye scale; returns the head tilt [pitch, roll] in degrees
  */
-export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, brows: arch, open: grin = false, line = "ink" }) {
+export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, brows: arch, open: grin = false, line = "ink", flat = false }) {
   const browMat = material(arch?.color ?? "ink", "matte");
   const browSize = eyeSize * (arch?.size ?? 1.5);
   const brows = eyes.map((e) => {
     const b = new THREE.Mesh(shapeGeometry(arch ? (arch.shape ?? "brow") : "box"), browMat);
-    if (arch) b.scale.setScalar(browSize);
+    const side = Math.sign(e.position.x) || 1;
+    // A brow peaking toward its inner end (brow_thin: +x) is mirrored on the +x side, so both peak toward the nose.
+    if (arch) b.scale.set((arch.shape === "brow_thin" ? -side : 1) * browSize, browSize, browSize);
     else b.scale.set(eyeSize * 1.5, eyeSize * 0.32, eyeSize * 0.3);
     b.visible = !!arch;
-    b.userData.side = Math.sign(e.position.x) || 1;
+    b.userData.side = side;
     b.userData.rest = e.position.clone();
     parent.add(b);
     return b;
@@ -53,7 +55,7 @@ export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, br
   const arcs = eyes.map((e) => {
     const a = new THREE.Mesh(FROWN, material(line, "matte"));
     a.scale.set(eyeSize * 1.5, eyeSize * 1.1, eyeSize * 0.5);
-    a.position.set(e.position.x, e.position.y - eyeSize * 0.2, e.position.z + eyeSize * 0.35);
+    a.position.set(e.position.x, e.position.y - eyeSize * 0.2, e.position.z + eyeSize * (flat ? 0.08 : 0.35));
     a.visible = false;
     parent.add(a);
     return a;
@@ -94,7 +96,7 @@ export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk, br
         b.position.set(rest.x, rest.y + eyeSize * (1.35 + lift), rest.z + eyeSize * 0.1);
       }
       // The inner end (toward the middle of the face) goes up by `tilt`.
-      b.rotation.z = -side * tilt * DEG;
+      b.rotation.z = -side * (tilt + (arch?.tilt ?? 0)) * DEG;
     }
     if (mouth) {
       const which = u < 0.5 ? from.mouth : to.mouth;

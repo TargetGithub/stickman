@@ -6,6 +6,7 @@
 
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { TOON_SHAPES } from "./toon_face.js";
 
 const TAU = Math.PI * 2;
 
@@ -13,7 +14,7 @@ const TAU = Math.PI * 2;
  * Profile of the bun, [radius, height] with height 0 (bottom) .. 1 (top), measured off the reference: a round
  * belly, a tuck at the collar, widest just above it, an onion top drawn in to a pinch under the knot.
  */
-export const BAO_PROFILE = [[0, 0], [0.22, 0.015], [0.31, 0.045], [0.36, 0.1], [0.39, 0.18], [0.4, 0.24], [0.42, 0.28], [0.455, 0.33], [0.478, 0.39], [0.488, 0.46], [0.49, 0.53], [0.48, 0.6], [0.46, 0.68], [0.425, 0.75], [0.35, 0.82], [0.27, 0.88], [0.19, 0.93], [0.115, 0.965], [0.065, 0.99], [0, 1]];
+export const BAO_PROFILE = [[0, 0], [0.22, 0.015], [0.31, 0.045], [0.36, 0.1], [0.39, 0.18], [0.4, 0.24], [0.42, 0.28], [0.455, 0.33], [0.478, 0.39], [0.488, 0.46], [0.487, 0.52], [0.47, 0.6], [0.44, 0.68], [0.4, 0.745], [0.35, 0.8], [0.28, 0.86], [0.21, 0.91], [0.15, 0.95], [0.105, 0.978], [0.075, 0.995], [0, 1]];
 /** Where the collar sits, as a share of the bun's height. */
 export const BAO_COLLAR = 0.3;
 
@@ -100,19 +101,20 @@ const merge = (list) => {
 
 /**
  * The bun, or a band of it between heights lo and hi (shares of its height). A cut end is closed by a soft
- * dome reaching `cap` past the cut, so a head and a belly cut at the collar overlap inside it. Not centred:
+ * dome reaching `cap` past the cut (drawn in, so it stays inside the tight collar band), so a head and a belly
+ * cut at the collar overlap inside it. Not centred:
  * the whole bun spans y -0.5 .. 0.5 at unit scale, so both pieces share one centre and scale.
  */
 export function baoBody(lo = 0, hi = 1, cap = 0.08) {
   const rows = 180;
   const list = [];
   const q = (k) => (k / 8) * (Math.PI / 2);
-  if (lo > 0) for (let k = 0; k <= 8; k++) list.push({ y: lo, dome: -cap * Math.cos(q(k)), s: Math.sin(q(k)) });
+  if (lo > 0) for (let k = 0; k <= 8; k++) list.push({ y: lo, dome: -cap * Math.cos(q(k)), s: Math.sin(q(k)) * (k < 8 ? 0.85 : 1) });
   for (let i = lo > 0 ? 1 : 0; i <= rows; i++) list.push({ y: lo + ((hi - lo) * i) / rows, dome: 0, s: 1 });
-  if (hi < 1) for (let k = 7; k >= 0; k--) list.push({ y: hi, dome: cap * Math.cos(q(k)), s: Math.sin(q(k)) });
+  if (hi < 1) for (let k = 7; k >= 0; k--) list.push({ y: hi, dome: cap * Math.cos(q(k)), s: Math.sin(q(k)) * 0.85 });
   const g = revolve(list.length, (i, a) => {
     const { y, dome, s } = list[i];
-    return [baoRadius(y) * (1 - baoPleat(a, y)) * s, y + dome - 0.5];
+    return [baoRadius(y) * (1 - baoPleat(a, y) - squeeze(y)) * s, y + dome - 0.5];
   }, 144);
   g.computeBoundingBox();
   return g;
@@ -132,27 +134,49 @@ export function baoKnot() {
   return g.center();
 }
 
+/** The collar band's bottom and top edges, as shares of the bun's height. */
+export const COLLAR_BAND = { lo: 0.255, hi: 0.35 };
+
+/** How much the tight collar squeezes the dough (a share of its radius) at height y: flat under the band, soft edges. */
+export function squeeze(y) {
+  const mid = (COLLAR_BAND.lo + COLLAR_BAND.hi) / 2;
+  return 0.05 * Math.exp(-(((y - mid) / 0.06) ** 4));
+}
+
+/** The bun's radius under the collar, squeeze included (pleats and folds are zero there). */
+const hugged = (y) => baoRadius(y) * (1 - squeeze(y));
+
 /**
- * The leaf collar band: an upright glossy band hugging a round body (top radius 0.5 at y = 0, 0.1 deep), bulging
- * a little, dipping in front, with a seam where one end of the leaf overlaps the other (just right of the front,
- * on the wearer's left). Solid from both sides. Not centred: y = 0 is the top edge.
+ * The leaf collar band, in the bun's own frame (give it the bun's centre and scale): a tight glossy band over
+ * the squeezed dough from COLLAR_BAND.lo to .hi, bulging a little, dipping in front, with a seam where one end
+ * of the leaf overlaps the other (just right of the front, on the wearer's left). Solid from both sides.
  */
 export function leafCollar() {
-  const segs = 192, rows = 12;
+  const segs = 192, rows = 14;
+  const { lo, hi } = COLLAR_BAND;
   const front = (a) => Math.atan2(Math.sin(a), Math.cos(a)); // -pi .. pi, 0 in front
   const vee = (a) => Math.max(0, 1 - Math.abs(front(a)) / 0.32) ** 1.5;
   const lap = (a) => THREE.MathUtils.smoothstep(front(a), 0, 0.04) * (1 - THREE.MathUtils.smoothstep(front(a), 0.9, 1.6));
-  const at = (t, a, inset) => [0.5 - inset + 0.014 * Math.sin(Math.PI * t) + 0.008 * t + 0.007 * lap(a), -t * (0.1 + 0.02 * vee(a))];
-  const outer = revolve(rows + 1, (i, a) => at(i / rows, a, 0), segs);
-  const inner = flip(revolve(rows + 1, (i, a) => at(i / rows, a, 0.014), segs));
-  // The hem: a strip joining the outer and inner bottom edges.
-  const hem = revolve(2, (i, a) => at(1, a, i ? 0.014 : 0), segs);
-  return merge([outer, inner, hem]);
+  // t: 0 top .. 1 bottom edge; off: how far out from the dough.
+  const at = (t, a, off) => {
+    const y = hi - t * (hi - lo + 0.02 * vee(a));
+    return [hugged(Math.max(lo, y)) + off + (off > 0 ? 0.005 * Math.sin(Math.PI * t) + 0.007 * lap(a) : 0), y - 0.5];
+  };
+  // Rows run top to bottom, so the outside is flipped to face out and the inside left facing in.
+  const outer = flip(revolve(rows + 1, (i, a) => at(i / rows, a, 0.017), segs));
+  const inner = revolve(rows + 1, (i, a) => at(i / rows, a, -0.004), segs);
+  const hem = revolve(2, (i, a) => at(1, a, i ? -0.004 : 0.017), segs);
+  return merge([outer, inner, hem, flip(hem.clone())]);
 }
 
-/** The collar's rolled lip: a thin ring of radius 0.5 lying flat at y = 0 (paint it a lighter green). */
+/** The collar's rolled lip round the band's top edge, in the bun's frame (paint it a lighter green). */
 export function collarLip() {
-  const g = new THREE.TorusGeometry(0.5, 0.018, 12, 192).rotateX(Math.PI / 2);
+  const { hi } = COLLAR_BAND;
+  const n = 16, r = 0.016;
+  const g = revolve(n + 1, (i, a) => {
+    const f = (i / n) * TAU;
+    return [hugged(hi) + 0.014 + r * Math.cos(f), hi - 0.5 + r * Math.sin(f)];
+  }, 192);
   g.computeBoundingBox();
   return g;
 }
@@ -188,80 +212,6 @@ export function leafFlap() {
   return merge([top, under]);
 }
 
-/** A thin arched eyebrow tapering to points, width 1. */
-export function browThin() {
-  const c = new THREE.QuadraticBezierCurve3(new THREE.Vector3(-0.5, -0.12, 0), new THREE.Vector3(0, 0.26, 0), new THREE.Vector3(0.5, -0.12, 0));
-  const tube = new THREE.TubeGeometry(c, 40, 0.075, 10, false);
-  const p = tube.attributes.position;
-  for (let i = 0; i <= 40; i++) {
-    const t = i / 40;
-    const k = 0.22 + 0.78 * Math.sin(Math.PI * t) ** 0.6;
-    const o = c.getPoint(t);
-    for (let j = 0; j <= 10; j++) {
-      const v = i * 11 + j;
-      p.setXYZ(v, o.x + (p.getX(v) - o.x) * k, o.y + (p.getY(v) - o.y) * k, o.z + (p.getZ(v) - o.z) * k);
-    }
-  }
-  tube.computeVertexNormals();
-  return tube.center();
-}
-
-/** The cartoon eye the lid fits (models.js eyes.lid): the white's half sizes, as shares of the eye's width. */
-export const LID_EYE = { rx: 0.5, ry: 0.46, rz: 0.25 };
-
-/**
- * A cartoon upper lid for a LID_EYE eye of width 1: a thick dark line over the top, thickest toward the outer
- * corner (+x), ending in a little flick, plus a thin lower line under the outer half; both hug the eye's front.
- * Mirror it with a negative x scale for the other eye.
- */
-export function eyelid() {
-  const { rx, ry, rz } = LID_EYE;
-  const band = (a0, a1, n, w, lift = 0) => {
-    const inner = [], outer = [];
-    for (let i = 0; i <= n; i++) {
-      const t = i / n;
-      const a = a0 + (a1 - a0) * t;
-      const k = w(t);
-      inner.push([(rx - 0.015) * Math.cos(a), (ry - 0.015) * Math.sin(a) + lift]);
-      outer.push([(rx + k) * Math.cos(a), (ry + k) * Math.sin(a) + lift]);
-    }
-    return [inner, outer];
-  };
-  const shape = (inner, outer, tip) => {
-    const s = new THREE.Shape();
-    s.moveTo(...inner[0]);
-    for (const q of inner.slice(1)) s.lineTo(...q);
-    if (tip) s.lineTo(...tip);
-    for (const q of [...outer].reverse()) s.lineTo(...q);
-    s.closePath();
-    return s;
-  };
-  const [ui, uo] = band(Math.PI * 0.93, -0.12, 44, (t) => 0.02 + 0.06 * Math.sin(Math.PI * Math.min(1, 0.1 + t)) ** 0.5 * (0.6 + 0.4 * t));
-  const [li, lo] = band(-0.3, -1.35, 18, (t) => 0.03 * Math.sin(Math.PI * t));
-  const ext = (s, d) => new THREE.ExtrudeGeometry(s, { depth: d, bevelEnabled: true, bevelThickness: 0.01, bevelSize: 0.008, bevelSegments: 2, curveSegments: 8 });
-  const g = mergeGeometries([ext(shape(ui, uo, [rx + 0.15, -0.05]), 0.03), ext(shape(li, lo), 0.015)].map((x) => (x.index ? x.toNonIndexed() : x)));
-  // Wrap onto the front of the eye: lift each point to the eye's surface there.
-  const p = g.attributes.position;
-  for (let i = 0; i < p.count; i++) {
-    const x = p.getX(i), y = p.getY(i);
-    const e = Math.max(0, 1 - (x / (rx + 0.04)) ** 2 - (y / (ry + 0.04)) ** 2);
-    p.setZ(i, p.getZ(i) + rz * Math.sqrt(e) + 0.01);
-  }
-  g.computeVertexNormals();
-  g.computeBoundingBox();
-  return g;
-}
-
-/** A big open grin, width 1: a lip line curving up at the corners, a deep round bottom; puffy, facing +z. */
-export function grinWide() {
-  const s = new THREE.Shape();
-  s.moveTo(-0.5, 0.1);
-  s.quadraticCurveTo(0, -0.12, 0.5, 0.1);
-  s.bezierCurveTo(0.6, -0.58, -0.6, -0.58, -0.5, 0.1);
-  const g = new THREE.ExtrudeGeometry(s, { depth: 0.06, bevelEnabled: true, bevelThickness: 0.045, bevelSize: 0.03, bevelSegments: 6, curveSegments: 32 });
-  return g.center();
-}
-
 /** Shapes this module adds, by catalog name. */
 export const DOUGH_SHAPES = {
   bao_drop: () => baoBody(0, 1),
@@ -271,7 +221,5 @@ export const DOUGH_SHAPES = {
   leaf_collar: leafCollar,
   collar_lip: collarLip,
   leaf_flap: leafFlap,
-  brow_thin: browThin,
-  eyelid,
-  grin_wide: grinWide,
+  ...TOON_SHAPES,
 };

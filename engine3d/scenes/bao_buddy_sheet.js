@@ -21,7 +21,7 @@ export default function baoBuddySheet(d) {
     const x = i * 6;
     d.add({ id: `b${i}`, kind: "critter", species: "bao_buddy", at: [x, 0, 0], rotation: [0, ry, 0], ...(feeling ? { feeling } : {}) });
     if (arm) d.set(`b${i}#arm`, "rotation", arm);
-    d.set("camera", "position", [x, 1.3, 3.1], t - 1).set("camera", "lookAt", [x, 0.62, 0], t - 1).set("camera", "fov", 30, t - 1);
+    d.set("camera", "position", [x, 1.05, 3.1], t - 1).set("camera", "lookAt", [x, 0.6, 0], t - 1).set("camera", "fov", 30, t - 1);
   });
   d.end(16);
 }

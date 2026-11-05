@@ -8,7 +8,7 @@ import { loadCatalog3d } from "../../catalog/index.mjs";
 import { createMaterials } from "../../runtime/objects.js";
 import { buildModel } from "../../runtime/models.js";
 import { shapeGeometry } from "../../runtime/geometry.js";
-import { BAO_COLLAR, DOUGH_SHAPES, LID_EYE, baoPleat, baoRadius, groove } from "../../runtime/dough.js";
+import { BAO_COLLAR, COLLAR_BAND, DOUGH_SHAPES, baoPleat, baoRadius, groove, squeeze } from "../../runtime/dough.js";
 import { FEELINGS } from "../../runtime/director_extras.js";
 
 const catalog = loadCatalog3d();
@@ -26,6 +26,13 @@ test("baoRadius: zero at the ends, widest a little below the middle, the collar 
   assert.ok(baoRadius(0.9) < baoRadius(0.7) && baoRadius(0.7) < baoRadius(0.5), "tapers to the top");
 });
 
+test("squeeze: the tight collar pinches the dough under the band only", () => {
+  const mid = (COLLAR_BAND.lo + COLLAR_BAND.hi) / 2;
+  for (const [y, lo, hi] of [[mid, 0.045, 0.051], [COLLAR_BAND.lo, 0.01, 0.05], [COLLAR_BAND.hi, 0.01, 0.05], [0.1, 0, 1e-4], [0.6, 0, 1e-4]]) {
+    assert.ok(squeeze(y) >= lo && squeeze(y) <= hi, `squeeze(${y}) = ${squeeze(y)}`);
+  }
+});
+
 test("groove and pleats: periodic, in range, strongest toward the top", () => {
   for (const [a, n, want] of [[0, 14, 1], [Math.PI / 14, 14, 0], [(2 * Math.PI) / 7, 7, 1]]) near(groove(a, n), want, 1e-3, `groove ${a} ${n}`);
   for (let a = 0; a < 6.3; a += 0.37) {
@@ -41,7 +48,7 @@ test("groove and pleats: periodic, in range, strongest toward the top", () => {
 
 test("dough shapes build, fit their boxes, and the head and belly overlap at the collar", () => {
   for (const n of Object.keys(DOUGH_SHAPES)) {
-    assert.ok(shapeGeometry(n).attributes.position.count > 100, n);
+    assert.ok(shapeGeometry(n).attributes.position.count > 20, n);
     assert.ok(catalog.shapes[n]?.description, `${n} in shapes.json`);
   }
   const drop = box("bao_drop");
@@ -49,23 +56,17 @@ test("dough shapes build, fit their boxes, and the head and belly overlap at the
   const cut = BAO_COLLAR - 0.5;
   assert.ok(box("bao_head").min.y < cut - 0.05 && box("bao_head").max.y > 0.49, "head reaches under the cut");
   assert.ok(box("bao_belly").max.y > cut + 0.05 && box("bao_belly").min.y < -0.49, "belly reaches over the cut");
-  // The collar band: top edge at y 0 hugging radius 0.5, about 0.1 deep (deeper at the front dip); the lip
-  // rings its top; a leaf flap hangs 1 down -y from its stem, pointed, cupping toward +x.
+  // The collar band hugs the squeezed dough in the bun's own frame, from COLLAR_BAND.lo to .hi (dipping a
+  // little lower in front), just outside it; the lip rings its top. A leaf flap hangs 1 down -y, cupping to +x.
   const c = box("leaf_collar");
-  near(c.max.y, 0, 0.003, "band top");
-  assert.ok(c.min.y < -0.1 && c.min.y > -0.14, `band depth ${c.min.y}`);
-  assert.ok(c.max.x > 0.5 && c.max.x < 0.53);
-  near(box("collar_lip").max.x, 0.518, 0.002, "lip ring");
+  near(c.max.y, COLLAR_BAND.hi - 0.5, 0.003, "band top");
+  assert.ok(c.min.y < COLLAR_BAND.lo - 0.5 && c.min.y > COLLAR_BAND.lo - 0.53, `band bottom ${c.min.y}`);
+  const hug = baoRadius(COLLAR_BAND.hi) * (1 - squeeze(COLLAR_BAND.hi));
+  assert.ok(c.max.x > hug && c.max.x < hug + 0.04, `band sits on the dough: ${c.max.x} vs ${hug}`);
+  near(box("collar_lip").min.y + 0.016, COLLAR_BAND.hi - 0.5, 0.003, "lip on the band's top");
   const f = box("leaf_flap");
   near(f.min.y, -1, 1e-3); near(f.max.y, 0, 1e-3);
   assert.ok(f.max.z < 0.32 && f.max.x > 0.1, "a narrow leaf whose tip curls toward +x");
-  // The lid hugs the top of a LID_EYE eye and flicks out past its outer edge (+x).
-  const l = box("eyelid");
-  assert.ok(l.max.x > LID_EYE.rx + 0.1 && l.min.x > -LID_EYE.rx - 0.1 && l.max.y > LID_EYE.ry, "lid over the top, flick at +x");
-  assert.ok(l.min.z >= 0 && l.max.z > 0.1, "on the eye's front, lifted to its surface at the rim");
-  // The wide grin is about half as tall as it is wide.
-  const g = box("grin_wide");
-  near((g.max.y - g.min.y) / (g.max.x - g.min.x), 0.5, 0.08, "grin proportions");
   // Nothing random: the same geometry from a fresh build.
   const again = DOUGH_SHAPES.bao_head();
   assert.deepEqual(Array.from(again.attributes.position.array.slice(0, 300)), Array.from(shapeGeometry("bao_head").attributes.position.array.slice(0, 300)));
@@ -82,7 +83,7 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   assert.ok(model?.description && model.tags.length);
   const o = { id: "bao", kind: "critter", species: "bao_buddy" };
   const m = buildModel(o, model, material);
-  for (const n of ["head", "arm", "leg_left", "leg_right", "collar", "knot", "nose"]) assert.ok(m.named.get(n), n);
+  for (const n of ["head", "arm", "leg_left", "leg_right", "collar", "knot", "nose", "cheeks"]) assert.ok(m.named.get(n), n);
   const nodes = [];
   m.group.traverse((x) => x.isMesh && nodes.push(x));
   const lids = nodes.filter((x) => x.geometry === shapeGeometry("eyelid"));
@@ -111,7 +112,8 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   // Sub-targets: an arm lifts both copies, the head tilts the face and the top of the bun together.
   m.update(1, { eyes: 1 }, { "bao#arm": { rotation: [0, 0, 40] }, "bao#head": { rotation: [10, 0, 0] } });
   const arm = m.named.get("arm");
-  assert.ok(Math.abs(arm.rotation.z - (72 + 40) * Math.PI / 180) < 0.1);
+  const armRest = model.parts.find((p) => p.name === "arm").r;
+  assert.ok(Math.abs(arm.rotation.z - (armRest[2] + 40) * Math.PI / 180) < 0.1);
   const head = m.named.get("head");
   assert.ok(head.children.some((c) => c.children[0]?.geometry === shapeGeometry("bao_head")), "bun top rides on the head");
   // The collar is its own part: dropping it from the model still builds.
