@@ -53,7 +53,7 @@ export function cacheKey(backend, line) {
     noise: NOISE, style: line.bubble ?? "speech", text: line.spoken, post: POST, ...(line.tone ? { tone: line.tone } : {}),
     // Newer voice settings join the key only when set, so clips of older voices stay cached.
     ...(v.lift != null ? { lift: v.lift } : {}), ...(v.noise != null ? { vnoise: v.noise } : {}), ...(v.noiseW != null ? { vnoiseW: v.noiseW } : {}),
-    ...(line.sing ? { sing: line.sing } : {}) };
+    ...(line.sing ? { sing: line.sing } : {}), ...(line.chant ? { chant: line.chant } : {}) };
   const canon = JSON.stringify(sorted(parts));
   return createHash("sha256").update(canon).digest("hex");
 }

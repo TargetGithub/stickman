@@ -5,7 +5,7 @@
 import { PAINT_KIT } from "./director_extras.js";
 import { canTalk } from "./validate_look.js";
 import { rectCells, withDefaults } from "./teach_layout.js";
-import { countSyllables, parseTune, TUNE_PATCHES } from "./tune.js";
+import { countSyllables, parseTune, TEMPO_RANGE, TUNE_PATCHES } from "./tune.js";
 
 /** shot fit: "exact" uses thin shapes' real heights and every turn. */
 export const FITS = ["approx", "exact"];
@@ -57,11 +57,11 @@ export function checkCast(meta, { err, warn, ids, catalog }) {
 /** A sung line's tune, sing, tunePatch and tuneGain (runtime/tune.js). */
 function checkTune(a, p, { err, warn }) {
   if (a.tune == null) {
-    for (const k of ["sing", "tunePatch", "tuneGain"]) if (a[k] != null) err("E3D_TUNE", `${p}.${k}`, `${k} goes with tune`);
+    for (const k of ["sing", "tunePatch", "tuneGain", "tempo", "rhythm"]) if (a[k] != null) err("E3D_TUNE", `${p}.${k}`, `${k} goes with tune`);
     return;
   }
   const { notes, bad } = typeof a.tune === "string" ? parseTune(a.tune) : { notes: [], bad: [String(a.tune)] };
-  if (bad.length) err("E3D_TUNE", `${p}.tune`, `not notes: ${bad.slice(0, 4).join(", ")} (write note names like C4, F#4, Bb3 between C2 and C7)`);
+  if (bad.length) err("E3D_TUNE", `${p}.tune`, `not notes: ${bad.slice(0, 4).join(", ")} (write note names like C4, F#4, Bb3 between C2 and C7, with :beats 0.25-8 for longer or shorter notes: D4:2)`);
   else if (!notes.length) err("E3D_TUNE", `${p}.tune`, "a tune needs at least one note");
   else {
     const syl = countSyllables(a.text ?? "");
@@ -70,6 +70,8 @@ function checkTune(a, p, { err, warn }) {
   if (a.sing != null && a.sing !== true && a.sing !== false && !isNum(a.sing, 0.3, 1)) err("E3D_RANGE", `${p}.sing`, "sing must be true or 0.3-1");
   if (a.tunePatch != null && !TUNE_PATCHES.includes(a.tunePatch)) err("E3D_TUNE", `${p}.tunePatch`, `tunePatch must be one of ${TUNE_PATCHES.join(", ")}`);
   if (a.tuneGain != null && !isNum(a.tuneGain, 0, 1)) err("E3D_RANGE", `${p}.tuneGain`, "tuneGain must be 0-1");
+  if (a.tempo != null && !isNum(a.tempo, ...TEMPO_RANGE)) err("E3D_RANGE", `${p}.tempo`, `tempo must be ${TEMPO_RANGE.join("-")} beats a minute`);
+  if (a.rhythm != null && typeof a.rhythm !== "boolean") err("E3D_TUNE", `${p}.rhythm`, "rhythm must be true or false");
 }
 
 /**

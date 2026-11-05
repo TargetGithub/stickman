@@ -15,7 +15,8 @@ import { loadCatalogSync } from "../../../catalog/index.js";
 import { REPO } from "./server.mjs";
 import { applyMusicCues, musicTimeline, renderMusicBed } from "./music3d.mjs";
 import { ensurePhonemes } from "../phonemes.mjs";
-import { renderTunes } from "./tune3d.mjs";
+import { renderTunes, tuneSlots } from "./tune3d.mjs";
+import { CHANT_VERSION } from "../../../tools/lib/tts/psola.mjs";
 
 /**
  * Render (or reuse) a clip for every spoken line of a plan.
@@ -34,6 +35,8 @@ export function speakPlan(plan, { log = () => {} } = {}) {
     voice: l.voice === "narrator" ? narratorVoice({}, table) : resolveVoice({ timbre: l.voice, pitch: l.pitch ?? 1.1, speed: (plan.meta?.voiceSpeed ?? 0.95) * (l.speed ?? 1) }, table),
     // A sung line (say tune + sing): the voice is moved onto the notes (piper.mjs shapePitch); part of the cache key.
     ...(l.tune?.sing ? { sing: { notes: l.tune.notes, amount: l.tune.sing } } : {}),
+    // A tuned line is chanted on its beat (tune rhythm): one slot per note, in seconds.
+    ...(l.tune?.rhythm ? { chant: { slots: tuneSlots(l.tune), v: CHANT_VERSION } } : {}),
   }));
   // A timbre that is off in the table (bark keeps 2D babble woofs) has no TTS model, so a 3D line cannot use it.
   const mute = lines.find((l) => !l.voice);

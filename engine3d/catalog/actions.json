@@ -146,10 +146,12 @@
     "pitch": "0.8-1.3 (default 1.1, or the speaker's meta.cast pitch): higher or lower voice; soft moves about 0.6 semitones per 10%",
     "speed": "0.8-1.2 (default 1, or the speaker's meta.cast speed): times meta.voiceSpeed",
     "at": "seconds from the beat start, or \"after\": start when the beat's previous line ends (its measured clip) plus 0.25 s, so two lines in one beat never overlap",
-    "tune": "a melody for a sung line: note names, one per syllable (\"G4 G4 G4 D4 E4 E4 D4\"; \"|\" bar lines ignored). The mix plays each note on a toy glockenspiel as its syllable starts in the clip",
+    "tune": "a melody for a sung line: note names, one per syllable, with :beats for longer or shorter notes (\"G4 G4 G4 D4 E4 E4 D4:2\"; \"|\" bar lines ignored). The voice is chanted on the beat (each syllable placed on its note) and a toy glockenspiel plays each note",
     "sing": "with tune: true (or 0.3-1, how far) to move the voice itself onto the notes (experimental: PSOLA, tools/lib/tts/psola.mjs)",
     "tunePatch": "the instrument for tune: glock (default), bell, music_box, toy, pluck_high, flute, glass",
-    "tuneGain": "the melody level, 0-1 (default 0.5)"
+    "tuneGain": "the melody level, 0-1 (default 0.16, 10-14 dB under the voice)",
+    "tempo": "with tune: beats a minute, 60-180 (default 112)",
+    "rhythm": "with tune: false keeps the voice's own timing (the notes follow its syllables instead of the beat)"
    },
    "description": "Speak a line with Piper TTS; the beat lasts at least as long as the voice. With who, the speaker lip-syncs to the clip's loudness.",
    "tags": [

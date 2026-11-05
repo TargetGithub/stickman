@@ -1,33 +1,43 @@
-// Tunes for sung rhymes. A `say` with `tune` ("G4 G4 G4 D4 E4 E4 D4") gets one melody note per syllable: the
-// audio mix (tools/lib/tune3d.mjs) plays each note on a toy glockenspiel as its syllable starts in the measured
-// clip, so the melody and the words land together whatever speed the voice takes. With `sing` the voice itself
-// is moved onto the notes as well (tools/lib/tts/psola.mjs). Pure: Node and the page.
+// Tunes for sung rhymes. A `say` with `tune` ("G4 G4 G4 D4 E4 E4 D4:2") gets one melody note per syllable, each
+// lasting its beats (":2" = two beats, default 1) at the line's `tempo`. By default the voice is chanted on that
+// beat: each syllable of the clip is cut out, gently stretched and placed at its note's start, with a short rest
+// after it (tools/lib/tts/psola.mjs chant), and a toy glockenspiel plays the note there (tools/lib/tune3d.mjs).
+// `rhythm: false` keeps the voice's own timing and puts the notes on its syllables instead. With `sing` the voice
+// is also moved onto the notes' pitches. Pure: Node and the page.
 
 const STEP = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
 /** Patches a tune may use (tools/lib/instruments.mjs). */
 export const TUNE_PATCHES = ["glock", "bell", "music_box", "toy", "pluck_high", "flute", "glass"];
-export const TUNE_DEFAULTS = { patch: "glock", gain: 0.5 };
+// gain 0.16: the melody sits 10-14 dB under the chanted voice (measured on br01's lines).
+export const TUNE_DEFAULTS = { patch: "glock", gain: 0.16, tempo: 112 };
+export const TEMPO_RANGE = [60, 180];
 
 /**
- * Note names to MIDI numbers: "C4" is 60, "F#4" 66, "Bb3" 58. Bar lines "|" are ignored.
+ * Note names to MIDI numbers: "C4" is 60, "F#4" 66, "Bb3" 58; ":2" after a note makes it two beats long
+ * (0.25-8, default 1). Bar lines "|" are ignored.
  * @param {string} tune
- * @returns {{ notes:number[], bad:string[] }}  bad: tokens that are not notes
+ * @returns {{ notes:number[], beats:number[], bad:string[] }}  bad: tokens that are not notes
  */
 export function parseTune(tune) {
   const notes = [];
+  const beats = [];
   const bad = [];
   for (const tok of String(tune ?? "").trim().split(/\s+/)) {
     if (!tok || tok === "|") continue;
-    const m = /^([A-Ga-g])([#b]?)(\d)$/.exec(tok);
+    const m = /^([A-Ga-g])([#b]?)(\d)(?::(\d+(?:\.\d+)?))?$/.exec(tok);
     if (!m) {
       bad.push(tok);
       continue;
     }
     const midi = 12 * (Number(m[3]) + 1) + STEP[m[1].toUpperCase()] + (m[2] === "#" ? 1 : m[2] === "b" ? -1 : 0);
-    if (midi < 36 || midi > 96) bad.push(tok);
-    else notes.push(midi);
+    const len = m[4] != null ? Number(m[4]) : 1;
+    if (midi < 36 || midi > 96 || len < 0.25 || len > 8) bad.push(tok);
+    else {
+      notes.push(midi);
+      beats.push(len);
+    }
   }
-  return { notes, bad };
+  return { notes, beats, bad };
 }
 
 /**

@@ -27,6 +27,11 @@ export function placeNotes(clip, sr, notes) {
   return notes.map((midi, i) => ({ t: starts[i], dur: Math.max(0.12, Math.min(0.9, (starts[i + 1] ?? len) - starts[i])), midi }));
 }
 
+/** Seconds per note of a tune: its beats at its tempo. */
+export function tuneSlots(tune) {
+  return (tune.beats ?? tune.notes.map(() => 1)).map((b) => (b * 60) / (tune.tempo ?? 112));
+}
+
 /**
  * A mono buffer per tuned line (key `tune:<line id>`), to be mixed in like a sound effect at the line's start.
  * @param {Array<{ id, tune? }>} lines  plan.lines
@@ -38,7 +43,11 @@ export function renderTunes(lines, speech) {
   for (const l of lines) {
     if (!l.tune?.notes?.length || !speech[l.id]) continue;
     const w = readWav(speech[l.id].file);
-    const placed = placeNotes(w.samples, w.sampleRate, l.tune.notes);
+    // A chanted line's syllables sit on the beat, so its notes do too; otherwise they follow the syllables.
+    let t = 0;
+    const placed = l.tune.rhythm
+      ? tuneSlots(l.tune).map((d, i) => { const n = { t, dur: Math.min(0.9, d), midi: l.tune.notes[i] }; t += d; return n; })
+      : placeNotes(w.samples, w.sampleRate, l.tune.notes);
     const end = placed.reduce((m, n) => Math.max(m, n.t + n.dur), 0) + 1.5;
     const st = new Float32Array(Math.ceil(end * SR) * 2);
     for (const n of placed) renderNote(st, { inst: l.tune.patch, t: n.t, dur: n.dur, midi: n.midi, vel: 0.8, pan: 0 });

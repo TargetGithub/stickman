@@ -829,7 +829,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": 0.15,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "clip",
@@ -1244,7 +1244,7 @@
    "beats": [
     {
      "id": "cow_s1",
-     "dur": 2.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -1252,7 +1252,7 @@
        "text": "Old MacDonald had a farm,",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "clip",
@@ -1274,7 +1274,7 @@
     },
     {
      "id": "cow_s2",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -1282,25 +1282,48 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       }
      ]
     },
     {
      "id": "cow_s3",
-     "dur": 2.6,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -1308,7 +1331,7 @@
        "text": "And on that farm he had a cow,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+       "tune": "D4:0.5 G4:0.5 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "shot",
@@ -1327,7 +1350,7 @@
     },
     {
      "id": "cow_s4",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -1335,31 +1358,54 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "feel",
        "target": "cow",
        "feeling": "happy",
-       "at": 1.4
+       "at": 2.242857142857143
       }
      ]
     },
     {
      "id": "cow_s5",
-     "dur": 3,
+     "dur": 5.76,
      "do": [
       {
        "do": "say",
@@ -1367,7 +1413,7 @@
        "text": "With a moo moo here, and a moo moo there,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+       "tune": "D4:0.5 D4:0.5 G4 G4 G4:2 D4:0.5 D4:0.5 G4 G4 G4:2"
       },
       {
        "do": "pop",
@@ -1390,14 +1436,22 @@
         -35,
         0
        ],
-       "at": 0.4,
-       "dur": 0.5
+       "at": 0.3678571428571429,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 0.55,
-       "height": 0.3
+       "at": 0.6357142857142857,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 1.1714285714285715,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "turn",
@@ -1407,14 +1461,22 @@
         35,
         0
        ],
-       "at": 1.6,
-       "dur": 0.5
+       "at": 2.7785714285714285,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 1.75,
-       "height": 0.3
+       "at": 3.3142857142857145,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 3.85,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "orbit",
@@ -1430,7 +1492,7 @@
     },
     {
      "id": "cow_s6",
-     "dur": 3.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -1438,7 +1500,7 @@
        "text": "Here a moo, there a moo, everywhere a moo moo!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+       "tune": "G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4:0.5 G4:0.5 G4 G4"
       },
       {
        "do": "turn",
@@ -1454,20 +1516,36 @@
       {
        "do": "hop",
        "target": "cow",
-       "at": 0.4,
-       "height": 0.25
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 1,
-       "height": 0.25
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 3.3142857142857145,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "cow",
+       "at": 3.85,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "spin",
        "target": "cow",
-       "at": 1.6,
-       "dur": 0.9
+       "at": 2.242857142857143,
+       "dur": 1
       },
       {
        "do": "wiggle",
@@ -1480,7 +1558,7 @@
     },
     {
      "id": "cow_s7",
-     "dur": 3.2,
+     "dur": 7.9,
      "do": [
       {
        "do": "say",
@@ -1488,7 +1566,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hide",
@@ -1521,12 +1599,12 @@
        "do": "clip",
        "target": "robo",
        "clip": "Jump",
-       "at": 2
+       "at": 6.260714285714285
       },
       {
        "do": "hop",
        "target": "cow",
-       "at": 2.2,
+       "at": 6.5285714285714285,
        "height": 0.4
       }
      ]
@@ -1983,7 +2061,7 @@
    "beats": [
     {
      "id": "duck_s1",
-     "dur": 2.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -1991,7 +2069,7 @@
        "text": "Old MacDonald had a farm,",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "clip",
@@ -2013,7 +2091,7 @@
     },
     {
      "id": "duck_s2",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -2021,25 +2099,48 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       }
      ]
     },
     {
      "id": "duck_s3",
-     "dur": 2.6,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -2047,7 +2148,7 @@
        "text": "And on that farm he had a duck,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+       "tune": "D4:0.5 G4:0.5 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "shot",
@@ -2066,7 +2167,7 @@
     },
     {
      "id": "duck_s4",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -2074,31 +2175,54 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "feel",
        "target": "duck",
        "feeling": "happy",
-       "at": 1.4
+       "at": 2.242857142857143
       }
      ]
     },
     {
      "id": "duck_s5",
-     "dur": 3,
+     "dur": 5.76,
      "do": [
       {
        "do": "say",
@@ -2106,7 +2230,7 @@
        "text": "With a quack quack here, and a quack quack there,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+       "tune": "D4:0.5 D4:0.5 G4 G4 G4:2 D4:0.5 D4:0.5 G4 G4 G4:2"
       },
       {
        "do": "pop",
@@ -2129,14 +2253,22 @@
         -35,
         0
        ],
-       "at": 0.4,
-       "dur": 0.5
+       "at": 0.3678571428571429,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 0.55,
-       "height": 0.3
+       "at": 0.6357142857142857,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1.1714285714285715,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "turn",
@@ -2146,14 +2278,22 @@
         35,
         0
        ],
-       "at": 1.6,
-       "dur": 0.5
+       "at": 2.7785714285714285,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 1.75,
-       "height": 0.3
+       "at": 3.3142857142857145,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 3.85,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "orbit",
@@ -2169,7 +2309,7 @@
     },
     {
      "id": "duck_s6",
-     "dur": 3.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -2177,7 +2317,7 @@
        "text": "Here a quack, there a quack, everywhere a quack quack!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+       "tune": "G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4:0.5 G4:0.5 G4 G4"
       },
       {
        "do": "turn",
@@ -2193,20 +2333,36 @@
       {
        "do": "hop",
        "target": "duck",
-       "at": 0.4,
-       "height": 0.25
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 1,
-       "height": 0.25
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 3.3142857142857145,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 3.85,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "spin",
        "target": "duck",
-       "at": 1.6,
-       "dur": 0.9
+       "at": 2.242857142857143,
+       "dur": 1
       },
       {
        "do": "wiggle",
@@ -2219,7 +2375,7 @@
     },
     {
      "id": "duck_s7",
-     "dur": 3.2,
+     "dur": 7.9,
      "do": [
       {
        "do": "say",
@@ -2227,7 +2383,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hide",
@@ -2260,12 +2416,12 @@
        "do": "clip",
        "target": "robo",
        "clip": "Jump",
-       "at": 2
+       "at": 6.260714285714285
       },
       {
        "do": "hop",
        "target": "duck",
-       "at": 2.2,
+       "at": 6.5285714285714285,
        "height": 0.4
       }
      ]
@@ -2722,7 +2878,7 @@
    "beats": [
     {
      "id": "pig_s1",
-     "dur": 2.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -2730,7 +2886,7 @@
        "text": "Old MacDonald had a farm,",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "clip",
@@ -2752,7 +2908,7 @@
     },
     {
      "id": "pig_s2",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -2760,25 +2916,48 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       }
      ]
     },
     {
      "id": "pig_s3",
-     "dur": 2.6,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -2786,7 +2965,7 @@
        "text": "And on that farm he had a pig,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+       "tune": "D4:0.5 G4:0.5 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "shot",
@@ -2805,7 +2984,7 @@
     },
     {
      "id": "pig_s4",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -2813,31 +2992,54 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "feel",
        "target": "pig",
        "feeling": "happy",
-       "at": 1.4
+       "at": 2.242857142857143
       }
      ]
     },
     {
      "id": "pig_s5",
-     "dur": 3,
+     "dur": 5.76,
      "do": [
       {
        "do": "say",
@@ -2845,7 +3047,7 @@
        "text": "With an oink oink here, and an oink oink there,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+       "tune": "D4:0.5 D4:0.5 G4 G4 G4:2 D4:0.5 D4:0.5 G4 G4 G4:2"
       },
       {
        "do": "pop",
@@ -2868,14 +3070,22 @@
         -35,
         0
        ],
-       "at": 0.4,
-       "dur": 0.5
+       "at": 0.3678571428571429,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 0.55,
-       "height": 0.3
+       "at": 0.6357142857142857,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.1714285714285715,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "turn",
@@ -2885,14 +3095,22 @@
         35,
         0
        ],
-       "at": 1.6,
-       "dur": 0.5
+       "at": 2.7785714285714285,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 1.75,
-       "height": 0.3
+       "at": 3.3142857142857145,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 3.85,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "orbit",
@@ -2908,7 +3126,7 @@
     },
     {
      "id": "pig_s6",
-     "dur": 3.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -2916,7 +3134,7 @@
        "text": "Here an oink, there an oink, everywhere an oink oink!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+       "tune": "G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4:0.5 G4:0.5 G4 G4"
       },
       {
        "do": "turn",
@@ -2932,20 +3150,36 @@
       {
        "do": "hop",
        "target": "pig",
-       "at": 0.4,
-       "height": 0.25
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 1,
-       "height": 0.25
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 3.3142857142857145,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 3.85,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "spin",
        "target": "pig",
-       "at": 1.6,
-       "dur": 0.9
+       "at": 2.242857142857143,
+       "dur": 1
       },
       {
        "do": "wiggle",
@@ -2958,7 +3192,7 @@
     },
     {
      "id": "pig_s7",
-     "dur": 3.2,
+     "dur": 7.9,
      "do": [
       {
        "do": "say",
@@ -2966,7 +3200,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hide",
@@ -2999,12 +3233,12 @@
        "do": "clip",
        "target": "robo",
        "clip": "Jump",
-       "at": 2
+       "at": 6.260714285714285
       },
       {
        "do": "hop",
        "target": "pig",
-       "at": 2.2,
+       "at": 6.5285714285714285,
        "height": 0.4
       }
      ]
@@ -3461,7 +3695,7 @@
    "beats": [
     {
      "id": "sheep_s1",
-     "dur": 2.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -3469,7 +3703,7 @@
        "text": "Old MacDonald had a farm,",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "clip",
@@ -3491,7 +3725,7 @@
     },
     {
      "id": "sheep_s2",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -3499,25 +3733,48 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       }
      ]
     },
     {
      "id": "sheep_s3",
-     "dur": 2.6,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -3525,7 +3782,7 @@
        "text": "And on that farm he had a sheep,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+       "tune": "D4:0.5 G4:0.5 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "shot",
@@ -3544,7 +3801,7 @@
     },
     {
      "id": "sheep_s4",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -3552,31 +3809,54 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "feel",
        "target": "sheep",
        "feeling": "happy",
-       "at": 1.4
+       "at": 2.242857142857143
       }
      ]
     },
     {
      "id": "sheep_s5",
-     "dur": 3,
+     "dur": 5.76,
      "do": [
       {
        "do": "say",
@@ -3584,7 +3864,7 @@
        "text": "With a baa baa here, and a baa baa there,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+       "tune": "D4:0.5 D4:0.5 G4 G4 G4:2 D4:0.5 D4:0.5 G4 G4 G4:2"
       },
       {
        "do": "pop",
@@ -3607,14 +3887,22 @@
         -35,
         0
        ],
-       "at": 0.4,
-       "dur": 0.5
+       "at": 0.3678571428571429,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 0.55,
-       "height": 0.3
+       "at": 0.6357142857142857,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 1.1714285714285715,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "turn",
@@ -3624,14 +3912,22 @@
         35,
         0
        ],
-       "at": 1.6,
-       "dur": 0.5
+       "at": 2.7785714285714285,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 1.75,
-       "height": 0.3
+       "at": 3.3142857142857145,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 3.85,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "orbit",
@@ -3647,7 +3943,7 @@
     },
     {
      "id": "sheep_s6",
-     "dur": 3.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -3655,7 +3951,7 @@
        "text": "Here a baa, there a baa, everywhere a baa baa!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+       "tune": "G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4:0.5 G4:0.5 G4 G4"
       },
       {
        "do": "turn",
@@ -3671,20 +3967,36 @@
       {
        "do": "hop",
        "target": "sheep",
-       "at": 0.4,
-       "height": 0.25
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 1,
-       "height": 0.25
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 3.3142857142857145,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 3.85,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "spin",
        "target": "sheep",
-       "at": 1.6,
-       "dur": 0.9
+       "at": 2.242857142857143,
+       "dur": 1
       },
       {
        "do": "wiggle",
@@ -3697,7 +4009,7 @@
     },
     {
      "id": "sheep_s7",
-     "dur": 3.2,
+     "dur": 7.9,
      "do": [
       {
        "do": "say",
@@ -3705,7 +4017,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hide",
@@ -3738,12 +4050,12 @@
        "do": "clip",
        "target": "robo",
        "clip": "Jump",
-       "at": 2
+       "at": 6.260714285714285
       },
       {
        "do": "hop",
        "target": "sheep",
-       "at": 2.2,
+       "at": 6.5285714285714285,
        "height": 0.4
       }
      ]
@@ -4200,7 +4512,7 @@
    "beats": [
     {
      "id": "dog_s1",
-     "dur": 2.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -4208,7 +4520,7 @@
        "text": "Old MacDonald had a farm,",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "clip",
@@ -4230,7 +4542,7 @@
     },
     {
      "id": "dog_s2",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -4238,25 +4550,48 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       }
      ]
     },
     {
      "id": "dog_s3",
-     "dur": 2.6,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -4264,7 +4599,7 @@
        "text": "And on that farm he had a dog,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+       "tune": "D4:0.5 G4:0.5 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "shot",
@@ -4283,7 +4618,7 @@
     },
     {
      "id": "dog_s4",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -4291,31 +4626,54 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "feel",
        "target": "dog",
        "feeling": "happy",
-       "at": 1.4
+       "at": 2.242857142857143
       }
      ]
     },
     {
      "id": "dog_s5",
-     "dur": 3,
+     "dur": 5.76,
      "do": [
       {
        "do": "say",
@@ -4323,7 +4681,7 @@
        "text": "With a woof woof here, and a woof woof there,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+       "tune": "D4:0.5 D4:0.5 G4 G4 G4:2 D4:0.5 D4:0.5 G4 G4 G4:2"
       },
       {
        "do": "pop",
@@ -4346,14 +4704,22 @@
         -35,
         0
        ],
-       "at": 0.4,
-       "dur": 0.5
+       "at": 0.3678571428571429,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 0.55,
-       "height": 0.3
+       "at": 0.6357142857142857,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.1714285714285715,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "turn",
@@ -4363,14 +4729,22 @@
         35,
         0
        ],
-       "at": 1.6,
-       "dur": 0.5
+       "at": 2.7785714285714285,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 1.75,
-       "height": 0.3
+       "at": 3.3142857142857145,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 3.85,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "orbit",
@@ -4386,7 +4760,7 @@
     },
     {
      "id": "dog_s6",
-     "dur": 3.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -4394,7 +4768,7 @@
        "text": "Here a woof, there a woof, everywhere a woof woof!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+       "tune": "G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4:0.5 G4:0.5 G4 G4"
       },
       {
        "do": "turn",
@@ -4410,20 +4784,36 @@
       {
        "do": "hop",
        "target": "dog",
-       "at": 0.4,
-       "height": 0.25
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 1,
-       "height": 0.25
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 3.3142857142857145,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 3.85,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "spin",
        "target": "dog",
-       "at": 1.6,
-       "dur": 0.9
+       "at": 2.242857142857143,
+       "dur": 1
       },
       {
        "do": "wiggle",
@@ -4436,7 +4826,7 @@
     },
     {
      "id": "dog_s7",
-     "dur": 3.2,
+     "dur": 7.9,
      "do": [
       {
        "do": "say",
@@ -4444,7 +4834,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hide",
@@ -4477,12 +4867,12 @@
        "do": "clip",
        "target": "robo",
        "clip": "Jump",
-       "at": 2
+       "at": 6.260714285714285
       },
       {
        "do": "hop",
        "target": "dog",
-       "at": 2.2,
+       "at": 6.5285714285714285,
        "height": 0.4
       }
      ]
@@ -5005,7 +5395,7 @@
    "beats": [
     {
      "id": "horse_s1",
-     "dur": 2.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -5013,7 +5403,7 @@
        "text": "Old MacDonald had a farm,",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "clip",
@@ -5035,7 +5425,7 @@
     },
     {
      "id": "horse_s2",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -5043,25 +5433,48 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       }
      ]
     },
     {
      "id": "horse_s3",
-     "dur": 2.6,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -5069,7 +5482,7 @@
        "text": "And on that farm he had a horse,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 G4 G4 G4 D4 E4 E4 D4"
+       "tune": "D4:0.5 G4:0.5 G4 G4 D4 E4 E4 D4:2"
       },
       {
        "do": "shot",
@@ -5088,7 +5501,7 @@
     },
     {
      "id": "horse_s4",
-     "dur": 1.8,
+     "dur": 3.61,
      "do": [
       {
        "do": "say",
@@ -5096,31 +5509,54 @@
        "text": "E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "B4 B4 A4 A4 G4"
+       "tune": "B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 0.3,
-       "height": 0.35
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 1,
-       "height": 0.35
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.1714285714285715,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 2.242857142857143,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "feel",
        "target": "horse",
        "feeling": "happy",
-       "at": 1.4
+       "at": 2.242857142857143
       }
      ]
     },
     {
      "id": "horse_s5",
-     "dur": 3,
+     "dur": 5.76,
      "do": [
       {
        "do": "say",
@@ -5128,7 +5564,7 @@
        "text": "With a neigh neigh here, and a neigh neigh there,",
        "at": 0.1,
        "caption": true,
-       "tune": "D4 D4 G4 G4 G4 D4 D4 G4 G4 G4"
+       "tune": "D4:0.5 D4:0.5 G4 G4 G4:2 D4:0.5 D4:0.5 G4 G4 G4:2"
       },
       {
        "do": "pop",
@@ -5151,14 +5587,22 @@
         -35,
         0
        ],
-       "at": 0.4,
-       "dur": 0.5
+       "at": 0.3678571428571429,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 0.55,
-       "height": 0.3
+       "at": 0.6357142857142857,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 1.1714285714285715,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "turn",
@@ -5168,14 +5612,22 @@
         35,
         0
        ],
-       "at": 1.6,
-       "dur": 0.5
+       "at": 2.7785714285714285,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 1.75,
-       "height": 0.3
+       "at": 3.3142857142857145,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 3.85,
+       "height": 0.3,
+       "dur": 0.4
       },
       {
        "do": "orbit",
@@ -5191,7 +5643,7 @@
     },
     {
      "id": "horse_s6",
-     "dur": 3.4,
+     "dur": 4.69,
      "do": [
       {
        "do": "say",
@@ -5199,7 +5651,7 @@
        "text": "Here a neigh, there a neigh, everywhere a neigh neigh!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4"
+       "tune": "G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4 G4:0.5 G4:0.5 G4:0.5 G4:0.5 G4 G4"
       },
       {
        "do": "turn",
@@ -5215,20 +5667,36 @@
       {
        "do": "hop",
        "target": "horse",
-       "at": 0.4,
-       "height": 0.25
+       "at": 0.6357142857142857,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 1,
-       "height": 0.25
+       "at": 1.7071428571428573,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 3.3142857142857145,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 3.85,
+       "height": 0.25,
+       "dur": 0.4
       },
       {
        "do": "spin",
        "target": "horse",
-       "at": 1.6,
-       "dur": 0.9
+       "at": 2.242857142857143,
+       "dur": 1
       },
       {
        "do": "wiggle",
@@ -5241,7 +5709,7 @@
     },
     {
      "id": "horse_s7",
-     "dur": 3.2,
+     "dur": 7.9,
      "do": [
       {
        "do": "say",
@@ -5249,7 +5717,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": 0.1,
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "hide",
@@ -5282,12 +5750,12 @@
        "do": "clip",
        "target": "robo",
        "clip": "Jump",
-       "at": 2
+       "at": 6.260714285714285
       },
       {
        "do": "hop",
        "target": "horse",
-       "at": 2.2,
+       "at": 6.5285714285714285,
        "height": 0.4
       }
      ]
@@ -6219,7 +6687,7 @@
        "text": "Old MacDonald had a farm, E-I-E-I-O!",
        "at": "after",
        "caption": true,
-       "tune": "G4 G4 G4 D4 E4 E4 D4 B4 B4 A4 A4 G4"
+       "tune": "G4 G4 G4 D4 E4 E4 D4:2 B4 B4 A4 A4 G4:2"
       },
       {
        "do": "camera",

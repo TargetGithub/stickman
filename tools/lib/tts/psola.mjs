@@ -196,21 +196,25 @@ export function syllables(x, sr, track = trackPitch(x, sr), count = 0) {
   let last = n - 1;
   while (last > first && !loud(last)) last--;
   if (first >= last) return [];
-  // Candidate cuts: every local dip, scored by how far below its neighbouring peaks it is; quiet gaps score highest.
+  // Candidate cuts: one in the middle of every silent gap (scored highest, longer gaps first), then every local dip
+  // in the voice, scored by how far below its neighbouring peaks it is (unvoiced dips, at s, f, t, score a bit more).
   const cands = [];
   for (let f = first + 6; f < last - 6; f++) {
+    if (!loud(f)) {
+      let g = f;
+      while (g < last && !loud(g)) g++;
+      cands.push({ f: Math.round((f + g) / 2), score: 1000 + (g - f) });
+      f = g;
+      continue;
+    }
     if (!(sm[f] <= sm[f - 1] && sm[f] < sm[f + 1])) continue;
-    let lp = 0;
-    for (let g = f; g >= first; g--) lp = Math.max(lp, sm[g]);
-    let rp = 0;
-    for (let g = f; g <= last; g++) rp = Math.max(rp, sm[g]);
     // Only the nearest peaks count: walk out to the next rise on each side.
     let l = f;
     while (l > first && sm[l - 1] >= sm[l]) l--;
     let r = f;
     while (r < last && sm[r + 1] >= sm[r]) r++;
     const depth = Math.min(sm[l], sm[r]) / Math.max(1e-6, sm[f]);
-    cands.push({ f, score: loud(f) && track.f0[f] ? depth : 1000 + depth });
+    cands.push({ f, score: track.f0[f] ? depth : depth * 1.5 });
   }
   let cuts;
   if (count > 0) cuts = cands.sort((a, b) => b.score - a.score).slice(0, count - 1);
@@ -259,4 +263,102 @@ export function singContour(syl, midi, { shift = 0, amount = 1 } = {}) {
 export function medianPitch(track) {
   const v = [...track.f0].filter((f) => f > 0).sort((a, b) => a - b);
   return v.length ? v[v.length >> 1] : 0;
+}
+
+/**
+ * Change a clip's length by `factor` keeping its pitch and formants (TD-PSOLA: grains one pitch period apart are
+ * repeated or skipped). Unvoiced stretches use 5 ms grains.
+ * @returns {Float32Array}  round(x.length × factor) samples
+ */
+export function stretch(x, sr, factor, track = trackPitch(x, sr)) {
+  const N = Math.max(1, Math.round(x.length * factor));
+  const marks = pitchMarks(x, sr, track);
+  const out = new Float32Array(N);
+  const wsum = new Float32Array(N);
+  if (marks.length < 2) {
+    for (let i = 0; i < N; i++) out[i] = x[Math.min(x.length - 1, Math.floor(i / factor))];
+    return out;
+  }
+  let to = 0;
+  let k = 0;
+  while (to < N) {
+    const ti = to / factor;
+    while (k + 1 < marks.length && Math.abs(marks[k + 1] - ti) <= Math.abs(marks[k] - ti)) k++;
+    const m = marks[k];
+    const P = Math.max(16, k + 1 < marks.length ? marks[k + 1] - m : m - marks[k - 1]);
+    const L = Math.round(P);
+    const c = Math.round(to);
+    for (let j = -L; j <= L; j++) {
+      const si = Math.round(m) + j;
+      const oi = c + j;
+      if (si < 0 || si >= x.length || oi < 0 || oi >= N) continue;
+      const w = 0.5 + 0.5 * Math.cos((Math.PI * j) / (L + 1));
+      out[oi] += w * x[si];
+      wsum[oi] += w;
+    }
+    to += P;
+  }
+  for (let i = 0; i < N; i++) out[i] = wsum[i] > 0.15 ? out[i] / Math.max(1, wsum[i]) : out[i];
+  return out;
+}
+
+/** Bump when chant or syllables change how a chanted clip sounds: it is part of the speech cache key. */
+export const CHANT_VERSION = 2;
+
+/**
+ * Chant a spoken clip on a beat: the clip is cut into one syllable per slot (syllables(..., count)), each syllable
+ * is stretched toward `fill` of its slot (between `minStretch` and `maxStretch`, so words stay natural) and placed
+ * at its slot's start, with a short fade at both ends; the rest of the slot is a rest. The last syllable keeps its
+ * stretched length even past its slot.
+ * @param {number[]} slots  seconds per syllable (beats × 60 / tempo)
+ * @returns {Float32Array}
+ */
+export function chant(x, sr, slots, { fill = 0.8, minStretch = 0.75, maxStretch = 1.6, track = trackPitch(x, sr) } = {}) {
+  const segs = syllables(x, sr, track, slots.length);
+  if (segs.length !== slots.length) return Float32Array.from(x);
+  const pieces = segs.map((s, i) => {
+    const a = Math.max(0, Math.round(s.start * sr));
+    const b = Math.min(x.length, Math.round((i + 1 < segs.length ? segs[i + 1].start : s.end + 0.04) * sr));
+    const piece = trimQuiet(x.slice(a, b), sr);
+    const len = piece.length / sr || 1e-3;
+    const f = Math.max(minStretch, Math.min(maxStretch, (slots[i] * fill) / len));
+    return stretch(piece, sr, f);
+  });
+  const starts = [];
+  let t = 0;
+  for (const s of slots) {
+    starts.push(Math.round(t * sr));
+    t += s;
+  }
+  const total = Math.max(Math.round(t * sr), starts[starts.length - 1] + pieces[pieces.length - 1].length);
+  const out = new Float32Array(total);
+  const fade = Math.round(0.008 * sr);
+  pieces.forEach((p, i) => {
+    // Keep each syllable inside its slot (plus 40 ms), except the last.
+    const room = i + 1 < pieces.length ? Math.round((slots[i] + 0.04) * sr) : p.length;
+    const n = Math.min(p.length, room);
+    for (let j = 0; j < n; j++) {
+      const g = Math.min(1, j / fade, (n - 1 - j) / fade);
+      out[starts[i] + j] += p[j] * g;
+    }
+  });
+  return out;
+}
+
+/** A syllable without the pause before or after it (10 ms windows under 10% of its loudest, 10 ms kept). */
+function trimQuiet(p, sr) {
+  const W = Math.round(0.01 * sr);
+  const n = Math.floor(p.length / W);
+  if (n < 3) return p;
+  const e = Array.from({ length: n }, (_, k) => {
+    let q = 0;
+    for (let i = k * W; i < (k + 1) * W; i++) q += p[i] * p[i];
+    return Math.sqrt(q / W);
+  });
+  const top = Math.max(...e);
+  let a = 0;
+  while (a < n - 1 && e[a] < top * 0.1) a++;
+  let b = n - 1;
+  while (b > a && e[b] < top * 0.1) b--;
+  return p.slice(Math.max(0, (a - 1) * W), Math.min(p.length, (b + 2) * W));
 }

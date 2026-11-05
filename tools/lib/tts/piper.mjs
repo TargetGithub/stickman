@@ -8,7 +8,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { renderSettings } from "./synth.mjs";
 import { readWav, writeWav } from "../wav.mjs";
-import { medianPitch, psola, singContour, syllables, trackPitch } from "./psola.mjs";
+import { chant, medianPitch, psola, singContour, syllables, trackPitch } from "./psola.mjs";
 
 export const PIPER_DIR = fileURLToPath(new URL("../../bin/piper/", import.meta.url));
 export const MODELS_DIR = fileURLToPath(new URL("../../../assets/speech/models/", import.meta.url));
@@ -103,7 +103,7 @@ export function createPiperBackend({ bin = findPiper(), modelsDir = MODELS_DIR }
             const voice = { ...j.line.voice, pitch: renderSettings(j.line).pitch };
             const ff = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", raw, "-af", postFilters(inputRate, voice, j.line.bubble, j.line.tone), "-ac", "1", "-c:a", "pcm_s16le", j.out]);
             if (ff.status !== 0) throw new Error(`ffmpeg failed on a speech clip: ${String(ff.stderr).trim()}`);
-            if (voice.lift || j.line.sing) shapePitch(j.out, voice.lift ?? 0, j.line.sing);
+            if (voice.lift || j.line.sing || j.line.chant) shapePitch(j.out, voice.lift ?? 0, j.line.sing, j.line.chant);
           } finally {
             rmSync(raw, { force: true });
           }
@@ -120,13 +120,15 @@ function sampleRateOf(config) {
 }
 
 /**
- * Formant-keeping pitch work on a finished clip, in place (psola.mjs): `lift` semitones up (the toddler voice), or
+ * Formant-keeping pitch and timing work on a finished clip, in place (psola.mjs): with `rhythm` the syllables are
+ * first chanted onto their beat slots; then `lift` semitones up (the toddler voice), or
  * with `sing` ({ notes: midi[], amount?, shift? }) the voice follows the melody, one note per syllable. The tune is
  * moved by whole octaves to sit nearest the (lifted) voice, plus `shift` semitones.
  */
-export function shapePitch(file, lift, sing) {
+export function shapePitch(file, lift, sing, rhythm) {
   const w = readWav(file);
-  const x = w.samples;
+  // A chanted line (rhythm: { slots } seconds per syllable) is first laid onto its beat, then pitched.
+  const x = rhythm?.slots?.length ? chant(w.samples, w.sampleRate, rhythm.slots) : w.samples;
   const track = trackPitch(x, w.sampleRate);
   let y;
   if (sing?.notes?.length) {
