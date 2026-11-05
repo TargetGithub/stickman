@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  SCOPES, audienceGrade, buildAuthUrl, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
+  SCOPES, audienceGrade, buildAuthUrl, choosePlaylist, buildInsertBody, buildStatusUpdate, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
   humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, tagsLength, validateMeta,
 } from "../../tools/lib/youtube.mjs";
 
@@ -75,7 +75,7 @@ test("buildInsertBody: made for kids, Education, private by default", () => {
   const b = buildInsertBody({ title: "T", description: "D", tags: ["a"] });
   assert.deepEqual(b, {
     snippet: { title: "T", description: "D", tags: ["a"], categoryId: "27", defaultLanguage: "en", defaultAudioLanguage: "en" },
-    status: { privacyStatus: "private", selfDeclaredMadeForKids: true, embeddable: true, license: "youtube" },
+    status: { privacyStatus: "private", selfDeclaredMadeForKids: true, containsSyntheticMedia: false, embeddable: true, license: "youtube" },
   });
   assert.equal(buildInsertBody({ title: "T", description: "", tags: [] }, { privacy: "unlisted" }).status.privacyStatus, "unlisted");
   const s = buildInsertBody({ title: "T", description: "", tags: [] }, { privacy: "public", publishAt: "2026-12-01T00:00:00.000Z" }).status;
@@ -152,4 +152,11 @@ test("choosePlaylist: Toy Box grade playlists, explicit wins, babies have none",
   for (const [o, want] of table) assert.deepEqual(choosePlaylist(o), want, JSON.stringify(o));
   assert.equal(audienceGrade("Made for kids (Grade2). Length 1:00."), "grade2");
   assert.equal(audienceGrade(null), null);
+});
+
+test("buildStatusUpdate keeps privacy and schedule, sets made for kids and no altered content", () => {
+  assert.deepEqual(buildStatusUpdate("v1", { privacyStatus: "private", embeddable: true, license: "youtube", publicStatsViewable: true, selfDeclaredMadeForKids: false }),
+    { id: "v1", status: { privacyStatus: "private", selfDeclaredMadeForKids: true, containsSyntheticMedia: false, embeddable: true, license: "youtube", publicStatsViewable: true } });
+  assert.equal(buildStatusUpdate("v1", { privacyStatus: "private", publishAt: "2026-12-01T00:00:00Z" }).status.publishAt, "2026-12-01T00:00:00Z");
+  assert.equal(buildInsertBody({ title: "T", description: "", tags: [] }).status.containsSyntheticMedia, false);
 });

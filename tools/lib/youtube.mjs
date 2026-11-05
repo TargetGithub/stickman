@@ -3,7 +3,7 @@
 // tests (tests/unit/youtube_upload.test.js) cover everything that decides what gets sent.
 
 /** API quota costs in units (YouTube Data API v3 quota calculator). The default project quota is 10,000 a day. */
-export const QUOTA = { "videos.insert": 1600, "thumbnails.set": 50, "playlistItems.insert": 50, "playlists.list": 1, "channels.list": 1, "videos.list": 1 };
+export const QUOTA = { "videos.insert": 1600, "thumbnails.set": 50, "playlistItems.insert": 50, "playlists.list": 1, "channels.list": 1, "videos.list": 1, "videos.update": 50 };
 export const DAILY_QUOTA = 10000;
 export const CATEGORY_EDUCATION = "27";
 export const PRIVACY = ["private", "unlisted", "public"];
@@ -82,6 +82,9 @@ export function parsePublishAt(s, now) {
 
 /**
  * The videos.insert resource (part=snippet,status). Every upload is Made for kids, category Education.
+ * "Altered or synthetic content" is No (containsSyntheticMedia false). Paid promotion is not writable through
+ * the API and defaults to No. Studio's Education settings (Type: Lecture, Level: Elementary school) have no API
+ * field at all, so they are set by hand in YouTube Studio (docs/YOUTUBE_UPLOAD.md).
  * A scheduled video must be private until publishAt, so publishAt forces privacyStatus "private".
  * @param {{ title:string, description:string, tags:string[] }} meta
  * @param {{ privacy?:string, publishAt?:string|null, language?:string }} [o]
@@ -92,7 +95,23 @@ export function buildInsertBody(meta, o = {}) {
   const lang = o.language ?? "en";
   return {
     snippet: { title: meta.title, description: meta.description, tags: meta.tags, categoryId: CATEGORY_EDUCATION, defaultLanguage: lang, defaultAudioLanguage: lang },
-    status: { privacyStatus: privacy, selfDeclaredMadeForKids: true, embeddable: true, license: "youtube", ...(o.publishAt ? { publishAt: o.publishAt } : {}) },
+    status: { privacyStatus: privacy, selfDeclaredMadeForKids: true, containsSyntheticMedia: false, embeddable: true, license: "youtube", ...(o.publishAt ? { publishAt: o.publishAt } : {}) },
+  };
+}
+
+/**
+ * The videos.update status for an existing video: keep its privacy and schedule, and set made for kids and
+ * no altered content. videos.update clears status fields that are left out, so everything is sent.
+ * @param {object} current  the video's status from videos.list
+ */
+export function buildStatusUpdate(id, current) {
+  return {
+    id,
+    status: {
+      privacyStatus: current.privacyStatus, selfDeclaredMadeForKids: true, containsSyntheticMedia: false,
+      embeddable: current.embeddable ?? true, license: current.license ?? "youtube", publicStatsViewable: current.publicStatsViewable ?? true,
+      ...(current.publishAt ? { publishAt: current.publishAt } : {}),
+    },
   };
 }
 

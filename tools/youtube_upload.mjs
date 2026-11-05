@@ -8,6 +8,7 @@
 //   node tools/youtube_upload.mjs <episode folder | episode id> [--privacy private|unlisted|public]
 //        [--publish-at 2026-11-10T16:00:00-08:00] [--playlist <id or exact title> | --no-playlist] [--thumb <file>] [--video <file>]
 //        [--no-notify] [--force] [--yes]
+//   node tools/youtube_upload.mjs <episode folder | episode id> --update-status [--yes]   re-apply made for kids / no AI to an uploaded video
 //
 // Every upload is Made for kids (selfDeclaredMadeForKids), category Education (27), private unless --privacy says
 // otherwise; --publish-at schedules it (private until then). Title, description and tags come from youtube.txt.
@@ -25,7 +26,7 @@ import { basename, isAbsolute, join, resolve } from "node:path";
 import { createInterface } from "node:readline/promises";
 import { fileURLToPath } from "node:url";
 import {
-  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
+  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, buildStatusUpdate, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
   fitTags, humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, validateMeta,
 } from "./lib/youtube.mjs";
 
@@ -335,6 +336,20 @@ function record(p, video, extra) {
   }
 }
 
+/** Re-apply the status settings (made for kids, no altered content) to an episode's uploaded video. */
+async function updateStatus(arg) {
+  const p = plan(episodeDir(arg));
+  if (!p.prior) throw new Error(`${p.id ?? arg}: no uploaded video recorded`);
+  const j = await json(await call(`${API}/videos?part=status&id=${p.prior}`, {}, "videos.list"), "videos.list");
+  if (!j.items?.length) throw new Error(`video ${p.prior} not found on the signed-in channel`);
+  const body = buildStatusUpdate(p.prior, j.items[0].status);
+  console.log(`Video ${p.prior}: now ${JSON.stringify(j.items[0].status)}\nwould send ${JSON.stringify(body.status)}`);
+  if (opt["dry-run"]) return;
+  if (!opt.yes) throw new Error("pass --yes once this change is approved");
+  const u = await json(await call(`${API}/videos?part=status`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }, "videos.update"), "videos.update");
+  console.log(`Updated: privacy ${u.status.privacyStatus}, made for kids ${u.status.selfDeclaredMadeForKids}, altered content ${u.status.containsSyntheticMedia}`);
+}
+
 async function upload(arg) {
   const p = plan(episodeDir(arg));
   show(p);
@@ -370,8 +385,9 @@ async function upload(arg) {
 try {
   if (opt.auth) await signIn();
   else if (opt.check) await check();
+  else if (opt["update-status"] && opt._.length === 1) await updateStatus(opt._[0]);
   else if (opt._.length === 1) await upload(opt._[0]);
-  else { console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 18).map((l) => l.replace(/^\/\/ ?/, "")).join("\n")); process.exit(opt._.length ? 1 : 0); }
+  else { console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 19).map((l) => l.replace(/^\/\/ ?/, "")).join("\n")); process.exit(opt._.length ? 1 : 0); }
 } catch (e) {
   console.error(`error: ${e.message}`);
   process.exit(1);
