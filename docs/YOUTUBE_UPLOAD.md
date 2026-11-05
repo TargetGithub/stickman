@@ -8,14 +8,15 @@ It needs no dependencies: it calls the OAuth and YouTube endpoints with Node 20'
 **Uploading publishes content, so every upload needs Sridhar's explicit yes.** Uploads are private unless
 `--privacy` or `--publish-at` says otherwise, and nothing is made public or scheduled without approval.
 Every upload is marked Made for kids (`selfDeclaredMadeForKids: true`) and is in category Education (27).
-"Altered or synthetic content" (AI use) is set to No (`containsSyntheticMedia: false`). Paid promotion stays
-No, which is YouTube's default. The API cannot write that field.
+"Altered or synthetic content" (AI use) is set to No (`containsSyntheticMedia: false`). Right after the
+upload, the tool also sets "Paid promotion" to No (`paidProductPlacementDetails.hasPaidProductPlacement:
+false`, 50 units), so Studio shows it as answered.
 
 **Set by hand in YouTube Studio:** the Data API has no fields for the Education category's details, so after an
 upload, open the video in Studio → Details → Category: Education and set **Type: Lecture** and
 **Level: Elementary school**. Studio's bulk edit can't set these either.
 
-`--update-status` applies made for kids and no altered content to an episode that's already uploaded,
+`--update-status` applies made for kids, no altered content and no paid promotion to an episode that's already uploaded,
 and keeps its privacy and schedule. Add `--dry-run` to see the change first, and `--yes` to send it.
 
 ## One-time setup (Google Cloud)

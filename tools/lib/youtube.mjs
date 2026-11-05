@@ -82,8 +82,8 @@ export function parsePublishAt(s, now) {
 
 /**
  * The videos.insert resource (part=snippet,status). Every upload is Made for kids, category Education.
- * "Altered or synthetic content" is No (containsSyntheticMedia false). Paid promotion is not writable through
- * the API and defaults to No. Studio's Education settings (Type: Lecture, Level: Elementary school) have no API
+ * "Altered or synthetic content" is No (containsSyntheticMedia false). Paid promotion is set to No right after
+ * the upload with buildPaidPromotionUpdate (videos.update part=paidProductPlacementDetails). Studio's Education settings (Type: Lecture, Level: Elementary school) have no API
  * field at all, so they are set by hand in YouTube Studio (docs/YOUTUBE_UPLOAD.md).
  * A scheduled video must be private until publishAt, so publishAt forces privacyStatus "private".
  * @param {{ title:string, description:string, tags:string[] }} meta
@@ -113,6 +113,11 @@ export function buildStatusUpdate(id, current) {
       ...(current.publishAt ? { publishAt: current.publishAt } : {}),
     },
   };
+}
+
+/** The videos.update body that answers "Paid promotion: No" explicitly (Studio shows it as unanswered otherwise). */
+export function buildPaidPromotionUpdate(id) {
+  return { id, paidProductPlacementDetails: { hasPaidProductPlacement: false } };
 }
 
 /** The resumable-session start request (no network: just what fetch would get). */

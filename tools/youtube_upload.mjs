@@ -8,7 +8,7 @@
 //   node tools/youtube_upload.mjs <episode folder | episode id> [--privacy private|unlisted|public]
 //        [--publish-at 2026-11-10T16:00:00-08:00] [--playlist <id or exact title> | --no-playlist] [--thumb <file>] [--video <file>]
 //        [--no-notify] [--force] [--yes]
-//   node tools/youtube_upload.mjs <episode folder | episode id> --update-status [--yes]   re-apply made for kids / no AI to an uploaded video
+//   node tools/youtube_upload.mjs <episode folder | episode id> --update-status [--yes]   re-apply made for kids, no AI, no paid promotion
 //
 // Every upload is Made for kids (selfDeclaredMadeForKids), category Education (27), private unless --privacy says
 // otherwise; --publish-at schedules it (private until then). Title, description and tags come from youtube.txt.
@@ -26,7 +26,7 @@ import { basename, isAbsolute, join, resolve } from "node:path";
 import { createInterface } from "node:readline/promises";
 import { fileURLToPath } from "node:url";
 import {
-  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, buildStatusUpdate, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
+  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, buildPaidPromotionUpdate, buildStatusUpdate, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
   fitTags, humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, validateMeta,
 } from "./lib/youtube.mjs";
 
@@ -336,6 +336,10 @@ function record(p, video, extra) {
   }
 }
 
+async function setNoPaidPromotion(videoId) {
+  await json(await call(`${API}/videos?part=paidProductPlacementDetails`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(buildPaidPromotionUpdate(videoId)) }, "videos.update"), "paid promotion update");
+}
+
 /** Re-apply the status settings (made for kids, no altered content) to an episode's uploaded video. */
 async function updateStatus(arg) {
   const p = plan(episodeDir(arg));
@@ -348,6 +352,8 @@ async function updateStatus(arg) {
   if (!opt.yes) throw new Error("pass --yes once this change is approved");
   const u = await json(await call(`${API}/videos?part=status`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }, "videos.update"), "videos.update");
   console.log(`Updated: privacy ${u.status.privacyStatus}, made for kids ${u.status.selfDeclaredMadeForKids}, altered content ${u.status.containsSyntheticMedia}`);
+  await setNoPaidPromotion(p.prior);
+  console.log("Paid promotion: No");
 }
 
 async function upload(arg) {
@@ -368,7 +374,9 @@ async function upload(arg) {
   console.log(`\nUploading ${humanSize(p.size)}…`);
   const video = await uploadVideo(p);
   console.log(`Uploaded: https://youtu.be/${video.id}  (${video.status?.privacyStatus}, made for kids: ${video.status?.selfDeclaredMadeForKids})`);
-  const extra = { thumbnail: null, playlist: null };
+  const extra = { thumbnail: null, playlist: null, paidPromotion: null };
+  try { await setNoPaidPromotion(video.id); extra.paidPromotion = false; console.log("Paid promotion: No"); }
+  catch (e) { console.warn(`warning: ${e.message}`); }
   if (p.thumb) {
     try { await setThumbnail(video.id, p.thumb); extra.thumbnail = basename(p.thumb); console.log(`Thumbnail set: ${basename(p.thumb)}`); }
     catch (e) { console.warn(`warning: ${e.message} (custom thumbnails need a phone-verified channel)`); }

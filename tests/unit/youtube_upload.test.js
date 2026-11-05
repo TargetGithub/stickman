@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  SCOPES, audienceGrade, buildAuthUrl, choosePlaylist, buildInsertBody, buildStatusUpdate, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
+  SCOPES, audienceGrade, buildAuthUrl, choosePlaylist, buildInsertBody, buildPaidPromotionUpdate, buildStatusUpdate, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
   humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, tagsLength, validateMeta,
 } from "../../tools/lib/youtube.mjs";
 
@@ -159,4 +159,8 @@ test("buildStatusUpdate keeps privacy and schedule, sets made for kids and no al
     { id: "v1", status: { privacyStatus: "private", selfDeclaredMadeForKids: true, containsSyntheticMedia: false, embeddable: true, license: "youtube", publicStatsViewable: true } });
   assert.equal(buildStatusUpdate("v1", { privacyStatus: "private", publishAt: "2026-12-01T00:00:00Z" }).status.publishAt, "2026-12-01T00:00:00Z");
   assert.equal(buildInsertBody({ title: "T", description: "", tags: [] }).status.containsSyntheticMedia, false);
+});
+
+test("buildPaidPromotionUpdate answers paid promotion No", () => {
+  assert.deepEqual(buildPaidPromotionUpdate("v1"), { id: "v1", paidProductPlacementDetails: { hasPaidProductPlacement: false } });
 });
