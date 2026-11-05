@@ -2,8 +2,8 @@
 // Upload a rendered episode to YouTube with the YouTube Data API v3. No dependencies: raw HTTPS via fetch.
 // Setup, quota and the approval rule: docs/YOUTUBE_UPLOAD.md.
 //
-//   node tools/youtube_upload.mjs --auth [--client <client_secret.json>] [--port 8085]   sign in once (opens the browser)
-//   node tools/youtube_upload.mjs --check                                                 connected channel + today's quota use
+//   node tools/youtube_upload.mjs --auth [--channel <name>] [--client <client_secret.json>] [--port 8085]   sign in (opens the browser)
+//   node tools/youtube_upload.mjs --check [--channel <name>]                             connected channel + today's quota use
 //   node tools/youtube_upload.mjs <episode folder | episode id> --dry-run                 show exactly what would be sent
 //   node tools/youtube_upload.mjs <episode folder | episode id> [--privacy private|unlisted|public]
 //        [--publish-at 2026-11-10T16:00:00-08:00] [--playlist <id or exact title>] [--thumb <file>] [--video <file>]
@@ -13,7 +13,8 @@
 // otherwise; --publish-at schedules it (private until then). Title, description and tags come from youtube.txt.
 // An episode that already has a video id (youtube_upload.json in its folder, or episodes.json) is refused
 // unless --force. Without --yes the tool asks on the terminal before uploading.
-// Secrets live outside the repo in ~/.config/stickman (mode 600): youtube_client.json, youtube_token.json.
+// Secrets live outside the repo in ~/.config/stickman (mode 600): youtube_client.json, youtube_token[_<channel>].json.
+// Each --channel name keeps its own sign-in, so Toy Box, Doopi and Baaaana can each upload to their own channel.
 
 import { createHash, randomBytes } from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
@@ -31,7 +32,6 @@ import {
 const REPO = fileURLToPath(new URL("../", import.meta.url));
 const CONF = process.env.STICKMAN_CONFIG_DIR ?? join(homedir(), ".config/stickman");
 const CLIENT_FILE = join(CONF, "youtube_client.json");
-const TOKEN_FILE = join(CONF, "youtube_token.json");
 const QUOTA_FILE = join(CONF, "youtube_quota.json");
 const RESUME_DIR = join(CONF, "youtube_resume");
 const REG_FILE = join(REPO, "engine3d/scripts/series/toybox/episodes.json");
@@ -41,13 +41,17 @@ const API = "https://www.googleapis.com/youtube/v3";
 // ---------- arguments ----------
 const argv = process.argv.slice(2);
 const opt = { _: [] };
-const VALUED = new Set(["--client", "--port", "--privacy", "--publish-at", "--playlist", "--thumb", "--video", "--language"]);
+const VALUED = new Set(["--client", "--port", "--channel", "--privacy", "--publish-at", "--playlist", "--thumb", "--video", "--language"]);
 for (let i = 0; i < argv.length; i++) {
   const a = argv[i];
   if (VALUED.has(a)) opt[a.slice(2)] = argv[++i];
   else if (a.startsWith("--")) opt[a.slice(2)] = true;
   else opt._.push(a);
 }
+// One sign-in per channel: --channel toybox → youtube_token_toybox.json (no --channel → youtube_token.json).
+if (opt.channel && !/^[a-z0-9_-]+$/i.test(opt.channel)) throw new Error("--channel takes a short name like toybox");
+const TOKEN_FILE = join(CONF, opt.channel ? `youtube_token_${opt.channel}.json` : "youtube_token.json");
+const CH = opt.channel ? ` --channel ${opt.channel}` : "";
 
 // ---------- secrets on disk ----------
 function writeSecret(file, data) {
@@ -138,7 +142,7 @@ async function signIn() {
 let tok = null;
 async function accessToken() {
   if (!tok) {
-    if (!existsSync(TOKEN_FILE)) throw new Error("not signed in: run node tools/youtube_upload.mjs --auth");
+    if (!existsSync(TOKEN_FILE)) throw new Error(`not signed in: run node tools/youtube_upload.mjs --auth${CH}`);
     tok = JSON.parse(readFileSync(TOKEN_FILE, "utf8"));
   }
   if (tok.access_token && tok.expires_at > Date.now() + 60_000) return tok.access_token;
@@ -342,7 +346,8 @@ async function upload(arg) {
     rl.close();
     if (a.trim().toLowerCase() !== "yes") { console.log("Not uploaded."); return; }
   }
-  await accessToken();
+  const me = await json(await call(`${API}/channels?part=snippet&mine=true`, {}, "channels.list"), "channels.list");
+  console.log(`Channel:    ${me.items?.[0]?.snippet?.title ?? "none"} (${me.items?.[0]?.id ?? "–"})`);
   const plId = opt.playlist ? await playlistId(opt.playlist) : null; // fail before the long upload, not after
   console.log(`\nUploading ${humanSize(p.size)}…`);
   const video = await uploadVideo(p);
@@ -365,7 +370,7 @@ try {
   if (opt.auth) await signIn();
   else if (opt.check) await check();
   else if (opt._.length === 1) await upload(opt._[0]);
-  else { console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 17).map((l) => l.replace(/^\/\/ ?/, "")).join("\n")); process.exit(opt._.length ? 1 : 0); }
+  else { console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 18).map((l) => l.replace(/^\/\/ ?/, "")).join("\n")); process.exit(opt._.length ? 1 : 0); }
 } catch (e) {
   console.error(`error: ${e.message}`);
   process.exit(1);

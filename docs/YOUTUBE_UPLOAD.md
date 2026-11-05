@@ -31,10 +31,14 @@ Every upload is marked Made for kids (`selfDeclaredMadeForKids: true`) and is in
    `~/.config/stickman/youtube_client.json` and stores the refresh token in
    `~/.config/stickman/youtube_token.json`, both with mode 600 and outside the repo. Never print or commit
    either file. To use another config folder, set `STICKMAN_CONFIG_DIR`.
+   Each channel keeps its own sign-in: add `--channel <name>` (for example `toybox`, `doopi`) to `--auth`,
+   `--check` and uploads, and the token goes to `youtube_token_<name>.json`. On the consent page, pick that
+   channel at Google's "Choose an account or brand account" step. Before a real upload the tool prints the
+   connected channel's name.
 5. Check which channel is connected:
 
    ```bash
-   node tools/youtube_upload.mjs --check
+   node tools/youtube_upload.mjs --check --channel toybox
    ```
 
    Custom thumbnails need a phone-verified channel (youtube.com/verify). Without one, the upload still
@@ -43,9 +47,9 @@ Every upload is marked Made for kids (`selfDeclaredMadeForKids: true`) and is in
 ## Uploading an episode
 
 ```bash
-node tools/youtube_upload.mjs g101 --dry-run            # what would be sent; no network
-node tools/youtube_upload.mjs g101 --playlist "Grade 1"  # private upload; asks "Type yes" on the terminal
-node tools/youtube_upload.mjs "<episode folder>" --publish-at 2026-11-10T16:00:00-08:00
+node tools/youtube_upload.mjs pk16 --channel toybox --dry-run                        # what would be sent; no network
+node tools/youtube_upload.mjs pk16 --channel toybox --playlist "PreK Videos"         # private; asks "Type yes"
+node tools/youtube_upload.mjs "<episode folder>" --channel toybox --publish-at 2026-11-10T16:00:00-08:00
 ```
 
 - The argument is an episode folder or a Toy Box episode id. An id is resolved through the render location
