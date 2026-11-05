@@ -15,7 +15,8 @@ const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
 const DEG = Math.PI / 180;
 
 const FEET = 0.12; // the body's bottom sits on the feet
-const BODY = { s: [1.06, 1.0, 0.96], c: "bao_dough", m: "dough" };
+const ARM_LENGTH = 0.26; // shoulder to palm: long, thin Minion-style arms
+const BODY = { s: [1.03, 1.0, 1.03], c: "bao_dough", m: "dough" };
 const C = [0, FEET + BODY.s[1] / 2, 0]; // body centre
 const share = (k) => FEET + k * BODY.s[1]; // height of a share of the body
 const HEAD = [0, share(BAO_COLLAR) + 0.01, 0]; // head pivot: inside the collar
@@ -89,12 +90,19 @@ function baoBuddy() {
     add({ p: "leaf_flap", at: r3([side * Math.sin(fa) * fr, top - 0.04, Math.cos(fa) * fr]), r: [-58, side * 26, side * 86], hr: [0, -90, 0], s: [0.31, 0.31, 0.31], c: "leaf_lime", m: "toy", name: "collar" });
   }
 
-  // Arms: a stubby nub each, poking out under the leaf flaps, on a shoulder pivot (mirrored).
-  const shY = share(0.2);
-  const sh = r3([S.side(shY, 0.17) - 0.05, shY, 0.17]);
-  const arm = { at: sh, r: [-35, 0, 50], mirror: true, name: "arm", c: BODY.c, m: BODY.m, idle: { r: [0, 0, 4], hz: 0.5 } };
-  add({ ...arm, p: "capsule", s: [0.1, 0.13, 0.1], hang: [0, -0.04, 0] });
-  add({ ...arm, p: "sphere", s: [0.12, 0.11, 0.11], hang: [0, -0.1, 0.01] });
+  // Arms: long thin Minion-style arms hanging at the sides from under the leaves, each on a shoulder pivot
+  // (mirrored): the arm, a round palm, three fingers fanned front to back and a thumb pointing forward. In the
+  // arm's frame the arm hangs down -y and +z is the front.
+  const shY = share(0.225);
+  const sh = r3([S.side(shY, 0.1) - 0.035, shY, 0.1]);
+  const arm = { at: sh, r: [-10, 0, 20], mirror: true, name: "arm", c: BODY.c, m: BODY.m, idle: { r: [3, 0, 4], hz: 0.5 } };
+  const L = ARM_LENGTH;
+  add({ ...arm, p: "capsule", s: r3([0.075, L + 0.02, 0.075]), hang: r3([0, -L / 2, 0]) });
+  add({ ...arm, p: "sphere", s: [0.115, 0.1, 0.095], hang: r3([0, -L - 0.015, 0]) });
+  for (const [dz, tilt] of [[-0.034, 18], [0, 0], [0.034, -18]]) {
+    add({ ...arm, p: "capsule", s: [0.04, 0.09, 0.04], hang: r3([0.004, -L - 0.075, dz]), hr: [tilt, 0, 6] });
+  }
+  add({ ...arm, p: "capsule", s: [0.042, 0.08, 0.042], hang: r3([-0.022, -L - 0.025, 0.058]), hr: [-62, 0, 18] });
 
   // Feet: a short round stump and a soft rounded toe each, on hip pivots named apart (for walks).
   for (const [side, name] of [[1, "leg_left"], [-1, "leg_right"]]) {
@@ -115,7 +123,7 @@ function baoBuddy() {
     sound: "Bao bao!",
     description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on stubby arms and feet. Named parts: arm (mirrored), leg_left, leg_right, collar (band, lip, button and leaf flaps: remove or swap it), knot, belly, nose.",
     tags: ["bao", "bao_buddy", "mascot", "dumpling", "food", "friend", "lead"],
-    head: { at: r3(HEAD), tilt: 0.4 }, // feelings tip the bun gently, so the collar stays in view
+    head: { at: r3(HEAD), tilt: 0.4, look: [0.4, 0.15] }, // feelings tip the bun gently, so the collar stays in view
     eyes: { at: rel([eye.x, eye.y, eye.z]), size: eye.size, turn: S.turn(eye.x, eye.y), iris: "bao_iris", rim: "bao_iris_rim", color: "bao_pupil", pupilLow: "bao_pupil_blue", crescent: "bao_glint", white: "eye_white_cool", shade: "eye_shade_cool", lid: "bao_line" },
     brows: { shape: "brow_thin", color: "bao_brow", size: 0.74, lift: r3([(browY - eye.y) / eye.size - 1.25])[0], dz: r3([S.front(eye.x, browY) - eye.z + 0.006])[0] },
     mouth: { open: true, at: rel([0, mouthY, S.front(0, mouthY) - 0.012]), tilt: -lean, size: 0.28, shape: "grin_wide", teethShape: "grin_wide_teeth", tongueShape: "grin_wide_tongue", color: "bao_mouth", tongue: "bao_tongue" },

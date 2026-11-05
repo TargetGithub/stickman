@@ -109,6 +109,26 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   assert.ok(head0.rotation.x > 0 && head0.rotation.x < 14 * 0.5 * Math.PI / 180, `sad tilt ${head0.rotation.x}`);
   const arcs = nodes.filter((x) => x.material === material(model.eyes.lid, "matte") && x.geometry !== shapeGeometry("eyelid"));
   assert.ok(arcs.length >= 2, "joyful arcs in the lid colour");
+  // The toon eyes move: a gaze prop slides each iris (the white stays), and both go the same way on screen.
+  const irisOf = (eyeGroup) => eyeGroup.children.find((c) => c.material === material("bao_iris", "toy"));
+  const centreX = (mesh) => {
+    mesh.geometry.computeBoundingBox();
+    return mesh.localToWorld(mesh.geometry.boundingBox.getCenter(new THREE.Vector3())).x;
+  };
+  const eyesNow = m.group.children[0].children[0].children[0].children.filter((c) => c.userData.gaze);
+  assert.equal(eyesNow.length, 2, "two toon eyes with a gaze");
+  m.group.updateMatrixWorld(true);
+  const at = (g) => {
+    m.update(4, { eyes: 1, feeling: "happy", feelingFrom: "happy", feelAt: -1, gaze: g }, {});
+    m.group.updateMatrixWorld(true);
+    return eyesNow.map((e) => centreX(irisOf(e)));
+  };
+  const L = at([1, 0]), R = at([-1, 0]);
+  for (let i = 0; i < 2; i++) assert.ok(L[i] > R[i] + 0.02, `eye ${i}: gaze left (+x) moves its iris that way`);
+  // The long arms end in a hand with three fingers and a thumb.
+  const armParts = model.parts.filter((p) => p.name === "arm");
+  assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");
+  assert.ok(Math.min(...armParts.map((p) => p.hang[1])) < -0.3, "a long arm");
   // Sub-targets: an arm lifts both copies, the head tilts the face and the top of the bun together.
   m.update(1, { eyes: 1 }, { "bao#arm": { rotation: [0, 0, 40] }, "bao#head": { rotation: [10, 0, 0] } });
   const arm = m.named.get("arm");

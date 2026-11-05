@@ -10,6 +10,8 @@ import { hash32 } from "./rng.js";
 import { createFaceRig } from "./faces.js";
 import { createTalkMouth, talkSpec } from "./talk.js";
 import { addFur } from "./fur.js";
+import { movableLayer } from "./toon_face.js";
+import { gazeOffset } from "./gaze.js";
 
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
@@ -59,7 +61,11 @@ function addEyes(parent, spec, material) {
     g.position.set(side * at[0], at[1], at[2]);
     // turn: [pitch, yaw] in degrees, so a flat toon eye lies on a face that curves away (mirrored for the other eye).
     if (turn) g.rotation.set(turn[0] * DEG, side * turn[1] * DEG, 0, "YXZ"); // yaw after pitch: lash lines stay level
-    if (iris && lid) g.add(...toonEye(side, size, spec, material));
+    if (iris && lid) {
+      const eye = toonEye(side, size, spec, material);
+      g.add(...eye.meshes);
+      g.userData.gaze = eye.gaze;
+    }
     else if (iris) {
       const white = shadowed(new THREE.Mesh(shapeGeometry("sphere"), material("white", "glossy")));
       white.scale.set(size, size * 1.12, size * 0.62);
@@ -94,25 +100,30 @@ function addEyes(parent, spec, material) {
  * A toon anime eye drawn in thin layers on the face (toon_face.js): white, iris rim, iris, a pupil that turns
  * blue below, a crescent, shines, and the lid lines (and a cool shade under the upper lid). The layers' inner corner is +x, so the eye at +x is
  * mirrored to keep it toward the nose. Colours: iris (the ring), color (pupil), lid, and o.white, o.shade, o.rim,
- * o.pupilLow, o.crescent. Returns the meshes for the eye group.
+ * o.pupilLow, o.crescent. The iris layers (rim to shine) are own copies that slide: returns the meshes for the
+ * eye group and gaze(dx, dy), which moves the iris dx, dy eye widths in the critter's axes (x + its left).
  */
 function toonEye(side, size, o, material) {
-  const layer = (shape, c, style) => {
-    const m = new THREE.Mesh(shapeGeometry(shape), material(c, style));
-    m.scale.set(-side * size, size, size);
+  const movers = [];
+  const layer = (shape, c, style, moves = false) => {
+    const mover = moves ? movableLayer(shapeGeometry(shape)) : null;
+    if (mover) movers.push(mover);
+    const m = new THREE.Mesh(mover?.geometry ?? shapeGeometry(shape), material(c, style));
+    m.scale.set(-side * size, size, size); // the layers' +x is the inner corner: mirror the +x eye
     return m;
   };
-  return [
+  const meshes = [
     layer("eye_white", o.white ?? "white", "glow"), // lit from inside a little, so it reads white on pale dough
     layer("eye_shade", o.shade ?? "eye_shade_cool", "matte"),
-    layer("eye_rim", o.rim ?? "brow", "matte"),
-    layer("eye_iris", o.iris, "toy"),
-    layer("eye_pupil_low", o.pupilLow ?? "blue", "toy"),
-    layer("eye_pupil", o.color ?? "ink", "toy"),
-    layer("eye_crescent", o.crescent ?? "cream", "matte"),
-    layer("eye_shine", "white", "glow"),
+    layer("eye_rim", o.rim ?? "brow", "matte", true),
+    layer("eye_iris", o.iris, "toy", true),
+    layer("eye_pupil_low", o.pupilLow ?? "blue", "toy", true),
+    layer("eye_pupil", o.color ?? "ink", "toy", true),
+    layer("eye_crescent", o.crescent ?? "cream", "matte", true),
+    layer("eye_shine", "white", "glow", true),
     layer("eyelid", o.lid, "matte"),
   ];
+  return { meshes, gaze: (dx, dy) => movers.forEach((m) => m.move(-side * dx, dy)) };
 }
 
 /** A plush grin: the open mouth (its own colour) with a row of top teeth and a tongue, for faces with mouth.open. */
@@ -261,9 +272,12 @@ export function buildModel(o, model, material) {
       }
       body.position.y = bob * (0.5 + 0.5 * Math.sin(t * Math.PI * 1.1 + phase));
       // look (look.js): [yaw, pitch] in degrees on top of the rest pose, held until the next look.
+      // head.look scales it (a head that is most of the body turns less; its toon eyes still lead the whole way).
       if (s.look) {
-        head.rotation.y += s.look[0] * DEG;
-        head.rotation.x += s.look[1] * DEG;
+        const k = model.head?.look ?? 1;
+        const [ky, kp] = Array.isArray(k) ? k : [k, k];
+        head.rotation.y += s.look[0] * ky * DEG;
+        head.rotation.x += s.look[1] * kp * DEG;
       }
       head.rotation.z += (model.bob ? 2.5 : 0) * DEG * Math.sin(t * 0.9 + phase);
       for (const m of idlers) {
@@ -288,6 +302,11 @@ export function buildModel(o, model, material) {
       }
       if (voice) voice(s.talk ?? 0);
       const blink = ((t + phase) % 3.6) < 0.14 ? 0.12 : 1;
+      // Toon eyes glance around, lead a look and follow a gaze prop (gaze.js).
+      if (eyes[0]?.userData.gaze) {
+        const [gx, gy] = gazeOffset(o.id, t, s);
+        for (const e of eyes) e.userData.gaze(gx, gy);
+      }
       if (face) {
         // A feeling also tilts the head: down when sad or sleepy, back when surprised.
         // head.tilt scales it (a head that is most of the body, like Bao Buddy's, tips less).

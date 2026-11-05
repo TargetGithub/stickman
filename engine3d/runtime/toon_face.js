@@ -23,6 +23,41 @@ export function eyeDome(t) {
   return [0.5 * Math.cos(t) + 0.1 * Math.sin(t), EYE_LINE.bottom + 0.75 * Math.sin(t)];
 }
 
+/** The white's left and right edge at height y (eye frame), or null above the dome / below the lash line. */
+export function domeSpan(y) {
+  const s = (y - EYE_LINE.bottom) / 0.75;
+  if (s < 0 || s > 1) return null;
+  const c = Math.sqrt(1 - s * s);
+  return [-0.5 * c + 0.1 * s, 0.5 * c + 0.1 * s];
+}
+
+/**
+ * A copy of an eye layer that can slide (a moving iris): move(dx, dy) shifts it by dx, dy eye widths in the
+ * layer's own frame and squeezes whatever would leave the white back to its edge, so the iris rolls into the
+ * corner instead of sliding onto the face. Each point keeps its height above the face's curve.
+ * @returns {{ geometry: THREE.BufferGeometry, move: (dx: number, dy: number) => void }}
+ */
+export function movableLayer(source) {
+  const geometry = source.clone();
+  const p = geometry.attributes.position;
+  const base = Float32Array.from(p.array);
+  const margin = 0.015;
+  return {
+    geometry,
+    move(dx, dy) {
+      for (let i = 0; i < p.count; i++) {
+        const bx = base[i * 3], by = base[i * 3 + 1];
+        const lift = base[i * 3 + 2] + EYE_BEND * (bx * bx + by * by);
+        const y = Math.min(EYE_LINE.top - 0.03, Math.max(EYE_LINE.bottom + 0.005, by + dy));
+        const span = domeSpan(y) ?? [0, 0];
+        const x = Math.min(span[1] - margin, Math.max(span[0] + margin, bx + dx));
+        p.setXYZ(i, x, y, bend(lift, x, y));
+      }
+      p.needsUpdate = true;
+    },
+  };
+}
+
 /**
  * A filled blob with interior rings (so it can follow the face's curve): `edge(u)` gives the outline point for
  * u in 0..1 going counterclockwise, and the fill fans out from `c`. Each point is lifted to layer z.

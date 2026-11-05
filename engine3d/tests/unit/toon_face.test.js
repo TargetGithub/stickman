@@ -5,7 +5,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { shapeGeometry } from "../../runtime/geometry.js";
-import { EYE_BEND, EYE_LINE, TOON_SHAPES, eyeDome } from "../../runtime/toon_face.js";
+import { EYE_BEND, EYE_LINE, TOON_SHAPES, domeSpan, eyeDome, movableLayer } from "../../runtime/toon_face.js";
 import { loadCatalog3d } from "../../catalog/index.mjs";
 
 const catalog = loadCatalog3d();
@@ -84,4 +84,38 @@ test("grin_wide: about half as tall as wide; teeth and tongue inside it, just in
   }
   assert.ok(t.min.y > (g.min.y + g.max.y) / 2, "teeth up top");
   assert.ok(u.max.y < 0.1 && u.max.y > g.min.y + 0.25, "the tongue rises to about the middle");
+});
+
+test("domeSpan: the white's width at each height, none outside it", () => {
+  for (const [y, want] of [[EYE_LINE.bottom, [-0.5, 0.5]], [EYE_LINE.top, [0.1, 0.1]]]) {
+    const [l, r] = domeSpan(y);
+    near(l, want[0], 1e-9); near(r, want[1], 1e-9);
+  }
+  assert.equal(domeSpan(EYE_LINE.bottom - 0.01), null);
+  assert.equal(domeSpan(EYE_LINE.top + 0.01), null);
+});
+
+test("movableLayer: slides its own copy, keeps it inside the white and on the face's curve, and comes back", () => {
+  const src = shapeGeometry("eye_iris");
+  const before = Float32Array.from(src.attributes.position.array);
+  const m = movableLayer(src);
+  assert.notEqual(m.geometry, src, "an own copy");
+  const p = m.geometry.attributes.position;
+  const lift = (i) => p.getZ(i) + EYE_BEND * (p.getX(i) ** 2 + p.getY(i) ** 2);
+  const lifts = Array.from({ length: p.count }, (_, i) => src.attributes.position.getZ(i) + EYE_BEND * (src.attributes.position.getX(i) ** 2 + src.attributes.position.getY(i) ** 2));
+  for (const [dx, dy] of [[-0.3, 0], [0.3, 0.1], [0, -0.1], [-0.6, 0.2]]) {
+    m.move(dx, dy);
+    for (let i = 0; i < p.count; i += 7) {
+      const span = domeSpan(p.getY(i));
+      assert.ok(span && p.getX(i) >= span[0] && p.getX(i) <= span[1], `(${dx}, ${dy}) vertex ${i} inside the white`);
+      near(lift(i), lifts[i], 1e-5, "same height above the face");
+    }
+  }
+  // Moved left, its middle is left of where it rests.
+  m.move(-0.3, 0);
+  const mid = () => { m.geometry.computeBoundingBox(); const b = m.geometry.boundingBox; return (b.min.x + b.max.x) / 2; };
+  const left = mid();
+  m.move(0, 0);
+  assert.ok(left < mid() - 0.15, "it slid");
+  assert.deepEqual(Array.from(src.attributes.position.array), Array.from(before), "the shared shape is untouched");
 });

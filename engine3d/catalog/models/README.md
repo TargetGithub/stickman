@@ -32,5 +32,7 @@ lid shade, iris rim, iris, pupil, crescent, shines, lid lines), coloured by `iri
 the joyful arcs take the lid colour. `brows.shape` (`"brow"` thick, `"brow_thin"` peaking toward the nose),
 `brows.tilt`; `mouth.shape` (`"grin"` or `"grin_wide"`), `mouth.teethShape` / `mouth.tongueShape` (`grin_wide_teeth`,
 `grin_wide_tongue`: built in the mouth's frame), `mouth.tilt` (degrees about x), `mouth.tall`, `mouth.teeth`,
-`mouth.tongueSize`; `cheeks.tall`; `head.tilt` (scales the head tilt feelings add, default 1). Soft blush: stack a
+`mouth.tongueSize`; `cheeks.tall`; `head.tilt` (scales the head tilt feelings add, default 1), `head.look` (scales
+how far a look turns the head, default 1, or `[yaw, pitch]` factors). Toon eyes also move (`runtime/gaze.js`): they glance around on their own,
+lead a `look`, and follow a `gaze` prop (`d.tween(id, "gaze", [x, y])`, -1..1, x + toward the critter's left, y + up). Soft blush: stack a
 few flat ovals in the see-through `blush` material. A material may set `sheenColor` (hex) for its sheen tint.
