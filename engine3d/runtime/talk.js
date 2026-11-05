@@ -15,8 +15,8 @@ const MIN_WIDTH = 0.15; // narrowest open mouth, in the model's units (critter h
  * louder, replacing the smile while it shows. jaw: an extra part (a lower beak) that drops as it opens.
  * @param {THREE.Object3D} parent  the head (or the shape's group)
  * @param {{ at:number[], width:number, jaw?: { p?:string, at:number[], s:number[], c?:string, drop?:number } }} spec
- * With grin (a face resting on a big open grin, mouth.talk "grin"), no oval: the face's own mouth (teeth and
- * tongue with it) talks instead, shutting to a thin curved smile and opening with each loud syllable while a
+ * With grin (a face resting on a big open grin, mouth.talk "grin"), no oval: the face's own mouth talks instead
+ * (a 3D mouth by its jaw, a flat grin by its height), shutting to a thin curved smile and opening with each loud syllable while a
  * line is spoken (s.speaking), and resting on its full grin otherwise.
  * @returns {(k:number, feelingMouth?: THREE.Object3D, s?: object) => void}
  */
@@ -65,6 +65,12 @@ export const grinOpen = (k) => 0.2 + 0.85 * Math.min(1, Math.max(0, k));
 /** Set a grin's height for openness k while speaking; put it back to its full height otherwise. */
 function grinTalk(mouth, k, speaking) {
   if (!mouth) return;
+  // A 3D mouth (toon_mouth.js) talks with its jaw: the opening, tongue and all move, nothing shrinks.
+  if (mouth.userData.setOpen) {
+    const want = speaking ? Math.min(1, grinOpen(k)) : 1;
+    if (mouth.userData.open !== want) mouth.userData.setOpen(want);
+    return;
+  }
   const full = (mouth.userData.fullY ??= mouth.scale.y);
   mouth.scale.y = speaking ? full * Math.min(1.05, grinOpen(k)) : full;
 }

@@ -17,7 +17,8 @@ const KIT_PAINT = new Set(["stroke", "pointer", "number_line"]);
  * @param {{ catalog, assets, width:number, height:number }} o
  */
 export function createStage(canvas, plan, { catalog, assets, width, height }) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance", preserveDrawingBuffer: false });
+  // stencil: 3D toon mouths (toon_mouth.js) draw their insides only through the opening.
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, stencil: true, powerPreference: "high-performance", preserveDrawingBuffer: false });
   renderer.setPixelRatio(1);
   renderer.setSize(width, height, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;

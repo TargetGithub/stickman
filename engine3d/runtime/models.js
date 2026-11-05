@@ -12,6 +12,7 @@ import { createTalkMouth, talkSpec } from "./talk.js";
 import { addFur } from "./fur.js";
 import { movableLayer } from "./toon_face.js";
 import { gazeOffset } from "./gaze.js";
+import { createMouth3d } from "./toon_mouth.js";
 
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
@@ -126,8 +127,16 @@ function toonEye(side, size, o, material) {
   return { meshes, gaze: (dx, dy) => movers.forEach((m) => m.move(-side * dx, dy)) };
 }
 
-/** A plush grin: the open mouth (its own colour) with a row of top teeth and a tongue, for faces with mouth.open. */
+/**
+ * A plush grin: the open mouth (its own colour) with a row of top teeth and a tongue, for faces with mouth.open.
+ * shape "mouth3d": a real opening instead, with a lit cavity, teeth and a tongue on a moving jaw.
+ */
 function addGrin(parent, spec, paint) {
+  if (spec.shape === "mouth3d") {
+    const m = createMouth3d(spec, paint); // an opening with a cavity, teeth and a tongue on a jaw (toon_mouth.js)
+    parent.add(m);
+    return m;
+  }
   // Options: shape (default "grin"; "grin_wide"), tilt (degrees about x), tall (deeper mouth), teeth [width, height]
   // (their top stays under the lip line), tongueSize [w, h]; teethShape / tongueShape: shapes built in the mouth's
   // own frame (grin_wide_teeth, grin_wide_tongue) used as they are.

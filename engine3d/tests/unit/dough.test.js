@@ -130,22 +130,23 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   const armParts = model.parts.filter((p) => p.name === "arm");
   assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");
   assert.ok(Math.min(...armParts.map((p) => p.hang[1])) < -0.3, "a long arm");
-  // A talking grin (mouth.talk "grin"): while speaking it shuts to a thin smile and opens with the voice, the
-  // teeth and tongue with it; not speaking, it keeps its full grin. No dark oval.
+  // A talking 3D mouth (mouth.talk "grin", shape "mouth3d"): while speaking the jaw shuts to a thin smile and
+  // opens with the voice; nothing is scaled (the tongue rides on the jaw); not speaking, it rests wide open.
   const talker = buildModel({ ...o, id: "bao2", talks: true }, model, material);
-  const grinMesh = [];
-  talker.group.traverse((x) => x.isMesh && x.geometry === shapeGeometry("grin_wide") && grinMesh.push(x));
-  const smile = grinMesh.find((x) => x.children.length) ?? grinMesh[0];
+  let mouth3d;
+  talker.group.traverse((x) => x.userData?.setOpen && (mouth3d = x));
+  assert.ok(mouth3d, "a 3D mouth");
+  const scale0 = mouth3d.scale.clone();
   const say = (talk, speaking) => {
     talker.update(5, { eyes: 1, feeling: "happy", feelingFrom: "happy", feelAt: -1, talk, speaking }, {});
-    return smile.scale.y;
+    return mouth3d.userData.open;
   };
-  const full = say(0, 0);
-  near(say(0, 1), full * grinOpen(0), 1e-9, "a pause in a line: a thin smile");
-  near(say(1, 1), full * grinOpen(1), 1e-9, "a loud syllable: the full grin");
+  near(say(0, 0), 1, 1e-12, "not speaking: wide open grin");
+  near(say(0, 1), grinOpen(0), 1e-9, "a pause in a line: a thin smile");
+  near(say(1, 1), Math.min(1, grinOpen(1)), 1e-9, "a loud syllable: the full grin");
   assert.ok(say(0.5, 1) > say(0.1, 1), "opens with the voice");
-  near(say(0, 0), full, 1e-12, "after the line: back to the full grin");
-  assert.ok(smile.visible, "the grin stays");
+  assert.ok(mouth3d.scale.equals(scale0), "the mouth itself never shrinks");
+  assert.ok(mouth3d.visible, "the mouth stays");
   const ovals = [];
   talker.group.traverse((x) => x.isMesh && x.material === material("ink", "matte") && x.geometry === shapeGeometry("sphere") && x.visible && ovals.push(x));
   assert.equal(ovals.length, 0, "no dark talking oval");

@@ -116,6 +116,7 @@ function baoBuddy() {
   eye.z = S.front(eye.x, eye.y) + 0.007; // just off the dough, so the white layer never sinks into it
   const browY = share(0.844);
   const mouthY = share(0.553);
+  const mouthTop = share(0.625); // the 3D mouth's frame: its lip corners (the opening hangs below them)
   // How far the face leans back at the mouth (the bun bulges out below it), so the grin lies on the dough.
   const lean = r3([Math.atan2(S.front(0, mouthY - 0.05) - S.front(0, mouthY + 0.05), 0.1) / DEG])[0];
   return {
@@ -126,7 +127,7 @@ function baoBuddy() {
     head: { at: r3(HEAD), tilt: 0.4, look: [0.4, 0.15] }, // feelings tip the bun gently, so the collar stays in view
     eyes: { at: rel([eye.x, eye.y, eye.z]), size: eye.size, turn: S.turn(eye.x, eye.y), iris: "bao_iris", rim: "bao_iris_rim", color: "bao_pupil", pupilLow: "bao_pupil_blue", crescent: "bao_glint", white: "eye_white_cool", shade: "eye_shade_cool", lid: "bao_line" },
     brows: { shape: "brow_thin", color: "bao_brow", size: 0.74, lift: r3([(browY - eye.y) / eye.size - 1.25])[0], dz: r3([S.front(eye.x, browY) - eye.z + 0.006])[0] },
-    mouth: { open: true, at: rel([0, mouthY, S.front(0, mouthY) - 0.012]), tilt: -lean, size: 0.28, shape: "grin_wide", teethShape: "grin_wide_teeth", tongueShape: "grin_wide_tongue", color: "bao_mouth", tongue: "bao_tongue", talk: "grin" },
+    mouth: { open: true, at: rel([0, mouthTop, S.front(0, mouthTop) + 0.002]), tilt: -lean, size: 0.29, shape: "mouth3d", color: "bao_mouth", tongue: "bao_tongue", talk: "grin" },
     bob: 0.012,
     parts,
   };
