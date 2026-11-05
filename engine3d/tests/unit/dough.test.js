@@ -143,12 +143,11 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   assert.ok(gloveParts.length >= 6 && gloveParts.every((p) => p.name === "arm" && p.m === "rubber"), "gloves on the arms");
   assert.ok(["leg_left", "leg_right"].every((n) => model.parts.some((p) => p.name === n && p.c === "denim")), "jeans legs");
   assert.ok(catalog.props.black_glove?.description, "a glove prop too");
-  // An arm hole each side: a denim hem ring with a dark inside, on the body (not on the arm), near the shoulder.
-  const holes = model.parts.filter((p) => p.name === "jeans" && (p.c === "denim_light" || p.c === "denim_shadow"));
-  assert.equal(holes.length, 2, "a hem and its dark inside, mirrored");
-  assert.ok(holes.every((p) => p.mirror && !p.on));
-  const shoulder = model.parts.find((p) => p.name === "arm").at;
-  for (const h of holes) assert.ok(Math.hypot(h.at[0] - shoulder[0], h.at[1] - shoulder[1], h.at[2] - shoulder[2]) < 0.12, "the hole is where the arm comes out");
+  // An arm hole each side: a denim hem ring with a dark inside riding the arm, just past the shoulder pivot
+  // (where the arm leaves the body), so the arm always comes out of it.
+  const holes = model.parts.filter((p) => p.name === "arm" && (p.c === "denim_light" || p.c === "denim_shadow"));
+  assert.equal(holes.length, 2, "a hem and its dark inside, on the mirrored arm");
+  for (const h of holes) assert.ok(h.mirror && h.hang[1] < 0 && h.hang[1] > -0.1, "close to the shoulder, along the arm");
   // The long arms end in a hand with three fingers and a thumb.
   const armParts = model.parts.filter((p) => p.name === "arm");
   assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");

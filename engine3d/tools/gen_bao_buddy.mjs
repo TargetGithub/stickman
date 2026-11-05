@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Writes catalog/models/bao_buddy.json: Bao Buddy, a smooth steamed-bun friend (an onion-shaped dough body
-// gathering in pleats to a top knot, a leaf collar with an orange button and two leaf flaps, stubby arms and
+// gathering in pleats to a top knot, a green leaf collar with an orange button, long gloved arms and
 // feet, wide anime eyes and a big grin). The face is placed by measuring the real body shape; heights below are
 // shares of the body's height measured off the reference picture. Edit this file, not the JSON:
 //   node engine3d/tools/gen_bao_buddy.mjs
@@ -76,19 +76,12 @@ function baoBuddy() {
   });
 
   // Leaf collar: a tight band squeezing the dough (built on the bun's own surface, so it shares the bun's centre
-  // and scale), a lighter rolled lip, an orange button in front and a cupped leaf flap at each side.
-  const top = share(COLLAR_BAND.hi);
-  const R = (a) => S.around(top - 0.03, a) + 0.017;
+  // and scale), a lighter rolled lip and an orange button in front. (No leaf flaps: the leaf_flap shape is still in
+  // the catalog for other looks.)
   add({ p: "leaf_collar", at: r3(C), s: BODY.s, c: "leaf_lime", m: "toy", name: "collar" });
   add({ p: "collar_lip", at: r3(C), s: BODY.s, c: "leaf_light", m: "toy", name: "collar" });
   const by = share((COLLAR_BAND.lo + COLLAR_BAND.hi) / 2);
   add({ p: "sphere", at: r3([0, by, S.front(0, by) + 0.03]), s: [0.075, 0.06, 0.045], c: "button_orange", m: "glossy", name: "collar" });
-  // The leaves face forward and up (hr turns the leaf's face to the front; not mirrored, so both cup the same way).
-  const fa = 40 * DEG;
-  const fr = R(fa) - 0.025;
-  for (const side of [1, -1]) {
-    add({ p: "leaf_flap", at: r3([side * Math.sin(fa) * fr, top - 0.04, Math.cos(fa) * fr]), r: [-58, side * 26, side * 86], hr: [0, -90, 0], s: [0.31, 0.31, 0.31], c: "leaf_lime", m: "toy", name: "collar" });
-  }
 
   // Arms: long thin Minion-style arms hanging at the front corners (so the hands show), from under the leaves, each on a shoulder pivot
   // (mirrored): the arm, a round palm, three fingers fanned front to back and a thumb pointing forward. In the
@@ -114,19 +107,15 @@ function baoBuddy() {
   // the body, not on the arm), all named "jeans"; a denim leg with a rolled cuff rides each leg pivot.
   const waist = share(COLLAR_BAND.lo);
   add({ p: "bao_jeans", at: r3(C), s: BODY.s, c: "denim", m: "denim", name: "jeans" });
-  // The hole sits where the resting arm leaves the denim (marched out along the arm), facing out of the belly.
+  // The arm hole: a rolled denim hem round the arm where it leaves the body, riding the arm's pivot (name "arm"),
+  // so the arm always comes out of it however it is posed (the shoulder pivot sits just inside the body).
   const outside = (p) => Math.hypot(p.x, p.z) > S.around(p.y, Math.atan2(p.x, p.z)) + JEANS.off;
   const armDir = new THREE.Vector3(0, -1, 0).applyEuler(new THREE.Euler(...arm.r.map((v) => v * DEG)));
   const exit = new THREE.Vector3(...sh);
-  while (!outside(exit)) exit.addScaledVector(armDir, 0.002);
-  const ea = Math.atan2(exit.x, exit.z), dy = 0.01;
-  const slope = (S.around(exit.y + dy, ea) - S.around(exit.y - dy, ea)) / (2 * dy);
-  const normal = new THREE.Vector3(Math.sin(ea), -slope, Math.cos(ea)).normalize();
-  const face = new THREE.Euler().setFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal));
-  const holeR = r3([face.x / DEG, face.y / DEG, face.z / DEG]);
-  const at = (k) => r3(exit.clone().addScaledVector(normal, k).toArray());
-  add({ p: "torus", at: at(0.003), r: holeR, s: [0.2, 0.2, 0.12], c: "denim_light", m: "denim", mirror: true, name: "jeans" }); // the rolled hem
-  add({ p: "sphere", at: at(-0.002), r: holeR, s: [0.1, 0.1, 0.02], c: "denim_shadow", m: "matte", mirror: true, name: "jeans" }); // its dark inside
+  let reach = 0;
+  while (!outside(exit)) (exit.addScaledVector(armDir, 0.002), (reach += 0.002));
+  add({ ...arm, p: "torus", s: [0.16, 0.16, 0.12], hang: r3([0, -reach + 0.004, 0]), hr: [90, 0, 0], c: "denim_light", m: "denim" }); // the rolled hem
+  add({ ...arm, p: "cylinder", s: [0.085, 0.03, 0.085], hang: r3([0, -reach + 0.012, 0]), c: "denim_shadow", m: "matte" }); // its dark inside
   const flyY = waist - 0.11;
   const ft = S.turn(0.014, flyY);
   add({ p: "capsule", at: r3([0.014, flyY, S.front(0.014, flyY) + 0.016]), r: [ft[0], 0, 0], s: [0.007, 0.085, 0.005], c: "stitch_gold", m: "matte", name: "jeans" });
@@ -151,7 +140,7 @@ function baoBuddy() {
   return {
     color: BODY.c,
     sound: "Bao bao!",
-    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long Minion-style arms in black rubber gloves, in jeans with rolled cuffs. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip, button and leaf flaps: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
+    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long Minion-style arms in black rubber gloves, in jeans with rolled cuffs. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
     tags: ["bao", "bao_buddy", "mascot", "dumpling", "food", "friend", "lead"],
     head: { at: r3(HEAD), tilt: 0.4, look: [0.4, 0.15] }, // feelings tip the bun gently, so the collar stays in view
     eyes: { at: rel([eye.x, eye.y, eye.z]), size: eye.size, turn: S.turn(eye.x, eye.y), iris: "bao_iris", rim: "bao_iris_rim", color: "bao_pupil", pupilLow: "bao_pupil_blue", crescent: "bao_glint", white: "eye_white_cool", shade: "eye_shade_cool", lid: "bao_line" },

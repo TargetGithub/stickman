@@ -4,7 +4,7 @@
   "bao_buddy": {
    "color": "bao_dough",
    "sound": "Bao bao!",
-   "description": "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long Minion-style arms in black rubber gloves, in jeans with rolled cuffs. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip, button and leaf flaps: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
+   "description": "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long Minion-style arms in black rubber gloves, in jeans with rolled cuffs. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
    "tags": [
     "bao",
     "bao_buddy",
@@ -352,58 +352,6 @@
      "name": "collar"
     },
     {
-     "p": "leaf_flap",
-     "at": [
-      0.277,
-      0.43,
-      0.331
-     ],
-     "r": [
-      -58,
-      26,
-      86
-     ],
-     "hr": [
-      0,
-      -90,
-      0
-     ],
-     "s": [
-      0.31,
-      0.31,
-      0.31
-     ],
-     "c": "leaf_lime",
-     "m": "toy",
-     "name": "collar"
-    },
-    {
-     "p": "leaf_flap",
-     "at": [
-      -0.277,
-      0.43,
-      0.331
-     ],
-     "r": [
-      -58,
-      -26,
-      -86
-     ],
-     "hr": [
-      0,
-      -90,
-      0
-     ],
-     "s": [
-      0.31,
-      0.31,
-      0.31
-     ],
-     "c": "leaf_lime",
-     "m": "toy",
-     "name": "collar"
-    },
-    {
      "at": [
       0.335,
       0.345,
@@ -725,48 +673,79 @@
      "name": "jeans"
     },
     {
-     "p": "torus",
      "at": [
-      0.359,
-      0.286,
-      0.205
+      0.335,
+      0.345,
+      0.17
      ],
      "r": [
-      32.64,
-      55.905,
-      -17.663
+      -30,
+      0,
+      18
      ],
-     "s": [
-      0.2,
-      0.2,
-      0.12
-     ],
+     "mirror": true,
+     "name": "arm",
      "c": "denim_light",
      "m": "denim",
-     "mirror": true,
-     "name": "jeans"
+     "idle": {
+      "r": [
+       3,
+       0,
+       4
+      ],
+      "hz": 0.5
+     },
+     "p": "torus",
+     "s": [
+      0.16,
+      0.16,
+      0.12
+     ],
+     "hang": [
+      0,
+      -0.066,
+      0
+     ],
+     "hr": [
+      90,
+      0,
+      0
+     ]
     },
     {
-     "p": "sphere",
      "at": [
-      0.355,
-      0.288,
-      0.202
+      0.335,
+      0.345,
+      0.17
      ],
      "r": [
-      32.64,
-      55.905,
-      -17.663
+      -30,
+      0,
+      18
      ],
-     "s": [
-      0.1,
-      0.1,
-      0.02
-     ],
+     "mirror": true,
+     "name": "arm",
      "c": "denim_shadow",
      "m": "matte",
-     "mirror": true,
-     "name": "jeans"
+     "idle": {
+      "r": [
+       3,
+       0,
+       4
+      ],
+      "hz": 0.5
+     },
+     "p": "cylinder",
+     "s": [
+      0.085,
+      0.03,
+      0.085
+     ],
+     "hang": [
+      0,
+      -0.058,
+      0
+     ]
     },
     {
      "p": "capsule",
