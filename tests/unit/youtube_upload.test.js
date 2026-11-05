@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  SCOPES, buildAuthUrl, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
+  SCOPES, audienceGrade, buildAuthUrl, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
   humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, tagsLength, validateMeta,
 } from "../../tools/lib/youtube.mjs";
 
@@ -135,4 +135,21 @@ test("buildAuthUrl asks for offline access with PKCE and both scopes", () => {
   assert.equal(q.code_challenge_method, "S256");
   assert.equal(q.redirect_uri, "http://127.0.0.1:5555");
   assert.equal(q.state, "st");
+});
+
+test("choosePlaylist: Toy Box grade playlists, explicit wins, babies have none", () => {
+  const A = (g) => `Made for kids (${g}). Length 4:00.`;
+  const table = [
+    [{ channel: "toybox", audience: A("prek") }, { id: "PLc6zxJ3eah1I", title: "PreK Videos", auto: true }],
+    [{ channel: "toybox", audience: A("grade1") }, { id: "PLOorLwUSShGE", title: "Grade1 Videos", auto: true }],
+    [{ channel: "toybox", audience: A("grade5") }, { id: "PLe7C64XuQHUQ", title: "Grade5 Videos", auto: true }],
+    [{ channel: "toybox", audience: A("babies") }, null],
+    [{ channel: "doopi", audience: A("grade1") }, null],
+    [{ channel: undefined, audience: A("grade1") }, null],
+    [{ channel: "toybox", audience: A("grade1"), explicit: "Other" }, { id: "Other", title: null, auto: false }],
+    [{ channel: "toybox", audience: A("grade1"), noPlaylist: true }, null],
+  ];
+  for (const [o, want] of table) assert.deepEqual(choosePlaylist(o), want, JSON.stringify(o));
+  assert.equal(audienceGrade("Made for kids (Grade2). Length 1:00."), "grade2");
+  assert.equal(audienceGrade(null), null);
 });

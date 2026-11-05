@@ -61,7 +61,10 @@ node tools/youtube_upload.mjs "<episode folder>" --channel toybox --publish-at 2
   characters, or `<` or `>` anywhere, stops the run.
 - `--privacy private|unlisted|public` (default `private`). `--publish-at` needs a time zone; the video stays
   private until that time.
-- `--playlist` accepts a playlist id (`PL…`) or the exact title of one of the channel's playlists. The tool
+- With `--channel toybox`, an upload goes into its grade's playlist automatically, using the grade on the
+  `youtube.txt` AUDIENCE line: PreK Videos, Grade1 Videos … Grade5 Videos (`GRADE_PLAYLISTS` in
+  `tools/lib/youtube.mjs`). Babies and K have no playlist yet. `--no-playlist` turns this off.
+- `--playlist` overrides it, and accepts a playlist id (`PL…`) or the exact title of one of the channel's playlists. The tool
   looks up the playlist before uploading, so a wrong name fails early.
 - `--no-notify` turns off subscriber notifications. `--yes` skips the terminal prompt; use it only after
   the upload has been approved in chat.

@@ -140,6 +140,35 @@ export function buildAuthUrl({ clientId, authUri, redirectUri, state, challenge 
   return `${authUri ?? "https://accounts.google.com/o/oauth2/v2/auth"}?${q}`;
 }
 
+/**
+ * Grade playlists that already exist on each channel, by the youtube.txt AUDIENCE grade. An upload with
+ * --channel toybox goes into its grade's playlist unless --playlist or --no-playlist says otherwise.
+ * Babies and K have no playlist yet.
+ */
+export const GRADE_PLAYLISTS = {
+  toybox: {
+    prek: { id: "PLc6zxJ3eah1I", title: "PreK Videos" },
+    grade1: { id: "PLOorLwUSShGE", title: "Grade1 Videos" },
+    grade2: { id: "PLfGKdlTpWUvM", title: "Grade2 Videos" },
+    grade3: { id: "PLBP5gBqJoF0g", title: "Grade3 Videos" },
+    grade4: { id: "PLBfTn8qbW6OE", title: "Grade4 Videos" },
+    grade5: { id: "PLe7C64XuQHUQ", title: "Grade5 Videos" },
+  },
+};
+
+/** The grade inside a youtube.txt AUDIENCE line: "Made for kids (grade1). Length 6:14." → "grade1". */
+export function audienceGrade(audience) {
+  return /\(([a-z0-9]+)\)/i.exec(audience ?? "")?.[1]?.toLowerCase() ?? null;
+}
+
+/** The playlist an upload goes into: an explicit --playlist wins, then the channel's grade playlist. */
+export function choosePlaylist({ explicit, noPlaylist, channel, audience }) {
+  if (noPlaylist) return null;
+  if (explicit) return { id: explicit, title: null, auto: false };
+  const hit = GRADE_PLAYLISTS[channel]?.[audienceGrade(audience)];
+  return hit ? { ...hit, auto: true } : null;
+}
+
 /** Episode id from an episode folder name: "g101_short_vowel_island" → "g101". */
 export function episodeIdFromDir(name) {
   const m = /^([a-z]+\d+)_/.exec(name);

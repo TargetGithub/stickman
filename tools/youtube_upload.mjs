@@ -6,7 +6,7 @@
 //   node tools/youtube_upload.mjs --check [--channel <name>]                             connected channel + today's quota use
 //   node tools/youtube_upload.mjs <episode folder | episode id> --dry-run                 show exactly what would be sent
 //   node tools/youtube_upload.mjs <episode folder | episode id> [--privacy private|unlisted|public]
-//        [--publish-at 2026-11-10T16:00:00-08:00] [--playlist <id or exact title>] [--thumb <file>] [--video <file>]
+//        [--publish-at 2026-11-10T16:00:00-08:00] [--playlist <id or exact title> | --no-playlist] [--thumb <file>] [--video <file>]
 //        [--no-notify] [--force] [--yes]
 //
 // Every upload is Made for kids (selfDeclaredMadeForKids), category Education (27), private unless --privacy says
@@ -25,7 +25,7 @@ import { basename, isAbsolute, join, resolve } from "node:path";
 import { createInterface } from "node:readline/promises";
 import { fileURLToPath } from "node:url";
 import {
-  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
+  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
   fitTags, humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, validateMeta,
 } from "./lib/youtube.mjs";
 
@@ -228,16 +228,17 @@ function plan(dir) {
   const id = episodeIdFromDir(basename(dir));
   const sidecar = join(dir, "youtube_upload.json");
   const prior = (existsSync(sidecar) && JSON.parse(readFileSync(sidecar, "utf8")).videoId) || registry()?.episodes?.[id]?.youtube?.videoId || null;
-  return { dir, id, meta, dropped, body, video, size: statSync(video).size, thumb, sidecar, prior, notify: !opt["no-notify"] };
+  const playlist = choosePlaylist({ explicit: opt.playlist, noPlaylist: opt["no-playlist"], channel: opt.channel, audience: parsed.audience });
+  return { dir, id, meta, dropped, playlist, body, video, size: statSync(video).size, thumb, sidecar, prior, notify: !opt["no-notify"] };
 }
 
 function show(p) {
   const s = buildResumableStart(p.body, p.size, p.notify);
-  const cost = QUOTA["videos.insert"] + (p.thumb ? QUOTA["thumbnails.set"] : 0) + (opt.playlist ? QUOTA["playlistItems.insert"] + (isPlaylistId(opt.playlist) ? 0 : QUOTA["playlists.list"]) : 0);
+  const cost = QUOTA["videos.insert"] + (p.thumb ? QUOTA["thumbnails.set"] : 0) + (p.playlist ? QUOTA["playlistItems.insert"] + (isPlaylistId(p.playlist.id) ? 0 : QUOTA["playlists.list"]) : 0);
   console.log(`Episode:    ${p.id ?? "–"}  ${p.dir}`);
   console.log(`Video:      ${p.video}  (${humanSize(p.size)}, ${p.size} bytes, resumable in ${humanSize(CHUNK)} chunks)`);
   console.log(`Thumbnail:  ${p.thumb ? `${p.thumb}  (${humanSize(statSync(p.thumb).size)})` : "none (YouTube picks a frame)"}`);
-  console.log(`Playlist:   ${opt.playlist ? `${opt.playlist}${isPlaylistId(opt.playlist) ? "" : "  (title: looked up with playlists.list)"}` : "none"}`);
+  console.log(`Playlist:   ${p.playlist ? `${p.playlist.title ? `${p.playlist.title} (${p.playlist.id})` : p.playlist.id}${p.playlist.auto ? ", the grade playlist" : ""}${isPlaylistId(p.playlist.id) ? "" : "  (title: looked up with playlists.list)"}` : "none"}`);
   console.log(`Privacy:    ${p.body.status.privacyStatus}${p.body.status.publishAt ? `, scheduled to go public at ${p.body.status.publishAt}` : ""}`);
   console.log(`Audience:   Made for kids (selfDeclaredMadeForKids: true), category ${p.body.snippet.categoryId} Education`);
   if (p.dropped.length) console.log(`Tags dropped to fit 500 characters: ${p.dropped.join(", ")}`);
@@ -348,7 +349,7 @@ async function upload(arg) {
   }
   const me = await json(await call(`${API}/channels?part=snippet&mine=true`, {}, "channels.list"), "channels.list");
   console.log(`Channel:    ${me.items?.[0]?.snippet?.title ?? "none"} (${me.items?.[0]?.id ?? "–"})`);
-  const plId = opt.playlist ? await playlistId(opt.playlist) : null; // fail before the long upload, not after
+  const plId = p.playlist ? await playlistId(p.playlist.id) : null; // fail before the long upload, not after
   console.log(`\nUploading ${humanSize(p.size)}…`);
   const video = await uploadVideo(p);
   console.log(`Uploaded: https://youtu.be/${video.id}  (${video.status?.privacyStatus}, made for kids: ${video.status?.selfDeclaredMadeForKids})`);
