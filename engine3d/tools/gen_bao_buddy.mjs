@@ -15,8 +15,8 @@ import { OVERALLS } from "../runtime/bao_clothes.js";
 const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
 const DEG = Math.PI / 180;
 
-const FEET = 0.12; // the body's bottom sits on the feet
-const ARM_LENGTH = 0.26; // shoulder to palm: long, thin Minion-style arms
+const FEET = 0.2; // the body's bottom sits this high, on longer legs
+const ARM_LENGTH = [0.17, 0.12]; // shoulder to elbow, elbow to wrist: long, thin Minion-style arms
 const BODY = { s: [1.03, 1.0, 1.03], c: "bao_dough", m: "dough" };
 const C = [0, FEET + BODY.s[1] / 2, 0]; // body centre
 const share = (k) => FEET + k * BODY.s[1]; // height of a share of the body
@@ -86,24 +86,29 @@ function baoBuddy() {
   const by = share((COLLAR_BAND.lo + COLLAR_BAND.hi) / 2);
   add({ p: "sphere", at: r3([0, by, S.front(0, by) + 0.03]), s: [0.075, 0.06, 0.045], c: "button_orange", m: "glossy", name: "collar" });
 
-  // Arms: long thin Minion-style arms hanging at the front corners (so the hands show), from under the leaves, each on a shoulder pivot
-  // (mirrored): the arm, a round palm, three fingers fanned front to back and a thumb pointing forward. In the
-  // arm's frame the arm hangs down -y and +z is the front.
-  const shY = share(0.225);
+  // Arms: long curvy Minion-style arms with an elbow. The upper arm hangs from a shoulder pivot (name "arm",
+  // mirrored) just under the collar; the forearm hangs from the elbow on the arm (name "forearm", on: "arm"), so it
+  // swings with the arm and bends on its own, and carries the gloved hand. In each part's frame the limb hangs
+  // down -y and +z is the front. A wave holds the upper arm out sideways (under the collar) and bends the forearm
+  // up, so the hand rises outside the collar instead of through it.
+  const shY = share(0.2);
   const sh = r3([S.side(shY, 0.17) - 0.035, shY, 0.17]);
   const arm = { at: sh, r: [-30, 0, 18], mirror: true, name: "arm", c: BODY.c, m: BODY.m, idle: { r: [3, 0, 4], hz: 0.5 } };
-  const L = ARM_LENGTH;
-  add({ ...arm, p: "bao_arm", s: r3([L, L, L]) }); // a curvy arm, bowing forward like a soft elbow
+  const [L1, L2] = ARM_LENGTH;
+  add({ ...arm, p: "bao_arm", s: r3([0.26, L1, 0.26]) }); // a curvy upper arm (the tube keeps its thickness)
+  add({ ...arm, p: "sphere", s: [0.072, 0.072, 0.072], hang: r3([0, -L1, 0]) }); // the elbow
+  const fore = { on: "arm", at: r3([0, -L1, 0]), r: [-22, 0, 0], mirror: true, name: "forearm", c: BODY.c, m: BODY.m };
+  add({ ...fore, p: "bao_arm", s: r3([0.24, L2, 0.24]) });
   // Black rubber gloves (Minion style): a flared cuff, the glove's wrist, a puffy palm, three fingers, a thumb.
-  // They stay on the arm pivot (name "arm"), coloured glove_black: recolor { glove_black: "bao_dough" } takes them off.
-  const glove = { ...arm, c: "glove_black", m: "rubber" };
-  add({ ...glove, p: "torus", s: [0.125, 0.125, 0.11], hang: r3([0, -L + 0.035, 0]), hr: [90, 0, 0] });
-  add({ ...glove, p: "cylinder", s: [0.088, 0.06, 0.088], hang: r3([0, -L + 0.005, 0]) });
-  add({ ...glove, p: "sphere", s: [0.125, 0.11, 0.105], hang: r3([0, -L - 0.015, 0]) });
+  // They ride the forearm, coloured glove_black: recolor { glove_black: "bao_dough" } takes them off.
+  const glove = { ...fore, c: "glove_black", m: "rubber" };
+  add({ ...glove, p: "torus", s: [0.125, 0.125, 0.11], hang: r3([0, -L2 + 0.035, 0]), hr: [90, 0, 0] });
+  add({ ...glove, p: "cylinder", s: [0.088, 0.06, 0.088], hang: r3([0, -L2 + 0.005, 0]) });
+  add({ ...glove, p: "sphere", s: [0.125, 0.11, 0.105], hang: r3([0, -L2 - 0.015, 0]) });
   for (const [dz, tilt] of [[-0.036, 18], [0, 0], [0.036, -18]]) {
-    add({ ...glove, p: "capsule", s: [0.044, 0.095, 0.044], hang: r3([0.004, -L - 0.08, dz]), hr: [tilt, 0, 6] });
+    add({ ...glove, p: "capsule", s: [0.044, 0.095, 0.044], hang: r3([0.004, -L2 - 0.08, dz]), hr: [tilt, 0, 6] });
   }
-  add({ ...glove, p: "capsule", s: [0.046, 0.085, 0.046], hang: r3([-0.024, -L - 0.025, 0.062]), hr: [-62, 0, 18] });
+  add({ ...glove, p: "capsule", s: [0.046, 0.085, 0.046], hang: r3([-0.024, -L2 - 0.025, 0.062]), hr: [-62, 0, 18] });
 
   // Overalls (runtime/bao_clothes.js, Minion style): twill-patterned denim pants to the waist, a bib in front and
   // a panel behind, straps up from them under the collar with a gold button where each meets its panel, a bib
@@ -117,13 +122,17 @@ function baoBuddy() {
   }
 
 
-  // Feet: a short round stump and a soft rounded toe each, on hip pivots named apart (for walks).
+  // Legs: a longer leg each with a denim trouser leg and a rolled cuff, ending in a round glossy black shoe with a
+  // sole, on hip pivots named apart (for walks).
+  const hipY = FEET + 0.06;
   for (const [side, name] of [[1, "leg_left"], [-1, "leg_right"]]) {
-    const hip = { at: r3([side * 0.165, 0.2, 0.0]), name, c: BODY.c, m: BODY.m };
-    add({ ...hip, p: "capsule", s: [0.155, 0.27, 0.155], hang: [0, -0.105, 0] });
-    add({ ...hip, p: "sphere", s: [0.155, 0.1, 0.15], hang: [0, -0.19, 0.06] });
-    add({ ...hip, p: "cylinder", s: [0.19, 0.11, 0.19], hang: [0, -0.08, 0], c: "denim", m: "denim" }); // jeans leg
-    add({ ...hip, p: "torus", s: [0.215, 0.215, 0.16], hang: [0, -0.13, 0], hr: [90, 0, 0], c: "denim_light", m: "denim" }); // rolled cuff
+    const hip = { at: r3([side * 0.16, hipY, 0.0]), name, c: BODY.c, m: BODY.m };
+    const h = (y, z = 0) => r3([0, y - hipY, z]); // a height from the floor, as a hang from the hip
+    add({ ...hip, p: "capsule", s: r3([0.13, hipY - 0.03, 0.13]), hang: h((hipY + 0.06) / 2) });
+    add({ ...hip, p: "cylinder", s: [0.172, 0.11, 0.172], hang: h(FEET - 0.025), c: "denim", m: "denim" }); // trouser leg
+    add({ ...hip, p: "torus", s: [0.19, 0.19, 0.15], hang: h(FEET - 0.08), hr: [90, 0, 0], c: "denim_light", m: "denim" }); // rolled cuff
+    add({ ...hip, p: "sphere", s: [0.175, 0.105, 0.26], hang: h(0.058, 0.035), c: "shoe_black", m: "glossy" }); // shoe
+    add({ ...hip, p: "sphere", s: [0.18, 0.035, 0.265], hang: h(0.017, 0.035), c: "charcoal", m: "matte" }); // sole
   }
 
   // Eye frame (toon_face.js): width 1 = size, origin at the dome's centre line, the lash line 0.3 below it.
@@ -137,7 +146,7 @@ function baoBuddy() {
   return {
     color: BODY.c,
     sound: "Bao bao!",
-    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long curvy Minion-style arms in black rubber gloves, in Minion-style denim overalls (open at the sides) with rolled cuffs, a pink top knot with a black hair tie. Named parts: arm (mirrored; wave: liftSide -1, lift [-15, 60, -85] swinging y 40..80), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
+    description: "Bao Buddy: a smooth cream steamed-bun friend, an onion-shaped body gathering in pleats to a little top knot, wide anime eyes under thick lids, thin brows, a big open grin and pink cheeks, in a green leaf collar with an orange button, on long curvy Minion-style arms in black rubber gloves, in Minion-style denim overalls (open at the sides) with rolled cuffs, round black shoes, a pink top knot with a black hair tie. Named parts: arm and forearm (mirrored; the forearm hangs on the arm at the elbow; wave: liftSide -1 on both, see scenes/bao_buddy_demo.js), leg_left, leg_right, collar (band, lip and button: remove or swap it), jeans, knot, belly, nose, cheeks. No gloves: recolor { glove_black: \"bao_dough\" }.",
     tags: ["bao", "bao_buddy", "mascot", "dumpling", "food", "friend", "lead"],
     head: { at: r3(HEAD), tilt: 0.4, look: [0.4, 0.15] }, // feelings tip the bun gently, so the collar stays in view
     eyes: { at: rel([eye.x, eye.y, eye.z]), size: eye.size, turn: S.turn(eye.x, eye.y), iris: "bao_iris", rim: "bao_iris_rim", color: "bao_pupil", pupilLow: "bao_pupil_blue", crescent: "bao_glint", white: "eye_white_cool", shade: "eye_shade_cool", lid: "bao_line" },

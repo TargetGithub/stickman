@@ -17,7 +17,10 @@ import { createMouth3d } from "./toon_mouth.js";
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
 
-/** One part (or its mirror / its repeats) as meshes under `parent`. */
+/**
+ * One part (or its mirror / its repeats) as meshes under `parent`: an object, or a list with one parent per copy
+ * (a part hung on another named part: its mirrored copy goes on that part's mirrored copy).
+ */
 function addPart(parent, p, material, fallbackColor) {
   const made = [];
   const copies = [];
@@ -29,7 +32,7 @@ function addPart(parent, p, material, fallbackColor) {
     }
   } else copies.push({ at: p.at ?? [0, 0, 0], r: p.r ?? [0, 0, 0] });
   if (p.mirror) for (const c of [...copies]) copies.push({ at: [-c.at[0], c.at[1], c.at[2]], r: [c.r[0], -c.r[1], -c.r[2]], mirrored: true });
-  for (const c of copies) {
+  for (const [k, c] of copies.entries()) {
     const pivot = new THREE.Group();
     pivot.position.set(...c.at);
     pivot.rotation.set(c.r[0] * DEG, c.r[1] * DEG, c.r[2] * DEG);
@@ -43,7 +46,7 @@ function addPart(parent, p, material, fallbackColor) {
     if (p.fur) addFur(mesh, p.fur);
     pivot.add(mesh);
     pivot.userData = { rest: pivot.rotation.clone(), idle: p.idle, mirrored: !!c.mirrored };
-    parent.add(pivot);
+    (Array.isArray(parent) ? parent[k] ?? parent[0] : parent).add(pivot);
     made.push(pivot);
   }
   return made;
@@ -234,7 +237,8 @@ export function buildModel(o, model, material) {
   const paint = (c, style) => material(rc(c), style);
   const color = o.color ?? model.color;
   for (const p of model.parts) {
-    const made = addPart(p.on === "head" ? head : body, p, paint, color);
+    // on: "head", or another named part listed before it (an elbow: a forearm on the arm swings with it).
+    const made = addPart(p.on === "head" ? head : p.on ? groups.get(p.on) ?? body : body, p, paint, color);
     if (p.name) {
       if (!named.has(p.name)) named.set(p.name, made[0]);
       groups.set(p.name, [...(groups.get(p.name) ?? []), ...made]);

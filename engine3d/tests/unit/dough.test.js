@@ -133,19 +133,33 @@ test("Bao Buddy builds: named parts move, the collar comes off, the lids blink, 
   for (let i = 0; i < 2; i++) assert.ok(L[i] > R[i] + 0.02, `eye ${i}: gaze left (+x) moves its iris that way`);
   // Black rubber gloves ride the arms (removable by recolouring glove_black); jeans legs ride the legs.
   const gloveParts = model.parts.filter((p) => p.c === "glove_black" && p.name !== "knot"); // (the hair tie shares the black)
-  assert.ok(gloveParts.length >= 6 && gloveParts.every((p) => p.name === "arm" && p.m === "rubber"), "gloves on the arms");
+  assert.ok(gloveParts.length >= 6 && gloveParts.every((p) => p.name === "forearm" && p.m === "rubber"), "gloves on the forearms");
   assert.ok(["leg_left", "leg_right"].every((n) => model.parts.some((p) => p.name === n && p.c === "denim")), "jeans legs");
   assert.ok(catalog.props.black_glove?.description, "a glove prop too");
   // Overalls, open at the sides: every piece named jeans, none on the arms (no arm rings).
   for (const n of ["bao_pants", "bao_bib", "bao_back", "bao_straps", "bao_pocket", "bao_stitches"]) assert.ok(model.parts.some((p) => p.p === n && p.name === "jeans"), n);
   assert.ok(!model.parts.some((p) => p.name === "arm" && /denim/.test(p.c)), "no denim on the arms");
   assert.ok(model.parts.some((p) => p.name === "arm" && p.p === "bao_arm"), "curvy arms");
+  // Longer legs ending in black shoes.
+  for (const n of ["leg_left", "leg_right"]) assert.ok(model.parts.some((p) => p.name === n && p.c === "shoe_black"), `${n} shoe`);
   // The pink top knot with a black hair tie.
   assert.deepEqual(model.parts.filter((p) => p.name === "knot").map((p) => p.c).sort(), ["glove_black", "knot_pink"]);
-  // The long arms end in a hand with three fingers and a thumb.
-  const armParts = model.parts.filter((p) => p.name === "arm");
-  assert.ok(armParts.length >= 6, "arm, palm, three fingers, thumb");
-  assert.ok(Math.min(...armParts.map((p) => p.hang?.[1] ?? 0)) < -0.3, "a long arm");
+  // The long arms bend at an elbow: the forearm parts hang on the arm, at its end, and carry the hand (palm,
+  // three fingers, thumb); the forearm swings with the arm and bends on its own.
+  const fore = model.parts.filter((p) => p.name === "forearm");
+  assert.ok(fore.length >= 7 && fore.every((p) => p.on === "arm" && p.mirror), "forearm and hand on the arm");
+  const upper = model.parts.find((p) => p.name === "arm" && p.p === "bao_arm");
+  near(fore[0].at[1], -upper.s[1], 1e-9, "the elbow is at the upper arm's end");
+  const elbowOf = (mm) => mm.named.get("forearm").parent;
+  assert.equal(elbowOf(m), m.named.get("arm"), "the forearm pivot hangs on the arm pivot");
+  const wristAt = (st) => {
+    m.update(1, { eyes: 1 }, st);
+    m.group.updateMatrixWorld(true);
+    return m.named.get("forearm").getWorldPosition(new THREE.Vector3());
+  };
+  const e0 = wristAt({});
+  assert.notDeepEqual(wristAt({ "bao#arm": { rotation: [0, 0, 60] } }).toArray(), e0.toArray(), "the elbow moves with the arm");
+  assert.deepEqual(wristAt({ "bao#forearm": { rotation: [0, 0, 60] } }).toArray(), e0.toArray(), "bending the forearm leaves the elbow put");
   // A talking 3D mouth (mouth.talk "grin", shape "mouth3d"): while speaking the jaw shuts to a thin smile and
   // opens with the voice; nothing is scaled (the tongue rides on the jaw); not speaking, it rests wide open.
   const talker = buildModel({ ...o, id: "bao2", talks: true }, model, material);

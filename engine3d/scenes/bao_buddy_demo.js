@@ -14,7 +14,7 @@ function swing(d, target, prop, a, b, { at, n, dur, rest }) {
 export default function baoBuddyDemo(d) {
   d.add({ id: "bao", kind: "critter", species: "bao_buddy", at: [0, 0, 0] });
   d.add({ id: "ball", kind: "prop", model: "basketball", at: [1.6, 0, 0.6], size: 0.5 });
-  d.set("camera", "position", [0, 0.95, 2.7]).set("camera", "lookAt", [0, 0.62, 0]).set("camera", "fov", 32);
+  d.set("camera", "position", [0, 1.05, 2.9]).set("camera", "lookAt", [0, 0.68, 0]).set("camera", "fov", 32);
 
   // 0-3 s: idle, the eyes dart about on their own. 3-7 s: a scripted gaze (x + its left, y + up).
   let t = 3;
@@ -28,11 +28,13 @@ export default function baoBuddyDemo(d) {
   d.look("bao", { at: t, to: "ahead", dur: 0.5 });
   t += 0.6;
   // 9.5 s: wave hello with the long right arm (the mirrored copy).
-  d.set("bao#arm", "liftSide", -1, t);
-  // The hand comes up beside the cheek, in front of the face, and waves side to side (the middle angle swings).
-  d.tween("bao#arm", "lift", [-15, 60, -85], { at: t, dur: 0.4, ease: "quadOut" });
-  t = swing(d, "bao#arm", "lift", [-15, 40, -85], [-15, 80, -85], { at: t + 0.4, n: 6, dur: 0.22, rest: [-15, 60, -85] });
-  d.tween("bao#arm", "lift", [0, 0, 0], { at: t, dur: 0.4 });
+  // The upper arm swings forward and out under the collar, the forearm bends up at the elbow, and the hand
+  // waves above the collar and in front of it (a pose searched clear of the collar).
+  d.set("bao#arm", "liftSide", -1, t).set("bao#forearm", "liftSide", -1, t);
+  d.tween("bao#arm", "lift", [70, 0, -96], { at: t, dur: 0.4, ease: "quadOut" });
+  d.tween("bao#forearm", "lift", [45, 0, -40], { at: t, dur: 0.4, ease: "quadOut" });
+  t = swing(d, "bao#forearm", "lift", [45, -15, -40], [45, 25, -40], { at: t + 0.4, n: 6, dur: 0.22, rest: [45, 0, -40] });
+  d.tween("bao#arm", "lift", [0, 0, 0], { at: t, dur: 0.4 }).tween("bao#forearm", "lift", [0, 0, 0], { at: t, dur: 0.4 });
   // Then a line: the grin shuts to a smile and opens with each syllable, and rests on the full grin after.
   t += 0.5;
   t += d.say("Hi! I'm Bao Buddy. Let's learn and play together!", { at: t, who: "bao" });

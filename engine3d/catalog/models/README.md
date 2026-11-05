@@ -21,6 +21,7 @@ this folder (sorted by name); a model name may be defined only once across all f
 | `fur` | `true` or `{ length, shells, density, clump }`: plush fur shells on the part (`runtime/fur.js`). Use with the `plush` material. |
 | `hr` | `[x, y, z]` degrees: turns the mesh inside its pivot (a thumb on a mitten that swings from the shoulder). |
 | `hang` | Offset of the mesh from its pivot, so several parts can share one pivot and swing together (arm, mitten and thumb; leg and sneaker). |
+| `on` | `"head"`, or the name of a part listed earlier: the part hangs on that part's pivot and swings with it (a forearm `on: "arm"` at the elbow; a mirrored part goes on that part's mirrored copy). Its `at` is then in that part's frame. |
 
 Critter faces can also take `eyes.iris` (a colour: big cartoon eyes with a white ball, iris, pupil and two
 shines), `brows` (`{ color, size, lift, dz }`: thick arched brows that always show and move with feelings) and
