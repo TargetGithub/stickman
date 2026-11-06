@@ -12,6 +12,8 @@ const STYLES = {
   title: { size: 0.12, x: 0.5, y: 0.62, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
   // A word naming what is on screen (shape, colour, animal), above the subtitle line.
   label: { size: 0.1, x: 0.5, y: 0.22, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
+  // A silent-movie title card: the whole frame, cream words on warm black inside a double border (cut in, no pop).
+  intertitle: { size: 0.085, x: 0.5, y: 0.5, fill: "#f3e6c4", box: "#17120d", stroke: null, card: true },
 };
 /** caption pos: where the caption's centre goes instead of its style's spot (fractions of the frame, from the bottom left). */
 export const CAPTION_POS = { left: [0.22, 0.62], right: [0.78, 0.62], top: [0.5, 0.86] };
@@ -34,6 +36,7 @@ export function createOverlay(width, height, captions) {
     const key = `${c.style}|${c.fill ?? ""}|${c.pos ?? ""}|${c.text}`;
     if (sprites.has(key)) return sprites.get(key);
     const st = STYLES[c.style] ?? STYLES.subtitle;
+    if (st.card) return card(c, st, key);
     const px = Math.round(height * st.size);
     const cv = document.createElement("canvas");
     const g = cv.getContext("2d");
@@ -85,6 +88,58 @@ export function createOverlay(width, height, captions) {
     return mesh;
   }
 
+  /**
+   * A full-frame title card, drawn at half size (a flat card scales up cleanly) so a 4K film of many cards stays
+   * light: the background, two cream borders with corner dots, and the words wrapped to 72% of the width.
+   */
+  function card(c, st, key) {
+    const w = Math.round(width / 2), h = Math.round(height / 2);
+    const cv = document.createElement("canvas");
+    cv.width = w;
+    cv.height = h;
+    const g = cv.getContext("2d");
+    g.fillStyle = st.box;
+    g.fillRect(0, 0, w, h);
+    const ink = c.fill ?? st.fill;
+    g.strokeStyle = ink;
+    for (const [inset, lw] of [[0.05, 0.006], [0.068, 0.0025]]) {
+      g.lineWidth = h * lw;
+      g.strokeRect(h * inset, h * inset, w - 2 * h * inset, h - 2 * h * inset);
+    }
+    g.fillStyle = ink;
+    for (const [x, y] of [[0, 0], [1, 0], [0, 1], [1, 1]]) {
+      g.beginPath();
+      g.arc(h * 0.09 + x * (w - h * 0.18), h * 0.09 + y * (h - h * 0.18), h * 0.012, 0, Math.PI * 2);
+      g.fill();
+    }
+    // A line break in the text ("\n") starts a new line; long lines wrap.
+    const px = Math.round(h * st.size);
+    g.font = `bold ${px}px ${FONT}`;
+    const lines = [];
+    for (const para of c.text.split("\n")) {
+      lines.push("");
+      for (const word of para.split(" ")) {
+        const last = lines[lines.length - 1];
+        if (last && g.measureText(`${last} ${word}`).width > w * 0.72) lines.push(word);
+        else lines[lines.length - 1] = last ? `${last} ${word}` : word;
+      }
+    }
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    const lh = px * 1.3;
+    lines.forEach((l, i) => g.fillText(l, w / 2, h / 2 + (i - (lines.length - 1) / 2) * lh));
+    const tex = new THREE.CanvasTexture(cv);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, toneMapped: false, depthTest: false });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), mat);
+    mesh.position.set(width / 2, height / 2, 0);
+    mesh.visible = false;
+    mesh.userData.card = true;
+    scene.add(mesh);
+    sprites.set(key, mesh);
+    return mesh;
+  }
+
   return {
     scene,
     camera,
@@ -100,6 +155,12 @@ export function createOverlay(width, height, captions) {
       for (const c of captions) {
         if (t < c.start || t >= c.start + c.dur) continue;
         const m = sprite(c);
+        if (m.userData.card) {
+          // Title cards cut in and out with a short fade, at full size.
+          m.visible = true;
+          m.material.opacity = Math.max(0, Math.min(1, (t - c.start) / 0.12, (c.start + c.dur - t) / 0.12));
+          continue;
+        }
         const k = ease("backOut", (t - c.start) / 0.3);
         const out = Math.min(1, (c.start + c.dur - t) / 0.2);
         m.visible = true;

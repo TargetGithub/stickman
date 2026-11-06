@@ -129,6 +129,7 @@ home and school, outdoor and science). `scenes/model_sheet.js` shows them all.
 | Containers and new shapes | `cup`, `pot`, `bowl`, `tube`, `bottle`, `dome`, `disc`, `wedge`; flat `pentagon`, `hexagon`, `octagon`, `half_circle`, `quarter_circle`, `arrow`, `cross`, `snowflake`, `drop`, `leaf`, `ring`. Materials `water`, `glass`, `ice`, `paper`, `light`. |
 | Sounds | `tick`, `fizz`, `rain`, `twang`, `drum`, `train_whistle`, `cha_ching`, `clink`, `rocket`, `pour`, plus `splash`, `heartbeat`, `gasp`, `sneeze`, `step` and more (`catalog/sounds.json`). |
 | Letter sounds (phonics) | `ph_a_short` … `ph_u_short`, `ph_a_long` … `ph_u_long`, `ph_oo`, consonants `ph_b` … `ph_z` (plus `ph_c`, `ph_qu`, `ph_x`), and `ph_sh`, `ph_ch`, `ph_th`, `ph_th_voiced`, `ph_wh`, `ph_ng`: cue them like any sound. `tools/phonemes.mjs` makes them (see below). |
+| Old-movie look, title cards | `filmLook(d, { irises })` (`runtime/film_look.js`, JS scenes): warm vignette, grain, iris in/out (an iris can follow an object id). Caption style `intertitle`: a full-frame silent-movie title card. Demo: `scenes/dumpydoo_silent_movie.js` |
 | Calmer music in a chapter | A scene takes `music` (a mood, or `false` for none) and `musicGain` (see below). |
 
 `scripts/feature_tour.json` shows all of these in 50 seconds.

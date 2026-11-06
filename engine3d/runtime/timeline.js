@@ -13,7 +13,8 @@ import { ease } from "./ease.js";
 
 const lerp = (a, b, k) => {
   // Booleans and names (a feeling, a clip) switch at the end of their segment; they do not blend.
-  if (typeof a !== "number" && !Array.isArray(a)) return k >= 1 ? b : a;
+  // So does null (a prop cleared again: a set gaze given back to the idle glances).
+  if ((typeof a !== "number" && !Array.isArray(a)) || b == null) return k >= 1 ? b : a;
   if (Array.isArray(a)) return a.map((x, i) => x + (b[i] - x) * k);
   return a + (b - a) * k;
 };

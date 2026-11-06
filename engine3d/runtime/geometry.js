@@ -7,6 +7,7 @@ import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.j
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { DOUGH_SHAPES } from "./dough.js";
 import { CLOTHES_SHAPES } from "./bao_clothes.js";
+import { SILENT_SHAPES } from "./silent_shapes.js";
 
 const cache = new Map();
 
@@ -332,6 +333,7 @@ function make(name) {
   // Dough character shapes (DumpyDoo) live in dough.js.
   if (Object.hasOwn(DOUGH_SHAPES, name)) return DOUGH_SHAPES[name]();
   if (Object.hasOwn(CLOTHES_SHAPES, name)) return CLOTHES_SHAPES[name]();
+  if (Object.hasOwn(SILENT_SHAPES, name)) return SILENT_SHAPES[name]();
   switch (name) {
     // Solids.
     case "cube": return new THREE.BoxGeometry(1, 1, 1);
