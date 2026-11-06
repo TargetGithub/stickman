@@ -2,6 +2,7 @@
 // clocks, lamp aim and paths. Like the rest of the director they only record timeline data. Pure: no
 // three.js, no I/O, no clocks.
 
+import { localBounds } from "./bounds.js";
 import { withDefaults } from "./teach_layout.js";
 
 /** Teaching-kit kinds paint can recolour (their `color`: a stroke, an arrow, a number line's beam, shaded fraction parts). */
@@ -47,6 +48,7 @@ export function modelColors(o, catalog) {
  */
 export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) {
   let lit = false;
+  const lying = new Map(); // id → its standing pose, while it lies down (lie)
   // The stage's light and colours become timeline props of the target "stage" the first time they change.
   const stageBases = () => {
     if (lit) return;
@@ -64,6 +66,31 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
   };
 
   Object.assign(d, {
+    /**
+     * Lie down (critters, characters, props): pose "side" lays it on its side facing the camera (side 1: head to
+     * the left), "back" on its back face up (head to the left with side 1, so the camera sees its profile), "up" stands it again. It turns about its
+     * base and lifts by its half thickness so it rests on the floor; then look or feel as usual (looks up at the sky:
+     * a look after lying on its back). Works from the object's rest rotation and position at that time.
+     */
+    lie(id, { at: t = 0, pose = "side", side = 1, dur = 0.8, ease = "quadInOut" } = {}) {
+      const o = obj(id);
+      const b = localBounds({ ...o, at: [0, 0, 0], rotation: [0, 0, 0] }, catalog);
+      const p = [...(now(id, "position", t) ?? o.at)];
+      const rest = lying.get(id) ?? { y: p[1], rot: [...(now(id, "rotation", t) ?? o.rotation ?? [0, 0, 0])] };
+      lying.set(id, rest);
+      let rot = [...rest.rot];
+      let y = rest.y;
+      if (pose === "side") {
+        rot = [rest.rot[0], rest.rot[1], rest.rot[2] + 90 * side];
+        y = rest.y + (side > 0 ? b.max[0] : -b.min[0]);
+      } else if (pose === "back") {
+        // Face up, head to the left (side 1) or right: the camera sees the profile, as when lying on the grass.
+        rot = [-90, 0, 90 * side];
+        y = rest.y - b.min[2];
+      } else lying.delete(id);
+      d.tween(id, "position", [p[0], Math.round(y * 1000) / 1000, p[2]], { at: t, dur, ease });
+      return d.tween(id, "rotation", rot, { at: t, dur, ease });
+    },
     /**
      * Roll along the floor to `to`: glide there and turn by distance / radius about the axis across the path, so
      * a ball's surface does not slide. The object turns about its pivot, so give a ball `pivot: [0, r, 0]` (its

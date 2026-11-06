@@ -80,3 +80,23 @@ for (const [kind, name, lim] of boxes) {
     if (lim.minH) assert.ok(h >= lim.minH, `height ${h}`);
   });
 }
+
+test("#10 lie rests a critter on the floor and stands it up again", () => {
+  const s = script("lie_down");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const v = (id, prop, t) => plan.timeline.valueAt(id, prop, t);
+  assert.ok(v("bunny", "rotation", 1.5)[2] === 90, "on its side");
+  assert.ok(v("bunny", "position", 1.5)[1] > 0.1, "lifted by its half width");
+  assert.deepEqual(v("bear", "rotation", 1.5), [-90, 0, 90]);
+  assert.deepEqual(v("bear", "position", 3.4), [0.6, 0, 0.3], "stands again");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].pose = "sit";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_LIE"));
+});
+
+test("#8 kite_landed rests on the ground", async () => {
+  const { localBounds } = await import("../../runtime/bounds.js");
+  const b = localBounds({ kind: "prop", model: "kite_landed", size: 1 }, catalog);
+  assert.ok(b.min[1] >= 0 && b.max[1] < 1.4, `kite spans ${b.min[1]}..${b.max[1]}`);
+});

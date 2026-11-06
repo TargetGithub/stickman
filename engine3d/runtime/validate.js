@@ -251,6 +251,8 @@ export function validateScript(script, catalog, opts = {}) {
     }
     checkTeachAction(a, p, o, { err, ids, catalog });
     if ((a.do === "drop" || a.do === "move" || a.do === "roll") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    if (a.do === "lie" && a.pose != null && !["side", "back", "up"].includes(a.pose)) err("E3D_LIE", `${p}.pose`, "pose must be side, back or up");
+    if (a.do === "lie" && a.side != null && a.side !== 1 && a.side !== -1) err("E3D_LIE", `${p}.side`, "side must be 1 (head to the left) or -1");
     if (a.do === "roll" && a.radius != null && !isNum(a.radius, 0.01, 20)) err("E3D_RANGE", `${p}.radius`, "radius must be 0.01-20 m");
   }
 

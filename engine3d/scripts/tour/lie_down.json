@@ -1,0 +1,19 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Lying down and a landed kite", "seed": 13, "music": false },
+  "stage": { "preset": "garden" },
+  "camera": { "position": [0, 1.6, 6.5], "lookAt": [0, 0.5, 0], "fov": 40 },
+  "objects": [
+    { "id": "bunny", "kind": "critter", "species": "bunny", "at": [-1.4, 0, 0] },
+    { "id": "bear", "kind": "critter", "species": "baby_bear", "at": [0.6, 0, 0.3] },
+    { "id": "kite", "kind": "prop", "model": "kite_landed", "at": [2.2, 0, -0.4] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2, "do": [
+      { "do": "lie", "target": "bunny", "pose": "side" },
+      { "do": "lie", "target": "bear", "pose": "back", "at": 0.2 },
+      { "do": "look", "target": "bunny", "to": [-1.4, 4, 0], "at": 1 }
+    ] },
+    { "dur": 1.5, "do": [{ "do": "lie", "target": "bear", "pose": "up" }] }
+  ] }]
+}

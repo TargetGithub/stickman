@@ -107,6 +107,7 @@ function run(d, a, start) {
     case "drop": return d.drop(a.target, o);
     case "move": return d.move(a.target, o);
     case "roll": return d.roll(a.target, o);
+    case "lie": return d.lie(a.target, o);
     case "turn": return d.turn(a.target, o);
     case "spin": return d.spin(a.target, o);
     case "hop": return d.hop(a.target, o);
