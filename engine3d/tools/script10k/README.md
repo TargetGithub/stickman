@@ -8,6 +8,7 @@ what every video shares, then checks it. The spec is what makes each video uniqu
 ```bash
 export PATH=/Users/a81133017/.nvm/versions/node/v20.19.3/bin:$PATH
 node engine3d/tools/script10k.mjs ready                 # specs whose assets all exist and have no lesson yet
+node engine3d/tools/script10k.mjs needs <id>            # the spec's new: assets: built names, mapped ones with their "how"
 node engine3d/tools/script10k.mjs qa <id>               # build + QA (0 errors needed; read every warning)
 node engine3d/tools/script10k.mjs stills <id>           # 1080p stills on real TTS timing -> qa/<band>/<id>/contact_N.jpg
 node engine3d/tools/script10k.mjs thumbs <id>           # designed thumbnails -> qa/<band>/<id>/thumbs/thumbnails_sheet.jpg
@@ -32,6 +33,13 @@ The quality model is `10K/lessons/kg/kg0117.json` (Letter Train A to F). Read it
 - Confetti `party` (never for babies). Use it with `"confetti": true` on a beat (the magic moment).
 - **Keyword badges**: each spec keyword not already placed gets a pop-in on the first line that says it.
 - **Camera keep-alive**: a camera still for more than 12 s gets a slow dolly (out, then back in later).
+
+## Assets the spec calls `new:`
+
+Run `needs <id>` first. A **built** name is in the catalog now: use it as written (critter `species`, prop
+`model`, stage preset). A **mapped** name is made from what exists: follow its `how` exactly (a variant model, a
+kind such as `text_card` for cards and pages, a shape composition). See `engine3d/catalog/asset_map.json` and the
+"10K asset wave" section of `engine3d/README.md`. Never invent a model name; QA fails on unknown names.
 
 ## Lesson format
 

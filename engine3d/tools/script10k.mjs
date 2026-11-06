@@ -8,6 +8,7 @@
 //   node engine3d/tools/script10k.mjs thumbs <id>                 designed thumbnails + sheet into the qa folder
 //   node engine3d/tools/script10k.mjs review <id> --ok|--fix "note"   record the eye check (qa/<id>/review.json)
 //   node engine3d/tools/script10k.mjs ready [--band b] [--json]   specs whose assets all exist and have no lesson yet
+//   node engine3d/tools/script10k.mjs needs <id>...               which new: assets are mapped (and how to build them) or missing
 //   node engine3d/tools/script10k.mjs status                     10K/SCRIPT_STATUS.md
 // Env TOYBOX_10K overrides the 10K folder.
 
@@ -135,6 +136,17 @@ if (cmd === "ready") {
   else {
     for (const r of ready) console.log(r.id);
     console.error(`${ready.length} ready without a lesson; ${rows.filter((r) => r.missing.length).length} blocked on assets; ${rows.filter((r) => r.lesson).length} have lessons`);
+  }
+  process.exit(0);
+}
+
+if (cmd === "needs") {
+  // What the spec's new: assets are now: built (use the name), mapped (follow "how"), or still missing.
+  const { assetContext, needState } = await import("./script10k/index.mjs");
+  for (const id of positional) {
+    const st = needState(loadSpec(id), assetContext(catalog));
+    console.log(`${id}: ${st.missing.length ? `MISSING ${st.missing.join(", ")}` : "all assets available"}`);
+    for (const m of st.mapped) console.log(`  ${m.group}.${m.name} -> use ${JSON.stringify(m.use)}: ${m.how}`);
   }
   process.exit(0);
 }
