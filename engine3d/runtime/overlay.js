@@ -8,6 +8,9 @@ import { ease } from "./ease.js";
 
 const STYLES = {
   subtitle: { size: 0.062, x: 0.5, y: 0.1, fill: "#2b2d42", box: "rgba(255,255,255,0.92)", stroke: null },
+  // A short exclamation ("Zip, zip!", "Splash!") in the subtitle's pill, bigger: babies' scripts use it for captions
+  // of up to three words (compile.js), so a one-word line does not look lost at the bottom of the frame.
+  shout: { size: 0.088, x: 0.5, y: 0.125, fill: "#2b2d42", box: "rgba(255,255,255,0.92)", stroke: null },
   count: { size: 0.2, x: 0.76, y: 0.62, fill: "#ffffff", box: null, stroke: "#2b2d42" },
   title: { size: 0.12, x: 0.5, y: 0.62, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
   // A word naming what is on screen (shape, colour, animal), above the subtitle line.
@@ -292,7 +295,7 @@ export function createOverlay(width, height, captions) {
       // The top edge of the subtitle on screen, so a label above it moves up when it wraps onto two lines.
       let subTop = 0;
       for (const c of captions) {
-        if (t < c.start || t >= c.start + c.dur || (c.style ?? "subtitle") !== "subtitle" || c.pos) continue;
+        if (t < c.start || t >= c.start + c.dur || !["subtitle", "shout"].includes(c.style ?? "subtitle") || c.pos) continue;
         const m = sprite(c);
         subTop = Math.max(subTop, m.position.y + m.geometry.parameters.height / 2);
       }

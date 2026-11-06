@@ -68,12 +68,17 @@ export function compileScript(script, { catalog, speech = {} }) {
         }
       });
       // Captions without a dur last to the end of their beat, known only now.
-      for (const c of later) d.caption(c.text, { at: t + (c.at ?? 0), dur: c.dur ?? Math.max(0.5, len - (c.at ?? 0)), style: c.style, color: c.color, pos: c.pos });
+      for (const c of later) d.caption(c.text, { at: t + (c.at ?? 0), dur: c.dur ?? Math.max(0.5, len - (c.at ?? 0)), style: c.style ?? captionStyle(c.text, meta), color: c.color, pos: c.pos });
       t += len;
     });
   }
   d.end(t);
   return { ...d.plan(), scenes };
+}
+
+/** Babies' scripts show captions of up to three words ("Zip, zip!") in the bigger shout style; others as subtitles. */
+export function captionStyle(text, meta) {
+  return meta.audience === "babies" && String(text).trim().split(/\s+/).length <= 3 ? "shout" : undefined;
 }
 
 /** Object id → its catalog voice ({ voice, pitch, speed }) for characters whose catalog entry has one (Robo). */

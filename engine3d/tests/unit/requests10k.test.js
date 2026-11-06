@@ -115,3 +115,16 @@ test("#7 shot looks down on flat targets unless height is given", () => {
   assert.ok(Math.abs(elev(base("bear")) - 8) < 1);
   assert.ok(Math.abs(elev(base("pond", { height: 12 })) - 12) < 1);
 });
+
+const shoutCases = [
+  ["Zip, zip!", "babies", "shout"],
+  ["Splash!", "babies", "shout"],
+  ["The bunny zips up her coat.", "babies", undefined],
+  ["Zip, zip!", "k", undefined],
+];
+for (const [text, audience, want] of shoutCases) {
+  test(`#9 caption style for "${text}" (${audience})`, async () => {
+    const { captionStyle } = await import("../../runtime/compile.js");
+    assert.equal(captionStyle(text, { audience }), want);
+  });
+}

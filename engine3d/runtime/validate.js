@@ -212,7 +212,7 @@ export function validateScript(script, catalog, opts = {}) {
         for (const k of ["background", "floor", "rug"]) name(catalog.colors, a[k], "E3D_COLOR", `${p}.${k}`, "color");
         if (a.rig == null && a.background == null && a.floor == null && a.rug == null) err("E3D_REQUIRED", p, "lights needs rig, background, floor or rug");
       }
-      if (a.do === "caption" && a.style != null && !["title", "count", "subtitle", "label", "intertitle", "chapter"].includes(a.style)) err("E3D_STYLE", `${p}.style`, "style must be title, count, label, subtitle, intertitle or chapter");
+      if (a.do === "caption" && a.style != null && !["title", "count", "subtitle", "shout", "label", "intertitle", "chapter"].includes(a.style)) err("E3D_STYLE", `${p}.style`, "style must be title, count, label, subtitle, shout, intertitle or chapter");
       return;
     }
     if (typeof a.target === "string" && a.target.includes("#")) {
