@@ -67,7 +67,7 @@ if (cmd === "build" || cmd === "qa") {
 if (cmd === "stills") {
   const id = positional[0];
   const p = paths(id);
-  if (!existsSync(p.script)) buildId(id, catalog);
+  if (existsSync(p.lesson)) buildId(id, catalog); // always from the current lesson
   const script = JSON.parse(readFileSync(p.script, "utf8"));
   const every = Number(opt("--every", 10));
   const speechMode = opt("--speech", "tts");
@@ -107,7 +107,7 @@ if (cmd === "stills") {
 if (cmd === "thumbs") {
   const id = positional[0];
   const p = paths(id);
-  if (!existsSync(p.script)) buildId(id, catalog);
+  if (existsSync(p.lesson)) buildId(id, catalog); // always from the current lesson
   const out = join(p.qaDir, "thumbs");
   const r = spawnSync(process.execPath, [join(HERE, "thumbnail3d.mjs"), p.script, "--out", out], { stdio: "inherit", env: { ...process.env, THUMB_BRAND: BRAND } });
   if (r.status === 0) console.log(join(out, "thumbnails_sheet.jpg"));

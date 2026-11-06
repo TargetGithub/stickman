@@ -80,7 +80,7 @@ export function keepCameraAlive(script, catalog, { limit = KEEP_ALIVE, babies = 
     // comes back and nothing is ever pushed out of the frame (an orbit at close range can crop the sides).
     const look = plan.timeline.valueAt("camera", "lookAt", pick.t);
     const pos = plan.timeline.valueAt("camera", "position", pick.t);
-    const k = sign > 0 ? (babies ? 1.06 : 1.09) : 1 / (babies ? 1.06 : 1.09);
+    const k = sign > 0 ? (babies ? 1.05 : 1.07) : 1 / (babies ? 1.05 : 1.07);
     const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
     const to = pos.map((x, i) => look[i] + (x - look[i]) * k);
     to[1] += sign * 0.08;
