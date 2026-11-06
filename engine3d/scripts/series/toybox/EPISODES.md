@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-90 episodes: 19 spec, 0 scripted, 69 rendered, 2 uploaded. Status moves spec → scripted → rendered → uploaded.
+90 episodes: 15 spec, 3 scripted, 69 rendered, 3 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -17,12 +17,12 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | bb01 | Bubbles and Colours | Babies | Colours (sensory) | – | `bb01_bubbles_and_colours.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb01_bubbles_and_colours |
 | br01 | Old MacDonald Had a Farm | Babies | Animals and sounds (rhyme) | `listening_prek` | `br01_old_macdonald.json` | uploaded | disk1:BABY-RHYMES/br01_old_macdonald |
 | bb02 | Peekaboo Animals | Babies | Listening (sensory) | `listening_prek` | `bb02_peekaboo_animals.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb02_peekaboo_animals |
-| br02 | Baa Baa Black Sheep: Colour Wool | Babies | Colours (rhyme) | – | spec: specs/baby_rhymes.md br02 | spec | – |
+| br02 | Baa Baa Black Sheep: Colour Wool | Babies | Colours (rhyme) | `count_to_5_prek`, `listening_prek` | `br02_baa_baa_colours.json` | scripted | – |
 | bb03 | Goodnight, Little Star | Babies | Music / bedtime | – | `bb03_goodnight_stars.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb03_goodnight_stars |
-| br03 | Five Little Ducks Go Splash | Babies | Counting (rhyme) | `count_to_5_prek` | spec: specs/baby_rhymes.md br03 | spec | – |
+| br03 | Five Little Ducks Go Splash | Babies | Counting (rhyme) | `count_to_5_prek`, `number_order_prek` | `br03_five_little_ducks.json` | uploaded | disk1:BABY-RHYMES/br03_five_little_ducks |
 | bb04 | Black and White Shapes | Babies | Shapes (sensory) | `basic_shapes_prek` | `bb04_contrast_shapes.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb04_contrast_shapes |
-| br04 | Head, Shoulders, Knees and Toes | Babies | Body parts (rhyme) | – | spec: specs/baby_rhymes.md br04 | spec | – |
-| br05 | Hickory Dickory Dock | Babies | Counting and time (rhyme) | `count_to_5_prek` | spec: specs/baby_rhymes.md br05 | spec | – |
+| br04 | Head, Shoulders, Knees and Toes | Babies | Body parts (rhyme) | `five_senses_prek`, `listening_prek` | `br04_head_shoulders_knees_toes.json` | scripted | – |
+| br05 | Hickory Dickory Dock | Babies | Counting and time (rhyme) | `count_to_5_prek`, `position_words_prek` | `br05_hickory_dickory_dock.json` | scripted | – |
 | br06 | Row, Row, Row Your Boat | Babies | Opposites (rhyme) | `opposites_k` | spec: specs/baby_rhymes.md br06 | spec | – |
 | br07 | Itsy Bitsy Spider: Rain and Sun | Babies | Weather (rhyme) | – | spec: specs/baby_rhymes.md br07 | spec | – |
 | br08 | Humpty Dumpty: Fix It Together | Babies | Shapes and cause and effect (rhyme) | `basic_shapes_prek` | spec: specs/baby_rhymes.md br08 | spec | – |
