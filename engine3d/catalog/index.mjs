@@ -28,12 +28,32 @@ function readModels() {
   return expandVariants(out);
 }
 
+/** stages.json plus every file in stages/ (one per theme, like models/); a stage name may be defined once. */
+function readStages() {
+  const stages = read("stages");
+  let files = [];
+  try {
+    files = readdirSync(new URL("./stages/", import.meta.url)).filter((f) => f.endsWith(".json")).sort();
+  } catch {
+    return stages;
+  }
+  for (const f of files) {
+    const extra = read(`stages/${f.slice(0, -5)}`);
+    for (const [name, v] of Object.entries(extra.stages ?? {})) {
+      if (stages.stages[name]) throw new Error(`catalog stages/${f}: stage "${name}" is already defined`);
+      stages.stages[name] = v;
+    }
+    Object.assign(stages.lights, extra.lights ?? {});
+  }
+  return stages;
+}
+
 /**
  * The whole 3D catalog plus the shared TTS timbres (catalog/story/tts_voices.json). Each character gains
  * clipDurations (seconds per clip, read from its .glb) so the director can time "then" clips in Node.
  */
 export function loadCatalog3d() {
-  const stages = read("stages");
+  const stages = readStages();
   const models = readModels();
   const voices = JSON.parse(readFileSync(new URL("../../catalog/story/tts_voices.json", import.meta.url), "utf8"));
   return {
