@@ -1,6 +1,13 @@
 {
  "description": "Toybox 10K: names the specs ask for (new:...) that are made from assets the catalog already has. use = an existing catalog name (critter, character, prop, shape, stage, kind or action); how = what the script does with it. tools/assets10k.mjs reads it.",
  "characters": {
+  "grandma_bunny": {
+   "use": [
+    "bunny",
+    "round_glasses"
+   ],
+   "how": "bunny with recolor { white: grey }, round_glasses parented on part head (as fluffy_smart wears them), a small purple shawl (a torus or plate shape on the shoulders); same family look as big_rabbit"
+  },
   "ladybird": {
    "use": "bug",
    "how": "the catalog bug is a red spotted ladybug (US name); its shell part lifts to fly. Say 'ladybug' in narration (US English)"
@@ -118,6 +125,14 @@
     "disc"
    ],
    "how": "Box body with a red circle record button, triangle play button and small card screen; action sound plays it."
+  },
+  "audit_bar_chart": {
+   "use": [
+    "board",
+    "cubes",
+    "grow"
+   ],
+   "how": "board style white layout columns, labels Mon..Fri, easel false; each bar is a box shape that grows up with grow to [1, n, 1]; lift a bar off with move and turn it into cubes"
   },
   "autocue": {
    "use": [
@@ -421,6 +436,14 @@
     "story_card"
    ],
    "how": "A board labeled BEGINNING with three sockets (WHO, WHERE/WHEN, PROBLEM); move small story_card pictures into the sockets."
+  },
+  "beginning_tester": {
+   "use": [
+    "word_machine",
+    "sphere",
+    "paint"
+   ],
+   "how": "word_machine recolored purple as the gadget; four sphere lamps on top labeled with small card name_tags WHO, WHERE / WHEN, PROBLEM, HOOK; paint each lamp to yellow (glow) as the card does that job"
   },
   "bell_machine": {
    "use": [
@@ -874,6 +897,14 @@
    "use": "egg",
    "how": "Use egg recolored yellow-orange with ridges (strokes), scaled big; action open splits to show white bean spheres."
   },
+  "calculator_pad": {
+   "use": [
+    "board",
+    "card",
+    "highlight"
+   ],
+   "how": "board style white layout pins easel false with a card style strip as the screen; keys are card style tile (0-9, +, =) in a 4x4 group; highlight each key as pressed; the screen card changes by showing the next card"
+  },
   "calendar_board": {
    "use": [
     "board",
@@ -1134,6 +1165,14 @@
     "card"
    ],
    "how": "Three small flags on thin cylinder sticks: MAKES SENSE, SOUNDS RIGHT and LOOKS RIGHT as cards."
+  },
+  "check_it_lamp": {
+   "use": [
+    "lamp",
+    "aim",
+    "emphasize"
+   ],
+   "how": "a lamp kind with beam true and a small card name_tag CHECK IT; aim it at a sentence card; emphasize the sentence gold if it is a fact, leave it plain if an opinion"
   },
   "check_stamps": {
    "use": [
@@ -1470,6 +1509,10 @@
    "use": "board",
    "how": "board style white, layout columns, labels = the two story names, rows 5"
   },
+  "compost_bin": {
+   "use": "bin",
+   "how": "the bin prop recolored green; scraps drop into the top (drop), a small brown dome of soil pops out at the base"
+  },
   "compound_puzzle": {
    "use": "card",
    "how": "Two big jigsaw card pieces with pictures that slide together with move."
@@ -1674,6 +1717,13 @@
   "cushion": {
    "use": "pillow",
    "how": "Pillow prop scaled big and recolored; a toy hides behind it; puff with grow then settle."
+  },
+  "cut_tray": {
+   "use": [
+    "box",
+    "card"
+   ],
+   "how": "a low flat box tray in grey with a card style name_tag CUT; unused cards move into it and shrink with grow to 0.01 (fade)"
   },
   "daisy": {
    "use": "flower",
@@ -2120,6 +2170,13 @@
   "evidence_chart": {
    "use": "board",
    "how": "Three-column board CLAIM, DETAIL, EXPLANATION with three rows; quote cards slide in with move."
+  },
+  "evidence_scale": {
+   "use": [
+    "balance_scale",
+    "card"
+   ],
+   "how": "the balance_scale prop; evidence cards reparent onto its pans; tilt the beam with turn toward the strong side; weak cards move up and shrink away"
   },
   "evidence_strip": {
    "use": [
@@ -3416,6 +3473,13 @@
     "circle"
    ],
    "how": "Pairs of small oval prints in white snow; glow one by one with highlight."
+  },
+  "hook_kit": {
+   "use": [
+    "treasure_chest",
+    "card"
+   ],
+   "how": "a small open treasure_chest as the toolbox with four card style word cards SOUND, QUESTION, ACTION, TALKING that lift out with move"
   },
   "hop_stones": {
    "use": [
@@ -4898,6 +4962,13 @@
    ],
    "how": "Crescent moon prop with a sleepy smile worked by thin cylinder strings from a bar above."
   },
+  "mooncake": {
+   "use": [
+    "cylinder",
+    "box"
+   ],
+   "how": "a short gold-brown cylinder (bun_gold) 0.3 m across with a flat flower shape on top; sits in a small red box with a thin twine-colored box ribbon"
+  },
   "mop": {
    "use": [
     "group",
@@ -6109,6 +6180,13 @@
     "torus"
    ],
    "how": "A round brass disc with a clock kind face on a chain of tori that flips open with open."
+  },
+  "podium": {
+   "use": [
+    "box",
+    "studio_mic"
+   ],
+   "how": "a wood box podium 0.7 x 1.0 x 0.5 m with a sloped top plate; studio_mic at size 0.5 parented on top"
   },
   "poem_board": {
    "use": "board",
@@ -7357,6 +7435,10 @@
   "school_bag": {
    "use": "backpack",
    "how": "Backpack prop with a rainbow strap; sit on a seat then lift onto a lap with move."
+  },
+  "school_bus": {
+   "use": "bus",
+   "how": "bus with recolor { red: yellow }; its headlights read as a friendly face; drive it along a path for the winding road"
   },
   "science_fair_poster": {
    "use": [
@@ -8685,6 +8767,10 @@
    "use": "board",
    "how": "Poster board with boxes SETTING, CHARACTERS, PROBLEM, EVENTS and SOLUTION; notes slide in."
   },
+  "story_map_board": {
+   "use": "board",
+   "how": "board style white layout pins with labels CHARACTERS, SETTING, PROBLEM, EVENTS, SOLUTION; a dotted stroke path between the headings; picture cards reparent into sockets"
+  },
   "story_mat": {
    "use": "rug",
    "how": "Use rug round and soft with a star pattern; toys sit, stand or lie on it."
@@ -8887,6 +8973,14 @@
   "sunflower_seed": {
    "use": "seed",
    "how": "Use seed recolored striped black and white, scaled big enough for a paw; action drop pushes into soil with a finger hole disc."
+  },
+  "support_tree": {
+   "use": [
+    "tree",
+    "card",
+    "highlight"
+   ],
+   "how": "a tree prop at size 2.5 with a card style strip on the trunk (main point), word cards on the branches (reasons), small picture cards as leaves; highlight the cards that truly support"
   },
   "swap_map": {
    "use": [
@@ -9122,6 +9216,14 @@
     "termite"
    ],
    "how": "Tall reddish cone with small dark circle holes and a stick; termite critters cling to stick."
+  },
+  "test_lights": {
+   "use": [
+    "sphere",
+    "paint",
+    "card"
+   ],
+   "how": "four sphere lamps in a row with card name_tags ON THE POINT, SPECIFIC, TRUSTWORTHY, ENOUGH; paint a lamp green when it passes, a slow soft red (under 1 Hz) when it does not"
   },
   "test_stamps": {
    "use": [
