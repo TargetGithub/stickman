@@ -5,6 +5,7 @@
 import * as THREE from "three";
 import { shapeGeometry } from "./geometry.js";
 import { trackerFit } from "./retain_layout.js";
+import { EXTRA_TRACKER_STYLES, addPencilPage, buildExtraSlot } from "./retain_tracker_styles.js";
 
 const PALETTE = ["blue", "green", "orange", "purple", "pink", "teal"];
 
@@ -53,7 +54,9 @@ export function buildTracker(o, group, kit) {
     const full = new THREE.Group();
     node.add(empty, full);
     const label = labelOf(i);
-    if (style === "train") {
+    if (EXTRA_TRACKER_STYLES.includes(style)) {
+      buildExtraSlot(style, { i, n, p, prev: layout.slots[i - 1], empty, full, node, label, surprise: i === surpriseAt, gift, kit, main, accent, filledColor });
+    } else if (style === "train") {
       node.add(box(0.8, 0.08, 0.3, "charcoal").translateY(-0.27), wheel(-0.22, -0.33), wheel(0.22, -0.33));
       node.add(box(0.14, 0.05, 0.1, "charcoal").translateX(-0.46).translateY(-0.26));
       if (i === surpriseAt) empty.add(gift(0.56).translateY(0.02));
@@ -107,6 +110,7 @@ export function buildTracker(o, group, kit) {
   });
 
   if (style === "train") inner.add(engine(layout.engine));
+  const pencil = style === "pencil" ? addPencilPage(inner, layout, kit) : null;
   if (style === "checklist") {
     const back = new THREE.Mesh(new THREE.BoxGeometry(layout.width + 0.08, layout.height + 0.08, 0.04), kit.material(main, "glossy"));
     const card = new THREE.Mesh(new THREE.BoxGeometry(layout.width, layout.height, 0.06), kit.material("white", "toy"));
@@ -176,6 +180,7 @@ export function buildTracker(o, group, kit) {
         node.scale.setScalar(1 + 0.25 * Math.sin(Math.PI * u));
       }
     }
+    if (pencil) pencil(s.step ?? 0);
     if (marker) {
       const st = Math.max(0, Math.min(n, s.step ?? 0));
       const i0 = Math.max(0, Math.floor(st) - 1);

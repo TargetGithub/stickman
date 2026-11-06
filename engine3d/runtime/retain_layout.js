@@ -15,7 +15,7 @@ export const ICONS = {
 };
 /** Cues a call-and-response pause can show. */
 export const CUES = ["ear", "hand", "mouth", "eye", "question"];
-export const TRACKER_STYLES = ["train", "checklist", "stars", "path"];
+export const TRACKER_STYLES = ["train", "checklist", "stars", "path", "islands", "town", "gauges", "pencil"];
 export const TRACKER_CORNERS = ["top_left", "top_right", "top"];
 
 /** Fixed screen spots (HUD units). */
@@ -52,6 +52,14 @@ export function trackerLayout(o) {
     const slots = Array.from({ length: n }, (_, i) => [0.4, -0.38 - i * ROW, 0]);
     return { slots, width, height: 0.26 + n * ROW };
   }
+  if (style === "gauges") {
+    const slots = Array.from({ length: n }, (_, i) => [0.4 + i * 0.86, 0, 0]);
+    return { slots, width: n * 0.86 - 0.06, height: 1.0 };
+  }
+  if (style === "pencil") {
+    const slots = Array.from({ length: n }, (_, i) => [0.12, -0.3 - i * 0.26, 0]);
+    return { slots, width: 1.5, height: 0.36 + n * 0.26 };
+  }
   if (style === "stars") {
     const slots = Array.from({ length: n }, (_, i) => [STAR / 2 + i * (STAR + 0.1), 0, 0]);
     return { slots, width: n * (STAR + 0.1) - 0.1, height: STAR };
@@ -63,7 +71,7 @@ export function trackerLayout(o) {
 /** How much a tracker shrinks to fit the band (its size times the fit), and its default anchor for a corner. */
 export function trackerFit(o) {
   const L = trackerLayout(o);
-  const vertical = (o.style ?? "train") === "checklist";
+  const vertical = ["checklist", "pencil"].includes(o.style ?? "train");
   const fit = vertical ? Math.min(1, (BAND.top - 0.4 - 0.3) / L.height) : Math.min(1, BAND.width / L.width, BAND.height / L.height);
   const k = (o.size ?? 1) * fit;
   const corner = o.corner ?? "top_left";
@@ -76,7 +84,7 @@ export function trackerFit(o) {
 export function trackerRect(o, at) {
   const { k, anchor, layout } = trackerFit(o);
   const [x, y] = at ?? o.at ?? anchor;
-  const vertical = (o.style ?? "train") === "checklist";
+  const vertical = ["checklist", "pencil"].includes(o.style ?? "train");
   return vertical
     ? { x0: x, x1: x + layout.width * k, y0: y - layout.height * k, y1: y }
     : { x0: x, x1: x + layout.width * k, y0: y - (layout.height * k) / 2 - 0.15, y1: y + (layout.height * k) / 2 + 0.15 };

@@ -66,3 +66,13 @@ test("composite tour scripts validate and compile, pieces are targets", () => {
   }
   assert.ok(ids({ id: "x", kind: "card", text: "a" }).includes("x_text"));
 });
+
+test("tracker styles islands, town, gauges and pencil lay out and validate", async () => {
+  const { trackerLayout, TRACKER_STYLES } = await import("../../runtime/retain_layout.js");
+  for (const style of ["islands", "town", "gauges", "pencil"]) {
+    assert.ok(TRACKER_STYLES.includes(style));
+    assert.equal(trackerLayout({ style, slots: 4, surprise: true }).slots.length, 5);
+    const s = JSON.parse(readFileSync(new URL(`../../scripts/tour/tracker_${style}.json`, import.meta.url), "utf8"));
+    assert.deepEqual(validateScript(s, catalog).errors, [], style);
+  }
+});

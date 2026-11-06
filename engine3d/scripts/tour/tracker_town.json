@@ -1,0 +1,12 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Tracker town", "seed": 6, "music": false },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.6, 7.5], "lookAt": [0, 1.2, 0], "fov": 40 },
+  "objects": [ { "id": "tr", "kind": "tracker", "hud": true, "style": "town", "slots": 4, "labels": ["1","2","3","4"], "surprise": true, "color": "blue", "accent": "yellow" } ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 1, "do": [{ "do": "progress", "target": "tr" }] },
+    { "dur": 1, "do": [{ "do": "progress", "target": "tr" }] },
+    { "dur": 1.5, "do": [] }
+  ] }]
+}
