@@ -100,3 +100,18 @@ test("#8 kite_landed rests on the ground", async () => {
   const b = localBounds({ kind: "prop", model: "kite_landed", size: 1 }, catalog);
   assert.ok(b.min[1] >= 0 && b.max[1] < 1.4, `kite spans ${b.min[1]}..${b.max[1]}`);
 });
+
+test("#7 shot looks down on flat targets unless height is given", () => {
+  const base = (target, extra = {}) => ({ kind: "video3d", version: 1, meta: { seed: 1 }, stage: { preset: "garden" },
+    objects: [{ id: "pond", kind: "shape", shape: "disc", color: "pond", at: [0, 0, 0], scale: [3, 0.3, 2] }, { id: "bear", kind: "critter", species: "bear", at: [3, 0, 0] }],
+    scenes: [{ id: "a", beats: [{ dur: 2, do: [{ do: "shot", target, dur: 1, ...extra }] }] }] });
+  const elev = (s) => {
+    const p = compileScript(s, { catalog });
+    const pos = p.timeline.valueAt("camera", "position", 1.5);
+    const look = p.timeline.valueAt("camera", "lookAt", 1.5);
+    return Math.atan2(pos[1] - look[1], Math.hypot(pos[0] - look[0], pos[2] - look[2])) * (180 / Math.PI);
+  };
+  assert.ok(Math.abs(elev(base("pond")) - 35) < 1);
+  assert.ok(Math.abs(elev(base("bear")) - 8) < 1);
+  assert.ok(Math.abs(elev(base("pond", { height: 12 })) - 12) < 1);
+});

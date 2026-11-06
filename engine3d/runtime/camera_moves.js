@@ -16,6 +16,9 @@ const sub = (a, b) => a.map((x, i) => x - b[i]);
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 const round = (v) => v.map((x) => Math.round(x * 1e4) / 1e4);
 
+/** Camera elevation (degrees) for flat shot targets. */
+export const FLAT_HEIGHT = 35;
+
 /**
  * Where to put the camera to frame a box.
  * @param {{ min:number[], max:number[] }} box  world box
@@ -72,7 +75,7 @@ export function orbitPoint(from, around, k, { degrees, radius, height }) {
 export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
   Object.assign(d, {
     /** Frame one or more objects (wide, medium or close) from a direction, easing there over dur (0 = a cut). */
-    shot({ at: t = 0, target, framing = "medium", yaw = 0, height = 8, dur = 1.5, ease = "sineInOut", pad = 0, fit } = {}) {
+    shot({ at: t = 0, target, framing = "medium", yaw = 0, height, dur = 1.5, ease = "sineInOut", pad = 0, fit } = {}) {
       const ids = Array.isArray(target) ? target : [target];
       if (!ids.length) throw new Error("shot needs a target");
       // Frame where the targets are when the move ends (they may still be walking into place).
@@ -80,6 +83,13 @@ export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
       // Children (words on cards) and teaching-kit labels count; pad grows the box about its centre.
       const list = [...objects.values()];
       const box = padBox(unionBounds(ids.map((id) => shotBounds(obj(id), catalog, now, (p) => obj(p), end, list, fit === "exact"))), pad);
+      // Flat targets (water, a mat, lily pads, a table top) seen from the usual 8° are a sliver in a field of floor:
+      // unless the script sets height, look down at 35° when the real box is much lower than it is wide or deep.
+      if (height == null) {
+        const real = unionBounds(ids.map((id) => shotBounds(obj(id), catalog, now, (p) => obj(p), end, list, true)));
+        const [w, h, dpt] = real.min.map((x, i) => real.max[i] - x);
+        height = h < 0.3 * Math.max(w, dpt) ? FLAT_HEIGHT : 8;
+      }
       const f = frameBox(box, { framing, yaw, height, fov: now("camera", "fov", t) ?? 40 });
       tl.tween("camera", "position", { start: t, dur, to: f.position, ease });
       tl.tween("camera", "lookAt", { start: t, dur, to: f.lookAt, ease });
