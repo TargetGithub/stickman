@@ -1,0 +1,998 @@
+{
+ "description": "Humpty Dumpty: Fix It Together (br08) models: Humpty (a friendly egg critter with a bow tie), a toy brick wall, a soft pillow for the landing pile and four wooden puzzle step blocks with rectangle, square, triangle and circle holes that stack into stairs. Same format as ../models.json. Props face +z and stand on y = 0.",
+ "critters": {
+  "humpty": {
+   "color": "cream",
+   "sound": "Hee hee!",
+   "description": "Humpty, a friendly toy egg for Humpty Dumpty (br08): a smooth cream egg body 0.86 m tall with big brown eyes, brows, rosy cheeks and a smile, a red bow tie, blue shorts on the bottom of the egg, little arms with round hands and short legs in black shoes; about 1.1 m tall at size 1, faces +z, feet on y = 0. The egg is the head group (pivot at y 0.4), so feelings, looks and nods tip the whole egg. Sitting: the egg's bottom is at y 0.25, so to sit on a ledge put him at y = ledge - 0.25 x size, near the front edge, and turn #leg to [-30, 0, 0] so the legs dangle forward over the edge. Named parts: leg (mirrored, turns about the hip at y 0.36: [±25, 0, 0] to walk), arm (mirrored, on the egg; wiggle or turn [0, 0, 60] to wave, the copies mirror), bowtie.",
+   "tags": [
+    "rhymes",
+    "humpty_dumpty",
+    "egg",
+    "character",
+    "story"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.4,
+     0
+    ],
+    "tilt": 0.6,
+    "look": 0.45
+   },
+   "eyes": {
+    "at": [
+     0.115,
+     0.44,
+     0.245
+    ],
+    "size": 0.13,
+    "iris": "eye_brown"
+   },
+   "brows": {
+    "color": "brow",
+    "size": 0.1,
+    "lift": 0.1
+   },
+   "cheeks": {
+    "at": [
+     0.2,
+     0.33,
+     0.235
+    ],
+    "size": 0.07,
+    "color": "blush"
+   },
+   "mouth": {
+    "at": [
+     0,
+     0.29,
+     0.31
+    ],
+    "size": 0.13
+   },
+   "bob": 0.01,
+   "parts": [
+    {
+     "p": "capsule",
+     "at": [
+      0.13,
+      0.36,
+      0.08
+     ],
+     "s": [
+      0.09,
+      0.3,
+      0.09
+     ],
+     "hang": [
+      0,
+      -0.15,
+      0
+     ],
+     "c": "cream",
+     "mirror": true,
+     "name": "leg"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.13,
+      0.36,
+      0.08
+     ],
+     "s": [
+      0.14,
+      0.1,
+      0.21
+     ],
+     "hang": [
+      0,
+      -0.31,
+      0.04
+     ],
+     "c": "shoe_black",
+     "m": "glossy",
+     "mirror": true,
+     "name": "leg"
+    },
+    {
+     "p": "egg",
+     "on": "head",
+     "at": [
+      0,
+      0.28,
+      0
+     ],
+     "s": [
+      0.66,
+      0.86,
+      0.62
+     ]
+    },
+    {
+     "p": "egg_seat",
+     "on": "head",
+     "at": [
+      0,
+      0.28,
+      0
+     ],
+     "s": [
+      0.675,
+      0.875,
+      0.635
+     ],
+     "c": "blue",
+     "m": "matte"
+    },
+    {
+     "p": "cone",
+     "on": "head",
+     "at": [
+      0.075,
+      0.16,
+      0.315
+     ],
+     "s": [
+      0.12,
+      0.13,
+      0.06
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "red",
+     "mirror": true,
+     "name": "bowtie"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0,
+      0.16,
+      0.33
+     ],
+     "s": [
+      0.06,
+      0.06,
+      0.05
+     ],
+     "c": "red",
+     "name": "bowtie"
+    },
+    {
+     "p": "capsule",
+     "on": "head",
+     "at": [
+      0.31,
+      0.2,
+      0.03
+     ],
+     "r": [
+      0,
+      0,
+      22
+     ],
+     "s": [
+      0.075,
+      0.24,
+      0.075
+     ],
+     "hang": [
+      0,
+      -0.11,
+      0
+     ],
+     "c": "cream",
+     "mirror": true,
+     "name": "arm"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0.31,
+      0.2,
+      0.03
+     ],
+     "r": [
+      0,
+      0,
+      22
+     ],
+     "s": [
+      0.11,
+      0.11,
+      0.1
+     ],
+     "hang": [
+      0,
+      -0.25,
+      0
+     ],
+     "c": "white",
+     "m": "matte",
+     "mirror": true,
+     "name": "arm"
+    }
+   ]
+  }
+ },
+ "props": {
+  "brick_wall": {
+   "color": "barn_red",
+   "description": "A toy brick wall for Humpty Dumpty (br08): six rows of red bricks in a running bond with sand mortar and a grey cap stone, 2.0 m wide (2.08 with the cap), 0.5 m deep (0.56 cap) and 1.4 m tall at size 1, origin at the middle of its base, front +z. The flat top (y 1.4) is a seat for Humpty: put him at y 1.4 - 0.25 x size near the front edge.",
+   "tags": [
+    "rhymes",
+    "humpty_dumpty",
+    "wall",
+    "building",
+    "story"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.66,
+      0
+     ],
+     "s": [
+      1.98,
+      1.32,
+      0.44
+     ],
+     "c": "sand",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.11,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.25,
+      0.11,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.25,
+      0.11,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.11,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.875,
+      0.33,
+      0
+     ],
+     "s": [
+      0.225,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.5,
+      0.33,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.33,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.5,
+      0.33,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.875,
+      0.33,
+      0
+     ],
+     "s": [
+      0.225,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.55,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.25,
+      0.55,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.25,
+      0.55,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.55,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.875,
+      0.77,
+      0
+     ],
+     "s": [
+      0.225,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.5,
+      0.77,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.77,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.5,
+      0.77,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.875,
+      0.77,
+      0
+     ],
+     "s": [
+      0.225,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.75,
+      0.99,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.25,
+      0.99,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.25,
+      0.99,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.75,
+      0.99,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.875,
+      1.21,
+      0
+     ],
+     "s": [
+      0.225,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.5,
+      1.21,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.21,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.5,
+      1.21,
+      0
+     ],
+     "s": [
+      0.475,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.875,
+      1.21,
+      0
+     ],
+     "s": [
+      0.225,
+      0.195,
+      0.5
+     ],
+     "c": "barn_red_dark",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.36,
+      0
+     ],
+     "s": [
+      2.08,
+      0.08,
+      0.56
+     ],
+     "c": "grey",
+     "m": "matte"
+    }
+   ]
+  },
+  "pillow": {
+   "color": "pink",
+   "description": "A plump soft pillow lying flat, all in its main colour (set color), 0.72 m long, 0.5 m deep and 0.3 m tall at size 1 with four soft corner tufts and a button in the middle, on y = 0. Heap a few in different colours for a soft landing pile (Humpty Dumpty, br08).",
+   "tags": [
+    "rhymes",
+    "home",
+    "bedroom",
+    "soft",
+    "humpty_dumpty"
+   ],
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.15,
+      0
+     ],
+     "s": [
+      0.72,
+      0.3,
+      0.5
+     ],
+     "m": "plush"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.29,
+      0.13,
+      0.19
+     ],
+     "s": [
+      0.11,
+      0.1,
+      0.11
+     ],
+     "m": "plush"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.29,
+      0.13,
+      -0.19
+     ],
+     "s": [
+      0.11,
+      0.1,
+      0.11
+     ],
+     "m": "plush"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.29,
+      0.13,
+      0.19
+     ],
+     "s": [
+      0.11,
+      0.1,
+      0.11
+     ],
+     "m": "plush"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.29,
+      0.13,
+      -0.19
+     ],
+     "s": [
+      0.11,
+      0.1,
+      0.11
+     ],
+     "m": "plush"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.295,
+      0
+     ],
+     "s": [
+      0.05,
+      0.025,
+      0.05
+     ],
+     "c": "white",
+     "m": "matte"
+    }
+   ]
+  },
+  "step_rectangle": {
+   "color": "wood",
+   "description": "A wooden puzzle step block for Humpty's stairs (br08): 1.65 m long, 0.35 m tall, 0.6 m deep at size 1, origin at the middle of its base, front +z, with a orange top edge and a dark rectangle-shaped hole on its front at the right end (centre [0.625, 0.175, 0.3]). A flat rectangle shape object of size 0.2 (base at y 0.175 - half its height, z 0.33 in front) fits the hole. Stack the four steps (rectangle 1.65, square 1.25, triangle 0.85, circle 0.45) left-aligned against the brick wall, 0.35 m apart in height, for a staircase up to the wall top (1.4 m).",
+   "tags": [
+    "rhymes",
+    "humpty_dumpty",
+    "shapes",
+    "puzzle",
+    "toys",
+    "stairs"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.165,
+      0
+     ],
+     "s": [
+      1.65,
+      0.33,
+      0.6
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.335,
+      0
+     ],
+     "s": [
+      1.65,
+      0.03,
+      0.6
+     ],
+     "c": "orange"
+    },
+    {
+     "p": "rectangle",
+     "at": [
+      0.625,
+      0.175,
+      0.3
+     ],
+     "s": [
+      0.21600000000000003,
+      0.21600000000000003,
+      0.03
+     ],
+     "c": "charcoal",
+     "m": "matte"
+    }
+   ]
+  },
+  "step_square": {
+   "color": "wood",
+   "description": "A wooden puzzle step block for Humpty's stairs (br08): 1.25 m long, 0.35 m tall, 0.6 m deep at size 1, origin at the middle of its base, front +z, with a blue top edge and a dark square-shaped hole on its front at the right end (centre [0.425, 0.175, 0.3]). A flat square shape object of size 0.24 (base at y 0.175 - half its height, z 0.33 in front) fits the hole. Stack the four steps (rectangle 1.65, square 1.25, triangle 0.85, circle 0.45) left-aligned against the brick wall, 0.35 m apart in height, for a staircase up to the wall top (1.4 m).",
+   "tags": [
+    "rhymes",
+    "humpty_dumpty",
+    "shapes",
+    "puzzle",
+    "toys",
+    "stairs"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.165,
+      0
+     ],
+     "s": [
+      1.25,
+      0.33,
+      0.6
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.335,
+      0
+     ],
+     "s": [
+      1.25,
+      0.03,
+      0.6
+     ],
+     "c": "blue"
+    },
+    {
+     "p": "square",
+     "at": [
+      0.425,
+      0.175,
+      0.3
+     ],
+     "s": [
+      0.2592,
+      0.2592,
+      0.03
+     ],
+     "c": "charcoal",
+     "m": "matte"
+    }
+   ]
+  },
+  "step_triangle": {
+   "color": "wood",
+   "description": "A wooden puzzle step block for Humpty's stairs (br08): 0.85 m long, 0.35 m tall, 0.6 m deep at size 1, origin at the middle of its base, front +z, with a green top edge and a dark triangle-shaped hole on its front at the right end (centre [0.225, 0.175, 0.3]). A flat triangle shape object of size 0.24 (base at y 0.175 - half its height, z 0.33 in front) fits the hole. Stack the four steps (rectangle 1.65, square 1.25, triangle 0.85, circle 0.45) left-aligned against the brick wall, 0.35 m apart in height, for a staircase up to the wall top (1.4 m).",
+   "tags": [
+    "rhymes",
+    "humpty_dumpty",
+    "shapes",
+    "puzzle",
+    "toys",
+    "stairs"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.165,
+      0
+     ],
+     "s": [
+      0.85,
+      0.33,
+      0.6
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.335,
+      0
+     ],
+     "s": [
+      0.85,
+      0.03,
+      0.6
+     ],
+     "c": "green"
+    },
+    {
+     "p": "triangle",
+     "at": [
+      0.225,
+      0.175,
+      0.3
+     ],
+     "s": [
+      0.2592,
+      0.2592,
+      0.03
+     ],
+     "c": "charcoal",
+     "m": "matte"
+    }
+   ]
+  },
+  "step_circle": {
+   "color": "wood",
+   "description": "A wooden puzzle step block for Humpty's stairs (br08): 0.45 m long, 0.35 m tall, 0.6 m deep at size 1, origin at the middle of its base, front +z, with a red top edge and a dark circle-shaped hole on its front at the right end (centre [0.025, 0.175, 0.3]). A flat circle shape object of size 0.24 (base at y 0.175 - half its height, z 0.33 in front) fits the hole. Stack the four steps (rectangle 1.65, square 1.25, triangle 0.85, circle 0.45) left-aligned against the brick wall, 0.35 m apart in height, for a staircase up to the wall top (1.4 m).",
+   "tags": [
+    "rhymes",
+    "humpty_dumpty",
+    "shapes",
+    "puzzle",
+    "toys",
+    "stairs"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.165,
+      0
+     ],
+     "s": [
+      0.45,
+      0.33,
+      0.6
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.335,
+      0
+     ],
+     "s": [
+      0.45,
+      0.03,
+      0.6
+     ],
+     "c": "red"
+    },
+    {
+     "p": "circle",
+     "at": [
+      0.025,
+      0.175,
+      0.3
+     ],
+     "s": [
+      0.2592,
+      0.2592,
+      0.03
+     ],
+     "c": "charcoal",
+     "m": "matte"
+    }
+   ]
+  }
+ }
+}

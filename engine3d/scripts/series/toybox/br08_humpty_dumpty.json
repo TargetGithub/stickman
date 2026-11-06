@@ -1,0 +1,5945 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Sing Humpty Dumpty with Robo, and help Humpty get back up! Humpty wobbles on the wall and slides down onto a big soft pile of pillows (boing, he's okay!). Then the friends build him a staircase from four puzzle steps: find which shape fits each hole (rectangle, square, triangle and circle), count the puzzle pieces, count the steps as Humpty climbs back up, and play a point-to-it shape quiz.",
+ "meta": {
+  "title": "Humpty Dumpty: Fix It Together",
+  "series": "toybox",
+  "episode": "br08",
+  "audience": "babies",
+  "seed": 308,
+  "voice": "soft",
+  "voiceSpeed": 0.97,
+  "music": "playful",
+  "musicGain": 0.17,
+  "skills": [
+   "basic_shapes_prek",
+   "count_to_5_prek"
+  ],
+  "cast": {
+   "humpty": {
+    "voice": "soft",
+    "pitch": 1.25,
+    "speed": 1
+   },
+   "horse": {
+    "voice": "deep",
+    "pitch": 1,
+    "speed": 1
+   },
+   "bunny": {
+    "voice": "squeaky",
+    "pitch": 1.2,
+    "speed": 1.05
+   },
+   "duck": {
+    "voice": "squeaky",
+    "pitch": 1.05,
+    "speed": 1.05
+   },
+   "bear": {
+    "voice": "deep",
+    "pitch": 0.95,
+    "speed": 0.95
+   }
+  },
+  "youtube": {
+   "title": "Humpty Dumpty 🥚 Fix It Together! Shapes Sing-Along for Toddlers | Toy Box Friends",
+   "description": "Sing Humpty Dumpty with Robo, and help Humpty get back up! Humpty wobbles on the wall and slides down onto a big soft pile of pillows (boing, he's okay!). Then the friends build him a staircase from four puzzle steps: find which shape fits each hole (rectangle, square, triangle and circle), count the puzzle pieces, count the steps as Humpty climbs back up, and play a point-to-it shape quiz.\n\nWhat your child learns: the shapes circle, square, triangle and rectangle (and how many sides and corners they have), matching a shape to its hole like a puzzle, counting to four, and cause and effect (soft pillows make a soft landing; steps help you go up).\n\nSing at home: wobble side to side on \"sat on a wall\", draw each shape in the air with your finger, and ask \"What happens next?\" before Humpty slides. The first verse of Humpty Dumpty is a traditional public-domain rhyme (its last line is gently changed so Humpty is never broken); the shape verses, the happy ending and the last chorus are original words written for Toy Box Friends.\n\nMade for kids. Toy Box Friends: 3D learning videos for babies, toddlers and preschool.",
+   "tags": [
+    "humpty dumpty",
+    "nursery rhymes",
+    "shapes for toddlers",
+    "circle square triangle rectangle",
+    "shape puzzle",
+    "counting to 4",
+    "baby songs",
+    "toddler learning",
+    "sing along for kids",
+    "kids songs",
+    "preschool",
+    "3D cartoon for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "wall",
+    "title": "HUMPTY DUMPTY",
+    "subtitle": "Will he fall?",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "playroom",
+    "camera": {
+     "position": [
+      1.2,
+      1.6,
+      5.4
+     ],
+     "lookAt": [
+      1.75,
+      1.35,
+      -0.6
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "wall",
+      "kind": "prop",
+      "model": "brick_wall",
+      "at": [
+       2.9,
+       0,
+       -0.8
+      ]
+     },
+     {
+      "id": "humpty",
+      "kind": "critter",
+      "species": "humpty",
+      "size": 1,
+      "at": [
+       2.9,
+       1.15,
+       -0.58
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "pil1",
+      "kind": "prop",
+      "model": "pillow",
+      "color": "pink",
+      "at": [
+       2.6,
+       0,
+       0.5
+      ],
+      "rotation": [
+       0,
+       12,
+       0
+      ]
+     },
+     {
+      "id": "pil2",
+      "kind": "prop",
+      "model": "pillow",
+      "color": "yellow",
+      "at": [
+       3.4,
+       0,
+       0.6
+      ],
+      "rotation": [
+       0,
+       -18,
+       0
+      ]
+     },
+     {
+      "id": "pil3",
+      "kind": "prop",
+      "model": "pillow",
+      "color": "mint",
+      "at": [
+       3,
+       0.26,
+       0.45
+      ],
+      "rotation": [
+       0,
+       28,
+       0
+      ]
+     }
+    ]
+   },
+   {
+    "name": "shapes",
+    "title": "FIX IT TOGETHER!",
+    "subtitle": "Which shape fits?",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "playroom",
+    "camera": {
+     "position": [
+      1.6,
+      1.5,
+      5.6
+     ],
+     "lookAt": [
+      2.1,
+      1,
+      -0.6
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "humpty",
+      "kind": "critter",
+      "species": "humpty",
+      "size": 1.1,
+      "at": [
+       3.75,
+       0,
+       0.1
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "s1",
+      "kind": "shape",
+      "shape": "circle",
+      "color": "red",
+      "size": 0.5,
+      "face": true,
+      "at": [
+       2.3,
+       0,
+       0.75
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "s2",
+      "kind": "shape",
+      "shape": "square",
+      "color": "blue",
+      "size": 0.5,
+      "face": true,
+      "at": [
+       2.85,
+       0,
+       -0.35
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "s3",
+      "kind": "shape",
+      "shape": "triangle",
+      "color": "green",
+      "size": 0.55,
+      "face": true,
+      "at": [
+       2.95,
+       0,
+       0.75
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "s4",
+      "kind": "shape",
+      "shape": "rectangle",
+      "color": "orange",
+      "size": 0.4,
+      "face": true,
+      "at": [
+       2.1,
+       0,
+       -0.3
+      ],
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0.9,
+   2,
+   8
+  ],
+  "lookAt": [
+   0.9,
+   1.15,
+   -0.4
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.5,
+    0,
+    0.75
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "wall",
+   "kind": "prop",
+   "model": "brick_wall",
+   "at": [
+    -0.9,
+    0,
+    -0.9
+   ]
+  },
+  {
+   "id": "humpty",
+   "kind": "critter",
+   "species": "humpty",
+   "size": 1.15,
+   "at": [
+    -0.9,
+    1.1124999999999998,
+    -0.67
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "pil1",
+   "kind": "prop",
+   "model": "pillow",
+   "color": "pink",
+   "at": [
+    -1.25,
+    0,
+    0.42
+   ],
+   "rotation": [
+    0,
+    12,
+    0
+   ]
+  },
+  {
+   "id": "pil2",
+   "kind": "prop",
+   "model": "pillow",
+   "color": "yellow",
+   "at": [
+    -0.55,
+    0,
+    0.5
+   ],
+   "rotation": [
+    0,
+    -18,
+    0
+   ]
+  },
+  {
+   "id": "pil3",
+   "kind": "prop",
+   "model": "pillow",
+   "color": "sky",
+   "at": [
+    -0.9,
+    0,
+    0.05
+   ],
+   "rotation": [
+    0,
+    5,
+    0
+   ]
+  },
+  {
+   "id": "pil4",
+   "kind": "prop",
+   "model": "pillow",
+   "color": "mint",
+   "at": [
+    -0.9,
+    0.26,
+    0.35
+   ],
+   "rotation": [
+    0,
+    28,
+    0
+   ]
+  },
+  {
+   "id": "toybox",
+   "kind": "prop",
+   "model": "toy_box",
+   "at": [
+    -5,
+    0,
+    -1.7
+   ],
+   "rotation": [
+    0,
+    25,
+    0
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "plant",
+   "kind": "prop",
+   "model": "plant",
+   "at": [
+    6.6,
+    0,
+    -2.4
+   ],
+   "size": 1.2
+  },
+  {
+   "id": "step1",
+   "kind": "prop",
+   "model": "step_rectangle",
+   "at": [
+    0.965,
+    0,
+    -0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_rectangle",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "orange",
+   "size": 0.2,
+   "at": [
+    1.59,
+    0.083,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "x_rectangle",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "red",
+   "size": 0.2,
+   "at": [
+    1.59,
+    0.083,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step2",
+   "kind": "prop",
+   "model": "step_square",
+   "at": [
+    0.765,
+    0.35,
+    -0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_square",
+   "kind": "shape",
+   "shape": "square",
+   "color": "blue",
+   "size": 0.24,
+   "at": [
+    1.19,
+    0.398,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "x_square",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "green",
+   "size": 0.24,
+   "at": [
+    1.19,
+    0.398,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step3",
+   "kind": "prop",
+   "model": "step_triangle",
+   "at": [
+    0.565,
+    0.7,
+    -0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_triangle",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "green",
+   "size": 0.24,
+   "at": [
+    0.79,
+    0.742,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "x_triangle",
+   "kind": "shape",
+   "shape": "square",
+   "color": "blue",
+   "size": 0.24,
+   "at": [
+    0.79,
+    0.742,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step4",
+   "kind": "prop",
+   "model": "step_circle",
+   "at": [
+    0.365,
+    1.0499999999999998,
+    -0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_circle",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "red",
+   "size": 0.24,
+   "at": [
+    0.39,
+    1.086,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "x_circle",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "orange",
+   "size": 0.24,
+   "at": [
+    0.39,
+    1.086,
+    -0.55
+   ],
+   "hidden": true
+  },
+  {
+   "id": "horse",
+   "kind": "critter",
+   "species": "horse",
+   "size": 0.75,
+   "at": [
+    8.6,
+    0,
+    0.8
+   ],
+   "rotation": [
+    0,
+    -90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bunny",
+   "kind": "critter",
+   "species": "bunny",
+   "size": 0.85,
+   "at": [
+    8.6,
+    0,
+    0.45
+   ],
+   "rotation": [
+    0,
+    -90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "duck",
+   "kind": "critter",
+   "species": "duck",
+   "size": 0.8,
+   "at": [
+    8.6,
+    0,
+    0.1
+   ],
+   "rotation": [
+    0,
+    -90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bear",
+   "kind": "critter",
+   "species": "bear",
+   "size": 0.85,
+   "at": [
+    8.6,
+    0,
+    -0.25
+   ],
+   "rotation": [
+    0,
+    -90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "crown",
+   "kind": "prop",
+   "model": "crown",
+   "parent": "horse",
+   "part": "head",
+   "at": [
+    0,
+    0.27,
+    -0.02
+   ],
+   "size": 0.85,
+   "hidden": true
+  },
+  {
+   "id": "c_rectangle",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "orange",
+   "size": 0.62,
+   "face": true,
+   "at": [
+    -1.5,
+    0,
+    1.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_square",
+   "kind": "shape",
+   "shape": "square",
+   "color": "blue",
+   "size": 0.75,
+   "face": true,
+   "at": [
+    -0.5,
+    0,
+    1.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_triangle",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "green",
+   "size": 0.75,
+   "face": true,
+   "at": [
+    0.5,
+    0,
+    1.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_circle",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "red",
+   "size": 0.75,
+   "face": true,
+   "at": [
+    1.5,
+    0,
+    1.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "at": [
+    0,
+    3.2,
+    0.5
+   ]
+  },
+  {
+   "id": "slot1",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    -7.15,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot2",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "blue",
+   "hud": true,
+   "at": [
+    -6.2,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot3",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "green",
+   "hud": true,
+   "at": [
+    -5.25,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot4",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "red",
+   "hud": true,
+   "at": [
+    -4.300000000000001,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "mini1",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "orange",
+   "hud": true,
+   "parent": "slot1",
+   "at": [
+    0,
+    -0.17,
+    0.2
+   ],
+   "size": 0.36,
+   "hidden": true
+  },
+  {
+   "id": "mini2",
+   "kind": "shape",
+   "shape": "square",
+   "color": "blue",
+   "hud": true,
+   "parent": "slot2",
+   "at": [
+    0,
+    -0.22,
+    0.2
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "mini3",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "green",
+   "hud": true,
+   "parent": "slot3",
+   "at": [
+    0,
+    -0.23,
+    0.2
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "mini4",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "red",
+   "hud": true,
+   "parent": "slot4",
+   "at": [
+    0,
+    -0.23,
+    0.2
+   ],
+   "size": 0.4,
+   "hidden": true
+  },
+  {
+   "id": "qmark",
+   "kind": "letter",
+   "text": "?",
+   "color": "orange",
+   "hud": true,
+   "parent": "slot4",
+   "at": [
+    0,
+    -0.26,
+    0.2
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "cd_bg",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "white",
+   "hud": true,
+   "at": [
+    0,
+    -0.2,
+    1.5
+   ],
+   "size": 2.7,
+   "hidden": true
+  },
+  {
+   "id": "cd3",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd2",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd1",
+   "kind": "letter",
+   "text": "1",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "bubble",
+   "kind": "prop",
+   "model": "word_bubble",
+   "hud": true,
+   "at": [
+    5.6,
+    2.05,
+    0
+   ],
+   "size": 1.75,
+   "hidden": true
+  },
+  {
+   "id": "w_rectangle",
+   "kind": "letter",
+   "text": "RECTANGLE",
+   "color": "orange",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.24,
+   "hidden": true
+  },
+  {
+   "id": "w_square",
+   "kind": "letter",
+   "text": "SQUARE",
+   "color": "blue",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "w_triangle",
+   "kind": "letter",
+   "text": "TRIANGLE",
+   "color": "green",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.24,
+   "hidden": true
+  },
+  {
+   "id": "w_circle",
+   "kind": "letter",
+   "text": "CIRCLE",
+   "color": "red",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "w_up",
+   "kind": "letter",
+   "text": "UP!",
+   "color": "green",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hello",
+   "title": "Will Humpty fall?",
+   "beats": [
+    {
+     "id": "h1",
+     "dur": 3,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        -0.4,
+        1.95,
+        3.7
+       ],
+       "lookAt": [
+        -0.85,
+        1.6,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 0
+      },
+      {
+       "do": "turn",
+       "target": "humpty#leg",
+       "to": [
+        -30,
+        0,
+        0
+       ],
+       "at": 0,
+       "dur": 0.01
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "surprised",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.1,
+       "deg": 9,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.75,
+       "deg": 11,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 1.4,
+       "deg": 13,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 2.05,
+       "deg": 15,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.15,
+       "volume": 0.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Uh-oh! Humpty is wobbling! Will he fall?",
+       "at": 0.3,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "h2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "humpty",
+       "text": "Whoa, whoa! Hee hee!",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.1,
+       "deg": 30,
+       "dur": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "joyful",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "id": "h3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let's sing! Four puzzle pieces will help Humpty!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "slot1",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot2",
+       "at": 0.62,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot3",
+       "at": 0.8400000000000001,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot4",
+       "at": 1.06,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "h4",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The last piece is a surprise!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "qmark",
+       "at": 0.3,
+       "dur": 0.4,
+       "sound": "magic_sparkle"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 0.6,
+       "deg": 12,
+       "dur": 1
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "happy",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "verse1",
+   "title": "Sing: Humpty Dumpty",
+   "music": false,
+   "beats": [
+    {
+     "id": "v1",
+     "dur": 2.46,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Humpty Dumpty sat on a wall,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4 G4:0.5 F4 A4:0.5 G4:0.5 A4:0.5 B4:0.5 C5:1.5"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -1.6,
+        1.9,
+        4.2
+       ],
+       "lookAt": [
+        -0.8,
+        1.45,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 0.95
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.1,
+       "deg": 7,
+       "dur": 0.7
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.58,
+       "deg": 7,
+       "dur": 0.7
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 1.05,
+       "deg": 7,
+       "dur": 0.7
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#leg",
+       "at": 0.26,
+       "deg": 18,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "v_next1",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        -0.4,
+        1.95,
+        3.7
+       ],
+       "lookAt": [
+        -0.85,
+        1.6,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "surprised",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.1,
+       "deg": 12,
+       "dur": 0.55
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.7,
+       "deg": 14,
+       "dur": 0.55
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 1.3,
+       "deg": 16,
+       "dur": 0.55
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 1.9,
+       "deg": 18,
+       "dur": 0.55
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wobble, wobble! What happens next?",
+       "at": 0.15,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "v_next2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.2,
+       "deg": 16,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "id": "v2",
+     "dur": 2.72,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Humpty Dumpty had a great fall.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C5 A4:0.5 B4 G4:0.5 A4:0.5 F4:0.5 D4:0.5 C4:1.5"
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.6,
+        1.4,
+        3.9
+       ],
+       "lookAt": [
+        -0.8,
+        0.8,
+        -0.1
+       ],
+       "fov": 30,
+       "dur": 0.94
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.28,
+       "deg": 18,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "at": 1,
+       "volume": 0.45
+      },
+      {
+       "do": "path",
+       "target": "humpty",
+       "points": [
+        [
+         -0.9,
+         1.1124999999999998,
+         -0.67
+        ],
+        [
+         -0.9,
+         1.75,
+         -0.3
+        ],
+        [
+         -0.9,
+         1,
+         0.25
+        ],
+        [
+         -0.9,
+         0.2725000000000001,
+         0.4
+        ]
+       ],
+       "at": 1,
+       "dur": 0.9
+      },
+      {
+       "do": "spin",
+       "target": "humpty",
+       "axis": "x",
+       "turns": 1,
+       "at": 1,
+       "dur": 0.85
+      },
+      {
+       "do": "turn",
+       "target": "humpty#leg",
+       "to": [
+        -70,
+        0,
+        0
+       ],
+       "at": 1.8,
+       "dur": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.9
+      },
+      {
+       "do": "wiggle",
+       "target": "pil1",
+       "at": 1.9,
+       "deg": 6,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "pil2",
+       "at": 1.94,
+       "deg": 6,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "pil3",
+       "at": 1.97,
+       "deg": 6,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "pil4",
+       "at": 2,
+       "deg": 6,
+       "dur": 0.5
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "pil4"
+      }
+     ]
+    },
+    {
+     "id": "v_soft",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4,
+       "sound": "boing"
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.55,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "joyful",
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "humpty",
+       "text": "Boing! Hee hee! Soft pillows!",
+       "at": 0.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Soft pillows! Humpty is okay!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "id": "v3",
+     "dur": 3.22,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "All the king's horses and all the king's men",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4:0.5 E4:0.5 E4:0.5 G4 E4:0.5 F4:0.5 F4:0.5 F4:0.5 F4:0.5 A4:1"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.18,
+       "to": "ahead"
+      },
+      {
+       "do": "show",
+       "target": "horse",
+       "at": 0.14,
+       "dur": 0.01
+      },
+      {
+       "do": "show",
+       "target": "crown",
+       "at": 0.14,
+       "dur": 0.01
+      },
+      {
+       "do": "path",
+       "target": "horse",
+       "points": [
+        [
+         8.6,
+         0,
+         0.8
+        ],
+        [
+         3,
+         0,
+         0.8
+        ]
+       ],
+       "at": 0.14,
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "horse",
+       "to": [
+        0,
+        -25,
+        0
+       ],
+       "at": 1.35,
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "bunny",
+       "at": 0.43,
+       "dur": 0.01
+      },
+      {
+       "do": "path",
+       "target": "bunny",
+       "points": [
+        [
+         8.6,
+         0,
+         0.45
+        ],
+        [
+         3.85,
+         0,
+         0.45
+        ]
+       ],
+       "at": 0.43,
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "bunny",
+       "to": [
+        0,
+        -25,
+        0
+       ],
+       "at": 1.64,
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "duck",
+       "at": 0.72,
+       "dur": 0.01
+      },
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         8.6,
+         0,
+         0.1
+        ],
+        [
+         4.6,
+         0,
+         0.1
+        ]
+       ],
+       "at": 0.72,
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        -25,
+        0
+       ],
+       "at": 1.93,
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "bear",
+       "at": 1.02,
+       "dur": 0.01
+      },
+      {
+       "do": "path",
+       "target": "bear",
+       "points": [
+        [
+         8.6,
+         0,
+         -0.25
+        ],
+        [
+         5.3,
+         0,
+         -0.25
+        ]
+       ],
+       "at": 1.02,
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "bear",
+       "to": [
+        0,
+        -25,
+        0
+       ],
+       "at": 2.22,
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 0.35,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "id": "v4",
+     "dur": 2.32,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Couldn't get Humpty back up there again.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4 A4:0.5 G4:0.5 F4:0.5 E4:0.5 D4:0.5 E4:0.5 C4:1.5"
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.23,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.38,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.53,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.68,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "humpty",
+       "at": 0.15,
+       "to": [
+        -0.9,
+        1.5,
+        -0.9
+       ]
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "worried",
+       "at": 0.61
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.86
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "plan",
+   "title": "Let's build steps!",
+   "beats": [
+    {
+     "id": "p1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "look",
+       "target": "humpty",
+       "at": 0.1,
+       "to": "ahead"
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "How can Humpty get back up? I know!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "p2",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "We can build steps! Steps go up, up, up!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_up",
+       "at": 0.35,
+       "dur": 0.25
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "happy",
+       "at": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "p3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_up",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "shot",
+       "target": [
+        "c_rectangle",
+        "c_square",
+        "c_triangle",
+        "c_circle"
+       ],
+       "framing": "wide",
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Count the puzzle pieces with me!",
+       "at": 0.1,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "p4",
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "pop",
+       "target": "c_rectangle",
+       "at": 0.2,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.75
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One!",
+       "at": 0.25,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "c_square",
+       "at": 1.05,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 1.05,
+       "dur": 0.75
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two!",
+       "at": 1.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "c_triangle",
+       "at": 1.9,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 1.9,
+       "dur": 0.75
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three!",
+       "at": 1.95,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "c_circle",
+       "at": 2.75,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 2.75,
+       "dur": 0.75
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four!",
+       "at": 2.8,
+       "caption": false
+      }
+     ]
+    },
+    {
+     "id": "p5",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four pieces! Let's fit them in!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "c_rectangle",
+       "at": 0.3,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "c_square",
+       "at": 0.5,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "c_triangle",
+       "at": 0.7,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "c_circle",
+       "at": 0.9000000000000001,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "c_rectangle",
+       "feeling": "joyful",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "c_square",
+       "feeling": "joyful",
+       "at": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "c_triangle",
+       "feeling": "joyful",
+       "at": 0.7
+      },
+      {
+       "do": "feel",
+       "target": "c_circle",
+       "feeling": "joyful",
+       "at": 0.9000000000000001
+      },
+      {
+       "do": "hide",
+       "target": "c_rectangle",
+       "at": 2.2,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c_square",
+       "at": 2.2800000000000002,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c_triangle",
+       "at": 2.3600000000000003,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c_circle",
+       "at": 2.4400000000000004,
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rectangle_fit",
+   "title": "Which shape fits? Rectangle",
+   "beats": [
+    {
+     "id": "rectangle_f1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "horse",
+       "text": "Neigh!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.15,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "step1",
+       "to": [
+        0.965,
+        0,
+        -0.9
+       ],
+       "at": 0.5,
+       "height": 3,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The horse brings a block! A step!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "step1"
+      }
+     ]
+    },
+    {
+     "id": "rectangle_f2",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "pop",
+       "target": "p_rectangle",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "x_rectangle",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "p_rectangle",
+       "to": [
+        2.84,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "x_rectangle",
+       "to": [
+        2.19,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "grow",
+       "target": "p_rectangle",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "x_rectangle",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "step1",
+        "p_rectangle",
+        "x_rectangle"
+       ],
+       "framing": "medium",
+       "yaw": -10,
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look, a hole! Which shape fits?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "step1",
+       "at": 0.9,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "id": "rectangle_f3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "x_rectangle",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "p_rectangle",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "x_rectangle",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "rectangle_f4",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "mark",
+       "target": "p_rectangle",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The rectangle! Two long sides, two short sides.",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "x_rectangle",
+       "at": 0.5,
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "p_rectangle",
+       "points": [
+        [
+         2.84,
+         0,
+         0.1
+        ],
+        [
+         2.215,
+         0.583,
+         -0.2
+        ],
+        [
+         1.59,
+         0.083,
+         -0.55
+        ]
+       ],
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "grow",
+       "target": "p_rectangle",
+       "to": 1,
+       "at": 1.2,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 1.85
+      },
+      {
+       "do": "wiggle",
+       "target": "step1",
+       "at": 1.85,
+       "deg": 3,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 1.9,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_rectangle",
+       "at": 1.95,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rectangle_song",
+   "title": "Sing: the rectangle step",
+   "music": false,
+   "beats": [
+    {
+     "id": "rectangle_s1",
+     "dur": 3.57,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here's a rectangle, long and flat,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4 G4:0.5 F4 A4:0.5 G4:0.5 A4:0.5 B4:0.5 C5:1.5"
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.19,
+        0.6829999999999999,
+        2.4
+       ],
+       "lookAt": [
+        1.6900000000000002,
+        0.183,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 0.94
+      },
+      {
+       "do": "wiggle",
+       "target": "p_rectangle",
+       "at": 0.6,
+       "deg": 12,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "p_rectangle",
+       "at": 1.11,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "rectangle_s2",
+     "dur": 2.78,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Put it down by the wall, like that.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C5 A4:0.5 B4 G4:0.5 A4:0.5 F4:0.5 D4:0.5 C4:1.5"
+      },
+      {
+       "do": "hide",
+       "target": "w_rectangle",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.13,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "step1",
+       "at": 0.66,
+       "deg": 3,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.84,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "rectangle_s3",
+     "dur": 2.96,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Step by step, we can build it together,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4:0.5 E4:0.5 E4:0.5 G4 E4:0.5 F4:0.5 F4:0.5 F4:0.5 F4:0.5 A4:1"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.3,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.62,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.94,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.26,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "rectangle_s4",
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Then Humpty Dumpty can climb up again.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4 A4:0.5 G4:0.5 F4:0.5 E4:0.5 D4:0.5 E4:0.5 C4:1.5"
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.28,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 1.01,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "joyful",
+       "at": 0.17
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.46,
+       "deg": 30,
+       "dur": 1.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rectangle_turn",
+   "title": "Your turn!",
+   "beats": [
+    {
+     "id": "rectangle_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say rectangle!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "horse",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_rectangle",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "rectangle_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "rectangle_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rectangle!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! Long and flat!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "rectangle_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_rectangle",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini1",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "horse",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "happy",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "square_fit",
+   "title": "Which shape fits? Square",
+   "beats": [
+    {
+     "id": "square_f1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "Hop, hop!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.15,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "step2",
+       "to": [
+        0.765,
+        0.35,
+        -0.9
+       ],
+       "at": 0.5,
+       "height": 3,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The bunny brings another block!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "step2"
+      }
+     ]
+    },
+    {
+     "id": "square_f2",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "pop",
+       "target": "p_square",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "x_square",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "p_square",
+       "to": [
+        1.79,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "x_square",
+       "to": [
+        2.44,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "grow",
+       "target": "p_square",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "x_square",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "step2",
+        "p_square",
+        "x_square"
+       ],
+       "framing": "medium",
+       "yaw": 12,
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look, a hole! Which shape fits?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "step2",
+       "at": 0.9,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "id": "square_f3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "p_square",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "x_square",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "p_square",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "square_f4",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "mark",
+       "target": "p_square",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The square! Four sides, all the same.",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "x_square",
+       "at": 0.5,
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "p_square",
+       "points": [
+        [
+         1.79,
+         0,
+         0.1
+        ],
+        [
+         1.49,
+         0.898,
+         -0.2
+        ],
+        [
+         1.19,
+         0.398,
+         -0.55
+        ]
+       ],
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "grow",
+       "target": "p_square",
+       "to": 1,
+       "at": 1.2,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 1.85
+      },
+      {
+       "do": "wiggle",
+       "target": "step2",
+       "at": 1.85,
+       "deg": 3,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 1.9,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_square",
+       "at": 1.95,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "square_song",
+   "title": "Sing: the square step",
+   "music": false,
+   "beats": [
+    {
+     "id": "square_s1",
+     "dur": 3.39,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here is a square with four straight sides,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4 G4:0.5 F4 A4:0.5 G4:0.5 A4:0.5 B4:0.5 C5:1.5"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.7899999999999999,
+        0.998,
+        2.4
+       ],
+       "lookAt": [
+        1.29,
+        0.498,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 0.88
+      },
+      {
+       "do": "wiggle",
+       "target": "p_square",
+       "at": 0.57,
+       "deg": 12,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "p_square",
+       "at": 1.05,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "square_s2",
+     "dur": 3.24,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Stack it on top, it fits just right.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C5 A4:0.5 B4 G4:0.5 A4:0.5 F4:0.5 D4:0.5 C4:1.5"
+      },
+      {
+       "do": "hide",
+       "target": "w_square",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.14,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 0.84
+      },
+      {
+       "do": "wiggle",
+       "target": "step2",
+       "at": 0.77,
+       "deg": 3,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 1,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "square_s3",
+     "dur": 2.96,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Step by step, we can build it together,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4:0.5 E4:0.5 E4:0.5 G4 E4:0.5 F4:0.5 F4:0.5 F4:0.5 F4:0.5 A4:1"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.3,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.62,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.94,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.26,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "square_s4",
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Then Humpty Dumpty can climb up again.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4 A4:0.5 G4:0.5 F4:0.5 E4:0.5 D4:0.5 E4:0.5 C4:1.5"
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.28,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 1.01,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "joyful",
+       "at": 0.17
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.46,
+       "deg": 30,
+       "dur": 1.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "square_turn",
+   "title": "Your turn!",
+   "beats": [
+    {
+     "id": "square_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Count the sides! Hold up your fingers!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_square",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "square_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "square_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One, two, three, four!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four sides! A square!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "square_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_square",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini2",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "happy",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "triangle_fit",
+   "title": "Which shape fits? Triangle",
+   "beats": [
+    {
+     "id": "triangle_f1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "duck",
+       "text": "Quack!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.15,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "step3",
+       "to": [
+        0.565,
+        0.7,
+        -0.9
+       ],
+       "at": 0.5,
+       "height": 3,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The duck brings another block!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "step3"
+      }
+     ]
+    },
+    {
+     "id": "triangle_f2",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "pop",
+       "target": "p_triangle",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "x_triangle",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "p_triangle",
+       "to": [
+        2.04,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "x_triangle",
+       "to": [
+        1.3900000000000001,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "grow",
+       "target": "p_triangle",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "x_triangle",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "step3",
+        "p_triangle",
+        "x_triangle"
+       ],
+       "framing": "medium",
+       "yaw": -14,
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look, a hole! Which shape fits?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "step3",
+       "at": 0.9,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "id": "triangle_f3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "x_triangle",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "p_triangle",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "x_triangle",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "triangle_f4",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "mark",
+       "target": "p_triangle",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The triangle! Three sides, three corners.",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "x_triangle",
+       "at": 0.5,
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "p_triangle",
+       "points": [
+        [
+         2.04,
+         0,
+         0.1
+        ],
+        [
+         1.415,
+         1.242,
+         -0.2
+        ],
+        [
+         0.79,
+         0.742,
+         -0.55
+        ]
+       ],
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "grow",
+       "target": "p_triangle",
+       "to": 1,
+       "at": 1.2,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 1.85
+      },
+      {
+       "do": "wiggle",
+       "target": "step3",
+       "at": 1.85,
+       "deg": 3,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 1.9,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_triangle",
+       "at": 1.95,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "triangle_song",
+   "title": "Sing: the triangle step",
+   "music": false,
+   "beats": [
+    {
+     "id": "triangle_s1",
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here's a triangle, one, two, three,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4 G4:0.5 F4 A4:0.5 G4:0.5 A4:0.5 B4:0.5 C5:1.5"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.39,
+        1.342,
+        2.4
+       ],
+       "lookAt": [
+        0.89,
+        0.842,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 0.9
+      },
+      {
+       "do": "wiggle",
+       "target": "p_triangle",
+       "at": 0.58,
+       "deg": 12,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "p_triangle",
+       "at": 1.06,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "triangle_s2",
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three pointy corners, can you see?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C5 A4:0.5 B4 G4:0.5 A4:0.5 F4:0.5 D4:0.5 C4:1.5"
+      },
+      {
+       "do": "hide",
+       "target": "w_triangle",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.13,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "step3",
+       "at": 0.64,
+       "deg": 3,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.82,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "triangle_s3",
+     "dur": 2.96,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Step by step, we can build it together,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4:0.5 E4:0.5 E4:0.5 G4 E4:0.5 F4:0.5 F4:0.5 F4:0.5 F4:0.5 A4:1"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.3,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.62,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.94,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.26,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "triangle_s4",
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Then Humpty Dumpty can climb up again.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4 A4:0.5 G4:0.5 F4:0.5 E4:0.5 D4:0.5 E4:0.5 C4:1.5"
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.28,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 1.01,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "joyful",
+       "at": 0.17
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.46,
+       "deg": 30,
+       "dur": 1.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "triangle_turn",
+   "title": "Your turn!",
+   "beats": [
+    {
+     "id": "triangle_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Make a triangle with your hands!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_triangle",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "triangle_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "triangle_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three corners! Pointy!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Great triangle!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "triangle_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_triangle",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini3",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "happy",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "circle_fit",
+   "title": "Which shape fits? Circle",
+   "beats": [
+    {
+     "id": "circle_f1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "bear",
+       "text": "Hello!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.15,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "step4",
+       "to": [
+        0.365,
+        1.0499999999999998,
+        -0.9
+       ],
+       "at": 0.5,
+       "height": 3,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The bear brings the last block!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "step4"
+      }
+     ]
+    },
+    {
+     "id": "circle_f2",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "pop",
+       "target": "p_circle",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "x_circle",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "move",
+       "target": "p_circle",
+       "to": [
+        0.99,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "x_circle",
+       "to": [
+        1.6400000000000001,
+        0,
+        0.1
+       ],
+       "at": 0.02,
+       "dur": 0.01
+      },
+      {
+       "do": "grow",
+       "target": "p_circle",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "x_circle",
+       "to": 1.8,
+       "at": 0.45,
+       "dur": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "step4",
+        "p_circle",
+        "x_circle"
+       ],
+       "framing": "medium",
+       "yaw": 10,
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look, a hole! Which shape fits?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "step4",
+       "at": 0.9,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "id": "circle_f3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "p_circle",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "x_circle",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "p_circle",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "circle_f4",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "mark",
+       "target": "p_circle",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The circle! Round, with no corners.",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "x_circle",
+       "at": 0.5,
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "p_circle",
+       "points": [
+        [
+         0.99,
+         0,
+         0.1
+        ],
+        [
+         0.69,
+         1.586,
+         -0.2
+        ],
+        [
+         0.39,
+         1.086,
+         -0.55
+        ]
+       ],
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "grow",
+       "target": "p_circle",
+       "to": 1,
+       "at": 1.2,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 1.85
+      },
+      {
+       "do": "wiggle",
+       "target": "step4",
+       "at": 1.85,
+       "deg": 3,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 1.9,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_circle",
+       "at": 1.95,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "circle_song",
+   "title": "Sing: the circle step",
+   "music": false,
+   "beats": [
+    {
+     "id": "circle_s1",
+     "dur": 2.78,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here is a circle, round and round,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4 G4:0.5 F4 A4:0.5 G4:0.5 A4:0.5 B4:0.5 C5:1.5"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.010000000000000009,
+        1.686,
+        2.4
+       ],
+       "lookAt": [
+        0.49,
+        1.1860000000000002,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "p_circle",
+       "at": 0.47,
+       "deg": 12,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "p_circle",
+       "at": 0.84,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "circle_s2",
+     "dur": 2.84,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Click, it fits with a happy sound.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C5 A4:0.5 B4 G4:0.5 A4:0.5 F4:0.5 D4:0.5 C4:1.5"
+      },
+      {
+       "do": "hide",
+       "target": "w_circle",
+       "at": 0.1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.14,
+       "dur": 0.25
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.3,
+        1.6,
+        5.4
+       ],
+       "lookAt": [
+        0.9,
+        0.8,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "step4",
+       "at": 0.67,
+       "deg": 3,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.86,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "circle_s3",
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Step by step, we built it together,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4:0.5 E4:0.5 E4:0.5 G4 E4:0.5 F4:0.5 F4:0.5 F4:0.5 F4:0.5 A4:1"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.27,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.55,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.83,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.11,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "circle_s4",
+     "dur": 2.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now Humpty Dumpty can climb up again.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4 A4:0.5 G4:0.5 F4:0.5 E4:0.5 D4:0.5 E4:0.5 C4:1.5"
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.27,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.96,
+       "height": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "joyful",
+       "at": 0.16
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.44,
+       "deg": 30,
+       "dur": 1.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "circle_turn",
+   "title": "Your turn!",
+   "beats": [
+    {
+     "id": "circle_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Draw a circle in the air! Round and round!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_circle",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "circle_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "circle_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Round and round!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! A circle!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "circle_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_circle",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini4",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "bear",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "qmark",
+       "at": 0.05,
+       "dur": 0.2
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "happy",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "climb",
+   "title": "Up, up, up!",
+   "beats": [
+    {
+     "id": "k1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four steps! What happens next?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "humpty",
+       "points": [
+        [
+         -0.9,
+         0.2725000000000001,
+         0.4
+        ],
+        [
+         0.2,
+         0.5,
+         0.6
+        ],
+        [
+         1.5,
+         0.2,
+         0.2
+        ],
+        [
+         2.45,
+         0,
+         -0.45
+        ]
+       ],
+       "at": 0.3,
+       "dur": 1.6,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "humpty#leg",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.3,
+       "dur": 0.25
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.3,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "id": "k2",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "turn",
+       "target": "humpty",
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.3,
+       "deg": 8,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "k3",
+     "dur": 6.95,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        1.9,
+        6.4
+       ],
+       "lookAt": [
+        0.5,
+        1,
+        -0.8
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Humpty climbs up! Count the steps!",
+       "at": 0,
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "humpty#leg",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "turn",
+       "target": "humpty",
+       "to": [
+        0,
+        -90,
+        0
+       ],
+       "at": 2.3,
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "humpty",
+       "points": [
+        [
+         2.45,
+         0,
+         -0.45
+        ],
+        [
+         2.02,
+         0.6499999999999999,
+         -0.65
+        ],
+        [
+         1.59,
+         0.35,
+         -0.85
+        ]
+       ],
+       "at": 2.65,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 2.65,
+       "volume": 0.45
+      },
+      {
+       "do": "wiggle",
+       "target": "step1",
+       "at": 3.13,
+       "deg": 3,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 3.05,
+       "dur": 0.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One!",
+       "at": 3,
+       "caption": false
+      },
+      {
+       "do": "path",
+       "target": "humpty",
+       "points": [
+        [
+         1.59,
+         0.35,
+         -0.85
+        ],
+        [
+         1.3900000000000001,
+         1,
+         -0.85
+        ],
+        [
+         1.19,
+         0.7,
+         -0.85
+        ]
+       ],
+       "at": 3.4,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 3.4,
+       "volume": 0.45
+      },
+      {
+       "do": "wiggle",
+       "target": "step2",
+       "at": 3.88,
+       "deg": 3,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 3.8,
+       "dur": 0.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two!",
+       "at": 3.75,
+       "caption": false
+      },
+      {
+       "do": "path",
+       "target": "humpty",
+       "points": [
+        [
+         1.19,
+         0.7,
+         -0.85
+        ],
+        [
+         0.99,
+         1.3499999999999999,
+         -0.85
+        ],
+        [
+         0.79,
+         1.0499999999999998,
+         -0.85
+        ]
+       ],
+       "at": 4.15,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 4.15,
+       "volume": 0.45
+      },
+      {
+       "do": "wiggle",
+       "target": "step3",
+       "at": 4.63,
+       "deg": 3,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 4.55,
+       "dur": 0.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three!",
+       "at": 4.5,
+       "caption": false
+      },
+      {
+       "do": "path",
+       "target": "humpty",
+       "points": [
+        [
+         0.79,
+         1.0499999999999998,
+         -0.85
+        ],
+        [
+         0.5775,
+         1.7,
+         -0.85
+        ],
+        [
+         0.365,
+         1.4,
+         -0.85
+        ]
+       ],
+       "at": 4.9,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 4.9,
+       "volume": 0.45
+      },
+      {
+       "do": "wiggle",
+       "target": "step4",
+       "at": 5.38,
+       "deg": 3,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 5.3,
+       "dur": 0.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four!",
+       "at": 5.25,
+       "caption": false
+      },
+      {
+       "do": "path",
+       "target": "humpty",
+       "points": [
+        [
+         0.365,
+         1.4,
+         -0.85
+        ],
+        [
+         -0.05,
+         1.75,
+         -0.8
+        ],
+        [
+         -0.45,
+         1.4,
+         -0.8
+        ]
+       ],
+       "at": 5.65,
+       "dur": 0.5
+      },
+      {
+       "do": "turn",
+       "target": "humpty",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 6.15,
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "humpty",
+       "to": [
+        -0.9,
+        1.1124999999999998,
+        -0.67
+       ],
+       "at": 6.5,
+       "dur": 0.35,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "turn",
+       "target": "humpty#leg",
+       "to": [
+        -30,
+        0,
+        0
+       ],
+       "at": 6.5,
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 6.55,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "step4"
+      }
+     ]
+    },
+    {
+     "id": "k4",
+     "dur": 3,
+     "do": [
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.1,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "humpty",
+       "feeling": "joyful",
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "humpty",
+       "text": "I'm up! Thank you, friends!",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.2,
+       "deg": 35,
+       "dur": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.4,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.55,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.7,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.85,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "k5",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Steps help us go up! Hooray!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.1,
+       "to": "ahead"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Point to it!",
+   "beats": [
+    {
+     "id": "q0",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now a quick game!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        2,
+        8
+       ],
+       "lookAt": [
+        0.9,
+        1.15,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "id": "q1p",
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "c_square",
+       "to": [
+        -1.1,
+        0,
+        1.6
+       ],
+       "at": 0,
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "c_triangle",
+       "to": [
+        1.1,
+        0,
+        1.6
+       ],
+       "at": 0,
+       "dur": 0.01
+      },
+      {
+       "do": "pop",
+       "target": "c_square",
+       "at": 0.05,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "c_triangle",
+       "at": 0.15,
+       "dur": 0.35,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "id": "q1a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "c_square",
+       "to": [
+        -1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "c_triangle",
+       "to": [
+        1.1,
+        0,
+        1.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "c_square",
+        "c_triangle"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which one is the triangle? Point to it!",
+       "at": 0.5,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "q1b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "c_square",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "c_triangle",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "c_square",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q1c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "c_triangle",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "wiggle",
+       "target": "c_triangle",
+       "at": 0.3,
+       "deg": 12,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The triangle! Three corners!",
+       "at": 0.4,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q1d",
+     "dur": 1.2,
+     "do": []
+    },
+    {
+     "id": "q1h",
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c_square",
+       "at": 0,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "c_triangle",
+       "at": 0.05,
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "finale",
+   "title": "Everybody sing!",
+   "music": false,
+   "beats": [
+    {
+     "id": "z0",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Everybody sing!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.6,
+        2.4,
+        10.8
+       ],
+       "lookAt": [
+        0.8,
+        1.3,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "z1",
+     "dur": 2.46,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Humpty Dumpty sat on a wall,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4 G4:0.5 F4 A4:0.5 G4:0.5 A4:0.5 B4:0.5 C5:1.5"
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.1,
+       "deg": 7,
+       "dur": 0.7
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 0.58,
+       "deg": 7,
+       "dur": 0.7
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty",
+       "at": 1.05,
+       "deg": 7,
+       "dur": 0.7
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#leg",
+       "at": 0.26,
+       "deg": 18,
+       "dur": 2
+      },
+      {
+       "do": "feel",
+       "target": "horse",
+       "feeling": "joyful",
+       "at": 0.22
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "joyful",
+       "at": 0.28
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "joyful",
+       "at": 0.34
+      },
+      {
+       "do": "feel",
+       "target": "bear",
+       "feeling": "joyful",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "id": "z2",
+     "dur": 2.74,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Humpty Dumpty, happy and tall.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C5 A4:0.5 B4 G4:0.5 A4:0.5 F4:0.5 D4:0.5 C4:1.5"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.4,
+        1.95,
+        3.7
+       ],
+       "lookAt": [
+        -0.85,
+        1.6,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 0.82
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.28,
+       "deg": 35,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "z3",
+     "dur": 2.81,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "All of his friends built the steps together,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "E4:0.5 E4:0.5 E4:0.5 G4 E4:0.5 F4:0.5 F4:0.5 F4:0.5 F4:0.5 A4:1"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.8,
+        2.4,
+        10.8
+       ],
+       "lookAt": [
+        0.9,
+        1.3,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 0.84
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.29,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.59,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.89,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.19,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "step1",
+       "at": 0.29,
+       "deg": 3,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "step2",
+       "at": 0.59,
+       "deg": 3,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "step3",
+       "at": 0.89,
+       "deg": 3,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "step4",
+       "at": 1.19,
+       "deg": 3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "z4",
+     "dur": 2.89,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now Humpty Dumpty is back up again.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4 A4:0.5 G4:0.5 F4:0.5 E4:0.5 D4:0.5 E4:0.5 C4:1.5"
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.16,
+       "dur": 2.6
+      },
+      {
+       "do": "hop",
+       "target": "humpty",
+       "at": 0.27,
+       "height": 0.15,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "horse",
+       "at": 0.47,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.67,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.87,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.07,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.23,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.41,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 0.6,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 0.79,
+       "deg": 10,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "id": "z5",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bye-bye, Humpty! Bye-bye, friends!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "humpty",
+       "text": "Bye-bye!",
+       "at": "after"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "humpty#arm",
+       "at": 0.3,
+       "deg": 35,
+       "dur": 2
+      },
+      {
+       "do": "wiggle",
+       "target": "horse",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bunny",
+       "at": 0.5,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.6000000000000001,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bear",
+       "at": 0.7000000000000001,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "caption",
+       "text": "Bye-bye!",
+       "style": "title",
+       "at": 0.6,
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.6,
+        3.2,
+        13.5
+       ],
+       "lookAt": [
+        0.8,
+        1.5,
+        -1
+       ],
+       "fov": 40,
+       "dur": 3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
