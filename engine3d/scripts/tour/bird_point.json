@@ -1,0 +1,20 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Birds point with a wing", "seed": 8, "music": false },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.2, 6.5], "lookAt": [0, 0.6, 0], "fov": 40 },
+  "objects": [
+    { "id": "duck", "kind": "critter", "species": "duck", "at": [-1.6, 0, 0] },
+    { "id": "chick", "kind": "critter", "species": "chick", "at": [0, 0, 0] },
+    { "id": "hen", "kind": "critter", "species": "hen", "at": [1.6, 0, 0] },
+    { "id": "ball", "kind": "prop", "model": "ball", "at": [0, 1.9, 1], "size": 0.4 }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 1.2, "do": [] },
+    { "dur": 2, "do": [
+      { "do": "point", "target": "duck", "to": "ball", "hold": 1.5 },
+      { "do": "point", "target": "chick", "to": "ball", "hold": 1.5 },
+      { "do": "point", "target": "hen", "to": "ball", "hold": 1.5 }
+    ] }
+  ] }]
+}
