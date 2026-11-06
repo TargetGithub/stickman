@@ -30,8 +30,17 @@ this folder (sorted by name); a model name may be defined only once across all f
 | `rhymes_br19.json` | br19 Once I Caught a Fish Alive: `fishing_net` (a soft catch-and-release landing net; origin at the pole's foot, hoop centre at [0, 0.92, 0.38], see-through bag; a fish of size 0.5 sits in it at about [0, 0.6, 0.38]), `bubble` (a shiny see-through water bubble, size = width, main colour; rises from water and fills tracker slots) and `arrow_icon` (a round badge with an arrow pointing +x in the main colour; rotation [0, 0, 180] points left) |
 | `rhymes_br20.json` | br20 Opposites Hop: four round HUD icons, one per pair of opposites (`opp_icon_big_small`, `opp_icon_up_down`, `opp_icon_loud_quiet`, `opp_icon_fast_slow`; a 0.9 m disc in the main colour, floating, origin in the middle, like `clap_icon`). The balls, balloon, rock, drum, bell, bunny and turtle are already in the catalog |
 | `rhymes_br18.json` | br18 Hey Diddle Diddle: `fiddle` (a small violin; named part `bow` lies across the strings with its pivot at the middle: wiggle it to play; on the cat parent it at about [0.05, 0.19, 0.22], rotation [0, 0, -45]), the critters `dish` (a standing white plate with a face, blue arms, red shoes; the plate is the head group) and `spoon_friend` (a silver-grey spoon on its handle, the bowl is the head with the face; `spoon` is the br12 table spoon) with named parts `leg` and `arm`, and `moon_face` (a round glowing full moon with a face, 1.1 m across, no feet: lift it with `at` to float it) |
+| `tk_wild.json`, `tk_wild2.json`, `tk_farm_pets.json`, `tk_birds.json`, `tk_family.json` | Toybox 10K characters (crab, hedgehog, otter, elephant, giraffe, goat, puppy, kitten, the Bear family, 25 birds...). **Generated** by `tools/gen_tk_*.mjs` (edit the generator, rerun it); many are `like` variants (see below). Review sheets: `scenes/sheet10k_tk_*.js`. Named parts and poses are in each description |
+| `tk_props.json` | Toybox 10K behaviour props: `word_machine` (funnel, print `slot`, gauge needles `needle_1`/`needle_2`, `light`, `lever`) and `stage_curtain` (mirrored `curtain` halves part when moved) |
 | `dumpydoo.json` | DumpyDoo, a smooth steamed-bun mascot (dough body cut at the collar into a tilting head and a belly, top knot, leaf collar with an orange button, stubby arms and feet). **Generated** by `tools/gen_dumpydoo.mjs`; its shapes (`bao_drop`, `bao_head`, `bao_belly`, `bao_knot`, `leaf_collar`, `brow_thin`, `eyelid`) live in `runtime/dough.js` |
 | `silent_movie.json` | DumpyDoo's silent movie (`scenes/dumpydoo_silent_movie.js`, script `scripts/series/dumpydoo/SILENT_MOVIE.md`): `bowler_hat` (sits on DumpyDoo's head at `[0, 0.63, 0]`, size 1.2), `cane` (hangs from a glove by its hook: give it `pivot: [0.055, 0.45, 0]`), `banana_peel`, `mirror_frame` (no glass) and `street_lamp`. Shapes `bowler_crown`, `bowler_brim` and `crook` live in `runtime/silent_shapes.js` |
+
+## Variants (`like`)
+
+An entry `{ "like": "bear", "scale": 0.6, "recolor": { "brown": "honey" }, "drop": ["tail"], "add": [parts], "eyes": { "iris": "blue" } }`
+is built from its base when the catalog loads (`catalog/variants.mjs`): `scale` multiplies every length, `recolor`
+swaps colours, `drop` removes named parts, `add` appends parts (unscaled), face objects merge. It needs its own
+description and tags. The expanded model keeps `variantOf`.
 
 ## Part fields beyond the basics
 

@@ -357,6 +357,23 @@ covers the kit.
 | Call-and-response | `call` (`prompt`, `cue` ear / hand / mouth / eye / question, `wait`, `answer`, `reveal`): the music dips in the pause. |
 | Lints | Warnings `W3D_HOOK_LATE` (first interaction after 8 s), `W3D_TALK_STRETCH` (over 15 s of talk without one), `W3D_STATIC_CAMERA` (camera still for over 20 s), `W3D_TRACKER_UNFILLED`. They run when `meta.retention` is set, when the kit is used, or with `validateScript(s, catalog, { retention: true })`, so older scripts stay warning-free. `plan.engagement` lists the cues they time. |
 
+### Toybox 10K asset wave (cards, pages, boards, variants, trackers)
+
+What the 10K specs needed beyond the kits above (`runtime/composite.js`, `catalog/variants.mjs`,
+`runtime/retain_tracker_styles.js`, `tools/assets10k.mjs`). Tours: `scripts/tour/composite_tour.json`,
+`composite_boards.json`, `tracker_<style>.json`.
+
+| Need | How |
+|---|---|
+| Picture cards, word cards and tiles, letter tiles, quote cards, sentence strips, name tags | `kind: "card"` with `style` card / tile / word / strip / quote / name_tag, `text`, `picture` (a prop, critter or shape, fitted and flattened onto the card), `tag` (S3, P2). Pieces `<id>_text` (emphasize it), `_back`, `_pic`, `_tag`. Flip with `turn`, glow with `highlight`, wrong with `wiggle`. |
+| Story, article and script pages, poem scrolls, big books | `kind: "page"` with `style` book / article / script / scroll / letter, `title`, `lines` (each line is the text_card `<id>_l<n>`, numbered `<id>_n<n>`), `picture`, `caption`, `sidebar`. `size` is the font size; scale the page with `scale`. Lift a line: `move` it toward the camera. |
+| Evidence board, T-chart, comparison chart, Venn board, timeline | `kind: "board"` with `layout` pins / columns / venn / timeline, `labels`, `rows`, `title`, `style` cork / white / chalk. Cards snap into the sockets `<id>_s<slot>_<row>` with `reparent { parent, to: [0, 0, 0] }`; sockets are scaled for a `cardWidth` × `cardHeight` card (default a size-1 card). |
+| Text that must fit a box | `text_card` takes `height` (fixed; the font shrinks until the text fits), `align: "center"`, `bg: "none"` (only the words), `depth`. |
+| Family members, babies, recolors, dressed-up looks | A model entry `{ "like": "<base>", "scale", "recolor", "drop", "add", "eyes": {...} }` is expanded from its base when the catalog loads (`catalog/variants.mjs`). |
+| Island map, town map, gauges, growing pencil trackers | `tracker` `style`: `islands` (flags rise; the surprise island waits in mist), `town` (windows light), `gauges` (needles swing to full), `pencil` (a page writes one line per step). |
+| Which spec needs exist | `node tools/assets10k.mjs` writes 10K/ASSETS_STATUS.md and 10K/assets_map.json: built, mapped (`catalog/asset_map.json`: how to make a need from existing assets), in script (10K/script_composed.json) or remaining. |
+| Extra stages | `catalog/stages/*.json` files are merged into `stages.json` (a name once). |
+
 ## Rules (as for /engine)
 
 - No `Math.random`, `Date.now`, `performance.now`, `requestAnimationFrame` in `runtime/` or `scenes/` (a test
