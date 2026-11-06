@@ -135,16 +135,18 @@ test("allocation, band, series and catalog rules (table)", () => {
   }
 });
 
-test("blood is banned in every band and subject, body science included", () => {
+test("blood: allowed in science and health (any band), banned elsewhere; bloody always banned", () => {
   const s = clone(example);
-  Object.assign(s, { id: "g40101", band: "g4", subject: "science", strand: "s", standards: ["XX"], series: "counting_parade" });
-  const ctx = { schema, names, file: "/x/g40101.json" };
-  for (const text of ["Blood carries oxygen.", "It moves through the bloodstream."]) {
-    s.story.problem = text;
-    assert.ok(validateSpec(s, ctx).errors.some((e) => /banned word "blood/.test(e)), text);
+  const ctx = { schema, names, file: "/x/kg0101.json" };
+  const bad = (text) => { s.story.problem = text; return validateSpec(s, ctx).errors.some((e) => /banned word "blood/.test(e)); };
+  for (const subject of ["science", "health"]) {
+    s.subject = subject;
+    assert.ok(!bad("Blood carries oxygen around the body."), subject);
+    assert.ok(!bad("It moves through the bloodstream."), subject);
+    assert.ok(bad("A bloody mess."), `${subject}: bloody`);
   }
-  s.story.problem = "The heart pumps oxygen and food all around your body through tiny tubes.";
-  assert.ok(!validateSpec(s, ctx).errors.some((e) => /banned word/.test(e)));
+  s.subject = "ela";
+  assert.ok(bad("Blood carries oxygen."), "ela");
 });
 
 test("babies: no timers, no tests, no confetti", () => {

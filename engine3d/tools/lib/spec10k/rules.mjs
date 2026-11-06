@@ -99,7 +99,13 @@ export function validateSpec(s, ctx) {
     if (RULES.babyBannedMagic.includes(s.magical_moment.id)) errors.push(`babies: magical moment "${s.magical_moment.id}" is too loud or fast`);
   }
   const text = allText(s);
-  for (const w of RULES.bannedWords) if (new RegExp(`\\b${w}\\b`).test(text)) errors.push(`banned word "${w}" (no blood, gore or weapons, in any band or subject)`);
+  // "blood" is allowed where science or body parts call for it (science and health specs, any band); "bloody",
+  // gore and weapons never are (Sridhar, 2026-11-06).
+  const bodyScience = ["science", "health"].includes(s.subject);
+  for (const w of RULES.bannedWords) {
+    if (bodyScience && (w === "blood" || w === "bloodstream")) continue;
+    if (new RegExp(`\\b${w}\\b`).test(text)) errors.push(`banned word "${w}" (no gore or weapons; "blood" only in science/health)`);
+  }
   const us = usEnglishIssues(s);
   errors.push(...us.errors);
   warnings.push(...us.warnings);
