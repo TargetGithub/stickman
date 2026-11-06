@@ -1,8 +1,9 @@
-// DumpyDoo in "The Silly Day": a silent-movie slapstick short (about 10 minutes) in the spirit of the old silent
-// comedies: no talking, title cards between the gags, a bowler hat and a springy cane, a waddle with the toes
-// turned out, an old-film look (grain, vignette, iris in and out) and a bouncy music bed under the sound effects.
-// The gags are original; the script is engine3d/scripts/series/dumpydoo/SILENT_MOVIE.md.
-//   node engine3d/tools/render3d.mjs engine3d/scenes/dumpydoo_silent_movie.js --res 1080p --fps 30 --music playful
+// DumpyDoo in "The Silly Day": a slapstick short (about 10 minutes) in the spirit of the old silent comedies: a
+// bowler hat and a springy cane, a waddle with the toes turned out, a look to the audience, the iris in and out.
+// For kids it adds colourful title cards read aloud in a baby voice, DumpyDoo's own little lines (lip-synced) and
+// a different music mood for each chapter. The gags are original; the script is
+// engine3d/scripts/series/dumpydoo/SILENT_MOVIE.md.
+//   node engine3d/tools/render3d.mjs engine3d/scenes/dumpydoo_silent_movie.js --res 1080p --fps 30 --speech tts
 // Chapters live in scenes/silent/ (acts_a: opening, hat, banana, door; acts_b: bee, seesaw, mirror; acts_c:
 // factory, rain cloud, finale; acts_d: paint bucket, balloons, pup, skateboard; acts_e: nap, bath, magic hat); shared moves in
 // scenes/silent/kit.js.
@@ -15,7 +16,7 @@ import { chapterFactory, chapterCloud, finale } from "./silent/acts_c.js";
 import { chapterPaint, chapterBalloons, chapterPup, chapterSkate } from "./silent/acts_d.js";
 import { chapterBath, chapterNap, chapterMagic } from "./silent/acts_e.js";
 
-export const meta = { seed: 52, music: "playful" };
+export const meta = { seed: 52, music: "playful", musicGain: 0.3 };
 
 export default function silentMovie(d) {
   IRISES.length = 0; // the plan is built more than once (before and after speech is measured)
@@ -23,7 +24,6 @@ export default function silentMovie(d) {
   cast(d);
   let t = 0;
   t = opening(d, t);
-  const irisIn = 12; // the opening title cards end here (opening() shows three cards: 3.5 + 4.5 + 4 s)
   t = chapterHat(d, t);
   t = chapterBanana(d, t);
   t = chapterDoor(d, t);
@@ -42,11 +42,10 @@ export default function silentMovie(d) {
   t = finale(d, t);
   // The iris closes on DumpyDoo far down the road; then the last card.
   const irisOut = t - 2.4;
-  t = card(d, "The End", t + 0.4, 4);
+  t = card(d, "The End", t + 0.4, 4, { music: "happy" });
   filmLook(d, {
     irises: [
       { at: 0, dur: 0.01, to: 0, center: [0.24, 0.42] },
-      { at: irisIn, dur: 1.4, to: 1 },
       ...IRISES,
       { at: irisOut, dur: 2.2, to: 0.07, center: [0.48, 0.5] },
       { at: irisOut + 2.6, dur: 0.4, to: 0 },

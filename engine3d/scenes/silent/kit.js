@@ -148,10 +148,34 @@ export function curtain(d, t, { feeling = "joyful", face = 0 } = {}) {
   return t + 2.8;
 }
 
-/** A full-frame silent-movie title card. */
-export function card(d, text, t, dur = 3) {
+/** The baby voice: the toddler timbre; the storyteller a touch lower than DumpyDoo himself. */
+export const VOICE = { voice: "toddler", narrator: 1.1, dumpy: 1.25 };
+
+/** A card's words as spoken: a blank line ends a sentence, a line break is a space, SHOUTED words read normally. */
+export const spoken = (text) => text.replace(/\n\n+/g, ". ").replace(/\n/g, " ").replace(/\b([A-Z]{2,})\b/g, (w) => w[0] + w.slice(1).toLowerCase());
+
+/**
+ * A full-frame title card, read aloud in the baby voice; it stays up until the reading ends (at least `dur`).
+ * music: start a chapter there with that music mood (director.chapter).
+ */
+export function card(d, text, t, dur = 3, { music } = {}) {
+  if (music) d.chapter(`card${t.toFixed(2)}`, { at: t, music });
+  const said = d.say(spoken(text), { at: t + 0.35, voice: VOICE.voice, pitch: VOICE.narrator });
+  dur = Math.max(dur, said + 1);
   d.caption(text, { at: t, dur, style: "intertitle" });
   return t + dur;
+}
+
+/** DumpyDoo says a line himself (his mouth moves with it), with a subtitle. Returns when he has finished. */
+export function speak(d, text, t, { who = ID, pitch = VOICE.dumpy } = {}) {
+  const dur = d.say(text, { at: t, who, voice: VOICE.voice, pitch });
+  d.caption(text, { at: t, dur: dur + 0.4, style: "subtitle" });
+  return t + dur + 0.3;
+}
+
+/** A quick exclamation in the middle of a gag ("Wheee!"): like speak, but the gag carries on underneath. */
+export function exclaim(d, text, t, o) {
+  speak(d, text, t, o);
 }
 
 /** Show objects at once at t (from hidden; objects here are sized with size, so their scale is 1), or hide them. */

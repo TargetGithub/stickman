@@ -1,6 +1,6 @@
 // DumpyDoo's silent movie: the film look's iris schedule (runtime/film_look.js), the prop shapes
 // (runtime/silent_shapes.js) and their catalog entries, a timeline value cleared back to null, and the scene's
-// plan (about ten minutes, title cards in order, every chapter's set hidden again). Node only, no canvas.
+// plan (about ten minutes, title cards in order and read aloud, a music mood per chapter). Node only, no canvas.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { pathToFileURL } from "node:url";
@@ -77,7 +77,12 @@ test("the silent movie plans to about ten minutes, its cards in order, and is de
   assert.ok(cards.length >= 20, `${cards.length} cards`);
   for (let i = 1; i < cards.length; i++) assert.ok(cards[i].start >= cards[i - 1].start + cards[i - 1].dur - 1e-6, `card ${i} overlaps the one before`);
   assert.equal(cards.at(-1).text, "The End");
-  assert.ok(plan.lines.length === 0, "a silent movie: no spoken lines");
+  // Every card is read aloud in the baby voice, and DumpyDoo says his own lines (his mouth moves with them).
+  assert.ok(cards.every((c) => plan.lines.some((l) => Math.abs(l.t - (c.start + 0.35)) < 1e-6 && l.voice === "toddler")), "each card is read");
+  assert.ok(plan.lines.filter((l) => l.who === "dd").length >= 15, "DumpyDoo talks");
+  // A music mood per chapter, and more than a few different ones.
+  assert.ok(plan.scenes.length >= 17, `${plan.scenes.length} chapters`);
+  assert.ok(new Set(plan.scenes.map((s) => s.music)).size >= 9, "a variety of music");
   // Built again, the plan is the same (the module-level iris list is reset per build).
   const again = await buildPlan({ sceneUrl, catalog });
   assert.equal(again.duration, plan.duration);

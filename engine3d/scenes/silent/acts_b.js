@@ -1,7 +1,7 @@
 // DumpyDoo's silent movie, part B: Chapter 4 (the busy bee on the park bench), Chapter 5 (the seesaw) and
 // Chapter 6 (the mirror that was not a mirror).
 
-import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, tipHat, twirl, squash, sit, dizzy, shrug, card, appear, vanish, place, cam, curtain } from "./kit.js";
+import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, tipHat, twirl, squash, sit, dizzy, shrug, card, appear, vanish, place, cam, curtain, exclaim } from "./kit.js";
 import { stars } from "./acts_a.js";
 
 const P = (part, who = ID) => `${who}#${part}`;
@@ -24,7 +24,7 @@ export function chapterBee(d, t) {
   d.add({ id: "bench", kind: "prop", model: "bench", at: [0, 0, -0.25], size: 1.15, hidden: true });
   d.add({ id: "bee", kind: "critter", species: "bee", at: [-3, 1.6, 0.5], size: 0.32, hidden: true });
   const ids = [...set, "bench"];
-  t = card(d, "Chapter Five\n\nThe Busy Bee", t, 4.5);
+  t = card(d, "Chapter Five\n\nThe Busy Bee", t, 4.5, { music: "tense" });
   appear(d, ids, t - 0.5);
   place(d, t - 0.5, [-2.4, 0, 0.45], 90);
   cam(d, t - 0.5, [0, 1.15, 4.4], [0, 0.8, 0], 38);
@@ -56,6 +56,7 @@ export function chapterBee(d, t) {
   d.set(ID, "gaze", null, t);
   // He swats at it with his cane: whoosh... miss! whoosh... miss!
   d.feel(ID, { at: t, feeling: "angry" });
+  exclaim(d, "Shoo, bee!", t);
   for (let i = 0; i < 2; i++) {
     const at = t + i * 1.1;
     oneArm(d, at, 0.2, 1, [20, 0, 120], [40, 0, 30], "quadOut");
@@ -144,7 +145,7 @@ export function chapterSeesaw(d, t) {
   const ids = [...set, "seesaw", "sbush"];
   const tilt = 14; // the plank's tilt, its left end down
   const s = Math.sin((tilt * Math.PI) / 180);
-  t = card(d, "Chapter Six\n\nUp, Up and Away!", t, 4.5);
+  t = card(d, "Chapter Six\n\nUp, Up and Away!", t, 4.5, { music: "heroic" });
   appear(d, ids, t - 0.5);
   d.set("seesaw#plank", "rotation", [0, 0, tilt], t - 0.5);
   place(d, t - 0.5, [-2.6, 0, 0.5], 90);
@@ -228,6 +229,7 @@ export function chapterSeesaw(d, t) {
   d.path(ID, { at: t + 0.1, dur: 1.4, points: [[low[0], 0.3, 0], [-0.4, 2.5, -0.3], [0.8, 4.8, -0.8]] });
   d.spin(ID, { at: t + 0.1, turns: 3, dur: 1.4, axis: "z", ease: "linear" });
   d.sound("rocket", { at: t + 0.1, volume: 0.5 });
+  exclaim(d, "Wheee!", t + 0.1);
   d.camera({ at: t + 0.2, dur: 1.2, position: [0, 2.3, 5.4], lookAt: [0.3, 2.4, 0], ease: "quadOut" });
   t += 2.4;
   // A long wait... the camera comes back down. Then down he comes, straight into the bush. Rustle rustle!
@@ -274,7 +276,7 @@ export function chapterMirror(d, t) {
   const ids = ["mirror", "mshelf", "mlamp"];
   const yaw = 62; // facing the frame, turned a little toward the camera
   const X = 0.62; // how far each stands from the frame
-  t = card(d, "Chapter Nine\n\nThe Mirror", t, 4.5);
+  t = card(d, "Chapter Nine\n\nThe Mirror", t, 4.5, { music: "playful" });
   d.changeStage("playroom", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   vanish(d, ["cane"], t - 0.5);
@@ -400,6 +402,7 @@ export function chapterMirror(d, t) {
     d.hop(T, { at: t + 0.3 + i * 0.29, height: 0.03, dur: 0.29 });
   }
   d.turn(ID, { at: t + 0.4, to: [0, 0, 0], dur: 0.4 });
+  exclaim(d, "Bye-bye, DumpyDee!", t + 0.9);
   t += 3;
   vanish(d, [T], t);
   t = card(d, "That was no mirror...\nit was his twin cousin, DumpyDee!", t, 3.6);

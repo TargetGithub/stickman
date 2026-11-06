@@ -1,12 +1,12 @@
 // DumpyDoo's silent movie, part E: bubble trouble (a bath with a slippery soap and a cheeky duck) and forty
 // winks (a nap in the farmyard that the sheep keep jumping over).
 
-import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, tipHat, squash, sit, shrug, card, appear, vanish, place, cam, curtain } from "./kit.js";
+import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, tipHat, squash, sit, shrug, card, appear, vanish, place, cam, curtain, speak, exclaim, VOICE } from "./kit.js";
 
 const P = (part) => `${ID}#${part}`;
 
 /** Chapter: bubble trouble. He takes a bath with his hat on; the soap will not stay in his glove. */
-export function chapterBath(d, t, title) {
+export function chapterBath(d, t, title, music = "playful") {
   d.add({ id: "tub", kind: "prop", model: "bathtub", at: [0, 0, 0], hidden: true });
   d.add({ id: "bsoap", kind: "prop", model: "soap", parent: ID, part: "forearm", at: [0, -0.17, 0.06], size: 0.55, hidden: true });
   d.add({ id: "fsoap", kind: "prop", model: "soap", at: [0, 0, 0], size: 0.55, hidden: true });
@@ -16,7 +16,7 @@ export function chapterBath(d, t, title) {
   d.add({ id: "bshelf", kind: "prop", model: "shelf", at: [-2.4, 0, -1.8], hidden: true });
   d.add({ id: "bsink", kind: "prop", model: "sink", at: [2.3, 0, -1.6], hidden: true });
   const ids = ["tub", "bshelf", "bsink"];
-  t = card(d, title, t, 4.5);
+  t = card(d, title, t, 4.5, { music });
   d.changeStage("playroom", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   vanish(d, ["cane"], t - 0.5);
@@ -75,6 +75,7 @@ export function chapterBath(d, t, title) {
   arms(d, t, 0.3, [-25, 0, 70], [-40, 0, 40]);
   appear(d, ["bduck"], t + 0.3);
   d.pop("bduck", { at: t + 0.3, dur: 0.5, sound: "squeak" });
+  exclaim(d, "A duck!", t + 0.8);
   d.set("bduck", "rotation", [0, -40, 0], t + 0.3);
   d.add({ id: "dsoap", kind: "prop", model: "soap", parent: "bduck", part: "head", at: [0, -0.1, 0.45], size: 0.9, hidden: true });
   appear(d, ["dsoap"], t + 0.3);
@@ -120,7 +121,7 @@ export function chapterBath(d, t, title) {
 }
 
 /** Chapter: forty winks. A nap against a hay bale; the sheep jump over him, one... two... three... */
-export function chapterNap(d, t, title) {
+export function chapterNap(d, t, title, music = "lullaby") {
   d.add({ id: "nbale", kind: "prop", model: "hay_bale", at: [0, 0, -0.45], size: 1, hidden: true });
   d.add({ id: "nbale2", kind: "prop", model: "hay_bale", at: [-2.4, 0, -1.6], size: 1, rotation: [0, 20, 0], hidden: true });
   d.add({ id: "nfence0", kind: "prop", model: "fence", at: [1.8, 0, -1.3], recolor: { white: "wood" }, hidden: true });
@@ -128,7 +129,7 @@ export function chapterNap(d, t, title) {
   const flock = [0, 1, 2, 3, 4].map((i) => `sheep${i}`);
   flock.forEach((id) => d.add({ id, kind: "critter", species: "sheep", at: [-3.2, 0, 0.9], size: 0.55, hidden: true }));
   const ids = ["nbale", "nbale2", "nfence0", "nfence1"];
-  t = card(d, title, t, 4.5);
+  t = card(d, title, t, 4.5, { music });
   d.changeStage("farm", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   place(d, t - 0.5, [-2.4, 0, 0.3], 90);
@@ -175,12 +176,13 @@ export function chapterNap(d, t, title) {
   d.tween("hat", "position", HAT.at, { at: t + 0.7, dur: 0.3, ease: "bounceOut" });
   d.hop(ID, { at: t + 0.5, height: 0.15, dur: 0.3 });
   t += 1.6;
-  t = card(d, "\"Counting sheep is meant to\nhelp you SLEEP!\"", t, 3);
+  t = speak(d, "Counting sheep is meant to help me sleep!", t);
   // So he counts them. One... two... three... sleepier with every sheep.
   const counts = ["One...", "Two...", "Three..."];
   for (let i = 0; i < 3; i++) {
     const at = t + i * 1.7;
     jump(`sheep${2 + i}`, at, 1.4);
+    d.say(counts[i], { at: at + 0.4, who: ID, voice: VOICE.voice, pitch: VOICE.dumpy });
     d.caption(counts[i], { at: at + 0.4, dur: 1.2, style: "label" });
     d.nod(ID, { at: at + 0.5, deg: 10 + i * 4, dur: 0.5 });
     d.tween(ID, "eyes", 0.7 - i * 0.25, { at: at + 0.6, dur: 0.5 });
@@ -222,7 +224,7 @@ export function chapterNap(d, t, title) {
  * Chapter: the magic hat. On a little stage he puts his hat upside down on a stool and taps it with a wand: a
  * bunny, then a chick, then (with a lot of squeezing) a whole piglet. Then the bunny takes the wand and taps HIM.
  */
-export function chapterMagic(d, t, title) {
+export function chapterMagic(d, t, title, music = "mysterious") {
   const STOOL = [0.55, 0, 0.35];
   const TOP = 0.42; // the stool's top
   const IN_HAT = [STOOL[0], TOP + 0.33, STOOL[2]]; // where the animals come out
@@ -235,7 +237,7 @@ export function chapterMagic(d, t, title) {
   d.add({ id: "mpig", kind: "critter", species: "pig", at: IN_HAT, size: 0.6, hidden: true });
   d.add({ id: "mconf", kind: "confetti", at: [0, 0, 0], count: 120, area: [4, 2], height: 3.5, hidden: true });
   const ids = ["stool", "stooltop"];
-  t = card(d, title, t, 4.5);
+  t = card(d, title, t, 4.5, { music });
   d.changeStage("theatre", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   d.show("spot", { at: t - 0.5, dur: 0.1 });
@@ -286,6 +288,7 @@ export function chapterMagic(d, t, title) {
     d.feel(ID, { at: at + 0.9, feeling: "joyful" });
     return at + 1.2;
   };
+  exclaim(d, "Abracadabra!", t + 0.3);
   t = tap(t + 0.4);
   t = out("mbunny", t, [1.3, 0, 0.2]) + 0.6;
   // Again: a chick!
@@ -300,7 +303,7 @@ export function chapterMagic(d, t, title) {
   d.tween(ID, "gaze", [0, 0], { at: t + 0.8, dur: 0.2 });
   d.set(ID, "gaze", null, t + 1.1);
   t += 1.4;
-  t = card(d, "\"How did THAT fit in there?\"", t, 2.6);
+  t = speak(d, "How did that fit in there?", t);
   // The bunny hops over, takes the wand and taps DumpyDoo on the head. He shrinks to half his size! Tap: back again.
   d.move("mbunny", { at: t, to: [0.15, 0, 0.6], dur: 0.6 });
   for (let i = 0; i < 3; i++) d.hop("mbunny", { at: t + i * 0.2, height: 0.1, dur: 0.2 });

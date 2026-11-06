@@ -1,7 +1,7 @@
 // DumpyDoo's silent movie, part C: Chapter 7 (the cupcake factory), Chapter 8 (his very own rain cloud) and the
 // finale (a cupcake for the bee, then off down the road into the sunset, iris out, The End).
 
-import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, tipHat, twirl, squash, shrug, card, appear, vanish, place, cam, curtain } from "./kit.js";
+import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, tipHat, twirl, squash, shrug, card, appear, vanish, place, cam, curtain, exclaim, speak } from "./kit.js";
 import { stars } from "./acts_a.js";
 
 const P = (part) => `${ID}#${part}`;
@@ -19,7 +19,7 @@ export function chapterFactory(d, t) {
   for (let i = 0; i < N; i++) d.add({ id: `cup${i}`, kind: "prop", model: "cupcake", at: [BELT.x0, BELT.y, BELT.z], size: 0.55, hidden: true });
   d.add({ id: "hatcake", kind: "prop", model: "cupcake", parent: "hat", at: [0, 0.25, 0], size: 0.5, hidden: true });
   const ids = ["belt", "cbox", "bell", "fshelf", "fclock"];
-  t = card(d, "Chapter Twelve\n\nThe Cupcake Factory", t, 4.5);
+  t = card(d, "Chapter Twelve\n\nThe Cupcake Factory", t, 4.5, { music: "battle" });
   d.changeStage("classroom", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   d.set("cbox#lid", "rotation", [-100, 0, 0], t - 0.5);
@@ -98,6 +98,7 @@ export function chapterFactory(d, t) {
   d.wiggle("bell#bell", { at: t, deg: 25, dur: 0.8 });
   d.sound("bell", { at: t });
   d.feel(ID, { at: t + 0.3, feeling: "surprised", dur: 0.1 });
+  exclaim(d, "Too fast!", t + 0.4);
   t += 0.5;
   for (let i = 0; i < 6; i++) {
     const at = t + i * 0.45;
@@ -143,7 +144,7 @@ export function chapterFactory(d, t) {
   d.feel(ID, { at: t + 0.2, feeling: "joyful" });
   d.sound("pop", { at: t + 0.25 });
   t += 1.4;
-  t = card(d, "\"All done, boss!\"", t, 2.4);
+  t = speak(d, "All done, boss!", t);
   d.sound("giggle", { at: t, volume: 0.6 });
   d.hop(ID, { at: t, height: 0.12, dur: 0.35 });
   t += 1.4;
@@ -165,7 +166,7 @@ export function chapterCloud(d, t) {
   d.add({ id: "brolly", kind: "prop", model: "umbrella", parent: ID, at: [0.12, 0.62, 0.05], size: 0.85, hidden: true });
   d.add({ id: "rainbow", kind: "prop", model: "rainbow", at: [0, 0.2, -2.6], size: 2.2, hidden: true });
   d.add({ id: "csun", kind: "prop", model: "sun", at: [-2.6, 3.6, -3], size: 1.1, hidden: true });
-  t = card(d, "Chapter Fourteen\n\nHis Very Own Cloud", t, 4.5);
+  t = card(d, "Chapter Fourteen\n\nHis Very Own Cloud", t, 4.5, { music: "sad" });
   d.changeStage("town", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   place(d, t - 0.5, [-1.2, 0, 0.4], 90);
@@ -178,6 +179,7 @@ export function chapterCloud(d, t) {
   t = twirl(d, t + 0.3, 2, 0.8) + 0.6;
   appear(d, ["rain"], t);
   d.sound("rain", { at: t, volume: 0.6 });
+  exclaim(d, "Hey! Rain!", t + 0.5);
   d.feel(ID, { at: t + 0.2, feeling: "surprised", dur: 0.15 });
   d.tween(ID, "gaze", [0, 1], { at: t + 0.3, dur: 0.25 });
   t += 1.4;
@@ -239,6 +241,7 @@ export function chapterCloud(d, t) {
   d.sound("ooh", { at: t + 0.4, volume: 0.5 });
   t += 1.8;
   // The sun comes out, the cloud floats away, and a rainbow appears over him. He dances!
+  d.chapter("rainbow", { at: t, music: "happy" });
   d.set(ID, "gaze", null, t);
   appear(d, ["csun"], t);
   d.move("csun", { at: t, to: [-2.6, 3.6, -3], dur: 0.01 });
@@ -247,6 +250,7 @@ export function chapterCloud(d, t) {
   appear(d, ["rainbow"], t + 0.8);
   d.pop("rainbow", { at: t + 0.8, dur: 0.8, sound: "magic_sparkle" });
   d.feel(ID, { at: t + 0.8, feeling: "joyful" });
+  exclaim(d, "A rainbow!", t + 0.9);
   t += 1.6;
   for (let i = 0; i < 6; i++) {
     const s = i % 2 ? 1 : -1, at = t + i * 0.5;
@@ -278,7 +282,7 @@ export function finale(d, t) {
   d.add({ id: "f_tree2", kind: "prop", model: "tree", at: [2.6, 0, -9], size: 2.4, hidden: true });
   d.add({ id: "fbee", kind: "critter", species: "bee", at: [3, 1.5, 0.6], size: 0.32, hidden: true });
   d.add({ id: "fcake", kind: "prop", model: "cupcake", parent: ID, part: "forearm", at: [0, -0.19, 0.08], size: 0.45, hidden: true });
-  t = card(d, "And so, at the end\nof a very silly day...", t, 3.6);
+  t = card(d, "And so, at the end\nof a very silly day...", t, 3.6, { music: "triumphant" });
   d.lights({ at: t - 0.6, dur: 0.1, rig: "evening", background: "dusk_sky" });
   appear(d, ids, t - 0.5);
   place(d, t - 0.5, [-0.2, 0, 0.6], 0);
@@ -328,6 +332,7 @@ export function finale(d, t) {
   for (let i = 0; i < 6; i++) d.tween(P("forearm"), "lift", [45, i % 2 ? 25 : -15, -40], { at: t + 0.7 + i * 0.22, dur: 0.22 });
   pose(d, t + 2.1, 0.3, [[P("arm"), "lift", [0, 0, 0]], [P("forearm"), "lift", [0, 0, 0]]]);
   d.feel(ID, { at: t + 0.4, feeling: "joyful" });
+  exclaim(d, "Bye-bye, friends!", t + 0.5);
   t += 2.6;
   d.turn(ID, { at: t, to: [0, 180, 0], dur: 0.4 });
   t = waddle(d, t + 0.4, [-0.2, 0, -6.5], { steps: 14, face: 180 });

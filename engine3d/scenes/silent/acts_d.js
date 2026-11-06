@@ -1,7 +1,7 @@
 // DumpyDoo's silent movie, part D: four more gags: the paint bucket, the balloon ride, the hungry pup and the
 // skateboard.
 
-import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, sneak, tipHat, twirl, squash, sit, dizzy, shrug, card, appear, vanish, place, cam, curtain } from "./kit.js";
+import { ID, HAT, pose, arms, oneArm, legs, rest, waddle, sneak, tipHat, twirl, squash, sit, dizzy, shrug, card, appear, vanish, place, cam, curtain, speak, exclaim } from "./kit.js";
 import { stars } from "./acts_a.js";
 
 const P = (part) => `${ID}#${part}`;
@@ -28,7 +28,7 @@ export function chapterPaint(d, t) {
   d.add({ id: "brush", kind: "prop", model: "paintbrush", parent: ID, part: "forearm", at: [0, -0.15, 0.05], rotation: [180, 0, 0], size: 0.45, recolor: { blue: "yellow" }, hidden: true });
   d.add({ id: "headbucket", kind: "prop", model: "bucket", parent: ID, part: "head", at: [0, 0.98, 0], rotation: [180, 0, 0], size: 1.5, recolor: { blue: "yellow" }, hidden: true });
   const ids = [...set, ...fence, "pbucket"];
-  t = card(d, "Chapter Four\n\nWet Paint!", t, 4.5);
+  t = card(d, "Chapter Four\n\nWet Paint!", t, 4.5, { music: "happy" });
   appear(d, ids, t - 0.5);
   vanish(d, ["cane"], t - 0.5);
   appear(d, ["brush"], t - 0.5);
@@ -125,6 +125,7 @@ export function chapterPaint(d, t) {
   arms(d, t, 0.3, [0, 0, 0]);
   d.feel(ID, { at: t + 0.1, feeling: "surprised", dur: 0.1 });
   t += 1;
+  exclaim(d, "I'm all yellow!", t + 1.2);
   for (let i = 0; i < 2; i++) {
     d.sleep(ID, { at: t + i * 0.6, dur: 0.12 });
     d.wake(ID, { at: t + i * 0.6 + 0.15, dur: 0.12 });
@@ -158,7 +159,7 @@ export function chapterBalloons(d, t) {
   d.add({ id: "bpost", kind: "prop", model: "street_lamp", at: [0.6, 0, -0.6], hidden: true });
   colors.forEach((c, i) => d.add({ id: `bal${i}`, kind: "prop", model: "balloon", at: [0.4 + tips[i][0], 0.35, -0.3], color: c, size: 0.9, hidden: true }));
   const ids = [...set, "bpost"];
-  t = card(d, "Chapter Seven\n\nThe Balloon Ride", t, 4.5);
+  t = card(d, "Chapter Seven\n\nThe Balloon Ride", t, 4.5, { music: "calm" });
   appear(d, [...ids, ...colors.map((_, i) => `bal${i}`)], t - 0.5);
   place(d, t - 0.5, [-2.4, 0, 0.4], 90);
   cam(d, t - 0.5, [0, 1.4, 5.4], [0, 1.1, 0], 42);
@@ -182,6 +183,7 @@ export function chapterBalloons(d, t) {
   t += 1;
   // Up... up... his toes leave the ground. He kicks his little legs.
   d.feel(ID, { at: t, feeling: "surprised", dur: 0.2 });
+  exclaim(d, "Up, up, up!", t + 0.4);
   d.move(ID, { at: t, to: [0.4, 1.2, 0.3], dur: 3, ease: "quadInOut" });
   d.sound("slide_whistle", { at: t, volume: 0.4 });
   for (let i = 0; i < 8; i++) legs(d, t + 0.5 + i * 0.3, 0.3, i % 2 ? [-35, 0, 0] : [25, 0, 0], i % 2 ? [25, 0, 0] : [-35, 0, 0]);
@@ -216,6 +218,7 @@ export function chapterBalloons(d, t) {
   t += 2.4;
   squash(d, t, { dur: 0.4, k: 0.9, sound: "land" });
   d.feel(ID, { at: t + 0.2, feeling: "joyful" });
+  exclaim(d, "Ta-da!", t + 0.2);
   d.sound("crowd_cheer", { at: t + 0.3, volume: 0.35 });
   t += 1;
   d.reparent("bal1", { at: t, parent: null });
@@ -247,7 +250,7 @@ export function chapterPup(d, t) {
   const sandwiches = [0, 1, 2].map((i) => `sand${i}`);
   sandwiches.forEach((id) => d.add({ id, kind: "prop", model: "sandwich", at: [-0.2, 0.01, 0.65], size: 0.5, hidden: true }));
   const ids = [...set, "urug", "ubasket", "utree"];
-  t = card(d, "Chapter Ten\n\nThe Hungry Pup", t, 4.5);
+  t = card(d, "Chapter Ten\n\nThe Hungry Pup", t, 4.5, { music: "bouncy" });
   d.changeStage("garden", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   place(d, t - 0.5, [-2.6, 0, 0.3], 90);
@@ -303,7 +306,7 @@ export function chapterPup(d, t) {
   d.feel(ID, { at: t - 0.8, feeling: "angry" });
   d.sound("gasp", { at: t - 0.8, volume: 0.5 });
   t += 0.4;
-  t = card(d, "\"Hey! Come back here, you!\"", t, 2.4);
+  t = speak(d, "Hey! Come back here, you!", t);
   // The chase: round and round the tree. Then the pup turns about... and now it is chasing HIM.
   d.look(ID, { at: t, to: "ahead", dur: 0.01 });
   legs(d, t, 0.2, [0, 0, 0]);
@@ -358,7 +361,7 @@ export function chapterPup(d, t) {
   t += 1.2;
   d.hop("pup", { at: t, height: 0.3, dur: 0.4 });
   d.feel(ID, { at: t + 0.3, feeling: "joyful" });
-  d.sound("giggle", { at: t + 0.3 });
+  exclaim(d, "Good puppy!", t + 0.4);
   d.wiggle("pup#tail", { at: t, deg: 40, dur: 1.5 });
   t += 1.4;
   appear(d, ["sand2"], t);
@@ -383,7 +386,7 @@ export function chapterSkate(d, t) {
   d.add({ id: "zcone1", kind: "shape", shape: "cone", color: "orange", at: [-2.2, 0, -0.4], size: 0.3, hidden: true });
   d.add({ id: "zcone2", kind: "shape", shape: "cone", color: "orange", at: [2.6, 0, -0.4], size: 0.3, hidden: true });
   const ids = [...set, "board", "zcone1", "zcone2"];
-  t = card(d, "Chapter Thirteen\n\nThe Runaway Skateboard", t, 4.5);
+  t = card(d, "Chapter Thirteen\n\nThe Runaway Skateboard", t, 4.5, { music: "happy" });
   d.changeStage("garden", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   d.set("ramp", "visible", true, t - 0.5).set("ramp", "scale", [0.9, 0.3, 0.7], t - 0.5);
@@ -439,6 +442,7 @@ export function chapterSkate(d, t) {
   d.path(ID, { at: t, dur: 1.2, points: [[0.4, 0.1, 0.5], [1.3, 0.4, 0.5], [1.9, 1.1, 0.5], [2.5, 0.1, 0.5]] });
   d.spin(ID, { at: t + 0.2, turns: 1, dur: 0.9 });
   d.sound("slide_whistle", { at: t });
+  exclaim(d, "Wheee!", t);
   d.sound("land", { at: t + 1.2 });
   t += 1.3;
   arms(d, t, 0.3, [70, 0, 96], [45, 0, 40], "quadOut");
@@ -453,6 +457,7 @@ export function chapterSkate(d, t) {
   d.tween("board#wheel", "rotation", [0, 3000, 0], { at: t, dur: 1 });
   d.tween(ID, "gaze", [0, -1], { at: t + 0.4, dur: 0.2 });
   d.feel(ID, { at: t + 0.6, feeling: "surprised" });
+  exclaim(d, "Uh-oh!", t + 0.7);
   d.tween(ID, "gaze", [0, 0], { at: t + 1.4, dur: 0.2 });
   t += 2;
   arms(d, t, 0.2, [0, 0, 0]);

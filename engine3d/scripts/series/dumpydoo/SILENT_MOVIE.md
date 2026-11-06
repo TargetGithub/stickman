@@ -1,15 +1,16 @@
-# DumpyDoo in "The Silly Day": a silent movie
+# DumpyDoo in "The Silly Day": a silent-movie-style comedy
 
 A slapstick short, about 9 min 55 s (594 s), for young children. It is made in the spirit of the classic
 silent-film comedians:
 
-- No talking.
-- Title cards between the gags.
+- Bright, colourful title cards between the gags, each read aloud in a baby voice.
+- DumpyDoo says his own little lines and exclamations ("Oopsie!", "Wheee!", "Ta-da!") in the same baby voice,
+  his mouth moving with them, with a subtitle.
 - A little bowler hat and a springy cane.
 - A waddle with the toes turned out.
 - A look to the audience after each mishap.
 - The iris closing at the end of a scene.
-- A bouncy music bed under cartoon sound effects.
+- A different music mood for each chapter, under cartoon sound effects.
 
 Every gag here is original and built from everyday things: a hat, a banana peel, a door, a bee, a seesaw,
 balloons, a puppy, sheep and a bath. Nothing recreates a scene, character, costume or likeness from any
@@ -26,15 +27,43 @@ particular film. DumpyDoo is himself, in a bowler hat.
 | Scene | `engine3d/scenes/dumpydoo_silent_movie.js` (chapters in `engine3d/scenes/silent/`) |
 | Star | DumpyDoo (`catalog/models/dumpydoo.json`) with `bowler_hat` and `cane` (`catalog/models/silent_movie.json`) |
 | Look | `runtime/film_look.js`: warm vignette, fine grain, a rare faint scratch, iris in and out (no flicker) |
-| Title cards | caption style `intertitle` (`runtime/overlay.js`): cream words in a double border on warm black |
-| Music | `--music playful`, one bed for the whole film |
-| Speech | none (`--speech off`); the title cards carry the words |
-| Review render | `node engine3d/tools/render3d.mjs engine3d/scenes/dumpydoo_silent_movie.js --res 1080p --fps 30 --speech off --music playful --out out/demos/3d/dumpydoo/dumpydoo_silent_movie_1080p30.mp4` |
+| Title cards | caption style `intertitle` (`runtime/overlay.js`): a bright gradient (six colour themes) with confetti and stars, a white frame, big outlined words, a "Chapter One" badge |
+| Voice | the `toddler` timbre (baby voice): the storyteller reads every card (pitch 1.1); DumpyDoo speaks his lines with lip sync (pitch 1.25). `kit.js`: `card`, `speak`, `exclaim` |
+| Music | a mood per chapter (`director.chapter`, crossfading): happy, playful, bouncy, tense, heroic, calm, mysterious, lullaby, battle, sad, triumphant |
+| Review render | `node engine3d/tools/render3d.mjs engine3d/scenes/dumpydoo_silent_movie.js --res 1080p --fps 30 --speech tts --out out/demos/3d/dumpydoo/dumpydoo_silent_movie_1080p30.mp4` |
 | Final render | the same with `--res 4k --fps 60` |
+
+**Music by chapter:**
+
+| Chapters | Mood |
+|---|---|
+| Opening | happy |
+| Hat, Mirror | playful |
+| Banana, Hungry Pup | bouncy |
+| Door, Busy Bee | tense |
+| Wet Paint, Skateboard | happy |
+| Seesaw | heroic |
+| Balloon Ride | calm |
+| Magic Hat | mysterious |
+| Forty Winks | lullaby |
+| Cupcake Factory | battle (fast and driving) |
+| His Very Own Cloud | sad while it rains, happy from the rainbow |
+| Bubble Trouble | playful |
+| Finale | triumphant, then happy under The End |
+
+**His own lines** (said on screen):
+
+| Kind | Lines |
+|---|---|
+| Replacing the old quoted cards | "Oh! I left my lunch box by the bin!", "It's a door... to nowhere!", "How did that fit in there?", "Hey! Come back here, you!", "Counting sheep is meant to help me sleep!", "All done, boss!" |
+| Greetings and goodbyes | "Hello, everybody!", "Bye-bye, DumpyDee!", "Good puppy!", "Bye-bye, friends!" |
+| Mishaps | "My hat!", "Whoa-oh!", "Silly peel!", "Oopsie!", "Shoo, bee!", "Too fast!", "Hey! Rain!", "Uh-oh!" |
+| Delights | "Yay!", "I'm all yellow!", "Wheee!", "Up, up, up!", "Ta-da!", "Abracadabra!", "A duck!", "A rainbow!" |
+| Counting | "One... Two... Three..." |
 
 ## Running order
 
-Times are where each title card starts.
+Times are where each title card starts; they shift a little once the real voice clips are measured.
 
 | Time | Card | The gag |
 |---|---|---|
@@ -68,7 +97,7 @@ Times are where each title card starts.
 ### Chapter Two: Beware the Banana!
 
 1. **The peel:** he eats a banana in three bites and tosses the peel over his shoulder without looking.
-2. **The flower:** he waddles off to sniff a flower. Card: "I left my lunch box by the bin!"
+2. **The flower:** he waddles off to sniff a flower. He says: "Oh! I left my lunch box by the bin!"
 3. **The slip:** he walks back without looking and steps on the peel. He slides, spins twice in the air and lands sitting, with dizzy stars.
 4. **The tidy-up:** he puts the peel in the bin like a good bun and dusts off his gloves. The lid pops, and the peel lands on his hat.
 
@@ -77,7 +106,7 @@ Times are where each title card starts.
 1. **The knock:** he knocks, and no one answers.
 2. **The push:** he pushes and strains, but nothing happens.
 3. **The pull:** he pulls, and the door swings open into him. *Bonk*, stars.
-4. **Round the back:** he walks round the back and finds nothing there at all. Card: "It's a door... to nowhere!"
+4. **Round the back:** he walks round the back and finds nothing there at all. He says: "It's a door... to nowhere!"
 5. **Good manners:** he goes through it politely anyway, tipping his hat. Going round it afterwards, the door nudges him on his way.
 
 ### Chapter Four: Wet Paint!
@@ -114,7 +143,7 @@ Times are where each title card starts.
 
 1. **The empty hat:** he puts his hat upside down on a stool and shows us it is empty.
 2. **Tap, tap:** the wand brings out a bunny, then a chick.
-3. **The piglet:** after a lot of squeezing, a whole piglet comes out. Card: "How did THAT fit in there?"
+3. **The piglet:** after a lot of squeezing, a whole piglet comes out. He says: "How did that fit in there?"
 4. **The bunny's turn:** the bunny taps DumpyDoo with the wand and he shrinks to half his size. Another tap brings him back.
 5. **The bow:** everybody bows, with confetti.
 
@@ -129,7 +158,7 @@ Times are where each title card starts.
 ### Chapter Ten: The Hungry Pup
 
 1. **The steal:** a bird sings and he turns to look. A puppy sneaks in and takes the sandwich.
-2. **Again:** a second sandwich goes the same way. Card: "Hey! Come back here, you!"
+2. **Again:** a second sandwich goes the same way. He says: "Hey! Come back here, you!"
 3. **The chase:** he chases the pup round and round a tree. The pup stops and turns, and now it chases him the other way.
 4. **Friends:** puffed out, he plops down. The pup licks him, and they share the last sandwich.
 
@@ -137,7 +166,7 @@ Times are where each title card starts.
 
 1. **Hat over his eyes:** he settles down with his hat over his eyes.
 2. **The jumps:** a sheep jumps over him and he wakes. A second sheep sends his hat flying.
-3. **Counting:** card: "Counting sheep is meant to help you SLEEP!" He counts them: One... Two... Three...
+3. **Counting:** he says: "Counting sheep is meant to help me sleep!" He counts them aloud: One... Two... Three...
 4. **Asleep:** he falls asleep, and the last sheep lands in his lap and sleeps too. The flock snuggles in as the light turns to dusk.
 
 ### Chapter Twelve: The Cupcake Factory
@@ -147,7 +176,7 @@ Times are where each title card starts.
 3. **Faster:** one goes in the box, one in his mouth, one on his hat and one in the box.
 4. **Too fast:** he misses one, then another.
 5. **On the belt:** he jumps onto the belt to catch them, but it carries him off, running on the spot, and drops him into the box. The lid slams.
-6. **Out he pops:** the lid creaks up and he pops out with a cupcake still on his hat. Card: "All done, boss!"
+6. **Out he pops:** the lid creaks up and he pops out with a cupcake still on his hat. He says: "All done, boss!"
 
 ### Chapter Thirteen: The Runaway Skateboard
 
@@ -223,5 +252,6 @@ title card.
 | Piece | What it does |
 |---|---|
 | `runtime/film_look.js` | `filmLook(d, { irises })` adds the old-film overlay; `irisAt(irises, t)` gives the iris at any time. An iris can centre on an object id and follow it on screen. |
-| `intertitle` caption style | A full-frame title card. `\n` starts a new line. It is allowed in JSON scripts too. |
+| `intertitle` caption style | A full-frame, colourful title card. `\n` starts a new line; a blank line puts the first part in a badge. It is allowed in JSON scripts too. |
+| `director.chapter(id, { at, music, musicGain })` | A JS scene's chapter: the music bed changes mood there, crossfading like a JSON script's scenes. |
 | Timeline `null` | Setting a prop back to `null` clears it; for example, `d.set(id, "gaze", null, t)` hands the eyes back to the idle glances. |

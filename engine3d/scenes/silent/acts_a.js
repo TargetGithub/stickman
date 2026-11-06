@@ -2,7 +2,7 @@
 // Chapter 3 (the door). Each chapter adds its own set (hidden), shows it during its title card, plays its gags
 // and hides the set again; it returns the time it ends.
 
-import { ID, HAT, CANE, pose, arms, oneArm, legs, rest, waddle, sneak, tipHat, twirl, squash, sit, dizzy, shrug, card, appear, vanish, place, cam, curtain } from "./kit.js";
+import { ID, HAT, CANE, pose, arms, oneArm, legs, rest, waddle, sneak, tipHat, twirl, squash, sit, dizzy, shrug, card, appear, vanish, place, cam, curtain, speak, exclaim, IRISES } from "./kit.js";
 
 const P = (part) => `${ID}#${part}`;
 
@@ -43,9 +43,10 @@ function street(d, prefix) {
 /** Opening titles and the iris opening on DumpyDoo. Returns the end time. */
 export function opening(d, t) {
   const set = street(d, "o");
-  t = card(d, "DumpyDoo Pictures\npresents", t, 3.5);
+  t = card(d, "DumpyDoo Pictures\npresents", t, 3.5, { music: "happy" });
   t = card(d, "DumpyDoo\nin\nTHE SILLY DAY", t, 4.5);
   t = card(d, "A little bun with a big hat\nand a very bouncy day.", t, 4);
+  IRISES.push({ at: t, dur: 1.4, to: 1 }); // the iris opens on the street
   appear(d, set, t - 0.5);
   place(d, t - 0.5, [-2.4, 0, 0.3], 90);
   cam(d, t - 0.5, [0, 1.15, 4.6], [0, 0.75, 0], 38);
@@ -56,7 +57,7 @@ export function opening(d, t) {
   t = twirl(d, t, 2, 0.9) + 0.2;
   t = tipHat(d, t) + 0.3;
   d.feel(ID, { at: t, feeling: "joyful" });
-  d.sound("giggle", { at: t, volume: 0.5 });
+  exclaim(d, "Hello, everybody!", t);
   d.hop(ID, { at: t, height: 0.25, dur: 0.45, sound: "boing" });
   t += 0.9;
   d.feel(ID, { at: t, feeling: "happy" });
@@ -76,7 +77,7 @@ export function opening(d, t) {
 export function chapterHat(d, t) {
   const set = street(d, "h");
   d.add({ id: "leaves", kind: "weather", type: "leaves", count: 40, area: [9, 3], height: 3, speed: 2.2, hidden: true });
-  t = card(d, "Chapter One\n\nThe Hat That Would Not Stay", t, 4.5);
+  t = card(d, "Chapter One\n\nThe Hat That Would Not Stay", t, 4.5, { music: "playful" });
   appear(d, set, t - 0.5);
   place(d, t - 0.5, [-2.3, 0, 0.4], 90);
   cam(d, t - 0.5, [0, 1.15, 4.6], [0, 0.75, 0], 38);
@@ -89,6 +90,7 @@ export function chapterHat(d, t) {
   d.sound("whoosh", { at: t });
   d.feel(ID, { at: t + 0.1, feeling: "surprised", dur: 0.15 });
   d.reparent("hat", { at: t + 0.1, parent: null });
+  exclaim(d, "My hat!", t + 0.4);
   d.path("hat", { at: t + 0.15, dur: 1.4, points: [[-0.8, 1.15, 0.4], [-0.1, 1.6, 0.5], [0.5, 0.8, 0.5], [0.9, 0.02, 0.5]] });
   d.tween("hat", "rotation", [0, 300, 40], { at: t + 0.15, dur: 1.2 });
   d.tween("hat", "rotation", [0, 360, 0], { at: t + 1.35, dur: 0.25, ease: "bounceOut" });
@@ -166,7 +168,7 @@ export function chapterHat(d, t) {
   squash(d, t + 0.9, { dur: 0.5, k: 0.85, sound: null });
   d.look(ID, { at: t + 1, to: "ahead", dur: 0.3 });
   d.feel(ID, { at: t + 1.2, feeling: "joyful" });
-  d.sound("giggle", { at: t + 1.4, volume: 0.6 });
+  exclaim(d, "Yay!", t + 1.3);
   t += 2.4;
   d.feel(ID, { at: t, feeling: "happy" });
   t = tipHat(d, t) + 0.4;
@@ -202,7 +204,7 @@ export function chapterBanana(d, t) {
   d.add({ id: "banana", kind: "prop", model: "banana", parent: ID, part: "forearm", at: [0, -0.2, 0.1], rotation: [0, 0, 90], size: 0.5, hidden: true });
   d.add({ id: "peel", kind: "prop", model: "banana_peel", at: [0, 0, 0], size: 1.4, hidden: true });
   d.add({ id: "flower", kind: "prop", model: "flower", at: [-2.1, 0, 0.1], size: 0.9, hidden: true });
-  t = card(d, "Chapter Two\n\nBeware the Banana!", t, 4.5);
+  t = card(d, "Chapter Two\n\nBeware the Banana!", t, 4.5, { music: "bouncy" });
   appear(d, [...set, "bin", "flower"], t - 0.5);
   vanish(d, ["cane"], t - 0.5);
   appear(d, ["banana"], t - 0.5);
@@ -241,12 +243,13 @@ export function chapterBanana(d, t) {
   d.sound("ooh", { at: t + 0.4, volume: 0.5 });
   d.tween(ID, "rotation", [0, -90, 0], { at: t + 1.6, dur: 0.4 });
   t += 2.2;
-  t = card(d, "\"I left my lunch box by the bin!\"", t, 2.8);
+  t = speak(d, "Oh! I left my lunch box by the bin!", t);
   cam(d, t - 0.1, [0.6, 1.2, 5], [0.6, 0.75, 0], 40);
   // Back he goes, walking backwards (he is still looking at the flower)... onto the peel!
   d.feel(ID, { at: t, feeling: "happy" });
   t = waddle(d, t, [0.62, 0, 0.5], { steps: 7, step: 0.28, face: -90 });
   d.sound("slide_whistle", { at: t });
+  exclaim(d, "Whoa-oh!", t);
   d.feel(ID, { at: t, feeling: "surprised", dur: 0.1 });
   arms(d, t, 0.2, [20, 0, 110], [40, 0, 40], "quadOut");
   legs(d, t, 0.2, [-70, 0, 0], [-40, 0, 0], "quadOut");
@@ -303,7 +306,7 @@ export function chapterBanana(d, t) {
   d.set(ID, "gaze", null, t);
   d.feel(ID, { at: t, feeling: "sad" });
   shrug(d, t + 0.3);
-  d.sound("giggle", { at: t + 0.5, volume: 0.7 });
+  exclaim(d, "Silly peel!", t + 0.4);
   t += 2.2;
   d.feel(ID, { at: t, feeling: "joyful" });
   d.hop(ID, { at: t, height: 0.2, dur: 0.4 });
@@ -325,7 +328,7 @@ export function chapterDoor(d, t) {
   d.add({ id: "dbush2", kind: "prop", model: "bush", at: [2.4, 0, -1.8], size: 1.2, hidden: true });
   d.add({ id: "dflower1", kind: "prop", model: "flower", at: [-1.3, 0, 0.9], size: 0.7, hidden: true });
   d.add({ id: "dflower2", kind: "prop", model: "flower", at: [1.5, 0, 1.1], size: 0.8, hidden: true });
-  t = card(d, "Chapter Three\n\nThe Door to Nowhere", t, 4.5);
+  t = card(d, "Chapter Three\n\nThe Door to Nowhere", t, 4.5, { music: "tense" });
   d.changeStage("garden", { at: t - 0.6, dur: 0.1 });
   appear(d, ids, t - 0.5);
   place(d, t - 0.5, [-2.6, 0, 0.55], 90);
@@ -371,6 +374,7 @@ export function chapterDoor(d, t) {
   t += 1.4;
   oneArm(d, t, 0.2, 1, [0, 0, 0], [0, 0, 0]);
   t = stars(d, t, 1.8) - 1.8;
+  exclaim(d, "Oopsie!", t);
   t = dizzy(d, t, 1.6, 0) + 0.2;
   d.sound("giggle", { at: t - 1, volume: 0.6 });
   // The door creaks shut by itself.
@@ -392,7 +396,7 @@ export function chapterDoor(d, t) {
   d.hop(ID, { at: t + 0.3, height: 0.2, dur: 0.35 });
   d.sound("gasp", { at: t + 0.3, volume: 0.6 });
   t += 1.4;
-  t = card(d, "\"It's a door... to nowhere!\"", t, 2.6);
+  t = speak(d, "It's a door... to nowhere!", t);
   // Good manners all the same: he opens the door from behind, tips his hat and walks through to the front.
   d.feel(ID, { at: t, feeling: "happy" });
   d.tween("door#door", "rotation", [0, 90, 0], { at: t + 0.2, dur: 0.6 });

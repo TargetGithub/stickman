@@ -12,9 +12,19 @@ const STYLES = {
   title: { size: 0.12, x: 0.5, y: 0.62, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
   // A word naming what is on screen (shape, colour, animal), above the subtitle line.
   label: { size: 0.1, x: 0.5, y: 0.22, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
-  // A silent-movie title card: the whole frame, cream words on warm black inside a double border (cut in, no pop).
-  intertitle: { size: 0.085, x: 0.5, y: 0.5, fill: "#f3e6c4", box: "#17120d", stroke: null, card: true },
+  // A title card for kids: the whole frame, a bright gradient with confetti, big outlined words (cut in, no pop).
+  intertitle: { size: 0.085, x: 0.5, y: 0.5, fill: "#ffffff", box: null, stroke: null, card: true },
 };
+/** Title card colours: gradient top and bottom, the badge, and the dark ink for outlines and badge words. */
+const CARD_THEMES = [
+  { top: "#5fd0ff", bottom: "#1e7be0", badge: "#ffd23f", ink: "#0d2f66" },
+  { top: "#ff9ec4", bottom: "#e8467e", badge: "#fff176", ink: "#5c1035" },
+  { top: "#86ecb0", bottom: "#1fa463", badge: "#ffd23f", ink: "#0b4228" },
+  { top: "#ffc46b", bottom: "#f4611e", badge: "#fff59d", ink: "#5a230a" },
+  { top: "#c3a8ff", bottom: "#7a4fd6", badge: "#ffe066", ink: "#2c1463" },
+  { top: "#6be3ee", bottom: "#0f8f9a", badge: "#ffee58", ink: "#033a3f" },
+];
+const CONFETTI = ["#ffffff", "#ffd23f", "#ff6b9a", "#7cf29a", "#7ad3ff", "#ffa94d", "#c39bff"];
 /** caption pos: where the caption's centre goes instead of its style's spot (fractions of the frame, from the bottom left). */
 export const CAPTION_POS = { left: [0.22, 0.62], right: [0.78, 0.62], top: [0.5, 0.86] };
 /** The page's canvas font family (Andika Bold, loaded by loadCaptionFont); text cards draw with it too. */
@@ -89,8 +99,10 @@ export function createOverlay(width, height, captions) {
   }
 
   /**
-   * A full-frame title card, drawn at half size (a flat card scales up cleanly) so a 4K film of many cards stays
-   * light: the background, two cream borders with corner dots, and the words wrapped to 72% of the width.
+   * A full-frame title card for kids, drawn at half size (a flat card scales up cleanly) so a 4K film of many
+   * cards stays light: a bright gradient (one of CARD_THEMES, picked from the text so each card keeps its
+   * colours), a soft glow, confetti dots and stars, a white rounded frame, and big white words with a dark
+   * outline. A card "Chapter One\n\nThe Title" puts its first part in a coloured badge above the title.
    */
   function card(c, st, key) {
     const w = Math.round(width / 2), h = Math.round(height / 2);
@@ -98,36 +110,92 @@ export function createOverlay(width, height, captions) {
     cv.width = w;
     cv.height = h;
     const g = cv.getContext("2d");
-    g.fillStyle = st.box;
+    let seed = 0;
+    for (const ch of c.text) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+    const th = CARD_THEMES[seed % CARD_THEMES.length];
+    const rand = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
+    const bg = g.createLinearGradient(0, 0, 0, h);
+    bg.addColorStop(0, th.top);
+    bg.addColorStop(1, th.bottom);
+    g.fillStyle = bg;
     g.fillRect(0, 0, w, h);
-    const ink = c.fill ?? st.fill;
-    g.strokeStyle = ink;
-    for (const [inset, lw] of [[0.05, 0.006], [0.068, 0.0025]]) {
-      g.lineWidth = h * lw;
-      g.strokeRect(h * inset, h * inset, w - 2 * h * inset, h - 2 * h * inset);
-    }
-    g.fillStyle = ink;
-    for (const [x, y] of [[0, 0], [1, 0], [0, 1], [1, 1]]) {
+    const glow = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, h * 0.75);
+    glow.addColorStop(0, "rgba(255,255,255,0.35)");
+    glow.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = glow;
+    g.fillRect(0, 0, w, h);
+    // Confetti dots and little stars, kept to the edges so the words stay clear.
+    const star = (x, y, r) => {
       g.beginPath();
-      g.arc(h * 0.09 + x * (w - h * 0.18), h * 0.09 + y * (h - h * 0.18), h * 0.012, 0, Math.PI * 2);
+      for (let i = 0; i < 10; i++) {
+        const a = (i * Math.PI) / 5 - Math.PI / 2, rr = i % 2 ? r * 0.45 : r;
+        g.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr);
+      }
+      g.closePath();
       g.fill();
+    };
+    for (let i = 0; i < 46; i++) {
+      let x = rand() * w, y = rand() * h;
+      if (Math.abs(x - w / 2) < w * 0.36 && Math.abs(y - h / 2) < h * 0.3) y = y < h / 2 ? y * 0.35 : h - (h - y) * 0.35;
+      g.fillStyle = CONFETTI[Math.floor(rand() * CONFETTI.length)];
+      g.globalAlpha = 0.85;
+      if (i % 4 === 0) star(x, y, h * (0.018 + rand() * 0.02));
+      else {
+        g.beginPath();
+        g.arc(x, y, h * (0.006 + rand() * 0.012), 0, Math.PI * 2);
+        g.fill();
+      }
     }
-    // A line break in the text ("\n") starts a new line; long lines wrap.
-    const px = Math.round(h * st.size);
+    g.globalAlpha = 1;
+    g.strokeStyle = "rgba(255,255,255,0.95)";
+    g.lineWidth = h * 0.012;
+    g.beginPath();
+    g.roundRect(h * 0.045, h * 0.045, w - h * 0.09, h - h * 0.09, h * 0.06);
+    g.stroke();
+    // The words: an optional badge (the part before a blank line), then the title, wrapped to 74% of the width.
+    const parts = c.text.split("\n\n");
+    const badge = parts.length > 1 ? parts[0] : null;
+    const body = parts.length > 1 ? parts.slice(1).join("\n") : c.text;
+    const px = Math.round(h * st.size * 1.3);
     g.font = `bold ${px}px ${FONT}`;
     const lines = [];
-    for (const para of c.text.split("\n")) {
+    for (const para of body.split("\n")) {
       lines.push("");
       for (const word of para.split(" ")) {
         const last = lines[lines.length - 1];
-        if (last && g.measureText(`${last} ${word}`).width > w * 0.72) lines.push(word);
+        if (last && g.measureText(`${last} ${word}`).width > w * 0.74) lines.push(word);
         else lines[lines.length - 1] = last ? `${last} ${word}` : word;
       }
     }
+    const lh = px * 1.25;
+    const bpx = Math.round(px * 0.62);
+    const blockH = lines.length * lh + (badge ? bpx * 2.1 : 0);
+    let y = h / 2 - blockH / 2;
     g.textAlign = "center";
     g.textBaseline = "middle";
-    const lh = px * 1.3;
-    lines.forEach((l, i) => g.fillText(l, w / 2, h / 2 + (i - (lines.length - 1) / 2) * lh));
+    g.lineJoin = "round";
+    if (badge) {
+      g.font = `bold ${bpx}px ${FONT}`;
+      const bw = g.measureText(badge).width + bpx * 1.4;
+      g.fillStyle = th.badge;
+      g.beginPath();
+      g.roundRect(w / 2 - bw / 2, y, bw, bpx * 1.5, bpx * 0.75);
+      g.fill();
+      g.fillStyle = th.ink;
+      g.fillText(badge, w / 2, y + bpx * 0.78);
+      y += bpx * 2.1;
+    }
+    g.font = `bold ${px}px ${FONT}`;
+    lines.forEach((l, i) => {
+      const ly = y + lh * (i + 0.5);
+      g.fillStyle = "rgba(0,0,0,0.25)";
+      g.fillText(l, w / 2 + px * 0.05, ly + px * 0.07);
+      g.strokeStyle = th.ink;
+      g.lineWidth = px * 0.2;
+      g.strokeText(l, w / 2, ly);
+      g.fillStyle = "#ffffff";
+      g.fillText(l, w / 2, ly);
+    });
     const tex = new THREE.CanvasTexture(cv);
     tex.colorSpace = THREE.SRGBColorSpace;
     const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, toneMapped: false, depthTest: false });

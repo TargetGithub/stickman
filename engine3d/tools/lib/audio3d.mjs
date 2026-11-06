@@ -90,7 +90,8 @@ export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy
   const spans = plan.lines.map((l) => [l.t, l.t + (speech[l.id]?.dur ?? l.dur)]);
   let bed = null;
   if (music !== null) {
-    const segs = musicTimeline(plan.scenes, scenes, { music: music || null, musicGain, duration: plan.duration });
+    // A JS scene's chapters (director.chapter) carry their own music; a JSON script's moods come in `scenes`.
+    const segs = musicTimeline(plan.scenes, scenes.length ? scenes : plan.scenes, { music: music || null, musicGain, duration: plan.duration });
     bed = applyMusicCues(renderMusicBed(segs, { catalog: loadCatalogSync(), seed: plan.seed, duration: plan.duration }), plan.musicCues);
     log(`  music: ${segs.map((s) => `${s.mood ?? "none"}${s.gain !== musicGain && s.mood ? ` x${s.gain}` : ""}@${s.start.toFixed(1)}`).join(" -> ")}`);
   }
