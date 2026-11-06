@@ -13,6 +13,7 @@ import { BANDS, buildSlotIndex, loadProgramme, parseSlots, splitId } from "../..
 import { findDuplicates, sameDistinctBy, specRecord, stem, tokens } from "../../tools/lib/spec10k/dedupe.mjs";
 import { allocationErrors, freezeSlots, replaceBlock } from "../../tools/lib/spec10k/alloc.mjs";
 import { aggregateNeeds, coverage, bandIndexMd } from "../../tools/lib/spec10k/reports.mjs";
+import { usEnglishIssues } from "../../tools/lib/spec10k/usenglish.mjs";
 import { batchBriefMd, nextSlots, statusMd } from "../../tools/lib/spec10k/batch.mjs";
 
 const schema = JSON.parse(readFileSync(new URL("../../tools/lib/spec10k/spec.schema.json", import.meta.url), "utf8"));
@@ -279,4 +280,31 @@ test("batches: next free slots, brief with siblings, status", () => {
   const st = statusMd(p, coverage(p, [example]), aggregateNeeds([example]), { invalid: 0, dups: 0, when: "now" });
   assert.match(st, /\| kg kg \| 1 \| 5 \|/);
   assert.match(st, /`lantern_ten_frame` \(1\)/);
+});
+
+test("US English lint (table)", () => {
+  const cases = [
+    // [field mutation, expected error word or null, expected warning word or null]
+    [(s) => { s.title = "Colour Count!"; }, "colour", null],
+    [(s) => { s.objective = "I can organise grey blocks in the centre of my favourite rug."; }, "organise", null],
+    [(s) => { s.story.premise = "Mum takes Baby Bear to the theatre."; }, "mum", null],
+    [(s) => { s.recap.points[0] = "Practise maths every day."; }, "maths", null],
+    [(s) => { s.check.questions[0].q = "Which shapes are labelled?"; }, "labelled", null],
+    [(s) => { s.needs.props.push({ name: "new:mummy_bear", description: "The mother bear of the Bear family." }); }, null, "mummy"],
+    [(s) => { s.needs.props.push({ name: "new:pyjamas", description: "Striped sleep clothes for Baby Bear." }); }, "pyjamas", null],
+    [(s) => { s.hook.line = "Put a full stop at the end!"; }, null, "full stop"],
+    [(s) => { s.scenes[1].visuals = "Bunny puts on her jumper and trousers by the cot."; }, null, "jumper"],
+    [(s) => { s.scenes[1].purpose = "practise"; }, null, null],
+    [(s) => { s.needs.props.push("metre_stick"); }, null, null],
+    [(s) => { s.title = "Color, Gray and Center Fun"; }, null, null],
+  ];
+  for (const [mutate, err, warn] of cases) {
+    const s = clone(example);
+    mutate(s);
+    const r = usEnglishIssues(s);
+    if (err) assert.ok(r.errors.some((e) => e.includes(`"${err}"`)), `expected error ${err}: ${r.errors.join("; ")}`);
+    else assert.deepEqual(r.errors, [], `unexpected errors: ${r.errors.join("; ")}`);
+    if (warn) assert.ok(r.warnings.some((w) => w.includes(`"${warn}"`)), `expected warning ${warn}: ${r.warnings.join("; ")}`);
+    else if (!err) assert.deepEqual(r.warnings, [], `unexpected warnings: ${r.warnings.join("; ")}`);
+  }
 });

@@ -3,6 +3,7 @@
 import { basename } from "node:path";
 import { validateSchema } from "./jsonschema.mjs";
 import { splitId } from "./load.mjs";
+import { usEnglishIssues } from "./usenglish.mjs";
 
 export const RULES = {
   hookMaxS: 8,
@@ -104,6 +105,9 @@ export function validateSpec(s, ctx) {
     if (bodyScience && w === "blood") continue;
     if (new RegExp(`\\b${w}\\b`).test(text)) errors.push(`banned word "${w}" (no blood, gore or weapons)`);
   }
+  const us = usEnglishIssues(s);
+  errors.push(...us.errors);
+  warnings.push(...us.warnings);
   if (ctx.programme) errors.push(...programmeErrors(s, ctx.programme, warnings));
   if (ctx.names) {
     errors.push(...nameErrors(s, ctx.names));
