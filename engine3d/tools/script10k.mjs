@@ -53,7 +53,7 @@ if (cmd === "build" || cmd === "qa") {
       const { qa } = buildId(id, catalog);
       if (qa.ok) ok++;
       const i = qa.info;
-      console.log(`${qa.ok ? "ok  " : "FAIL"} ${id}: ${qa.errors.length} errors, ${qa.warnings.length} warnings; est ${i.estimate ?? "?"} s / ${i.target} s (x${i.ratio ?? "?"}), ${i.interactions ?? 0} interactions, +${i.keywordsPlaced?.length ?? 0} keywords, +${i.orbitsAdded} orbits`);
+      console.log(`${qa.ok ? "ok  " : "FAIL"} ${id}: ${qa.errors.length} errors, ${qa.warnings.length} warnings; est ${i.estimate ?? "?"} s / ${i.target} s (x${i.ratio ?? "?"}), ${i.interactions ?? 0} interactions, +${i.keywordsPlaced?.length ?? 0} keywords, +${i.orbitsAdded} keep-alive moves`);
       if (cmd === "qa" || !qa.ok) for (const e of qa.errors) console.log(fmt(e));
       if (cmd === "qa") for (const w of qa.warnings) console.log(fmt(w));
     } catch (e) {
