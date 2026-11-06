@@ -9,6 +9,9 @@
 //   node engine3d/tools/spec10k.mjs plan [--freeze] [--band kg]           check allocation; --freeze gives rows slot ranges; rewrites PLAN.md tables
 //                                                                          (with --band: that band only, PLAN.md untouched)
 //   node engine3d/tools/spec10k.mjs shards                                10K/shards/<band>.md from allocation + shards/_COMMON.md
+//   node engine3d/tools/spec10k.mjs next --band kg [--size 25]            reserve the next free slots -> 10K/batches/<band>-NNN.md, progress.json
+//   node engine3d/tools/spec10k.mjs peek <ids...> | --batch <band>-NNN    one line per spec (title, objective, hook) for spot-reading
+//   node engine3d/tools/spec10k.mjs status                                10K/STATUS.md: per band, validate/dedupe counts, top needs
 //   node engine3d/tools/spec10k.mjs check                                 plan check + validate + dedupe (exit 1 on any error)
 // Exit code 1 when anything fails.
 
@@ -20,6 +23,7 @@ import { BANDS, DEFAULT_ROOT, catalogNames, loadExisting, loadProgramme, loadSpe
 import { validateSpec } from "./lib/spec10k/rules.mjs";
 import { existingRecords, findDuplicates, sameDistinctBy, specRecord } from "./lib/spec10k/dedupe.mjs";
 import { allocationErrors, bandTables, freezeSlots, magicTable, replaceBlock, seriesTable, summaryTable } from "./lib/spec10k/alloc.mjs";
+import { batchBriefMd, nextSlots, readProgress, statusMd } from "./lib/spec10k/batch.mjs";
 import { aggregateNeeds, bandIndexMd, coverage, coverageMd, needsMd, shardBriefMd } from "./lib/spec10k/reports.mjs";
 
 const REPO = fileURLToPath(new URL("../../", import.meta.url));
@@ -30,6 +34,8 @@ const root = resolve(String(flag("--root") ?? DEFAULT_ROOT));
 const bandFilter = flag("--band");
 const asJson = flag("--json");
 const freeze = flag("--freeze");
+const size = Number(flag("--size") ?? 25);
+const batchArg = flag("--batch");
 const cmd = args.shift() ?? "check";
 
 const schema = JSON.parse(readFileSync(SCHEMA_FILE, "utf8"));
@@ -44,21 +50,22 @@ function specsToCheck() {
   return list;
 }
 
-function runValidate() {
+function runValidate(quiet = false) {
   const skills = JSON.parse(readFileSync(join(REPO, "catalog/education/skills.json"), "utf8")).skills;
   const names = catalogNames(loadCatalog3d(), p.series, skills);
   const list = specsToCheck();
   let bad = 0, warn = 0;
   for (const x of list) {
     const r = x.spec ? validateSpec(x.spec, { schema, programme: p, names, file: x.file }) : { errors: [x.error], warnings: [] };
-    if (r.errors.length) { bad++; console.log(`✗ ${basename(x.file)}`); for (const e of r.errors) console.log(`    ${e}`); }
-    for (const w of r.warnings) { warn++; console.log(`  warning ${basename(x.file)}: ${w}`); }
+    if (r.errors.length) { bad++; if (!quiet) { console.log(`✗ ${basename(x.file)}`); for (const e of r.errors) console.log(`    ${e}`); } }
+    for (const w of r.warnings) { warn++; if (!quiet) console.log(`  warning ${basename(x.file)}: ${w}`); }
   }
   console.log(`validate: ${list.length} specs, ${bad} with errors, ${warn} warnings`);
   if (bad) failed = true;
+  return bad;
 }
 
-function runDedupe() {
+function runDedupe(quiet = false) {
   const specs = loadSpecs(root).filter((x) => x.spec).map((x) => x.spec);
   const allowFile = join(root, "dedupe_allow.json");
   const allow = existsSync(allowFile) ? JSON.parse(readFileSync(allowFile, "utf8")).pairs ?? [] : [];
@@ -66,12 +73,14 @@ function runDedupe() {
   const dups = findDuplicates(records, { allow });
   const reskins = sameDistinctBy(specs);
   if (asJson) console.log(JSON.stringify({ duplicates: dups, reskins }, null, 1));
+  else if (quiet) console.log(`dedupe: ${dups.length} duplicate pairs, ${reskins.length} re-skins`);
   else {
     for (const d of dups) console.log(`${d.kind.padEnd(5)} ${d.field.padEnd(9)} ${d.score.toFixed(2)}  ${d.a} ~ ${d.b}\n      "${d.textA.slice(0, 90)}"\n      "${d.textB.slice(0, 90)}"`);
     for (const r of reskins) console.log(`reskin    ${r.a} ~ ${r.b}: same standard, sub-skill, example set and difficulty`);
     console.log(`dedupe: ${specs.length} specs + existing episodes; ${dups.length} duplicate pairs, ${reskins.length} re-skins (allow-list: ${allow.length})`);
   }
   if (dups.length || reskins.length) failed = true;
+  return dups.length + reskins.length;
 }
 
 function runPlan() {
@@ -133,6 +142,43 @@ switch (cmd) {
     const common = readFileSync(join(root, "shards", "_COMMON.md"), "utf8");
     const existing = loadExisting(REPO);
     for (const b of BANDS) write(join(root, "shards", `${b}.md`), shardBriefMd(p, b, common, existing));
+    break;
+  }
+  case "next": {
+    if (!bandFilter || !BANDS.includes(bandFilter)) { console.error("next needs --band <band>"); process.exit(2); }
+    const specs = parsedSpecs();
+    const written = new Set(specs.map((s) => s.id));
+    const prog = readProgress(root);
+    for (const bt of prog.batches) if (bt.band === bandFilter && bt.state === "open") { bt.state = "closed"; bt.written = bt.ids.filter((i) => written.has(i)).length; }
+    const slots = nextSlots(p, bandFilter, written, size);
+    if (!slots.length) { console.log(`next: ${bandFilter} is complete`); write(join(root, "progress.json"), `${JSON.stringify(prog, null, 1)}\n`); break; }
+    const n = prog.batches.filter((bt) => bt.band === bandFilter).length + 1;
+    const id = `${bandFilter}-${String(n).padStart(3, "0")}`;
+    const file = join(root, "batches", `${id}.md`);
+    write(file, batchBriefMd(p, bandFilter, slots, specs, id));
+    prog.batches.push({ id, band: bandFilter, state: "open", ids: slots.map((s) => s.id), brief: `batches/${id}.md` });
+    write(join(root, "progress.json"), `${JSON.stringify(prog, null, 1)}\n`);
+    console.log(`next: ${id} ${slots[0].id}..${slots[slots.length - 1].id} (${slots.length})`);
+    break;
+  }
+  case "peek": {
+    let ids = args;
+    if (batchArg) ids = readProgress(root).batches.find((bt) => bt.id === batchArg)?.ids ?? [];
+    const by = new Map(parsedSpecs().map((s) => [s.id, s]));
+    for (const i of ids) {
+      const s = by.get(i);
+      if (!s) { console.log(`${i}: MISSING`); continue; }
+      console.log(`${i} [${s.standards[0]} d${s.distinct_by.difficulty} ${s.series} ${s.magical_moment.id}] ${s.title} | ${s.objective} | ${s.hook.line} | ${s.distinct_by.example_set}`);
+    }
+    break;
+  }
+  case "status": {
+    const specs = parsedSpecs();
+    const invalid = runValidate(true);
+    const dups = runDedupe(true);
+    failed = false;
+    const c = coverage(p, specs);
+    write(join(root, "STATUS.md"), statusMd(p, c, aggregateNeeds(specs), { invalid, dups, when: new Date().toISOString().slice(0, 16).replace("T", " ") }));
     break;
   }
   case "check": {

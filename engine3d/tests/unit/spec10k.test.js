@@ -13,6 +13,7 @@ import { BANDS, buildSlotIndex, loadProgramme, parseSlots, splitId } from "../..
 import { findDuplicates, sameDistinctBy, specRecord, stem, tokens } from "../../tools/lib/spec10k/dedupe.mjs";
 import { allocationErrors, freezeSlots, replaceBlock } from "../../tools/lib/spec10k/alloc.mjs";
 import { aggregateNeeds, coverage, bandIndexMd } from "../../tools/lib/spec10k/reports.mjs";
+import { batchBriefMd, nextSlots, statusMd } from "../../tools/lib/spec10k/batch.mjs";
 
 const schema = JSON.parse(readFileSync(new URL("../../tools/lib/spec10k/spec.schema.json", import.meta.url), "utf8"));
 const example = JSON.parse(readFileSync(new URL("../fixtures/spec10k/kg0101.json", import.meta.url), "utf8"));
@@ -253,4 +254,19 @@ test("CLI: validate and plan against a programme folder", () => {
   const v2 = run("validate");
   assert.equal(v2.status, 1);
   assert.match(v2.stdout, /hook.duration_s 12 > 8/);
+});
+
+test("batches: next free slots, brief with siblings, status", () => {
+  const p = programme();
+  const slots = nextSlots(p, "kg", new Set(["kg0101"]), 3);
+  assert.deepEqual(slots.map((x) => x.id), ["kg0102", "kg0103", "kg0104"]);
+  assert.equal(slots[2].row.key, "kg.ela.rf.3a");
+  const md = batchBriefMd(p, "kg", slots, [example], "kg-001");
+  assert.match(md, /Write exactly these ids.*kg0102, kg0103, kg0104/);
+  assert.match(md, /\| kg0101 \| Firefly Count! \|/);
+  assert.match(md, /Nothing written in this row yet/);
+  assert.equal(nextSlots(p, "kg", new Set(["kg0101", "kg0102", "kg0103", "kg0104", "kg0105"]), 3).length, 0);
+  const st = statusMd(p, coverage(p, [example]), aggregateNeeds([example]), { invalid: 0, dups: 0, when: "now" });
+  assert.match(st, /\| kg kg \| 1 \| 5 \|/);
+  assert.match(st, /`lantern_ten_frame` \(1\)/);
 });
