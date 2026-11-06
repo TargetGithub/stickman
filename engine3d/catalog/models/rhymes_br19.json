@@ -1,0 +1,47 @@
+{
+ "description": "1, 2, 3, 4, 5, Once I Caught a Fish Alive (br19, baby rhymes) models: a soft catch-and-release fishing net, a water bubble and a round arrow icon for LEFT and RIGHT. The fish critter is in animals.json, splash drops in rhymes_br14.json, the counting hands in batch3b.json. Same format as ../models.json. Props face +z.",
+ "props": {
+  "fishing_net": {
+   "color": "teal",
+   "description": "A soft landing net for catch-and-release: a wooden pole 0.9 m tall standing up from its origin (the bottom of the pole, on the ground), a flat hoop rim in the main colour (radius 0.4 m at size 1, its centre at [0, 0.92, 0.38], in front of the pole toward +z) and a see-through white net bag hanging 0.6 m below the rim with three soft rings. A fish of size 0.5 sits in the bag with its origin at about [0, 0.6, 0.38].",
+   "tags": ["rhymes", "once_i_caught_a_fish", "beach", "pond", "fishing", "water"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0.46, 0], "s": [0.05, 0.92, 0.05], "c": "wood", "m": "matte" },
+    { "p": "cylinder", "at": [0, 0.09, 0], "s": [0.065, 0.18, 0.065], "c": "red", "m": "rubber" },
+    { "p": "sphere", "at": [0, 0.93, 0], "s": [0.07, 0.07, 0.07] },
+    { "p": "cylinder", "at": [0, 0.925, 0.01], "s": [0.035, 0.035, 0.03], "r": [90, 0, 0] },
+    { "p": "hoop", "at": [0, 0.92, 0.38], "s": [0.82, 1.4, 0.82], "name": "rim", "m": "glossy" },
+    { "p": "bowl", "at": [0, 0.62, 0.38], "s": [0.8, 1.2, 0.8], "c": "white", "m": "glass", "name": "bag" },
+    { "p": "hoop", "at": [0, 0.73, 0.38], "s": [0.75, 0.6, 0.75], "c": "white", "m": "matte" },
+    { "p": "hoop", "at": [0, 0.55, 0.38], "s": [0.62, 0.6, 0.62], "c": "white", "m": "matte" },
+    { "p": "hoop", "at": [0, 0.41, 0.38], "s": [0.38, 0.6, 0.38], "c": "white", "m": "matte" },
+    { "p": "cylinder", "at": [0.2, 0.67, 0.38], "s": [0.012, 0.5, 0.012], "r": [0, 0, 28], "c": "white", "m": "matte" },
+    { "p": "cylinder", "at": [-0.2, 0.67, 0.38], "s": [0.012, 0.5, 0.012], "r": [0, 0, -28], "c": "white", "m": "matte" },
+    { "p": "cylinder", "at": [0, 0.67, 0.58], "s": [0.012, 0.5, 0.012], "r": [-28, 0, 0], "c": "white", "m": "matte" },
+    { "p": "cylinder", "at": [0, 0.67, 0.18], "s": [0.012, 0.5, 0.012], "r": [28, 0, 0], "c": "white", "m": "matte" }
+   ]
+  },
+  "bubble": {
+   "color": "sky",
+   "description": "A round shiny water bubble 1 m across at size 1 (so size is its width): a see-through ball in the main colour with a white rim glint and two white shines. Floats: the origin is its centre. Rises out of water while counting, and fills HUD tracker slots (size 0.4 in a slot of size 0.56).",
+   "tags": ["rhymes", "once_i_caught_a_fish", "water", "bubble", "tracker", "ui"],
+   "parts": [
+    { "p": "sphere", "at": [0, 0, 0], "s": [1, 1, 1], "m": "water" },
+    { "p": "sphere", "at": [0, 0, 0], "s": [0.82, 0.82, 0.82], "c": "white", "m": "glass" },
+    { "p": "sphere", "at": [-0.2, 0.2, 0.36], "s": [0.2, 0.15, 0.08], "r": [0, 0, 40], "c": "white", "m": "glossy" },
+    { "p": "sphere", "at": [-0.05, 0.31, 0.37], "s": [0.08, 0.06, 0.05], "c": "white", "m": "glossy" },
+    { "p": "sphere", "at": [0.24, -0.22, 0.36], "s": [0.07, 0.07, 0.04], "c": "white", "m": "glossy" }
+   ]
+  },
+  "arrow_icon": {
+   "color": "green",
+   "description": "A round direction badge 1 m across at size 1, facing +z: a white disc with a coloured rim and a fat arrow in the main colour pointing right (+x). Give it rotation [0, 0, 180] to point left. Floats (origin at its centre); made for the HUD (LEFT and RIGHT) or held up in a scene.",
+   "tags": ["rhymes", "once_i_caught_a_fish", "ui", "icon", "directions", "left_right"],
+   "parts": [
+    { "p": "circle", "at": [0, 0, 0], "s": [1, 1, 0.3] },
+    { "p": "circle", "at": [0, 0, 0.03], "s": [0.86, 0.86, 0.3], "c": "white" },
+    { "p": "arrow", "at": [0.02, 0, 0.08], "s": [0.68, 0.9, 0.35] }
+   ]
+  }
+ }
+}
