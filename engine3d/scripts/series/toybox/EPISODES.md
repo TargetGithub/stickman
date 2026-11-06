@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-90 episodes: 9 spec, 5 scripted, 69 rendered, 7 uploaded. Status moves spec → scripted → rendered → uploaded.
+90 episodes: 7 spec, 6 scripted, 69 rendered, 8 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -27,11 +27,11 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | br07 | Itsy Bitsy Spider: Rain and Sun | Babies | Weather (rhyme) | `weather_seasons_1`, `position_words_prek` | `br07_itsy_bitsy_spider.json` | uploaded | disk1:BABY-RHYMES/br07_itsy_bitsy_spider |
 | br08 | Humpty Dumpty: Fix It Together | Babies | Shapes and cause and effect (rhyme) | `basic_shapes_prek`, `count_to_5_prek` | `br08_humpty_dumpty.json` | scripted | – |
 | br09 | Hot Cross Buns | Babies | Counting and sharing (rhyme) | `count_to_5_prek`, `feelings_prek` | `br09_hot_cross_buns.json` | scripted | – |
-| br10 | Rainbow Colours Song | Babies | Colours (rhyme) | `listening_prek`, `weather_seasons_1` | `br10_rainbow_colours.json` | scripted | – |
+| br10 | Rainbow Colours Song | Babies | Colours (rhyme) | `listening_prek`, `weather_seasons_1` | `br10_rainbow_colours.json` | uploaded | disk1:BABY-RHYMES/br10_rainbow_colours |
 | br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | scripted | – |
-| br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek`, `listening_prek` | `br12_start_the_day.json` | spec | – |
-| br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek`, `capital_letters_prek`, `listening_prek` | `br13_pat_a_cake.json` | spec | – |
-| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | – | spec: specs/baby_rhymes.md br14 | spec | – |
+| br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek`, `listening_prek` | `br12_start_the_day.json` | scripted | – |
+| br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek`, `capital_letters_prek`, `listening_prek` | `br13_pat_a_cake.json` | scripted | – |
+| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | spec | – |
 | br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | spec: specs/baby_rhymes.md br15 | spec | – |
 | br16 | Mary Had a Little Lamb | Babies | Listening (rhyme) | `listening_prek` | spec: specs/baby_rhymes.md br16 | spec | – |
 | br17 | B-I-N-G-O Clap Along | Babies | Letters and patterns (rhyme) | `capital_letters_prek` | spec: specs/baby_rhymes.md br17 | spec | – |
