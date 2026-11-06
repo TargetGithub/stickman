@@ -98,7 +98,12 @@ export function validateSpec(s, ctx) {
     if (RULES.babyBannedMagic.includes(s.magical_moment.id)) errors.push(`babies: magical moment "${s.magical_moment.id}" is too loud or fast`);
   }
   const text = allText(s);
-  for (const w of RULES.bannedWords) if (new RegExp(`\\b${w}\\b`).test(text)) errors.push(`banned word "${w}" (no blood, gore or weapons)`);
+  // Grades 3-5 science and health may name blood (circulation, the heart); gore stays banned everywhere.
+  const bodyScience = ["g3", "g4", "g5"].includes(s.band) && ["science", "health"].includes(s.subject);
+  for (const w of RULES.bannedWords) {
+    if (bodyScience && w === "blood") continue;
+    if (new RegExp(`\\b${w}\\b`).test(text)) errors.push(`banned word "${w}" (no blood, gore or weapons)`);
+  }
   if (ctx.programme) errors.push(...programmeErrors(s, ctx.programme, warnings));
   if (ctx.names) {
     errors.push(...nameErrors(s, ctx.names));
