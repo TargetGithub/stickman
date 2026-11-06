@@ -1,0 +1,122 @@
+{
+ "schema": "toybox-10k-spec/1",
+ "id": "kg0101",
+ "band": "kg",
+ "status": "spec",
+ "subject": "math",
+ "strand": "CC_counting_cardinality",
+ "standards": ["K.CC.B.5", "K.CC.B.4b"],
+ "skills": ["count_to_10_k"],
+ "series": "counting_parade",
+ "objective": "I can count up to 10 scattered things by moving or marking each one as I count, so I never count one twice.",
+ "distinct_by": {
+  "sub_skill": "counting a scattered set (not a line) with a move-it-as-you-count strategy",
+  "example_set": "fireflies in a dark garden: 6, 8, 7 and 10 scattered; a line of 5 to warm up",
+  "difficulty": 2,
+  "why_distinct": "Other K.CC.B.5 videos count lines, arrays or circles, or count OUT a given number; this one is only about scattered sets and the strategy that stops double counting."
+ },
+ "title": "Firefly Count!",
+ "youtube_title": "Firefly Count! Counting Scattered Objects to 10 | Kindergarten Math | Toybox Elementary",
+ "target_length_s": 300,
+ "cast": [
+  { "who": "robot", "role": "Host. Counts too fast and counts one firefly twice on purpose so kids catch it.", "voice": "soft" },
+  { "who": "bunny", "role": "K sidekick. Holds the lantern ten-frame and asks 'how do you know?'", "voice": "squeaky" },
+  { "who": "new:firefly", "role": "The things being counted: small, glowing, drift slowly." }
+ ],
+ "hook": {
+  "duration_s": 7,
+  "promise": "We will count every firefly in the garden without missing one or counting one twice.",
+  "visual": "Night garden; a jar lid pops and glowing fireflies float out and scatter across the screen.",
+  "line": "Oh no, the fireflies are out! Can you help me count them before they float away?"
+ },
+ "story": {
+  "premise": "Bunny is hosting a night-time garden party, and the fireflies are the party lights.",
+  "problem": "Robo opened the jar, the fireflies scattered, and Bunny needs to know if all 10 are still here.",
+  "resolution": "With the move-it-as-you-count trick, every firefly goes into the lantern ten-frame; all 10 are found and the party lights up."
+ },
+ "scenes": [
+  { "title": "Fireflies on the loose", "purpose": "hook", "start_s": 0, "dur_s": 15, "visuals": "Jar opens, fireflies scatter; progress tracker (lantern ten-frame, 0 of 10) appears top left; Bunny teases 'the last firefly is a special golden one'.", "camera": "wide on the garden, slow push in to the jar", "characters": ["robot", "bunny", "new:firefly"], "teaches": "the goal: count them all" },
+  { "title": "Count a line", "purpose": "teach", "start_s": 15, "dur_s": 60, "visuals": "Five fireflies land on the fence in a line; a soft glow ring marks each one as it is touched and counted; number block appears above the last one: 5.", "camera": "medium on the fence, pan along the line", "characters": ["robot", "bunny", "new:firefly"], "teaches": "one number for each thing; the last number tells how many" },
+  { "title": "Oops, counted twice!", "purpose": "model", "start_s": 75, "dur_s": 60, "visuals": "Six fireflies scatter among the flowers; Robo counts and touches one twice (glow ring flashes red); replay shows the double count; Bunny shows the trick: tap, then move each firefly into a lantern ten-frame cell.", "camera": "top-down demonstration shot over the flower bed, then close on the lantern", "characters": ["robot", "bunny", "new:firefly"], "teaches": "move or mark each one as you count" },
+  { "title": "Your turn to count", "purpose": "try", "start_s": 135, "dur_s": 60, "visuals": "Eight, then seven fireflies scattered; each one glides into the ten-frame as the child counts; the ten-frame shows the total.", "camera": "top-down over the garden, cut to the lantern after each set", "characters": ["bunny", "new:firefly"], "teaches": "practise the strategy on 8 and 7" },
+  { "title": "Spread out, same number", "purpose": "practise", "start_s": 195, "dur_s": 45, "visuals": "Seven fireflies bunch together, then spread wide; kids predict whether there are more; recount shows 7 both times.", "camera": "medium, slow orbit as they spread", "characters": ["robot", "bunny", "new:firefly"], "teaches": "spreading things out does not change how many" },
+  { "title": "Firefly quiz", "purpose": "quiz", "start_s": 240, "dur_s": 35, "visuals": "Three quick sets (4, 9, 10) with blinking answer choices and a timer ring; the tenth firefly is the golden one.", "camera": "wide, then close on each choice", "characters": ["robot", "bunny", "new:firefly"], "teaches": "check" },
+  { "title": "Party lights", "purpose": "recap", "start_s": 275, "dur_s": 25, "visuals": "All 10 fireflies rise from the lantern and light the party; recap cards: touch, move, last number tells how many.", "camera": "wide crane up over the garden", "characters": ["robot", "bunny", "new:firefly"], "teaches": "recap" }
+ ],
+ "interactions": [
+  { "t": 5, "type": "predict", "prompt": "How many fireflies do you think there are? Guess!" },
+  { "t": 18, "type": "count_along", "prompt": "Count the fireflies on the fence with me: touch each one." },
+  { "t": 30, "type": "call_response", "prompt": "How many? The last number tells us! Say it: five!", "answer": "5" },
+  { "t": 42, "type": "count_along", "prompt": "Count them again from the other end. Still five?", "answer": "5" },
+  { "t": 55, "type": "explain_why", "prompt": "Bunny asks: how do you know it is five?", "answer": "the last number we said was 5" },
+  { "t": 68, "type": "call_response", "prompt": "One number for each firefly. Say it with me!" },
+  { "t": 80, "type": "spot_mistake", "prompt": "Watch Robo count. Did he do it right? Shout STOP if he makes a mistake!", "answer": "he counted one firefly twice" },
+  { "t": 93, "type": "choose", "prompt": "Which firefly did Robo count twice? Point to it!", "answer": "the one by the red flower" },
+  { "t": 105, "type": "call_response", "prompt": "Tap it, move it, count it! Say it with Bunny." },
+  { "t": 118, "type": "count_along", "prompt": "Move each firefly into the lantern as we count: 1, 2, 3 ...", "answer": "6" },
+  { "t": 130, "type": "call_response", "prompt": "Six in the lantern. How many fireflies? Six!", "answer": "6" },
+  { "t": 140, "type": "count_along", "prompt": "Your turn! Count these fireflies and move each one in your mind.", "answer": "8" },
+  { "t": 152, "type": "point_before_timer", "prompt": "How many? Point to the number before the timer rings!", "answer": "8", "timer_s": 3 },
+  { "t": 165, "type": "find_hidden", "prompt": "One firefly is hiding behind a leaf. Can you find it?" },
+  { "t": 176, "type": "count_along", "prompt": "Count this new group. Remember: tap, move, count.", "answer": "7" },
+  { "t": 188, "type": "point_before_timer", "prompt": "Seven or eight? Point before the timer rings!", "answer": "7", "timer_s": 3 },
+  { "t": 198, "type": "predict", "prompt": "The fireflies spread out wide. Are there more now? What do you think?" },
+  { "t": 210, "type": "count_along", "prompt": "Let's count to check.", "answer": "7" },
+  { "t": 222, "type": "call_response", "prompt": "Spread out, bunched up: still seven! Say: still seven!" },
+  { "t": 234, "type": "choose", "prompt": "Which group has more: the bunched group or the spread group?", "answer": "the same: 7 and 7" },
+  { "t": 244, "type": "point_before_timer", "prompt": "How many fireflies? Point before the timer rings!", "answer": "4", "timer_s": 3 },
+  { "t": 255, "type": "point_before_timer", "prompt": "How many now? Tap, move, count!", "answer": "9", "timer_s": 4 },
+  { "t": 266, "type": "count_along", "prompt": "The last group: count to find the golden firefly!", "answer": "10" },
+  { "t": 278, "type": "call_response", "prompt": "Say the trick with me: tap it, move it, count it!" },
+  { "t": 290, "type": "move_along", "prompt": "Wave goodbye to the fireflies with your glowing fingers!" }
+ ],
+ "progress_tracker": {
+  "style": "a lantern ten-frame at the top left; each found firefly lights one cell",
+  "steps": 5,
+  "labels": ["line of 5", "scatter of 6", "scatter of 8", "scatter of 7", "golden 10th"],
+  "tease_t": 12,
+  "final_surprise": "The tenth firefly is a golden firefly that lights the whole party."
+ },
+ "keywords": [
+  { "word": "count", "t": 20, "icon": "pointing finger with a number 1", "sound": "pop" },
+  { "word": "how many", "t": 30, "icon": "question mark over a group of dots", "sound": "ding" },
+  { "word": "twice", "t": 85, "icon": "two overlapping glow rings, crossed out", "sound": "boing" },
+  { "word": "move", "t": 106, "icon": "arrow carrying a dot into a box", "sound": "whoosh" },
+  { "word": "same", "t": 222, "icon": "equals sign between two groups", "sound": "sparkle" }
+ ],
+ "magical_moment": {
+  "id": "firefly_count",
+  "t": 270,
+  "description": "As the last firefly enters the lantern it turns golden; all ten lift out together, light up one by one with their numbers 1-10, and string themselves above the party table."
+ },
+ "recap": {
+  "t": 276,
+  "points": ["Say one number for each thing.", "Tap it and move it so you never count one twice.", "The last number tells how many.", "Spreading things out does not change how many."]
+ },
+ "check": {
+  "type": "quiz",
+  "questions": [
+   { "q": "Four scattered fireflies: how many?", "answer": "4", "options": ["3", "4", "5"] },
+   { "q": "Nine scattered fireflies: how many?", "answer": "9", "options": ["8", "9", "10"] },
+   { "q": "Seven fireflies bunch up close. Are there more, fewer or the same?", "answer": "the same (7)", "options": ["more", "fewer", "the same"] }
+  ]
+ },
+ "thumbnails": [
+  { "concept": "Night garden; ten glowing fireflies scattered on the right; Bunny (surprised) holds an empty lantern ten-frame.", "title_text": "COUNT THEM!", "subtitle": "Fireflies to 10", "characters": ["bunny"], "objects": ["new:firefly", "jar", "flower"] },
+  { "concept": "Robo (Wave) beside a full glowing ten-frame lantern with a golden firefly on top.", "title_text": "HOW MANY?", "subtitle": "Counting to 10", "characters": ["robot"], "objects": ["new:firefly", "new:lantern_ten_frame"] }
+ ],
+ "accuracy_notes": [
+  "K.CC.B.5 limits scattered configurations to 10 objects; every scattered set here is 10 or fewer.",
+  "Do not move fireflies while they are being counted except into the ten-frame; the strategy is 'move after counting'.",
+  "Real fireflies (lightning bugs) are beetles; the video does not claim they are flies, and they are shown gently."
+ ],
+ "safety": ["Real fireflies: look, do not keep them in a closed jar; let them go."],
+ "voice": "soft at 0.95; Bunny squeaky",
+ "music": "calm for the night garden, musicGain 0.2; playful in the quiz",
+ "needs": {
+  "characters": ["robot", "bunny", { "name": "new:firefly", "description": "A small round glowing beetle with soft wings; the glow fades in and out slowly (below 1 Hz); can be golden." }],
+  "props": ["jar", "flower", "fence", "table", { "name": "new:lantern_ten_frame", "description": "A paper lantern with a 2 x 5 ten-frame window; each cell lights when an object enters it." }],
+  "stages": ["night"],
+  "features": ["hook", "tracker", "progress", "keyword", "challenge", "timer_ring", "call", "number_block", "path"]
+ }
+}

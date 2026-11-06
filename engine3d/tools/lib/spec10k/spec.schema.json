@@ -1,0 +1,194 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://toyboxelementary.local/schema/toybox-10k-spec-1.json",
+ "title": "Toybox Elementary 10K video spec",
+ "description": "One video spec for the Toybox Elementary 10,000-video programme. A spec is not a script: no final dialogue, no engine JSON. engine3d/tools/spec10k.mjs validates this schema plus the retention rules (hook <= 8 s, interaction gaps <= 15 s) and the allocation (the id's slot fixes subject, strand and standards). Times are seconds from the video start.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["schema", "id", "band", "status", "subject", "strand", "standards", "series", "objective", "distinct_by", "title", "youtube_title", "target_length_s", "cast", "hook", "story", "scenes", "interactions", "progress_tracker", "keywords", "magical_moment", "recap", "check", "thumbnails", "accuracy_notes", "needs"],
+ "properties": {
+  "schema": { "const": "toybox-10k-spec/1" },
+  "id": { "type": "string", "pattern": "^(bb|pk|kg|g[1-5])[0-9]{4}$", "description": "Band prefix + 4-digit slot. 0001-0100 are legacy slots; new specs use the slot range of their allocation row." },
+  "band": { "enum": ["bb", "pk", "kg", "g1", "g2", "g3", "g4", "g5"] },
+  "status": { "enum": ["spec", "assets", "scripted", "rendered", "uploaded"] },
+  "subject": { "enum": ["math", "ela", "science", "social_studies", "critical_thinking", "sel", "health", "arts"] },
+  "strand": { "type": "string", "pattern": "^[A-Za-z0-9_]+$", "description": "Strand key from allocation/bands.json." },
+  "standards": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string", "minLength": 2, "maxLength": 40 }, "description": "Codes, the first is the primary one: CCSS (K.CC.B.4, RF.1.3b), NGSS (2-PS1-1), C3 (D2.Geo.2.K-2), ELOF notation (ELOF.IT.LC.VOC), CASEL.SA, NHES.1.2.1, NCAS (MU:Pr4.1.K)." },
+  "skills": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9_]+$" }, "description": "Optional ids from catalog/education/skills.json (links printables)." },
+  "series": { "type": "string", "pattern": "^[a-z0-9_]+$", "description": "A series id from allocation/series.json that lists this band." },
+  "objective": { "type": "string", "minLength": 15, "maxLength": 200, "description": "The ONE learning objective, as an 'I can ...' sentence." },
+  "distinct_by": {
+   "type": "object", "additionalProperties": false,
+   "required": ["sub_skill", "example_set", "difficulty", "why_distinct"],
+   "description": "What makes this video different from every other video on the same standard.",
+   "properties": {
+    "sub_skill": { "type": "string", "minLength": 3, "maxLength": 120 },
+    "example_set": { "type": "string", "minLength": 3, "maxLength": 200, "description": "The concrete items, words or numbers used (e.g. 'letters m, s, t; words map, sun, top')." },
+    "difficulty": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1 = first exposure, 5 = stretch within the standard." },
+    "why_distinct": { "type": "string", "minLength": 15, "maxLength": 300 }
+   }
+  },
+  "title": { "type": "string", "minLength": 4, "maxLength": 60, "description": "Short episode title (the thumbnail and playlist name)." },
+  "youtube_title": { "type": "string", "minLength": 10, "maxLength": 100 },
+  "target_length_s": { "type": "integer", "minimum": 90, "maximum": 720 },
+  "cast": {
+   "type": "array", "minItems": 1, "maxItems": 6,
+   "items": {
+    "type": "object", "additionalProperties": false, "required": ["who", "role"],
+    "properties": {
+     "who": { "type": "string", "pattern": "^(new:)?[a-z0-9_]+$", "description": "Catalog character/critter name (robot, duck, fox ...) or new:<name> (then also listed in needs.characters)." },
+     "role": { "type": "string", "minLength": 3, "maxLength": 160 },
+     "voice": { "type": "string", "pattern": "^[a-z]+$" }
+    }
+   }
+  },
+  "hook": {
+   "type": "object", "additionalProperties": false,
+   "required": ["duration_s", "promise", "visual", "line"],
+   "properties": {
+    "duration_s": { "type": "number", "minimum": 2, "maximum": 30, "description": "Retention rule: at most 8 s." },
+    "promise": { "type": "string", "minLength": 10, "maxLength": 200, "description": "The core promise, delivered inside the hook." },
+    "visual": { "type": "string", "minLength": 10, "maxLength": 300, "description": "The visual excitement on screen from frame 1." },
+    "line": { "type": "string", "minLength": 5, "maxLength": 160, "description": "The opening line or question (an idea, not final dialogue)." }
+   }
+  },
+  "story": {
+   "type": "object", "additionalProperties": false,
+   "required": ["premise", "problem", "resolution"],
+   "properties": {
+    "premise": { "type": "string", "minLength": 15, "maxLength": 400 },
+    "problem": { "type": "string", "minLength": 10, "maxLength": 300 },
+    "resolution": { "type": "string", "minLength": 10, "maxLength": 300 }
+   }
+  },
+  "scenes": {
+   "type": "array", "minItems": 3, "maxItems": 14,
+   "items": {
+    "type": "object", "additionalProperties": false,
+    "required": ["title", "purpose", "start_s", "dur_s", "visuals", "camera", "characters"],
+    "properties": {
+     "title": { "type": "string", "minLength": 3, "maxLength": 60, "description": "Chapter title (YouTube chapter)." },
+     "purpose": { "enum": ["hook", "teach", "model", "try", "practise", "experiment", "story", "quiz", "reveal", "recap", "outro"] },
+     "start_s": { "type": "number", "minimum": 0 },
+     "dur_s": { "type": "number", "minimum": 5 },
+     "visuals": { "type": "string", "minLength": 10, "maxLength": 500 },
+     "camera": { "type": "string", "minLength": 3, "maxLength": 200 },
+     "characters": { "type": "array", "items": { "type": "string", "pattern": "^(new:)?[a-z0-9_]+$" } },
+     "teaches": { "type": "string", "maxLength": 200 }
+    }
+   }
+  },
+  "interactions": {
+   "type": "array", "minItems": 3,
+   "items": {
+    "type": "object", "additionalProperties": false, "required": ["t", "type", "prompt"],
+    "properties": {
+     "t": { "type": "number", "minimum": 0 },
+     "type": { "enum": ["call_response", "point_before_timer", "predict", "count_along", "choose", "spot_mistake", "find_hidden", "move_along", "say_the_sound", "peekaboo", "clap_along", "name_it", "solve_step", "explain_why", "vote"] },
+     "prompt": { "type": "string", "minLength": 5, "maxLength": 200 },
+     "answer": { "type": "string", "maxLength": 160 },
+     "options": { "type": "array", "minItems": 2, "maxItems": 4, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+     "timer_s": { "type": "number", "minimum": 2, "maximum": 6 }
+    }
+   }
+  },
+  "progress_tracker": {
+   "type": "object", "additionalProperties": false,
+   "required": ["style", "steps", "labels", "tease_t", "final_surprise"],
+   "properties": {
+    "style": { "type": "string", "minLength": 3, "maxLength": 120 },
+    "steps": { "type": "integer", "minimum": 3, "maximum": 12 },
+    "labels": { "type": "array", "minItems": 3, "maxItems": 12, "items": { "type": "string", "minLength": 1, "maxLength": 30 } },
+    "tease_t": { "type": "number", "minimum": 0, "description": "When the final surprise is teased; at most 60 s." },
+    "final_surprise": { "type": "string", "minLength": 5, "maxLength": 200 }
+   }
+  },
+  "keywords": {
+   "type": "array", "minItems": 3, "maxItems": 20,
+   "items": {
+    "type": "object", "additionalProperties": false, "required": ["word", "t", "icon"],
+    "properties": {
+     "word": { "type": "string", "minLength": 1, "maxLength": 30 },
+     "t": { "type": "number", "minimum": 0 },
+     "icon": { "type": "string", "minLength": 2, "maxLength": 80 },
+     "sound": { "type": "string", "pattern": "^(new:)?[a-z0-9_]+$" }
+    }
+   }
+  },
+  "magical_moment": {
+   "type": "object", "additionalProperties": false, "required": ["id", "t", "description"],
+   "properties": {
+    "id": { "type": "string", "pattern": "^(new:)?[a-z0-9_]+$", "description": "Library id from allocation/series.json magic, or new:<name>." },
+    "t": { "type": "number", "minimum": 0 },
+    "description": { "type": "string", "minLength": 15, "maxLength": 400 }
+   }
+  },
+  "recap": {
+   "type": "object", "additionalProperties": false, "required": ["t", "points"],
+   "properties": {
+    "t": { "type": "number", "minimum": 0 },
+    "points": { "type": "array", "minItems": 2, "maxItems": 5, "items": { "type": "string", "minLength": 3, "maxLength": 160 } }
+   }
+  },
+  "check": {
+   "type": "object", "additionalProperties": false, "required": ["type", "questions"],
+   "properties": {
+    "type": { "enum": ["quiz", "show_me", "say_it"] },
+    "questions": {
+     "type": "array", "minItems": 1, "maxItems": 6,
+     "items": {
+      "type": "object", "additionalProperties": false, "required": ["q", "answer"],
+      "properties": {
+       "q": { "type": "string", "minLength": 3, "maxLength": 200 },
+       "answer": { "type": "string", "minLength": 1, "maxLength": 160 },
+       "options": { "type": "array", "minItems": 2, "maxItems": 4, "items": { "type": "string", "minLength": 1, "maxLength": 60 } }
+      }
+     }
+    }
+   }
+  },
+  "thumbnails": {
+   "type": "array", "minItems": 2, "maxItems": 4,
+   "items": {
+    "type": "object", "additionalProperties": false, "required": ["concept", "title_text", "characters", "objects"],
+    "properties": {
+     "concept": { "type": "string", "minLength": 10, "maxLength": 300 },
+     "title_text": { "type": "string", "minLength": 2, "maxLength": 18 },
+     "subtitle": { "type": "string", "maxLength": 32 },
+     "characters": { "type": "array", "maxItems": 2, "items": { "type": "string" } },
+     "objects": { "type": "array", "minItems": 1, "maxItems": 5, "items": { "type": "string" } }
+    }
+   }
+  },
+  "accuracy_notes": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 10, "maxLength": 400 } },
+  "safety": { "type": "array", "items": { "type": "string", "minLength": 5, "maxLength": 300 } },
+  "voice": { "type": "string", "maxLength": 80 },
+  "music": { "type": "string", "maxLength": 80 },
+  "needs": {
+   "type": "object", "additionalProperties": false,
+   "required": ["characters", "props", "stages", "features"],
+   "properties": {
+    "characters": { "type": "array", "items": { "$ref": "#/$defs/need" } },
+    "props": { "type": "array", "items": { "$ref": "#/$defs/need" } },
+    "stages": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/need" } },
+    "features": { "type": "array", "items": { "$ref": "#/$defs/need" } }
+   }
+  },
+  "notes": { "type": "string", "maxLength": 1000 }
+ },
+ "$defs": {
+  "need": {
+   "description": "An existing catalog name (string), or a new asset/feature: { name: 'new:<name>', description }.",
+   "oneOf": [
+    { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    {
+     "type": "object", "additionalProperties": false, "required": ["name", "description"],
+     "properties": {
+      "name": { "type": "string", "pattern": "^new:[a-z0-9_]+$" },
+      "description": { "type": "string", "minLength": 10, "maxLength": 300 }
+     }
+    }
+   ]
+  }
+ }
+}
