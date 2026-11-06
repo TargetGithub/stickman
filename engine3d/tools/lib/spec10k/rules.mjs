@@ -16,7 +16,7 @@ export const RULES = {
   /** Not allowed in baby videos (no timers, no confetti, no fast flashes). */
   babyBannedInteractions: ["point_before_timer", "solve_step", "vote", "explain_why", "spot_mistake"],
   babyBannedMagic: ["confetti_shower_soft", "fizz_eruption", "rocket_countdown"],
-  bannedWords: ["blood", "bloody", "gore", "gun", "guns", "weapon", "kill", "killed", "corpse"],
+  bannedWords: ["blood", "bloodstream", "bloody", "gore", "gun", "guns", "weapon", "kill", "killed", "corpse"],
 };
 
 const needName = (n) => (typeof n === "string" ? n : n.name);
@@ -99,12 +99,7 @@ export function validateSpec(s, ctx) {
     if (RULES.babyBannedMagic.includes(s.magical_moment.id)) errors.push(`babies: magical moment "${s.magical_moment.id}" is too loud or fast`);
   }
   const text = allText(s);
-  // Grades 3-5 science and health may name blood (circulation, the heart); gore stays banned everywhere.
-  const bodyScience = ["g3", "g4", "g5"].includes(s.band) && ["science", "health"].includes(s.subject);
-  for (const w of RULES.bannedWords) {
-    if (bodyScience && w === "blood") continue;
-    if (new RegExp(`\\b${w}\\b`).test(text)) errors.push(`banned word "${w}" (no blood, gore or weapons)`);
-  }
+  for (const w of RULES.bannedWords) if (new RegExp(`\\b${w}\\b`).test(text)) errors.push(`banned word "${w}" (no blood, gore or weapons, in any band or subject)`);
   const us = usEnglishIssues(s);
   errors.push(...us.errors);
   warnings.push(...us.warnings);

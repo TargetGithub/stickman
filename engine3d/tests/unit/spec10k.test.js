@@ -135,14 +135,16 @@ test("allocation, band, series and catalog rules (table)", () => {
   }
 });
 
-test("blood is allowed only in grade 3-5 science and health", () => {
+test("blood is banned in every band and subject, body science included", () => {
   const s = clone(example);
   Object.assign(s, { id: "g40101", band: "g4", subject: "science", strand: "s", standards: ["XX"], series: "counting_parade" });
-  s.story.problem = "Blood carries oxygen from the lungs to the body.";
   const ctx = { schema, names, file: "/x/g40101.json" };
-  assert.ok(!validateSpec(s, ctx).errors.some((e) => /banned word "blood"/.test(e)));
-  s.subject = "ela";
-  assert.ok(validateSpec(s, ctx).errors.some((e) => /banned word "blood"/.test(e)));
+  for (const text of ["Blood carries oxygen.", "It moves through the bloodstream."]) {
+    s.story.problem = text;
+    assert.ok(validateSpec(s, ctx).errors.some((e) => /banned word "blood/.test(e)), text);
+  }
+  s.story.problem = "The heart pumps oxygen and food all around your body through tiny tubes.";
+  assert.ok(!validateSpec(s, ctx).errors.some((e) => /banned word/.test(e)));
 });
 
 test("babies: no timers, no tests, no confetti", () => {
