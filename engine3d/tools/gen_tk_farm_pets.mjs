@@ -199,6 +199,8 @@ C.cousin_kitten = {
   m.parts = m.parts.map((p) => (p.on === "head" && p.c === "brown" && p.p === "sphere" && p.s[0] < 0.06 ? { ...p, at: [p.at[0], p.at[1], p.at[2] - 0.035] } : p));
   m.mouth = { ...m.mouth, at: [m.mouth.at[0], m.mouth.at[1] + 0.01, m.mouth.at[2] - 0.035] };
   m.parts.push({ p: "sphere", at: [0, 0.6, -0.29], s: [0.12, 0.16, 0.12], r: [30, 0, 0], c: "brown", m: "matte" });
+  // Muzzle bridge: joins the head ball and muzzle so the front view reads as one head, not two.
+  m.parts.push({ p: "sphere", at: [0, -0.05, 0.13], s: [0.4, 0.34, 0.4], on: "head" });
   m.sound = "Nee-hee!";
   m.description =
     "A young foal (a pony, the catalog horse's baby), about 1.05 m tall to the ear tips at size 1: a sandy coat with a cream belly and muzzle, long slim wobbly legs on dark hooves, a short fluffy brown mane and tail and big brown eyes. Faces +z. Named parts: tail, mane, leg_front_left, leg_front_right, leg_back_left, leg_back_right (turn [±25, 0, 0] about x to trot and prance). Talks with its own mouth.";
@@ -336,6 +338,7 @@ C.mule = {
   tags: ["farm", "mammal", "mule", "donkey"],
   sound: "Hee-haw!",
   add: [
+    { p: "sphere", at: [0, -0.045, 0.117], s: [0.36, 0.306, 0.36], on: "head" },
     { p: "capsule", at: [0.1, 0.27, -0.03], s: [0.11, 0.36, 0.07], r: [-6, 0, -12], hang: [0, 0.14, 0], c: "grey", mirror: true, name: "ears", idle: { r: [0, 0, 6], hz: 0.4 }, on: "head" },
   ],
 };

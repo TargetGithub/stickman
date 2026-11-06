@@ -439,6 +439,100 @@ const whiskers = (y, z, x = 0.12) => [
   };
 }
 
+// ---------------- kangaroo ----------------
+{
+  const joey = { name: "joey" };
+  const parts = [
+    part("sphere", [0, 0.62, -0.02], [0.52, 0.78, 0.48]),
+    part("sphere", [0, 0.6, 0.12], [0.36, 0.52, 0.28], { c: "sand" }),
+    part("capsule", [0, 0.97, 0.03], [0.2, 0.2, 0.2]),
+    // joey: sits inside the pouch; move "#joey" by [0, 0.1, 0.02] to peek out
+    part("sphere", [0, 0.39, 0.19], [0.13, 0.12, 0.12], joey),
+    part("sphere", [0, 0.375, 0.25], [0.07, 0.055, 0.06], { ...joey, c: "sand" }),
+    part("sphere", [0, 0.385, 0.28], [0.03, 0.022, 0.02], { ...joey, c: "ink", m: "glossy" }),
+    part("sphere", [0.03, 0.41, 0.245], [0.022, 0.026, 0.015], { ...joey, c: "ink", m: "glossy", mirror: true }),
+    part("sphere", [0.04, 0.46, 0.18], [0.04, 0.09, 0.025], { ...joey, r: [0, 0, -15], mirror: true }),
+    part("sphere", [0, 0.41, 0.21], [0.34, 0.2, 0.18], { c: "sand", name: "pouch" }),
+    part("torus", [0, 0.48, 0.22], [0.24, 0.1, 0.12], { r: [90, 0, 0], c: "horse_tan", m: "matte", name: "pouch" }),
+    part("sphere", [0.17, 0.4, -0.03], [0.22, 0.38, 0.42], { mirror: true, name: "legs" }),
+    part("sphere", [0.13, 0.04, 0.1], [0.14, 0.08, 0.44], { mirror: true, name: "legs" }),
+    part("capsule", [0.15, 0.14, 0.0], [0.11, 0.3, 0.11], { r: [-30, 0, 0], mirror: true, name: "legs" }),
+    part("capsule", [0.17, 0.8, 0.13], [0.08, 0.22, 0.08], { r: [-40, 0, 12], hang: [0, -0.09, 0], mirror: true, name: "arm" }),
+    part("capsule", [0, 0.32, -0.2], [0.17, 0.72, 0.17], { r: [-115, 0, 0], hang: [0, 0.32, 0], name: "tail", idle: { r: [0, 0, 5], hz: 0.5 } }),
+    part("sphere", [0, 0, 0], [0.34, 0.32, 0.36], { on: "head" }),
+    part("sphere", [0, -0.05, 0.15], [0.2, 0.16, 0.24], { on: "head", c: "sand" }),
+    part("sphere", [0, -0.01, 0.27], [0.07, 0.05, 0.05], { on: "head", c: "ink", m: "glossy" }),
+    part("sphere", [0.1, 0.2, -0.03], [0.11, 0.27, 0.05], { on: "head", r: [0, 0, -16], mirror: true, name: "ears", idle: { r: [0, 0, 5], hz: 0.4 } }),
+    part("sphere", [0.1, 0.2, -0.01], [0.06, 0.18, 0.03], { on: "head", r: [0, 0, -16], c: "pig", m: "matte", mirror: true, name: "ears", idle: { r: [0, 0, 5], hz: 0.4 } }),
+  ];
+  critters.kangaroo = {
+    color: "horse_brown", sound: "Boing boing!",
+    description: "A red-brown toy kangaroo standing up on big back legs and long feet (\"legs\"), with a sandy tummy and snout, tall pink-lined ears (\"ears\"), little arms (\"arm\", mirrored), a long thick tail (\"tail\") and a pouch (\"pouch\"). A tiny joey (\"joey\") sits hidden inside the pouch: move \"#joey\" by [0, 0.1, 0.02] to make it peek out. Hops by moving up and down. About 1.42 m tall at size 1 to the ear tips.",
+    tags: ["australia", "grassland", "outback", "mammal", "zoo"],
+    head: { at: [0, 1.1, 0.04] },
+    eyes: { at: [0.08, 0.05, 0.14], size: 0.065 },
+    cheeks: { at: [0.11, -0.04, 0.125], size: 0.06 },
+    mouth: { at: [0, -0.1, 0.24], size: 0.055 },
+    bob: 0.02, parts,
+  };
+}
+
+// ---------------- ape ----------------
+{
+  const arm = { r: [0, 0, 12], mirror: true, name: "arm", idle: { r: [0, 0, 4], hz: 0.4 } };
+  const parts = [
+    part("sphere", [0, 0.62, 0], [0.8, 0.86, 0.66], { m: "plush" }),
+    part("sphere", [0, 0.64, 0.2], [0.5, 0.56, 0.32], { c: "grey", m: "matte" }),
+    part("capsule", [0.18, 0.32, 0], [0.24, 0.34, 0.24], { hang: [0, -0.12, 0], mirror: true, name: "legs", m: "plush" }),
+    part("sphere", [0.18, 0.32, 0], [0.22, 0.1, 0.32], { hang: [0, -0.28, 0.06], mirror: true, name: "legs", c: "grey", m: "matte" }),
+    part("capsule", [0.38, 0.9, 0.04], [0.21, 0.6, 0.21], { ...arm, hang: [0, -0.28, 0], m: "plush" }),
+    part("sphere", [0.38, 0.9, 0.04], [0.21, 0.17, 0.21], { ...arm, hang: [0, -0.62, 0.02], c: "grey", m: "matte" }),
+    part("sphere", [0, 0, 0], [0.5, 0.48, 0.46], { on: "head", m: "plush" }),
+    part("sphere", [0, 0.16, -0.05], [0.34, 0.28, 0.34], { on: "head", m: "plush" }),
+    part("sphere", [0, -0.03, 0.13], [0.38, 0.36, 0.26], { on: "head", c: "grey", m: "matte" }),
+    part("sphere", [0, -0.12, 0.2], [0.28, 0.18, 0.18], { on: "head", c: "grey", m: "matte" }),
+    part("sphere", [0.03, -0.08, 0.285], [0.035, 0.025, 0.02], { on: "head", c: "charcoal", mirror: true }),
+    part("sphere", [0.24, 0, 0], [0.08, 0.11, 0.06], { on: "head", c: "grey", m: "matte", mirror: true, name: "ears" }),
+  ];
+  critters.ape = {
+    color: "charcoal", sound: "Hoo hoo!",
+    description: "A big gentle toy gorilla-like ape with soft dark plush fur, a gray chest, a gray kind face with brown eyes, long strong arms with gray hands (\"arm\", mirrored), short legs with gray feet (\"legs\"), small ears (\"ears\") and no tail. Moves slowly. About 1.42 m tall at size 1.",
+    tags: ["jungle", "rainforest", "zoo", "mammal", "big", "primate"],
+    head: { at: [0, 1.16, 0.1] },
+    eyes: { at: [0.08, 0.03, 0.245], size: 0.07, iris: "eye_brown" },
+    cheeks: { at: [0.13, -0.06, 0.215], size: 0.07 },
+    mouth: { at: [0, -0.16, 0.278], size: 0.08 },
+    bob: 0.012, parts,
+  };
+}
+
+// ---------------- arctic_tern ----------------
+{
+  const wing = { mirror: true, name: "wing", idle: { r: [0, 0, 8], hz: 0.8 } };
+  const parts = [
+    part("sphere", [0, 0.25, -0.04], [0.27, 0.3, 0.54]),
+    part("sphere", [0, 0.29, -0.06], [0.3, 0.2, 0.44], { c: "grey" }),
+    part("sphere", [0.15, 0.33, 0.04], [0.06, 0.12, 0.62], { ...wing, r: [-12, 0, -10], hang: [0, -0.02, -0.24], c: "grey" }),
+    part("sphere", [0.15, 0.33, 0.04], [0.04, 0.06, 0.3], { ...wing, r: [-12, 0, -10], hang: [0, -0.01, -0.5], c: "charcoal" }),
+    part("capsule", [0.03, 0.23, -0.24], [0.03, 0.4, 0.03], { r: [-100, 0, -12], hang: [0, 0.19, 0], mirror: true, name: "tail", idle: { r: [0, 0, 4], hz: 0.6 } }),
+    part("capsule", [0.05, 0.11, 0.02], [0.035, 0.12, 0.035], { hang: [0, -0.045, 0], c: "red", mirror: true, name: "legs" }),
+    part("sphere", [0.05, 0.11, 0.02], [0.07, 0.03, 0.1], { hang: [0, -0.095, 0.03], c: "red", mirror: true, name: "legs" }),
+    part("sphere", [0, 0, 0], [0.24, 0.22, 0.24], { on: "head" }),
+    part("sphere", [0, 0.05, -0.035], [0.25, 0.15, 0.24], { on: "head", c: "ink", name: "cap" }),
+    part("cone", [0, -0.015, 0.19], [0.05, 0.2, 0.05], { on: "head", r: [95, 0, 0], c: "red", m: "glossy", name: "beak" }),
+  ];
+  critters.arctic_tern = {
+    color: "white", sound: "Kee-arr!",
+    description: "A small sleek toy arctic tern: a white seabird with a gray back, a black cap (\"cap\"), a red pointed beak (\"beak\"), red feet (\"legs\"), long pointed gray wings with dark tips (\"wing\", mirrored: turn about z to flap) and two long white tail streamers (\"tail\"). About 0.57 m tall at size 1.",
+    tags: ["arctic", "ocean", "sea", "bird", "migration", "small"],
+    head: { at: [0, 0.45, 0.14] },
+    eyes: { at: [0.07, 0.01, 0.09], size: 0.055, iris: "eye_brown" },
+    cheeks: { at: [0.09, -0.05, 0.075], size: 0.045 },
+    mouth: { at: [0, -0.06, 0.105], size: 0.04 },
+    bob: 0.02, parts,
+  };
+}
+
 // ---------------- variants ----------------
 // zebra: the farm horse in black and white with stripe bands round body, neck and legs.
 {
@@ -452,6 +546,8 @@ const whiskers = (y, z, x = 0.12) => [
   for (const [n, x, z] of [["leg_front_left", 0.17, 0.25], ["leg_front_right", -0.17, 0.25], ["leg_back_left", 0.17, -0.3], ["leg_back_right", -0.17, -0.3]])
     for (const y of [-0.12, -0.24]) add.push(part("cylinder", [x, 0.5, z], [0.2, 0.04, 0.2], { hang: [0, y, 0], c: "ink", m: "matte", name: n }));
   add.push(part("sphere", [0, -0.09, 0.33], [0.3, 0.17, 0.22], { on: "head", c: "charcoal", m: "matte" }));
+  // Muzzle bridge: joins the horse's head ball and muzzle so the front view reads as one head, not two.
+  add.push(part("sphere", [0, -0.05, 0.13], [0.4, 0.34, 0.4], { on: "head" }));
   critters.zebra = {
     like: "horse", recolor: { horse_brown: "white", horse_tan: "white", horse_mane: "ink", hoof: "charcoal" }, add,
     color: "white", sound: "Neigh-hee!",
@@ -467,8 +563,29 @@ critters.sea_otter = {
   tags: ["ocean", "sea", "kelp", "water", "mammal"],
 };
 
+// unicorn: the farm horse in white with a rainbow mane and tail and a golden spiral horn.
+{
+  const rainbow = ["pink", "orange", "yellow", "grass", "sky", "purple"];
+  const mane = [[0.829, 0.073, 0.16], [0.935, 0.129, 0.19], [1.041, 0.185, 0.2], [1.147, 0.242, 0.2], [1.244, 0.293, 0.18], [1.324, 0.335, 0.15]];
+  const add = mane.map(([y, z, h], i) => part("sphere", [0, y, z], [0.15, h, h * 0.75], { r: [28, 0, 0], c: rainbow[i], m: "matte", name: "mane" }));
+  const tail = { r: [30, 0, 0], m: "matte", name: "tail", idle: { r: [0, 0, 12], hz: 0.6 } };
+  add.push(part("capsule", [0, 0.8, -0.46], [0.13, 0.3, 0.13], { ...tail, hang: [0, -0.12, 0], c: "pink" }));
+  ["orange", "yellow", "sky", "purple"].forEach((c, i) => add.push(part("sphere", [0, 0.8, -0.46], [0.19 - i * 0.015, 0.13, 0.17 - i * 0.015], { ...tail, hang: [0, -0.24 - i * 0.075, 0], c })));
+  const horn = { on: "head", r: [22, 0, 0], name: "horn" };
+  add.push(part("cone", [0, 0.31, 0.15], [0.075, 0.3, 0.075], { ...horn, hang: [0, 0.14, 0], c: "gold", m: "glossy" }));
+  for (let i = 0; i < 4; i++) add.push(part("torus", [0, 0.31, 0.15], [0.07 - i * 0.014, 0.07 - i * 0.014, 0.05], { ...horn, hang: [0, 0.03 + i * 0.06, 0], hr: [90, 0, 12], c: "gold", m: "glossy" }));
+  // Muzzle bridge: joins the horse's head ball and muzzle so the front view reads as one head, not two.
+  add.push(part("sphere", [0, -0.05, 0.13], [0.4, 0.34, 0.4], { on: "head" }));
+  critters.unicorn = {
+    like: "horse", recolor: { horse_brown: "white", horse_tan: "cream", horse_mane: "pink", hoof: "gold" }, drop: ["mane", "tail"], add,
+    color: "white", sound: "Neigh, sparkle!",
+    description: "A friendly storybook toy unicorn: the farm horse in white with a cream muzzle, a pastel rainbow mane (\"mane\") and tail (\"tail\"), a pink forelock, golden hooves and a golden spiral horn (\"horn\"). Same named legs as horse (leg_front_left, leg_front_right, leg_back_left, leg_back_right). About 1.6 m tall at size 1 to the horn tip.",
+    tags: ["fantasy", "story", "magic", "rainbow", "farm"],
+  };
+}
+
 const out = {
-  description: "Toybox 10K wave 2 wild animals: crab, hedgehog, otter, elephant, snail, giraffe, seal, bat, firefly, ant, mole, hippo, beaver, and the variants zebra (of horse) and sea_otter (of otter). Generated by tools/gen_tk_wild.mjs (spines, stripes, patches and the shell swirl are placed by maths): edit the generator and rerun it, not the JSON.",
+  description: "Toybox 10K wave 2 wild animals: crab, hedgehog, otter, elephant, snail, giraffe, seal, bat, firefly, ant, mole, hippo, beaver, kangaroo (with a joey in the pouch), ape, arctic_tern, and the variants zebra and unicorn (of horse) and sea_otter (of otter). Generated by tools/gen_tk_wild.mjs (spines, stripes, patches and the shell swirl are placed by maths): edit the generator and rerun it, not the JSON.",
   critters,
 };
 const file = fileURLToPath(new URL("../catalog/models/tk_wild.json", import.meta.url));
