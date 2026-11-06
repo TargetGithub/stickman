@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { loadCatalog3d } from "../../catalog/index.mjs";
+import { shapeGeometry } from "../../runtime/geometry.js";
 
 // Every Toybox 10K model file (catalog/models/tk_*.json): loads, is described and tagged, uses known shapes and
 // colours, and every critter has a face rig (eyes and a head) so feelings, looks and talking work.
@@ -22,7 +23,7 @@ for (const f of files) {
         assert.ok(m.tags?.length, `${name} has tags`);
         assert.doesNotMatch(m.description, /\bbloody\b|\bgore\b|\bweapon/i, `${name} description`);
         for (const p of m.parts) {
-          assert.ok(catalog.shapes[p.p], `${name}: unknown shape ${p.p}`);
+          assert.doesNotThrow(() => shapeGeometry(p.p), `${name}: unknown shape ${p.p}`);
           if (p.c) assert.ok(catalog.colors[p.c], `${name}: unknown colour ${p.c}`);
           if (p.m) assert.ok(catalog.materials[p.m], `${name}: unknown material ${p.m}`);
         }
