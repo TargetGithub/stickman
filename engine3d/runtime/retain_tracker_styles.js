@@ -4,11 +4,14 @@
 //   town:    small houses and shops on a path that light their windows as each step is done (town map tracker)
 //   gauges:  round dials whose needles swing to full and glow green (Word Workshop gauges)
 //   pencil:  a page whose lines write in one by one, a big pencil riding to the newest line (growing pencil)
+//   rainbow: an arch of pale bands, outermost first, each painting in its rainbow colour as a step is done; the
+//            surprise is a sun (gift until it fills) at the arch's right foot
 // Each style fills `empty` (before) and `full` (after) of a slot; the tracker pops `full` in at the slot's time.
 
 import * as THREE from "three";
 
-export const EXTRA_TRACKER_STYLES = ["islands", "town", "gauges", "pencil"];
+export const EXTRA_TRACKER_STYLES = ["islands", "town", "gauges", "pencil", "rainbow"];
+const RAINBOW = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "teal", "rose", "sky"];
 
 const mesh = (geo, mat, x = 0, y = 0, z = 0) => {
   const m = new THREE.Mesh(geo, mat);
@@ -18,7 +21,7 @@ const mesh = (geo, mat, x = 0, y = 0, z = 0) => {
 
 /** One slot of an extra style. ctx: { i, n, p, prev, empty, full, node, label, surprise, gift, kit, main, accent, filledColor }. */
 export function buildExtraSlot(style, ctx) {
-  const { i, p, prev, empty, full, node, label, surprise, gift, kit, main, accent, filledColor } = ctx;
+  const { i, n, p, prev, empty, full, node, label, surprise, gift, kit, main, accent, filledColor } = ctx;
   const M = (c, s = "toy") => kit.material(c, s);
   if (style === "islands" || style === "town") {
     // Dotted path from the previous stop.
@@ -62,6 +65,28 @@ export function buildExtraSlot(style, ctx) {
     full.add(mesh(new THREE.SphereGeometry(0.06, 12, 8), M(c, "glossy"), 0, 0.42, 0));
     if (label) node.add(kit.label(label, 0.16, M("ink"), 0.02).translateY(-0.34));
     if (surprise) empty.add(gift(0.3).translateY(0.5));
+    return;
+  }
+  if (style === "rainbow") {
+    // Every band shares the arch centre (the slot's node sits there); band i is ring i from the outside.
+    if (surprise) {
+      empty.add(gift(0.32).translateX(1.35).translateY(0.1));
+      const sun = new THREE.Group();
+      sun.add(mesh(new THREE.SphereGeometry(0.2, 20, 14), M("gold", "glossy")));
+      for (let k = 0; k < 8; k++) {
+        const ray = mesh(new THREE.BoxGeometry(0.05, 0.12, 0.04), M("yellow", "glossy"), Math.cos((k * Math.PI) / 4) * 0.3, Math.sin((k * Math.PI) / 4) * 0.3, 0);
+        ray.rotation.z = (k * Math.PI) / 4 - Math.PI / 2;
+        sun.add(ray);
+      }
+      sun.position.set(1.35, 0.12, 0.05);
+      full.add(sun);
+      return;
+    }
+    const r = 1.05 - i * Math.min(0.13, 0.75 / Math.max(1, n - 1));
+    const band = (c, tube, z) => mesh(new THREE.TorusGeometry(r, tube, 12, 48, Math.PI), M(c, c === "cream" ? "matte" : "glossy"), 0, 0, z);
+    empty.add(band("cream", 0.045, 0));
+    full.add(band(RAINBOW[i % RAINBOW.length], 0.062, 0.01));
+    if (label) node.add(kit.label(label, 0.12, M("ink"), 0.02).translateX(-r).translateY(-0.14));
     return;
   }
   if (style === "gauges") {

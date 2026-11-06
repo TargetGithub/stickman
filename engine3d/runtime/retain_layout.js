@@ -15,7 +15,7 @@ export const ICONS = {
 };
 /** Cues a call-and-response pause can show. */
 export const CUES = ["ear", "hand", "mouth", "eye", "question"];
-export const TRACKER_STYLES = ["train", "checklist", "stars", "path", "islands", "town", "gauges", "pencil"];
+export const TRACKER_STYLES = ["train", "checklist", "stars", "path", "islands", "town", "gauges", "pencil", "rainbow"];
 export const TRACKER_CORNERS = ["top_left", "top_right", "top"];
 
 /** Fixed screen spots (HUD units). */
@@ -51,6 +51,11 @@ export function trackerLayout(o) {
     const width = 3.3;
     const slots = Array.from({ length: n }, (_, i) => [0.4, -0.38 - i * ROW, 0]);
     return { slots, width, height: 0.26 + n * ROW };
+  }
+  if (style === "rainbow") {
+    // All bands share one centre; the arch is 2.3 wide (2.9 with the surprise sun) and 1.2 tall.
+    const slots = Array.from({ length: n }, () => [1.15, -0.55, 0]);
+    return { slots, width: o.surprise ? 2.9 : 2.3, height: 1.25 };
   }
   if (style === "gauges") {
     const slots = Array.from({ length: n }, (_, i) => [0.4 + i * 0.86, 0, 0]);
