@@ -2,6 +2,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { glbClipDurations } from "../tools/lib/glb.mjs";
+import { expandVariants } from "./variants.mjs";
 
 const REPO = fileURLToPath(new URL("../../", import.meta.url));
 
@@ -23,7 +24,8 @@ function readModels() {
       }
     }
   }
-  return out;
+  // Entries with `like` are variants of another model (variants.mjs): expanded here, after every file is read.
+  return expandVariants(out);
 }
 
 /**
