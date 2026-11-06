@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-90 episodes: 0 spec, 10 scripted, 69 rendered, 11 uploaded. Status moves spec → scripted → rendered → uploaded.
+90 episodes: 0 spec, 0 scripted, 69 rendered, 21 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -26,18 +26,18 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | br06 | Row, Row, Row Your Boat | Babies | Opposites (rhyme) | `opposites_k`, `living_things_k`, `listening_prek` | `br06_row_your_boat.json` | uploaded | disk1:BABY-RHYMES/br06_row_your_boat |
 | br07 | Itsy Bitsy Spider: Rain and Sun | Babies | Weather (rhyme) | `weather_seasons_1`, `position_words_prek` | `br07_itsy_bitsy_spider.json` | uploaded | disk1:BABY-RHYMES/br07_itsy_bitsy_spider |
 | br08 | Humpty Dumpty: Fix It Together | Babies | Shapes and cause and effect (rhyme) | `basic_shapes_prek`, `count_to_5_prek` | `br08_humpty_dumpty.json` | uploaded | disk1:BABY-RHYMES/br08_humpty_dumpty |
-| br09 | Hot Cross Buns | Babies | Counting and sharing (rhyme) | `count_to_5_prek`, `feelings_prek` | `br09_hot_cross_buns.json` | scripted | – |
+| br09 | Hot Cross Buns | Babies | Counting and sharing (rhyme) | `count_to_5_prek`, `feelings_prek` | `br09_hot_cross_buns.json` | uploaded | disk1:BABY-RHYMES/br09_hot_cross_buns |
 | br10 | Rainbow Colours Song | Babies | Colours (rhyme) | `listening_prek`, `weather_seasons_1` | `br10_rainbow_colours.json` | uploaded | disk1:BABY-RHYMES/br10_rainbow_colours |
-| br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | scripted | – |
+| br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | uploaded | – |
 | br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek`, `listening_prek` | `br12_start_the_day.json` | uploaded | disk1:BABY-RHYMES/br12_start_the_day |
-| br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek`, `capital_letters_prek`, `listening_prek` | `br13_pat_a_cake.json` | scripted | – |
-| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | scripted | – |
-| br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | `br15_this_old_man.json` | scripted | – |
-| br16 | Mary Had a Little Lamb | Babies | Listening (rhyme) | `count_to_5_prek`, `position_words_prek`, `listening_prek` | `br16_mary_little_lamb.json` | scripted | – |
-| br17 | B-I-N-G-O Clap Along | Babies | Letters and patterns (rhyme) | `capital_letters_prek`, `ab_patterns_prek`, `listening_prek` | `br17_bingo_clap_along.json` | scripted | – |
-| br18 | Hey Diddle Diddle: Over and Under | Babies | Position words (rhyme) | `position_words_prek`, `opposites_k` | `br18_hey_diddle_diddle.json` | scripted | – |
-| br19 | 1, 2, 3, 4, 5, Once I Caught a Fish Alive | Babies | Counting to 10 (rhyme) | `count_to_10_k`, `count_to_5_prek`, `position_words_prek` | `br19_once_i_caught_a_fish.json` | scripted | – |
-| br20 | Opposites Hop | Babies | Opposites (rhyme) | `opposites_k`, `position_words_prek`, `listening_prek` | `br20_opposites_hop.json` | scripted | – |
+| br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek`, `capital_letters_prek`, `listening_prek` | `br13_pat_a_cake.json` | uploaded | – |
+| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | uploaded | – |
+| br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | `br15_this_old_man.json` | uploaded | – |
+| br16 | Mary Had a Little Lamb | Babies | Listening (rhyme) | `count_to_5_prek`, `position_words_prek`, `listening_prek` | `br16_mary_little_lamb.json` | uploaded | – |
+| br17 | B-I-N-G-O Clap Along | Babies | Letters and patterns (rhyme) | `capital_letters_prek`, `ab_patterns_prek`, `listening_prek` | `br17_bingo_clap_along.json` | uploaded | – |
+| br18 | Hey Diddle Diddle: Over and Under | Babies | Position words (rhyme) | `position_words_prek`, `opposites_k` | `br18_hey_diddle_diddle.json` | uploaded | – |
+| br19 | 1, 2, 3, 4, 5, Once I Caught a Fish Alive | Babies | Counting to 10 (rhyme) | `count_to_10_k`, `count_to_5_prek`, `position_words_prek` | `br19_once_i_caught_a_fish.json` | uploaded | – |
+| br20 | Opposites Hop | Babies | Opposites (rhyme) | `opposites_k`, `position_words_prek`, `listening_prek` | `br20_opposites_hop.json` | uploaded | – |
 
 ## Pre-K (21)
 

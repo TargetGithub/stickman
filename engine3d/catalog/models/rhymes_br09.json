@@ -1,0 +1,51 @@
+{
+ "description": "Hot Cross Buns (br09) models: a hot cross bun, a baking tray, a serving plate and a baker's hat for Robo. The oven is home_school.json `oven` (its door opens). Same format as ../models.json. Props face +z and stand on y = 0.",
+ "critters": {},
+ "props": {
+  "hot_cross_bun": {
+   "color": "bun_gold",
+   "description": "A hot cross bun: a round, shiny golden-brown bun 0.24 m across and 0.13 m tall at size 1, with a raised white cross piped over the top (the arms run along x and z). Origin at the middle of its base. Tilt it (rotation [55, 0, 0]) to show the cross to a camera in front, e.g. as a HUD icon.",
+   "tags": ["food", "bakery", "small", "hot_cross_buns", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0.012, 0], "s": [0.232, 0.024, 0.232], "c": "bun_gold", "m": "matte" },
+    { "p": "dome", "at": [0, 0.018, 0], "s": [0.24, 0.22, 0.24], "m": "glossy" },
+    { "p": "dome", "at": [0, 0.018, 0], "s": [0.262, 0.24, 0.078], "c": "white", "m": "glossy" },
+    { "p": "dome", "at": [0, 0.018, 0], "s": [0.078, 0.24, 0.262], "c": "white", "m": "glossy" }
+   ]
+  },
+  "baker_tray": {
+   "color": "grey",
+   "description": "A metal baking tray 0.6 m wide (x) and 0.42 m deep at size 1, with a low rim and little end handles; its floor is at y 0.025, so buns parented to it sit at y 0.025 (two side by side at x ±0.14, or four at x ±0.14, z ±0.1).",
+   "tags": ["kitchen", "bakery", "hot_cross_buns", "rhymes"],
+   "parts": [
+    { "p": "plate", "at": [0, 0.005, 0], "s": [0.6, 0.5, 0.42], "m": "metal" },
+    { "p": "box", "at": [0, 0.025, 0.2], "s": [0.6, 0.05, 0.02], "m": "metal" },
+    { "p": "box", "at": [0, 0.025, -0.2], "s": [0.6, 0.05, 0.02], "m": "metal" },
+    { "p": "box", "at": [0.29, 0.025, 0], "s": [0.02, 0.05, 0.42], "m": "metal", "mirror": true },
+    { "p": "box", "at": [0.33, 0.04, 0], "s": [0.06, 0.02, 0.18], "c": "charcoal", "m": "matte", "mirror": true }
+   ]
+  },
+  "bun_plate": {
+   "color": "blue",
+   "description": "A round toy plate 0.36 m across and 0.04 m tall at size 1: a white middle and a raised rim in the main colour (set color). A bun parented to it sits at [0, 0.03, 0].",
+   "tags": ["kitchen", "food", "home", "hot_cross_buns", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0.012, 0], "s": [0.3, 0.024, 0.3], "c": "white", "m": "glossy" },
+    { "p": "torus", "at": [0, 0.022, 0], "s": [0.36, 0.36, 0.11], "r": [90, 0, 0], "m": "glossy" }
+   ]
+  },
+  "baker_hat": {
+   "color": "white",
+   "description": "A tall white baker's hat (a chef's toque): a band 0.4 m across and a puffy top, 0.42 m tall at size 1. Origin at the middle of the band's bottom; on Robo, parent it to robo at about [0, 1.6, 0].",
+   "tags": ["clothes", "kitchen", "bakery", "dress_up", "hot_cross_buns", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0.07, 0], "s": [0.4, 0.14, 0.4], "m": "matte" },
+    { "p": "sphere", "at": [0, 0.26, 0], "s": [0.5, 0.3, 0.5], "m": "matte" },
+    { "p": "sphere", "at": [0.13, 0.3, 0.05], "s": [0.24, 0.22, 0.24], "m": "matte" },
+    { "p": "sphere", "at": [-0.12, 0.31, -0.04], "s": [0.24, 0.22, 0.24], "m": "matte" },
+    { "p": "sphere", "at": [0, 0.33, 0.12], "s": [0.22, 0.2, 0.22], "m": "matte" },
+    { "p": "sphere", "at": [0.02, 0.34, -0.12], "s": [0.22, 0.2, 0.22], "m": "matte" }
+   ]
+  }
+ }
+}
