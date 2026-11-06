@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-90 episodes: 19 spec, 0 scripted, 70 rendered, 1 uploaded. Status moves spec → scripted → rendered → uploaded.
+90 episodes: 19 spec, 0 scripted, 69 rendered, 2 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -15,7 +15,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
 | bb01 | Bubbles and Colours | Babies | Colours (sensory) | – | `bb01_bubbles_and_colours.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb01_bubbles_and_colours |
-| br01 | Old MacDonald Had a Farm | Babies | Animals and sounds (rhyme) | `listening_prek` | `br01_old_macdonald.json` | rendered | disk1:BABY-RHYMES/br01_old_macdonald |
+| br01 | Old MacDonald Had a Farm | Babies | Animals and sounds (rhyme) | `listening_prek` | `br01_old_macdonald.json` | uploaded | disk1:BABY-RHYMES/br01_old_macdonald |
 | bb02 | Peekaboo Animals | Babies | Listening (sensory) | `listening_prek` | `bb02_peekaboo_animals.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb02_peekaboo_animals |
 | br02 | Baa Baa Black Sheep: Colour Wool | Babies | Colours (rhyme) | – | spec: specs/baby_rhymes.md br02 | spec | – |
 | bb03 | Goodnight, Little Star | Babies | Music / bedtime | – | `bb03_goodnight_stars.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb03_goodnight_stars |
