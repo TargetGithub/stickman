@@ -1,0 +1,870 @@
+{
+ "description": "Hey Diddle Diddle (br18, baby rhymes) models: the cat's fiddle with a bow, the friendly dish and spoon with faces and little legs, and a round full moon with a face that the cow jumps over. The cat, cow, dog, table, tree and step blocks are elsewhere in the catalog. Same format as ../models.json. Everything faces +z.",
+ "critters": {
+  "dish": {
+   "color": "white",
+   "sound": "Wheee!",
+   "description": "The dish from Hey Diddle Diddle: a round white plate standing on its rim with a blue edge, big brown eyes, rosy cheeks and a smile on its front, little blue arms with white hands and short legs in red shoes. About 0.86 m tall at size 1, faces +z, feet on y = 0. The plate is the head group (pivot at y 0.55), so feelings, looks and nods tip the whole plate. Named parts: leg (mirrored, pivot at the hip y 0.25: turn [±25, 0, 0] to walk), arm (mirrored, on the plate: wiggle to wave).",
+   "tags": [
+    "rhymes",
+    "hey_diddle_diddle",
+    "kitchen",
+    "character",
+    "story"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.55,
+     0
+    ],
+    "tilt": 0.6,
+    "look": 0.5
+   },
+   "eyes": {
+    "at": [
+     0.095,
+     0.05,
+     0.045
+    ],
+    "size": 0.1,
+    "iris": "eye_brown"
+   },
+   "cheeks": {
+    "at": [
+     0.17,
+     -0.05,
+     0.042
+    ],
+    "size": 0.06,
+    "color": "blush"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.1,
+     0.045
+    ],
+    "size": 0.11
+   },
+   "bob": 0.015,
+   "parts": [
+    {
+     "p": "capsule",
+     "at": [
+      0.1,
+      0.25,
+      0
+     ],
+     "s": [
+      0.05,
+      0.24,
+      0.05
+     ],
+     "hang": [
+      0,
+      -0.1,
+      0
+     ],
+     "c": "blue",
+     "m": "matte",
+     "mirror": true,
+     "name": "leg"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.25,
+      0
+     ],
+     "s": [
+      0.1,
+      0.07,
+      0.15
+     ],
+     "hang": [
+      0,
+      -0.21,
+      0.035
+     ],
+     "c": "red",
+     "m": "glossy",
+     "mirror": true,
+     "name": "leg"
+    },
+    {
+     "p": "cylinder",
+     "on": "head",
+     "at": [
+      0,
+      0,
+      -0.012
+     ],
+     "s": [
+      0.66,
+      0.04,
+      0.66
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "blue",
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "on": "head",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": [
+      0.62,
+      0.05,
+      0.62
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "on": "head",
+     "at": [
+      0,
+      0,
+      0.012
+     ],
+     "s": [
+      0.46,
+      0.03,
+      0.46
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "cream",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0,
+      0.27,
+      0.024
+     ],
+     "s": [
+      0.04,
+      0.04,
+      0.02
+     ],
+     "c": "sky",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0.19,
+      0.19,
+      0.024
+     ],
+     "s": [
+      0.04,
+      0.04,
+      0.02
+     ],
+     "c": "sky",
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0.27,
+      0,
+      0.024
+     ],
+     "s": [
+      0.04,
+      0.04,
+      0.02
+     ],
+     "c": "sky",
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0.19,
+      -0.19,
+      0.024
+     ],
+     "s": [
+      0.04,
+      0.04,
+      0.02
+     ],
+     "c": "sky",
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "on": "head",
+     "at": [
+      0.3,
+      -0.02,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      28
+     ],
+     "s": [
+      0.045,
+      0.2,
+      0.045
+     ],
+     "hang": [
+      0,
+      -0.09,
+      0
+     ],
+     "c": "blue",
+     "m": "matte",
+     "mirror": true,
+     "name": "arm"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0.3,
+      -0.02,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      28
+     ],
+     "s": [
+      0.08,
+      0.08,
+      0.08
+     ],
+     "hang": [
+      0,
+      -0.2,
+      0
+     ],
+     "c": "white",
+     "m": "matte",
+     "mirror": true,
+     "name": "arm"
+    }
+   ]
+  },
+  "spoon_friend": {
+   "color": "grey",
+   "sound": "Tee hee!",
+   "description": "The spoon from Hey Diddle Diddle: a shiny silver-grey spoon standing on its handle, its big round bowl at the top with big brown eyes, rosy cheeks and a smile on a white face, chunky silver arms with white hands and short legs in red shoes. About 1.05 m tall at size 1, faces +z, feet on y = 0. The bowl is the head group (pivot at y 0.78). Named parts: leg (mirrored, pivot at y 0.16), arm (mirrored, from the handle at y 0.47: wiggle to wave).",
+   "tags": [
+    "rhymes",
+    "hey_diddle_diddle",
+    "kitchen",
+    "character",
+    "story"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.78,
+     0
+    ],
+    "tilt": 0.6,
+    "look": 0.5
+   },
+   "eyes": {
+    "at": [
+     0.085,
+     0.05,
+     0.085
+    ],
+    "size": 0.11,
+    "iris": "eye_brown"
+   },
+   "cheeks": {
+    "at": [
+     0.15,
+     -0.05,
+     0.075
+    ],
+    "size": 0.055,
+    "color": "blush"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.1,
+     0.085
+    ],
+    "size": 0.1
+   },
+   "bob": 0.015,
+   "parts": [
+    {
+     "p": "capsule",
+     "at": [
+      0.065,
+      0.16,
+      0
+     ],
+     "s": [
+      0.05,
+      0.15,
+      0.05
+     ],
+     "hang": [
+      0,
+      -0.06,
+      0
+     ],
+     "c": "grey",
+     "m": "glossy",
+     "mirror": true,
+     "name": "leg"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.065,
+      0.16,
+      0
+     ],
+     "s": [
+      0.1,
+      0.065,
+      0.14
+     ],
+     "hang": [
+      0,
+      -0.13,
+      0.03
+     ],
+     "c": "red",
+     "m": "glossy",
+     "mirror": true,
+     "name": "leg"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.38,
+      0
+     ],
+     "s": [
+      0.13,
+      0.52,
+      0.08
+     ],
+     "c": "grey",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.15,
+      0
+     ],
+     "s": [
+      0.17,
+      0.1,
+      0.09
+     ],
+     "c": "grey",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": [
+      0.46,
+      0.56,
+      0.15
+     ],
+     "c": "grey",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0,
+      0,
+      0.016
+     ],
+     "s": [
+      0.4,
+      0.5,
+      0.13
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.06,
+      0.47,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      35
+     ],
+     "s": [
+      0.05,
+      0.2,
+      0.05
+     ],
+     "hang": [
+      0,
+      -0.09,
+      0
+     ],
+     "c": "grey",
+     "m": "glossy",
+     "mirror": true,
+     "name": "arm"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.06,
+      0.47,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      35
+     ],
+     "s": [
+      0.085,
+      0.085,
+      0.085
+     ],
+     "hang": [
+      0,
+      -0.2,
+      0
+     ],
+     "c": "white",
+     "m": "matte",
+     "mirror": true,
+     "name": "arm"
+    }
+   ]
+  },
+  "moon_face": {
+   "color": "cream",
+   "sound": "Hello!",
+   "description": "A round, glowing full moon with a gentle face (big brown eyes, rosy cheeks, a smile) and a few soft craters, for Hey Diddle Diddle (the cow jumps over it). About 1.1 m across at size 1, faces +z; its bottom is at y 0.05, so lift it with `at` to float it (it has no feet). The ball is the head group (pivot at y 0.6): feelings tilt it, `sleepy` closes its eyes.",
+   "tags": [
+    "rhymes",
+    "hey_diddle_diddle",
+    "sky",
+    "night",
+    "moon",
+    "character"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.6,
+     0
+    ],
+    "tilt": 0.5,
+    "look": 0.4
+   },
+   "eyes": {
+    "at": [
+     0.17,
+     0.08,
+     0.38
+    ],
+    "size": 0.13,
+    "iris": "eye_brown"
+   },
+   "cheeks": {
+    "at": [
+     0.3,
+     -0.08,
+     0.33
+    ],
+    "size": 0.1,
+    "color": "blush"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.17,
+     0.39
+    ],
+    "size": 0.16
+   },
+   "bob": 0.03,
+   "parts": [
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": [
+      1.1,
+      1.1,
+      0.8
+     ],
+     "c": "cream",
+     "m": "glow"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      -0.3,
+      0.3,
+      0.27
+     ],
+     "s": [
+      0.16,
+      0.16,
+      0.08
+     ],
+     "c": "sand",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0.26,
+      0.34,
+      0.26
+     ],
+     "s": [
+      0.1,
+      0.1,
+      0.06
+     ],
+     "c": "sand",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      -0.36,
+      -0.22,
+      0.25
+     ],
+     "s": [
+      0.12,
+      0.12,
+      0.06
+     ],
+     "c": "sand",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "on": "head",
+     "at": [
+      0.4,
+      0.06,
+      0.22
+     ],
+     "s": [
+      0.08,
+      0.08,
+      0.05
+     ],
+     "c": "sand",
+     "m": "matte"
+    }
+   ]
+  }
+ },
+ "props": {
+  "fiddle": {
+   "color": "wood",
+   "description": "A small toy fiddle (violin) with its bow, 0.56 m long at size 1: a shiny wooden body with a black fingerboard, cream strings, f-holes and a curled scroll at the top, standing along +y with its front toward +z, origin at the bottom of the body. The bow is the named part `bow`, lying across the strings near the bridge with its pivot at the middle: wiggle it (or turn it by [0, 0, ±15] and back) to play. On the cat: parent it to the cat at about [0.12, 0.42, 0.28], rotation [0, 0, 35], size 0.75.",
+   "tags": [
+    "rhymes",
+    "hey_diddle_diddle",
+    "music",
+    "instrument",
+    "small"
+   ],
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.1,
+      0
+     ],
+     "s": [
+      0.22,
+      0.18,
+      0.06
+     ],
+     "c": "wood",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.25,
+      0
+     ],
+     "s": [
+      0.17,
+      0.15,
+      0.06
+     ],
+     "c": "wood",
+     "m": "glossy"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.33,
+      0.035
+     ],
+     "s": [
+      0.035,
+      0.3,
+      0.014
+     ],
+     "c": "ink",
+     "m": "glossy"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.43,
+      0
+     ],
+     "s": [
+      0.03,
+      0.12,
+      0.03
+     ],
+     "c": "wood_dark",
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.46,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "s": [
+      0.014,
+      0.08,
+      0.014
+     ],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.52,
+      0
+     ],
+     "s": [
+      0.045,
+      0.06,
+      0.045
+     ],
+     "c": "wood_dark",
+     "m": "glossy"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.27,
+      0.044
+     ],
+     "s": [
+      0.026,
+      0.36,
+      0.004
+     ],
+     "c": "cream",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.12,
+      0.042
+     ],
+     "s": [
+      0.07,
+      0.024,
+      0.012
+     ],
+     "c": "cream",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.05,
+      0.036
+     ],
+     "s": [
+      0.04,
+      0.07,
+      0.012
+     ],
+     "c": "ink",
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.05,
+      0.13,
+      0.031
+     ],
+     "s": [
+      0.008,
+      0.05,
+      0.005
+     ],
+     "c": "ink",
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.15,
+      0.075
+     ],
+     "r": [
+      0,
+      0,
+      72
+     ],
+     "s": [
+      0.012,
+      0.52,
+      0.012
+     ],
+     "c": "wood_dark",
+     "m": "glossy",
+     "name": "bow"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.15,
+      0.075
+     ],
+     "r": [
+      0,
+      0,
+      72
+     ],
+     "s": [
+      0.006,
+      0.46,
+      0.006
+     ],
+     "hang": [
+      0.02,
+      0,
+      -0.004
+     ],
+     "c": "cream",
+     "m": "matte",
+     "name": "bow"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.15,
+      0.075
+     ],
+     "r": [
+      0,
+      0,
+      72
+     ],
+     "s": [
+      0.03,
+      0.05,
+      0.025
+     ],
+     "hang": [
+      0.012,
+      0.22,
+      0
+     ],
+     "c": "ink",
+     "m": "glossy",
+     "name": "bow"
+    }
+   ]
+  }
+ }
+}

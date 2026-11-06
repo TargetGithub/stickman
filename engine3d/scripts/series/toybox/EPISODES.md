@@ -35,7 +35,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | `br15_this_old_man.json` | uploaded | disk1:BABY-RHYMES/br15_this_old_man |
 | br16 | Mary Had a Little Lamb | Babies | Listening (rhyme) | `count_to_5_prek`, `position_words_prek`, `listening_prek` | `br16_mary_little_lamb.json` | uploaded | disk1:BABY-RHYMES/br16_mary_little_lamb |
 | br17 | B-I-N-G-O Clap Along | Babies | Letters and patterns (rhyme) | `capital_letters_prek`, `ab_patterns_prek`, `listening_prek` | `br17_bingo_clap_along.json` | uploaded | disk1:BABY-RHYMES/br17_bingo_clap_along |
-| br18 | Hey Diddle Diddle: Over and Under | Babies | Position words (rhyme) | `position_words_prek`, `opposites_k` | `br18_hey_diddle_diddle.json` | uploaded | – |
+| br18 | Hey Diddle Diddle: Over and Under | Babies | Position words (rhyme) | `position_words_prek`, `opposites_k` | `br18_hey_diddle_diddle.json` | uploaded | disk1:BABY-RHYMES/br18_hey_diddle_diddle |
 | br19 | 1, 2, 3, 4, 5, Once I Caught a Fish Alive | Babies | Counting to 10 (rhyme) | `count_to_10_k`, `count_to_5_prek`, `position_words_prek` | `br19_once_i_caught_a_fish.json` | uploaded | – |
 | br20 | Opposites Hop | Babies | Opposites (rhyme) | `opposites_k`, `position_words_prek`, `listening_prek` | `br20_opposites_hop.json` | uploaded | – |
 
