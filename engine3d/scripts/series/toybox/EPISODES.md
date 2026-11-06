@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-90 episodes: 12 spec, 4 scripted, 69 rendered, 5 uploaded. Status moves spec → scripted → rendered → uploaded.
+90 episodes: 9 spec, 6 scripted, 69 rendered, 6 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -23,12 +23,12 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | bb04 | Black and White Shapes | Babies | Shapes (sensory) | `basic_shapes_prek` | `bb04_contrast_shapes.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb04_contrast_shapes |
 | br04 | Head, Shoulders, Knees and Toes | Babies | Body parts (rhyme) | `five_senses_prek`, `listening_prek` | `br04_head_shoulders_knees_toes.json` | uploaded | disk1:BABY-RHYMES/br04_head_shoulders_knees_toes |
 | br05 | Hickory Dickory Dock | Babies | Counting and time (rhyme) | `count_to_5_prek`, `position_words_prek` | `br05_hickory_dickory_dock.json` | scripted | – |
-| br06 | Row, Row, Row Your Boat | Babies | Opposites (rhyme) | `opposites_k`, `living_things_k`, `listening_prek` | `br06_row_your_boat.json` | scripted | – |
+| br06 | Row, Row, Row Your Boat | Babies | Opposites (rhyme) | `opposites_k`, `living_things_k`, `listening_prek` | `br06_row_your_boat.json` | uploaded | disk1:BABY-RHYMES/br06_row_your_boat |
 | br07 | Itsy Bitsy Spider: Rain and Sun | Babies | Weather (rhyme) | `weather_seasons_1`, `position_words_prek` | `br07_itsy_bitsy_spider.json` | scripted | – |
 | br08 | Humpty Dumpty: Fix It Together | Babies | Shapes and cause and effect (rhyme) | `basic_shapes_prek`, `count_to_5_prek` | `br08_humpty_dumpty.json` | scripted | – |
-| br09 | Hot Cross Buns | Babies | Counting and sharing (rhyme) | `count_to_5_prek` | spec: specs/baby_rhymes.md br09 | spec | – |
-| br10 | Rainbow Colours Song | Babies | Colours (rhyme) | – | spec: specs/baby_rhymes.md br10 | spec | – |
-| br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek` | spec: specs/baby_rhymes.md br11 | spec | – |
+| br09 | Hot Cross Buns | Babies | Counting and sharing (rhyme) | `count_to_5_prek`, `feelings_prek` | `br09_hot_cross_buns.json` | scripted | – |
+| br10 | Rainbow Colours Song | Babies | Colours (rhyme) | `listening_prek`, `weather_seasons_1` | `br10_rainbow_colours.json` | scripted | – |
+| br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | scripted | – |
 | br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek` | spec: specs/baby_rhymes.md br12 | spec | – |
 | br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek` | spec: specs/baby_rhymes.md br13 | spec | – |
 | br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | – | spec: specs/baby_rhymes.md br14 | spec | – |
