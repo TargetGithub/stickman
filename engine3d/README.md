@@ -340,6 +340,23 @@ Built for the baby and toddler rhyme series (`scripts/series/toybox/specs/baby_r
 | Trackers and word pops that stay put | `hud: true` on any object draws it in screen space after the 3D picture (`stage.js` `createHud`): `at` in HUD units, the frame 16 wide and 9 tall with (0, 0) at its centre (x −8…8, y −4.5…4.5, z toward the viewer for layering); a size-1 critter is about 1 unit tall. Front-lit, no shadows or fog; every action works on it (`pop`, `hide`, `wiggle`, `grow`). A child and its parent share a layer; `shot` cannot frame a HUD object (`E3D_HUD`). Props for it: `tracker_slot` (a card whose rim takes `color`) and `word_bubble`. br01 has a six-slot tracker top left, a 3-2-1 countdown (letters on a white `circle`) and a word bubble top right. |
 | A farm | Stage `farm` (sky, grass, a dirt yard, fence, trees, hills, sun and clouds behind z = −2.4) and `catalog/models/farm.json`: `horse`, `barn` (doors `barn#door_left` / `barn#door_right`, open with `turn` to [0, −100, 0] / [0, 100, 0]), `hay_bale`. Camera for a barn at [0, 0, −1.5]: position [0, 2.1, 9.4], lookAt [0, 1.35, −0.4], fov 40. |
 
+### Retention kit (hooks, timers, options, keywords, trackers, call-and-response)
+
+Features that keep children watching past the first minute. The full reference, with every parameter and the
+screen zones, is `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox/10K/ENGINE_RETENTION_KIT.md`. The demo is
+`scripts/demos/retention_kit.json` (rendered to `out/demos/3d/retention_kit/`), and `tests/unit/retain.test.js`
+covers the kit.
+
+| Need | How |
+|---|---|
+| A fast hook | `hook` (`question`, `behind`, `target` hidden, `style` lift / slide / tip, `answer`): a question, a "?" cue, two cover wiggles, then the reveal with a sparkle, a glow and a camera push. |
+| A countdown | kind `timer_ring` (HUD, top right by default; it drains green, then yellow, then orange) and `timer` (`dur`, `count`, `keep`); with no target, the action adds a ring. Sounds: `timer_tick`, `timer_chime`. |
+| Answer choices | `options` (`targets`, `style` pulse / blink) and `answer` (`result` correct: tick, glow, hop, ding, `confetti`; wrong: soft shake, soft cross, `wrong_soft`, `hint` glow). `challenge` chains a prompt, options with a timer, the answer and `praise`. |
+| Keyword pop-ins | `say` `keywords: { "water": "drop" }` (an icon, a prop or text), or a `keyword` action: a HUD badge pops when the word is spoken, on the side away from the camera's look point (or `avoid`), stacking and keeping clear of trackers. |
+| Progress | kind `tracker` (`style` train / checklist / stars / path, `slots`, `labels`, `surprise`, `corner`) and `progress` (`step` next or a number, `tease`). |
+| Call-and-response | `call` (`prompt`, `cue` ear / hand / mouth / eye / question, `wait`, `answer`, `reveal`): the music dips in the pause. |
+| Lints | Warnings `W3D_HOOK_LATE` (first interaction after 8 s), `W3D_TALK_STRETCH` (over 15 s of talk without one), `W3D_STATIC_CAMERA` (camera still for over 20 s), `W3D_TRACKER_UNFILLED`. They run when `meta.retention` is set, when the kit is used, or with `validateScript(s, catalog, { retention: true })`, so older scripts stay warning-free. `plan.engagement` lists the cues they time. |
+
 ## Rules (as for /engine)
 
 - No `Math.random`, `Date.now`, `performance.now`, `requestAnimationFrame` in `runtime/` or `scenes/` (a test

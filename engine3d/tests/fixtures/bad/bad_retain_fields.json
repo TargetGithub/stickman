@@ -1,0 +1,7 @@
+{"expect": ["E3D_TRACKER", "E3D_ICON", "E3D_BADGE", "E3D_RETENTION", "E3D_COLOR"], "script": {"kind": "video3d", "version": 1, "meta": {"retention": {"hookBy": 8, "boredom": 3}}, "objects": [
+  {"id": "t1", "kind": "tracker", "hud": true, "slots": 0},
+  {"id": "t2", "kind": "tracker", "hud": true, "slots": 3, "style": "rocket", "labels": ["A", "B", "C", "D"], "surprise": "XYZ", "corner": "bottom"},
+  {"id": "b1", "kind": "badge", "hud": true, "icon": "dragon"},
+  {"id": "b2", "kind": "badge", "hud": true},
+  {"id": "r1", "kind": "timer_ring", "hud": true, "color": "plaid"}
+], "scenes": [{"id": "s", "beats": [{"do": [{"do": "sound", "sound": "pop"}]}]}]}}

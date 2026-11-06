@@ -99,6 +99,31 @@ Look at `thumbnails_sheet.jpg` (each concept big and at phone size) before uploa
 - An object resting on another moves with it (hop the blocks above too); `hop` adds to position, so moving
   objects can hop.
 
+## Retention kit (first 60 seconds)
+
+Studio data: 50–80% of viewers leave in the first 30–60 s, and the ones still watching after a minute stay. Every
+new episode uses the retention kit. The full reference, with every parameter, is
+`/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox/10K/ENGINE_RETENTION_KIT.md`, and the demo is
+`engine3d/scripts/demos/retention_kit.json`.
+
+- **Hook by 8 s.** Open with `hook`: a question, a peekaboo reveal and no setup dialogue.
+  `{ "do": "hook", "question": "Can you help find the letter G? Let's check behind this box!", "behind": "box", "target": "g", "answer": "There it is!" }`
+  (the target starts `hidden: true` where the cover stands).
+- **Tracker with a surprise.** Show a HUD `tracker` (`style` train / checklist / stars / path, `slots`, `labels`,
+  `surprise`) in the first beat. Tease the surprise early with `{ "do": "progress", "target": "trip", "tease": true }`,
+  fill one step per learning goal with `{ "do": "progress", "target": "trip" }`, and fill the surprise at the end.
+- **No talk stretch over 15 s.** Break long talk with `challenge` (prompt, then pulsing options and a 3-2-1
+  `timer` ring, then the celebrated answer), `call` (prompt, a pause with an ear / hand / mouth cue, then the
+  answer), `answer` (`correct` or a gentle `wrong` with a `hint`), or keyword badges:
+  `{ "do": "say", "text": "Plants need water and sun.", "keywords": { "water": "drop", "sun": "sun" } }`.
+- **Keep the camera moving.** Never hold still for more than 20 s: use `shot`, `orbit` or `camera` during teaching.
+- **Lints.** Using the kit (or setting `meta.retention`) turns on these warnings: `W3D_HOOK_LATE`,
+  `W3D_TALK_STRETCH`, `W3D_STATIC_CAMERA` and `W3D_TRACKER_UNFILLED`. Clear them before rendering. Limits can be
+  tuned with `"retention": { "hookBy": 8, "talkMax": 15, "staticMax": 20 }`.
+- **Screen zones.** The kit keeps the tracker in the top-left band, the timer at the top right, keyword badges on
+  the left or right edge (away from what is being taught) and the cue badge at the top middle. It never uses the
+  caption band or the bottom corners (the YouTube timestamp and player controls).
+
 ## Batch 2 specs
 
 Specs for 30 more videos (pre-K, grade 1, grade 2) are in [specs/README.md](specs/README.md): the topic

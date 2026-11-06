@@ -16,6 +16,7 @@ import { buildClock, buildLamp, buildWeather } from "./objects_extra.js";
 import { morphFeeling } from "./faces.js";
 import { buildTeach, isTeachKind } from "./teach.js";
 import { createCharacterRig } from "./talk.js";
+import { buildRetain, isRetainKind } from "./retain_build.js";
 
 /** Load the fonts and characters a plan uses. @returns {Promise<{ fonts: Map, characters: Map }>} */
 export async function loadAssets(plan, catalog, base) {
@@ -112,6 +113,7 @@ function colorLetters(o, font, size, depth, material, lift = false) {
 export function buildObject(o, { catalog, assets, material, seed, height = 1080, handles }) {
   // The teaching kit (teach.js): handles lets marks and glows measure the object they ride on.
   if (isTeachKind(o.kind)) return buildTeach(o, { catalog, material, font: assets.fonts.get("andika_bold"), textGeometry, handles, height });
+  if (isRetainKind(o.kind)) return buildRetain(o, { catalog, material, font: assets.fonts.get("andika_bold"), textGeometry });
   const group = new THREE.Group();
   group.name = o.id;
   const size = o.size ?? 1;

@@ -9,6 +9,7 @@ import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachActio
 import { addSetPieces, checkLookCamera, checkWho } from "./validate_look.js";
 import { KIT2_FIELDS, checkKit2Object, createKit2Checker } from "./validate_kit2.js";
 import { PAINT_KINDS, checkCast, checkLift, checkR3Action } from "./validate_r3.js";
+import { RETAIN_FIELDS, checkRetainAction, checkRetainObject, checkRetentionMeta, lintsOn, retentionLints } from "./validate_retain.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
 const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit", "hud"]);
@@ -28,6 +29,7 @@ const FIELDS = {
   group: [],
   ...TEACH_FIELDS,
   ...KIT2_FIELDS,
+  ...RETAIN_FIELDS,
 };
 const TARGETS = {
   clip: ["character"], burst: ["confetti", "bubbles"], sleep: ["critter", "shape"], wake: ["critter", "shape"],
@@ -35,7 +37,7 @@ const TARGETS = {
 };
 // Moves that can target a named part of a critter or prop ("box#lid", "dog#head").
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
-const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast", "host"]);
+const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast", "host", "retention"]);
 const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2", "grade3", "grade4", "grade5"];
 const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
@@ -46,8 +48,10 @@ const isNum = (v, lo = -Infinity, hi = Infinity) => typeof v === "number" && Num
 /**
  * @param {object} script
  * @param {object} catalog  loadCatalog3d() (with characters[].clipDurations when known)
+ * @param {{ retention?: boolean, speech?: object }} [opts]  retention: force the retention lints on or off
+ *   (default: on when meta.retention asks or the script uses the retention kit); speech: measured clips for them
  */
-export function validateScript(script, catalog) {
+export function validateScript(script, catalog, opts = {}) {
   const errors = [];
   const warnings = [];
   const err = (code, path, message) => errors.push({ code, path, message });
@@ -69,6 +73,7 @@ export function validateScript(script, catalog) {
   if (meta.music != null && meta.music !== false && catalog.musicMoods?.length && !catalog.musicMoods.includes(meta.music)) err("E3D_MUSIC", "meta.music", `unknown music mood "${meta.music}" (known: ${catalog.musicMoods.join(", ")})`);
   if (meta.audience != null && !AUDIENCES.includes(meta.audience)) err("E3D_AUDIENCE", "meta.audience", `audience must be one of ${AUDIENCES.join(", ")}`);
   if (meta.thumbnail != null) checkThumbnail(meta.thumbnail);
+  checkRetentionMeta(meta.retention, err);
   if (meta.thumbnails != null) {
     const t = checkThumbnails(meta.thumbnails, script, catalog, validateScript); // designed thumbnails (runtime/thumbnails.js)
     errors.push(...t.errors);
@@ -133,6 +138,7 @@ export function validateScript(script, catalog) {
     if (o.recolor != null) checkRecolor(o, p);
     checkTeachObject(o, p, { err, warn, ids, catalog, name });
     checkKit2Object(o, p, { err, warn, ids, catalog, name });
+    checkRetainObject(o, p, { err, warn, name: (c) => name(catalog.colors, c, "E3D_COLOR", p, "color") });
     checkLift(o, p, err);
     if (o.kind === "shape" && o.face != null && typeof o.face !== "boolean") err("E3D_FACE", `${p}.face`, "face must be true or false");
     if (o.kind === "confetti") {
@@ -147,6 +153,7 @@ export function validateScript(script, catalog) {
   if (!Array.isArray(script.scenes) || !script.scenes.length) err("E3D_SCENES", "scenes", "scenes must be a non-empty list");
   const lineIds = new Set();
   const kit2 = createKit2Checker({ err, ids, catalog, partNames });
+  const progress = new Map(); // tracker id → steps filled so far, in script order
   (Array.isArray(script.scenes) ? script.scenes : []).forEach((s, si) => {
     const sp = `scenes[${si}]`;
     if (typeof s?.id !== "string") err("E3D_ID", `${sp}.id`, "scene id is required");
@@ -172,6 +179,7 @@ export function validateScript(script, catalog) {
     if (checkR3Action(a, p, { err, warn, ids, catalog })) return; // stage, voices, shot pad, paint from on fractions
     if (checkLookCamera(a, p, ids, err)) return;
     if (kit2(a, p)) return; // shift, set, emphasize, reparent, point (validate_kit2.js)
+    if (checkRetainAction(a, p, { err, ids, catalog, progress })) return; // the retention kit (validate_retain.js)
     for (const k of ["to", "position", "lookAt"]) {
       if (a[k] == null || a.do === "clock" || NUMBER_TO.has(a.do)) continue;
       const ok = a.do === "grow" ? isNum(a[k], 0.01, 100) || (isVec(a[k]) && a[k].every((x) => x >= 0.001)) : isVec(a[k]);
@@ -238,6 +246,7 @@ export function validateScript(script, catalog) {
     if ((a.do === "drop" || a.do === "move") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
   }
 
+  if (errors.length === 0 && lintsOn(script, opts.retention)) warnings.push(...retentionLints(script, catalog, { speech: opts.speech }));
   return { ok: errors.length === 0, errors, warnings };
 
   /** recolor: { "<colour a part uses>": "<new colour>" }, both catalog colour names. */

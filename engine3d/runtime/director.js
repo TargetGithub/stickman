@@ -16,6 +16,8 @@ import { installLook } from "./look.js";
 import { addTalk } from "./lipsync.js";
 import { stageSet } from "./stage_set.js";
 import { installStageChange } from "./stage_change.js";
+import { RETAIN_KINDS } from "./retain_layout.js";
+import { installRetain, retainDefaults } from "./director_retain.js";
 
 const V = (v, d) => (Array.isArray(v) ? [...v] : typeof v === "number" ? [v, v, v] : [...d]);
 const LOOPING = new Set(["Idle", "Dance", "Walking", "Running"]);
@@ -80,7 +82,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     /** Place an object. Fields per kind: catalog/kinds.json. */
     add(spec) {
-      spec = placeOn(spec, objects); // on: { line, value } stands it on a number line
+      spec = retainDefaults(placeOn(spec, objects)); // on: { line, value } stands it on a number line
       if (!spec?.id || objects.has(spec.id) || spec.id === "camera" || spec.id === "stage") throw new Error(`object id "${spec?.id}" is missing or taken`);
       if (!catalog.kinds[spec.kind] && !spec.internal) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
       if (spec.parent != null && !objects.has(spec.parent)) throw new Error(`object "${spec.id}": parent "${spec.parent}" must be added first`);
@@ -121,6 +123,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       if (o.kind === "lamp") tl.base(o.id, "aim", V(o.aim, [o.at[0], 0, o.at[2] - 2]));
       if (TEACH_KINDS.includes(o.kind)) teachBases(o, { tl, parts, catalog, objects });
       if (KIT2_KINDS.includes(o.kind)) kit2.bases(o);
+      if (RETAIN_KINDS.includes(o.kind)) retain.bases(o);
       if (o.kind === "character") tl.clip(o.id, o.clip ?? catalog.characters[o.character].idle, { start: 0, loop: true, fade: 0 });
       return d;
     },
@@ -322,7 +325,8 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       const duration = Math.max(endAt, tl.end(), ...captions.map((c) => c.start + c.dur)) + 0.5;
       const cues = musicCues.length ? { musicCues: [...musicCues].sort((a, b) => a.t - b.t) } : {};
       const scenes = chapters.length ? { scenes: [...chapters].sort((a, b) => a.start - b.start) } : {};
-      return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration, ...cues, ...scenes };
+      const engagement = [...retain.engagement].sort((a, b) => a.t - b.t);
+      return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration, engagement, ...cues, ...scenes };
     },
   };
   const { stageBases } = installExtras(d, { catalog, tl, obj, now, sound, getStage: () => stage, V });
@@ -331,5 +335,6 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   installCameraMoves(d, { catalog, tl, obj, now, V, objects });
   installLook(d, { catalog, tl, obj, now, V });
   const kit2 = installKit2(d, { catalog, tl, obj, now, sound, objects, V });
+  const retain = installRetain(d, { catalog, tl, obj, now, sound, objects });
   return d;
 }

@@ -151,7 +151,8 @@
     "tunePatch": "the instrument for tune: glock (default), bell, music_box, toy, pluck_high, flute, glass",
     "tuneGain": "the melody level, 0-1 (default 0.16, 10-14 dB under the voice)",
     "tempo": "with tune: beats a minute, 60-180 (default 112)",
-    "rhythm": "with tune: true chants the voice on the tune's beat (experimental, can sound choppy); default false: normal speech, the notes follow its syllables"
+    "rhythm": "with tune: true chants the voice on the tune's beat (experimental, can sound choppy); default false: normal speech, the notes follow its syllables",
+    "keywords": "optional { word: icon name, prop name or keyword options }: a badge pops at the side of the frame as each word is spoken (retention kit)"
    },
    "description": "Speak a line with Piper TTS; the beat lasts at least as long as the voice. With who, the speaker lip-syncs to the clip's loudness.",
    "tags": [
@@ -588,6 +589,140 @@
    "tags": [
     "attention",
     "teaching"
+   ]
+  },
+  "hook": {
+   "params": {
+    "question": "the opening question, spoken and captioned (required)",
+    "behind": "the cover object (required)",
+    "target": "the object it hides, hidden until the reveal (required)",
+    "style": "lift (default: rises and floats away), slide (moves aside) or tip (tips back)",
+    "reveal": "seconds after the question before the reveal, default 0.6",
+    "answer": "optional line said after the reveal",
+    "badge": "default true: a pulsing ? badge while asking",
+    "shot": "default true: push in on the cover, then frame the answer",
+    "who": "optional speaker",
+    "caption": "default true"
+   },
+   "description": "Open with a surprise: ask a question, wiggle the cover twice, then take it away and pop the hidden answer with a sparkle (peekaboo). Put it in the first beat; the beat stretches to fit.",
+   "tags": [
+    "retention",
+    "hook",
+    "quiz"
+   ]
+  },
+  "challenge": {
+   "params": {
+    "prompt": "the challenge line (required)",
+    "options": "2-6 object ids (required)",
+    "answer": "the right option (required)",
+    "dur": "timer seconds, default 5",
+    "count": "countdown numbers, default 3",
+    "timer": "a timer_ring id (default an automatic one at the top right)",
+    "praise": "optional line after the answer",
+    "confetti": "optional confetti id to burst",
+    "who": "optional speaker",
+    "caption": "default true"
+   },
+   "description": "Point before the timer rings: the prompt is spoken, then the options pulse while a timer ring drains with 3-2-1 ticks, then the answer is celebrated. The beat stretches to fit.",
+   "tags": [
+    "retention",
+    "quiz",
+    "timer"
+   ]
+  },
+  "call": {
+   "params": {
+    "prompt": "the call (required)",
+    "answer": "the response, spoken after the pause (required)",
+    "cue": "ear, hand (default), mouth, eye or question",
+    "wait": "pause seconds, 1-6, default 2.5",
+    "who": "prompt speaker",
+    "answerWho": "answer speaker (default who)",
+    "reveal": "optional object to pop (if hidden) or glow with the answer",
+    "caption": "default true"
+   },
+   "description": "Call-and-response: a prompt, a pause with a pulsing cue badge (the music dips), then the answer is revealed. The beat stretches to fit.",
+   "tags": [
+    "retention",
+    "interaction"
+   ]
+  },
+  "timer": {
+   "params": {
+    "target": "a timer_ring id (optional: default an automatic ring at the top right)",
+    "dur": "seconds, 2-30, default 5",
+    "count": "countdown numbers at the end, 0-5, default 3",
+    "sound": "tick per number, default timer_tick; false for none",
+    "chime": "end sound, default timer_chime; false for none",
+    "keep": "true leaves the ring on screen"
+   },
+   "description": "Pop a timer ring in and drain it over dur seconds, with big 3-2-1 numbers and ticks at the end and a chime when it rings.",
+   "tags": [
+    "retention",
+    "quiz",
+    "timer"
+   ]
+  },
+  "options": {
+   "params": {
+    "targets": "2-6 object ids (required)",
+    "dur": "seconds, default 3",
+    "style": "pulse (default: grow and glow in turn) or blink (glows flash together)",
+    "color": "glow colour, default gold"
+   },
+   "description": "Make the answer choices pulse or blink so children know what to choose from.",
+   "tags": [
+    "retention",
+    "quiz",
+    "attention"
+   ]
+  },
+  "answer": {
+   "params": {
+    "target": "the chosen option (required)",
+    "result": "correct (default) or wrong",
+    "hint": "with wrong: the right option, which then glows",
+    "confetti": "with correct: a confetti id to burst",
+    "sound": "default ding (correct) or wrong_soft; false for none"
+   },
+   "description": "Show a result: correct gets a green tick, a gold glow, a happy hop and a ding; wrong gets a soft shake, a gentle cross and a low boop, then the hint glows. Never scary.",
+   "tags": [
+    "retention",
+    "quiz",
+    "reward"
+   ]
+  },
+  "keyword": {
+   "params": {
+    "word": "the key word (for the lints and the reader)",
+    "icon": "a badge icon (ear, hand, mouth, eye, question, star, check, heart, drop, sun, leaf, apple, music, home, moon, snow)",
+    "model": "a catalog prop shown in 3D on the badge",
+    "text": "1-4 characters",
+    "color": "badge colour, default per icon",
+    "sound": "default per icon; false for none",
+    "dur": "seconds on screen, default 2.2",
+    "side": "auto (default), left or right",
+    "avoid": "an object to keep clear of (default the camera's look point)"
+   },
+   "description": "Pop a keyword badge with a sound at the side of the frame, away from what is being taught (say keywords does this per word).",
+   "tags": [
+    "retention",
+    "vocabulary",
+    "attention"
+   ]
+  },
+  "progress": {
+   "params": {
+    "target": "a tracker id (required)",
+    "step": "a number (fill up to it; the surprise is slots + 1) or next (default)",
+    "tease": "true wiggles and sparkles the surprise slot without filling it",
+    "sound": "default pop per fill, train_whistle when a train is full, magic_sparkle on the surprise; false for none"
+   },
+   "description": "Fill a progress tracker to the next step (or a given one), or tease its surprise slot.",
+   "tags": [
+    "retention",
+    "progress"
    ]
   }
  }

@@ -1,0 +1,10 @@
+{"expectWarnings": ["W3D_HOOK_LATE", "W3D_TALK_STRETCH", "W3D_STATIC_CAMERA", "W3D_TRACKER_UNFILLED"], "script": {"kind": "video3d", "version": 1, "meta": {"retention": true}, "objects": [
+  {"id": "g", "kind": "letter", "text": "G", "hidden": true},
+  {"id": "trip", "kind": "tracker", "hud": true, "slots": 3, "surprise": true}
+], "scenes": [{"id": "s", "beats": [
+  {"do": [{"do": "say", "text": "Hello friends, today we are going to learn something new and exciting about letters."}]},
+  {"do": [{"do": "say", "text": "Letters are everywhere: on signs, on books, on boxes, on shirts and even on cereal boxes."}]},
+  {"do": [{"do": "say", "text": "Some letters are tall, some are short, some are curvy and some are made of straight lines."}]},
+  {"do": [{"do": "say", "text": "Before we start, let us think about all the places we have seen letters this week."}]},
+  {"do": [{"do": "pop", "target": "g"}, {"do": "progress", "target": "trip"}]}
+]}]}}

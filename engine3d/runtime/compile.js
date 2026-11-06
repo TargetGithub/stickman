@@ -5,6 +5,8 @@
 import { createDirector } from "./director.js";
 import { TEACH_ACTIONS } from "./director_teach.js";
 import { KIT2_ACTIONS } from "./director_kit2.js";
+import { ENGAGING, RETAIN_ACTIONS } from "./director_retain.js";
+import { RETAIN_MACROS, runMacro, sayKeywords } from "./retain_compile.js";
 
 export const SAY_TAIL = 0.35;
 /** Pause between a line and the next one queued with at: "after". */
@@ -35,24 +37,35 @@ export function compileScript(script, { catalog, speech = {} }) {
       let len = beat.dur ?? 1;
       const later = [];
       let sayEnd = 0; // where the beat's last line so far ends (seconds from the beat start)
+      let kitLines = 0;
+      // Speak a line at rel (seconds from the beat start); returns its length. The beat grows to fit it.
+      const speak = (a, rel, ai) => {
+        // The speaker is `who`, else the episode's host (Robo, see hostOf). A character's own catalog voice (Robo's
+        // toddler voice) comes first, then meta.cast; the line's own settings win over both.
+        const speaker = a.who ?? host;
+        const own = speaker != null ? speakerVoice.get(speaker) ?? {} : {};
+        const cast = speaker != null ? meta.cast?.[speaker] ?? {} : {};
+        const voice = { voice: a.voice ?? own.voice ?? cast.voice, pitch: a.pitch ?? own.pitch ?? cast.pitch, speed: a.speed ?? cast.speed ?? own.speed };
+        const id = a.id ?? (ai != null ? `${beatId}.${ai + 1}` : `${beatId}.k${++kitLines}`);
+        const dur = d.say(a.text, { at: t + rel, ...voice, id, who: a.who, tune: a.tune, sing: a.sing, tunePatch: a.tunePatch, tuneGain: a.tuneGain, tempo: a.tempo, rhythm: a.rhythm });
+        sayEnd = Math.max(sayEnd, rel + dur);
+        len = Math.max(len, rel + dur + SAY_TAIL);
+        if (a.caption) later.push({ do: "caption", text: a.text, at: rel, dur: a.dur ?? dur + SAY_TAIL });
+        if (a.keywords) sayKeywords(d, { text: a.text, keywords: a.keywords, start: t + rel, dur, catalog });
+        return dur;
+      };
       (beat.do ?? []).forEach((a, ai) => {
         // look's at may name what to look at (an id or a point); a number is always the time.
         // A say with at: "after" starts when the beat's previous line ends (its measured clip), plus SAY_GAP.
         const rel = a.do === "say" && a.at === "after" ? sayEnd + (sayEnd > 0 ? SAY_GAP : 0) : typeof a.at === "number" ? a.at : 0;
         const start = t + rel;
-        if (a.do === "say") {
-          // The speaker is `who`, else the episode's host (Robo, see hostOf). A character's own catalog voice (Robo's
-          // toddler voice) comes first, then meta.cast; the line's own settings win over both.
-          const speaker = a.who ?? host;
-          const own = speaker != null ? speakerVoice.get(speaker) ?? {} : {};
-          const cast = speaker != null ? meta.cast?.[speaker] ?? {} : {};
-          const voice = { voice: a.voice ?? own.voice ?? cast.voice, pitch: a.pitch ?? own.pitch ?? cast.pitch, speed: a.speed ?? cast.speed ?? own.speed };
-          const dur = d.say(a.text, { at: start, ...voice, id: a.id ?? `${beatId}.${ai + 1}`, who: a.who, tune: a.tune, sing: a.sing, tunePatch: a.tunePatch, tuneGain: a.tuneGain, tempo: a.tempo, rhythm: a.rhythm });
-          sayEnd = Math.max(sayEnd, rel + dur);
-          len = Math.max(len, (a.at === "after" ? rel : a.at ?? 0) + dur + SAY_TAIL);
-          if (a.caption) later.push({ do: "caption", text: a.text, at: rel, dur: a.dur ?? dur + SAY_TAIL });
-        } else if (a.do === "caption") later.push(a);
-        else run(d, a, start);
+        if (a.do === "say") speak(a, rel, ai);
+        else if (a.do === "caption") later.push(a);
+        else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(a, { d, t, rel, speak: (l, r) => speak(l, r) }));
+        else {
+          run(d, a, start);
+          if (ENGAGING.includes(a.do)) d.engage(a.do, { at: start });
+        }
       });
       // Captions without a dur last to the end of their beat, known only now.
       for (const c of later) d.caption(c.text, { at: t + (c.at ?? 0), dur: c.dur ?? Math.max(0.5, len - (c.at ?? 0)), style: c.style, color: c.color, pos: c.pos });
@@ -118,7 +131,7 @@ function run(d, a, start) {
     case "stage": return d.changeStage(a.preset, o);
     case "music": return d.music(o);
     default:
-      if (TEACH_ACTIONS.includes(a.do) || KIT2_ACTIONS.includes(a.do)) return d[a.do](a.target, o);
+      if (TEACH_ACTIONS.includes(a.do) || KIT2_ACTIONS.includes(a.do) || RETAIN_ACTIONS.includes(a.do)) return d[a.do](a.target, o);
       throw new Error(`unknown action "${a.do}"`);
   }
 }

@@ -81,4 +81,5 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh, buzz
 - music: flute_tune, leaf_tune, twang, drum
 - weather: thunder, rain
+- ui: timer_tick, timer_chime, wrong_soft, listen_cue
 - vehicle: train_whistle, rocket

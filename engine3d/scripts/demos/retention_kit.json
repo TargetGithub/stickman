@@ -1,0 +1,140 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Retention kit demo (ENGINE_RETENTION_KIT.md): a fast peekaboo hook, a train tracker with a surprise caboose, keyword badges, call-and-response, a timer challenge with pulsing options, correct and wrong answers, and the other tracker styles.",
+  "meta": {
+    "title": "Retention Kit Demo",
+    "seed": 77,
+    "voice": "soft",
+    "voiceSpeed": 0.97,
+    "music": "playful",
+    "musicGain": 0.2,
+    "audience": "prek",
+    "retention": { "hookBy": 8, "talkMax": 15, "staticMax": 20 }
+  },
+  "stage": { "preset": "studio" },
+  "camera": { "position": [0, 1.9, 9], "lookAt": [0, 1.2, 0], "fov": 40 },
+  "objects": [
+    { "id": "robo", "kind": "character", "character": "robot", "at": [-3.6, 0, 0.6], "rotation": [0, 30, 0] },
+    { "id": "box", "kind": "prop", "model": "toy_box", "size": 1.5, "at": [0.6, 0, 0.3] },
+    { "id": "g_big", "kind": "letter", "text": "G", "color": "green", "size": 1.1, "at": [0.6, 0, 0.3], "hidden": true },
+    { "id": "card_f", "kind": "letter", "text": "F", "color": "orange", "size": 1, "at": [-1.5, 0, 0.6], "hidden": true },
+    { "id": "card_g", "kind": "letter", "text": "G", "color": "green", "size": 1, "at": [0.6, 0, 0.6], "hidden": true },
+    { "id": "card_h", "kind": "letter", "text": "H", "color": "blue", "size": 1, "at": [2.7, 0, 0.6], "hidden": true },
+    { "id": "party", "kind": "confetti", "count": 140, "area": [7, 3], "height": 6 },
+    { "id": "trip", "kind": "tracker", "hud": true, "style": "train", "slots": 3, "labels": ["1", "2", "3"], "surprise": true, "color": "red", "accent": "yellow", "hidden": true },
+    { "id": "clock", "kind": "timer_ring", "hud": true },
+    { "id": "list", "kind": "tracker", "hud": true, "style": "checklist", "slots": 3, "labels": ["Find G", "Say guh", "Point to G"], "surprise": true, "color": "teal", "hidden": true },
+    { "id": "stars", "kind": "tracker", "hud": true, "style": "stars", "slots": 4, "surprise": true, "corner": "top_right", "color": "purple", "hidden": true },
+    { "id": "walk", "kind": "tracker", "hud": true, "style": "path", "slots": 4, "labels": ["F", "G", "H", "I"], "surprise": true, "corner": "top", "color": "blue", "accent": "green", "hidden": true }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "title": "Find the G",
+      "beats": [
+        { "do": [
+          { "do": "hook", "question": "Can you help find the letter G? Let's check behind this box!", "behind": "box", "target": "g_big", "style": "lift", "answer": "There it is! The letter G!" },
+          { "do": "pop", "target": "trip", "at": 0.6, "sound": false },
+          { "do": "clip", "target": "robo", "clip": "Wave", "at": 0.3 }
+        ] },
+        { "do": [
+          { "do": "say", "text": "Stick around for the surprise at the end of the train!", "caption": true },
+          { "do": "progress", "target": "trip", "tease": true, "at": 1.4 },
+          { "do": "camera", "position": [-0.6, 1.7, 8], "lookAt": [0.2, 1.1, 0], "dur": 3 }
+        ] },
+        { "do": [
+          { "do": "say", "text": "We found G, so our first train car fills up.", "caption": true },
+          { "do": "progress", "target": "trip", "at": 1.6 },
+          { "do": "hop", "target": "g_big", "at": 1.6, "height": 0.4 }
+        ] }
+      ]
+    },
+    {
+      "id": "teach",
+      "title": "G words",
+      "beats": [
+        { "do": [
+          { "do": "shot", "target": "g_big", "framing": "medium", "yaw": 20, "dur": 2 },
+          { "do": "say", "text": "G is for garden. A garden needs water and sun.", "caption": true, "keywords": { "water": "drop", "sun": "sun" } }
+        ] },
+        { "do": [
+          { "do": "orbit", "around": [0.6, 0.8, 0.3], "degrees": -35, "dur": 5 },
+          { "do": "say", "text": "G is also for gift. Who loves a gift?", "caption": true, "keywords": { "gift": "gift" } },
+          { "do": "clip", "target": "robo", "clip": "ThumbsUp", "at": 1 }
+        ] },
+        { "do": [
+          { "do": "shot", "target": ["robo", "g_big"], "framing": "wide", "dur": 1.5 },
+          { "do": "call", "prompt": "What sound does G make? Say it with me!", "cue": "mouth", "wait": 2.5, "answer": "Guh! G says guh!", "reveal": "g_big" }
+        ] },
+        { "do": [
+          { "do": "say", "text": "Two cars full. One more to go!", "caption": true },
+          { "do": "progress", "target": "trip", "at": 0.4 }
+        ] }
+      ]
+    },
+    {
+      "id": "challenge",
+      "title": "Point to G",
+      "beats": [
+        { "dur": 1.6, "do": [
+          { "do": "hide", "target": "g_big" },
+          { "do": "camera", "position": [0.6, 2.1, 9.6], "lookAt": [0.6, 0.9, 0], "dur": 1.4 },
+          { "do": "pop", "target": "card_f", "at": 0.3 },
+          { "do": "pop", "target": "card_g", "at": 0.6 },
+          { "do": "pop", "target": "card_h", "at": 0.9 }
+        ] },
+        { "do": [
+          { "do": "challenge", "prompt": "Point to the letter G before the timer rings!", "options": ["card_f", "card_g", "card_h"], "answer": "card_g", "timer": "clock", "dur": 5, "praise": "Yes! That's G!", "confetti": "party" }
+        ] },
+        { "do": [
+          { "do": "camera", "position": [0.4, 1.9, 9.4], "lookAt": [0.4, 0.9, 0], "dur": 1.5 },
+          { "do": "say", "text": "Is this one G?", "caption": true },
+          { "do": "answer", "target": "card_h", "result": "wrong", "hint": "card_g", "at": 1.6 }
+        ] },
+        { "do": [
+          { "do": "say", "text": "Not quite. That's H. G is right here!", "caption": true },
+          { "do": "progress", "target": "trip", "at": 2 }
+        ] }
+      ]
+    },
+    {
+      "id": "surprise",
+      "title": "Surprise",
+      "beats": [
+        { "do": [
+          { "do": "say", "text": "And the surprise is a gold star for you!", "caption": true },
+          { "do": "progress", "target": "trip", "step": 4, "at": 1.2 },
+          { "do": "burst", "target": "party", "at": 1.4 },
+          { "do": "clip", "target": "robo", "clip": "Jump", "at": 1.2 }
+        ] },
+        { "do": [
+          { "do": "hide", "target": "trip" },
+          { "do": "hide", "target": "card_f" },
+          { "do": "hide", "target": "card_h" },
+          { "do": "camera", "position": [0, 2.2, 10.5], "lookAt": [0, 1, 0], "dur": 2 },
+          { "do": "show", "target": "list", "at": 0.3 },
+          { "do": "show", "target": "stars", "at": 0.5 },
+          { "do": "show", "target": "walk", "at": 0.7 },
+          { "do": "say", "text": "Trackers can be a checklist, stars or a path too.", "at": 0.4, "caption": true },
+          { "do": "progress", "target": "list", "step": 2, "at": 1.2 },
+          { "do": "progress", "target": "stars", "step": 3, "at": 1.5 },
+          { "do": "progress", "target": "walk", "step": 3, "at": 1.8 },
+          { "do": "progress", "target": "stars", "tease": true, "at": 3.3 }
+        ] },
+        { "do": [
+          { "do": "say", "text": "Every step fills up, right to the surprise!", "caption": true },
+          { "do": "progress", "target": "list", "step": 4, "at": 0.4, "sound": false },
+          { "do": "progress", "target": "stars", "step": 5, "at": 0.7, "sound": false },
+          { "do": "progress", "target": "walk", "step": 5, "at": 1, "sound": false },
+          { "do": "keyword", "word": "G", "text": "G", "color": "green", "at": 1.6, "side": "right" },
+          { "do": "orbit", "around": [0.6, 0.6, 0.3], "degrees": 20, "dur": 4 }
+        ] },
+        { "dur": 2.5, "do": [
+          { "do": "options", "targets": ["card_g", "robo"], "dur": 2.2, "style": "blink" },
+          { "do": "clip", "target": "robo", "clip": "Wave" }
+        ] }
+      ]
+    }
+  ]
+}

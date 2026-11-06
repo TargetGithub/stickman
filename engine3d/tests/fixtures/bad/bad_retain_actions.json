@@ -1,0 +1,21 @@
+{"expect": ["E3D_HOOK", "E3D_OPTIONS", "E3D_CHALLENGE", "E3D_CALL", "E3D_TARGET_KIND", "E3D_RANGE", "E3D_ANSWER", "E3D_KEYWORD", "E3D_ICON", "E3D_PROGRESS", "E3D_TARGET"], "script": {"kind": "video3d", "version": 1, "objects": [
+  {"id": "box", "kind": "prop", "model": "toy_box"},
+  {"id": "g", "kind": "letter", "text": "G"},
+  {"id": "h", "kind": "letter", "text": "H"},
+  {"id": "trip", "kind": "tracker", "hud": true, "slots": 2},
+  {"id": "ring", "kind": "timer_ring", "hud": true}
+], "scenes": [{"id": "s", "beats": [{"do": [
+  {"do": "hook", "question": "Where is G?", "behind": "box", "target": "g", "style": "explode"},
+  {"do": "options", "targets": ["g"]},
+  {"do": "challenge", "prompt": "Point to G!", "options": ["g", "h"], "answer": "box", "dur": 60},
+  {"do": "call", "prompt": "Say it!", "cue": "nose", "wait": 9},
+  {"do": "timer", "target": "g", "count": 9},
+  {"do": "answer", "target": "g", "result": "maybe", "hint": "nobody"},
+  {"do": "keyword", "word": "water", "icon": "drop", "text": "W"},
+  {"do": "keyword", "icon": "lava"},
+  {"do": "say", "text": "Plants need water.", "keywords": {"sun": "sun"}},
+  {"do": "progress", "target": "trip", "tease": true},
+  {"do": "progress", "target": "trip", "step": 2},
+  {"do": "progress", "target": "trip", "step": 1},
+  {"do": "progress", "target": "box"}
+]}]}]}}
