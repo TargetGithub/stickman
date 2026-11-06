@@ -1,1 +1,292 @@
-{ "description": "Toybox 10K: names the specs ask for (new:...) that are made from assets the catalog already has. use = an existing catalog name (critter, character, prop, shape, stage, kind or action); how = what the script does with it. tools/assets10k.mjs reads it.", "characters": {}, "props": {}, "stages": {}, "features": {} }
+{
+ "description": "Toybox 10K: names the specs ask for (new:...) that are made from assets the catalog already has. use = an existing catalog name (critter, character, prop, shape, stage, kind or action); how = what the script does with it. tools/assets10k.mjs reads it.",
+ "characters": {},
+ "props": {
+  "account_scroll": {
+   "use": "page",
+   "how": "page style scroll; pop it in, then show lines one by one (lines start hidden: hide <id>_l<n> at 0 and pop each)"
+  },
+  "alphabet_strip": {
+   "use": "card",
+   "how": "card style strip with text \"A B C D ... Z\" (emphasize one letter to glow it)"
+  },
+  "answer_page": {
+   "use": "page",
+   "how": "page style letter, lines CLAIM: / QUOTE: / EXPLAIN: (numbers false); stamp = mark result correct"
+  },
+  "article_page": {
+   "use": "page",
+   "how": "page style article: title = headline, lines = paragraphs, picture + caption, sidebar = boxed note (use a callout for a labeled diagram)"
+  },
+  "big_book": {
+   "use": "page",
+   "how": "page style book at width ~3.4 on its own; for a cover use a card (style card, picture) in front; turn a page = turn the next page group about y from its left edge (pivot)"
+  },
+  "bingo_card": {
+   "use": "grid",
+   "how": "grid kind 3x3 upright with letter children; found letters get a red sphere sticker; highlight the full line"
+  },
+  "case_board": {
+   "use": "board",
+   "how": "board, layout pins, labels = the case questions; a solved card gets mark result correct"
+  },
+  "cast_scroll": {
+   "use": "page",
+   "how": "page style scroll, title CAST OF CHARACTERS, lines = 'NAME: short description'"
+  },
+  "change_chart": {
+   "use": "board",
+   "how": "board style white, layout columns, labels [START, TURNING POINT, END]; highlight headers in order"
+  },
+  "chapter_book": {
+   "use": "book",
+   "how": "prop book; chapter title pages as page objects shown when opened"
+  },
+  "chapter_strip": {
+   "use": "board",
+   "how": "board layout columns, labels [START, MIDDLE, END], easel false, height ~1.2, rows 2"
+  },
+  "clue_card": {
+   "use": "card",
+   "how": "card style card, picture = ear or eye icon prop (icon_head family) or text EAR / EYE; turn to unfold"
+  },
+  "comparison_chart": {
+   "use": "board",
+   "how": "board style white, layout columns, labels = the two story names, rows 5"
+  },
+  "ending_tile": {
+   "use": "card",
+   "how": "card style tile, bg orange, text = -s / -es / -ed / -ing"
+  },
+  "envelope": {
+   "use": "card",
+   "how": "card style card bg cream with the word as text; fly with path, small wing = two leaf shapes parented"
+  },
+  "evidence_board": {
+   "use": "board",
+   "how": "board with labels [\"who\",\"what\",\"where\",\"when\",\"why\",\"how\"], title \"EVIDENCE BOARD\" (layout pins); cards reparent into <id>_s<k>_1; a wrong card wiggles then drops"
+  },
+  "how_to_card": {
+   "use": "page",
+   "how": "page style letter: title GOAL..., then lines MATERIALS: ..., 1. ..., 2. ... (numbers true); highlight each step"
+  },
+  "invitation_card": {
+   "use": "card",
+   "how": "card style card, picture snowflake; opening = turn about y to show a second card with picture igloo"
+  },
+  "lesson_card": {
+   "use": "card",
+   "how": "card style strip, bg gold, rim gold: text = the lesson sentence"
+  },
+  "letter_board": {
+   "use": "card",
+   "how": "card style tile bg ink color white; flip with turn and swap text by showing the next card"
+  },
+  "letter_card": {
+   "use": "card",
+   "how": "card style card, text = one letter (no picture)"
+  },
+  "letter_plank": {
+   "use": "card",
+   "how": "card style tile, bg wood, width 1.2, one big letter; lay it flat with rotation [-90,0,0] for a bridge plank"
+  },
+  "letter_tag": {
+   "use": "card",
+   "how": "card style name_tag with one lowercase letter, size 0.6"
+  },
+  "letter_tile": {
+   "use": "card",
+   "how": "card style tile with one lowercase letter; its capital: a second tile turned [0,180,0] parented behind, or paint/flip"
+  },
+  "line_card": {
+   "use": "card",
+   "how": "card style strip, text = one poem line"
+  },
+  "logbook": {
+   "use": "page",
+   "how": "page style book, lines = yesterday's jobs; highlight as read"
+  },
+  "memory_card": {
+   "use": "card",
+   "how": "card style card with text = the letter; the star back shows when turned [0,180,0] (or put a star shape on its back)"
+  },
+  "menu_board": {
+   "use": "page",
+   "how": "page style letter, title = cafe name, lines = menu lines"
+  },
+  "museum_label": {
+   "use": "card",
+   "how": "card style name_tag, bg cream, rim none, one big lowercase letter; wobble with wiggle"
+  },
+  "name_card": {
+   "use": "card",
+   "how": "card style name_tag (rim none), text = the guest's name, rotation [-15,0,0] like a place card"
+  },
+  "name_label": {
+   "use": "card",
+   "how": "card style name_tag, text = the name"
+  },
+  "name_tag": {
+   "use": "card",
+   "how": "card style name_tag, text = the name; blush = paint <id>_back to pink"
+  },
+  "newsletter": {
+   "use": "page",
+   "how": "page style article; pop it in to 'print'"
+  },
+  "newsletter_page": {
+   "use": "page",
+   "how": "page style article with the headline as title and the review column as lines"
+  },
+  "newspaper": {
+   "use": "page",
+   "how": "page style article (headline + short sentences); paint a word via emphasize color red/green"
+  },
+  "newspaper_page": {
+   "use": "page",
+   "how": "page style article; picture boxes via picture; sentence strips are its lines"
+  },
+  "notice_board": {
+   "use": "page",
+   "how": "page style letter on an easel-less board: lines = numbered sentences"
+  },
+  "picture_book_page": {
+   "use": "page",
+   "how": "page style book with picture (the scene) and one or two lines"
+  },
+  "picture_card": {
+   "use": "card",
+   "how": "card (style card): picture = a prop, critter or shape, text = the word (optional); flip = turn [0,180,0], glow = highlight, wrong = wiggle, slide = move or reparent"
+  },
+  "poem_scroll": {
+   "use": "page",
+   "how": "page style scroll with numbers: true; lines = poem lines; highlight / emphasize / move to lift"
+  },
+  "postcard": {
+   "use": "card",
+   "how": "card style strip with picture; the message: a second card on its back, flip with turn"
+  },
+  "price_tag": {
+   "use": "card",
+   "how": "card style name_tag, rim none, text = one word"
+  },
+  "punctuation_tiles": {
+   "use": "card",
+   "how": "three cards style tile with text . ? !"
+  },
+  "question_card": {
+   "use": "card",
+   "how": "card style card, text = the question (picture none); glow with highlight"
+  },
+  "question_word_cards": {
+   "use": "card",
+   "how": "six cards style card: WHO WHAT WHERE WHEN WHY HOW, bg in six colors"
+  },
+  "quote_card": {
+   "use": "card",
+   "how": "card style quote, text = the exact quotation, tag = S3 / L2 (its sentence or line number); pins into evidence board sockets"
+  },
+  "recipe_card": {
+   "use": "page",
+   "how": "page style letter, title = recipe, lines = steps"
+  },
+  "repair_ticket_board": {
+   "use": "board",
+   "how": "board layout pins, labels = ticket numbers; tickets are cards (style strip), flip with turn and mark correct"
+  },
+  "script_page": {
+   "use": "page",
+   "how": "page style script: lines like \"FOX: Hello!\"; highlight one line at a time"
+  },
+  "sentence_strip": {
+   "use": "card",
+   "how": "card style strip, text = the sentence; emphasize one word in <id>_text; cut = two strips moved apart"
+  },
+  "shell_card": {
+   "use": "card",
+   "how": "card style card, picture = a shell shape or text only, bg sand"
+  },
+  "shop_sign": {
+   "use": "card",
+   "how": "card style tile, bg wood, text with a gap; the missing letter is a small tile that moves in"
+  },
+  "silent_e_card": {
+   "use": "card",
+   "how": "card style tile, text e, bg gold, size 0.7; flips on with turn"
+  },
+  "snap_card": {
+   "use": "card",
+   "how": "card style card with text or picture"
+  },
+  "speech_bubble_card": {
+   "use": "word_bubble",
+   "how": "prop word_bubble with a text_card child, or card style strip; size from tiny to huge with size"
+  },
+  "stall_sign": {
+   "use": "card",
+   "how": "card style tile, bg wood, text = the word; droop = turn [0,0,-12]"
+  },
+  "story_page": {
+   "use": "page",
+   "how": "page style book: lines = numbered sentences; emphasize words in <id>_l<n>, highlight a line, move <id>_l<n> toward the camera to lift it off"
+  },
+  "summary_card": {
+   "use": "card",
+   "how": "card style quote without tag (bg white), text = the summary; cross out with emphasize color red"
+  },
+  "syllable_card": {
+   "use": "card",
+   "how": "card style word, text = one syllable; two cards move together to join"
+  },
+  "t_chart_board": {
+   "use": "board",
+   "how": "board style white, layout columns, two labels; notes are cards (style word or strip) reparented into sockets"
+  },
+  "theme_card": {
+   "use": "card",
+   "how": "card style strip, bg gold, text = the theme sentence; highlight when proved"
+  },
+  "think_again_card": {
+   "use": "card",
+   "how": "card style strip: text FIRST I THOUGHT...; a second card behind turned [0,180,0] with NOW I THINK; flip with turn"
+  },
+  "timeline_board": {
+   "use": "board",
+   "how": "board layout timeline, labels = dates; date markers <id>_t<k> pop and highlight"
+  },
+  "town_sign": {
+   "use": "signpost",
+   "how": "prop signpost with a card style strip (1-3 lines) parented to its board"
+  },
+  "trait_card": {
+   "use": "card",
+   "how": "card style card, text = the trait word, picture = a small icon prop (heart, star)"
+  },
+  "venn_board": {
+   "use": "board",
+   "how": "board layout venn, labels [left, right, optional both]; sockets s1 left-only, s2 both, s3 right-only"
+  },
+  "vowel_team_tile": {
+   "use": "card",
+   "how": "card style tile, text = the vowel team (ai, ee...), bg yellow; the ribbon is a small torus shape parented between the letters if needed"
+  },
+  "weather_board": {
+   "use": "board",
+   "how": "board style white layout pins with labels = days or places; icons are picture cards (picture sun / cloud / rain_cloud / snowflake)"
+  },
+  "word_card": {
+   "use": "card",
+   "how": "card style word, text = the word"
+  },
+  "word_tile": {
+   "use": "card",
+   "how": "card style tile, text = one word or letter"
+  },
+  "word_track_board": {
+   "use": "board",
+   "how": "board style white, layout columns with one label per line (or easel false); word cars are card style word"
+  }
+ },
+ "stages": {},
+ "features": {}
+}
