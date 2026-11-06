@@ -1,0 +1,14 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Shot on a swing", "seed": 12, "music": false },
+  "stage": { "preset": "garden" },
+  "camera": { "position": [0, 2.5, 11], "lookAt": [0, 1, 0], "fov": 40 },
+  "objects": [
+    { "id": "swing", "kind": "prop", "model": "swing", "at": [-2.5, 0, -1] },
+    { "id": "slide", "kind": "prop", "model": "slide", "at": [2.5, 0, -1] },
+    { "id": "kitten", "kind": "critter", "species": "kitten", "at": [-2.5, 0, 0.3] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2.5, "do": [{ "do": "shot", "target": "swing", "framing": "medium", "dur": 1.5 }] }
+  ] }]
+}
