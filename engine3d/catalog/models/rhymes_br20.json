@@ -1,0 +1,75 @@
+{
+ "description": "Opposites Hop (br20, baby rhymes) models: four round HUD icons, one per pair of opposites (big/small, up/down, loud/quiet, fast/slow), for the tracker and thumbnails. The ball, balloon, rock, drum, bell, bunny and turtle are elsewhere in the catalog. Same format as ../models.json. Icons face +z and float (origin at the middle).",
+ "critters": {},
+ "props": {
+  "opp_icon_big_small": {
+   "color": "yellow",
+   "description": "A round HUD icon for BIG and SMALL: a disc 0.9 m across in its main colour (set color) with a big red ball and a tiny blue ball side by side, facing +z, 0.2 m deep. Floats: its origin is the middle.",
+   "tags": ["hud", "icon", "opposites", "size", "opposites_hop", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0, -0.04], "s": [0.9, 0.06, 0.9], "r": [90, 0, 0], "m": "matte" },
+    { "p": "cylinder", "at": [0, 0, -0.075], "s": [1, 0.04, 1], "r": [90, 0, 0], "c": "white", "m": "glossy" },
+    { "p": "sphere", "at": [-0.11, -0.02, 0.06], "s": [0.46, 0.46, 0.2], "c": "red", "m": "glossy" },
+    { "p": "sphere", "at": [-0.19, 0.08, 0.15], "s": [0.08, 0.06, 0.03], "c": "white", "m": "glossy" },
+    { "p": "sphere", "at": [0.25, -0.16, 0.06], "s": [0.16, 0.16, 0.08], "c": "blue", "m": "glossy" },
+    { "p": "sphere", "at": [0.225, -0.13, 0.1], "s": [0.035, 0.03, 0.02], "c": "white", "m": "glossy" }
+   ]
+  },
+  "opp_icon_up_down": {
+   "color": "yellow",
+   "description": "A round HUD icon for UP and DOWN: a disc 0.9 m across in its main colour (set color) with a green arrow pointing up and an orange arrow pointing down, facing +z, 0.2 m deep. Floats: its origin is the middle.",
+   "tags": ["hud", "icon", "opposites", "position", "opposites_hop", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0, -0.04], "s": [0.9, 0.06, 0.9], "r": [90, 0, 0], "m": "matte" },
+    { "p": "cylinder", "at": [0, 0, -0.075], "s": [1, 0.04, 1], "r": [90, 0, 0], "c": "white", "m": "glossy" },
+    { "p": "arrow", "at": [-0.15, 0.02, 0.04], "s": [0.6, 0.52, 0.12], "r": [0, 0, 90], "c": "green", "m": "matte" },
+    { "p": "arrow", "at": [0.15, -0.02, 0.04], "s": [0.6, 0.52, 0.12], "r": [0, 0, -90], "c": "orange", "m": "matte" }
+   ]
+  },
+  "opp_icon_loud_quiet": {
+   "color": "yellow",
+   "description": "A round HUD icon for LOUD and QUIET: a disc 0.9 m across in its main colour (set color) with a red drum and three big sound lines (loud) beside a little gold bell with one small line (quiet), facing +z, 0.2 m deep. Floats: its origin is the middle.",
+   "tags": ["hud", "icon", "opposites", "sound", "music", "opposites_hop", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0, -0.04], "s": [0.9, 0.06, 0.9], "r": [90, 0, 0], "m": "matte" },
+    { "p": "cylinder", "at": [0, 0, -0.075], "s": [1, 0.04, 1], "r": [90, 0, 0], "c": "white", "m": "glossy" },
+    { "p": "cylinder", "at": [-0.15, -0.13, 0.05], "s": [0.32, 0.2, 0.12], "c": "red", "m": "matte" },
+    { "p": "cylinder", "at": [-0.15, -0.025, 0.05], "s": [0.33, 0.03, 0.13], "c": "cream", "m": "matte" },
+    { "p": "cylinder", "at": [-0.15, -0.235, 0.05], "s": [0.33, 0.03, 0.13], "c": "cream", "m": "matte" },
+    { "p": "capsule", "at": [-0.15, 0.15, 0.06], "s": [0.04, 0.13, 0.04], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [-0.32, 0.1, 0.06], "s": [0.04, 0.12, 0.04], "r": [0, 0, 40], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [0.02, 0.1, 0.06], "s": [0.04, 0.12, 0.04], "r": [0, 0, -40], "c": "ink", "m": "matte" },
+    { "p": "dome", "at": [0.23, -0.2, 0.05], "s": [0.2, 0.36, 0.1], "c": "gold", "m": "glossy" },
+    { "p": "sphere", "at": [0.23, -0.21, 0.06], "s": [0.05, 0.05, 0.05], "c": "brown", "m": "matte" },
+    { "p": "sphere", "at": [0.23, -0.01, 0.05], "s": [0.04, 0.04, 0.04], "c": "gold", "m": "glossy" },
+    { "p": "capsule", "at": [0.23, 0.1, 0.06], "s": [0.025, 0.05, 0.025], "c": "grey", "m": "matte" }
+   ]
+  },
+  "opp_icon_fast_slow": {
+   "color": "yellow",
+   "description": "A round HUD icon for FAST and SLOW: a disc 0.9 m across in its main colour (set color) with a white bunny head and speed lines (fast) beside a little green turtle (slow), facing +z, 0.2 m deep. Floats: its origin is the middle.",
+   "tags": ["hud", "icon", "opposites", "speed", "animals", "opposites_hop", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0, -0.04], "s": [0.9, 0.06, 0.9], "r": [90, 0, 0], "m": "matte" },
+    { "p": "cylinder", "at": [0, 0, -0.075], "s": [1, 0.04, 1], "r": [90, 0, 0], "c": "white", "m": "glossy" },
+    { "p": "sphere", "at": [-0.1, -0.06, 0.06], "s": [0.26, 0.23, 0.1], "c": "white", "m": "matte" },
+    { "p": "capsule", "at": [-0.15, 0.15, 0.05], "s": [0.07, 0.22, 0.04], "r": [0, 0, 10], "c": "white", "m": "matte" },
+    { "p": "capsule", "at": [-0.05, 0.15, 0.05], "s": [0.07, 0.22, 0.04], "r": [0, 0, -10], "c": "white", "m": "matte" },
+    { "p": "capsule", "at": [-0.15, 0.15, 0.075], "s": [0.035, 0.15, 0.02], "r": [0, 0, 10], "c": "pink", "m": "matte" },
+    { "p": "capsule", "at": [-0.05, 0.15, 0.075], "s": [0.035, 0.15, 0.02], "r": [0, 0, -10], "c": "pink", "m": "matte" },
+    { "p": "sphere", "at": [-0.145, -0.04, 0.11], "s": [0.035, 0.035, 0.02], "c": "ink", "m": "glossy" },
+    { "p": "sphere", "at": [-0.055, -0.04, 0.11], "s": [0.035, 0.035, 0.02], "c": "ink", "m": "glossy" },
+    { "p": "sphere", "at": [-0.1, -0.1, 0.115], "s": [0.035, 0.025, 0.02], "c": "pink", "m": "matte" },
+    { "p": "capsule", "at": [-0.33, 0.02, 0.05], "s": [0.03, 0.09, 0.03], "r": [0, 0, 90], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [-0.34, -0.08, 0.05], "s": [0.03, 0.07, 0.03], "r": [0, 0, 90], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [-0.33, -0.17, 0.05], "s": [0.03, 0.09, 0.03], "r": [0, 0, 90], "c": "ink", "m": "matte" },
+    { "p": "dome", "at": [0.21, -0.22, 0.05], "s": [0.26, 0.34, 0.12], "c": "leaf", "m": "matte" },
+    { "p": "dome", "at": [0.21, -0.2, 0.08], "s": [0.14, 0.2, 0.08], "c": "leaf_lime", "m": "matte" },
+    { "p": "sphere", "at": [0.37, -0.16, 0.06], "s": [0.09, 0.08, 0.06], "c": "mint", "m": "matte" },
+    { "p": "sphere", "at": [0.385, -0.145, 0.09], "s": [0.018, 0.018, 0.01], "c": "ink", "m": "glossy" },
+    { "p": "sphere", "at": [0.12, -0.23, 0.05], "s": [0.05, 0.03, 0.04], "c": "mint", "m": "matte" },
+    { "p": "sphere", "at": [0.3, -0.23, 0.05], "s": [0.05, 0.03, 0.04], "c": "mint", "m": "matte" }
+   ]
+  }
+ }
+}
