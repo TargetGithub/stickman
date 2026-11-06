@@ -1,0 +1,13 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Peekaboo toy box", "seed": 10, "music": false, "audience": "babies" },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.4, 6], "lookAt": [0, 0.6, 0], "fov": 40 },
+  "objects": [
+    { "id": "box", "kind": "prop", "model": "toy_box", "at": [0, 0, 0], "size": 1.4 },
+    { "id": "puppy", "kind": "critter", "species": "puppy", "parent": "box", "at": [0, 0.5, -0.05], "size": 0.85, "hidden": true }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2, "do": [{ "do": "hook", "question": "Who is in the box?", "behind": "box#lid", "target": "puppy", "answer": "A puppy! Peekaboo!" }] }
+  ] }]
+}

@@ -15,13 +15,17 @@ export const RETAIN_MACROS = ["hook", "challenge", "call"];
  *   t: the beat's start; rel: the action's start from it; speak: say a line at rel (seconds from the beat start)
  * @returns {number}  where the action ends, seconds from the beat start
  */
-export function runMacro(a, { d, t, rel, speak }) {
+export function runMacro(a, { d, t, rel, speak, audience }) {
   const at = (r) => t + r;
   const line = (text, who) => ({ do: "say", text, caption: a.caption !== false, ...(who != null ? { who } : {}) });
 
   if (a.do === "hook") {
+    // behind may be a named part ("toy_box#lid"): the camera frames its owner and the reveal opens the part.
+    const owner = String(a.behind).split("#")[0];
+    const isPart = owner !== a.behind;
+    const slow = audience === "babies" || a.slow === true;
     d.engage("hook", { at: at(rel) });
-    if (a.shot !== false) d.shot({ at: at(rel), target: a.behind, framing: "close", pad: 0.2, dur: 1.2 });
+    if (a.shot !== false) d.shot({ at: at(rel), target: owner, framing: "close", pad: 0.2, dur: 1.2 });
     const q = speak(line(a.question, a.who), rel + 0.2);
     const reveal = rel + 0.2 + q + (a.reveal ?? 0.6);
     if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, reveal - rel - 0.3) });
@@ -29,11 +33,12 @@ export function runMacro(a, { d, t, rel, speak }) {
     d.sound("squeak", { at: at(rel + 0.65), volume: 0.6 });
     d.wiggle(a.behind, { at: at(rel + 0.6 + Math.max(0.9, Math.min(1.6, q / 2))), deg: 10, dur: 0.6 });
     d.sound("squeak", { at: at(rel + 0.65 + Math.max(0.9, Math.min(1.6, q / 2))), volume: 0.6 });
-    revealCover(d, a.behind, a.style ?? "lift", at(reveal));
+    revealCover(d, a.behind, a.style ?? (isPart ? "open" : "lift"), at(reveal), { slow, open: a.open });
     d.pop(a.target, { at: at(reveal + 0.25), sound: "magic_sparkle" });
     d.highlight(a.target, { at: at(reveal + 0.3), color: "gold", dur: 2.2 });
     d.sound("ding", { at: at(reveal + 0.35), volume: 0.7 });
-    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: a.target, framing: "wide", pad: 0.6, dur: 1 });
+    // A part cover (a lid, a door) keeps its owner in the frame, so the box and what peeks out both show.
+    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart ? owner : a.target, framing: isPart ? "medium" : "wide", pad: 0.6, dur: 1 });
     let end = reveal + 2.2;
     if (a.answer) end = Math.max(end, reveal + 0.9 + speak(line(a.answer, a.who), reveal + 0.9) + 0.35);
     return end;
@@ -72,15 +77,21 @@ export function runMacro(a, { d, t, rel, speak }) {
   throw new Error(`unknown kit action "${a.do}"`);
 }
 
-/** Take the cover off: lift (rises, spins and floats away), slide (moves aside) or tip (tips back and stays). */
-function revealCover(d, id, style, t) {
+/**
+ * Take the cover off: lift (rises, spins and floats away), slide (moves aside), tip (tips back and stays) or open
+ * (turns a named part such as a lid or a door to `open` degrees, default [-100, 0, 0]). slow (babies): about twice
+ * as long, and a lift floats up without spinning.
+ */
+function revealCover(d, id, style, t, { slow = false, open } = {}) {
+  const k = slow ? 2 : 1;
+  d.sound("whoosh", { at: t, volume: slow ? 0.5 : 0.7 });
+  if (style === "open") return d.turn(id, { at: t, to: open ?? [-100, 0, 0], dur: 0.8 * k, ease: "backOut" });
   const p = d.timeline.valueAt(id, "position", t);
-  d.sound("whoosh", { at: t, volume: 0.7 });
-  if (style === "slide") return d.move(id, { at: t, to: [p[0] + 1.7, p[1], p[2]], dur: 0.6, ease: "backOut" });
-  if (style === "tip") return d.turn(id, { at: t, by: -50, axis: "x", dur: 0.5, ease: "backOut" });
-  d.move(id, { at: t, to: [p[0] + 0.4, p[1] + 2.4, p[2] - 0.6], dur: 0.7, ease: "quadIn" });
-  d.spin(id, { at: t, turns: 1, dur: 0.7 });
-  return d.hide(id, { at: t + 0.55, dur: 0.25 });
+  if (style === "slide") return d.move(id, { at: t, to: [p[0] + 1.7, p[1], p[2]], dur: 0.6 * k, ease: "backOut" });
+  if (style === "tip") return d.turn(id, { at: t, by: -50, axis: "x", dur: 0.5 * k, ease: "backOut" });
+  d.move(id, { at: t, to: [p[0] + 0.4, p[1] + 2.4, p[2] - 0.6], dur: 0.7 * k, ease: "quadIn" });
+  if (!slow) d.spin(id, { at: t, turns: 1, dur: 0.7 });
+  return d.hide(id, { at: t + 0.55 * k, dur: 0.25 * k });
 }
 
 /**

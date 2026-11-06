@@ -37,3 +37,28 @@ test("#5 roll needs to", () => {
   const s = { kind: "video3d", version: 1, objects: [{ id: "ball", kind: "prop", model: "ball" }], scenes: [{ id: "a", beats: [{ dur: 1, do: [{ do: "roll", target: "ball" }] }] }] };
   assert.ok(validateScript(s, catalog).errors.some((e) => e.code === "E3D_REQUIRED"));
 });
+
+test("#1 hook behind a named part opens it, slowly for babies", () => {
+  const s = script("hook_lid");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const json = JSON.stringify(plan);
+  assert.ok(json.includes("box#lid"), "the lid part is animated");
+  assert.ok(json.includes("-100"), "it turns to the default open angle");
+  const fast = compileScript({ ...s, meta: { ...s.meta, audience: "k" } }, { catalog });
+  assert.ok(plan.duration >= fast.duration, "the babies reveal is not shorter");
+});
+
+const hookBad = [
+  [{ behind: "box#door" }, /no named part "door"/],
+  [{ behind: "box#lid", style: "lift" }, /must be "open"/],
+  [{ behind: "box", style: "open" }, /needs behind to be a named part/],
+  [{ behind: "box#lid", open: [1, 2] }, /open must be/],
+];
+for (const [patch, re] of hookBad) {
+  test(`#1 hook part errors: ${JSON.stringify(patch)}`, () => {
+    const s = structuredClone(script("hook_lid"));
+    Object.assign(s.scenes[0].beats[0].do[0], patch);
+    assert.match(validateScript(s, catalog).errors.map((e) => e.message).join("\n"), re);
+  });
+}

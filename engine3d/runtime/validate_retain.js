@@ -89,11 +89,22 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
   if (a.sound != null && a.sound !== false && !catalog.sounds[a.sound]) err("E3D_SOUND", `${p}.sound`, `unknown sound "${a.sound}"`);
   if (a.do === "hook") {
     text("question", "E3D_HOOK");
-    const b = exists(a.behind, `${p}.behind`);
+    // behind may be a named part of an object ("toy_box#lid"); it then opens (style "open") instead of lifting.
+    const [ownerId, partName] = typeof a.behind === "string" ? a.behind.split("#") : [];
+    const b = exists(ownerId ?? a.behind, `${p}.behind`);
+    if (b && partName != null) {
+      const m = b.kind === "critter" ? catalog.critters[b.species] : b.kind === "prop" ? catalog.props[b.model] : null;
+      const names = (m?.parts ?? []).filter((x) => x.name).map((x) => x.name);
+      if (!names.includes(partName)) err("E3D_HOOK", `${p}.behind`, `"${ownerId}" has no named part "${partName}" (known: ${names.join(", ") || "none"})`);
+      if (a.style != null && a.style !== "open") err("E3D_HOOK", `${p}.style`, 'a part cover (behind "<id>#<part>") opens: style must be "open" or left out');
+    }
+    if (a.style === "open" && partName == null) err("E3D_HOOK", `${p}.style`, 'style "open" needs behind to be a named part, like "toy_box#lid"');
+    if (a.open != null && !(Array.isArray(a.open) && a.open.length === 3 && a.open.every((x) => typeof x === "number"))) err("E3D_VEC", `${p}.open`, "open must be [x, y, z] degrees");
+    if (a.slow != null && typeof a.slow !== "boolean") err("E3D_HOOK", `${p}.slow`, "slow must be true or false");
     const t = exists(a.target, `${p}.target`);
-    if (b && t && a.behind === a.target) err("E3D_HOOK", `${p}.target`, "the target must be a different object from behind");
+    if (b && t && ownerId === a.target) err("E3D_HOOK", `${p}.target`, "the target must be a different object from behind");
     if (t && !t.hidden) err("E3D_HOOK", `${p}.target`, `"${a.target}" must start hidden (hidden: true) so the reveal is a surprise`);
-    if (a.style != null && !["lift", "slide", "tip"].includes(a.style)) err("E3D_HOOK", `${p}.style`, "style must be lift, slide or tip");
+    if (a.style != null && !["lift", "slide", "tip", "open"].includes(a.style)) err("E3D_HOOK", `${p}.style`, "style must be lift, slide, tip or open");
     if (a.answer != null) text("answer", "E3D_HOOK");
     if (a.reveal != null && !isNum(a.reveal, 0, 5)) err("E3D_RANGE", `${p}.reveal`, "reveal must be 0-5 s");
   } else if (a.do === "challenge") {

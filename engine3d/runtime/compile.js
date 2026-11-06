@@ -61,7 +61,7 @@ export function compileScript(script, { catalog, speech = {} }) {
         const start = t + rel;
         if (a.do === "say") speak(a, rel, ai);
         else if (a.do === "caption") later.push(a);
-        else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(a, { d, t, rel, speak: (l, r) => speak(l, r) }));
+        else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(a, { d, t, rel, speak: (l, r) => speak(l, r), audience: meta.audience }));
         else {
           run(d, a, start);
           if (ENGAGING.includes(a.do)) d.engage(a.do, { at: start });

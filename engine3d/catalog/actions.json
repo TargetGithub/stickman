@@ -607,9 +607,11 @@
   "hook": {
    "params": {
     "question": "the opening question, spoken and captioned (required)",
-    "behind": "the cover object (required)",
+    "behind": "the cover object, or a named part of one such as \"toy_box#lid\" (required)",
     "target": "the object it hides, hidden until the reveal (required)",
-    "style": "lift (default: rises and floats away), slide (moves aside) or tip (tips back)",
+    "style": "lift (default: rises and floats away), slide (moves aside), tip (tips back) or open (the default for a part: turns it to `open`)",
+  "open": "[x, y, z] degrees the part turns to with style open, default [-100, 0, 0] (a lid hinged at its back)",
+  "slow": "true: a gentle reveal about twice as long, no spin (automatic when meta.audience is babies)",
     "reveal": "seconds after the question before the reveal, default 0.6",
     "answer": "optional line said after the reveal",
     "badge": "default true: a pulsing ? badge while asking",
