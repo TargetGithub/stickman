@@ -44,16 +44,22 @@ function street(d, prefix) {
 export function opening(d, t) {
   const set = street(d, "o");
   t = card(d, "DumpyDoo Pictures\npresents", t, 3.5, { music: "happy" });
-  t = card(d, "DumpyDoo\nin\nTHE SILLY DAY", t, 4.5);
-  t = card(d, "A little bun with a big hat\nand a very bouncy day.", t, 4);
-  IRISES.push({ at: t, dur: 1.4, to: 1 }); // the iris opens on the street
-  appear(d, set, t - 0.5);
-  place(d, t - 0.5, [-2.4, 0, 0.3], 90);
-  cam(d, t - 0.5, [0, 1.15, 4.6], [0, 0.75, 0], 38);
-  // In he waddles, stops, turns to us, twirls his cane and tips his hat.
-  t = waddle(d, t, [-0.2, 0, 0.3], { steps: 8, face: 90 });
-  d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.35 });
-  t += 0.5;
+  // The iris opens on the street, DumpyDoo in the middle; the titles come up over the picture while he waves.
+  appear(d, set, t);
+  place(d, t, [-0.2, 0, 0.3], 0);
+  cam(d, t, [0, 1.15, 4.6], [0, 0.75, 0], 38);
+  IRISES.push({ at: t, dur: 1.4, to: 1 });
+  const t0 = t;
+  t = card(d, "DumpyDoo in\n\nTHE SILLY DAY", t, 4.5, { over: true });
+  oneArm(d, t0 + 1.2, 0.3, -1, [70, 0, -96], [45, 0, -40], "quadOut");
+  for (let i = 0; i < 6; i++) d.tween(P("forearm"), "lift", [45, i % 2 ? 25 : -15, -40], { at: t0 + 1.5 + i * 0.22, dur: 0.22 });
+  oneArm(d, t0 + 2.9, 0.3, -1, [0, 0, 0], [0, 0, 0]);
+  d.feel(ID, { at: t0 + 1.2, feeling: "joyful" });
+  d.feel(ID, { at: t0 + 3.4, feeling: "happy" });
+  t = card(d, "A little bun with a big hat\nand a very bouncy day.", t, 4, { over: true });
+  d.hop(ID, { at: t - 1.5, height: 0.15, dur: 0.4 });
+  // He twirls his cane and tips his hat.
+  t += 0.2;
   t = twirl(d, t, 2, 0.9) + 0.2;
   t = tipHat(d, t) + 0.3;
   d.feel(ID, { at: t, feeling: "joyful" });
@@ -77,10 +83,10 @@ export function opening(d, t) {
 export function chapterHat(d, t) {
   const set = street(d, "h");
   d.add({ id: "leaves", kind: "weather", type: "leaves", count: 40, area: [9, 3], height: 3, speed: 2.2, hidden: true });
-  t = card(d, "Chapter One\n\nThe Hat That Would Not Stay", t, 4.5, { music: "playful" });
-  appear(d, set, t - 0.5);
-  place(d, t - 0.5, [-2.3, 0, 0.4], 90);
-  cam(d, t - 0.5, [0, 1.15, 4.6], [0, 0.75, 0], 38);
+  appear(d, set, t);
+  place(d, t, [-1.75, 0, 0.4], 0);
+  cam(d, t, [0, 1.15, 4.6], [0, 0.75, 0], 38);
+  t = card(d, "Chapter One\n\nThe Hat That Would Not Stay", t, 4.5, { over: true, music: "playful" });
   t = waddle(d, t, [-0.8, 0, 0.4], { steps: 5, face: 90 });
   d.turn(ID, { at: t, to: [0, 20, 0], dur: 0.3 });
   t = twirl(d, t + 0.3, 1, 0.6) + 0.3;
@@ -204,12 +210,12 @@ export function chapterBanana(d, t) {
   d.add({ id: "banana", kind: "prop", model: "banana", parent: ID, part: "forearm", at: [0, -0.2, 0.1], rotation: [0, 0, 90], size: 0.5, hidden: true });
   d.add({ id: "peel", kind: "prop", model: "banana_peel", at: [0, 0, 0], size: 1.4, hidden: true });
   d.add({ id: "flower", kind: "prop", model: "flower", at: [-2.1, 0, 0.1], size: 0.9, hidden: true });
-  t = card(d, "Chapter Two\n\nBeware the Banana!", t, 4.5, { music: "bouncy" });
-  appear(d, [...set, "bin", "flower"], t - 0.5);
-  vanish(d, ["cane"], t - 0.5);
-  appear(d, ["banana"], t - 0.5);
-  place(d, t - 0.5, [-0.4, 0, 0.4], 0);
-  cam(d, t - 0.5, [0.2, 1.2, 5], [0.2, 0.75, 0], 40);
+  appear(d, [...set, "bin", "flower"], t);
+  vanish(d, ["cane"], t);
+  appear(d, ["banana"], t);
+  place(d, t, [-0.4, 0, 0.4], 0);
+  cam(d, t, [0.2, 1.2, 5], [0.2, 0.75, 0], 40);
+  t = card(d, "Chapter Two\n\nBeware the Banana!", t, 4.5, { over: true, music: "bouncy" });
 
   // Lunch! Three big bites, the banana getting smaller each time.
   oneArm(d, t, 0.4, 1, [-75, 0, 20], [-60, 0, -35], "quadOut");
@@ -328,11 +334,11 @@ export function chapterDoor(d, t) {
   d.add({ id: "dbush2", kind: "prop", model: "bush", at: [2.4, 0, -1.8], size: 1.2, hidden: true });
   d.add({ id: "dflower1", kind: "prop", model: "flower", at: [-1.3, 0, 0.9], size: 0.7, hidden: true });
   d.add({ id: "dflower2", kind: "prop", model: "flower", at: [1.5, 0, 1.1], size: 0.8, hidden: true });
-  t = card(d, "Chapter Three\n\nThe Door to Nowhere", t, 4.5, { music: "tense" });
-  d.changeStage("garden", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  place(d, t - 0.5, [-2.6, 0, 0.55], 90);
-  cam(d, t - 0.5, [0.2, 1.2, 4.8], [0, 0.85, 0], 38);
+  d.changeStage("garden", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  place(d, t, [-1.75, 0, 0.55], 0);
+  cam(d, t, [0.2, 1.2, 4.8], [0, 0.85, 0], 38);
+  t = card(d, "Chapter Three\n\nThe Door to Nowhere", t, 4.5, { over: true, music: "tense" });
   t = waddle(d, t, [-0.1, 0, 0.55], { steps: 8, face: 90 });
   // A door! He faces it and knocks: knock, knock, knock.
   d.turn(ID, { at: t, to: [0, 180, 0], dur: 0.4 });

@@ -19,13 +19,13 @@ export function chapterFactory(d, t) {
   for (let i = 0; i < N; i++) d.add({ id: `cup${i}`, kind: "prop", model: "cupcake", at: [BELT.x0, BELT.y, BELT.z], size: 0.55, hidden: true });
   d.add({ id: "hatcake", kind: "prop", model: "cupcake", parent: "hat", at: [0, 0.25, 0], size: 0.5, hidden: true });
   const ids = ["belt", "cbox", "bell", "fshelf", "fclock"];
-  t = card(d, "Chapter Twelve\n\nThe Cupcake Factory", t, 4.5, { music: "battle" });
-  d.changeStage("classroom", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  d.set("cbox#lid", "rotation", [-100, 0, 0], t - 0.5);
-  place(d, t - 0.5, [0, 0, -0.2], 0);
-  cam(d, t - 0.5, [0.2, 1.35, 4.2], [0.2, 0.7, 0], 40);
-  t = card(d, "First day at work.\nThe job: put every cupcake in the box!", t, 3.6);
+  d.changeStage("classroom", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  d.set("cbox#lid", "rotation", [-100, 0, 0], t);
+  place(d, t, [0, 0, -0.2], 0);
+  cam(d, t, [0.2, 1.35, 4.2], [0.2, 0.7, 0], 40);
+  t = card(d, "Chapter Twelve\n\nThe Cupcake Factory", t, 4.5, { over: true, music: "battle" });
+  t = card(d, "First day at work.\nThe job: put every cupcake in the box!", t, 3.6, { over: true });
 
   // The bell rings and the belt starts. Rollers spin the whole time (faster later).
   d.wiggle("bell#bell", { at: t, deg: 20, dur: 0.8 });
@@ -166,11 +166,11 @@ export function chapterCloud(d, t) {
   d.add({ id: "brolly", kind: "prop", model: "umbrella", parent: ID, at: [0.12, 0.62, 0.05], size: 0.85, hidden: true });
   d.add({ id: "rainbow", kind: "prop", model: "rainbow", at: [0, 0.2, -2.6], size: 2.2, hidden: true });
   d.add({ id: "csun", kind: "prop", model: "sun", at: [-2.6, 3.6, -3], size: 1.1, hidden: true });
-  t = card(d, "Chapter Fourteen\n\nHis Very Own Cloud", t, 4.5, { music: "sad" });
-  d.changeStage("town", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  place(d, t - 0.5, [-1.2, 0, 0.4], 90);
-  cam(d, t - 0.5, [0, 1.25, 4.8], [0, 0.95, 0], 40);
+  d.changeStage("town", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  place(d, t, [-1.2, 0, 0.4], 90);
+  cam(d, t, [0, 1.25, 4.8], [0, 0.95, 0], 40);
+  t = card(d, "Chapter Fourteen\n\nHis Very Own Cloud", t, 4.5, { over: true, music: "sad" });
   // A sunny stroll... and a small grey cloud sneaks up over him.
   t = waddle(d, t, [-0.3, 0, 0.4], { steps: 3, face: 90 });
   d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.3 });
@@ -282,11 +282,11 @@ export function finale(d, t) {
   d.add({ id: "f_tree2", kind: "prop", model: "tree", at: [2.6, 0, -9], size: 2.4, hidden: true });
   d.add({ id: "fbee", kind: "critter", species: "bee", at: [3, 1.5, 0.6], size: 0.32, hidden: true });
   d.add({ id: "fcake", kind: "prop", model: "cupcake", parent: ID, part: "forearm", at: [0, -0.19, 0.08], size: 0.45, hidden: true });
-  t = card(d, "And so, at the end\nof a very silly day...", t, 3.6, { music: "triumphant" });
-  d.lights({ at: t - 0.6, dur: 0.1, rig: "evening", background: "dusk_sky" });
-  appear(d, ids, t - 0.5);
-  place(d, t - 0.5, [-0.2, 0, 0.6], 0);
-  cam(d, t - 0.5, [0, 1.2, 4.6], [0, 0.8, -1], 38);
+  d.lights({ at: t, dur: 0.1, rig: "evening", background: "dusk_sky" });
+  appear(d, ids, t);
+  place(d, t, [-0.2, 0, 0.6], 0);
+  cam(d, t, [0, 1.2, 4.6], [0, 0.8, -1], 38);
+  t = card(d, "And so, at the end\nof a very silly day...", t, 3.6, { over: true, music: "triumphant" });
   // The bee buzzes back. DumpyDoo flinches... but it only wants to say sorry. He shares a cupcake.
   appear(d, ["fbee"], t);
   d.path("fbee", { at: t, dur: 1.6, points: [[3, 1.5, 0.6], [1.6, 1.3, 0.9], [0.6, 1.1, 0.8]], face: true });

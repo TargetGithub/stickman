@@ -3,7 +3,7 @@
 A slapstick short, about 9 min 55 s (594 s), for young children. It is made in the spirit of the classic
 silent-film comedians:
 
-- Bright, colourful title cards between the gags, each read aloud in a baby voice.
+- Colourful chapter titles over each scene (DumpyDoo in the picture, waiting to start), each read aloud in a baby voice.
 - DumpyDoo says his own little lines and exclamations ("Oopsie!", "Wheee!", "Ta-da!") in the same baby voice,
   his mouth moving with them, with a subtitle.
 - A little bowler hat and a springy cane.
@@ -27,7 +27,7 @@ particular film. DumpyDoo is himself, in a bowler hat.
 | Scene | `engine3d/scenes/dumpydoo_silent_movie.js` (chapters in `engine3d/scenes/silent/`) |
 | Star | DumpyDoo (`catalog/models/dumpydoo.json`) with `bowler_hat` and `cane` (`catalog/models/silent_movie.json`) |
 | Look | `runtime/film_look.js`: warm vignette, fine grain, a rare faint scratch, iris in and out (no flicker) |
-| Title cards | caption style `intertitle` (`runtime/overlay.js`): a bright gradient (six colour themes) with confetti and stars, a white frame, big outlined words, a "Chapter One" badge |
+| Titles | chapter titles and narration use caption style `chapter` (`runtime/overlay.js`): a coloured "Chapter One" badge and big white outlined words near the top of the live scene. Only "DumpyDoo Pictures presents" and "The End" are full-frame `intertitle` cards (a bright gradient with confetti and stars) |
 | Voice | the `toddler` timbre (baby voice): the storyteller reads every card (pitch 1.1); DumpyDoo speaks his lines with lip sync (pitch 1.25). `kit.js`: `card`, `speak`, `exclaim` |
 | Music | a mood per chapter (`director.chapter`, crossfading): happy, playful, bouncy, tense, heroic, calm, mysterious, lullaby, battle, sad, triumphant |
 | Review render | `node engine3d/tools/render3d.mjs engine3d/scenes/dumpydoo_silent_movie.js --res 1080p --fps 30 --speech tts --out out/demos/3d/dumpydoo/dumpydoo_silent_movie_1080p30.mp4` |
@@ -253,5 +253,6 @@ title card.
 |---|---|
 | `runtime/film_look.js` | `filmLook(d, { irises })` adds the old-film overlay; `irisAt(irises, t)` gives the iris at any time. An iris can centre on an object id and follow it on screen. |
 | `intertitle` caption style | A full-frame, colourful title card. `\n` starts a new line; a blank line puts the first part in a badge. It is allowed in JSON scripts too. |
+| `chapter` caption style | The same badge and words over the live scene, near the top, with no background. |
 | `director.chapter(id, { at, music, musicGain })` | A JS scene's chapter: the music bed changes mood there, crossfading like a JSON script's scenes. |
 | Timeline `null` | Setting a prop back to `null` clears it; for example, `d.set(id, "gaze", null, t)` hands the eyes back to the idle glances. |

@@ -16,12 +16,12 @@ export function chapterBath(d, t, title, music = "playful") {
   d.add({ id: "bshelf", kind: "prop", model: "shelf", at: [-2.4, 0, -1.8], hidden: true });
   d.add({ id: "bsink", kind: "prop", model: "sink", at: [2.3, 0, -1.6], hidden: true });
   const ids = ["tub", "bshelf", "bsink"];
-  t = card(d, title, t, 4.5, { music });
-  d.changeStage("playroom", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  vanish(d, ["cane"], t - 0.5);
-  place(d, t - 0.5, [-2.4, 0, 0.75], 90);
-  cam(d, t - 0.5, [0, 1.7, 4.4], [0, 0.6, 0], 40);
+  d.changeStage("playroom", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  vanish(d, ["cane"], t);
+  place(d, t, [-1.75, 0, 0.75], 0);
+  cam(d, t, [0, 1.7, 4.4], [0, 0.6, 0], 40);
+  t = card(d, title, t, 4.5, { over: true, music });
   // Bath time! He waddles up, keeps his hat on (of course) and hops in. Splash!
   t = waddle(d, t, [-0.9, 0, 0.75], { steps: 5, face: 90 });
   d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.3 });
@@ -129,11 +129,11 @@ export function chapterNap(d, t, title, music = "lullaby") {
   const flock = [0, 1, 2, 3, 4].map((i) => `sheep${i}`);
   flock.forEach((id) => d.add({ id, kind: "critter", species: "sheep", at: [-3.2, 0, 0.9], size: 0.55, hidden: true }));
   const ids = ["nbale", "nbale2", "nfence0", "nfence1"];
-  t = card(d, title, t, 4.5, { music });
-  d.changeStage("farm", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  place(d, t - 0.5, [-2.4, 0, 0.3], 90);
-  cam(d, t - 0.5, [0, 1.3, 5], [0, 0.7, 0], 40);
+  d.changeStage("farm", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  place(d, t, [-1.75, 0, 0.3], 0);
+  cam(d, t, [0, 1.3, 5], [0, 0.7, 0], 40);
+  t = card(d, title, t, 4.5, { over: true, music });
   // A big yawn; he sits against the hay bale and pulls his hat down over his eyes. Zzz.
   t = waddle(d, t, [0, 0, 0.3], { steps: 7, face: 90 });
   d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.3 });
@@ -237,13 +237,13 @@ export function chapterMagic(d, t, title, music = "mysterious") {
   d.add({ id: "mpig", kind: "critter", species: "pig", at: IN_HAT, size: 0.6, hidden: true });
   d.add({ id: "mconf", kind: "confetti", at: [0, 0, 0], count: 120, area: [4, 2], height: 3.5, hidden: true });
   const ids = ["stool", "stooltop"];
-  t = card(d, title, t, 4.5, { music });
-  d.changeStage("theatre", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  d.show("spot", { at: t - 0.5, dur: 0.1 });
-  vanish(d, ["cane"], t - 0.5);
-  place(d, t - 0.5, [-0.35, 0, 0.35], 0);
-  cam(d, t - 0.5, [0, 1.25, 4.4], [0.1, 0.7, 0], 38);
+  d.changeStage("theatre", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  d.show("spot", { at: t, dur: 0.1 });
+  vanish(d, ["cane"], t);
+  place(d, t, [-0.35, 0, 0.35], 0);
+  cam(d, t, [0, 1.25, 4.4], [0.1, 0.7, 0], 38);
+  t = card(d, title, t, 4.5, { over: true, music });
   // A bow to the audience. Applause.
   d.sound("crowd_cheer", { at: t, volume: 0.4 });
   d.nod(ID, { at: t + 0.2, deg: 30, dur: 0.9 });

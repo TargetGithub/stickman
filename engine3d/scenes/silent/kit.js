@@ -135,7 +135,7 @@ export const IRISES = [];
 
 /**
  * The end of a chapter, silent-movie style: he turns to us and gives the audience a look (a little nod and a
- * smile), then the iris closes on him. It opens again under the next title card. Returns the end time.
+ * smile), then the iris closes on him. It opens again on the next chapter's scene. Returns the end time.
  */
 export function curtain(d, t, { feeling = "joyful", face = 0 } = {}) {
   d.turn(ID, { at: t, to: [0, face, 0], dur: 0.3 });
@@ -143,7 +143,8 @@ export function curtain(d, t, { feeling = "joyful", face = 0 } = {}) {
   d.tween(ID, "gaze", [0, 0], { at: t, dur: 0.2 });
   d.feel(ID, { at: t + 0.3, feeling });
   d.nod(ID, { at: t + 0.5, deg: 12, dur: 0.5 });
-  IRISES.push({ at: t + 0.6, dur: 1.4, to: 0.16, center: ID }, { at: t + 2.4, dur: 0.3, to: 0 }, { at: t + 2.9, dur: 0.01, to: 1, center: [0.5, 0.5] });
+  // Closed by t + 2.7; the next chapter's set swaps in at t + 2.8 and the iris opens on it.
+  IRISES.push({ at: t + 0.6, dur: 1.4, to: 0.16, center: ID }, { at: t + 2.4, dur: 0.3, to: 0 }, { at: t + 2.85, dur: 0.01, to: 0, center: [0.5, 0.48] }, { at: t + 2.9, dur: 1.1, to: 1 });
   d.set(ID, "gaze", null, t + 2.7);
   return t + 2.8;
 }
@@ -155,14 +156,15 @@ export const VOICE = { voice: "toddler", narrator: 1.1, dumpy: 1.25 };
 export const spoken = (text) => text.replace(/\n\n+/g, ". ").replace(/\n/g, " ").replace(/\b([A-Z]{2,})\b/g, (w) => w[0] + w.slice(1).toLowerCase());
 
 /**
- * A full-frame title card, read aloud in the baby voice; it stays up until the reading ends (at least `dur`).
+ * A title, read aloud in the baby voice; it stays up until the reading ends (at least `dur`). A full-frame card,
+ * or with over: true a title over the live scene (the chapter titles: DumpyDoo is in the picture under it).
  * music: start a chapter there with that music mood (director.chapter).
  */
-export function card(d, text, t, dur = 3, { music } = {}) {
+export function card(d, text, t, dur = 3, { music, over = false } = {}) {
   if (music) d.chapter(`card${t.toFixed(2)}`, { at: t, music });
   const said = d.say(spoken(text), { at: t + 0.35, voice: VOICE.voice, pitch: VOICE.narrator });
   dur = Math.max(dur, said + 1);
-  d.caption(text, { at: t, dur, style: "intertitle" });
+  d.caption(text, { at: t, dur, style: over ? "chapter" : "intertitle" });
   return t + dur;
 }
 

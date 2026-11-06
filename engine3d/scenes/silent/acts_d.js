@@ -28,12 +28,12 @@ export function chapterPaint(d, t) {
   d.add({ id: "brush", kind: "prop", model: "paintbrush", parent: ID, part: "forearm", at: [0, -0.15, 0.05], rotation: [180, 0, 0], size: 0.45, recolor: { blue: "yellow" }, hidden: true });
   d.add({ id: "headbucket", kind: "prop", model: "bucket", parent: ID, part: "head", at: [0, 0.98, 0], rotation: [180, 0, 0], size: 1.5, recolor: { blue: "yellow" }, hidden: true });
   const ids = [...set, ...fence, "pbucket"];
-  t = card(d, "Chapter Four\n\nWet Paint!", t, 4.5, { music: "happy" });
-  appear(d, ids, t - 0.5);
-  vanish(d, ["cane"], t - 0.5);
-  appear(d, ["brush"], t - 0.5);
-  place(d, t - 0.5, [-1.5, 0, 0.1], 180);
-  cam(d, t - 0.5, [0, 1.2, 4.8], [0, 0.75, 0], 40);
+  appear(d, ids, t);
+  vanish(d, ["cane"], t);
+  appear(d, ["brush"], t);
+  place(d, t, [-1.5, 0, 0.1], 180);
+  cam(d, t, [0, 1.2, 4.8], [0, 0.75, 0], 40);
+  t = card(d, "Chapter Four\n\nWet Paint!", t, 4.5, { over: true, music: "happy" });
   // He paints the first fence section yellow, up and down, humming along.
   d.feel(ID, { at: t, feeling: "happy" });
   const paintSection = (id, at) => {
@@ -159,10 +159,10 @@ export function chapterBalloons(d, t) {
   d.add({ id: "bpost", kind: "prop", model: "street_lamp", at: [0.6, 0, -0.6], hidden: true });
   colors.forEach((c, i) => d.add({ id: `bal${i}`, kind: "prop", model: "balloon", at: [0.4 + tips[i][0], 0.35, -0.3], color: c, size: 0.9, hidden: true }));
   const ids = [...set, "bpost"];
-  t = card(d, "Chapter Seven\n\nThe Balloon Ride", t, 4.5, { music: "calm" });
-  appear(d, [...ids, ...colors.map((_, i) => `bal${i}`)], t - 0.5);
-  place(d, t - 0.5, [-2.4, 0, 0.4], 90);
-  cam(d, t - 0.5, [0, 1.4, 5.4], [0, 1.1, 0], 42);
+  appear(d, [...ids, ...colors.map((_, i) => `bal${i}`)], t);
+  place(d, t, [-1.75, 0, 0.4], 0);
+  cam(d, t, [0, 1.4, 5.4], [0, 1.1, 0], 42);
+  t = card(d, "Chapter Seven\n\nThe Balloon Ride", t, 4.5, { over: true, music: "calm" });
   // Balloons tied to the lamp post. He looks around... nobody watching... and takes them all.
   t = waddle(d, t, [0.05, 0, 0.3], { steps: 7, face: 90 });
   d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.3 });
@@ -250,11 +250,11 @@ export function chapterPup(d, t) {
   const sandwiches = [0, 1, 2].map((i) => `sand${i}`);
   sandwiches.forEach((id) => d.add({ id, kind: "prop", model: "sandwich", at: [-0.2, 0.01, 0.65], size: 0.5, hidden: true }));
   const ids = [...set, "urug", "ubasket", "utree"];
-  t = card(d, "Chapter Ten\n\nThe Hungry Pup", t, 4.5, { music: "bouncy" });
-  d.changeStage("garden", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  place(d, t - 0.5, [-2.6, 0, 0.3], 90);
-  cam(d, t - 0.5, [0.3, 1.25, 5.2], [0.3, 0.7, 0], 40);
+  d.changeStage("garden", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  place(d, t, [-1.75, 0, 0.3], 0);
+  cam(d, t, [0.3, 1.25, 5.2], [0.3, 0.7, 0], 40);
+  t = card(d, "Chapter Ten\n\nThe Hungry Pup", t, 4.5, { over: true, music: "bouncy" });
   // A picnic! He sits on the rug and sets out a sandwich.
   t = waddle(d, t, [-0.55, 0, 0.3], { steps: 6, face: 90 });
   d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.3 });
@@ -386,12 +386,12 @@ export function chapterSkate(d, t) {
   d.add({ id: "zcone1", kind: "shape", shape: "cone", color: "orange", at: [-2.2, 0, -0.4], size: 0.3, hidden: true });
   d.add({ id: "zcone2", kind: "shape", shape: "cone", color: "orange", at: [2.6, 0, -0.4], size: 0.3, hidden: true });
   const ids = [...set, "board", "zcone1", "zcone2"];
-  t = card(d, "Chapter Thirteen\n\nThe Runaway Skateboard", t, 4.5, { music: "happy" });
-  d.changeStage("garden", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  d.set("ramp", "visible", true, t - 0.5).set("ramp", "scale", [0.9, 0.3, 0.7], t - 0.5);
-  place(d, t - 0.5, [-1.6, 0, 0.5], 90);
-  cam(d, t - 0.5, [0, 1.2, 5.2], [0, 0.7, 0], 40);
+  d.changeStage("garden", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  d.set("ramp", "visible", true, t).set("ramp", "scale", [0.9, 0.3, 0.7], t);
+  place(d, t, [-1.6, 0, 0.5], 90);
+  cam(d, t, [0, 1.2, 5.2], [0, 0.7, 0], 40);
+  t = card(d, "Chapter Thirteen\n\nThe Runaway Skateboard", t, 4.5, { over: true, music: "happy" });
   // He finds a skateboard. He puts one foot on it... it shoots out from under him! Down he sits. Bump.
   t = waddle(d, t, [-1.05, 0, 0.5], { steps: 2, face: 90 });
   d.feel(ID, { at: t, feeling: "joyful" });

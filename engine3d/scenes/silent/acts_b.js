@@ -24,10 +24,10 @@ export function chapterBee(d, t) {
   d.add({ id: "bench", kind: "prop", model: "bench", at: [0, 0, -0.25], size: 1.15, hidden: true });
   d.add({ id: "bee", kind: "critter", species: "bee", at: [-3, 1.6, 0.5], size: 0.32, hidden: true });
   const ids = [...set, "bench"];
-  t = card(d, "Chapter Five\n\nThe Busy Bee", t, 4.5, { music: "tense" });
-  appear(d, ids, t - 0.5);
-  place(d, t - 0.5, [-2.4, 0, 0.45], 90);
-  cam(d, t - 0.5, [0, 1.15, 4.4], [0, 0.8, 0], 38);
+  appear(d, ids, t);
+  place(d, t, [-1.75, 0, 0.45], 0);
+  cam(d, t, [0, 1.15, 4.4], [0, 0.8, 0], 38);
+  t = card(d, "Chapter Five\n\nThe Busy Bee", t, 4.5, { over: true, music: "tense" });
   t = waddle(d, t, [0, 0, 0.45], { steps: 7, face: 90 });
   // A rest on the bench: a hop up, a happy sigh, a stretch and a yawn.
   d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.3 });
@@ -145,11 +145,11 @@ export function chapterSeesaw(d, t) {
   const ids = [...set, "seesaw", "sbush"];
   const tilt = 14; // the plank's tilt, its left end down
   const s = Math.sin((tilt * Math.PI) / 180);
-  t = card(d, "Chapter Six\n\nUp, Up and Away!", t, 4.5, { music: "heroic" });
-  appear(d, ids, t - 0.5);
-  d.set("seesaw#plank", "rotation", [0, 0, tilt], t - 0.5);
-  place(d, t - 0.5, [-2.6, 0, 0.5], 90);
-  cam(d, t - 0.5, [0, 1.3, 5.2], [0, 0.9, 0], 40);
+  appear(d, ids, t);
+  d.set("seesaw#plank", "rotation", [0, 0, tilt], t);
+  place(d, t, [-1.75, 0, 0.5], 0);
+  cam(d, t, [0, 1.3, 5.2], [0, 0.9, 0], 40);
+  t = card(d, "Chapter Six\n\nUp, Up and Away!", t, 4.5, { over: true, music: "heroic" });
   t = waddle(d, t, [-1.05, 0, 0.5], { steps: 5, face: 90 });
   // He climbs on the low end and sits, bouncing, waiting to go up. Nothing happens.
   d.turn(ID, { at: t, to: [0, 0, 0], dur: 0.3 });
@@ -276,17 +276,17 @@ export function chapterMirror(d, t) {
   const ids = ["mirror", "mshelf", "mlamp"];
   const yaw = 62; // facing the frame, turned a little toward the camera
   const X = 0.62; // how far each stands from the frame
-  t = card(d, "Chapter Nine\n\nThe Mirror", t, 4.5, { music: "playful" });
-  d.changeStage("playroom", { at: t - 0.6, dur: 0.1 });
-  appear(d, ids, t - 0.5);
-  vanish(d, ["cane"], t - 0.5);
-  place(d, t - 0.5, [-2.2, 0, 0.3], 90);
-  appear(d, [T], t - 0.5);
-  d.set(T, "position", [X, 0, 0], t - 0.5).set(T, "rotation", [0, -yaw, 0], t - 0.5);
+  d.changeStage("playroom", { at: t, dur: 0.1 });
+  appear(d, ids, t);
+  vanish(d, ["cane"], t);
+  place(d, t, [-1.75, 0, 0.3], 0);
+  appear(d, [T], t);
+  d.set(T, "position", [X, 0, 0], t).set(T, "rotation", [0, -yaw, 0], t);
   // From a little to the right, so the frame shows as a frame and not edge-on; he starts just in the picture.
-  cam(d, t - 0.5, [1.5, 1.15, 4.1], [-0.1, 0.75, 0], 40);
-  // While DumpyDoo is still walking up, his "reflection" stands frozen like a picture.
-  d.set(T, "gaze", [0, 0], t - 0.5);
+  cam(d, t, [1.5, 1.15, 4.1], [-0.1, 0.75, 0], 40);
+  // Until DumpyDoo walks up, his "reflection" stands frozen like a picture.
+  d.set(T, "gaze", [0, 0], t);
+  t = card(d, "Chapter Nine\n\nThe Mirror", t, 4.5, { over: true, music: "playful" });
   t = waddle(d, t, [-X, 0, 0], { steps: 7, face: 90 });
   d.turn(ID, { at: t, to: [0, yaw, 0], dur: 0.3 });
   t += 0.6;
@@ -405,7 +405,7 @@ export function chapterMirror(d, t) {
   exclaim(d, "Bye-bye, DumpyDee!", t + 0.9);
   t += 3;
   vanish(d, [T], t);
-  t = card(d, "That was no mirror...\nit was his twin cousin, DumpyDee!", t, 3.6);
+  t = card(d, "That was no mirror...\nit was his twin cousin, DumpyDee!", t, 3.6, { over: true });
   // Back to DumpyDoo, who checks the empty frame with his glove, then shrugs at us.
   d.turn(ID, { at: t, to: [0, 90, 0], dur: 0.3 });
   oneArm(d, t + 0.3, 0.4, 1, [-70, 0, 0], [-20, 0, 0]);

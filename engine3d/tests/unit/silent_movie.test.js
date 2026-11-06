@@ -73,8 +73,10 @@ test("the silent movie plans to about ten minutes, its cards in order, and is de
   const sceneUrl = pathToFileURL(new URL("../../scenes/dumpydoo_silent_movie.js", import.meta.url).pathname).href;
   const plan = await buildPlan({ sceneUrl, catalog });
   assert.ok(plan.duration > 540 && plan.duration < 660, `${plan.duration} s`);
-  const cards = plan.captions.filter((c) => c.style === "intertitle");
-  assert.ok(cards.length >= 20, `${cards.length} cards`);
+  // Full-frame cards open and close the film; every chapter title comes up over its own scene.
+  const cards = plan.captions.filter((c) => c.style === "intertitle" || c.style === "chapter").sort((a, b) => a.start - b.start);
+  assert.deepEqual(plan.captions.filter((c) => c.style === "intertitle").map((c) => c.text), ["DumpyDoo Pictures\npresents", "The End"]);
+  assert.ok(cards.length >= 20, `${cards.length} titles`);
   for (let i = 1; i < cards.length; i++) assert.ok(cards[i].start >= cards[i - 1].start + cards[i - 1].dur - 1e-6, `card ${i} overlaps the one before`);
   assert.equal(cards.at(-1).text, "The End");
   // Every card is read aloud in the baby voice, and DumpyDoo says his own lines (his mouth moves with them).

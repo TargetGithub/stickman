@@ -14,6 +14,8 @@ const STYLES = {
   label: { size: 0.1, x: 0.5, y: 0.22, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
   // A title card for kids: the whole frame, a bright gradient with confetti, big outlined words (cut in, no pop).
   intertitle: { size: 0.085, x: 0.5, y: 0.5, fill: "#ffffff", box: null, stroke: null, card: true },
+  // A chapter title over the live scene: the same badge and big outlined words, no background, near the top.
+  chapter: { size: 0.1, x: 0.5, y: 0.8, fill: "#ffffff", box: null, stroke: null, banner: true },
 };
 /** Title card colours: gradient top and bottom, the badge, and the dark ink for outlines and badge words. */
 const CARD_THEMES = [
@@ -47,6 +49,7 @@ export function createOverlay(width, height, captions) {
     if (sprites.has(key)) return sprites.get(key);
     const st = STYLES[c.style] ?? STYLES.subtitle;
     if (st.card) return card(c, st, key);
+    if (st.banner) return banner(c, st, key);
     const px = Math.round(height * st.size);
     const cv = document.createElement("canvas");
     const g = cv.getContext("2d");
@@ -92,6 +95,79 @@ export function createOverlay(width, height, captions) {
     // instead of running off the frame.
     const lift = st === STYLES.subtitle && !c.pos ? Math.max(0, height * 0.03 + cv.height / 2 - height * y) : 0;
     mesh.position.set(width * x, height * y + lift, 0);
+    mesh.visible = false;
+    scene.add(mesh);
+    sprites.set(key, mesh);
+    return mesh;
+  }
+
+  /**
+   * A chapter title over the scene: "Chapter One\n\nThe Title" puts the first part in a coloured badge (a theme
+   * picked from the text) above big white words with a dark outline and a soft shadow, wrapped to 80% of the
+   * width; no background, so the picture shows all round it.
+   */
+  function banner(c, st, key) {
+    let seed = 0;
+    for (const ch of c.text) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+    const th = CARD_THEMES[seed % CARD_THEMES.length];
+    const parts = c.text.split("\n\n");
+    const badge = parts.length > 1 ? parts[0] : null;
+    const body = parts.length > 1 ? parts.slice(1).join("\n") : c.text;
+    const px = Math.round(height * st.size);
+    const bpx = Math.round(px * 0.55);
+    const cv = document.createElement("canvas");
+    const g = cv.getContext("2d");
+    g.font = `bold ${px}px ${FONT}`;
+    const lines = [];
+    for (const para of body.split("\n")) {
+      lines.push("");
+      for (const word of para.split(" ")) {
+        const last = lines[lines.length - 1];
+        if (last && g.measureText(`${last} ${word}`).width > width * 0.8) lines.push(word);
+        else lines[lines.length - 1] = last ? `${last} ${word}` : word;
+      }
+    }
+    const lh = px * 1.2;
+    g.font = `bold ${bpx}px ${FONT}`;
+    const bw = badge ? g.measureText(badge).width + bpx * 1.4 : 0;
+    g.font = `bold ${px}px ${FONT}`;
+    const tw = Math.max(bw, ...lines.map((l) => g.measureText(l).width));
+    const pad = px * 0.4;
+    cv.width = Math.ceil(tw + pad * 2);
+    cv.height = Math.ceil(lines.length * lh + (badge ? bpx * 2 : 0) + pad * 2);
+    let y = pad;
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    g.lineJoin = "round";
+    if (badge) {
+      g.font = `bold ${bpx}px ${FONT}`;
+      g.fillStyle = th.badge;
+      g.strokeStyle = th.ink;
+      g.lineWidth = bpx * 0.1;
+      g.beginPath();
+      g.roundRect(cv.width / 2 - bw / 2, y, bw, bpx * 1.5, bpx * 0.75);
+      g.fill();
+      g.stroke();
+      g.fillStyle = th.ink;
+      g.fillText(badge, cv.width / 2, y + bpx * 0.78);
+      y += bpx * 2;
+    }
+    g.font = `bold ${px}px ${FONT}`;
+    lines.forEach((l, i) => {
+      const ly = y + lh * (i + 0.5);
+      g.fillStyle = "rgba(0,0,0,0.3)";
+      g.fillText(l, cv.width / 2 + px * 0.05, ly + px * 0.08);
+      g.strokeStyle = th.ink;
+      g.lineWidth = px * 0.2;
+      g.strokeText(l, cv.width / 2, ly);
+      g.fillStyle = "#ffffff";
+      g.fillText(l, cv.width / 2, ly);
+    });
+    const tex = new THREE.CanvasTexture(cv);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, toneMapped: false, depthTest: false });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(cv.width, cv.height), mat);
+    mesh.position.set(width * st.x, height * st.y, 0);
     mesh.visible = false;
     scene.add(mesh);
     sprites.set(key, mesh);
