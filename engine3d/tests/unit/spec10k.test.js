@@ -297,7 +297,7 @@ test("US English lint (table)", () => {
     [(s) => { s.needs.props.push({ name: "new:mummy_bear", description: "The mother bear of the Bear family." }); }, null, "mummy"],
     [(s) => { s.needs.props.push({ name: "new:pyjamas", description: "Striped sleep clothes for Baby Bear." }); }, "pyjamas", null],
     [(s) => { s.hook.line = "Put a full stop at the end!"; }, null, "full stop"],
-    [(s) => { s.scenes[1].visuals = "Bunny puts on her jumper and trousers by the cot."; }, null, "jumper"],
+    [(s) => { s.scenes[1].visuals = "Bunny puts on her jumper and trousers by the camp cot."; }, null, "jumper"],
     [(s) => { s.scenes[1].purpose = "practise"; }, null, null],
     [(s) => { s.needs.props.push("metre_stick"); }, null, null],
     [(s) => { s.title = "Color, Gray and Center Fun"; }, null, null],

@@ -35,7 +35,7 @@ const VOCAB = [
   ["biscuits", "cookies"], ["sweets", "candy"], ["rubbish", "trash"], ["pavement", "sidewalk"], ["lorry", "truck"],
   ["torch", "flashlight"], ["full stop", "period"], ["nought", "zero"], ["queue", "line"], ["wellies", "rain boots"],
   ["wellington boots", "rain boots"], ["petrol", "gas"], ["postbox", "mailbox"], ["car park", "parking lot"],
-  ["motorway", "highway"], ["cot", "crib"], ["pram", "stroller"], ["dummy", "pacifier"], ["crisps", "chips"],
+  ["motorway", "highway"], ["pram", "stroller"], ["dummy", "pacifier"], ["crisps", "chips"],
   ["sledge", "sled"], ["aubergine", "eggplant"], ["courgette", "zucchini"], ["coriander", "cilantro"], ["sweetcorn", "corn"],
   ["ice lolly", "popsicle"], ["trainers", "sneakers"], ["dressing gown", "bathrobe"], ["flannel", "washcloth"],
   ["mobile phone", "cell phone"], ["bin lorry", "garbage truck"], ["dustbin", "trash can"], ["fortnight", "two weeks"],
