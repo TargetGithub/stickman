@@ -8,6 +8,7 @@
 //   node engine3d/tools/script10k.mjs thumbs <id>                 designed thumbnails + sheet into the qa folder
 //   node engine3d/tools/script10k.mjs review <id> --ok|--fix "note"   record the eye check (qa/<id>/review.json)
 //   node engine3d/tools/script10k.mjs ready [--band b] [--json]   specs whose assets all exist and have no lesson yet
+//   node engine3d/tools/script10k.mjs compose props <name> "how"  record a small prop composed in the script
 //   node engine3d/tools/script10k.mjs needs <id>...               which new: assets are mapped (and how to build them) or missing
 //   node engine3d/tools/script10k.mjs status                     10K/SCRIPT_STATUS.md
 // Env TOYBOX_10K overrides the 10K folder.
@@ -151,6 +152,19 @@ if (cmd === "needs") {
   process.exit(0);
 }
 
+if (cmd === "compose") {
+  // Record a small one-spec prop composed in the script from shapes (10K/script_composed.json, owned by wave 3;
+  // assets10k counts these as unblocking): script10k compose props napkin "a cream plate shape, 0.4 x 0.4, draped".
+  const [group, name, how] = positional;
+  if (!["characters", "props", "stages", "features"].includes(group) || !name || !how) { console.error('usage: compose <props|...> <name> "how it is built"'); process.exit(2); }
+  const f = join(ROOT, "script_composed.json");
+  const j = existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : {};
+  (j[group] ??= {})[name] = how;
+  writeFileSync(f, `${JSON.stringify(j, null, 1)}\n`);
+  console.log(`${group}.${name} recorded`);
+  process.exit(0);
+}
+
 if (cmd === "status") {
   const by = {};
   for (const id of specIds()) {
@@ -165,7 +179,7 @@ if (cmd === "status") {
   }
   const tot = Object.values(by).reduce((a, s) => { for (const k of Object.keys(s)) a[k] = (a[k] ?? 0) + s[k]; return a; }, {});
   const md = [
-    "# 10K scripts status (wave 3)", "", `Updated ${new Date().toISOString().slice(0, 16).replace("T", " ")} by \`node engine3d/tools/script10k.mjs status\`.`, "",
+    "# 10K scripts status (wave 3)", "", `Updated ${new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16).replace("T", " ")} by \`node engine3d/tools/script10k.mjs status\`.`, "",
     "Ready = every asset the spec needs exists (catalog or assets_map.json). Pass = automated QA clean. Reviewed = stills and thumbnails checked by eye.", "",
     "| Band | Specs | Assets ready | Lessons | QA pass | Reviewed |", "|---|---|---|---|---|---|",
     ...Object.entries(by).map(([b, s]) => `| ${b} | ${s.specs} | ${s.ready} | ${s.lessons} | ${s.pass} | ${s.reviewed} |`),

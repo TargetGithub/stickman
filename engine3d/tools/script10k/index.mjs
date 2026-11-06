@@ -79,7 +79,9 @@ export function assetContext(catalog, root = ROOT) {
     const p = loadProgramme(root);
     SETS = catalogSets(catalog, { ...p.series?.features, ...p.series?.featureAliases });
   }
-  return { sets: SETS, map: readJson(new URL("../../catalog/asset_map.json", import.meta.url)) };
+  const composedFile = join(root, "script_composed.json");
+  const composed = existsSync(composedFile) ? readJson(composedFile) : {};
+  return { sets: SETS, map: readJson(new URL("../../catalog/asset_map.json", import.meta.url)), composed };
 }
 
 /**
@@ -96,7 +98,9 @@ export function needState(spec, ctx) {
     const n = raw.slice(4);
     if (ctx.sets[g].has(n)) return;
     const m = ctx.map[g]?.[n];
+    const c = ctx.composed?.[g]?.[n];
     if (m) mapped.push({ name: n, group: g, use: m.use, how: m.how });
+    else if (c) mapped.push({ name: n, group: g, use: "script", how: `composed in the script: ${c}` });
     else missing.push(n);
   };
   for (const g of GROUPS) for (const n of spec.needs?.[g] ?? []) visit(g, typeof n === "string" ? n : n.name);

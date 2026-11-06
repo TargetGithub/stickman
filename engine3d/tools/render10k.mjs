@@ -32,7 +32,8 @@ const OVERFLOW = ["DISK8MAC", "DISK9ExFAT", "DISK10ExFAT", "DISK1MAC", "DISK4MAC
 const MANIFEST = join(ROOT, "render_manifest.json");
 const STATUS = join(ROOT, "RENDER_STATUS.md");
 const LOGS = join(HERE, "../../out/logs/render10k");
-const stamp = () => new Date().toISOString().slice(0, 16).replace("T", " ");
+/** Local time (the Mac's clock), as Sridhar reads it. */
+const stamp = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16).replace("T", " ");
 const log = (...a) => console.log(stamp(), ...a);
 
 const readJson = (f, d) => (existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : d);

@@ -41,6 +41,11 @@ Run `needs <id>` first. A **built** name is in the catalog now: use it as writte
 kind such as `text_card` for cards and pages, a shape composition). See `engine3d/catalog/asset_map.json` and the
 "10K asset wave" section of `engine3d/README.md`. Never invent a model name; QA fails on unknown names.
 
+A **missing** need that is a small one-spec prop (a napkin, a toast slice, porridge in a bowl) may be composed in
+the lesson from shapes (`plate`, `disc`, `sphere`, `box`...; a `group` with children moves as one). Record it:
+`script10k compose props napkin "cream plate 0.45 x 0.45 laid over the bowl; lifts off with move"`. Characters,
+stages and anything used by several specs wait for the assets session.
+
 ## Lesson format
 
 ```json
