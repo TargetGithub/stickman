@@ -1,0 +1,5752 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Sing Baa Baa Black Sheep with Robo and learn colours! A black sheep says baa and gives three bags of wool, then more sheep are hiding on the farm: look at the wool peeking over the hay, say which colour it is, count down 3, 2, 1 and see them jump out. Sing a verse for every colour, count the three bags, say the colour on your turn and fill up the wool tracker. A surprise colour waits in the barn, then a quick point-to-it quiz with balls of yarn.",
+ "meta": {
+  "title": "Baa Baa Black Sheep: Colour Wool",
+  "series": "toybox",
+  "episode": "br02",
+  "audience": "babies",
+  "seed": 302,
+  "voice": "soft",
+  "voiceSpeed": 0.92,
+  "music": "playful",
+  "musicGain": 0.17,
+  "skills": [
+   "count_to_5_prek",
+   "listening_prek"
+  ],
+  "cast": {
+   "black_sheep": {
+    "voice": "soft",
+    "pitch": 1.1,
+    "speed": 0.95
+   },
+   "white_sheep": {
+    "voice": "soft",
+    "pitch": 1.3,
+    "speed": 0.95
+   },
+   "red_sheep": {
+    "voice": "squeaky",
+    "pitch": 1.15,
+    "speed": 1
+   },
+   "blue_sheep": {
+    "voice": "deep",
+    "pitch": 1.05,
+    "speed": 0.95
+   },
+   "yellow_sheep": {
+    "voice": "squeaky",
+    "pitch": 1.25,
+    "speed": 1.05
+   }
+  },
+  "youtube": {
+   "title": "Baa Baa Black Sheep 🐑 Learn Colours with Wool for Toddlers | Toy Box Friends",
+   "description": "Sing Baa Baa Black Sheep with Robo and learn colours! A black sheep says baa and gives three bags of wool, then more sheep are hiding on the farm: look at the wool peeking over the hay, say which colour it is, count down 3, 2, 1 and see them jump out. Sing a verse for every colour, count the three bags, say the colour on your turn and fill up the wool tracker. A surprise colour waits in the barn, then a quick point-to-it quiz with balls of yarn.\n\nColours: black, white, red, blue and yellow, and counting to three (\"three bags full\").\n\nSing at home: point to something red, blue or yellow in your room after each verse, count three things together, and ask \"What colour is it?\". Baa Baa Black Sheep is a traditional public-domain rhyme sung to its traditional tune; the white, red, blue and yellow verses are original lyrics written for Toy Box Friends.\n\nMade for kids. Toy Box Friends: 3D learning videos for babies, toddlers and preschool.",
+   "tags": [
+    "baa baa black sheep",
+    "nursery rhymes",
+    "learn colours for toddlers",
+    "colors for kids",
+    "colour song",
+    "counting to 3",
+    "baby songs",
+    "toddler learning",
+    "sing along for kids",
+    "kids songs",
+    "preschool",
+    "3D cartoon for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "colours",
+    "title": "BAA BAA COLOURS",
+    "subtitle": "Sing the wool colours!",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "farm",
+    "camera": {
+     "position": [
+      0.3,
+      1.4,
+      7
+     ],
+     "lookAt": [
+      0.9,
+      0.85,
+      -0.2
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "barn",
+      "kind": "prop",
+      "model": "barn",
+      "at": [
+       3.4,
+       0,
+       -3.2
+      ]
+     },
+     {
+      "id": "black",
+      "kind": "critter",
+      "species": "sheep",
+      "color": "black",
+      "at": [
+       2,
+       0,
+       0.3
+      ],
+      "size": 1.15,
+      "rotation": [
+       0,
+       -10,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "red",
+      "kind": "critter",
+      "species": "sheep",
+      "color": "red",
+      "at": [
+       3.25,
+       0,
+       -0.5
+      ],
+      "size": 1.1,
+      "rotation": [
+       0,
+       -20,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "blue",
+      "kind": "critter",
+      "species": "sheep",
+      "color": "blue",
+      "at": [
+       4.35,
+       0,
+       0.35
+      ],
+      "size": 1.1,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "bag_y",
+      "kind": "prop",
+      "model": "wool_bag",
+      "color": "yellow",
+      "at": [
+       1.35,
+       0,
+       1.6
+      ],
+      "size": 1
+     },
+     {
+      "id": "bag_w",
+      "kind": "prop",
+      "model": "wool_bag",
+      "color": "white",
+      "at": [
+       2.15,
+       0,
+       1.75
+      ],
+      "size": 1
+     },
+     {
+      "id": "bag_r",
+      "kind": "prop",
+      "model": "wool_bag",
+      "color": "red",
+      "at": [
+       2.95,
+       0,
+       1.6
+      ],
+      "size": 1
+     }
+    ]
+   },
+   {
+    "name": "red",
+    "title": "WHAT COLOUR?",
+    "subtitle": "Three bags full!",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "farm",
+    "camera": {
+     "position": [
+      0.7,
+      1.2,
+      5.6
+     ],
+     "lookAt": [
+      1.1,
+      0.75,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "sheep",
+      "kind": "critter",
+      "species": "sheep",
+      "color": "red",
+      "at": [
+       1.85,
+       0,
+       0
+      ],
+      "size": 1.25,
+      "rotation": [
+       0,
+       5,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "bag1",
+      "kind": "prop",
+      "model": "wool_bag",
+      "color": "red",
+      "at": [
+       2.85,
+       0,
+       0.6
+      ],
+      "size": 1,
+      "rotation": [
+       0,
+       -15,
+       0
+      ]
+     },
+     {
+      "id": "bag2",
+      "kind": "prop",
+      "model": "wool_bag",
+      "color": "red",
+      "at": [
+       3.5,
+       0,
+       0.2
+      ],
+      "size": 1
+     },
+     {
+      "id": "bag3",
+      "kind": "prop",
+      "model": "wool_bag",
+      "color": "red",
+      "at": [
+       3.25,
+       0,
+       1.1
+      ],
+      "size": 1,
+      "rotation": [
+       0,
+       15,
+       0
+      ]
+     },
+     {
+      "id": "bubble",
+      "kind": "prop",
+      "model": "word_bubble",
+      "at": [
+       2.95,
+       1.9,
+       0.2
+      ],
+      "size": 0.9
+     },
+     {
+      "id": "redw",
+      "kind": "letter",
+      "text": "RED",
+      "color": "red",
+      "parent": "bubble",
+      "at": [
+       0,
+       -0.1,
+       0.12
+      ],
+      "size": 0.24
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "farm"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.1,
+   9.4
+  ],
+  "lookAt": [
+   0,
+   1.35,
+   -0.4
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -4.7,
+    0,
+    0.9
+   ],
+   "rotation": [
+    0,
+    35,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "barn",
+   "kind": "prop",
+   "model": "barn",
+   "at": [
+    0,
+    0,
+    -1.5
+   ]
+  },
+  {
+   "id": "hay_l",
+   "kind": "prop",
+   "model": "hay_bale",
+   "at": [
+    -1.9,
+    0,
+    0.4
+   ],
+   "size": 1.3,
+   "rotation": [
+    0,
+    8,
+    0
+   ]
+  },
+  {
+   "id": "hay_r",
+   "kind": "prop",
+   "model": "hay_bale",
+   "at": [
+    1.9,
+    0,
+    0.4
+   ],
+   "size": 1.3,
+   "rotation": [
+    0,
+    -8,
+    0
+   ]
+  },
+  {
+   "id": "black_sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "color": "black",
+   "size": 1.2,
+   "at": [
+    -0.7,
+    0,
+    1.6
+   ],
+   "recolor": {
+    "charcoal": "grey"
+   },
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "white_sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "color": "white",
+   "size": 1.2,
+   "at": [
+    1.9,
+    -1.5,
+    -0.35
+   ],
+   "rotation": [
+    0,
+    -11.399999999999999,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "red_sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "color": "red",
+   "size": 1.2,
+   "at": [
+    -1.9,
+    -1.5,
+    -0.35
+   ],
+   "rotation": [
+    0,
+    11.399999999999999,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "blue_sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "color": "blue",
+   "size": 1.2,
+   "at": [
+    1.9,
+    -1.5,
+    -0.35
+   ],
+   "rotation": [
+    0,
+    -11.399999999999999,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "yellow_sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "color": "yellow",
+   "size": 1.2,
+   "at": [
+    0,
+    0,
+    -1.2
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "bag1",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "black",
+   "at": [
+    0.45,
+    0,
+    1.85
+   ],
+   "size": 1.25,
+   "rotation": [
+    0,
+    -10,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bag2",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "black",
+   "at": [
+    1.1,
+    0,
+    1.75
+   ],
+   "size": 1.25,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bag3",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "black",
+   "at": [
+    1.75,
+    0,
+    1.85
+   ],
+   "size": 1.25,
+   "rotation": [
+    0,
+    10,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "n1",
+   "kind": "letter",
+   "text": "1",
+   "color": "blue",
+   "at": [
+    0.45,
+    1.1,
+    1.9500000000000002
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "n2",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    1.1,
+    1.1,
+    1.85
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "n3",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    1.75,
+    1.1,
+    1.9500000000000002
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "yarn_black",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "black",
+   "at": [
+    -2.6,
+    0,
+    2.7
+   ],
+   "size": 1.5,
+   "rotation": [
+    0,
+    -20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "yarn_white",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "white",
+   "at": [
+    -1.3,
+    0,
+    2.7
+   ],
+   "size": 1.5,
+   "rotation": [
+    0,
+    -20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "yarn_red",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "red",
+   "at": [
+    0,
+    0,
+    2.7
+   ],
+   "size": 1.5,
+   "rotation": [
+    0,
+    -20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "yarn_blue",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "blue",
+   "at": [
+    1.3,
+    0,
+    2.7
+   ],
+   "size": 1.5,
+   "rotation": [
+    0,
+    -20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "yarn_yellow",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "yellow",
+   "at": [
+    2.6,
+    0,
+    2.7
+   ],
+   "size": 1.5,
+   "rotation": [
+    0,
+    -20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "at": [
+    0,
+    3.2,
+    1
+   ]
+  },
+  {
+   "id": "slot1",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "blue",
+   "hud": true,
+   "at": [
+    -7.15,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true,
+   "recolor": {
+    "white": "sky"
+   }
+  },
+  {
+   "id": "slot2",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    -6.2,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true,
+   "recolor": {
+    "white": "sky"
+   }
+  },
+  {
+   "id": "slot3",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "green",
+   "hud": true,
+   "at": [
+    -5.25,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true,
+   "recolor": {
+    "white": "sky"
+   }
+  },
+  {
+   "id": "slot4",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "pink",
+   "hud": true,
+   "at": [
+    -4.300000000000001,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true,
+   "recolor": {
+    "white": "sky"
+   }
+  },
+  {
+   "id": "slot5",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "purple",
+   "hud": true,
+   "at": [
+    -3.3500000000000005,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true,
+   "recolor": {
+    "white": "sky"
+   }
+  },
+  {
+   "id": "mini_black",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "black",
+   "hud": true,
+   "parent": "slot1",
+   "at": [
+    0,
+    -0.33,
+    0.3
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "mini_white",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "white",
+   "hud": true,
+   "parent": "slot2",
+   "at": [
+    0,
+    -0.33,
+    0.3
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "mini_red",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "red",
+   "hud": true,
+   "parent": "slot3",
+   "at": [
+    0,
+    -0.33,
+    0.3
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "mini_blue",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "blue",
+   "hud": true,
+   "parent": "slot4",
+   "at": [
+    0,
+    -0.33,
+    0.3
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "mini_yellow",
+   "kind": "prop",
+   "model": "wool_bag",
+   "color": "yellow",
+   "hud": true,
+   "parent": "slot5",
+   "at": [
+    0,
+    -0.33,
+    0.3
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "qmark",
+   "kind": "letter",
+   "text": "?",
+   "color": "orange",
+   "hud": true,
+   "parent": "slot5",
+   "at": [
+    0,
+    -0.26,
+    0.2
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "cd_bg",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "white",
+   "hud": true,
+   "at": [
+    0,
+    -0.2,
+    1.5
+   ],
+   "size": 2.7,
+   "hidden": true
+  },
+  {
+   "id": "cd3",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd2",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd1",
+   "kind": "letter",
+   "text": "1",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "bubble",
+   "kind": "prop",
+   "model": "word_bubble",
+   "hud": true,
+   "at": [
+    5.6,
+    2.05,
+    0
+   ],
+   "size": 1.75,
+   "hidden": true
+  },
+  {
+   "id": "w_black",
+   "kind": "letter",
+   "text": "BLACK",
+   "color": "black",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    0.14,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "wy_black",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "black",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.36,
+    0.2
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "w_white",
+   "kind": "letter",
+   "text": "WHITE",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    0.14,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "wy_white",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "white",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.36,
+    0.2
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "w_red",
+   "kind": "letter",
+   "text": "RED",
+   "color": "red",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    0.14,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "wy_red",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "red",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.36,
+    0.2
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "w_blue",
+   "kind": "letter",
+   "text": "BLUE",
+   "color": "blue",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    0.14,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "wy_blue",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "blue",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.36,
+    0.2
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "w_yellow",
+   "kind": "letter",
+   "text": "YELLOW",
+   "color": "ink",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    0.14,
+    0.18
+   ],
+   "size": 0.24,
+   "hidden": true
+  },
+  {
+   "id": "wy_yellow",
+   "kind": "prop",
+   "model": "yarn_ball",
+   "color": "yellow",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.36,
+    0.2
+   ],
+   "size": 0.95,
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hello",
+   "title": "Baa!",
+   "beats": [
+    {
+     "id": "h1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3,
+        12.5
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.5
+       ],
+       "fov": 40,
+       "dur": 0
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 2.6
+      },
+      {
+       "do": "say",
+       "who": "black_sheep",
+       "text": "Baa!",
+       "at": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.2,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "bag1",
+       "at": 0.8,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.9,
+       "volume": 0.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wool! A bag of black wool!",
+       "at": 1.2,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "id": "h2",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let's fill our bags with colours of wool!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "slot1",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot2",
+       "at": 0.52,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot3",
+       "at": 0.74,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot4",
+       "at": 0.96,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "h3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And one colour is a surprise in the barn!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "slot5",
+       "at": 0.2,
+       "dur": 0.4,
+       "sound": "magic_sparkle"
+      },
+      {
+       "do": "pop",
+       "target": "qmark",
+       "at": 0.4,
+       "dur": 0.4,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "barn",
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_left",
+       "at": 0.9,
+       "deg": 9,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_right",
+       "at": 1,
+       "deg": 9,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "slot5",
+       "to": 1.2,
+       "at": 1.4,
+       "dur": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "slot5",
+       "to": 1,
+       "at": 1.8,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "id": "h4",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Sing with me!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "black_song",
+   "title": "Sing: the black sheep",
+   "music": false,
+   "beats": [
+    {
+     "id": "black_s1",
+     "dur": 2.96,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baa, baa, black sheep, have you any wool?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C4 C4 G4 G4 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "black_sheep",
+        "bag2"
+       ],
+       "framing": "wide",
+       "yaw": -12,
+       "dur": 1.24
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.16,
+       "to": "black_sheep"
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.4,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "black_sheep",
+       "feeling": "joyful",
+       "at": 1.91
+      }
+     ]
+    },
+    {
+     "id": "black_s2",
+     "dur": 3.37,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes sir, yes sir, three bags full!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "F4 F4 E4 E4 D4 D4 C4:2"
+      },
+      {
+       "do": "nod",
+       "target": "black_sheep",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "bag1",
+       "at": 1.51,
+       "deg": 12,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "bag2",
+       "at": 1.86,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag3",
+       "at": 2.21,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "feel",
+       "target": "black_sheep",
+       "feeling": "happy",
+       "at": 1.51
+      }
+     ]
+    },
+    {
+     "id": "black_s3",
+     "dur": 3.42,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One for the master, and one for the dame,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4:0.5 F4 F4 E4:0.5 E4:0.5 E4:0.5 E4:0.5 D4:2"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bag1",
+        "bag2",
+        "bag3",
+        "black_sheep"
+       ],
+       "framing": "medium",
+       "yaw": 7.199999999999999,
+       "dur": 1.47
+      },
+      {
+       "do": "hop",
+       "target": "bag1",
+       "at": 0.1,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bag2",
+       "at": 1.71,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "black_sheep",
+       "at": 0.17,
+       "to": "bag2"
+      }
+     ]
+    },
+    {
+     "id": "black_s4",
+     "dur": 3.72,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And one for the little boy who lives down the lane.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 G4:0.5 G4:0.5 F4:0.5 F4:0.5 F4 E4:0.5 E4:0.5 E4:0.5 E4:0.5 D4:2"
+      },
+      {
+       "do": "hop",
+       "target": "bag3",
+       "at": 0.3,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "black_sheep",
+       "at": 0.89,
+       "to": "ahead"
+      },
+      {
+       "do": "spin",
+       "target": "black_sheep",
+       "at": 1.69,
+       "dur": 1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.92
+      }
+     ]
+    },
+    {
+     "id": "black_s5",
+     "dur": 2.96,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baa, baa, black sheep, have you any wool?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C4 C4 G4 G4 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.4,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0.4,
+        0.7,
+        1.7
+       ],
+       "degrees": 14,
+       "dur": 1.69
+      }
+     ]
+    },
+    {
+     "id": "black_s6",
+     "dur": 3.37,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes sir, yes sir, three bags full!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "F4 F4 E4 E4 D4 D4 C4:2"
+      },
+      {
+       "do": "hop",
+       "target": "bag1",
+       "at": 1.51,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bag2",
+       "at": 1.86,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bag3",
+       "at": 2.21,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 1.86
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "black_count",
+   "title": "Count the bags",
+   "beats": [
+    {
+     "id": "black_c1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "How many bags? Let's count!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bag1",
+        "bag2",
+        "bag3"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "id": "black_c2",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One... two... three!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "n1",
+       "at": 0.3,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hop",
+       "target": "bag1",
+       "at": 0.3,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "n2",
+       "at": 1.05,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hop",
+       "target": "bag2",
+       "at": 1.05,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "n3",
+       "at": 1.8,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hop",
+       "target": "bag3",
+       "at": 1.8,
+       "height": 0.3,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "id": "black_c3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three bags of black wool! Thank you, black sheep!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "black_sheep",
+       "text": "Baa!",
+       "at": "after"
+      },
+      {
+       "do": "hide",
+       "target": "n1",
+       "at": 1.6,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "n2",
+       "at": 1.6,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "n3",
+       "at": 1.6,
+       "dur": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "black_turn",
+   "title": "Say black!",
+   "beats": [
+    {
+     "id": "black_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say black!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "black_sheep",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_black",
+       "at": 0.35,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_black",
+       "at": 0.42,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "id": "black_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "black_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Black!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! Black! Well done!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "black_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_black",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_black",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_black",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "black_sheep",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "bag1",
+       "at": 0.1,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag2",
+       "at": 0.18,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag3",
+       "at": 0.26,
+       "dur": 0.25
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "white_find",
+   "title": "Which colour is next?",
+   "beats": [
+    {
+     "id": "white_f1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_r",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which colour is next? Look at the hay!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_r"
+      },
+      {
+       "do": "path",
+       "target": "black_sheep",
+       "points": [
+        [
+         -0.7,
+         0,
+         1.6
+        ],
+        [
+         -3.1,
+         0,
+         1.3
+        ],
+        [
+         -4,
+         0,
+         -1.2
+        ]
+       ],
+       "dur": 2,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "black_sheep",
+       "to": [
+        0,
+        24,
+        0
+       ],
+       "at": 2.05,
+       "dur": 0.3
+      },
+      {
+       "do": "paint",
+       "target": "bag1",
+       "color": "white",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag2",
+       "color": "white",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag3",
+       "color": "white",
+       "at": 0.5,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "id": "white_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "white_sheep",
+       "to": [
+        1.9,
+        0,
+        -0.35
+       ],
+       "at": 0.1,
+       "dur": 0.4,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "white_sheep",
+       "text": "Baa!",
+       "at": 0.45
+      },
+      {
+       "do": "wiggle",
+       "target": "white_sheep",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "id": "white_f3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look at the wool! What colour is it?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.7,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "white_sheep",
+       "to": [
+        1.9,
+        -1.5,
+        -0.35
+       ],
+       "at": 2.1,
+       "dur": 0.35
+      }
+     ]
+    },
+    {
+     "id": "white_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "white_f5",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "white_sheep",
+       "points": [
+        [
+         1.9,
+         -1.5,
+         -0.35
+        ],
+        [
+         1.4249999999999998,
+         1.25,
+         0.55
+        ],
+        [
+         -0.7,
+         0,
+         1.6
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "turn",
+       "target": "white_sheep",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.85,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "white_sheep",
+       "feeling": "joyful",
+       "at": 0.85
+      },
+      {
+       "do": "shot",
+       "target": "white_sheep",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "White! A white sheep!",
+       "at": 1,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "WHITE",
+       "style": "label",
+       "at": 1,
+       "dur": 1.7
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_white",
+       "at": 1.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_white",
+       "at": 1.12,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "white_song",
+   "title": "Sing: the white sheep",
+   "music": false,
+   "beats": [
+    {
+     "id": "white_s1",
+     "dur": 3.32,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baa, baa, white sheep, have you any wool?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C4 C4 G4 G4 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "white_sheep",
+        "bag2"
+       ],
+       "framing": "wide",
+       "yaw": 14,
+       "dur": 1.42
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.16,
+       "to": "white_sheep"
+      },
+      {
+       "do": "hop",
+       "target": "white_sheep",
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "white_sheep",
+       "at": 0.45,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "white_sheep",
+       "feeling": "joyful",
+       "at": 2.18
+      },
+      {
+       "do": "hide",
+       "target": "w_white",
+       "at": 0.45,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_white",
+       "at": 0.45,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.48,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "white_s2",
+     "dur": 3.98,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes, yes, white wool, three bags full!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "F4 F4 E4 E4 D4 D4 C4:2"
+      },
+      {
+       "do": "nod",
+       "target": "white_sheep",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "bag1",
+       "at": 1.82,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag2",
+       "at": 2.24,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag3",
+       "at": 2.67,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "feel",
+       "target": "white_sheep",
+       "feeling": "happy",
+       "at": 1.82
+      }
+     ]
+    },
+    {
+     "id": "white_s3",
+     "dur": 3.64,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One for a snowman, and one for a kite,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4:0.5 F4 F4 E4:0.5 E4:0.5 E4:0.5 E4:0.5 D4:2"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bag1",
+        "bag2",
+        "bag3",
+        "white_sheep"
+       ],
+       "framing": "medium",
+       "yaw": -8.4,
+       "dur": 1.59
+      },
+      {
+       "do": "hop",
+       "target": "bag1",
+       "at": 0.1,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bag2",
+       "at": 1.84,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "white_sheep",
+       "at": 0.17,
+       "to": "bag2"
+      }
+     ]
+    },
+    {
+     "id": "white_s4",
+     "dur": 3.09,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And one for a bunny all fluffy and white.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 G4:0.5 G4:0.5 F4:0.5 F4:0.5 F4 E4:0.5 E4:0.5 E4 D4:2"
+      },
+      {
+       "do": "hop",
+       "target": "bag3",
+       "at": 0.26,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "white_sheep",
+       "at": 0.74,
+       "to": "ahead"
+      },
+      {
+       "do": "spin",
+       "target": "white_sheep",
+       "at": 1.37,
+       "dur": 1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.54
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "white_turn",
+   "title": "Say white!",
+   "beats": [
+    {
+     "id": "white_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say white!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "white_sheep",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_white",
+       "at": 0.35,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_white",
+       "at": 0.42,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "id": "white_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "white_sheep",
+       "at": 0.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "white_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "White!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Hooray! White! Like a fluffy cloud!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "white_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_white",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_white",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_white",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "white_sheep",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "bag1",
+       "at": 0.1,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag2",
+       "at": 0.18,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag3",
+       "at": 0.26,
+       "dur": 0.25
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_find",
+   "title": "Which colour is next?",
+   "beats": [
+    {
+     "id": "red_f1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_l",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Who is hiding now? Which colour?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_l"
+      },
+      {
+       "do": "path",
+       "target": "white_sheep",
+       "points": [
+        [
+         -0.7,
+         0,
+         1.6
+        ],
+        [
+         3.1,
+         0,
+         1.3
+        ],
+        [
+         4.3,
+         0,
+         -1.4
+        ]
+       ],
+       "dur": 2,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "white_sheep",
+       "to": [
+        0,
+        -25.799999999999997,
+        0
+       ],
+       "at": 2.05,
+       "dur": 0.3
+      },
+      {
+       "do": "paint",
+       "target": "bag1",
+       "color": "red",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag2",
+       "color": "red",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag3",
+       "color": "red",
+       "at": 0.5,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "id": "red_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "red_sheep",
+       "to": [
+        -1.9,
+        0,
+        -0.35
+       ],
+       "at": 0.1,
+       "dur": 0.4,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "red_sheep",
+       "text": "Baa!",
+       "at": 0.45
+      },
+      {
+       "do": "wiggle",
+       "target": "red_sheep",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "id": "red_f3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look at the wool! What colour is it?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.7,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "red_sheep",
+       "to": [
+        -1.9,
+        -1.5,
+        -0.35
+       ],
+       "at": 2.1,
+       "dur": 0.35
+      }
+     ]
+    },
+    {
+     "id": "red_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "red_f5",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "red_sheep",
+       "points": [
+        [
+         -1.9,
+         -1.5,
+         -0.35
+        ],
+        [
+         -1.4249999999999998,
+         1.25,
+         0.55
+        ],
+        [
+         -0.7,
+         0,
+         1.6
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "turn",
+       "target": "red_sheep",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.85,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "red_sheep",
+       "feeling": "joyful",
+       "at": 0.85
+      },
+      {
+       "do": "shot",
+       "target": "red_sheep",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Red! A red sheep!",
+       "at": 1,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "RED",
+       "style": "label",
+       "at": 1,
+       "dur": 1.7
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_red",
+       "at": 1.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_red",
+       "at": 1.12,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_song",
+   "title": "Sing: the red sheep",
+   "music": false,
+   "beats": [
+    {
+     "id": "red_s1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baa, baa, red sheep, have you any wool?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C4 C4 G4 G4 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "red_sheep",
+        "bag2"
+       ],
+       "framing": "wide",
+       "yaw": -16,
+       "dur": 1.15
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.15,
+       "to": "red_sheep"
+      },
+      {
+       "do": "hop",
+       "target": "red_sheep",
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "red_sheep",
+       "at": 0.38,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "red_sheep",
+       "feeling": "joyful",
+       "at": 1.79
+      },
+      {
+       "do": "hide",
+       "target": "w_red",
+       "at": 0.38,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_red",
+       "at": 0.38,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.41,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "red_s2",
+     "dur": 4.24,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes, yes, red wool, three bags full!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "F4 F4 E4 E4 D4 D4 C4:2"
+      },
+      {
+       "do": "nod",
+       "target": "red_sheep",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "bag1",
+       "at": 1.95,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag2",
+       "at": 2.41,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag3",
+       "at": 2.87,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "feel",
+       "target": "red_sheep",
+       "feeling": "happy",
+       "at": 1.95
+      }
+     ]
+    },
+    {
+     "id": "red_s3",
+     "dur": 3.54,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One for a red hat, and one for a bow,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4:0.5 F4 F4 E4:0.5 E4:0.5 E4:0.5 E4:0.5 D4:2"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bag1",
+        "bag2",
+        "bag3",
+        "red_sheep"
+       ],
+       "framing": "medium",
+       "yaw": 9.6,
+       "dur": 1.53
+      },
+      {
+       "do": "hop",
+       "target": "bag1",
+       "at": 0.1,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bag2",
+       "at": 1.78,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "red_sheep",
+       "at": 0.17,
+       "to": "bag2"
+      }
+     ]
+    },
+    {
+     "id": "red_s4",
+     "dur": 3.57,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And one for a scarf that is red like a rose.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 G4:0.5 G4:0.5 F4:0.5 F4:0.5 F4 E4:0.5 E4:0.5 E4 D4:2"
+      },
+      {
+       "do": "hop",
+       "target": "bag3",
+       "at": 0.29,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "red_sheep",
+       "at": 0.86,
+       "to": "ahead"
+      },
+      {
+       "do": "spin",
+       "target": "red_sheep",
+       "at": 1.61,
+       "dur": 1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.83
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_turn",
+   "title": "Say red!",
+   "beats": [
+    {
+     "id": "red_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say red!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "red_sheep",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_red",
+       "at": 0.35,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_red",
+       "at": 0.42,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "id": "red_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "red_sheep",
+       "at": 0.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "red_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Red!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wow! Red! Super!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "red_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_red",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_red",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_red",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "red_sheep",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "bag1",
+       "at": 0.1,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag2",
+       "at": 0.18,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag3",
+       "at": 0.26,
+       "dur": 0.25
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blue_find",
+   "title": "Which colour is next?",
+   "beats": [
+    {
+     "id": "blue_f1",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "shot",
+       "target": "hay_r",
+       "framing": "medium",
+       "height": 10,
+       "pad": 0.9,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Another sheep! Which colour is next?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "hay_r"
+      },
+      {
+       "do": "path",
+       "target": "red_sheep",
+       "points": [
+        [
+         -0.7,
+         0,
+         1.6
+        ],
+        [
+         -3.1,
+         0,
+         1.3
+        ],
+        [
+         -3,
+         0,
+         -2.5
+        ]
+       ],
+       "dur": 2,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "red_sheep",
+       "to": [
+        0,
+        18,
+        0
+       ],
+       "at": 2.05,
+       "dur": 0.3
+      },
+      {
+       "do": "paint",
+       "target": "bag1",
+       "color": "blue",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag2",
+       "color": "blue",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag3",
+       "color": "blue",
+       "at": 0.5,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "id": "blue_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "blue_sheep",
+       "to": [
+        1.9,
+        0,
+        -0.35
+       ],
+       "at": 0.1,
+       "dur": 0.4,
+       "ease": "backOut"
+      },
+      {
+       "do": "say",
+       "who": "blue_sheep",
+       "text": "Baa!",
+       "at": 0.45
+      },
+      {
+       "do": "wiggle",
+       "target": "blue_sheep",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "id": "blue_f3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look at the wool! What colour is it?",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.7,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "blue_sheep",
+       "to": [
+        1.9,
+        -1.5,
+        -0.35
+       ],
+       "at": 2.1,
+       "dur": 0.35
+      }
+     ]
+    },
+    {
+     "id": "blue_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "blue_f5",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "blue_sheep",
+       "points": [
+        [
+         1.9,
+         -1.5,
+         -0.35
+        ],
+        [
+         1.4249999999999998,
+         1.25,
+         0.55
+        ],
+        [
+         -0.7,
+         0,
+         1.6
+        ]
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "turn",
+       "target": "blue_sheep",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.85,
+       "dur": 2.2,
+       "sound": false
+      },
+      {
+       "do": "feel",
+       "target": "blue_sheep",
+       "feeling": "joyful",
+       "at": 0.85
+      },
+      {
+       "do": "shot",
+       "target": "blue_sheep",
+       "framing": "medium",
+       "dur": 0.9
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Blue! A blue sheep!",
+       "at": 1,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "BLUE",
+       "style": "label",
+       "at": 1,
+       "dur": 1.7
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_blue",
+       "at": 1.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_blue",
+       "at": 1.12,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blue_song",
+   "title": "Sing: the blue sheep",
+   "music": false,
+   "beats": [
+    {
+     "id": "blue_s1",
+     "dur": 3.01,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baa, baa, blue sheep, have you any wool?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C4 C4 G4 G4 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "blue_sheep",
+        "bag2"
+       ],
+       "framing": "wide",
+       "yaw": 12,
+       "dur": 1.26
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.16,
+       "to": "blue_sheep"
+      },
+      {
+       "do": "hop",
+       "target": "blue_sheep",
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "blue_sheep",
+       "at": 0.41,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "blue_sheep",
+       "feeling": "joyful",
+       "at": 1.95
+      },
+      {
+       "do": "hide",
+       "target": "w_blue",
+       "at": 0.41,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_blue",
+       "at": 0.41,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.44,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "blue_s2",
+     "dur": 4.47,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes, yes, blue wool, three bags full!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "F4 F4 E4 E4 D4 D4 C4:2"
+      },
+      {
+       "do": "nod",
+       "target": "blue_sheep",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "bag1",
+       "at": 2.06,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag2",
+       "at": 2.55,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag3",
+       "at": 3.04,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "feel",
+       "target": "blue_sheep",
+       "feeling": "happy",
+       "at": 2.06
+      }
+     ]
+    },
+    {
+     "id": "blue_s3",
+     "dur": 3.41,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One for the blue sky, and one for the sea,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4:0.5 F4 F4 E4:0.5 E4:0.5 E4:0.5 E4:0.5 D4:2"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bag1",
+        "bag2",
+        "bag3",
+        "blue_sheep"
+       ],
+       "framing": "medium",
+       "yaw": -7.199999999999999,
+       "dur": 1.47
+      },
+      {
+       "do": "hop",
+       "target": "bag1",
+       "at": 0.1,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bag2",
+       "at": 1.71,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "blue_sheep",
+       "at": 0.17,
+       "to": "bag2"
+      }
+     ]
+    },
+    {
+     "id": "blue_s4",
+     "dur": 3.41,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And one for a blanket as blue as can be.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 G4:0.5 G4:0.5 F4:0.5 F4:0.5 F4 E4:0.5 E4:0.5 E4 D4:2"
+      },
+      {
+       "do": "hop",
+       "target": "bag3",
+       "at": 0.28,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "blue_sheep",
+       "at": 0.82,
+       "to": "ahead"
+      },
+      {
+       "do": "spin",
+       "target": "blue_sheep",
+       "at": 1.53,
+       "dur": 1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.74
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blue_turn",
+   "title": "Say blue!",
+   "beats": [
+    {
+     "id": "blue_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say blue!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "blue_sheep",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_blue",
+       "at": 0.35,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_blue",
+       "at": 0.42,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "id": "blue_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "blue_sheep",
+       "at": 0.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "blue_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Blue!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yay! Blue! Like the sky!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "blue_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_blue",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_blue",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_blue",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "blue_sheep",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "bag1",
+       "at": 0.1,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag2",
+       "at": 0.18,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag3",
+       "at": 0.26,
+       "dur": 0.25
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "yellow_find",
+   "title": "The surprise in the barn",
+   "beats": [
+    {
+     "id": "yellow_f1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "blue_sheep",
+       "points": [
+        [
+         -0.7,
+         0,
+         1.6
+        ],
+        [
+         3.1,
+         0,
+         1.3
+        ],
+        [
+         3.2,
+         0,
+         -2.4
+        ]
+       ],
+       "dur": 2,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "blue_sheep",
+       "to": [
+        0,
+        -19.200000000000003,
+        0
+       ],
+       "at": 2.05,
+       "dur": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "barn",
+       "framing": "medium",
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now the surprise colour! Who is in the barn?",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "black_sheep",
+       "at": 0.6,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "white_sheep",
+       "at": 0.7,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "red_sheep",
+       "at": 0.8,
+       "to": "barn"
+      },
+      {
+       "do": "look",
+       "target": "blue_sheep",
+       "at": 0.9,
+       "to": "barn"
+      },
+      {
+       "do": "paint",
+       "target": "bag1",
+       "color": "yellow",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag2",
+       "color": "yellow",
+       "at": 0.5,
+       "dur": 0.1
+      },
+      {
+       "do": "paint",
+       "target": "bag3",
+       "color": "yellow",
+       "at": 0.5,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "id": "yellow_f2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "yellow_sheep",
+       "text": "Baa! Baa!",
+       "at": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_left",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "barn#door_right",
+       "at": 0.35,
+       "deg": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "slot5",
+       "at": 0.5,
+       "deg": 12,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "id": "yellow_f3",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which colour is it? Let's open the doors!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "id": "yellow_f4",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      }
+     ]
+    },
+    {
+     "id": "yellow_f5",
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "turn",
+       "target": "barn#door_left",
+       "to": [
+        0,
+        -100,
+        0
+       ],
+       "at": 0,
+       "dur": 0.9,
+       "ease": "backOut"
+      },
+      {
+       "do": "turn",
+       "target": "barn#door_right",
+       "to": [
+        0,
+        100,
+        0
+       ],
+       "at": 0,
+       "dur": 0.9,
+       "ease": "backOut"
+      },
+      {
+       "do": "sound",
+       "sound": "door_open",
+       "at": 0
+      },
+      {
+       "do": "path",
+       "target": "yellow_sheep",
+       "points": [
+        [
+         0,
+         0,
+         -1.2
+        ],
+        [
+         0,
+         0,
+         0.5
+        ],
+        [
+         -0.7,
+         0,
+         1.6
+        ]
+       ],
+       "dur": 1.6,
+       "at": 0.9,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 0.95,
+       "height": 0.15,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 1.35,
+       "height": 0.15,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 1.75,
+       "height": 0.15,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 2.1500000000000004,
+       "height": 0.15,
+       "dur": 0.38
+      },
+      {
+       "do": "turn",
+       "target": "yellow_sheep",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 2.55,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2.6
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 2.6,
+       "dur": 2.4
+      },
+      {
+       "do": "feel",
+       "target": "yellow_sheep",
+       "feeling": "joyful",
+       "at": 2.6
+      },
+      {
+       "do": "shot",
+       "target": "yellow_sheep",
+       "framing": "medium",
+       "at": 1.6,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yellow! A yellow sheep!",
+       "at": 2.7,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "YELLOW",
+       "style": "label",
+       "at": 2.7,
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 2.8,
+       "volume": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 2.7,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_yellow",
+       "at": 2.75,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_yellow",
+       "at": 2.8200000000000003,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "yellow_song",
+   "title": "Sing: the yellow sheep",
+   "music": false,
+   "beats": [
+    {
+     "id": "yellow_s1",
+     "dur": 3.06,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baa, baa, yellow sheep, have you any wool?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C4 C4 G4:0.5 G4:0.5 G4 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "yellow_sheep",
+        "bag2"
+       ],
+       "framing": "wide",
+       "yaw": 0,
+       "dur": 1.29
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.16,
+       "to": "yellow_sheep"
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 0.1,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 0.41,
+       "height": 0.25,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "yellow_sheep",
+       "feeling": "joyful",
+       "at": 1.98
+      },
+      {
+       "do": "hide",
+       "target": "w_yellow",
+       "at": 0.41,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_yellow",
+       "at": 0.41,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.44,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "yellow_s2",
+     "dur": 4.26,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes, yes, yellow wool, three bags full!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "F4 F4 E4:0.5 E4:0.5 E4 D4 D4 C4:2"
+      },
+      {
+       "do": "nod",
+       "target": "yellow_sheep",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "bag1",
+       "at": 1.96,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag2",
+       "at": 2.42,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "bag3",
+       "at": 2.88,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "feel",
+       "target": "yellow_sheep",
+       "feeling": "happy",
+       "at": 1.96
+      }
+     ]
+    },
+    {
+     "id": "yellow_s3",
+     "dur": 3.39,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One for the sunshine, and one for a bee,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 G4:0.5 G4:0.5 F4 F4 E4:0.5 E4:0.5 E4:0.5 E4:0.5 D4:2"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bag1",
+        "bag2",
+        "bag3",
+        "yellow_sheep"
+       ],
+       "framing": "medium",
+       "yaw": 0,
+       "dur": 1.46
+      },
+      {
+       "do": "hop",
+       "target": "bag1",
+       "at": 0.1,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bag2",
+       "at": 1.7,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "yellow_sheep",
+       "at": 0.17,
+       "to": "bag2"
+      }
+     ]
+    },
+    {
+     "id": "yellow_s4",
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And one for a chick that's as yellow as me!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 G4:0.5 G4:0.5 F4:0.5 F4:0.5 F4 E4:0.5 E4:0.5 E4 D4:2"
+      },
+      {
+       "do": "hop",
+       "target": "bag3",
+       "at": 0.23,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "look",
+       "target": "yellow_sheep",
+       "at": 0.63,
+       "to": "ahead"
+      },
+      {
+       "do": "spin",
+       "target": "yellow_sheep",
+       "at": 1.16,
+       "dur": 1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.29
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "yellow_turn",
+   "title": "Say yellow!",
+   "beats": [
+    {
+     "id": "yellow_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Say yellow!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "yellow_sheep",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_yellow",
+       "at": 0.35,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "wy_yellow",
+       "at": 0.42,
+       "dur": 0.3,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "id": "yellow_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 0.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "id": "yellow_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yellow!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Amazing! Yellow! Like the sun!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "yellow_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_yellow",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wy_yellow",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini_yellow",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot5",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "yellow_sheep",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "bag1",
+       "at": 0.1,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag2",
+       "at": 0.18,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "bag3",
+       "at": 0.26,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "qmark",
+       "at": 0.05,
+       "dur": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Point to it!",
+   "beats": [
+    {
+     "id": "q0",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "All the wool is yarn now! Let's play!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "yellow_sheep",
+       "points": [
+        [
+         -0.7,
+         0,
+         1.6
+        ],
+        [
+         -0.4,
+         0,
+         0.9
+        ],
+        [
+         0,
+         0,
+         0.1
+        ]
+       ],
+       "dur": 1.4,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "yellow_sheep",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.5,
+       "dur": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.4,
+        10.4
+       ],
+       "lookAt": [
+        0,
+        0.9,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "yarn_black",
+       "at": 0.9,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "yarn_white",
+       "at": 1.1,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "yarn_red",
+       "at": 1.3,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "yarn_blue",
+       "at": 1.5,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "yarn_yellow",
+       "at": 1.7000000000000002,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "id": "q1a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "yarn_blue",
+       "to": [
+        -0.9,
+        0,
+        3
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "yarn_red",
+       "to": [
+        0.9,
+        0,
+        3
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "yarn_blue",
+        "yarn_red"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Point to the red wool!",
+       "at": 0.5,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "q1b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "yarn_blue",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "yarn_red",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "yarn_blue",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q1c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "yarn_red",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "wiggle",
+       "target": "yarn_red",
+       "at": 0.3,
+       "deg": 12,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The red wool!",
+       "at": 0.4,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q1d",
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "yarn_blue",
+       "to": [
+        1.3,
+        0,
+        2.7
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "yarn_red",
+       "to": [
+        0,
+        0,
+        2.7
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      }
+     ]
+    },
+    {
+     "id": "q2a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "yellow_sheep",
+       "to": [
+        -1.1,
+        0,
+        1.4
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "white_sheep",
+       "to": [
+        1.1,
+        0,
+        1.4
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "yellow_sheep",
+        "white_sheep"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which sheep is yellow? Point to it!",
+       "at": 0.5,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "q2b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "yellow_sheep",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "white_sheep",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "yellow_sheep",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q2c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "yellow_sheep",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "say",
+       "who": "yellow_sheep",
+       "text": "Baa!",
+       "at": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "yellow_sheep",
+       "at": 0.3,
+       "deg": 12,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The yellow sheep!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q2d",
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "yellow_sheep",
+       "to": [
+        0,
+        0,
+        0.1
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "white_sheep",
+       "to": [
+        4.3,
+        0,
+        -1.4
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "finale",
+   "title": "Everybody sing!",
+   "music": false,
+   "beats": [
+    {
+     "id": "z1",
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Everybody sing!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.6,
+        11
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "feel",
+       "target": "black_sheep",
+       "feeling": "joyful",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "white_sheep",
+       "feeling": "joyful",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "red_sheep",
+       "feeling": "joyful",
+       "at": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "blue_sheep",
+       "feeling": "joyful",
+       "at": 0.6000000000000001
+      },
+      {
+       "do": "feel",
+       "target": "yellow_sheep",
+       "feeling": "joyful",
+       "at": 0.7
+      }
+     ]
+    },
+    {
+     "id": "z2",
+     "dur": 2.96,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Baa, baa, black sheep, have you any wool?",
+       "at": 0.1,
+       "caption": true,
+       "tune": "C4 C4 G4 G4 A4:0.5 A4:0.5 A4:0.5 A4:0.5 G4:2"
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.1,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "white_sheep",
+       "at": 0.55,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "red_sheep",
+       "at": 1.01,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "blue_sheep",
+       "at": 1.46,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 1.91,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "id": "z3",
+     "dur": 3.37,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes sir, yes sir, three bags full!",
+       "at": 0.1,
+       "caption": true,
+       "tune": "F4 F4 E4 E4 D4 D4 C4:2"
+      },
+      {
+       "do": "hop",
+       "target": "yarn_black",
+       "at": 0.1,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "yarn_white",
+       "at": 0.45,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "yarn_red",
+       "at": 0.8,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "yarn_blue",
+       "at": 1.16,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "yarn_yellow",
+       "at": 1.51,
+       "height": 0.3,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 1.86
+      }
+     ]
+    },
+    {
+     "id": "z4",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.1,
+       "dur": 2.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Black, white, red, blue, and yellow!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "black_sheep",
+       "at": 0.3,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "white_sheep",
+       "at": 0.8,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "red_sheep",
+       "at": 1.3,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "blue_sheep",
+       "at": 1.8,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "yellow_sheep",
+       "at": 2.3,
+       "height": 0.35,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.8,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 1.3,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 1.8,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot5",
+       "at": 2.3,
+       "deg": 10,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "id": "z5",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bye-bye, sheep! Bye-bye, friends!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "say",
+       "who": "black_sheep",
+       "text": "Baa!",
+       "at": 1.8,
+       "caption": false
+      },
+      {
+       "do": "wiggle",
+       "target": "black_sheep",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "white_sheep",
+       "at": 0.5,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "red_sheep",
+       "at": 0.6000000000000001,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "blue_sheep",
+       "at": 0.7000000000000001,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "wiggle",
+       "target": "yellow_sheep",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 1.5
+      },
+      {
+       "do": "caption",
+       "text": "Bye-bye!",
+       "style": "title",
+       "at": 0.8,
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.6,
+        14.5
+       ],
+       "lookAt": [
+        0,
+        1.5,
+        -1
+       ],
+       "fov": 40,
+       "dur": 3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
