@@ -67,7 +67,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   }
   if (preset.rug || visits.some((v) => v.rug)) {
     // A thin rug (6 mm): everything stands on y = 0, so a thicker rug would swallow mats and boards on the floor.
-    rug = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4.6, 0.006, 128), material(preset.rug ?? floorColor ?? preset.background, "matte").clone());
+    rug = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4.6, 0.006, 128), material(preset.rug ?? floorColor ?? preset.background, preset.rugMaterial ?? "matte").clone()); // rugMaterial: a glossy pond
     rug.position.y = 0.003;
     rug.receiveShadow = true;
     scene.add(rug);

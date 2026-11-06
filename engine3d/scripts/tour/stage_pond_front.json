@@ -1,0 +1,71 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "meta": {
+  "title": "Pond in front",
+  "seed": 14,
+  "music": false
+ },
+ "stage": {
+  "preset": "pond_front"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.4,
+   8.5
+  ],
+  "lookAt": [
+   0,
+   0.4,
+   0
+  ],
+  "fov": 42
+ },
+ "objects": [
+  {
+   "id": "pad1",
+   "kind": "prop",
+   "model": "lily_pad",
+   "at": [
+    -0.7,
+    0.04,
+    0.2
+   ],
+   "size": 0.8
+  },
+  {
+   "id": "frog",
+   "kind": "critter",
+   "species": "frog",
+   "at": [
+    0.6,
+    0.05,
+    0.1
+   ],
+   "size": 0.5
+  },
+  {
+   "id": "duck",
+   "kind": "critter",
+   "species": "duck",
+   "at": [
+    -2,
+    0,
+    1.2
+   ],
+   "size": 0.7
+  }
+ ],
+ "scenes": [
+  {
+   "id": "a",
+   "beats": [
+    {
+     "dur": 2.5,
+     "do": []
+    }
+   ]
+  }
+ ]
+}
