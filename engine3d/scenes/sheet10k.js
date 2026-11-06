@@ -56,7 +56,7 @@ function sheet(d, NAMES) {
     }
   });
   // Lineup: everything side by side at size 1, in a row.
-  const row = 100;
+  const row = 8 * NAMES.length + 20; // past every close-up spot (8 m apart)
   let x = 0;
   const xs = NAMES.map((n) => { const w = Math.max(0.9, height(n) * 0.75); const at = x + w / 2; x += w + 0.25; return at; });
   NAMES.forEach((n, i) => {
