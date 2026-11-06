@@ -10,6 +10,7 @@
 //                                                                          (with --band: that band only, PLAN.md untouched)
 //   node engine3d/tools/spec10k.mjs shards                                10K/shards/<band>.md from allocation + shards/_COMMON.md
 //   node engine3d/tools/spec10k.mjs next --band kg [--size 25]            reserve the next free slots -> 10K/batches/<band>-NNN.md, progress.json
+//   node engine3d/tools/spec10k.mjs close <batch...>                     mark finished batches closed (their unwritten slots become free)
 //   node engine3d/tools/spec10k.mjs peek <ids...> | --batch <band>-NNN    one line per spec (title, objective, hook) for spot-reading
 //   node engine3d/tools/spec10k.mjs status                                10K/STATUS.md: per band, validate/dedupe counts, top needs
 //   node engine3d/tools/spec10k.mjs check                                 plan check + validate + dedupe (exit 1 on any error)
@@ -149,8 +150,9 @@ switch (cmd) {
     const specs = parsedSpecs();
     const written = new Set(specs.map((s) => s.id));
     const prog = readProgress(root);
-    for (const bt of prog.batches) if (bt.band === bandFilter && bt.state === "open") { bt.state = "closed"; bt.written = bt.ids.filter((i) => written.has(i)).length; }
-    const slots = nextSlots(p, bandFilter, written, size);
+    // Slots of open batches are reserved (a writer may be on them); `close <batch>` releases a finished batch.
+    const taken = new Set([...written, ...prog.batches.filter((bt) => bt.state === "open").flatMap((bt) => bt.ids)]);
+    const slots = nextSlots(p, bandFilter, taken, size);
     if (!slots.length) { console.log(`next: ${bandFilter} is complete`); write(join(root, "progress.json"), `${JSON.stringify(prog, null, 1)}\n`); break; }
     const n = prog.batches.filter((bt) => bt.band === bandFilter).length + 1;
     const id = `${bandFilter}-${String(n).padStart(3, "0")}`;
@@ -159,6 +161,19 @@ switch (cmd) {
     prog.batches.push({ id, band: bandFilter, state: "open", ids: slots.map((s) => s.id), brief: `batches/${id}.md` });
     write(join(root, "progress.json"), `${JSON.stringify(prog, null, 1)}\n`);
     console.log(`next: ${id} ${slots[0].id}..${slots[slots.length - 1].id} (${slots.length})`);
+    break;
+  }
+  case "close": {
+    const prog = readProgress(root);
+    const written = new Set(parsedSpecs().map((s) => s.id));
+    for (const id of args) {
+      const bt = prog.batches.find((x) => x.id === id);
+      if (!bt) { console.error(`close: no batch ${id}`); failed = true; continue; }
+      bt.state = "closed";
+      bt.written = bt.ids.filter((i) => written.has(i)).length;
+      console.log(`close: ${id} (${bt.written}/${bt.ids.length} written)`);
+    }
+    write(join(root, "progress.json"), `${JSON.stringify(prog, null, 1)}\n`);
     break;
   }
   case "peek": {

@@ -269,6 +269,13 @@ test("CLI: validate and plan against a programme folder", () => {
   const v2 = run("validate");
   assert.equal(v2.status, 1);
   assert.match(v2.stdout, /hook.duration_s 12 > 8/);
+  // next reserves slots: a second next does not hand out the first batch's unwritten slots; close releases them.
+  const n1 = run("next", "--band", "kg", "--size", "2");
+  assert.match(n1.stdout, /kg-001 kg0102..kg0103/);
+  const n2 = run("next", "--band", "kg", "--size", "2");
+  assert.match(n2.stdout, /kg-002 kg0104..kg0105/);
+  assert.equal(run("close", "kg-001").status, 0);
+  assert.match(run("next", "--band", "kg", "--size", "2").stdout, /kg-003 kg0102..kg0103/);
 });
 
 test("batches: next free slots, brief with siblings, status", () => {
