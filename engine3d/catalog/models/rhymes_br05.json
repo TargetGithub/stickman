@@ -1,0 +1,31 @@
+{
+ "description": "Hickory Dickory Dock (br05) models: a toy grandfather clock with a swinging pendulum behind a glass window and a round brass bezel where a `clock` object sits as its face. Same format as ../models.json. Props face +z and stand on y = 0.",
+ "critters": {},
+ "props": {
+  "grandfather_clock": {
+   "color": "wood",
+   "description": "A tall toy grandfather clock in warm wood with dark trim and brass, facing +z: 1 m wide at the crown, 0.6 m deep, 2.56 m tall at size 1, origin at the middle of its base. A trunk with a glass window (opening x -0.24..0.24, y 0.6..1.4) shows a brass pendulum (named part `pendulum`, pivot at y 1.52) that swings gently on its own; wiggle it for an extra swing. The hood carries a round brass bezel 0.74 m across centred at [0, 2.0, 0.3]: put a `clock` object (size 0.62, parent this clock) at [0, 1.668, 0.33] as its face, so its hour hand turns to point at the hour. The flat top (y 2.47, 1 m by 0.66 m) has room for a small animal to stand on; a climber can run up its sides (trunk side x = ±0.375, hood side x = ±0.45).",
+   "tags": ["home", "time", "clock", "hickory_dickory_dock", "rhymes"],
+   "parts": [
+    { "p": "box", "at": [0, 0.17, 0], "s": [0.95, 0.34, 0.62], "c": "wood_dark", "m": "matte" },
+    { "p": "box", "at": [0, 0.36, 0.01], "s": [0.86, 0.06, 0.56], "c": "wood_dark" },
+    { "p": "box", "at": [0, 1.0, -0.15], "s": [0.75, 1.3, 0.2] },
+    { "p": "box", "at": [0.335, 1.0, 0.02], "s": [0.08, 1.3, 0.5], "mirror": true },
+    { "p": "plate", "at": [0, 1.0, -0.045], "s": [0.6, 0.6, 1.25], "r": [90, 0, 0], "c": "wood_dark", "m": "matte" },
+    { "p": "box", "at": [0.31, 1.0, 0.23], "s": [0.14, 1.3, 0.06], "mirror": true },
+    { "p": "box", "at": [0, 0.475, 0.23], "s": [0.75, 0.25, 0.06] },
+    { "p": "box", "at": [0, 1.525, 0.23], "s": [0.75, 0.25, 0.06] },
+    { "p": "plate", "at": [0, 1.0, 0.245], "s": [0.5, 0.6, 0.82], "r": [90, 0, 0], "c": "white", "m": "glass" },
+    { "p": "cylinder", "at": [0, 1.52, 0.1], "s": [0.035, 0.62, 0.035], "hang": [0, -0.31, 0], "c": "gold", "m": "metal", "name": "pendulum", "idle": { "r": [0, 0, 11], "hz": 0.5 } },
+    { "p": "cylinder", "at": [0, 1.52, 0.1], "s": [0.24, 0.05, 0.24], "hang": [0, -0.68, 0], "hr": [90, 0, 0], "c": "gold", "m": "metal", "name": "pendulum", "idle": { "r": [0, 0, 11], "hz": 0.5 } },
+    { "p": "box", "at": [0, 1.66, 0.01], "s": [0.86, 0.08, 0.58], "c": "wood_dark" },
+    { "p": "box", "at": [0, 2.02, 0], "s": [0.9, 0.72, 0.6] },
+    { "p": "cylinder", "at": [0, 2.0, 0.29], "s": [0.74, 0.04, 0.74], "hr": [90, 0, 0], "c": "gold", "m": "metal" },
+    { "p": "cylinder", "at": [0.4, 2.02, 0.29], "s": [0.07, 0.72, 0.07], "c": "gold", "m": "metal", "mirror": true },
+    { "p": "box", "at": [0, 2.42, 0], "s": [1.0, 0.1, 0.66], "c": "wood_dark" },
+    { "p": "sphere", "at": [0.44, 2.52, 0.27], "s": [0.1, 0.1, 0.1], "c": "gold", "m": "metal", "mirror": true },
+    { "p": "sphere", "at": [0.31, 0.03, 0.22], "s": [0.16, 0.08, 0.16], "c": "wood_dark", "mirror": true }
+   ]
+  }
+ }
+}

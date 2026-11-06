@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-90 episodes: 7 spec, 6 scripted, 69 rendered, 8 uploaded. Status moves spec → scripted → rendered → uploaded.
+90 episodes: 6 spec, 6 scripted, 69 rendered, 9 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -22,7 +22,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | br03 | Five Little Ducks Go Splash | Babies | Counting (rhyme) | `count_to_5_prek`, `number_order_prek` | `br03_five_little_ducks.json` | uploaded | disk1:BABY-RHYMES/br03_five_little_ducks |
 | bb04 | Black and White Shapes | Babies | Shapes (sensory) | `basic_shapes_prek` | `bb04_contrast_shapes.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb04_contrast_shapes |
 | br04 | Head, Shoulders, Knees and Toes | Babies | Body parts (rhyme) | `five_senses_prek`, `listening_prek` | `br04_head_shoulders_knees_toes.json` | uploaded | disk1:BABY-RHYMES/br04_head_shoulders_knees_toes |
-| br05 | Hickory Dickory Dock | Babies | Counting and time (rhyme) | `count_to_5_prek`, `position_words_prek` | `br05_hickory_dickory_dock.json` | scripted | – |
+| br05 | Hickory Dickory Dock | Babies | Counting and time (rhyme) | `count_to_5_prek`, `position_words_prek` | `br05_hickory_dickory_dock.json` | uploaded | disk1:BABY-RHYMES/br05_hickory_dickory_dock |
 | br06 | Row, Row, Row Your Boat | Babies | Opposites (rhyme) | `opposites_k`, `living_things_k`, `listening_prek` | `br06_row_your_boat.json` | uploaded | disk1:BABY-RHYMES/br06_row_your_boat |
 | br07 | Itsy Bitsy Spider: Rain and Sun | Babies | Weather (rhyme) | `weather_seasons_1`, `position_words_prek` | `br07_itsy_bitsy_spider.json` | uploaded | disk1:BABY-RHYMES/br07_itsy_bitsy_spider |
 | br08 | Humpty Dumpty: Fix It Together | Babies | Shapes and cause and effect (rhyme) | `basic_shapes_prek`, `count_to_5_prek` | `br08_humpty_dumpty.json` | scripted | – |
@@ -31,8 +31,8 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | scripted | – |
 | br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek`, `listening_prek` | `br12_start_the_day.json` | scripted | – |
 | br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek`, `capital_letters_prek`, `listening_prek` | `br13_pat_a_cake.json` | scripted | – |
-| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | spec | – |
-| br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | spec: specs/baby_rhymes.md br15 | spec | – |
+| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | scripted | – |
+| br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | `br15_this_old_man.json` | spec | – |
 | br16 | Mary Had a Little Lamb | Babies | Listening (rhyme) | `listening_prek` | spec: specs/baby_rhymes.md br16 | spec | – |
 | br17 | B-I-N-G-O Clap Along | Babies | Letters and patterns (rhyme) | `capital_letters_prek` | spec: specs/baby_rhymes.md br17 | spec | – |
 | br18 | Hey Diddle Diddle | Babies | Position words (rhyme) | `position_words_prek` | spec: specs/baby_rhymes.md br18 | spec | – |
