@@ -1,0 +1,29 @@
+{
+ "description": "B-I-N-G-O Clap Along (br17) models: a wooden toy letter block (a cube painted in its main colour with cream panels on every face, for a letter on the front) and a red dog collar with a gold name tag that fits the catalog dog (Bingo). The HUD clap icon is rhymes_br13.json `clap_icon`. Same format as ../models.json. Props face +z and stand on y = 0.",
+ "critters": {},
+ "props": {
+  "letter_block": {
+   "color": "red",
+   "description": "A wooden toy alphabet block, a 0.5 m cube at size 1 with softly rounded edges, painted in its main colour (set color) with a raised cream panel 0.4 m square on the front, back, sides and top. Origin at the middle of its base; the front panel's face is at z = 0.27 (times size). Put the letter on the front as a separate letter object parented to it: at size 1.2 (a 0.6 m block) a letter of size 0.23 at [0, 0.14, 0.33] fills the panel (a child's at and size do not scale with the block).",
+   "tags": ["toy", "letters", "alphabet", "blocks", "playroom", "bingo", "rhymes"],
+   "parts": [
+    { "p": "block", "at": [0, 0.25, 0], "s": [0.5, 0.5, 0.5], "m": "matte" },
+    { "p": "plate", "at": [0, 0.25, 0.25], "s": [0.4, 1, 0.4], "r": [90, 0, 0], "c": "cream", "m": "matte" },
+    { "p": "plate", "at": [0, 0.25, -0.25], "s": [0.4, 1, 0.4], "r": [90, 0, 0], "c": "cream", "m": "matte" },
+    { "p": "plate", "at": [0.25, 0.25, 0], "s": [0.4, 1, 0.4], "r": [0, 0, 90], "c": "cream", "m": "matte" },
+    { "p": "plate", "at": [-0.25, 0.25, 0], "s": [0.4, 1, 0.4], "r": [0, 0, 90], "c": "cream", "m": "matte" },
+    { "p": "plate", "at": [0, 0.5, 0], "s": [0.4, 1, 0.4], "c": "cream", "m": "matte" }
+   ]
+  },
+  "dog_collar": {
+   "color": "red",
+   "description": "A puppy's collar in its main colour (set color) with a gold buckle ring and a round gold name tag hanging at the front, sized for the catalog dog's neck. Parent it to a dog critter with part \"head\" at [0, -0.27, -0.03] (critter units, so it scales with the dog's size).",
+   "tags": ["pet", "dog", "accessory", "bingo", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0, 0], "s": [0.44, 0.07, 0.42], "m": "glossy" },
+    { "p": "torus", "at": [0, -0.055, 0.215], "s": [0.07, 0.07, 0.07], "c": "gold", "m": "metal" },
+    { "p": "cylinder", "at": [0, -0.12, 0.225], "s": [0.11, 0.025, 0.11], "r": [90, 0, 0], "c": "gold", "m": "metal" }
+   ]
+  }
+ }
+}
