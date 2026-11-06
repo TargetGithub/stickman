@@ -1,0 +1,6557 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Sing Rain, Rain, Go Away with Robo, Bunny, Ducky and Pip! Rumble, rumble, pop, pop, pop: the umbrellas open and the rain comes down. Each friend gets one piece of rain gear: a green hat for Robo, a yellow raincoat for Bunny, a blue umbrella for Ducky (guess the colour before it pops open!) and red boots for Pip. Count the puddles, jump on splash, and sing hello to the sun when the rain goes away.",
+ "meta": {
+  "title": "Rain, Rain, Go Away",
+  "series": "toybox",
+  "episode": "br14",
+  "audience": "babies",
+  "seed": 314,
+  "voice": "soft",
+  "voiceSpeed": 0.97,
+  "music": "playful",
+  "musicGain": 0.17,
+  "skills": [
+   "weather_seasons_1",
+   "count_to_5_prek"
+  ],
+  "cast": {
+   "bunny": {
+    "voice": "soft",
+    "pitch": 1.3,
+    "speed": 1
+   },
+   "duck": {
+    "voice": "squeaky",
+    "pitch": 1,
+    "speed": 1
+   },
+   "pip": {
+    "voice": "squeaky",
+    "pitch": 1.2,
+    "speed": 1
+   }
+  },
+  "youtube": {
+   "title": "Rain, Rain, Go Away ☔ Rain Gear Colours Song for Toddlers | Toy Box Friends",
+   "description": "Sing Rain, Rain, Go Away with Robo, Bunny, Ducky and Pip! Rumble, rumble, pop, pop, pop: the umbrellas open and the rain comes down. Each friend gets one piece of rain gear: a green hat for Robo, a yellow raincoat for Bunny, a blue umbrella for Ducky (guess the colour before it pops open!) and red boots for Pip. Count the puddles, jump on splash, and sing hello to the sun when the rain goes away.\n\nWhat your child learns: the weather words rain and sun, the colours green, yellow, blue and red on rain gear (hat, raincoat, umbrella and boots), and counting to three.\n\nSing at home: put on a pretend hat, zip up a pretend coat, guess the umbrella's colour with a 3, 2, 1, and jump when you hear \"splash!\". Rain, Rain, Go Away is a traditional public-domain rhyme sung to its traditional tune; the verses about the hat, the coat, the umbrella, the boots and the sun are original words written for Toy Box Friends.\n\nMade for kids. Toy Box Friends: 3D learning videos for babies, toddlers and preschool.",
+   "tags": [
+    "rain rain go away",
+    "nursery rhymes",
+    "weather song for kids",
+    "rain song",
+    "colours for toddlers",
+    "learn colors",
+    "umbrella song",
+    "puddles",
+    "baby songs",
+    "toddler learning",
+    "sing along for kids",
+    "kids songs",
+    "preschool",
+    "3D cartoon for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "umbrella",
+    "title": "RAIN, RAIN!",
+    "subtitle": "Go away! Sing along",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "garden",
+    "lights": {
+     "rig": "overcast",
+     "background": "rain_sky"
+    },
+    "camera": {
+     "position": [
+      1.9,
+      1.25,
+      5
+     ],
+     "lookAt": [
+      2.5,
+      0.95,
+      0.2
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+       3,
+       0,
+       0.7
+      ],
+      "size": 1,
+      "rotation": [
+       0,
+       -20,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "st",
+      "kind": "prop",
+      "model": "umbrella_stick",
+      "color": "blue",
+      "parent": "duck",
+      "at": [
+       0.5,
+       0.5,
+       0.14
+      ],
+      "size": 0.9
+     },
+     {
+      "id": "can",
+      "kind": "prop",
+      "model": "umbrella_canopy",
+      "color": "blue",
+      "parent": "st",
+      "at": [
+       0,
+       0.9,
+       0
+      ],
+      "size": 0.9
+     },
+     {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+       4.5,
+       0,
+       0.2
+      ],
+      "size": 0.95,
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "coat",
+      "kind": "prop",
+      "model": "raincoat",
+      "parent": "bunny",
+      "at": [
+       0,
+       0,
+       0
+      ],
+      "size": 0.95
+     },
+     {
+      "id": "pud",
+      "kind": "prop",
+      "model": "puddle",
+      "at": [
+       3.5,
+       0,
+       1.8
+      ],
+      "size": 1.1
+     },
+     {
+      "id": "spl",
+      "kind": "prop",
+      "model": "splash_drops",
+      "at": [
+       3.5,
+       0,
+       1.8
+      ],
+      "size": 0.9
+     },
+     {
+      "id": "cloud",
+      "kind": "prop",
+      "model": "rain_cloud",
+      "at": [
+       3.8,
+       2.6,
+       -1.6
+      ],
+      "size": 0.9
+     }
+    ]
+   },
+   {
+    "name": "splash",
+    "title": "SPLASH!",
+    "subtitle": "Red boots and puddles",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "TODDLERS",
+    "stage": "garden",
+    "camera": {
+     "position": [
+      1.2,
+      1.3,
+      5.6
+     ],
+     "lookAt": [
+      2,
+      0.9,
+      0.2
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "pip",
+      "kind": "critter",
+      "species": "toddler",
+      "at": [
+       2.6,
+       0.25,
+       1
+      ],
+      "size": 1,
+      "rotation": [
+       0,
+       -15,
+       0
+      ],
+      "feeling": "joyful"
+     },
+     {
+      "id": "boots",
+      "kind": "prop",
+      "model": "rain_boots",
+      "color": "red",
+      "parent": "pip",
+      "at": [
+       0,
+       0,
+       0
+      ],
+      "size": 1
+     },
+     {
+      "id": "pud",
+      "kind": "prop",
+      "model": "puddle",
+      "at": [
+       2.6,
+       0,
+       1.1
+      ],
+      "size": 1.3
+     },
+     {
+      "id": "spl",
+      "kind": "prop",
+      "model": "splash_drops",
+      "at": [
+       2.6,
+       0,
+       1.1
+      ],
+      "size": 1.3
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       4.4,
+       0,
+       -0.2
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "happy"
+     },
+     {
+      "id": "hat",
+      "kind": "prop",
+      "model": "rain_hat",
+      "color": "green",
+      "parent": "robo",
+      "at": [
+       0,
+       1.56,
+       0
+      ],
+      "size": 1.5
+     },
+     {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+       4.6,
+       3,
+       -2.6
+      ],
+      "size": 0.7
+     },
+     {
+      "id": "rays",
+      "kind": "prop",
+      "model": "sun_rays",
+      "parent": "sun",
+      "at": [
+       0,
+       0,
+       -0.2
+      ],
+      "size": 1.05
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "garden"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.1,
+   9.6
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   -0.4
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "tree",
+   "kind": "prop",
+   "model": "tree",
+   "at": [
+    5.4,
+    0,
+    -2.6
+   ],
+   "size": 1.5
+  },
+  {
+   "id": "bush",
+   "kind": "prop",
+   "model": "bush",
+   "at": [
+    -5.7,
+    0,
+    -1.4
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "flower1",
+   "kind": "prop",
+   "model": "flower",
+   "at": [
+    -3,
+    0,
+    -0.9
+   ],
+   "size": 0.65
+  },
+  {
+   "id": "flower2",
+   "kind": "prop",
+   "model": "flower",
+   "color": "yellow",
+   "at": [
+    1.6,
+    0,
+    -1
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "flower3",
+   "kind": "prop",
+   "model": "flower",
+   "color": "purple",
+   "at": [
+    -0.7,
+    0,
+    -1.3
+   ],
+   "size": 0.55
+  },
+  {
+   "id": "u1",
+   "kind": "prop",
+   "model": "umbrella_stick",
+   "color": "pink",
+   "at": [
+    -3.3,
+    0,
+    -3
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "u1_f",
+   "kind": "prop",
+   "model": "umbrella_furled",
+   "color": "pink",
+   "parent": "u1",
+   "at": [
+    0,
+    1.3,
+    0
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "u1_c",
+   "kind": "prop",
+   "model": "umbrella_canopy",
+   "color": "pink",
+   "parent": "u1",
+   "at": [
+    0,
+    1.3,
+    0
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "u2",
+   "kind": "prop",
+   "model": "umbrella_stick",
+   "color": "orange",
+   "at": [
+    -0.6,
+    0,
+    -3.4
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "u2_f",
+   "kind": "prop",
+   "model": "umbrella_furled",
+   "color": "orange",
+   "parent": "u2",
+   "at": [
+    0,
+    1.3,
+    0
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "u2_c",
+   "kind": "prop",
+   "model": "umbrella_canopy",
+   "color": "orange",
+   "parent": "u2",
+   "at": [
+    0,
+    1.3,
+    0
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "u3",
+   "kind": "prop",
+   "model": "umbrella_stick",
+   "color": "purple",
+   "at": [
+    4,
+    0,
+    -3
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "u3_f",
+   "kind": "prop",
+   "model": "umbrella_furled",
+   "color": "purple",
+   "parent": "u3",
+   "at": [
+    0,
+    1.3,
+    0
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "u3_c",
+   "kind": "prop",
+   "model": "umbrella_canopy",
+   "color": "purple",
+   "parent": "u3",
+   "at": [
+    0,
+    1.3,
+    0
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "cloud1",
+   "kind": "prop",
+   "model": "rain_cloud",
+   "at": [
+    -1.8,
+    4.4,
+    -4.2
+   ],
+   "size": 1.5
+  },
+  {
+   "id": "cloud2",
+   "kind": "prop",
+   "model": "rain_cloud",
+   "at": [
+    2.4,
+    4.7,
+    -4.8
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "sun",
+   "kind": "prop",
+   "model": "sun",
+   "at": [
+    3.6,
+    4.1,
+    -3.8
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "rays",
+   "kind": "prop",
+   "model": "sun_rays",
+   "parent": "sun",
+   "at": [
+    0,
+    0,
+    -0.2
+   ],
+   "size": 1.05,
+   "hidden": true
+  },
+  {
+   "id": "rain",
+   "kind": "weather",
+   "type": "rain",
+   "at": [
+    0,
+    0,
+    -0.4
+   ],
+   "area": [
+    15,
+    7
+   ],
+   "hidden": true
+  },
+  {
+   "id": "drop1",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "blue",
+   "material": "water",
+   "at": [
+    -4,
+    3.4,
+    0.5
+   ],
+   "size": 0.22,
+   "hidden": true
+  },
+  {
+   "id": "pud1",
+   "kind": "prop",
+   "model": "puddle",
+   "at": [
+    -1.3,
+    0,
+    2.3
+   ],
+   "size": 1.05,
+   "rotation": [
+    0,
+    -30,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rip1",
+   "kind": "shape",
+   "shape": "hoop",
+   "color": "white",
+   "material": "glossy",
+   "at": [
+    -1.3,
+    0.02,
+    2.3
+   ],
+   "size": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "spl1",
+   "kind": "prop",
+   "model": "splash_drops",
+   "at": [
+    -1.3,
+    0,
+    2.3
+   ],
+   "size": 1.1,
+   "hidden": true
+  },
+  {
+   "id": "num1",
+   "kind": "letter",
+   "text": "1",
+   "color": "orange",
+   "at": [
+    -1.3,
+    0.45,
+    2.4
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "pud2",
+   "kind": "prop",
+   "model": "puddle",
+   "at": [
+    0.85,
+    0,
+    2.55
+   ],
+   "size": 1.05,
+   "rotation": [
+    0,
+    10,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rip2",
+   "kind": "shape",
+   "shape": "hoop",
+   "color": "white",
+   "material": "glossy",
+   "at": [
+    0.85,
+    0.02,
+    2.55
+   ],
+   "size": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "spl2",
+   "kind": "prop",
+   "model": "splash_drops",
+   "at": [
+    0.85,
+    0,
+    2.55
+   ],
+   "size": 1.1,
+   "hidden": true
+  },
+  {
+   "id": "num2",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "at": [
+    0.85,
+    0.45,
+    2.65
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "pud3",
+   "kind": "prop",
+   "model": "puddle",
+   "at": [
+    2.95,
+    0,
+    2.25
+   ],
+   "size": 1.05,
+   "rotation": [
+    0,
+    50,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rip3",
+   "kind": "shape",
+   "shape": "hoop",
+   "color": "white",
+   "material": "glossy",
+   "at": [
+    2.95,
+    0.02,
+    2.25
+   ],
+   "size": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "spl3",
+   "kind": "prop",
+   "model": "splash_drops",
+   "at": [
+    2.95,
+    0,
+    2.25
+   ],
+   "size": 1.1,
+   "hidden": true
+  },
+  {
+   "id": "num3",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "at": [
+    2.95,
+    0.45,
+    2.35
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -4,
+    0,
+    0.5
+   ],
+   "rotation": [
+    0,
+    25,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "hat",
+   "kind": "prop",
+   "model": "rain_hat",
+   "parent": "robo",
+   "at": [
+    0,
+    2.7,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "bunny",
+   "kind": "critter",
+   "species": "bunny",
+   "at": [
+    9.5,
+    0,
+    1.5
+   ],
+   "size": 1.1,
+   "feeling": "happy"
+  },
+  {
+   "id": "coat",
+   "kind": "prop",
+   "model": "raincoat",
+   "parent": "bunny",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "size": 1.1,
+   "hidden": true
+  },
+  {
+   "id": "duck",
+   "kind": "critter",
+   "species": "duck",
+   "at": [
+    9.5,
+    0,
+    1.6
+   ],
+   "size": 1,
+   "feeling": "happy"
+  },
+  {
+   "id": "dstick",
+   "kind": "prop",
+   "model": "umbrella_stick",
+   "color": "blue",
+   "parent": "duck",
+   "at": [
+    0.5,
+    0.5,
+    0.14
+   ],
+   "size": 0.9,
+   "hidden": true
+  },
+  {
+   "id": "dfurl",
+   "kind": "prop",
+   "model": "umbrella_furled",
+   "parent": "dstick",
+   "at": [
+    0,
+    0.9,
+    0
+   ],
+   "size": 0.9,
+   "hidden": true
+  },
+  {
+   "id": "dcan",
+   "kind": "prop",
+   "model": "umbrella_canopy",
+   "color": "blue",
+   "parent": "dstick",
+   "at": [
+    0,
+    0.9,
+    0
+   ],
+   "size": 0.9,
+   "hidden": true
+  },
+  {
+   "id": "pip",
+   "kind": "critter",
+   "species": "toddler",
+   "at": [
+    9.5,
+    0,
+    1.4
+   ],
+   "size": 1,
+   "feeling": "happy"
+  },
+  {
+   "id": "boots",
+   "kind": "prop",
+   "model": "rain_boots",
+   "color": "red",
+   "parent": "pip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "q_hat",
+   "kind": "prop",
+   "model": "rain_hat",
+   "color": "green",
+   "at": [
+    -0.65,
+    1.15,
+    4.6
+   ],
+   "size": 1.3,
+   "rotation": [
+    18,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_boots",
+   "kind": "prop",
+   "model": "rain_boots",
+   "color": "red",
+   "at": [
+    0.65,
+    0.98,
+    4.6
+   ],
+   "size": 1.4,
+   "rotation": [
+    10,
+    -25,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q_umb",
+   "kind": "prop",
+   "model": "umbrella",
+   "color": "blue",
+   "at": [
+    -0.65,
+    0.86,
+    4.6
+   ],
+   "size": 0.55,
+   "hidden": true
+  },
+  {
+   "id": "q_coat",
+   "kind": "prop",
+   "model": "raincoat",
+   "color": "yellow",
+   "at": [
+    0.65,
+    0.92,
+    4.6
+   ],
+   "size": 0.68,
+   "rotation": [
+    10,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "at": [
+    0,
+    3.4,
+    0.5
+   ]
+  },
+  {
+   "id": "slot1",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "green",
+   "hud": true,
+   "at": [
+    -7.15,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot2",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "yellow",
+   "hud": true,
+   "at": [
+    -6.2,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot3",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "blue",
+   "hud": true,
+   "at": [
+    -5.25,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "slot4",
+   "kind": "prop",
+   "model": "tracker_slot",
+   "color": "red",
+   "hud": true,
+   "at": [
+    -4.300000000000001,
+    3.78,
+    0
+   ],
+   "size": 0.78,
+   "hidden": true
+  },
+  {
+   "id": "mini1",
+   "kind": "prop",
+   "model": "rain_hat",
+   "color": "green",
+   "hud": true,
+   "parent": "slot1",
+   "at": [
+    0,
+    -0.1,
+    0.3
+   ],
+   "size": 0.9,
+   "rotation": [
+    25,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mini2",
+   "kind": "prop",
+   "model": "raincoat",
+   "color": "yellow",
+   "hud": true,
+   "parent": "slot2",
+   "at": [
+    0,
+    -0.3,
+    0.3
+   ],
+   "size": 0.7,
+   "hidden": true
+  },
+  {
+   "id": "mini3",
+   "kind": "prop",
+   "model": "umbrella",
+   "color": "blue",
+   "hud": true,
+   "parent": "slot3",
+   "at": [
+    0,
+    -0.3,
+    0.3
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "mini4",
+   "kind": "prop",
+   "model": "rain_boots",
+   "color": "red",
+   "hud": true,
+   "parent": "slot4",
+   "at": [
+    0,
+    -0.24,
+    0.3
+   ],
+   "size": 1.15,
+   "rotation": [
+    15,
+    -30,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qmark",
+   "kind": "letter",
+   "text": "?",
+   "color": "orange",
+   "hud": true,
+   "parent": "slot4",
+   "at": [
+    0,
+    -0.26,
+    0.2
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "cd_bg",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "white",
+   "hud": true,
+   "at": [
+    0,
+    -0.2,
+    1.5
+   ],
+   "size": 2.7,
+   "hidden": true
+  },
+  {
+   "id": "cd3",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd2",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "cd1",
+   "kind": "letter",
+   "text": "1",
+   "color": "orange",
+   "hud": true,
+   "at": [
+    0,
+    0.35,
+    2
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "bubble",
+   "kind": "prop",
+   "model": "word_bubble",
+   "hud": true,
+   "at": [
+    5.6,
+    2.05,
+    0
+   ],
+   "size": 1.75,
+   "hidden": true
+  },
+  {
+   "id": "w_rain",
+   "kind": "letter",
+   "text": "RAIN",
+   "color": "blue",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_green",
+   "kind": "letter",
+   "text": "GREEN",
+   "color": "green",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_yellow",
+   "kind": "letter",
+   "text": "YELLOW",
+   "color": "gold",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "w_blue",
+   "kind": "letter",
+   "text": "BLUE",
+   "color": "blue",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_red",
+   "kind": "letter",
+   "text": "RED",
+   "color": "red",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_three",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  },
+  {
+   "id": "w_splash",
+   "kind": "letter",
+   "text": "SPLASH!",
+   "color": "teal",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.24,
+   "hidden": true
+  },
+  {
+   "id": "w_sun",
+   "kind": "letter",
+   "text": "SUN",
+   "color": "orange",
+   "hud": true,
+   "parent": "bubble",
+   "at": [
+    0,
+    -0.2,
+    0.18
+   ],
+   "size": 0.34,
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "hello",
+   "title": "Rumble... pop, pop, pop!",
+   "beats": [
+    {
+     "id": "h1",
+     "dur": 3,
+     "do": [
+      {
+       "do": "lights",
+       "rig": "overcast",
+       "background": "rain_sky",
+       "at": 0,
+       "dur": 0.05
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.2,
+        1.6,
+        4.6
+       ],
+       "lookAt": [
+        0.2,
+        1.3,
+        -3
+       ],
+       "fov": 40,
+       "dur": 0
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.05,
+       "volume": 0.32
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.23,
+       "volume": 0.27
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.39,
+       "volume": 0.22
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.55,
+       "volume": 0.16999999999999998
+      },
+      {
+       "do": "wiggle",
+       "target": "cloud1",
+       "at": 0.05,
+       "deg": 6,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "cloud2",
+       "at": 0.2,
+       "deg": 6,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rumble, rumble... pop, pop, pop!",
+       "at": 0.6,
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "u1_f",
+       "at": 1.15,
+       "dur": 0.15
+      },
+      {
+       "do": "pop",
+       "target": "u1_c",
+       "at": 1.2,
+       "dur": 0.45,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "u2_f",
+       "at": 1.55,
+       "dur": 0.15
+      },
+      {
+       "do": "pop",
+       "target": "u2_c",
+       "at": 1.6,
+       "dur": 0.45,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "u3_f",
+       "at": 1.95,
+       "dur": 0.15
+      },
+      {
+       "do": "pop",
+       "target": "u3_c",
+       "at": 2,
+       "dur": 0.45,
+       "sound": "pop"
+      },
+      {
+       "do": "show",
+       "target": "rain",
+       "at": 0.9,
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "rain",
+       "at": 0.9,
+       "volume": 0.45
+      }
+     ]
+    },
+    {
+     "id": "h2",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Uh-oh, rain! Let's sing with our friends!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "u1_c",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "u2_c",
+       "at": 0.7,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "u3_c",
+       "at": 1,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "h3",
+     "dur": 3,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A hat, a coat, an umbrella... and a surprise!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "slot1",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot2",
+       "at": 0.75,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot3",
+       "at": 1.1,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "slot4",
+       "at": 1.4499999999999997,
+       "dur": 0.35,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "qmark",
+       "at": 2,
+       "dur": 0.4,
+       "sound": "magic_sparkle"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 2.2,
+       "deg": 12,
+       "dur": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v1_song",
+   "title": "Sing: little Robo",
+   "music": false,
+   "beats": [
+    {
+     "id": "a0",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        -2.6,
+        1.85,
+        4.6
+       ],
+       "lookAt": [
+        -3.8,
+        1.3,
+        0.3
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Robo wants to play! Sing with me!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      }
+     ]
+    },
+    {
+     "id": "s11",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2.6,
+        1.85,
+        4.6
+       ],
+       "lookAt": [
+        -3.8,
+        1.3,
+        0.3
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.52,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_rain",
+       "at": 0.56,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.18,
+       "to": [
+        0,
+        4.5,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "id": "s12",
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Come again another day,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_rain",
+       "at": 0.14,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.17,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.14,
+       "to": "ahead"
+      },
+      {
+       "do": "wiggle",
+       "target": "cloud1",
+       "at": 0.33,
+       "deg": 8,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "s13",
+     "dur": 2.52,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Little Robo wants to play,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "joyful",
+       "at": 0.16
+      },
+      {
+       "do": "hop",
+       "target": "robo",
+       "at": 0.76,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "robo",
+       "at": 1.25,
+       "height": 0.25,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "s14",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "wiggle",
+       "target": "robo",
+       "at": 0.31,
+       "deg": 8,
+       "dur": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1.37
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v1_hat",
+   "title": "A hat for Robo",
+   "beats": [
+    {
+     "id": "a1",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "drop1",
+       "at": 0.1,
+       "dur": 0.15
+      },
+      {
+       "do": "move",
+       "target": "drop1",
+       "to": [
+        -4,
+        1.7,
+        0.5
+       ],
+       "at": 0.15,
+       "dur": 0.55,
+       "ease": "quadIn"
+      },
+      {
+       "do": "hide",
+       "target": "drop1",
+       "at": 0.7,
+       "dur": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.7,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.72
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Drip, drop! My head is wet!",
+       "at": 0.8,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "id": "a2",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I need a hat! Look!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "hat",
+       "at": 0.6,
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "hat",
+       "to": [
+        0,
+        1.56,
+        0
+       ],
+       "at": 0.9,
+       "dur": 0.55,
+       "ease": "quadIn"
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 1.45,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 1.5,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "joyful",
+       "at": 1.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 1.5
+      }
+     ]
+    },
+    {
+     "id": "green_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What colour is my hat? Say green!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.1,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_green",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "green_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "green_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Green!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! A green hat! Hooray!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "green_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_green",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini1",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v1_gear",
+   "title": "Sing: green hat",
+   "music": false,
+   "beats": [
+    {
+     "id": "g11",
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Green hat on my head,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2.2,
+        1.7,
+        5.6
+       ],
+       "lookAt": [
+        -3.6,
+        1.4,
+        0.2
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_green",
+       "at": 0.43,
+       "dur": 0.25
+      },
+      {
+       "do": "wiggle",
+       "target": "hat",
+       "at": 0.4,
+       "deg": 10,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "g12",
+     "dur": 3.68,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Drip, drop, rain, I'm dry instead,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_green",
+       "at": 0.2,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.25,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": [
+        -4,
+        4,
+        1
+       ]
+      }
+     ]
+    },
+    {
+     "id": "g13",
+     "dur": 2.82,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Splish and splash and jump ahead,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.86
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 1.04,
+       "volume": 0.4
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.17,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "id": "g14",
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Green hat on my head.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "wiggle",
+       "target": "hat",
+       "at": 0.25,
+       "deg": 10,
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.7
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v2_intro",
+   "title": "Who's coming? Bunny!",
+   "beats": [
+    {
+     "id": "b1",
+     "dur": 3,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Who's coming? Hop, hop... it's Bunny!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "bunny",
+       "points": [
+        [
+         9.5,
+         0,
+         1.5
+        ],
+        [
+         3.5,
+         0,
+         1.6
+        ],
+        [
+         0.4,
+         0,
+         1.4
+        ],
+        [
+         -1.6,
+         0,
+         0.9
+        ]
+       ],
+       "dur": 2.4,
+       "at": 0.2,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.25,
+       "height": 0.3,
+       "dur": 0.44
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.73,
+       "height": 0.3,
+       "dur": 0.44
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 1.21,
+       "height": 0.3,
+       "dur": 0.44
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 1.69,
+       "height": 0.3,
+       "dur": 0.44
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 2.17,
+       "height": 0.3,
+       "dur": 0.44
+      },
+      {
+       "do": "turn",
+       "target": "bunny",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 2.65,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "id": "b2",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        -2.5,
+        1.25,
+        3.7
+       ],
+       "lookAt": [
+        -1.5,
+        0.78,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "surprised",
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "Hello! Brr, I'm wet!",
+       "at": 0.15
+      },
+      {
+       "do": "wiggle",
+       "target": "bunny",
+       "at": 0.3,
+       "deg": 6,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let's sing for Bunny!",
+       "at": "after",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v2_song",
+   "title": "Sing: little Bunny",
+   "music": false,
+   "beats": [
+    {
+     "id": "s21",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2.5,
+        1.25,
+        3.7
+       ],
+       "lookAt": [
+        -1.5,
+        0.78,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.52,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_rain",
+       "at": 0.56,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.18,
+       "to": [
+        0,
+        4.5,
+        -2
+       ]
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "happy",
+       "at": 0.18
+      }
+     ]
+    },
+    {
+     "id": "s22",
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Come again another day,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_rain",
+       "at": 0.14,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.17,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.14,
+       "to": "ahead"
+      },
+      {
+       "do": "wiggle",
+       "target": "cloud1",
+       "at": 0.33,
+       "deg": 8,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "s23",
+     "dur": 2.03,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Little Bunny wants to play,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "joyful",
+       "at": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.59,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.96,
+       "height": 0.25,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "s24",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "wiggle",
+       "target": "bunny",
+       "at": 0.31,
+       "deg": 8,
+       "dur": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "happy",
+       "at": 1.37
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v2_coat",
+   "title": "A coat for Bunny",
+   "beats": [
+    {
+     "id": "c1",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        -2.35,
+        1.1,
+        3.35
+       ],
+       "lookAt": [
+        -1.5,
+        0.68,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bunny needs a raincoat! Ta-da!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "coat",
+       "at": 1,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 1,
+       "volume": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "joyful",
+       "at": 1.2
+      },
+      {
+       "do": "spin",
+       "target": "bunny",
+       "at": 1.3,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "yellow_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What colour is the coat? Say yellow!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_yellow",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "yellow_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "yellow_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "Yellow!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! A yellow raincoat!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "yellow_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_yellow",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini2",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v2_gear",
+   "title": "Sing: yellow coat",
+   "music": false,
+   "beats": [
+    {
+     "id": "g21",
+     "dur": 2.44,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yellow coat, zip, zip,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2.5,
+        1.25,
+        3.7
+       ],
+       "lookAt": [
+        -1.5,
+        0.78,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.29,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_yellow",
+       "at": 0.32,
+       "dur": 0.25
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.24,
+       "volume": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.46,
+       "volume": 0.3
+      }
+     ]
+    },
+    {
+     "id": "g22",
+     "dur": 2.27,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Not a drop and not a drip,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_yellow",
+       "at": 0.15,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.18,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.15,
+       "to": [
+        -2.4,
+        3.2,
+        3.5
+       ]
+      },
+      {
+       "do": "wiggle",
+       "target": "coat",
+       "at": 0.67,
+       "deg": 6,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "g23",
+     "dur": 2.13,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Button up and hop and skip,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.15,
+       "to": "ahead"
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.76,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 1.02,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 1.29,
+       "height": 0.25,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "g24",
+     "dur": 2.44,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yellow coat, zip, zip.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 0.85
+      },
+      {
+       "do": "spin",
+       "target": "bunny",
+       "at": 0.48,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.86
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v3_intro",
+   "title": "Ducky's umbrella",
+   "beats": [
+    {
+     "id": "d1",
+     "dur": 3,
+     "do": [
+      {
+       "do": "show",
+       "target": "dstick",
+       "at": 0,
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "dfurl",
+       "at": 0,
+       "dur": 0.05
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quack, quack! Here comes Ducky!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         9.5,
+         0,
+         1.6
+        ],
+        [
+         3.6,
+         0,
+         1.6
+        ],
+        [
+         1.5,
+         0,
+         1.3
+        ],
+        [
+         0.3,
+         0,
+         0.8
+        ]
+       ],
+       "dur": 2.5,
+       "at": 0.2,
+       "face": true
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.25,
+       "deg": 7,
+       "dur": 0.38
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.65,
+       "deg": 7,
+       "dur": 0.38
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 1.05,
+       "deg": 7,
+       "dur": 0.38
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 1.4500000000000002,
+       "deg": 7,
+       "dur": 0.38
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 1.85,
+       "deg": 7,
+       "dur": 0.38
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 2.25,
+       "deg": 7,
+       "dur": 0.38
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 2.75,
+       "dur": 0.3
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.6,
+       "to": "duck"
+      }
+     ]
+    },
+    {
+     "id": "d2",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        1.4,
+        4.6
+       ],
+       "lookAt": [
+        0.45,
+        0.95,
+        0.7
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "duck",
+       "text": "Quack! I have an umbrella!",
+       "at": 0.15
+      },
+      {
+       "do": "wiggle",
+       "target": "dstick",
+       "at": 0.5,
+       "deg": 8,
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.3,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "id": "d3",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What colour is it inside? Guess!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "dfurl",
+       "at": 0.5,
+       "dur": 1.8
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": [
+        0,
+        1.6,
+        9
+       ]
+      }
+     ]
+    },
+    {
+     "id": "d4",
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "dfurl",
+       "at": 0.3,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "d5",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "dfurl",
+       "at": 0.05,
+       "dur": 0.15
+      },
+      {
+       "do": "pop",
+       "target": "dcan",
+       "at": 0.1,
+       "dur": 0.5,
+       "sound": "pop"
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0.3,
+       "volume": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.4,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_blue",
+       "at": 0.45,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Pop! It's blue!",
+       "at": 0.4,
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "joyful",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.5,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.5
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "duck"
+      }
+     ]
+    },
+    {
+     "id": "d6",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "duck",
+       "text": "Blue! Quack, quack!",
+       "at": 0.1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.1,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "w_blue",
+       "at": 1,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 1.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini3",
+       "at": 0.6,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 0.65,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.7,
+       "volume": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v3_song",
+   "title": "Sing: little Ducky",
+   "music": false,
+   "beats": [
+    {
+     "id": "s31",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.9,
+        1.4,
+        4.6
+       ],
+       "lookAt": [
+        0.45,
+        0.95,
+        0.7
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.52,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_rain",
+       "at": 0.56,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.18,
+       "to": [
+        0,
+        4.5,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "id": "s32",
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Come again another day,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_rain",
+       "at": 0.14,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.17,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.14,
+       "to": "ahead"
+      },
+      {
+       "do": "wiggle",
+       "target": "cloud1",
+       "at": 0.33,
+       "deg": 8,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "s33",
+     "dur": 2.22,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Little Ducky wants to play,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "joyful",
+       "at": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.66,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 1.07,
+       "height": 0.25,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "s34",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.31,
+       "deg": 8,
+       "dur": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "happy",
+       "at": 1.37
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v3_gear",
+   "title": "Sing: blue umbrella",
+   "music": false,
+   "beats": [
+    {
+     "id": "g31",
+     "dur": 1.76,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Blue umbrella, pop,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.6,
+        2.4,
+        5.6
+       ],
+       "lookAt": [
+        0.45,
+        1.3,
+        0.6
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.22,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_blue",
+       "at": 0.24,
+       "dur": 0.25
+      },
+      {
+       "do": "wiggle",
+       "target": "dcan",
+       "at": 0.94,
+       "deg": 10,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.94,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "id": "g32",
+     "dur": 2.19,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Over me the raindrops drop,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_blue",
+       "at": 0.15,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.18,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.15,
+       "to": "dcan"
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.51,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.78,
+       "volume": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 1.05,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "id": "g33",
+     "dur": 2.76,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Pitter, patter, plip, plop, plop,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.17,
+       "to": "ahead"
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.1,
+       "volume": 0.35
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.38,
+       "volume": 0.35
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.65,
+       "volume": 0.35
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.93,
+       "volume": 0.35
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 1.2,
+       "volume": 0.35
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 1.48,
+       "volume": 0.35
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.47,
+       "deg": 8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "id": "g34",
+     "dur": 1.76,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Blue umbrella, pop.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "dcan",
+       "at": 0.94,
+       "deg": 10,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.94,
+       "volume": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.94,
+       "height": 0.2,
+       "dur": 0.42
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v4_intro",
+   "title": "Count the puddles!",
+   "beats": [
+    {
+     "id": "p1",
+     "dur": 3,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here comes Pip! Pip loves puddles!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         9.5,
+         0,
+         1.4
+        ],
+        [
+         4.6,
+         0,
+         1.3
+        ],
+        [
+         2.5,
+         0,
+         0.7
+        ]
+       ],
+       "dur": 2,
+       "at": 0.2,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 0.4,
+       "volume": 0.45
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1.2,
+       "volume": 0.45
+      },
+      {
+       "do": "turn",
+       "target": "pip",
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "at": 2.25,
+       "dur": 0.3
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.6,
+       "to": "pip"
+      }
+     ]
+    },
+    {
+     "id": "p2",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0.8,
+        2.6,
+        6.8
+       ],
+       "lookAt": [
+        0.8,
+        0.3,
+        1.6
+       ],
+       "fov": 42,
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look! Puddles! Let's count them!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "pud1",
+       "at": 0.5,
+       "dur": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pud2",
+       "at": 0.8,
+       "dur": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pud3",
+       "at": 1.1,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.5,
+       "volume": 0.45
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.8,
+       "volume": 0.45
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 1.1,
+       "volume": 0.45
+      },
+      {
+       "do": "look",
+       "target": "pip",
+       "at": 0.4,
+       "to": "pud2"
+      }
+     ]
+    },
+    {
+     "id": "p3",
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One... two... three!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "num1",
+       "at": 0.3,
+       "dur": 0.4,
+       "sound": "ding"
+      },
+      {
+       "do": "show",
+       "target": "rip1",
+       "at": 0.3,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 3,
+       "at": 0.35,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip1",
+       "at": 1.05,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 1,
+       "at": 1.3,
+       "dur": 0.05
+      },
+      {
+       "do": "pop",
+       "target": "num2",
+       "at": 1.15,
+       "dur": 0.4,
+       "sound": "ding"
+      },
+      {
+       "do": "show",
+       "target": "rip2",
+       "at": 1.15,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 3,
+       "at": 1.2,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip2",
+       "at": 1.9,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 1,
+       "at": 2.15,
+       "dur": 0.05
+      },
+      {
+       "do": "pop",
+       "target": "num3",
+       "at": 2,
+       "dur": 0.4,
+       "sound": "ding"
+      },
+      {
+       "do": "show",
+       "target": "rip3",
+       "at": 2,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 3,
+       "at": 2.05,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip3",
+       "at": 2.75,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 1,
+       "at": 3,
+       "dur": 0.05
+      }
+     ]
+    },
+    {
+     "id": "p4",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_three",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three puddles! Clever you!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "num1",
+       "at": 0.3,
+       "deg": 12,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "num2",
+       "at": 0.5,
+       "deg": 12,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "num3",
+       "at": 0.7,
+       "deg": 12,
+       "dur": 0.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "w_three",
+       "at": 1.9,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 1.95,
+       "dur": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "num1",
+       "at": 1.8,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "num2",
+       "at": 1.9000000000000001,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "num3",
+       "at": 2,
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v4_song",
+   "title": "Sing: little Pip",
+   "music": false,
+   "beats": [
+    {
+     "id": "s41",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.6,
+        1.9,
+        6.4
+       ],
+       "lookAt": [
+        1.6,
+        0.6,
+        1.5
+       ],
+       "fov": 40,
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.52,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_rain",
+       "at": 0.56,
+       "dur": 0.25
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "look",
+       "target": "pip",
+       "at": 0.18,
+       "to": [
+        0,
+        4.5,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "id": "s42",
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Come again another day,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_rain",
+       "at": 0.14,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.17,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "pip",
+       "at": 0.14,
+       "to": "ahead"
+      },
+      {
+       "do": "wiggle",
+       "target": "cloud1",
+       "at": 0.33,
+       "deg": 8,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "s43",
+     "dur": 2.61,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Little Pip wants to play,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 A4 G4 E4:2"
+      },
+      {
+       "do": "feel",
+       "target": "pip",
+       "feeling": "joyful",
+       "at": 0.16
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.79,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.3,
+       "height": 0.25,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "s44",
+     "dur": 2.66,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, go away.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "wiggle",
+       "target": "pip",
+       "at": 0.31,
+       "deg": 8,
+       "dur": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "pip",
+       "feeling": "happy",
+       "at": 1.37
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v4_boots",
+   "title": "Red boots: the surprise!",
+   "beats": [
+    {
+     "id": "k1",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        2.2,
+        1,
+        4.4
+       ],
+       "lookAt": [
+        2.4,
+        0.5,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Pip needs boots for splashing! The surprise!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "qmark",
+       "at": 1.2,
+       "dur": 0.2
+      },
+      {
+       "do": "show",
+       "target": "boots",
+       "at": 1.4,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "pip",
+       "feeling": "joyful",
+       "at": 1.6
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.9,
+       "height": 0.2,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "red_t1",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What colour are the boots? Say red!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.3,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_red",
+       "at": 0.35,
+       "dur": 0.25
+      }
+     ]
+    },
+    {
+     "id": "red_t2",
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.1,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bubble",
+       "at": 0.2,
+       "deg": 10,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "id": "red_t3",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "pip",
+       "text": "Red!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.15,
+       "height": 0.35
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! Red boots! Stomp, stomp!",
+       "at": "after",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "id": "red_t4",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_red",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "mini4",
+       "at": 0.25,
+       "dur": 0.45,
+       "sound": "ding"
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.35,
+       "volume": 0.6
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.4,
+       "dur": 2,
+       "sound": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v4_gear",
+   "title": "Sing: red boots",
+   "music": false,
+   "beats": [
+    {
+     "id": "g41",
+     "dur": 2.92,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Red boots, stomp, stomp, stomp,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.6,
+        1.9,
+        6.4
+       ],
+       "lookAt": [
+        1.6,
+        0.6,
+        1.5
+       ],
+       "fov": 40,
+       "dur": 0.89
+      },
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.34,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_red",
+       "at": 0.38,
+       "dur": 0.25
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 1.05,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 1.52,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 2,
+       "volume": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.05,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.52,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 2,
+       "height": 0.12,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "id": "g42",
+     "dur": 2.74,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "In the puddles, jump and romp,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "hide",
+       "target": "w_red",
+       "at": 0.17,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.2,
+       "dur": 0.25
+      },
+      {
+       "do": "look",
+       "target": "pip",
+       "at": 0.17,
+       "to": "pud3"
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.2,
+       "height": 0.2,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "g43",
+     "dur": 4.64,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One, two, three, and splash, splash, splash,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         2.5,
+         0,
+         0.7
+        ],
+        [
+         2.95,
+         0,
+         2.25
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.21,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.21,
+       "height": 0.4,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl3",
+       "at": 0.63,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.63,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl3",
+       "at": 1.08,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip3",
+       "at": 0.63,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 3.2,
+       "at": 0.68,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip3",
+       "at": 1.38,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 1,
+       "at": 1.59,
+       "dur": 0.05
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         2.95,
+         0,
+         2.25
+        ],
+        [
+         0.85,
+         0,
+         2.55
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.96,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.96,
+       "height": 0.4,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl2",
+       "at": 1.38,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 1.38,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl2",
+       "at": 1.83,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip2",
+       "at": 1.38,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 3.2,
+       "at": 1.43,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip2",
+       "at": 2.13,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 1,
+       "at": 2.34,
+       "dur": 0.05
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         0.85,
+         0,
+         2.55
+        ],
+        [
+         -1.3,
+         0,
+         2.3
+        ]
+       ],
+       "dur": 0.45,
+       "at": 1.71,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.71,
+       "height": 0.4,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl1",
+       "at": 2.13,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 2.13,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl1",
+       "at": 2.58,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip1",
+       "at": 2.13,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 3.2,
+       "at": 2.18,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip1",
+       "at": 2.88,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 1,
+       "at": 3.09,
+       "dur": 0.05
+      },
+      {
+       "do": "look",
+       "target": "pip",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "id": "g44",
+     "dur": 2.92,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Red boots, stomp, stomp, stomp.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "turn",
+       "target": "pip",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.19,
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.34,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 0.81,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "step",
+       "at": 1.29,
+       "volume": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.34,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.81,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.29,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         -1.3,
+         0,
+         2.3
+        ],
+        [
+         0.6,
+         0,
+         1.6
+        ],
+        [
+         2.5,
+         0,
+         0.7
+        ]
+       ],
+       "dur": 1.3,
+       "at": 1.62,
+       "face": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "v4_splash",
+   "title": "Jump on splash!",
+   "beats": [
+    {
+     "id": "x1",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "turn",
+       "target": "pip",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.8,
+        2.6,
+        6.8
+       ],
+       "lookAt": [
+        0.8,
+        0.3,
+        1.6
+       ],
+       "fov": 42,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Your turn! Jump when I say splash!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      },
+      {
+       "do": "path",
+       "target": "bunny",
+       "points": [
+        [
+         -1.6,
+         0,
+         0.9
+        ],
+        [
+         -1.6,
+         0,
+         1.6
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.6,
+       "face": true
+      },
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         0.3,
+         0,
+         0.8
+        ],
+        [
+         0.6,
+         0,
+         1.7
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.7,
+       "face": true
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         2.5,
+         0,
+         0.7
+        ],
+        [
+         2.7,
+         0,
+         1.5
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.8,
+       "face": true
+      }
+     ]
+    },
+    {
+     "id": "x2",
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.15,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.15,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.3,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.2,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.77,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.95,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.52,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.7,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.27,
+       "dur": 0.12
+      },
+      {
+       "do": "turn",
+       "target": "bunny",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "pip",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.2,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "id": "x3",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_splash",
+       "at": 0.1,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Splash!",
+       "at": 0.05,
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "SPLASH!",
+       "style": "title",
+       "at": 0.1,
+       "dur": 1.4
+      },
+      {
+       "do": "path",
+       "target": "bunny",
+       "points": [
+        [
+         -1.6,
+         0,
+         1.6
+        ],
+        [
+         -1.3,
+         0,
+         2.3
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.1,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.1,
+       "height": 0.45,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl1",
+       "at": 0.52,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.52,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl1",
+       "at": 0.97,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip1",
+       "at": 0.52,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 3.2,
+       "at": 0.5700000000000001,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip1",
+       "at": 1.27,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 1,
+       "at": 1.48,
+       "dur": 0.05
+      },
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         0.6,
+         0,
+         1.7
+        ],
+        [
+         0.85,
+         0,
+         2.55
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.15,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.15,
+       "height": 0.4,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl2",
+       "at": 0.57,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.57,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl2",
+       "at": 1.02,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip2",
+       "at": 0.57,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 3.2,
+       "at": 0.62,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip2",
+       "at": 1.3199999999999998,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 1,
+       "at": 1.5299999999999998,
+       "dur": 0.05
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         2.7,
+         0,
+         1.5
+        ],
+        [
+         2.95,
+         0,
+         2.25
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.2,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.2,
+       "height": 0.5,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl3",
+       "at": 0.62,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.62,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl3",
+       "at": 1.07,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip3",
+       "at": 0.62,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 3.2,
+       "at": 0.67,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip3",
+       "at": 1.37,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 1,
+       "at": 1.58,
+       "dur": 0.05
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 1,
+       "volume": 0.5
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wheee! What a big splash!",
+       "at": 1.2,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "id": "x5",
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_splash",
+       "at": 0,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 0.05,
+       "dur": 0.25
+      },
+      {
+       "do": "path",
+       "target": "bunny",
+       "points": [
+        [
+         -1.3,
+         0,
+         2.3
+        ],
+        [
+         -1.6,
+         0,
+         0.9
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.1,
+       "face": true
+      },
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         0.85,
+         0,
+         2.55
+        ],
+        [
+         0.3,
+         0,
+         0.8
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.1,
+       "face": true
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         2.95,
+         0,
+         2.25
+        ],
+        [
+         2.5,
+         0,
+         0.7
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.1,
+       "face": true
+      },
+      {
+       "do": "turn",
+       "target": "bunny",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.95,
+       "dur": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.95,
+       "dur": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "pip",
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "at": 0.95,
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Point to it!",
+   "beats": [
+    {
+     "id": "q0",
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now a quick game!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "q_hat",
+       "at": 0.3,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "q_boots",
+       "at": 0.55,
+       "dur": 0.4,
+       "sound": "pop"
+      }
+     ]
+    },
+    {
+     "id": "q1a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "q_hat",
+       "to": [
+        -0.65,
+        1.15,
+        4.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "q_boots",
+       "to": [
+        0.65,
+        0.98,
+        4.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Where are the red boots? Point to them!",
+       "at": 0.5,
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.35,
+        6.75
+       ],
+       "lookAt": [
+        0,
+        1.17,
+        4.6
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "q1b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "q_hat",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "q_boots",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "q_hat",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q1c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "q_boots",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "wiggle",
+       "target": "q_boots",
+       "at": 0.3,
+       "deg": 12,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The red boots! Stomp, stomp!",
+       "at": 0.4,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q1d",
+     "dur": 1.2,
+     "do": []
+    },
+    {
+     "id": "q2a",
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "pop",
+       "target": "q_umb",
+       "at": 0.3,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "q_coat",
+       "at": 0.55,
+       "dur": 0.4,
+       "sound": "pop"
+      },
+      {
+       "do": "hide",
+       "target": "q_hat",
+       "at": 0,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q_boots",
+       "at": 0.05,
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "q_umb",
+       "to": [
+        -0.65,
+        0.86,
+        4.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "q_coat",
+       "to": [
+        0.65,
+        0.92,
+        4.6
+       ],
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which one is blue? Point to it!",
+       "at": 0.5,
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.35,
+        6.75
+       ],
+       "lookAt": [
+        0,
+        1.17,
+        4.6
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "id": "q2b",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three... two... one!",
+       "at": 0.1,
+       "caption": false
+      },
+      {
+       "do": "pop",
+       "target": "cd_bg",
+       "at": 0.1,
+       "dur": 0.3,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "cd_bg",
+       "at": 2.25,
+       "dur": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.15000000000000002,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 0.72,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 0.9,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 1.47,
+       "dur": 0.12
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 1.65,
+       "dur": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 2.2199999999999998,
+       "dur": 0.12
+      },
+      {
+       "do": "wiggle",
+       "target": "q_umb",
+       "at": 0.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "q_coat",
+       "at": 0.95,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "q_umb",
+       "at": 1.7,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q2c",
+     "dur": 3,
+     "do": [
+      {
+       "do": "mark",
+       "target": "q_umb",
+       "result": "correct",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "wiggle",
+       "target": "q_umb",
+       "at": 0.3,
+       "deg": 12,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! The blue umbrella!",
+       "at": 0.4,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "id": "q2d",
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "hide",
+       "target": "q_umb",
+       "at": 0.4,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "q_coat",
+       "at": 0.45,
+       "dur": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sun",
+   "title": "Here comes the sun!",
+   "beats": [
+    {
+     "id": "f1",
+     "dur": 3,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.6,
+        11.6
+       ],
+       "lookAt": [
+        0,
+        1.8,
+        -1
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Look! The rain is going away!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "rain",
+       "at": 0.6,
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "cloud1",
+       "to": [
+        -17,
+        4.6,
+        -4.2
+       ],
+       "at": 0.6,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "cloud2",
+       "to": [
+        17,
+        4.8,
+        -4.8
+       ],
+       "at": 0.6,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "background": "sky",
+       "at": 0.6,
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "sun",
+       "at": 1,
+       "dur": 0.5,
+       "sound": "magic_sparkle"
+      },
+      {
+       "do": "show",
+       "target": "rays",
+       "at": 1.2,
+       "dur": 0.5
+      },
+      {
+       "do": "spin",
+       "target": "rays",
+       "axis": "z",
+       "turns": 0.25,
+       "at": 1.2,
+       "dur": 2.4,
+       "ease": "linear"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.8,
+       "to": "sun"
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 0.9,
+       "to": "sun"
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 1,
+       "to": "sun"
+      },
+      {
+       "do": "look",
+       "target": "pip",
+       "at": 1.1,
+       "to": "sun"
+      }
+     ]
+    },
+    {
+     "id": "f2",
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "pop",
+       "target": "bubble",
+       "at": 0.1,
+       "dur": 0.35,
+       "sound": false
+      },
+      {
+       "do": "show",
+       "target": "w_sun",
+       "at": 0.15000000000000002,
+       "dur": 0.25
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Hello, sun! Hooray! Let's play!",
+       "at": 0.1,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "bunny",
+       "feeling": "joyful",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "joyful",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "pip",
+       "feeling": "joyful",
+       "at": 0.5
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 1.2,
+       "to": "ahead"
+      },
+      {
+       "do": "look",
+       "target": "bunny",
+       "at": 1.2,
+       "to": "ahead"
+      },
+      {
+       "do": "look",
+       "target": "duck",
+       "at": 1.2,
+       "to": "ahead"
+      },
+      {
+       "do": "look",
+       "target": "pip",
+       "at": 1.2,
+       "to": "ahead"
+      },
+      {
+       "do": "hide",
+       "target": "w_sun",
+       "at": 1.8,
+       "dur": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bubble",
+       "at": 1.85,
+       "dur": 0.25
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "finale",
+   "title": "Everybody sing!",
+   "music": false,
+   "beats": [
+    {
+     "id": "z1",
+     "dur": 2.99,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Rain, rain, went away,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.1,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1.3,
+        -0.4
+       ],
+       "fov": 40,
+       "dur": 0.91
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "u1_c",
+       "at": 0.59,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "u2_c",
+       "at": 1.07,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "u3_c",
+       "at": 1.56,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "id": "z2",
+     "dur": 3.06,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Hello, sun, a sunny day,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 G4:0.5 G4 E4:2"
+      },
+      {
+       "do": "grow",
+       "target": "sun",
+       "to": 1.3,
+       "at": 0.52,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.52,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.94,
+       "height": 0.25,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 1.36,
+       "height": 0.25,
+       "dur": 0.42
+      }
+     ]
+    },
+    {
+     "id": "z3",
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "All my friends come out to play,",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4:0.5 G4:0.5 E4 E4:0.5 A4:0.5 G4 E4:2"
+      },
+      {
+       "do": "spin",
+       "target": "bunny",
+       "at": 0.43,
+       "dur": 0.8
+      },
+      {
+       "do": "spin",
+       "target": "duck",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "spin",
+       "target": "pip",
+       "at": 0.77,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "id": "z4",
+     "dur": 2.78,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Splash, splash, hip hooray.",
+       "at": 0.1,
+       "caption": true,
+       "tune": "G4 E4 G4:0.5 G4:0.5 E4:2"
+      },
+      {
+       "do": "path",
+       "target": "bunny",
+       "points": [
+        [
+         -1.6,
+         0,
+         0.9
+        ],
+        [
+         -1.3,
+         0,
+         2.3
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.19,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.19,
+       "height": 0.4,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl1",
+       "at": 0.54,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.54,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl1",
+       "at": 0.91,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip1",
+       "at": 0.54,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 3.2,
+       "at": 0.58,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip1",
+       "at": 1.16,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip1",
+       "to": 1,
+       "at": 1.34,
+       "dur": 0.05
+      },
+      {
+       "do": "path",
+       "target": "duck",
+       "points": [
+        [
+         0.3,
+         0,
+         0.8
+        ],
+        [
+         0.85,
+         0,
+         2.55
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.28,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.28,
+       "height": 0.4,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl2",
+       "at": 0.63,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.63,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl2",
+       "at": 1,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip2",
+       "at": 0.63,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 3.2,
+       "at": 0.67,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip2",
+       "at": 1.25,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip2",
+       "to": 1,
+       "at": 1.43,
+       "dur": 0.05
+      },
+      {
+       "do": "path",
+       "target": "pip",
+       "points": [
+        [
+         2.5,
+         0,
+         0.7
+        ],
+        [
+         2.95,
+         0,
+         2.25
+        ]
+       ],
+       "dur": 0.45,
+       "at": 0.37,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.37,
+       "height": 0.4,
+       "dur": 0.45
+      },
+      {
+       "do": "pop",
+       "target": "spl3",
+       "at": 0.72,
+       "dur": 0.25,
+       "sound": false
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.72,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "spl3",
+       "at": 1.09,
+       "dur": 0.25
+      },
+      {
+       "do": "show",
+       "target": "rip3",
+       "at": 0.72,
+       "dur": 0.1
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 3.2,
+       "at": 0.76,
+       "dur": 0.8,
+       "ease": "quadOut"
+      },
+      {
+       "do": "hide",
+       "target": "rip3",
+       "at": 1.34,
+       "dur": 0.2
+      },
+      {
+       "do": "grow",
+       "target": "rip3",
+       "to": 1,
+       "at": 1.51,
+       "dur": 0.05
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 1.21,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "id": "z5",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.2,
+        9
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        0.8
+       ],
+       "fov": 40,
+       "dur": 1.6
+      },
+      {
+       "do": "turn",
+       "target": "bunny",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "pip",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bye-bye, rain! Hello, sunshine!",
+       "at": 0.2,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "slot1",
+       "at": 0.5,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot2",
+       "at": 0.8,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot3",
+       "at": 1.1,
+       "deg": 10,
+       "dur": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "slot4",
+       "at": 1.4,
+       "deg": 10,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "id": "z6",
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "who": "bunny",
+       "text": "Bye-bye!",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.2,
+       "height": 0.3,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.4,
+       "height": 0.3,
+       "dur": 0.42
+      },
+      {
+       "do": "hop",
+       "target": "pip",
+       "at": 0.6,
+       "height": 0.3,
+       "dur": 0.42
+      },
+      {
+       "do": "caption",
+       "text": "Bye-bye!",
+       "style": "title",
+       "at": 0.6,
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.2,
+        13.5
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

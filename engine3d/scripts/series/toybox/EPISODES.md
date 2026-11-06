@@ -31,7 +31,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | uploaded | disk1:BABY-RHYMES/br11_shapes_everywhere |
 | br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek`, `listening_prek` | `br12_start_the_day.json` | uploaded | disk1:BABY-RHYMES/br12_start_the_day |
 | br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek`, `capital_letters_prek`, `listening_prek` | `br13_pat_a_cake.json` | uploaded | disk1:BABY-RHYMES/br13_pat_a_cake |
-| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | uploaded | – |
+| br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | uploaded | disk1:BABY-RHYMES/br14_rain_rain_go_away |
 | br15 | This Old Man Counts to Ten | Babies | Counting and rhyming (rhyme) | `count_to_10_k`, `rhyming_k` | `br15_this_old_man.json` | uploaded | – |
 | br16 | Mary Had a Little Lamb | Babies | Listening (rhyme) | `count_to_5_prek`, `position_words_prek`, `listening_prek` | `br16_mary_little_lamb.json` | uploaded | – |
 | br17 | B-I-N-G-O Clap Along | Babies | Letters and patterns (rhyme) | `capital_letters_prek`, `ab_patterns_prek`, `listening_prek` | `br17_bingo_clap_along.json` | uploaded | – |

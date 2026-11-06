@@ -1,0 +1,982 @@
+{
+ "description": "Rain, Rain, Go Away (br14) models: an umbrella that pops open (a stick, a furled cover and an open canopy as separate props), a toy raincoat, a pair of rain boots, a sou'wester rain hat, a flat puddle and a crown of splash drops. Same format as ../models.json. Props face +z and stand on y = 0 unless they float.",
+ "critters": {},
+ "props": {
+  "umbrella_stick": {
+   "color": "blue",
+   "description": "The stick of a pop-open umbrella, 1 m tall at size 1: a J hook in the main colour at the bottom (the origin is the bottom of the hook) and a charcoal shaft up to y 1.0, where the canopy goes. Parent an umbrella_canopy (open) or umbrella_furled (closed) to it at [0, 1.0 x its size, 0] in metres with the same size, then hide the cover and pop the canopy to open it. Held in a hand: the grip is about 0.08 above the origin.",
+   "tags": [
+    "weather",
+    "rain",
+    "umbrella",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.56,
+      0
+     ],
+     "s": [
+      0.03,
+      0.9,
+      0.03
+     ],
+     "c": "charcoal",
+     "m": "metal"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.002,
+      0.072,
+      0
+     ],
+     "s": [
+      0.045,
+      0.08,
+      0.045
+     ],
+     "r": [
+      0,
+      0,
+      195
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.021,
+      0.041,
+      0
+     ],
+     "s": [
+      0.045,
+      0.08,
+      0.045
+     ],
+     "r": [
+      0,
+      0,
+      225
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.052,
+      0.022,
+      0
+     ],
+     "s": [
+      0.045,
+      0.08,
+      0.045
+     ],
+     "r": [
+      0,
+      0,
+      255
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.088,
+      0.022,
+      0
+     ],
+     "s": [
+      0.045,
+      0.08,
+      0.045
+     ],
+     "r": [
+      0,
+      0,
+      285
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.119,
+      0.041,
+      0
+     ],
+     "s": [
+      0.045,
+      0.08,
+      0.045
+     ],
+     "r": [
+      0,
+      0,
+      315
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.138,
+      0.072,
+      0
+     ],
+     "s": [
+      0.045,
+      0.08,
+      0.045
+     ],
+     "r": [
+      0,
+      0,
+      345
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.14,
+      0.09,
+      0
+     ],
+     "s": 0.045,
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.13,
+      0
+     ],
+     "s": [
+      0.05,
+      0.1,
+      0.05
+     ],
+     "m": "glossy"
+    }
+   ]
+  },
+  "umbrella_canopy": {
+   "color": "blue",
+   "description": "The open canopy of a pop-open umbrella, 1.1 m across at size 1, in the main colour with white scallops round the rim, and a white tip. The origin is the top of the stick (the dome runs from y -0.2 to 0.22), so popping it in grows it outward from the stick top like an umbrella opening. Parent it to an umbrella_stick at [0, 1.0 x size, 0].",
+   "tags": [
+    "weather",
+    "rain",
+    "umbrella",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "dome",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": [
+      1.1,
+      0.8,
+      1.1
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.21,
+      0
+     ],
+     "s": 0.08,
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.55,
+      -0.18,
+      0
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.55,
+      -0.18,
+      0
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.18,
+      0.55
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.18,
+      -0.55
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.389,
+      -0.18,
+      0.389
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.389,
+      -0.18,
+      0.389
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.389,
+      -0.18,
+      -0.389
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.389,
+      -0.18,
+      -0.389
+     ],
+     "s": [
+      0.15,
+      0.07,
+      0.15
+     ],
+     "c": "white",
+     "m": "glossy"
+    }
+   ]
+  },
+  "umbrella_furled": {
+   "color": "grey",
+   "description": "A closed (furled) umbrella cover: a slim cone 0.75 m long, point up, wrapped with a cream strap and button, in the main colour (grey by default, so the open canopy's colour stays a surprise). The origin is the top of the stick: parent it to an umbrella_stick at [0, 1.0 x size, 0], then hide it as the canopy pops.",
+   "tags": [
+    "weather",
+    "rain",
+    "umbrella",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.2,
+      0
+     ],
+     "s": [
+      0.26,
+      0.75,
+      0.26
+     ],
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.56,
+      0
+     ],
+     "s": [
+      0.26,
+      0.08,
+      0.26
+     ],
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.19,
+      0
+     ],
+     "s": 0.06,
+     "c": "white",
+     "m": "glossy"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      -0.3,
+      0
+     ],
+     "s": [
+      0.2,
+      0.2,
+      0.2
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "cream"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.3,
+      0.1
+     ],
+     "s": 0.045,
+     "c": "cream"
+    }
+   ]
+  },
+  "raincoat": {
+   "color": "yellow",
+   "description": "A shiny toddler raincoat in the main colour, shaped to wear over a round critter's body: at size 1 it fits the bunny (body 0.6 m wide, centre y 0.36): coat 0.66 m wide from y 0.12 to 0.64, a dropped hood at the back of the neck, a collar, short sleeves at the sides with white cuffs and three white toggles down the front (z 0.31). Parent it to the critter at [0, 0, 0] with the critter's size (a child does not scale with its parent).",
+   "tags": [
+    "clothes",
+    "weather",
+    "rain",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.38,
+      0
+     ],
+     "s": [
+      0.66,
+      0.52,
+      0.64
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      0.6,
+      0
+     ],
+     "s": [
+      0.36,
+      0.36,
+      0.24
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.64,
+      -0.2
+     ],
+     "s": [
+      0.38,
+      0.2,
+      0.26
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.33,
+      0.42,
+      0.02
+     ],
+     "s": [
+      0.14,
+      0.26,
+      0.14
+     ],
+     "r": [
+      0,
+      0,
+      28
+     ],
+     "m": "glossy",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.39,
+      0.31,
+      0.02
+     ],
+     "s": [
+      0.13,
+      0.07,
+      0.13
+     ],
+     "r": [
+      0,
+      0,
+      28
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.47,
+      0.305
+     ],
+     "s": [
+      0.035,
+      0.07,
+      0.035
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "white"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.37,
+      0.322
+     ],
+     "s": [
+      0.035,
+      0.07,
+      0.035
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "white"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.27,
+      0.305
+     ],
+     "s": [
+      0.035,
+      0.07,
+      0.035
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "white"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.17,
+      0.26,
+      0.27
+     ],
+     "s": [
+      0.12,
+      0.03,
+      0.06
+     ],
+     "r": [
+      0,
+      -30,
+      0
+     ],
+     "mirror": true,
+     "m": "glossy"
+    }
+   ]
+  },
+  "rain_boots": {
+   "color": "red",
+   "description": "A pair of shiny rain boots (wellies) in the main colour, 0.28 m tall at size 1, with white rims and dark soles; the boots stand at x -0.1 and 0.1, toes toward +z, sized to fit over the feet and shins of Pip (the toddler critter) at size 1: parent them to pip at [0, 0, 0] with Pip's size (a child does not scale with its parent). Origin on the ground between them.",
+   "tags": [
+    "clothes",
+    "weather",
+    "rain",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0.1,
+      0.15,
+      -0.005
+     ],
+     "s": [
+      0.19,
+      0.25,
+      0.19
+     ],
+     "m": "glossy",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.06,
+      0.06
+     ],
+     "s": [
+      0.2,
+      0.12,
+      0.31
+     ],
+     "m": "glossy",
+     "mirror": true
+    },
+    {
+     "p": "torus",
+     "at": [
+      0.1,
+      0.275,
+      -0.005
+     ],
+     "s": [
+      0.19,
+      0.19,
+      0.13
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.1,
+      0.008,
+      0.04
+     ],
+     "s": [
+      0.21,
+      0.016,
+      0.33
+     ],
+     "c": "charcoal",
+     "m": "matte",
+     "mirror": true
+    }
+   ]
+  },
+  "rain_hat": {
+   "color": "green",
+   "description": "A sou'wester rain hat in the main colour, 0.62 m across the brim at size 1 (the brim dips at the back), with a white band. Origin at the middle of the brim; on Robo, parent it to robo at about [0, 1.56, 0] with size 1.5.",
+   "tags": [
+    "clothes",
+    "weather",
+    "rain",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "dome",
+     "at": [
+      0,
+      0.06,
+      0
+     ],
+     "s": [
+      0.42,
+      0.5,
+      0.42
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.0,
+      -0.03
+     ],
+     "s": [
+      0.62,
+      0.025,
+      0.66
+     ],
+     "r": [
+      -9,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      0.035,
+      0
+     ],
+     "s": [
+      0.43,
+      0.43,
+      0.14
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "white"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.19,
+      0
+     ],
+     "s": 0.06,
+     "m": "glossy"
+    }
+   ]
+  },
+  "puddle": {
+   "color": "pond",
+   "description": "A flat rain puddle about 1.0 m wide (x) and 0.7 m deep at size 1, 1.5 cm thick, a soft blob of shiny water in the main colour with two pale sky glints. Lies on the ground (origin at its centre on y = 0).",
+   "tags": [
+    "weather",
+    "rain",
+    "water",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.007,
+      0
+     ],
+     "s": [
+      0.82,
+      0.014,
+      0.58
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.24,
+      0.0072,
+      0.08
+     ],
+     "s": [
+      0.5,
+      0.0144,
+      0.44
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.26,
+      0.0071,
+      -0.06
+     ],
+     "s": [
+      0.44,
+      0.0142,
+      0.4
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.12,
+      0.0145,
+      0.06
+     ],
+     "s": [
+      0.22,
+      0.002,
+      0.08
+     ],
+     "r": [
+      0,
+      20,
+      0
+     ],
+     "c": "sky",
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.2,
+      0.0145,
+      -0.08
+     ],
+     "s": [
+      0.12,
+      0.002,
+      0.05
+     ],
+     "r": [
+      0,
+      20,
+      0
+     ],
+     "c": "sky",
+     "m": "glossy"
+    }
+   ]
+  },
+  "splash_drops": {
+   "color": "sky",
+   "description": "A splash crown: eight shiny water drops leaping out in a ring 0.6 m across and up to 0.42 m high at size 1, in the main colour. Origin on the ground at its centre: show it on a puddle for a moment when someone jumps in (pop it, then hide it).",
+   "tags": [
+    "weather",
+    "rain",
+    "water",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "drop",
+     "at": [
+      0.3,
+      0.22,
+      0
+     ],
+     "s": 0.1,
+     "r": [
+      0,
+      0,
+      -30
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "drop",
+     "at": [
+      -0.3,
+      0.22,
+      0
+     ],
+     "s": 0.1,
+     "r": [
+      0,
+      0,
+      30
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "drop",
+     "at": [
+      0,
+      0.26,
+      0.28
+     ],
+     "s": 0.09,
+     "r": [
+      30,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "drop",
+     "at": [
+      0,
+      0.26,
+      -0.28
+     ],
+     "s": 0.09,
+     "r": [
+      -30,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "drop",
+     "at": [
+      0.2,
+      0.36,
+      0.2
+     ],
+     "s": 0.08,
+     "r": [
+      20,
+      0,
+      -20
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "drop",
+     "at": [
+      -0.2,
+      0.36,
+      0.2
+     ],
+     "s": 0.08,
+     "r": [
+      20,
+      0,
+      20
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "drop",
+     "at": [
+      0.2,
+      0.32,
+      -0.2
+     ],
+     "s": 0.08,
+     "r": [
+      -20,
+      0,
+      -20
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "drop",
+     "at": [
+      -0.2,
+      0.32,
+      -0.2
+     ],
+     "s": 0.08,
+     "r": [
+      -20,
+      0,
+      20
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      0.03,
+      0
+     ],
+     "s": [
+      0.5,
+      0.5,
+      0.07
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "sky",
+     "m": "glossy"
+    }
+   ]
+  }
+ }
+}
