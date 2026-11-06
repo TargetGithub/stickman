@@ -1,0 +1,823 @@
+{
+ "description": "This Is the Way We Start the Day (br12, baby rhymes) models: a twin-bell alarm clock whose bells wiggle, a nightstand, a clothes rail with an orange T-shirt on a hanger (and the T-shirt alone for the tracker), a breakfast bowl of porridge and a spoon. The sink, toothbrush, toothpaste, soap, bed, table and chair are in home_school.json. Same format as ../models.json. Props face +z.",
+ "critters": {},
+ "props": {
+  "alarm_clock": {
+   "color": "red",
+   "description": "A toy twin-bell alarm clock facing +z, 0.5 m tall at size 1 (body 0.36 m across), origin at the middle of its base: a round red body with a white face whose hands show seven o'clock, two little feet, and two gold bells with a hammer on top (named part `bells`, pivot at the top of the body: wiggle it, and the whole clock, while it rings).",
+   "tags": [
+    "home",
+    "bedroom",
+    "time",
+    "morning",
+    "small",
+    "rhymes",
+    "start_the_day",
+    "morning_routine"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.25,
+      0
+     ],
+     "s": [
+      0.36,
+      0.14,
+      0.36
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.25,
+      0.066
+     ],
+     "s": [
+      0.33,
+      0.02,
+      0.33
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "m": "metal"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.25,
+      0.071
+     ],
+     "s": [
+      0.3,
+      0.02,
+      0.3
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "white",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.365,
+      0.082
+     ],
+     "s": 0.025,
+     "c": "ink"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.115,
+      0.25,
+      0.082
+     ],
+     "s": 0.025,
+     "c": "ink"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.135,
+      0.082
+     ],
+     "s": 0.025,
+     "c": "ink"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.115,
+      0.25,
+      0.082
+     ],
+     "s": 0.025,
+     "c": "ink"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.25,
+      0.086
+     ],
+     "s": [
+      0.022,
+      0.09,
+      0.008
+     ],
+     "hang": [
+      0,
+      0.04,
+      0
+     ],
+     "hr": [
+      0,
+      0,
+      150
+     ],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.25,
+      0.09
+     ],
+     "s": [
+      0.016,
+      0.12,
+      0.008
+     ],
+     "hang": [
+      0,
+      0.055,
+      0
+     ],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.25,
+      0.095
+     ],
+     "s": 0.03,
+     "c": "gold",
+     "m": "metal"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.12,
+      0.05,
+      0
+     ],
+     "s": [
+      0.05,
+      0.1,
+      0.05
+     ],
+     "r": [
+      0,
+      0,
+      -20
+     ],
+     "c": "ink",
+     "mirror": true
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.42,
+      0
+     ],
+     "s": [
+      0.03,
+      0.1,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.04,
+      0
+     ],
+     "c": "gold",
+     "m": "metal",
+     "name": "bells"
+    },
+    {
+     "p": "dome",
+     "at": [
+      0,
+      0.42,
+      0
+     ],
+     "s": [
+      0.17,
+      0.17,
+      0.17
+     ],
+     "hang": [
+      0.1,
+      0.0,
+      0
+     ],
+     "hr": [
+      0,
+      0,
+      -28
+     ],
+     "c": "gold",
+     "m": "metal",
+     "name": "bells"
+    },
+    {
+     "p": "dome",
+     "at": [
+      0,
+      0.42,
+      0
+     ],
+     "s": [
+      0.17,
+      0.17,
+      0.17
+     ],
+     "hang": [
+      -0.1,
+      0.0,
+      0
+     ],
+     "hr": [
+      0,
+      0,
+      28
+     ],
+     "c": "gold",
+     "m": "metal",
+     "name": "bells"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.42,
+      0
+     ],
+     "s": 0.04,
+     "hang": [
+      0,
+      0.1,
+      0
+     ],
+     "c": "gold",
+     "m": "metal",
+     "name": "bells"
+    }
+   ]
+  },
+  "clothes_rail": {
+   "color": "wood",
+   "description": "A toy clothes rail facing +z: two wooden posts on feet and a round top bar 1.2 m wide at y 1.45 (size 1), origin at the middle of its base. Hang a `tshirt_hanger` from it at [x, 1.45, 0] (the hanger's hook origin is on the bar).",
+   "tags": [
+    "home",
+    "bedroom",
+    "clothes",
+    "furniture",
+    "rhymes",
+    "start_the_day",
+    "morning_routine"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0.6,
+      0.73,
+      0
+     ],
+     "s": [
+      0.06,
+      1.46,
+      0.06
+     ],
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      0.6,
+      0.03,
+      0
+     ],
+     "s": [
+      0.1,
+      0.06,
+      0.5
+     ],
+     "c": "wood_dark",
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      1.45,
+      0
+     ],
+     "s": [
+      0.05,
+      1.26,
+      0.05
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "gold",
+     "m": "metal"
+    }
+   ]
+  },
+  "tshirt": {
+   "color": "orange",
+   "description": "A flat toddler T-shirt in its main colour (set color) with a yellow star, standing upright facing +z, 0.5 m wide (sleeves out) and 0.44 m tall at size 1, origin at the middle of the hem (y 0). As a HUD icon in a tracker slot use size about 0.9 (parent the slot, at [0, -0.2, 0.15]).",
+   "tags": [
+    "clothes",
+    "small",
+    "dress_up",
+    "rhymes",
+    "start_the_day",
+    "morning_routine"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.19,
+      0
+     ],
+     "s": [
+      0.3,
+      0.38,
+      0.05
+     ],
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.17,
+      0.33,
+      0
+     ],
+     "s": [
+      0.16,
+      0.12,
+      0.048
+     ],
+     "r": [
+      0,
+      0,
+      -32
+     ],
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      0.375,
+      0.0
+     ],
+     "s": [
+      0.12,
+      0.12,
+      0.3
+     ],
+     "c": "white",
+     "m": "matte"
+    },
+    {
+     "p": "star",
+     "at": [
+      0,
+      0.21,
+      0.03
+     ],
+     "s": [
+      0.13,
+      0.13,
+      0.05
+     ],
+     "c": "yellow"
+    }
+   ]
+  },
+  "tshirt_hanger": {
+   "color": "orange",
+   "description": "The `tshirt` (main colour, yellow star) on a wooden coat hanger, facing +z, 0.5 m wide; the origin is the top of the hanger's hook, so parent it (or place it) on a rail at the bar; the shirt hangs 0.06\u20130.55 m below it.",
+   "tags": [
+    "clothes",
+    "bedroom",
+    "dress_up",
+    "rhymes",
+    "start_the_day",
+    "morning_routine"
+   ],
+   "parts": [
+    {
+     "p": "torus",
+     "at": [
+      0,
+      -0.035,
+      0
+     ],
+     "s": [
+      0.07,
+      0.07,
+      0.25
+     ],
+     "c": "grey",
+     "m": "metal"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      -0.08,
+      0
+     ],
+     "s": [
+      0.012,
+      0.04,
+      0.012
+     ],
+     "c": "grey",
+     "m": "metal"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.11,
+      -0.13,
+      0
+     ],
+     "s": [
+      0.025,
+      0.26,
+      0.025
+     ],
+     "r": [
+      0,
+      0,
+      66
+     ],
+     "c": "wood"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.11,
+      -0.13,
+      0
+     ],
+     "s": [
+      0.025,
+      0.26,
+      0.025
+     ],
+     "r": [
+      0,
+      0,
+      -66
+     ],
+     "c": "wood"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      -0.37,
+      0.0
+     ],
+     "s": [
+      0.3,
+      0.38,
+      0.05
+     ],
+     "m": "matte"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.17,
+      -0.23,
+      0
+     ],
+     "s": [
+      0.16,
+      0.12,
+      0.048
+     ],
+     "r": [
+      0,
+      0,
+      -32
+     ],
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      -0.185,
+      0.0
+     ],
+     "s": [
+      0.12,
+      0.12,
+      0.3
+     ],
+     "c": "white",
+     "m": "matte"
+    },
+    {
+     "p": "star",
+     "at": [
+      0,
+      -0.35,
+      0.03
+     ],
+     "s": [
+      0.13,
+      0.13,
+      0.05
+     ],
+     "c": "yellow"
+    }
+   ]
+  },
+  "breakfast_bowl": {
+   "color": "yellow",
+   "description": "A breakfast bowl of porridge with three berries and a banana slice, 0.3 m across and 0.16 m tall at size 1, origin at the middle of its base; the bowl is its main colour (set color). Tilt it (rotation [35, 0, 0]) to show the porridge to a camera in front, e.g. as a HUD icon. A `spoon` goes with it.",
+   "tags": [
+    "food",
+    "kitchen",
+    "breakfast",
+    "small",
+    "rhymes",
+    "start_the_day",
+    "morning_routine"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.01,
+      0
+     ],
+     "s": [
+      0.14,
+      0.02,
+      0.14
+     ]
+    },
+    {
+     "p": "bowl",
+     "at": [
+      0,
+      0.0,
+      0
+     ],
+     "s": [
+      0.3,
+      0.32,
+      0.3
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.13,
+      0
+     ],
+     "s": [
+      0.27,
+      0.02,
+      0.27
+     ],
+     "c": "cream",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.05,
+      0.145,
+      0.03
+     ],
+     "s": 0.035,
+     "c": "purple",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.04,
+      0.145,
+      0.05
+     ],
+     "s": 0.035,
+     "c": "red",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.0,
+      0.145,
+      -0.06
+     ],
+     "s": 0.035,
+     "c": "purple",
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.05,
+      0.142,
+      -0.02
+     ],
+     "s": [
+      0.06,
+      0.012,
+      0.06
+     ],
+     "c": "yellow",
+     "m": "matte"
+    }
+   ]
+  },
+  "spoon": {
+   "color": "grey",
+   "description": "A toy spoon lying along x, 0.22 m long at size 1, the bowl of the spoon at +x, origin at the middle of its underside. On a hand, give it a rotation so the bowl points at the mouth.",
+   "tags": [
+    "kitchen",
+    "food",
+    "breakfast",
+    "small",
+    "rhymes",
+    "start_the_day",
+    "morning_routine"
+   ],
+   "parts": [
+    {
+     "p": "capsule",
+     "at": [
+      -0.03,
+      0.012,
+      0
+     ],
+     "s": [
+      0.022,
+      0.16,
+      0.014
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "m": "metal"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.075,
+      0.012,
+      0
+     ],
+     "s": [
+      0.07,
+      0.022,
+      0.05
+     ],
+     "m": "metal"
+    }
+   ]
+  },
+  "nightstand": {
+   "color": "wood",
+   "description": "A small bedside table facing +z, 0.55 m wide, 0.45 m deep and 0.6 m tall at size 1, origin at the middle of its base, with a drawer and a round knob; its top is at y 0.6 (an `alarm_clock` stands there).",
+   "tags": [
+    "home",
+    "bedroom",
+    "furniture",
+    "rhymes",
+    "start_the_day",
+    "morning_routine"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.33,
+      0
+     ],
+     "s": [
+      0.55,
+      0.54,
+      0.45
+     ]
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.585,
+      0
+     ],
+     "s": [
+      0.6,
+      0.04,
+      0.5
+     ],
+     "c": "wood_dark"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.42,
+      0.226
+     ],
+     "s": [
+      0.45,
+      0.18,
+      0.01
+     ],
+     "c": "cream",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.42,
+      0.24
+     ],
+     "s": 0.045,
+     "c": "gold",
+     "m": "metal"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.24,
+      0.03,
+      0.18
+     ],
+     "s": [
+      0.06,
+      0.06,
+      0.06
+     ],
+     "c": "wood_dark",
+     "mirror": true
+    },
+    {
+     "p": "box",
+     "at": [
+      0.24,
+      0.03,
+      -0.18
+     ],
+     "s": [
+      0.06,
+      0.06,
+      0.06
+     ],
+     "c": "wood_dark",
+     "mirror": true
+    }
+   ]
+  }
+ }
+}
