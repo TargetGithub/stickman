@@ -62,3 +62,21 @@ for (const [patch, re] of hookBad) {
     assert.match(validateScript(s, catalog).errors.map((e) => e.message).join("\n"), re);
   });
 }
+
+const boxes = [
+  ["prop", "swing", { maxW: 2.0, minH: 1.4 }],
+  ["prop", "slide", { maxD: 1.0 }],
+  ["prop", "kite", { maxW: 1.2, maxD: 0.5 }],
+  ["critter", "giraffe", { minH: 2.0 }],
+  ["critter", "bear", { minH: 1.2, maxW: 0.9 }],
+];
+for (const [kind, name, lim] of boxes) {
+  test(`#3 model box of ${name} is tight (shot frames it, not the park)`, async () => {
+    const { localBounds } = await import("../../runtime/bounds.js");
+    const b = localBounds({ kind, [kind === "prop" ? "model" : "species"]: name, size: 1 }, catalog);
+    const [w, h, d] = b.min.map((x, i) => b.max[i] - x);
+    if (lim.maxW) assert.ok(w <= lim.maxW, `width ${w}`);
+    if (lim.maxD) assert.ok(d <= lim.maxD, `depth ${d}`);
+    if (lim.minH) assert.ok(h >= lim.minH, `height ${h}`);
+  });
+}

@@ -5,6 +5,11 @@
 import { pvLayout } from "./place_value.js";
 import { cardHeight } from "./teach_layout.js";
 
+import { apply, eulerMat, mul } from "./xform.js";
+
+/** A model part's box grows by this share (shapes are not perfect unit boxes; a margin beats a cropped ear). */
+const MARGIN = 1.1;
+
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
 
 /** Flat 2D shapes are thin in z; solids are about one unit in each direction. */
@@ -19,17 +24,26 @@ function modelBox(m) {
   const min = [Infinity, Infinity, Infinity];
   const max = [-Infinity, -Infinity, -Infinity];
   const head = m.head?.at ?? [0, 0, 0];
+  const pivots = new Map([["head", head]]); // where each named part's pivot is, for parts hung "on" it
   for (const p of m.parts ?? []) {
-    const at = p.at ?? [0, 0, 0];
-    const s = vec(p.s, 0.2);
-    const r = Math.max(...s) * 0.55; // parts may be turned: use the longest side all round
-    const c = p.on === "head" ? at.map((x, i) => x + head[i]) : at;
-    const xs = p.mirror ? [c[0], -c[0]] : [c[0]];
-    for (const x of xs) {
+    const base = p.on === "head" ? head : p.on ? pivots.get(p.on) ?? [0, 0, 0] : [0, 0, 0];
+    const at = (p.at ?? [0, 0, 0]).map((x, i) => x + base[i]);
+    if (p.name && !pivots.has(p.name)) pivots.set(p.name, at);
+    // The part's own box, turned by its pivot (r) and mesh (hr) turns, offset by hang inside the turned pivot:
+    // exact for unturned parts (a swing's tall thin pole stays thin), the bounding box of the turned box otherwise.
+    const half = vec(p.s, 0.2).map((x) => x / 2);
+    const R = p.r ? eulerMat(p.r) : null;
+    const M = R && p.hr ? mul(R, eulerMat(p.hr)) : R ?? (p.hr ? eulerMat(p.hr) : null);
+    const ext = M ? [0, 1, 2].map((i) => [0, 1, 2].reduce((a, j) => a + Math.abs(M[i * 3 + j]) * half[j], 0)) : half;
+    const off = p.hang ? (R ? apply(R, p.hang) : p.hang) : [0, 0, 0];
+    const ring = p.repeat?.radius ?? 0;
+    const c = at.map((x, i) => x + off[i]);
+    for (const x of p.mirror ? [c[0], -c[0]] : [c[0]]) {
       const cc = [x, c[1], c[2]];
       for (let i = 0; i < 3; i++) {
-        min[i] = Math.min(min[i], cc[i] - (i === 1 ? s[1] / 2 : r));
-        max[i] = Math.max(max[i], cc[i] + (i === 1 ? s[1] / 2 : r));
+        const e = ext[i] * MARGIN + (i < 2 ? ring : 0);
+        min[i] = Math.min(min[i], cc[i] - e);
+        max[i] = Math.max(max[i], cc[i] + e);
       }
     }
   }
