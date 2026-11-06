@@ -120,7 +120,9 @@ export function qaScript(script, spec, lesson, catalog, { allow = [] } = {}) {
   const acts = script.scenes.flatMap((s, si) => s.beats.flatMap((b, bi) => b.do.map((a, ai) => ({ a, path: `scenes[${si}].beats[${bi}].do[${ai}]` }))));
   if (!B.timers) for (const { a, path } of acts) if (a.do === "timer" || a.do === "challenge") E("Q_BABY_TIMER", path, "babies: no timers, tests or countdowns");
   if (!B.confetti) {
-    for (const { a, path } of acts) if (a.do === "burst" || a.confetti) E("Q_BABY_CONFETTI", path, "babies: no confetti");
+    // Soap bubbles are calm and allowed (burst on a bubbles object); confetti is not.
+    const kindOf = (id) => (script.objects ?? []).find((o) => o.id === id)?.kind;
+    for (const { a, path } of acts) if ((a.do === "burst" && kindOf(a.target) !== "bubbles") || a.confetti) E("Q_BABY_CONFETTI", path, "babies: no confetti (soap bubbles are fine)");
     (script.objects ?? []).forEach((o, i) => o.kind === "confetti" && E("Q_BABY_CONFETTI", `objects[${i}]`, "babies: no confetti"));
     for (const { a, path } of acts) {
       if (a.do === "hop" && ((a.height ?? 0.6) > 0.5 || (a.dur ?? 0.45) < 0.4)) W("Q_BABY_FAST", path, "babies: only gentle hops (height <= 0.5, dur >= 0.4)");
