@@ -250,7 +250,8 @@ export function validateScript(script, catalog, opts = {}) {
       if (ch && a.then != null && !ch.clips[a.then]) err("E3D_CLIP", `${p}.then`, `${o.character} has no clip "${a.then}"`);
     }
     checkTeachAction(a, p, o, { err, ids, catalog });
-    if ((a.do === "drop" || a.do === "move") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    if ((a.do === "drop" || a.do === "move" || a.do === "roll") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    if (a.do === "roll" && a.radius != null && !isNum(a.radius, 0.01, 20)) err("E3D_RANGE", `${p}.radius`, "radius must be 0.01-20 m");
   }
 
   if (errors.length === 0 && lintsOn(script, opts.retention)) warnings.push(...retentionLints(script, catalog, { speech: opts.speech }));

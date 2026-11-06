@@ -1,0 +1,12 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Rolling ball", "seed": 9, "music": false },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.2, 6], "lookAt": [0, 0.5, 0], "fov": 40 },
+  "objects": [
+    { "id": "ball", "kind": "prop", "model": "ball", "size": 0.8, "pivot": [0, 0.33, 0], "at": [-2.5, 0.33, 0] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2.4, "do": [{ "do": "roll", "target": "ball", "to": [2.5, 0.33, 0], "dur": 2 }] }
+  ] }]
+}

@@ -59,6 +59,19 @@
     "move"
    ]
   },
+  "roll": {
+   "params": {
+    "target": "object id (a ball, a wheel, a log)",
+    "to": "[x, y, z] where it rolls to",
+    "dur": "default 1",
+    "ease": "ease name",
+    "radius": "rolling radius in metres (default: the object's pivot height, else half its size)"
+   },
+   "description": "Roll along the floor: glide to `to` and turn by distance / radius about the axis across the path, so it never slides. Give a ball pivot: [0, r, 0] (its centre) so it turns about its middle; its at is then that centre.",
+   "tags": [
+    "move"
+   ]
+  },
   "turn": {
    "params": {
     "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",

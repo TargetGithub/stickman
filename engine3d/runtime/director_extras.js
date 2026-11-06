@@ -64,6 +64,22 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
   };
 
   Object.assign(d, {
+    /**
+     * Roll along the floor to `to`: glide there and turn by distance / radius about the axis across the path, so
+     * a ball's surface does not slide. The object turns about its pivot, so give a ball `pivot: [0, r, 0]` (its
+     * centre; its at is then the centre too). radius defaults to pivot[1], else half the object's size.
+     */
+    roll(id, { at: t = 0, to, dur = 1, ease = "quadInOut", radius } = {}) {
+      const o = obj(id);
+      const from = now(id, "position", t) ?? o.at;
+      const r = radius ?? (o.pivot?.[1] > 0 ? o.pivot[1] : 0.5 * (o.size ?? 1));
+      const k = 180 / Math.PI / r;
+      const rot = [...(now(id, "rotation", t) ?? o.rotation ?? [0, 0, 0])];
+      rot[2] -= (V(to)[0] - from[0]) * k;
+      rot[0] += (V(to)[2] - from[2]) * k;
+      d.tween(id, "position", V(to), { at: t, dur, ease });
+      return d.tween(id, "rotation", rot.map((x) => Math.round(x * 1000) / 1000), { at: t, dur, ease });
+    },
     /** Change a face's feeling (eyebrows, mouth, eyes, head tilt; Robo's face morphs). */
     feel(id, { at: t = 0, feeling = "happy", dur = 0.35, sound: s } = {}) {
       obj(id);
