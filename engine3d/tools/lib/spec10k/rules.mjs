@@ -114,7 +114,8 @@ function programmeErrors(s, p, warnings) {
   if (!ser) e.push(`unknown series "${s.series}"`);
   else {
     if (!ser.bands.includes(s.band)) e.push(`series "${s.series}" is not a ${s.band} series (bands: ${ser.bands.join(", ")})`);
-    if (!ser.subjects.includes(s.subject)) warnings.push(`series "${s.series}" usually carries ${ser.subjects.join(", ")}, not ${s.subject}`);
+    const rowSeries = p.slotIndex.get(s.id)?.series ?? [];
+    if (!ser.subjects.includes(s.subject) && !rowSeries.includes(s.series)) warnings.push(`series "${s.series}" usually carries ${ser.subjects.join(", ")}, not ${s.subject}`);
   }
   const mm = s.magical_moment.id;
   if (!mm.startsWith("new:") && !p.series.magic[mm]) e.push(`magical_moment.id "${mm}" is not in the library (use new:<name> for a new one)`);
