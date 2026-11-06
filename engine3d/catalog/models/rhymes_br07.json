@@ -1,0 +1,1100 @@
+{
+ "description": "Itsy Bitsy Spider (br07) models: Itsy the friendly spider critter, a water spout (drainpipe) with a gutter, the water that gushes out of it and a burst of sun rays. Same format as ../models.json. Props face +z and stand on y = 0 unless they float.",
+ "critters": {
+  "spider": {
+   "color": "purple",
+   "sound": "Wheee!",
+   "description": "Itsy, a friendly cartoon spider for babies (not scary at all): a round grape-purple body with pink polka dots, a big round head with huge shiny brown eyes, rosy cheeks and a wide smile, and eight short bendy legs with pink ball feet that wiggle on their own. About 0.45 m tall and 1 m across the legs at size 1; faces +z and stands on y = 0. Named parts: legs_front, legs_mid, legs_back (each pair of legs; wiggle or turn them for a wave). Talks (say with who) with its own mouth. To climb a pole or a pipe facing the camera, keep it upright and move it up in front of the pipe (z about 0.2 in front of the pipe's surface at size 0.7).",
+   "tags": [
+    "garden",
+    "minibeast",
+    "nature",
+    "small",
+    "itsy_bitsy_spider",
+    "rhymes"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.34,
+     0.12
+    ],
+    "tilt": 1
+   },
+   "eyes": {
+    "at": [
+     0.105,
+     0.05,
+     0.19
+    ],
+    "size": 0.115,
+    "iris": "eye_brown"
+   },
+   "cheeks": {
+    "at": [
+     0.17,
+     -0.07,
+     0.17
+    ],
+    "size": 0.055,
+    "color": "rose"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.1,
+     0.215
+    ],
+    "size": 0.11
+   },
+   "bob": 0.02,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.31,
+      -0.2
+     ],
+     "s": [
+      0.56,
+      0.48,
+      0.58
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.13,
+      0.5,
+      -0.17
+     ],
+     "s": [
+      0.12,
+      0.05,
+      0.12
+     ],
+     "r": [
+      0,
+      0,
+      -28
+     ],
+     "c": "pink",
+     "m": "glossy",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.54,
+      -0.31
+     ],
+     "s": [
+      0.11,
+      0.05,
+      0.11
+     ],
+     "r": [
+      -25,
+      0,
+      0
+     ],
+     "c": "pink",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.2,
+      0.36,
+      -0.36
+     ],
+     "s": [
+      0.1,
+      0.1,
+      0.05
+     ],
+     "r": [
+      0,
+      40,
+      0
+     ],
+     "c": "pink",
+     "m": "glossy",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.25,
+      0.02
+     ],
+     "s": [
+      0.3,
+      0.24,
+      0.26
+     ]
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.17,
+      0.26,
+      0.16
+     ],
+     "s": [
+      0.07,
+      0.3,
+      0.07
+     ],
+     "r": [
+      0,
+      -32,
+      52
+     ],
+     "hang": [
+      0,
+      -0.15,
+      0
+     ],
+     "mirror": true,
+     "name": "legs_front",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.1
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.17,
+      0.26,
+      0.16
+     ],
+     "s": [
+      0.1,
+      0.08,
+      0.1
+     ],
+     "r": [
+      0,
+      -32,
+      52
+     ],
+     "hang": [
+      0,
+      -0.31,
+      0
+     ],
+     "c": "pink",
+     "mirror": true,
+     "name": "legs_front",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.1
+     }
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.17,
+      0.26,
+      0.04
+     ],
+     "s": [
+      0.07,
+      0.3,
+      0.07
+     ],
+     "r": [
+      0,
+      -10,
+      52
+     ],
+     "hang": [
+      0,
+      -0.15,
+      0
+     ],
+     "mirror": true,
+     "name": "legs_mid",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.3
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.17,
+      0.26,
+      0.04
+     ],
+     "s": [
+      0.1,
+      0.08,
+      0.1
+     ],
+     "r": [
+      0,
+      -10,
+      52
+     ],
+     "hang": [
+      0,
+      -0.31,
+      0
+     ],
+     "c": "pink",
+     "mirror": true,
+     "name": "legs_mid",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.3
+     }
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.17,
+      0.26,
+      -0.1
+     ],
+     "s": [
+      0.07,
+      0.3,
+      0.07
+     ],
+     "r": [
+      0,
+      12,
+      52
+     ],
+     "hang": [
+      0,
+      -0.15,
+      0
+     ],
+     "mirror": true,
+     "name": "legs_mid",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.3
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.17,
+      0.26,
+      -0.1
+     ],
+     "s": [
+      0.1,
+      0.08,
+      0.1
+     ],
+     "r": [
+      0,
+      12,
+      52
+     ],
+     "hang": [
+      0,
+      -0.31,
+      0
+     ],
+     "c": "pink",
+     "mirror": true,
+     "name": "legs_mid",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.3
+     }
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.17,
+      0.26,
+      -0.24
+     ],
+     "s": [
+      0.07,
+      0.3,
+      0.07
+     ],
+     "r": [
+      0,
+      34,
+      52
+     ],
+     "hang": [
+      0,
+      -0.15,
+      0
+     ],
+     "mirror": true,
+     "name": "legs_back",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.1
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.17,
+      0.26,
+      -0.24
+     ],
+     "s": [
+      0.1,
+      0.08,
+      0.1
+     ],
+     "r": [
+      0,
+      34,
+      52
+     ],
+     "hang": [
+      0,
+      -0.31,
+      0
+     ],
+     "c": "pink",
+     "mirror": true,
+     "name": "legs_back",
+     "idle": {
+      "r": [
+       10,
+       0,
+       0
+      ],
+      "hz": 1.1
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": [
+      0.48,
+      0.44,
+      0.44
+     ],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.22,
+      -0.02
+     ],
+     "s": [
+      0.07,
+      0.07,
+      0.07
+     ],
+     "on": "head",
+     "c": "pink"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.045,
+      0.2,
+      0
+     ],
+     "s": [
+      0.06,
+      0.05,
+      0.05
+     ],
+     "on": "head",
+     "c": "pink",
+     "mirror": true
+    }
+   ]
+  }
+ },
+ "props": {
+  "water_spout": {
+   "color": "teal",
+   "description": "A toy water spout (a drainpipe) for Itsy Bitsy Spider: a round teal pipe 2.1 m tall at size 1 with darker bands at the joints, a box hopper at the top where a gutter runs 1.3 m off to the left (-x) along the eave, two brackets that hold it to a wall behind it (-z), and an elbow at the bottom that turns the outlet forward (+z): its mouth is at [0, 0.12, 0.34] (put a `spout_gush` there to make water pour out). Faces +z, stands on y = 0; stand it against a house wall (its back 0.12 m behind the origin). Pipe front surface at z = 0.08: a climber in front of it at z about 0.28 (size 0.7 spider) looks like it climbs the spout.",
+   "tags": [
+    "home",
+    "garden",
+    "weather",
+    "water",
+    "itsy_bitsy_spider",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.2,
+      0
+     ],
+     "s": [
+      0.16,
+      1.7,
+      0.16
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      2.05,
+      0
+     ],
+     "s": [
+      0.19,
+      0.05,
+      0.19
+     ],
+     "c": "lab_teal"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.2,
+      0
+     ],
+     "s": [
+      0.19,
+      0.05,
+      0.19
+     ],
+     "c": "lab_teal"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.36,
+      0
+     ],
+     "s": [
+      0.19,
+      0.05,
+      0.19
+     ],
+     "c": "lab_teal"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.18,
+      0
+     ],
+     "s": [
+      0.34,
+      0.26,
+      0.3
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      2.32,
+      0
+     ],
+     "s": [
+      0.38,
+      0.04,
+      0.34
+     ],
+     "c": "lab_teal"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.72,
+      2.24,
+      -0.02
+     ],
+     "s": [
+      1.3,
+      0.13,
+      0.2
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.72,
+      2.31,
+      0.08
+     ],
+     "s": [
+      1.3,
+      0.03,
+      0.03
+     ],
+     "c": "lab_teal"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.75,
+      -0.08
+     ],
+     "s": [
+      0.24,
+      0.05,
+      0.12
+     ],
+     "c": "charcoal",
+     "m": "metal"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.65,
+      -0.08
+     ],
+     "s": [
+      0.24,
+      0.05,
+      0.12
+     ],
+     "c": "charcoal",
+     "m": "metal"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.28,
+      0.05
+     ],
+     "s": [
+      0.16,
+      0.24,
+      0.16
+     ],
+     "r": [
+      45,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.14,
+      0.2
+     ],
+     "s": [
+      0.16,
+      0.26,
+      0.16
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.14,
+      0.33
+     ],
+     "s": [
+      0.19,
+      0.04,
+      0.19
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "lab_teal"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.14,
+      0.352
+     ],
+     "s": [
+      0.12,
+      0.01,
+      0.12
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "ink",
+     "m": "matte"
+    }
+   ]
+  },
+  "spout_gush": {
+   "color": "pond",
+   "description": "A splash of rain water pouring out of a water spout's mouth: a short glassy blue stream that arcs forward (+z) and down 0.14 m to a little splash on the ground, with a few drops. Origin at the spout's mouth (parent it to a `water_spout` at [0, 0.14, 0.36]); show it while the rain washes out, hide it after.",
+   "tags": [
+    "water",
+    "weather",
+    "itsy_bitsy_spider",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      -0.01,
+      0.07
+     ],
+     "s": [
+      0.11,
+      0.16,
+      0.09
+     ],
+     "r": [
+      70,
+      0,
+      0
+     ],
+     "m": "water"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      -0.07,
+      0.18
+     ],
+     "s": [
+      0.1,
+      0.14,
+      0.08
+     ],
+     "r": [
+      35,
+      0,
+      0
+     ],
+     "m": "water"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.13,
+      0.24
+     ],
+     "s": [
+      0.32,
+      0.04,
+      0.26
+     ],
+     "m": "water"
+    },
+    {
+     "p": "drop",
+     "at": [
+      0.1,
+      0.02,
+      0.17
+     ],
+     "s": [
+      0.05,
+      0.07,
+      0.05
+     ],
+     "c": "sky",
+     "m": "water"
+    },
+    {
+     "p": "drop",
+     "at": [
+      -0.09,
+      -0.02,
+      0.23
+     ],
+     "s": [
+      0.045,
+      0.065,
+      0.045
+     ],
+     "c": "sky",
+     "m": "water"
+    },
+    {
+     "p": "drop",
+     "at": [
+      0.12,
+      -0.08,
+      0.3
+     ],
+     "s": [
+      0.04,
+      0.06,
+      0.04
+     ],
+     "c": "sky",
+     "m": "water"
+    },
+    {
+     "p": "drop",
+     "at": [
+      -0.13,
+      -0.09,
+      0.31
+     ],
+     "s": [
+      0.04,
+      0.06,
+      0.04
+     ],
+     "c": "sky",
+     "m": "water"
+    }
+   ]
+  },
+  "sun_rays": {
+   "color": "yellow",
+   "description": "Sun rays: a flat burst of twelve long pointed rays (yellow and orange, glowing) in the xy plane around a round gap 1.4 m across, about 2.8 m across at size 1. Put it behind a `sun` prop (parent the sun, at [0, 0, -0.15], size about 1) and spin it about z, or grow it, when the sun comes out. Floats: origin at its middle. Named part rays.",
+   "tags": [
+    "weather",
+    "sky",
+    "sun",
+    "itsy_bitsy_spider",
+    "rhymes"
+   ],
+   "parts": [
+    {
+     "p": "disc",
+     "at": [
+      0,
+      0,
+      -0.03
+     ],
+     "s": [
+      1.5,
+      0.02,
+      1.5
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "yellow",
+     "m": "glow"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      0.8,
+      0
+     ],
+     "s": [
+      0.2,
+      0.6,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "c": "yellow",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      -0.36,
+      0.624,
+      0
+     ],
+     "s": [
+      0.2,
+      0.42,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      30
+     ],
+     "c": "orange",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      -0.693,
+      0.4,
+      0
+     ],
+     "s": [
+      0.2,
+      0.6,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      60
+     ],
+     "c": "yellow",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      -0.72,
+      0,
+      0
+     ],
+     "s": [
+      0.2,
+      0.42,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "orange",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      -0.693,
+      -0.4,
+      0
+     ],
+     "s": [
+      0.2,
+      0.6,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      120
+     ],
+     "c": "yellow",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      -0.36,
+      -0.624,
+      0
+     ],
+     "s": [
+      0.2,
+      0.42,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      150
+     ],
+     "c": "orange",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.8,
+      0
+     ],
+     "s": [
+      0.2,
+      0.6,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      180
+     ],
+     "c": "yellow",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0.36,
+      -0.624,
+      0
+     ],
+     "s": [
+      0.2,
+      0.42,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      210
+     ],
+     "c": "orange",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0.693,
+      -0.4,
+      0
+     ],
+     "s": [
+      0.2,
+      0.6,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      240
+     ],
+     "c": "yellow",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0.72,
+      0,
+      0
+     ],
+     "s": [
+      0.2,
+      0.42,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      270
+     ],
+     "c": "orange",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0.693,
+      0.4,
+      0
+     ],
+     "s": [
+      0.2,
+      0.6,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      300
+     ],
+     "c": "yellow",
+     "m": "glow",
+     "name": "rays"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0.36,
+      0.624,
+      0
+     ],
+     "s": [
+      0.2,
+      0.42,
+      0.04
+     ],
+     "r": [
+      0,
+      0,
+      330
+     ],
+     "c": "orange",
+     "m": "glow",
+     "name": "rays"
+    }
+   ]
+  }
+ }
+}
