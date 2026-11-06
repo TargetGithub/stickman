@@ -31,9 +31,9 @@ test("a tuned say compiles to a line carrying its notes, patch, gain and sing", 
   const s = script([], [{ do: "say", text: "Old MacDonald had a farm", tune: "G4 G4 G4 D4 E4 E4 D4:2", sing: 0.6, tunePatch: "bell" }]);
   assert.deepEqual(validateScript(s, catalog).errors, []);
   const [l] = compileScript(s, { catalog }).lines;
-  assert.deepEqual(l.tune, { notes: [67, 67, 67, 62, 64, 64, 62], beats: [1, 1, 1, 1, 1, 1, 2], tempo: 112, rhythm: true, patch: "bell", gain: 0.16, sing: 0.6 });
-  const off = compileScript(script([], [{ do: "say", text: "Hi there", tune: "C4 D4", rhythm: false, tempo: 90 }]), { catalog }).lines[0].tune;
-  assert.deepEqual([off.rhythm, off.tempo], [false, 90]);
+  assert.deepEqual(l.tune, { notes: [67, 67, 67, 62, 64, 64, 62], beats: [1, 1, 1, 1, 1, 1, 2], tempo: 112, rhythm: false, patch: "bell", gain: 0.16, sing: 0.6 });
+  const off = compileScript(script([], [{ do: "say", text: "Hi there", tune: "C4 D4", rhythm: true, tempo: 90 }]), { catalog }).lines[0].tune;
+  assert.deepEqual([off.rhythm, off.tempo], [true, 90]);
   assert.deepEqual(tuneSlots({ notes: [60, 62], beats: [1, 2], tempo: 120 }), [0.5, 1]);
   assert.equal(compileScript(script([], [{ do: "say", text: "Hi." }]), { catalog }).lines[0].tune, undefined);
 });

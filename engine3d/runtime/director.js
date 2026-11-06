@@ -42,6 +42,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   const lines = [];
   const hooks = [];
   const musicCues = []; // the music action: { t, gain, dur } ramps of the bed (tools/lib/music3d.mjs)
+  const chapters = []; // JS scenes' chapters: { id, start, music?, musicGain? } (the music bed changes mood at each)
   let stage = { preset: "playroom" };
   let endAt = 0;
   let lineNo = 0;
@@ -276,10 +277,10 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       const lineId = id ?? `line${++lineNo}`;
       const dur = speech[lineId]?.dur ?? estimateSpeech(text);
       // pitch (0.8-1.3, default 1.1) and speed (0.8-1.2, times meta.voiceSpeed) only when given: a character's voice.
-      // tune: a melody note per syllable (tune.js). By default the voice is chanted on the tune's beat (rhythm) and
-      // each note plays as its syllable starts; sing: the voice also follows the notes' pitch.
+      // tune: a melody note per syllable (tune.js), each note played as its syllable starts in the normal spoken
+      // line; rhythm: true chants the voice on the tune's beat instead; sing: the voice also follows the notes' pitch.
       const parsed = tune != null ? parseTune(tune) : null;
-      const melody = parsed ? { tune: { notes: parsed.notes, beats: parsed.beats, tempo: tempo ?? TUNE_DEFAULTS.tempo, rhythm: rhythm !== false,
+      const melody = parsed ? { tune: { notes: parsed.notes, beats: parsed.beats, tempo: tempo ?? TUNE_DEFAULTS.tempo, rhythm: rhythm === true,
         patch: tunePatch ?? TUNE_DEFAULTS.patch, gain: tuneGain ?? TUNE_DEFAULTS.gain, ...(sing ? { sing: sing === true ? 1 : sing } : {}) } } : {};
       lines.push({ id: lineId, text, voice: v, t, dur, ...(who != null ? { who } : {}), ...(pitch != null ? { pitch } : {}), ...(speed != null ? { speed } : {}), ...melody });
       // who: the speaker's mouth (or Robo's head) moves with the clip's loudness (lipsync.js).
@@ -308,10 +309,20 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       return d;
     },
 
+    /**
+     * Start a chapter (JS scenes): from `at` the music bed plays `music` (a mood, or false for none) at
+     * `musicGain`, crossfading like a JSON script's scenes; a chapter without them uses the episode's mood.
+     */
+    chapter(id, { at: t = 0, music, musicGain } = {}) {
+      chapters.push({ id, start: t, ...(music !== undefined ? { music } : {}), ...(musicGain != null ? { musicGain } : {}) });
+      return d;
+    },
+
     plan() {
       const duration = Math.max(endAt, tl.end(), ...captions.map((c) => c.start + c.dur)) + 0.5;
       const cues = musicCues.length ? { musicCues: [...musicCues].sort((a, b) => a.t - b.t) } : {};
-      return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration, ...cues };
+      const scenes = chapters.length ? { scenes: [...chapters].sort((a, b) => a.start - b.start) } : {};
+      return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration, ...cues, ...scenes };
     },
   };
   const { stageBases } = installExtras(d, { catalog, tl, obj, now, sound, getStage: () => stage, V });
