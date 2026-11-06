@@ -1,0 +1,6382 @@
+{
+ "description": "Toybox 10K wave 2 birds: bluebird, thrush, wren, baby_bird, parrot, budgie, crow, pigeon, puffin, goose, fairy_godmother, gosling, mommy_duck, cockerel, peacock (fan opens and closes), woodpecker, hummingbird, toucan, swallow, swift, eagle and red_kite (variants of hawk), heron, ostrich and emu. Every bird has a named mirrored wing and a tail. **Generated** by tools/gen_tk_birds.mjs: edit the generator and rerun it, not the JSON.",
+ "critters": {
+  "bluebird": {
+   "color": "blue",
+   "sound": "Tweet tweet!",
+   "description": "A small round toy bluebird, about 0.8 m tall at size 1: a soft blue back and head, a pale cream chest, a short gold beak (it drops a lower beak to talk), button eyes and blush. Named parts: wing (mirrored, flaps; turn one up with point, or [0, 0, -20] to tuck it), tail (lift it with [20, 0, 0]). Faces +z.",
+   "tags": [
+    "bird",
+    "garden",
+    "forest",
+    "songbird",
+    "spring"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.6,
+     0.06
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.084,
+     0.036,
+     0.173
+    ],
+    "size": 0.06
+   },
+   "cheeks": {
+    "at": [
+     0.13,
+     -0.064,
+     0.127
+    ],
+    "size": 0.064,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.061,
+     0.18
+    ],
+    "size": 0.05
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.061,
+     0.18
+    ],
+    "size": 0.05,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.052,
+      0.19
+     ],
+     "s": [
+      0.06,
+      0.026,
+      0.055
+     ],
+     "c": "gold",
+     "drop": 0.038
+    }
+   },
+   "bob": 0.03,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.33,
+      0
+     ],
+     "s": [
+      0.56,
+      0.54,
+      0.6
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.3,
+      0.11
+     ],
+     "s": [
+      0.42,
+      0.42,
+      0.42
+     ],
+     "c": "cream"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.25,
+      0.44,
+      -0.04
+     ],
+     "s": [
+      0.12,
+      0.36,
+      0.32
+     ],
+     "r": [
+      0,
+      0,
+      -10
+     ],
+     "hang": [
+      0,
+      -0.115,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.3,
+      -0.26
+     ],
+     "s": [
+      0.18,
+      0.05,
+      0.26
+     ],
+     "r": [
+      25,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.109
+     ],
+     "idle": {
+      "r": [
+       8,
+       0,
+       0
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.1,
+      0.06,
+      0.06
+     ],
+     "s": [
+      0.03,
+      0.08,
+      0.03
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.02,
+      0.1
+     ],
+     "s": [
+      0.08,
+      0.035,
+      0.12
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.4,
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.03,
+      0.214
+     ],
+     "s": [
+      0.075,
+      0.1,
+      0.075
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "on": "head"
+    }
+   ]
+  },
+  "thrush": {
+   "like": "bluebird",
+   "scale": 1.1,
+   "recolor": {
+    "blue": "brown"
+   },
+   "description": "A song thrush: a small toy bird, about 0.9 m tall at size 1, with a warm brown back and head, a cream chest speckled with brown spots, a short gold beak (talks with a dropping lower beak) and bright eyes. Named parts: wing (mirrored), tail. Variant of bluebird.",
+   "tags": [
+    "bird",
+    "garden",
+    "forest",
+    "songbird"
+   ],
+   "sound": "Tweedle-ee!",
+   "add": [
+    {
+     "p": "sphere",
+     "at": [
+      -0.081,
+      0.388,
+      0.327
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.081,
+      0.388,
+      0.327
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.353,
+      0.349
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.115,
+      0.318,
+      0.319
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.116,
+      0.318,
+      0.319
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.046,
+      0.284,
+      0.34
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.046,
+      0.284,
+      0.34
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.238,
+      0.331
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.035,
+      0.422,
+      0.328
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.035,
+      0.422,
+      0.328
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.02
+     ],
+     "c": "wood_dark",
+     "m": "matte"
+    }
+   ]
+  },
+  "wren": {
+   "like": "bluebird",
+   "scale": 0.82,
+   "recolor": {
+    "blue": "horse_brown",
+    "cream": "horse_tan"
+   },
+   "drop": [
+    "tail"
+   ],
+   "description": "A tiny round toy wren, about 0.65 m tall at size 1: chestnut brown with a tan chest, bright eyes, a short gold beak (talks with a dropping lower beak) and a little tail cocked straight up. Named parts: wing (mirrored), tail (cocked up; wiggle it about x). Variant of bluebird.",
+   "tags": [
+    "bird",
+    "garden",
+    "forest",
+    "songbird",
+    "small"
+   ],
+   "sound": "Chit-chit!",
+   "add": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.27,
+      -0.2
+     ],
+     "s": [
+      0.13,
+      0.04,
+      0.24
+     ],
+     "r": [
+      72,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.101
+     ],
+     "c": "horse_brown",
+     "idle": {
+      "r": [
+       6,
+       0,
+       0
+      ],
+      "hz": 0.7
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.07,
+      0.075,
+      0.13
+     ],
+     "s": [
+      0.1,
+      0.025,
+      0.04
+     ],
+     "c": "horse_tan",
+     "mirror": true,
+     "r": [
+      0,
+      25,
+      -12
+     ],
+     "m": "matte",
+     "on": "head"
+    }
+   ]
+  },
+  "baby_bird": {
+   "color": "denim_light",
+   "sound": "Peep peep!",
+   "description": "A tiny fluffy gray-blue baby bird, about 0.5 m tall at size 1: a round fuzzy body, a pale sky-blue tummy, a little tuft on top and a wide yellow beak that opens wide for food when it talks. Named parts: wing (mirrored, little stubs), tail. Sits nicely in the catalog `nest` prop. Faces +z.",
+   "tags": [
+    "bird",
+    "baby",
+    "nest",
+    "garden",
+    "spring"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.38,
+     0.04
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.071,
+     0.037,
+     0.145
+    ],
+    "size": 0.061
+   },
+   "cheeks": {
+    "at": [
+     0.111,
+     -0.054,
+     0.108
+    ],
+    "size": 0.054,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.1,
+     0.153
+    ],
+    "size": 0.072
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.1,
+     0.153
+    ],
+    "size": 0.072,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.086,
+      0.162
+     ],
+     "s": [
+      0.144,
+      0.042,
+      0.05
+     ],
+     "c": "yellow",
+     "drop": 0.06
+    }
+   },
+   "bob": 0.035,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.2,
+      0
+     ],
+     "s": [
+      0.42,
+      0.38,
+      0.42
+     ],
+     "m": "plush",
+     "fur": {
+      "length": 0.025
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.19,
+      0.09
+     ],
+     "s": [
+      0.3,
+      0.28,
+      0.28
+     ],
+     "c": "sky",
+     "m": "plush"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.19,
+      0.27,
+      -0.02
+     ],
+     "s": [
+      0.08,
+      0.18,
+      0.18
+     ],
+     "r": [
+      0,
+      0,
+      -20
+     ],
+     "hang": [
+      0,
+      -0.058,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       14
+      ],
+      "hz": 0.9
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.17,
+      -0.19
+     ],
+     "s": [
+      0.1,
+      0.035,
+      0.1
+     ],
+     "r": [
+      20,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.042
+     ],
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.07,
+      0.02,
+      0.08
+     ],
+     "s": [
+      0.06,
+      0.03,
+      0.08
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.34,
+     "m": "plush",
+     "fur": {
+      "length": 0.02
+     },
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.19,
+      -0.01
+     ],
+     "s": [
+      0.04,
+      0.09,
+      0.04
+     ],
+     "r": [
+      -20,
+      0,
+      0
+     ],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.03,
+      0.18,
+      -0.02
+     ],
+     "s": [
+      0.03,
+      0.07,
+      0.03
+     ],
+     "r": [
+      -15,
+      0,
+      -25
+     ],
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.05,
+      0.184
+     ],
+     "s": [
+      0.18,
+      0.09,
+      0.12
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "yellow",
+     "on": "head"
+    }
+   ]
+  },
+  "parrot": {
+   "color": "green",
+   "sound": "Hello! Squawk!",
+   "description": "A bright toy parrot, about 1.05 m tall at size 1, standing upright: a green body, a red head with white eye patches, a curved cream beak (it drops a lower beak to talk), red-and-blue wing tips, a long blue-and-red tail and gray perching feet. Named parts: wing (mirrored), tail. Bob #head to copy words. Faces +z.",
+   "tags": [
+    "bird",
+    "jungle",
+    "rainforest",
+    "pet",
+    "tropical"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.84,
+     0.05
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.095,
+     0.032,
+     0.179
+    ],
+    "size": 0.063
+   },
+   "cheeks": {
+    "at": [
+     0.146,
+     -0.067,
+     0.124
+    ],
+    "size": 0.067,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.07,
+     0.193
+    ],
+    "size": 0.072
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.07,
+     0.193
+    ],
+    "size": 0.072,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.056,
+      0.209
+     ],
+     "s": [
+      0.096,
+      0.042,
+      0.088
+     ],
+     "c": "cream",
+     "drop": 0.06
+    }
+   },
+   "bob": 0.025,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.44,
+      0
+     ],
+     "s": [
+      0.48,
+      0.68,
+      0.48
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.42,
+      0.1
+     ],
+     "s": [
+      0.36,
+      0.5,
+      0.34
+     ],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.23,
+      0.62,
+      -0.04
+     ],
+     "s": [
+      0.13,
+      0.52,
+      0.32
+     ],
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.166,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.7
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.23,
+      0.62,
+      -0.04
+     ],
+     "s": [
+      0.11,
+      0.2,
+      0.26
+     ],
+     "c": "blue",
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.322,
+      -0.02
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.7
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.24,
+      0.6,
+      0.02
+     ],
+     "s": [
+      0.08,
+      0.14,
+      0.14
+     ],
+     "c": "red",
+     "mirror": true,
+     "r": [
+      0,
+      0,
+      -6
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.22,
+      -0.16
+     ],
+     "s": [
+      0.15,
+      0.06,
+      0.52
+     ],
+     "r": [
+      -58,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.218
+     ],
+     "c": "blue",
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.22,
+      -0.16
+     ],
+     "s": [
+      0.1,
+      0.05,
+      0.36
+     ],
+     "r": [
+      -58,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      -0.03,
+      -0.17
+     ],
+     "c": "red",
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.09,
+      0.06,
+      0.04
+     ],
+     "s": [
+      0.03,
+      0.08,
+      0.03
+     ],
+     "c": "grey",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.09,
+      0.02,
+      0.08
+     ],
+     "s": [
+      0.08,
+      0.05,
+      0.12
+     ],
+     "c": "grey",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.42,
+     "c": "red",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.095,
+      0.03,
+      0.15
+     ],
+     "s": [
+      0.14,
+      0.14,
+      0.06
+     ],
+     "c": "white",
+     "mirror": true,
+     "m": "matte",
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.03,
+      0.248
+     ],
+     "s": [
+      0.12,
+      0.16,
+      0.12
+     ],
+     "r": [
+      140,
+      0,
+      0
+     ],
+     "c": "cream",
+     "on": "head"
+    }
+   ]
+  },
+  "budgie": {
+   "like": "parrot",
+   "scale": 0.72,
+   "recolor": {
+    "red": "yellow",
+    "blue": "teal"
+   },
+   "description": "A small toy budgie, about 0.75 m tall at size 1: a green body, a sunny yellow head with blue cheek spots and little black throat dots, a short curved cream beak (talks with a dropping lower beak), teal wing tips and tail. Named parts: wing (mirrored), tail. Variant of parrot.",
+   "tags": [
+    "bird",
+    "pet",
+    "home",
+    "small"
+   ],
+   "sound": "Chirrup!",
+   "add": [
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      -0.04,
+      0.105
+     ],
+     "s": [
+      0.05,
+      0.05,
+      0.03
+     ],
+     "c": "blue",
+     "mirror": true,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.04,
+      -0.1,
+      0.105
+     ],
+     "s": [
+      0.025,
+      0.025,
+      0.02
+     ],
+     "c": "ink",
+     "mirror": true,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.11,
+      0.1
+     ],
+     "s": [
+      0.025,
+      0.025,
+      0.02
+     ],
+     "c": "ink",
+     "on": "head"
+    }
+   ]
+  },
+  "crow": {
+   "color": "ink",
+   "sound": "Caw caw!",
+   "description": "A glossy black toy crow, about 1.05 m tall at size 1, with a friendly round face, big cartoon eyes, a little yellow beak (it drops a lower beak to talk), a red showman's bow tie and yellow feet. Named parts: wing (mirrored, flaps), tail, bow_tie (drop it in a variant). Rainbow feathers: give it a `recolor` such as { ink: \"purple\" }. Faces +z.",
+   "tags": [
+    "bird",
+    "farm",
+    "town",
+    "fable",
+    "clever"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.82,
+     0.05
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.084,
+     0.034,
+     0.184
+    ],
+    "size": 0.076,
+    "iris": "eye_brown"
+   },
+   "cheeks": {
+    "at": [
+     0.13,
+     -0.067,
+     0.138
+    ],
+    "size": 0.067,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.068,
+     0.191
+    ],
+    "size": 0.054
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.068,
+     0.191
+    ],
+    "size": 0.054,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.057,
+      0.204
+     ],
+     "s": [
+      0.072,
+      0.032,
+      0.072
+     ],
+     "c": "gold",
+     "drop": 0.045
+    }
+   },
+   "bob": 0.025,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.44,
+      0
+     ],
+     "s": [
+      0.54,
+      0.7,
+      0.56
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.42,
+      0.12
+     ],
+     "s": [
+      0.38,
+      0.5,
+      0.36
+     ],
+     "c": "charcoal"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.27,
+      0.62,
+      -0.04
+     ],
+     "s": [
+      0.13,
+      0.54,
+      0.36
+     ],
+     "r": [
+      0,
+      0,
+      -8
+     ],
+     "hang": [
+      0,
+      -0.173,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       9
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.24,
+      -0.24
+     ],
+     "s": [
+      0.24,
+      0.06,
+      0.36
+     ],
+     "r": [
+      -30,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.151
+     ],
+     "m": "glossy",
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.1,
+      0.065,
+      0.06
+     ],
+     "s": [
+      0.03,
+      0.09,
+      0.03
+     ],
+     "c": "gold",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.02,
+      0.1
+     ],
+     "s": [
+      0.09,
+      0.04,
+      0.14
+     ],
+     "c": "gold",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.42,
+     "m": "glossy",
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.03,
+      0.235
+     ],
+     "s": [
+      0.09,
+      0.13,
+      0.09
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.06,
+      0.66,
+      0.24
+     ],
+     "s": [
+      0.11,
+      0.09,
+      0.05
+     ],
+     "c": "red",
+     "mirror": true,
+     "r": [
+      0,
+      0,
+      10
+     ],
+     "name": "bow_tie"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.66,
+      0.26
+     ],
+     "s": [
+      0.05,
+      0.05,
+      0.04
+     ],
+     "c": "red",
+     "name": "bow_tie"
+    }
+   ]
+  },
+  "pigeon": {
+   "like": "crow",
+   "scale": 0.88,
+   "recolor": {
+    "ink": "grey",
+    "charcoal": "lab_floor",
+    "gold": "charcoal"
+   },
+   "drop": [
+    "bow_tie"
+   ],
+   "eyes": {
+    "iris": "orange"
+   },
+   "description": "A small gray toy town pigeon, about 0.9 m tall at size 1: soft gray body, a shimmering teal-and-purple neck, bright orange eyes, a little dark beak with a white tip (talks with a dropping lower beak), dark wing bars, pink feet and rosy cheeks for blushing. Named parts: wing (mirrored), tail. Variant of crow.",
+   "tags": [
+    "bird",
+    "town",
+    "city",
+    "park"
+   ],
+   "sound": "Coo coo!",
+   "add": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.6,
+      0.12
+     ],
+     "s": [
+      0.24,
+      0.1,
+      0.14
+     ],
+     "c": "teal",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.56,
+      0.13
+     ],
+     "s": [
+      0.26,
+      0.08,
+      0.14
+     ],
+     "c": "purple",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.235,
+      0.36,
+      0
+     ],
+     "s": [
+      0.04,
+      0.05,
+      0.22
+     ],
+     "c": "charcoal",
+     "mirror": true,
+     "r": [
+      0,
+      0,
+      -8
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.088,
+      0.02,
+      0.088
+     ],
+     "s": [
+      0.08,
+      0.035,
+      0.12
+     ],
+     "c": "pig",
+     "mirror": true
+    }
+   ]
+  },
+  "puffin": {
+   "color": "ink",
+   "sound": "Arr-arr!",
+   "description": "A small black-and-white toy puffin, about 0.85 m tall at size 1: a black back, wings and cap, a white face disc and chest, a tall flat orange beak with a gold stripe at its base (it drops a lower beak to talk) and bright orange feet. Named parts: wing (mirrored; clap them with a quick flap), tail. Faces +z.",
+   "tags": [
+    "bird",
+    "ocean",
+    "sea",
+    "coast",
+    "arctic"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.66,
+     0.04
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.084,
+     0.032,
+     0.173
+    ],
+    "size": 0.06
+   },
+   "cheeks": {
+    "at": [
+     0.13,
+     -0.064,
+     0.127
+    ],
+    "size": 0.064,
+    "color": "rose"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.101,
+     0.185
+    ],
+    "size": 0.102
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.101,
+     0.185
+    ],
+    "size": 0.102,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.081,
+      0.201
+     ],
+     "s": [
+      0.096,
+      0.06,
+      0.088
+     ],
+     "c": "orange",
+     "drop": 0.085
+    }
+   },
+   "bob": 0.03,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.36,
+      0
+     ],
+     "s": [
+      0.5,
+      0.62,
+      0.5
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.34,
+      0.1
+     ],
+     "s": [
+      0.4,
+      0.5,
+      0.36
+     ],
+     "c": "white"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.23,
+      0.5,
+      -0.03
+     ],
+     "s": [
+      0.11,
+      0.4,
+      0.28
+     ],
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.128,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       10
+      ],
+      "hz": 0.9
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.18,
+      -0.22
+     ],
+     "s": [
+      0.16,
+      0.05,
+      0.16
+     ],
+     "r": [
+      -20,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.067
+     ],
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.1,
+      0.05,
+      0.06
+     ],
+     "s": [
+      0.03,
+      0.06,
+      0.03
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.02,
+      0.1
+     ],
+     "s": [
+      0.12,
+      0.04,
+      0.16
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.4,
+     "c": "white",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.06,
+      -0.04
+     ],
+     "s": [
+      0.41,
+      0.3,
+      0.4
+     ],
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.03,
+      0.239
+     ],
+     "s": [
+      0.12,
+      0.16,
+      0.17
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "orange",
+     "on": "head"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      -0.03,
+      0.18200000000000002
+     ],
+     "s": [
+      0.13,
+      0.03,
+      0.18
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "on": "head"
+    }
+   ]
+  },
+  "goose": {
+   "color": "white",
+   "sound": "Honk honk!",
+   "description": "A white farmyard toy goose, about 1.25 m tall at size 1: a plump body, a long curved neck, a small round head with kind eyes, an orange beak with a little knob (it drops a lower beak to talk), wide white wings and big orange feet. Named parts: wing (mirrored), tail. Faces +z.",
+   "tags": [
+    "farm",
+    "bird",
+    "pond",
+    "rhymes",
+    "stories"
+   ],
+   "head": {
+    "at": [
+     0,
+     1.1,
+     0.3
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.076,
+     0.027,
+     0.156
+    ],
+    "size": 0.065
+   },
+   "cheeks": {
+    "at": [
+     0.117,
+     -0.058,
+     0.114
+    ],
+    "size": 0.058,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.062,
+     0.166
+    ],
+    "size": 0.06
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.062,
+     0.166
+    ],
+    "size": 0.06,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.05,
+      0.18
+     ],
+     "s": [
+      0.08,
+      0.035,
+      0.077
+     ],
+     "c": "orange",
+     "drop": 0.05
+    }
+   },
+   "bob": 0.02,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.46,
+      -0.06
+     ],
+     "s": [
+      0.62,
+      0.56,
+      0.88
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.38,
+      0.06
+     ],
+     "s": [
+      0.5,
+      0.44,
+      0.6
+     ],
+     "c": "cream"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.8,
+      0.2
+     ],
+     "s": [
+      0.25,
+      0.52,
+      0.25
+     ],
+     "r": [
+      16,
+      0,
+      0
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.29,
+      0.62,
+      -0.05
+     ],
+     "s": [
+      0.12,
+      0.42,
+      0.6
+     ],
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.134,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.7
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.52,
+      -0.46
+     ],
+     "s": [
+      0.2,
+      0.08,
+      0.2
+     ],
+     "r": [
+      35,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.084
+     ],
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.6
+     },
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.13,
+      0.08,
+      0.06
+     ],
+     "s": [
+      0.03,
+      0.12,
+      0.03
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.13,
+      0.02,
+      0.1
+     ],
+     "s": [
+      0.14,
+      0.04,
+      0.2
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.36,
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.02,
+      0.214
+     ],
+     "s": [
+      0.1,
+      0.14,
+      0.1
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "orange",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.03,
+      0.166
+     ],
+     "s": [
+      0.06,
+      0.06,
+      0.05
+     ],
+     "c": "orange",
+     "on": "head"
+    }
+   ]
+  },
+  "fairy_godmother": {
+   "like": "goose",
+   "description": "A kind fairy godmother played by an old white goose (the goose model) in a purple starry shawl with a gold trim and round gold glasses, about 1.25 m tall at size 1. Named parts: wing (mirrored, as goose), tail, shawl, glasses. Her sparkling wand is the `magic_wand` prop parented by the script: parent: \"<id>\", part: \"wing\", at about [0.06, -0.3, 0.12], rotation [-60, 0, 0], size 0.6.",
+   "tags": [
+    "stories",
+    "fairy_tale",
+    "magic",
+    "bird",
+    "cinderella"
+   ],
+   "sound": "Bibbidi-boo!",
+   "add": [
+    {
+     "p": "cone",
+     "at": [
+      0,
+      0.73,
+      -0.04
+     ],
+     "s": [
+      0.86,
+      0.46,
+      1.12
+     ],
+     "c": "purple",
+     "m": "plush",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      0.178,
+      0.638,
+      0.291
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      35,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      -0.178,
+      0.638,
+      0.291
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      -35,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      0.327,
+      0.615,
+      0.035
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      80,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      -0.327,
+      0.615,
+      0.035
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      -80,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      0.237,
+      0.638,
+      -0.3
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      130,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      -0.237,
+      0.638,
+      -0.3
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      -130,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      0,
+      0.638,
+      -0.444
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      180,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      0,
+      0.753,
+      0.22
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      0,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      0.173,
+      0.753,
+      0.09
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      60,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      -0.173,
+      0.753,
+      0.09
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      -60,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      0.181,
+      0.753,
+      -0.15
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      115,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "star",
+     "at": [
+      -0.181,
+      0.753,
+      -0.15
+     ],
+     "s": [
+      0.075,
+      0.075,
+      0.03
+     ],
+     "r": [
+      -40,
+      -115,
+      0
+     ],
+     "c": "gold",
+     "m": "glow",
+     "name": "shawl"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0.076,
+      0.027,
+      0.17
+     ],
+     "s": [
+      0.1,
+      0.1,
+      0.08
+     ],
+     "c": "gold",
+     "m": "metal",
+     "on": "head",
+     "name": "glasses"
+    },
+    {
+     "p": "torus",
+     "at": [
+      -0.076,
+      0.027,
+      0.17
+     ],
+     "s": [
+      0.1,
+      0.1,
+      0.08
+     ],
+     "c": "gold",
+     "m": "metal",
+     "on": "head",
+     "name": "glasses"
+    }
+   ]
+  },
+  "gosling": {
+   "color": "yellow",
+   "sound": "Peep peep!",
+   "description": "A fluffy toy gosling (a baby goose), about 0.6 m tall at size 1: a soft yellow body with a gray-olive back and crown, a short neck, big dark eyes, a tiny orange beak (talks with a dropping lower beak) and big soft orange feet. Named parts: wing (mirrored, little stubs), tail. Faces +z.",
+   "tags": [
+    "farm",
+    "bird",
+    "baby",
+    "pond",
+    "spring"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.48,
+     0.13
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.063,
+     0.021,
+     0.13
+    ],
+    "size": 0.063
+   },
+   "cheeks": {
+    "at": [
+     0.098,
+     -0.048,
+     0.095
+    ],
+    "size": 0.048,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.059,
+     0.135
+    ],
+    "size": 0.05
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.059,
+     0.135
+    ],
+    "size": 0.05,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.051,
+      0.143
+     ],
+     "s": [
+      0.056,
+      0.025,
+      0.044
+     ],
+     "c": "orange",
+     "drop": 0.035
+    }
+   },
+   "bob": 0.035,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.24,
+      -0.03
+     ],
+     "s": [
+      0.42,
+      0.38,
+      0.52
+     ],
+     "m": "plush",
+     "fur": {
+      "length": 0.02
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.33,
+      -0.08
+     ],
+     "s": [
+      0.34,
+      0.2,
+      0.42
+     ],
+     "c": "grey",
+     "m": "plush"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.36,
+      0.09
+     ],
+     "s": [
+      0.17,
+      0.22,
+      0.17
+     ],
+     "r": [
+      15,
+      0,
+      0
+     ],
+     "m": "plush"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.21,
+      0.32,
+      -0.02
+     ],
+     "s": [
+      0.08,
+      0.2,
+      0.26
+     ],
+     "r": [
+      0,
+      0,
+      -18
+     ],
+     "hang": [
+      0,
+      -0.064,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       12
+      ],
+      "hz": 0.9
+     },
+     "name": "wing",
+     "c": "grey"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.27,
+      -0.28
+     ],
+     "s": [
+      0.1,
+      0.05,
+      0.1
+     ],
+     "r": [
+      30,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.042
+     ],
+     "c": "grey",
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.08,
+      0.045,
+      0.04
+     ],
+     "s": [
+      0.03,
+      0.05,
+      0.03
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.08,
+      0.02,
+      0.08
+     ],
+     "s": [
+      0.1,
+      0.035,
+      0.14
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.3,
+     "m": "plush",
+     "fur": {
+      "length": 0.015
+     },
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.08,
+      -0.03
+     ],
+     "s": [
+      0.26,
+      0.15,
+      0.26
+     ],
+     "c": "grey",
+     "m": "plush",
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.03,
+      0.163
+     ],
+     "s": [
+      0.07,
+      0.08,
+      0.07
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "orange",
+     "on": "head"
+    }
+   ]
+  },
+  "mommy_duck": {
+   "color": "brown",
+   "sound": "Quack quack!",
+   "description": "Mommy Duck: a grown-up toy duck, about 1.2 m tall at size 1, the same round shape as the yellow duck: a soft brown body with a cream chest, a soft green stripe around her neck, a blue wing patch, an orange bill (it drops a lower bill to talk) and orange feet. Named parts: wing (mirrored), tail. Leads ducklings (the `duck` or `chick` at size 0.5). Faces +z.",
+   "tags": [
+    "farm",
+    "bird",
+    "pond",
+    "family",
+    "mommy"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.92,
+     0.14
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.12,
+     0.06,
+     0.24
+    ],
+    "size": 0.08
+   },
+   "cheeks": {
+    "at": [
+     0.2,
+     -0.04,
+     0.2
+    ],
+    "size": 0.09,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.115,
+     0.36
+    ],
+    "size": 0.1
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.115,
+     0.36
+    ],
+    "size": 0.15,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.1,
+      0.3
+     ],
+     "s": [
+      0.24,
+      0.06,
+      0.22
+     ],
+     "c": "orange",
+     "drop": 0.07
+    }
+   },
+   "bob": 0.025,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.42,
+      0
+     ],
+     "s": [
+      0.78,
+      0.68,
+      0.86
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.38,
+      0.14
+     ],
+     "s": [
+      0.56,
+      0.5,
+      0.58
+     ],
+     "c": "sand"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.37,
+      0.58,
+      -0.04
+     ],
+     "s": [
+      0.14,
+      0.38,
+      0.5
+     ],
+     "r": [
+      0,
+      0,
+      -10
+     ],
+     "hang": [
+      0,
+      -0.122,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       9
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.37,
+      0.58,
+      -0.04
+     ],
+     "s": [
+      0.1,
+      0.1,
+      0.24
+     ],
+     "c": "teal",
+     "r": [
+      0,
+      0,
+      -10
+     ],
+     "hang": [
+      0,
+      -0.236,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       9
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.52,
+      -0.4
+     ],
+     "s": [
+      0.16,
+      0.1,
+      0.26
+     ],
+     "r": [
+      40,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.109
+     ],
+     "idle": {
+      "r": [
+       0,
+       0,
+       10
+      ],
+      "hz": 0.7
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.16,
+      0.02,
+      0.18
+     ],
+     "s": [
+      0.2,
+      0.06,
+      0.3
+     ],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.72,
+      0.1
+     ],
+     "s": [
+      0.5,
+      0.09,
+      0.46
+     ],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.52,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.05,
+      0.12
+     ],
+     "s": [
+      0.16,
+      0.04,
+      0.2
+     ],
+     "c": "wood_dark",
+     "mirror": true,
+     "r": [
+      0,
+      25,
+      -8
+     ],
+     "m": "matte",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.06,
+      0.29
+     ],
+     "s": [
+      0.28,
+      0.1,
+      0.26
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "c": "orange",
+     "on": "head"
+    }
+   ]
+  },
+  "cockerel": {
+   "color": "cap_red",
+   "sound": "Cock-a-doodle-doo!",
+   "description": "A proud toy cockerel (a rooster), about 1.35 m tall at size 1: a red body, a gold head and neck ruff, a tall red comb and wattle, a gold beak (it drops a lower beak to talk), brown-and-gold wings, a high curling tail of dark green and black feathers and yellow legs. Named parts: wing (mirrored), tail, comb. Faces +z.",
+   "tags": [
+    "farm",
+    "bird",
+    "morning",
+    "rhymes"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.98,
+     0.18
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.08,
+     0.028,
+     0.165
+    ],
+    "size": 0.061
+   },
+   "cheeks": {
+    "at": [
+     0.124,
+     -0.061,
+     0.12
+    ],
+    "size": 0.061,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.058,
+     0.173
+    ],
+    "size": 0.054
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.058,
+     0.173
+    ],
+    "size": 0.054,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.047,
+      0.185
+     ],
+     "s": [
+      0.072,
+      0.032,
+      0.066
+     ],
+     "c": "gold",
+     "drop": 0.045
+    }
+   },
+   "bob": 0.025,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.56,
+      -0.04
+     ],
+     "s": [
+      0.58,
+      0.56,
+      0.78
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.76,
+      0.1
+     ],
+     "s": [
+      0.4,
+      0.44,
+      0.36
+     ],
+     "c": "gold"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.28,
+      0.66,
+      -0.06
+     ],
+     "s": [
+      0.12,
+      0.36,
+      0.5
+     ],
+     "r": [
+      0,
+      0,
+      -8
+     ],
+     "hang": [
+      0,
+      -0.115,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       10
+      ],
+      "hz": 0.8
+     },
+     "name": "wing",
+     "c": "horse_brown"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.28,
+      0.66,
+      -0.06
+     ],
+     "s": [
+      0.1,
+      0.12,
+      0.3
+     ],
+     "c": "gold",
+     "r": [
+      0,
+      0,
+      -8
+     ],
+     "hang": [
+      0,
+      -0.223,
+      -0.02
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       10
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.7,
+      -0.36
+     ],
+     "s": [
+      0.08,
+      0.62,
+      0.16
+     ],
+     "r": [
+      -20,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0.26,
+      0
+     ],
+     "c": "ink",
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.7,
+      -0.36
+     ],
+     "s": [
+      0.08,
+      0.56,
+      0.16
+     ],
+     "r": [
+      -40,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0.235,
+      -0.02
+     ],
+     "c": "leaf",
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.7,
+      -0.36
+     ],
+     "s": [
+      0.08,
+      0.5,
+      0.16
+     ],
+     "r": [
+      -5,
+      0,
+      14
+     ],
+     "hang": [
+      0,
+      0.21,
+      0
+     ],
+     "c": "chalkboard",
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.7,
+      -0.36
+     ],
+     "s": [
+      0.08,
+      0.5,
+      0.16
+     ],
+     "r": [
+      -5,
+      0,
+      -14
+     ],
+     "hang": [
+      0,
+      0.21,
+      0
+     ],
+     "c": "chalkboard",
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.7,
+      -0.36
+     ],
+     "s": [
+      0.08,
+      0.42,
+      0.16
+     ],
+     "r": [
+      -62,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0.176,
+      -0.04
+     ],
+     "c": "ink",
+     "idle": {
+      "r": [
+       0,
+       0,
+       5
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.11,
+      0.17,
+      0
+     ],
+     "s": [
+      0.05,
+      0.3,
+      0.05
+     ],
+     "c": "yellow",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.11,
+      0.025,
+      0.07
+     ],
+     "s": [
+      0.12,
+      0.05,
+      0.2
+     ],
+     "c": "yellow",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.38,
+     "c": "gold",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.15,
+      0.17
+     ],
+     "s": [
+      0.08,
+      0.14,
+      0.07
+     ],
+     "c": "red",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.22,
+      0.1
+     ],
+     "s": [
+      0.08,
+      0.16,
+      0.11
+     ],
+     "c": "red",
+     "name": "comb",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.26,
+      0
+     ],
+     "s": [
+      0.085,
+      0.19,
+      0.12
+     ],
+     "c": "red",
+     "name": "comb",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.24,
+      -0.1
+     ],
+     "s": [
+      0.08,
+      0.16,
+      0.11
+     ],
+     "c": "red",
+     "name": "comb",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.19,
+      -0.18
+     ],
+     "s": [
+      0.07,
+      0.11,
+      0.09
+     ],
+     "c": "red",
+     "name": "comb",
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.02,
+      0.214
+     ],
+     "s": [
+      0.09,
+      0.12,
+      0.09
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "on": "head"
+    }
+   ]
+  },
+  "peacock": {
+   "color": "blue",
+   "sound": "May-awe!",
+   "description": "A proud toy peacock, about 1.25 m tall at size 1 with the fan folded and 1.75 m with it open: a shimmering blue body and neck, a little crest, a white eye stripe, brown-barred wings and long gray legs, and a huge green fan tail with gold-and-teal eye spots. Named parts: wing (mirrored), tail (the whole fan, pivot at the rump), fan (the outer feathers). The fan rests OPEN and upright. To fold it: turn `#fan` to [0, 0, 50] (the outer feathers swing in behind the middle ones) and `#tail` to [-62, 0, 0] (it lowers back into a train); turn both back to [0, 0, 0] to open it. Faces +z.",
+   "tags": [
+    "bird",
+    "zoo",
+    "garden",
+    "colors",
+    "proud"
+   ],
+   "head": {
+    "at": [
+     0,
+     1.06,
+     0.2
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.062,
+     0.02,
+     0.12
+    ],
+    "size": 0.048
+   },
+   "cheeks": {
+    "at": [
+     0.095,
+     -0.045,
+     0.085
+    ],
+    "size": 0.045,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.047,
+     0.128
+    ],
+    "size": 0.05
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.047,
+     0.128
+    ],
+    "size": 0.05,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.039,
+      0.137
+     ],
+     "s": [
+      0.052,
+      0.023,
+      0.05
+     ],
+     "c": "sand",
+     "drop": 0.035
+    }
+   },
+   "bob": 0.015,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.62,
+      -0.04
+     ],
+     "s": [
+      0.42,
+      0.5,
+      0.56
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.86,
+      0.12
+     ],
+     "s": [
+      0.15,
+      0.4,
+      0.15
+     ],
+     "r": [
+      18,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.2,
+      0.74,
+      -0.06
+     ],
+     "s": [
+      0.09,
+      0.32,
+      0.42
+     ],
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.102,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.7
+     },
+     "name": "wing",
+     "c": "sand"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.2,
+      0.74,
+      -0.06
+     ],
+     "s": [
+      0.07,
+      0.12,
+      0.3
+     ],
+     "c": "horse_brown",
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.198,
+      -0.02
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.7
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.6,
+      -0.3
+     ],
+     "s": [
+      0.3,
+      0.26,
+      0.12
+     ],
+     "r": [
+      -14,
+      0,
+      0
+     ],
+     "c": "leaf",
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "on": "tail",
+     "s": [
+      0.2,
+      1,
+      0.04
+     ],
+     "hang": [
+      0,
+      0.5,
+      0
+     ],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "on": "tail",
+     "s": [
+      0.13,
+      0.15,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.82,
+      0.02
+     ],
+     "c": "gold",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "on": "tail",
+     "s": [
+      0.09,
+      0.1,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.82,
+      0.035
+     ],
+     "c": "teal",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "on": "tail",
+     "s": [
+      0.05,
+      0.06,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.82,
+      0.05
+     ],
+     "c": "midnight",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -16
+     ],
+     "on": "tail",
+     "mirror": true,
+     "s": [
+      0.2,
+      0.98,
+      0.04
+     ],
+     "hang": [
+      0,
+      0.49,
+      0
+     ],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -16
+     ],
+     "on": "tail",
+     "mirror": true,
+     "s": [
+      0.13,
+      0.15,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.804,
+      0.02
+     ],
+     "c": "gold",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -16
+     ],
+     "on": "tail",
+     "mirror": true,
+     "s": [
+      0.09,
+      0.1,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.804,
+      0.035
+     ],
+     "c": "teal",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -16
+     ],
+     "on": "tail",
+     "mirror": true,
+     "s": [
+      0.05,
+      0.06,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.804,
+      0.05
+     ],
+     "c": "midnight",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -32
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.2,
+      0.92,
+      0.04
+     ],
+     "hang": [
+      0,
+      0.46,
+      0
+     ],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -32
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.13,
+      0.15,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.754,
+      0.02
+     ],
+     "c": "gold",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -32
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.09,
+      0.1,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.754,
+      0.035
+     ],
+     "c": "teal",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -32
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.05,
+      0.06,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.754,
+      0.05
+     ],
+     "c": "midnight",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -48
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.2,
+      0.84,
+      0.04
+     ],
+     "hang": [
+      0,
+      0.42,
+      0
+     ],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -48
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.13,
+      0.15,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.689,
+      0.02
+     ],
+     "c": "gold",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -48
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.09,
+      0.1,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.689,
+      0.035
+     ],
+     "c": "teal",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -48
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.05,
+      0.06,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.689,
+      0.05
+     ],
+     "c": "midnight",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -64
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.2,
+      0.74,
+      0.04
+     ],
+     "hang": [
+      0,
+      0.37,
+      0
+     ],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -64
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.13,
+      0.15,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.607,
+      0.02
+     ],
+     "c": "gold",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -64
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.09,
+      0.1,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.607,
+      0.035
+     ],
+     "c": "teal",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      0,
+      0,
+      -64
+     ],
+     "on": "tail",
+     "mirror": true,
+     "name": "fan",
+     "s": [
+      0.05,
+      0.06,
+      0.03
+     ],
+     "hang": [
+      0,
+      0.607,
+      0.05
+     ],
+     "c": "midnight",
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.08,
+      0.2,
+      0
+     ],
+     "s": [
+      0.04,
+      0.4,
+      0.04
+     ],
+     "c": "grey",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.08,
+      0.02,
+      0.06
+     ],
+     "s": [
+      0.08,
+      0.04,
+      0.16
+     ],
+     "c": "grey",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.28,
+     "m": "glossy",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.03,
+      0.06
+     ],
+     "s": [
+      0.04,
+      0.03,
+      0.12
+     ],
+     "c": "white",
+     "mirror": true,
+     "r": [
+      0,
+      30,
+      0
+     ],
+     "on": "head"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.18,
+      0
+     ],
+     "s": [
+      0.015,
+      0.12,
+      0.015
+     ],
+     "c": "blue",
+     "r": [
+      -10,
+      0,
+      0
+     ],
+     "on": "head"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.03,
+      0.17,
+      -0.01
+     ],
+     "s": [
+      0.015,
+      0.11,
+      0.015
+     ],
+     "c": "blue",
+     "r": [
+      -10,
+      0,
+      -15
+     ],
+     "mirror": true,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.25,
+      -0.01
+     ],
+     "s": 0.04,
+     "c": "teal",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.045,
+      0.235,
+      -0.02
+     ],
+     "s": 0.035,
+     "c": "teal",
+     "mirror": true,
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.02,
+      0.158
+     ],
+     "s": [
+      0.065,
+      0.09,
+      0.065
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "sand",
+     "on": "head"
+    }
+   ]
+  },
+  "woodpecker": {
+   "color": "ink",
+   "sound": "Tap-tap-tap!",
+   "description": "A small toy woodpecker, about 0.85 m tall at size 1, standing upright: a black back and wings with white spots, a white face and chest, a bright red cap on the back of its head, a straight gray beak (it drops a lower beak to talk) and a stiff black tail it props itself on. Tap a tree by turning `#head` [20, 0, 0] and back quickly. Named parts: wing (mirrored), tail. Faces +z.",
+   "tags": [
+    "bird",
+    "forest",
+    "woods",
+    "tree",
+    "garden"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.7,
+     0.05
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.076,
+     0.027,
+     0.156
+    ],
+    "size": 0.058
+   },
+   "cheeks": {
+    "at": [
+     0.117,
+     -0.058,
+     0.114
+    ],
+    "size": 0.058,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.056,
+     0.168
+    ],
+    "size": 0.051
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.056,
+     0.168
+    ],
+    "size": 0.051,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.045,
+      0.185
+     ],
+     "s": [
+      0.068,
+      0.03,
+      0.094
+     ],
+     "c": "grey",
+     "drop": 0.043
+    }
+   },
+   "bob": 0.02,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.38,
+      -0.02
+     ],
+     "s": [
+      0.44,
+      0.62,
+      0.44
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.37,
+      0.08
+     ],
+     "s": [
+      0.34,
+      0.48,
+      0.32
+     ],
+     "c": "white"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.21,
+      0.52,
+      -0.04
+     ],
+     "s": [
+      0.1,
+      0.42,
+      0.28
+     ],
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.134,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.255,
+      0.42,
+      -0.02
+     ],
+     "s": [
+      0.03,
+      0.05,
+      0.05
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.25,
+      0.33,
+      -0.06
+     ],
+     "s": [
+      0.03,
+      0.05,
+      0.05
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.245,
+      0.45,
+      -0.12
+     ],
+     "s": [
+      0.03,
+      0.05,
+      0.05
+     ],
+     "c": "white",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.2,
+      -0.2
+     ],
+     "s": [
+      0.14,
+      0.05,
+      0.3
+     ],
+     "r": [
+      -62,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.126
+     ],
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.08,
+      0.06,
+      0.04
+     ],
+     "s": [
+      0.03,
+      0.08,
+      0.03
+     ],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.08,
+      0.02,
+      0.08
+     ],
+     "s": [
+      0.07,
+      0.04,
+      0.11
+     ],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.36,
+     "c": "white",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.07,
+      -0.04
+     ],
+     "s": [
+      0.33,
+      0.28,
+      0.32
+     ],
+     "c": "ink",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.12,
+      -0.02
+     ],
+     "s": [
+      0.27,
+      0.16,
+      0.28
+     ],
+     "c": "red",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.12,
+      -0.07,
+      0.07
+     ],
+     "s": [
+      0.12,
+      0.03,
+      0.12
+     ],
+     "c": "ink",
+     "mirror": true,
+     "r": [
+      0,
+      30,
+      -10
+     ],
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.02,
+      0.226
+     ],
+     "s": [
+      0.085,
+      0.17,
+      0.085
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "grey",
+     "on": "head"
+    }
+   ]
+  },
+  "hummingbird": {
+   "color": "green",
+   "sound": "Hmmmm!",
+   "description": "A tiny ruby-throated toy hummingbird, about 0.6 m tall at size 1: a shimmering green back and head, a white chest, a red throat patch, a long thin beak (it drops a thin lower beak to talk) and long narrow wings held up. The wings idle gently (under 1 Hz): to hover, lift it with `at` and flap `#wing` slowly ([0, 0, ±30] about 1-2 times a second), never a fast flicker. Named parts: wing (mirrored), tail. Faces +z.",
+   "tags": [
+    "bird",
+    "garden",
+    "flowers",
+    "pollinator",
+    "small"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.5,
+     0.06
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.055,
+     0.02,
+     0.113
+    ],
+    "size": 0.047
+   },
+   "cheeks": {
+    "at": [
+     0.085,
+     -0.042,
+     0.082
+    ],
+    "size": 0.042,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.023,
+     0.137
+    ],
+    "size": 0.05
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.023,
+     0.137
+    ],
+    "size": 0.05,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.019,
+      0.169
+     ],
+     "s": [
+      0.024,
+      0.01,
+      0.176
+     ],
+     "c": "charcoal",
+     "drop": 0.035
+    }
+   },
+   "bob": 0.03,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.3,
+      -0.04
+     ],
+     "s": [
+      0.28,
+      0.42,
+      0.3
+     ],
+     "r": [
+      -20,
+      0,
+      0
+     ],
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.27,
+      0.04
+     ],
+     "s": [
+      0.2,
+      0.3,
+      0.2
+     ],
+     "c": "white"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.4,
+      0.08
+     ],
+     "s": [
+      0.16,
+      0.08,
+      0.1
+     ],
+     "c": "red",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.38,
+      -0.06
+     ],
+     "s": [
+      0.06,
+      0.4,
+      0.12
+     ],
+     "r": [
+      10,
+      0,
+      140
+     ],
+     "hang": [
+      0,
+      -0.128,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       14
+      ],
+      "hz": 0.9
+     },
+     "name": "wing",
+     "c": "teal"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.14,
+      -0.12
+     ],
+     "s": [
+      0.12,
+      0.03,
+      0.18
+     ],
+     "r": [
+      -50,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.076
+     ],
+     "c": "ink",
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.04,
+      0.05,
+      -0.02
+     ],
+     "s": [
+      0.03,
+      0.06,
+      0.03
+     ],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.04,
+      0.02,
+      0.02
+     ],
+     "s": [
+      0.04,
+      0.03,
+      0.06
+     ],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.26,
+     "m": "glossy",
+     "on": "head"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      -0.01,
+      0.246
+     ],
+     "s": [
+      0.03,
+      0.32,
+      0.03
+     ],
+     "r": [
+      100,
+      0,
+      0
+     ],
+     "c": "charcoal",
+     "on": "head"
+    }
+   ]
+  },
+  "toucan": {
+   "color": "ink",
+   "sound": "Croak-croak!",
+   "description": "A black toy toucan, about 1.0 m tall at size 1: a black body, a white throat and chest, a blue patch around each kind eye, a huge light orange beak with a yellow top ridge and a dark tip (it drops a yellow lower beak to talk), a red patch under the tail and blue feet. Named parts: wing (mirrored), tail. Faces +z.",
+   "tags": [
+    "bird",
+    "jungle",
+    "rainforest",
+    "tropical",
+    "zoo"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.8,
+     0.04
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.11,
+     0.057,
+     0.14
+    ],
+    "size": 0.057
+   },
+   "cheeks": {
+    "at": [
+     0.171,
+     -0.061,
+     0.052
+    ],
+    "size": 0.061,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.1,
+     0.171
+    ],
+    "size": 0.06
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.1,
+     0.171
+    ],
+    "size": 0.06,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.1,
+      0.272
+     ],
+     "s": [
+      0.1,
+      0.05,
+      0.34
+     ],
+     "c": "yellow",
+     "drop": 0.05
+    }
+   },
+   "bob": 0.025,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.44,
+      -0.02
+     ],
+     "s": [
+      0.48,
+      0.66,
+      0.46
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.52,
+      0.11
+     ],
+     "s": [
+      0.34,
+      0.3,
+      0.26
+     ],
+     "c": "white"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.23,
+      0.6,
+      -0.05
+     ],
+     "s": [
+      0.12,
+      0.48,
+      0.32
+     ],
+     "r": [
+      0,
+      0,
+      -6
+     ],
+     "hang": [
+      0,
+      -0.154,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.2,
+      -0.12
+     ],
+     "s": [
+      0.2,
+      0.1,
+      0.16
+     ],
+     "c": "red"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.24,
+      -0.2
+     ],
+     "s": [
+      0.18,
+      0.06,
+      0.36
+     ],
+     "r": [
+      -50,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.151
+     ],
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.09,
+      0.06,
+      0.04
+     ],
+     "s": [
+      0.03,
+      0.08,
+      0.03
+     ],
+     "c": "blue",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.09,
+      0.02,
+      0.08
+     ],
+     "s": [
+      0.08,
+      0.04,
+      0.12
+     ],
+     "c": "blue",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.38,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.05,
+      0.08
+     ],
+     "s": [
+      0.3,
+      0.22,
+      0.24
+     ],
+     "c": "white",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.11,
+      0.057,
+      0.115
+     ],
+     "s": [
+      0.1,
+      0.09,
+      0.05
+     ],
+     "c": "teal",
+     "mirror": true,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.05,
+      0.322
+     ],
+     "s": [
+      0.13,
+      0.17,
+      0.44
+     ],
+     "c": "orange",
+     "r": [
+      22,
+      0,
+      0
+     ],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.02,
+      0.322
+     ],
+     "s": [
+      0.08,
+      0.05,
+      0.4
+     ],
+     "c": "yellow",
+     "r": [
+      22,
+      0,
+      0
+     ],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.13,
+      0.512
+     ],
+     "s": [
+      0.07,
+      0.08,
+      0.07
+     ],
+     "c": "ink",
+     "on": "head"
+    }
+   ]
+  },
+  "swallow": {
+   "color": "night",
+   "sound": "Twitter-twee!",
+   "description": "A small toy swallow, about 0.7 m tall at size 1: a dark blue back, head and long pointed wings, a cream chest, a little black beak (it drops a lower beak to talk) and a long forked tail. Named parts: wing (mirrored, long and swept back), tail (both streamers). A tiny splint for a hurt wing can be added in a variant (a white `sphere` named splint on the wing). Faces +z.",
+   "tags": [
+    "bird",
+    "sky",
+    "farm",
+    "spring",
+    "migration"
+   ],
+   "head": {
+    "at": [
+     0,
+     0.54,
+     0.06
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.067,
+     0.024,
+     0.139
+    ],
+    "size": 0.051
+   },
+   "cheeks": {
+    "at": [
+     0.104,
+     -0.051,
+     0.101
+    ],
+    "size": 0.051,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.055,
+     0.143
+    ],
+    "size": 0.05
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.055,
+     0.143
+    ],
+    "size": 0.05,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.048,
+      0.15
+     ],
+     "s": [
+      0.048,
+      0.021,
+      0.039
+     ],
+     "c": "ink",
+     "drop": 0.035
+    }
+   },
+   "bob": 0.03,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.33,
+      -0.02
+     ],
+     "s": [
+      0.38,
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.29,
+      0.08
+     ],
+     "s": [
+      0.3,
+      0.3,
+      0.34
+     ],
+     "c": "cream"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.17,
+      0.42,
+      -0.02
+     ],
+     "s": [
+      0.07,
+      0.56,
+      0.2
+     ],
+     "r": [
+      55,
+      0,
+      -10
+     ],
+     "hang": [
+      0,
+      -0.179,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.3,
+      -0.22
+     ],
+     "s": [
+      0.06,
+      0.04,
+      0.5
+     ],
+     "r": [
+      10,
+      18,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.22
+     ],
+     "c": "night",
+     "m": "glossy",
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.3,
+      -0.22
+     ],
+     "s": [
+      0.06,
+      0.04,
+      0.5
+     ],
+     "r": [
+      10,
+      -18,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.22
+     ],
+     "c": "night",
+     "m": "glossy",
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.06,
+      0.07,
+      0.02
+     ],
+     "s": [
+      0.03,
+      0.1,
+      0.03
+     ],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.06,
+      0.02,
+      0.06
+     ],
+     "s": [
+      0.05,
+      0.03,
+      0.08
+     ],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.32,
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.03,
+      0.167
+     ],
+     "s": [
+      0.06,
+      0.07,
+      0.06
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "ink",
+     "on": "head"
+    }
+   ]
+  },
+  "swift": {
+   "like": "swallow",
+   "scale": 1,
+   "recolor": {
+    "night": "charcoal",
+    "cream": "charcoal"
+   },
+   "drop": [
+    "wing",
+    "tail"
+   ],
+   "description": "A dark toy swift, about 0.7 m tall at size 1: sooty dark gray all over, a tiny black beak (talks with a dropping lower beak), long sickle-shaped crescent wings held out to the sides as it glides and a short forked tail. Named parts: wing (mirrored), tail. Variant of swallow; it races over rooftops (move it with `at`) and rarely lands.",
+   "tags": [
+    "bird",
+    "sky",
+    "town",
+    "summer",
+    "fast"
+   ],
+   "sound": "Screee!",
+   "add": [
+    {
+     "p": "sphere",
+     "at": [
+      0.17,
+      0.42,
+      -0.04
+     ],
+     "s": [
+      0.06,
+      0.42,
+      0.16
+     ],
+     "r": [
+      35,
+      0,
+      62
+     ],
+     "hang": [
+      0,
+      -0.18,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.17,
+      0.42,
+      -0.04
+     ],
+     "s": [
+      0.05,
+      0.32,
+      0.12
+     ],
+     "r": [
+      35,
+      0,
+      62
+     ],
+     "hang": [
+      -0.05,
+      -0.43,
+      -0.02
+     ],
+     "hr": [
+      0,
+      0,
+      -22
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.3,
+      -0.22
+     ],
+     "s": [
+      0.06,
+      0.04,
+      0.2
+     ],
+     "r": [
+      10,
+      22,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.09
+     ],
+     "c": "charcoal",
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.3,
+      -0.22
+     ],
+     "s": [
+      0.06,
+      0.04,
+      0.2
+     ],
+     "r": [
+      10,
+      -22,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.09
+     ],
+     "c": "charcoal",
+     "name": "tail"
+    }
+   ]
+  },
+  "eagle": {
+   "like": "hawk",
+   "scale": 1.22,
+   "recolor": {
+    "brown": "horse_mane",
+    "cream": "horse_mane",
+    "gold": "yellow",
+    "sand": "hoof"
+   },
+   "drop": [
+    "tail"
+   ],
+   "description": "A big gentle toy bald eagle, about 1.35 m tall at size 1: a dark brown body and wide brown wings, a white head and a white fan tail, a yellow hooked beak and yellow feet, big kind eyes. Named parts: wing (mirrored; spread them with [0, 0, 70]), tail. Variant of hawk (bigger, darker, white tail).",
+   "tags": [
+    "bird",
+    "sky",
+    "mountains",
+    "america",
+    "predator"
+   ],
+   "sound": "Kleek-kik-ik!",
+   "mouth": {
+    "at": [
+     0,
+     -0.1,
+     0.27
+    ],
+    "size": 0.08
+   },
+   "talk": {
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.09,
+      0.26
+     ],
+     "s": [
+      0.12,
+      0.05,
+      0.12
+     ],
+     "c": "yellow",
+     "drop": 0.05
+    }
+   },
+   "add": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.2,
+      -0.32
+     ],
+     "s": [
+      0.46,
+      0.08,
+      0.48
+     ],
+     "r": [
+      -25,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.12
+     ],
+     "c": "white",
+     "name": "tail"
+    }
+   ]
+  },
+  "red_kite": {
+   "like": "hawk",
+   "scale": 1.08,
+   "recolor": {
+    "brown": "horse_brown",
+    "white": "grey",
+    "cream": "horse_tan",
+    "sand": "ink"
+   },
+   "drop": [
+    "tail",
+    "wing"
+   ],
+   "description": "A large toy red kite, about 1.15 m tall at size 1: a russet-brown body, a pale gray head, long angled wings with dark tips, a deeply forked russet tail (it twists to steer: turn `#tail` [0, 0, ±15]), a gold hooked beak and yellow feet. Named parts: wing (mirrored), tail. Variant of hawk.",
+   "tags": [
+    "bird",
+    "sky",
+    "countryside",
+    "predator"
+   ],
+   "sound": "Weee-oo!",
+   "mouth": {
+    "at": [
+     0,
+     -0.09,
+     0.24
+    ],
+    "size": 0.07
+   },
+   "talk": {
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.08,
+      0.23
+     ],
+     "s": [
+      0.11,
+      0.045,
+      0.11
+     ],
+     "c": "gold",
+     "drop": 0.045
+    }
+   },
+   "add": [
+    {
+     "p": "sphere",
+     "at": [
+      0.32,
+      0.66,
+      -0.04
+     ],
+     "s": [
+      0.15,
+      0.78,
+      0.36
+     ],
+     "r": [
+      0,
+      0,
+      -8
+     ],
+     "hang": [
+      0,
+      -0.26,
+      0
+     ],
+     "c": "horse_brown",
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       10
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.32,
+      0.66,
+      -0.04
+     ],
+     "s": [
+      0.12,
+      0.24,
+      0.3
+     ],
+     "r": [
+      0,
+      0,
+      -8
+     ],
+     "hang": [
+      0,
+      -0.58,
+      0
+     ],
+     "c": "ink",
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       10
+      ],
+      "hz": 0.8
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.2,
+      -0.28
+     ],
+     "s": [
+      0.12,
+      0.06,
+      0.5
+     ],
+     "r": [
+      -25,
+      20,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.2
+     ],
+     "c": "horse_brown",
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.2,
+      -0.28
+     ],
+     "s": [
+      0.12,
+      0.06,
+      0.5
+     ],
+     "r": [
+      -25,
+      -20,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.2
+     ],
+     "c": "horse_brown",
+     "name": "tail"
+    }
+   ]
+  },
+  "heron": {
+   "color": "grey",
+   "sound": "Kraak!",
+   "description": "A tall calm toy gray heron, about 1.7 m tall at size 1: a long gray body with darker wing tips, a white chest plume, a long white curved neck, a white head with a black crest plume, small round glasses, a long gold beak (it drops a lower beak to talk) and long thin gold legs. Named parts: wing (mirrored), tail, glasses, leg_left, leg_right (each turns about the hip: [±20, 0, 0] to wade). Faces +z.",
+   "tags": [
+    "bird",
+    "pond",
+    "river",
+    "wetland",
+    "wise"
+   ],
+   "head": {
+    "at": [
+     0,
+     1.56,
+     0.26
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.063,
+     0.023,
+     0.13
+    ],
+    "size": 0.045
+   },
+   "cheeks": {
+    "at": [
+     0.098,
+     -0.048,
+     0.095
+    ],
+    "size": 0.048,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.059,
+     0.153
+    ],
+    "size": 0.05
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.059,
+     0.153
+    ],
+    "size": 0.05,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.051,
+      0.183
+     ],
+     "s": [
+      0.056,
+      0.025,
+      0.165
+     ],
+     "c": "gold",
+     "drop": 0.035
+    }
+   },
+   "bob": 0.012,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.02,
+      -0.06
+     ],
+     "s": [
+      0.5,
+      0.56,
+      0.82
+     ]
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1,
+      0.18
+     ],
+     "s": [
+      0.3,
+      0.42,
+      0.26
+     ],
+     "c": "white",
+     "m": "matte"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      1.22,
+      0.14
+     ],
+     "s": [
+      0.17,
+      0.36,
+      0.17
+     ],
+     "r": [
+      28,
+      0,
+      0
+     ],
+     "c": "white"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      1.42,
+      0.22
+     ],
+     "s": [
+      0.15,
+      0.3,
+      0.15
+     ],
+     "r": [
+      -8,
+      0,
+      0
+     ],
+     "c": "white"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.22,
+      1.2,
+      -0.06
+     ],
+     "s": [
+      0.11,
+      0.48,
+      0.7
+     ],
+     "r": [
+      0,
+      0,
+      -4
+     ],
+     "hang": [
+      0,
+      -0.154,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       6
+      ],
+      "hz": 0.6
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.22,
+      1.2,
+      -0.06
+     ],
+     "s": [
+      0.09,
+      0.2,
+      0.5
+     ],
+     "c": "charcoal",
+     "r": [
+      0,
+      0,
+      -4
+     ],
+     "hang": [
+      0,
+      -0.298,
+      -0.08
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       6
+      ],
+      "hz": 0.6
+     },
+     "name": "wing"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.94,
+      -0.44
+     ],
+     "s": [
+      0.2,
+      0.05,
+      0.22
+     ],
+     "r": [
+      -25,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.092
+     ],
+     "c": "charcoal",
+     "name": "tail"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.1,
+      0.8,
+      0
+     ],
+     "s": [
+      0.055,
+      0.8,
+      0.055
+     ],
+     "hang": [
+      0,
+      -0.4,
+      0
+     ],
+     "c": "gold",
+     "name": "leg_left"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.1,
+      0.8,
+      0
+     ],
+     "s": [
+      0.1,
+      0.035,
+      0.2
+     ],
+     "hang": [
+      0,
+      -0.782,
+      0.05
+     ],
+     "c": "gold",
+     "name": "leg_left"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.1,
+      0.8,
+      0
+     ],
+     "s": [
+      0.055,
+      0.8,
+      0.055
+     ],
+     "hang": [
+      0,
+      -0.4,
+      0
+     ],
+     "c": "gold",
+     "name": "leg_right"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.1,
+      0.8,
+      0
+     ],
+     "s": [
+      0.1,
+      0.035,
+      0.2
+     ],
+     "hang": [
+      0,
+      -0.782,
+      0.05
+     ],
+     "c": "gold",
+     "name": "leg_right"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.3,
+     "c": "white",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.07,
+      -0.1
+     ],
+     "s": [
+      0.045,
+      0.045,
+      0.34
+     ],
+     "c": "ink",
+     "r": [
+      20,
+      0,
+      0
+     ],
+     "on": "head"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0.06,
+      0.025,
+      0.15
+     ],
+     "s": [
+      0.08,
+      0.08,
+      0.07
+     ],
+     "c": "ink",
+     "m": "glossy",
+     "name": "glasses",
+     "on": "head"
+    },
+    {
+     "p": "torus",
+     "at": [
+      -0.06,
+      0.025,
+      0.15
+     ],
+     "s": [
+      0.08,
+      0.08,
+      0.07
+     ],
+     "c": "ink",
+     "m": "glossy",
+     "name": "glasses",
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.03,
+      0.255
+     ],
+     "s": [
+      0.07,
+      0.3,
+      0.07
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "on": "head"
+    }
+   ]
+  },
+  "ostrich": {
+   "color": "ink",
+   "sound": "Boom-boom!",
+   "description": "A tall friendly toy ostrich, about 2.0 m tall at size 1 (it stands well above the bear): a big fluffy black body with white wing and tail plumes, a long bare pink neck, a small round head with big curious eyes, a wide flat beak (it drops a lower beak to talk) and long bare pink legs. Named parts: wing (mirrored), tail, leg_left, leg_right (each leg turns about the hip: [±25, 0, 0] to stride). Faces +z.",
+   "tags": [
+    "bird",
+    "savanna",
+    "africa",
+    "zoo",
+    "tall"
+   ],
+   "head": {
+    "at": [
+     0,
+     1.86,
+     0.36
+    ]
+   },
+   "eyes": {
+    "at": [
+     0.075,
+     0.026,
+     0.146
+    ],
+    "size": 0.065,
+    "iris": "eye_brown"
+   },
+   "cheeks": {
+    "at": [
+     0.116,
+     -0.054,
+     0.103
+    ],
+    "size": 0.054,
+    "color": "pink"
+   },
+   "mouth": {
+    "at": [
+     0,
+     -0.081,
+     0.157
+    ],
+    "size": 0.05
+   },
+   "talk": {
+    "at": [
+     0,
+     -0.081,
+     0.157
+    ],
+    "size": 0.05,
+    "jaw": {
+     "p": "sphere",
+     "at": [
+      0,
+      -0.073,
+      0.17
+     ],
+     "s": [
+      0.104,
+      0.026,
+      0.072
+     ],
+     "c": "sand",
+     "drop": 0.038
+    }
+   },
+   "bob": 0.012,
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.12,
+      -0.06
+     ],
+     "s": [
+      0.74,
+      0.58,
+      0.92
+     ],
+     "m": "plush",
+     "fur": {
+      "length": 0.035
+     }
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      1.48,
+      0.26
+     ],
+     "s": [
+      0.16,
+      0.78,
+      0.16
+     ],
+     "r": [
+      10,
+      0,
+      0
+     ],
+     "c": "pig"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.34,
+      1.26,
+      -0.04
+     ],
+     "s": [
+      0.16,
+      0.44,
+      0.66
+     ],
+     "r": [
+      0,
+      0,
+      -14
+     ],
+     "hang": [
+      0,
+      -0.141,
+      0
+     ],
+     "mirror": true,
+     "idle": {
+      "r": [
+       0,
+       0,
+       8
+      ],
+      "hz": 0.6
+     },
+     "name": "wing",
+     "c": "white"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.22,
+      -0.48
+     ],
+     "s": [
+      0.32,
+      0.22,
+      0.3
+     ],
+     "r": [
+      35,
+      0,
+      0
+     ],
+     "hang": [
+      0,
+      0,
+      -0.126
+     ],
+     "c": "white",
+     "idle": {
+      "r": [
+       0,
+       0,
+       6
+      ],
+      "hz": 0.5
+     },
+     "name": "tail"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0.15,
+      0.95,
+      0
+     ],
+     "s": [
+      0.17,
+      0.36,
+      0.17
+     ],
+     "hang": [
+      0,
+      -0.16,
+      0
+     ],
+     "c": "pig",
+     "name": "leg_left"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.15,
+      0.95,
+      0
+     ],
+     "s": [
+      0.07,
+      0.62,
+      0.07
+     ],
+     "hang": [
+      0,
+      -0.62,
+      0.02
+     ],
+     "c": "pig",
+     "name": "leg_left"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0.15,
+      0.95,
+      0
+     ],
+     "s": [
+      0.14,
+      0.06,
+      0.24
+     ],
+     "hang": [
+      0,
+      -0.925,
+      0.07
+     ],
+     "c": "pig",
+     "name": "leg_left"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.15,
+      0.95,
+      0
+     ],
+     "s": [
+      0.17,
+      0.36,
+      0.17
+     ],
+     "hang": [
+      0,
+      -0.16,
+      0
+     ],
+     "c": "pig",
+     "name": "leg_right"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.15,
+      0.95,
+      0
+     ],
+     "s": [
+      0.07,
+      0.62,
+      0.07
+     ],
+     "hang": [
+      0,
+      -0.62,
+      0.02
+     ],
+     "c": "pig",
+     "name": "leg_right"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      -0.15,
+      0.95,
+      0
+     ],
+     "s": [
+      0.14,
+      0.06,
+      0.24
+     ],
+     "hang": [
+      0,
+      -0.925,
+      0.07
+     ],
+     "c": "pig",
+     "name": "leg_right"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "s": 0.34,
+     "c": "pig",
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.11,
+      -0.03
+     ],
+     "s": [
+      0.16,
+      0.08,
+      0.16
+     ],
+     "c": "grey",
+     "m": "plush",
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [
+      0,
+      -0.05,
+      0.201
+     ],
+     "s": [
+      0.13,
+      0.13,
+      0.075
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "sand",
+     "on": "head"
+    }
+   ]
+  },
+  "emu": {
+   "like": "ostrich",
+   "scale": 0.92,
+   "recolor": {
+    "ink": "horse_mane",
+    "white": "brown",
+    "pig": "grey"
+   },
+   "description": "A tall friendly toy emu, about 1.85 m tall at size 1: a shaggy brown body, a gray-blue neck and face, curious brown eyes, a wide flat beak (talks with a dropping lower beak) and long gray legs. Named parts: wing (mirrored, small), tail, leg_left, leg_right (stride with [±25, 0, 0]). Variant of ostrich (all brown with a gray neck, a little shorter).",
+   "tags": [
+    "bird",
+    "australia",
+    "outback",
+    "zoo",
+    "tall"
+   ],
+   "sound": "Thrum-thrum!"
+  }
+ }
+}

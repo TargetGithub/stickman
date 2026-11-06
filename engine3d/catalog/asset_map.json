@@ -66,6 +66,14 @@
    "use": "board",
    "how": "board with labels [\"who\",\"what\",\"where\",\"when\",\"why\",\"how\"], title \"EVIDENCE BOARD\" (layout pins); cards reparent into <id>_s<k>_1; a wrong card wiggles then drops"
   },
+  "gauge_tracker": {
+   "use": "tracker",
+   "how": "tracker style gauges, hud true; progress swings the next needle to full (green). On the machine itself: turn word_machine#needle_1 / #needle_2 to [0, 0, -150]"
+  },
+  "growing_pencil": {
+   "use": "tracker",
+   "how": "tracker style pencil, hud true: a page that writes one more line per progress step, the pencil riding to the newest line"
+  },
   "how_to_card": {
    "use": "page",
    "how": "page style letter: title GOAL..., then lines MATERIALS: ..., 1. ..., 2. ... (numbers true); highlight each step"
@@ -73,6 +81,10 @@
   "invitation_card": {
    "use": "card",
    "how": "card style card, picture snowflake; opening = turn about y to show a second card with picture igloo"
+  },
+  "island_map_tracker": {
+   "use": "tracker",
+   "how": "tracker style islands, hud true, slots = islands, surprise true (the last island waits in mist until it fills); progress fills each one (a flag rises)"
   },
   "lesson_card": {
    "use": "card",
@@ -218,6 +230,13 @@
    "use": "card",
    "how": "card style card with text or picture"
   },
+  "sound_boxes": {
+   "use": [
+    "grid",
+    "card"
+   ],
+   "how": "grid rows 1, cols 3-5, upright true, cell 0.6; tokens are small sphere or disc shapes moved into each cell; blend sweep: trace the grid or highlight <id>#c1..#cN in order"
+  },
   "speech_bubble_card": {
    "use": "word_bubble",
    "how": "prop word_bubble with a text_card child, or card style strip; size from tiny to huge with size"
@@ -229,6 +248,13 @@
   "story_page": {
    "use": "page",
    "how": "page style book: lines = numbered sentences; emphasize words in <id>_l<n>, highlight a line, move <id>_l<n> toward the camera to lift it off"
+  },
+  "story_panel": {
+   "use": [
+    "card",
+    "grow"
+   ],
+   "how": "card style card with picture (the scene's prop or critter) parented in front of the page line; it rises with grow from [1,0.01,1] to [1,1,1] (or pop)"
   },
   "summary_card": {
    "use": "card",
@@ -253,6 +279,10 @@
   "timeline_board": {
    "use": "board",
    "how": "board layout timeline, labels = dates; date markers <id>_t<k> pop and highlight"
+  },
+  "town_map_tracker": {
+   "use": "tracker",
+   "how": "tracker style town, hud true, slots = places, labels short; progress lights each building's windows"
   },
   "town_sign": {
    "use": "signpost",
