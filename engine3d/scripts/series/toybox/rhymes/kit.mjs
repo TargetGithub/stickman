@@ -79,16 +79,17 @@ export const fillSlot = (i, mini, at = 0.25) => [
 /**
  * A "your turn" round (about 8 s): Robo asks, a pause with soft ticks while the child answers, the answer is heard
  * (by `answerWho`, or Robo), praise, and optionally a tracker slot fills.
+ * clips: false leaves out Robo's Wave/ThumbsUp clips (when he sits, e.g. in a boat).
  * @param {{ id:string, ask:string, answer:string, answerWho?:string, praise:string, wordId?:string, slot?:number, mini?:string, extra?:object[] }} o
  */
-export function yourTurn({ id, ask, answer, answerWho = "robo", praise, wordId, slot, mini, look, extra = [] }) {
+export function yourTurn({ id, ask, answer, answerWho = "robo", praise, wordId, slot, mini, look, extra = [], clips = true }) {
   return [
-    beat(`${id}_t1`, 2.2, [say(ask, { at: 0.1 }), { do: "clip", target: "robo", clip: "Wave", at: 0.2 }, look ? { do: "look", target: look, at: 0.1, to: [0, 1.6, 9] } : null, wordId ? word(wordId, 0.3) : null]),
+    beat(`${id}_t1`, 2.2, [say(ask, { at: 0.1 }), clips ? { do: "clip", target: "robo", clip: "Wave", at: 0.2 } : null, look ? { do: "look", target: look, at: 0.1, to: [0, 1.6, 9] } : null, wordId ? word(wordId, 0.3) : null]),
     beat(`${id}_t2`, 2.2, [{ do: "sound", sound: "tick", at: 0.3, volume: 0.5 }, { do: "sound", sound: "tick", at: 1.1, volume: 0.5 }, wordId ? { do: "wiggle", target: "bubble", at: 0.2, deg: 10, dur: 1.6 } : null]),
     beat(`${id}_t3`, 2.4, [
       answerWho === "robo" ? say(answer, { at: 0.1 }) : { do: "say", who: answerWho, text: answer, at: 0.1 },
       answerWho !== "robo" ? { do: "hop", target: answerWho, at: 0.15, height: 0.35 } : null,
-      say(praise, { at: "after" }), { do: "clip", target: "robo", clip: "ThumbsUp", at: 0.8 },
+      say(praise, { at: "after" }), clips ? { do: "clip", target: "robo", clip: "ThumbsUp", at: 0.8 } : null,
     ]),
     beat(`${id}_t4`, 1.6, [wordId ? unword(wordId, 0) : null, slot && mini ? fillSlot(slot, mini) : null, look ? { do: "look", target: look, at: 0.2, to: "ahead" } : null, ...extra]),
   ];
@@ -98,7 +99,7 @@ export function yourTurn({ id, ask, answer, answerWho = "robo", praise, wordId, 
  * A "point to it" quiz round (about 9 s): two objects step forward, Robo asks, 3-2-1, the right one is marked.
  * @param {{ id:string, q:string, left:string, right:string, answer:string, answerSay?:{who:string,text:string}, back?:Record<string, number[]>, spots?:number[][] }} o
  */
-export function quizRound({ id, q, left, right, answer, answerSay, back = {}, spots = [[-1.1, 0, 1.6], [1.1, 0, 1.6]], yes }) {
+export function quizRound({ id, q, left, right, answer, answerSay, back = {}, spots = [[-1.1, 0, 1.6], [1.1, 0, 1.6]], yes, clips = true }) {
   return [
     beat(`${id}a`, 2.6, [
       { do: "move", target: left, to: spots[0], dur: 1, ease: "sineInOut" },
@@ -112,7 +113,7 @@ export function quizRound({ id, q, left, right, answer, answerSay, back = {}, sp
       answerSay ? { do: "say", who: answerSay.who, text: answerSay.text, at: 0.3 } : null,
       { do: "wiggle", target: answer, at: 0.3, deg: 12, dur: 1 },
       say(yes ?? `Yes! The ${answer.replace(/_/g, " ")}!`, { at: answerSay ? "after" : 0.4 }),
-      { do: "clip", target: "robo", clip: "ThumbsUp", at: 0.6 },
+      clips ? { do: "clip", target: "robo", clip: "ThumbsUp", at: 0.6 } : null,
     ]),
     beat(`${id}d`, 1.2, [
       back[left] ? { do: "move", target: left, to: back[left], dur: 1, ease: "sineInOut" } : null,
