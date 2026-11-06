@@ -13,7 +13,7 @@ export const KIT2_FIELDS = {
   flow: ["points", "smooth", "closed", "count", "speed", "size", "color", "changes", "track"],
   fraction_text: ["numerator", "denominator", "whole", "color", "size", "depth"],
   place_value_chart: ["columns", "digits", "cell", "color", "bg", "digitColor", "zeroColor"],
-  text_card: ["text", "width", "size", "color", "bg"],
+  text_card: ["text", "width", "size", "color", "bg", "align", "height", "depth"],
 };
 const ENDS = { head: ["arrow", "none", "dot"], tail: ["none", "arrow", "dot"] };
 const PENS = [true, false, "pencil", "dot"];
@@ -50,7 +50,7 @@ export function checkKit2Object(o, p, { err, ids, catalog, name }) {
     }
   }
   if (!KIT2_FIELDS[o.kind]) return;
-  for (const k of ["color", "bg", "digitColor", "zeroColor"]) name(catalog.colors, o[k], "E3D_COLOR", `${p}.${k}`, "color");
+  for (const k of ["color", "bg", "digitColor", "zeroColor"]) if (!(k === "bg" && o.kind === "text_card" && o[k] === "none")) name(catalog.colors, o[k], "E3D_COLOR", `${p}.${k}`, "color");
   for (const k of ["smooth", "closed", "track"]) bool(k);
   if (o.kind === "stroke" || o.kind === "flow") {
     if (!(Array.isArray(o.points) && o.points.length >= 2 && o.points.length <= 400 && o.points.every(isVec))) err("E3D_POINTS", `${p}.points`, "points must be a list of 2-400 [x, y, z]");
@@ -89,9 +89,12 @@ export function checkKit2Object(o, p, { err, ids, catalog, name }) {
   }
   if (o.kind === "text_card") {
     if (typeof o.text !== "string" || !o.text.trim() || o.text.length > CARD_MAX_CHARS) err(o.text == null ? "E3D_REQUIRED" : "E3D_TEXT", `${p}.text`, `text must be 1-${CARD_MAX_CHARS} characters`);
-    else if (cardHeight(o) / (1.4 * withDefaults(o).size) - 1 > CARD_MAX_LINES + 0.01) err("E3D_TEXT", `${p}.text`, `text needs more than ${CARD_MAX_LINES} lines at this width and size: shorten it, widen the card or use a smaller size`);
-    range("width", (v) => isNum(v, 0.5, 12), "width must be 0.5-12 m");
-    range("size", (v) => isNum(v, 0.08, 0.6), "size must be 0.08-0.6 m");
+    else if (o.height == null && cardHeight(o) / (1.4 * withDefaults(o).size) - 1 > CARD_MAX_LINES + 0.01) err("E3D_TEXT", `${p}.text`, `text needs more than ${CARD_MAX_LINES} lines at this width and size: shorten it, widen the card or use a smaller size`);
+    range("width", (v) => isNum(v, 0.2, 12), "width must be 0.2-12 m");
+    range("size", (v) => isNum(v, 0.03, 0.6), "size must be 0.03-0.6 m");
+    range("height", (v) => isNum(v, 0.1, 8), "height must be 0.1-8 m (a fixed card height; the text shrinks to fit)");
+    range("depth", (v) => isNum(v, 0.01, 0.5), "depth must be 0.01-0.5 m");
+    if (o.align != null && !["left", "center"].includes(o.align)) err("E3D_ALIGN", `${p}.align`, 'align must be "left" or "center"');
   }
 }
 

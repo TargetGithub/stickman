@@ -183,6 +183,7 @@ export function approxHeight(obj) {
  * character, 1.4 em per line, 0.7 em of margin top and bottom (the page measures the real one).
  */
 export function cardHeight(obj) {
+  if (obj.height != null) return obj.height; // a fixed-height card (its text shrinks to fit)
   const o = withDefaults(obj);
   const perLine = Math.max(4, Math.floor((o.width - 1.4 * o.size) / (0.5 * o.size)));
   const lines = String(o.text ?? "").split("\n").reduce((n, p) => n + Math.max(1, Math.ceil(p.length / perLine)), 0);

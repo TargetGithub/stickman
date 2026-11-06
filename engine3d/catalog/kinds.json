@@ -423,9 +423,12 @@
       "fields": {
         "text": "1-300 characters, at most 6 lines when wrapped; \\n starts a new line (required)",
         "width": "card width in metres, default 4",
-        "size": "font size in metres, default 0.2 (a line is 1.4 x size)",
+        "size": "font size in metres, default 0.2 (a line is 1.4 x size), 0.03-0.6",
         "color": "text colour, default ink",
-        "bg": "card colour, default white"
+        "bg": "card colour, default white; \"none\" draws only the words (on a page or a card with its own backing)",
+        "align": "left (default) or center: each wrapped line centred (word cards, tiles)",
+        "height": "fixed card height in metres: the text is centred in it and shrinks (never grows) until it fits",
+        "depth": "card thickness in metres, default 0.06 (a chunky word tile ~0.15)"
       },
       "description": "A card with a short reading passage, word-wrapped to its width and drawn crisply; at is its bottom centre. emphasize highlights a phrase with a marker sweep.",
       "tags": [
@@ -481,6 +484,78 @@
         "retention",
         "ui",
         "icon"
+      ]
+    },
+    "card": {
+      "fields": {
+        "style": "card (default: a picture card with a rim, picture on top, word below), tile (chunky wooden word/letter tile), word (long cream word card), strip (sentence strip), quote (a quotation with a tag and a pin), name_tag",
+        "text": "0-160 characters (a word, a letter, a sentence or a quotation)",
+        "picture": "a prop, critter or shape name drawn on the card, fitted to it",
+        "pictureColor": "colour for a shape picture (or a recolor of a prop's main colour)",
+        "tag": "up to 6 characters in a small corner label: a sentence number (S3), a paragraph (P2), a page (p.4)",
+        "width": "metres (default per style; tiles, words and strips grow with the text)",
+        "height": "metres (default per style)",
+        "color": "text colour, default ink",
+        "bg": "card colour (default per style)",
+        "rim": "frame colour of card and name_tag",
+        "accent": "tag colour, default yellow",
+        "size": "scale of the whole card, default 1"
+      },
+      "description": "A card built from a backing, a text_card and an optional picture model (runtime/composite.js). Pieces: <id>_back, <id>_text (emphasize it), <id>_pic, <id>_tag, <id>_rim, <id>_pin. Flip it with turn, glow with highlight, wiggle when wrong, slide with move, snap onto a board socket with reparent. Covers picture cards, word cards and tiles, letter tiles, quote cards, sentence strips, name tags.",
+      "tags": [
+        "reading",
+        "phonics",
+        "cards",
+        "composite"
+      ]
+    },
+    "page": {
+      "fields": {
+        "style": "book (default: cream page with a spine), article (headline, rule, picture, caption, sidebar), script, scroll (rolled ends), letter",
+        "title": "headline or title",
+        "lines": "1-12 strings (sentences, paragraphs or script lines), each its own piece <id>_l1..",
+        "numbers": "number each line (default true for book and article)",
+        "picture": "a prop, critter or shape in a framed box under the title",
+        "pictureColor": "colour for a shape picture",
+        "caption": "text under the picture",
+        "sidebar": "a boxed note at the bottom",
+        "width": "metres, default 3.4 (the height follows the content)",
+        "size": "font size of the lines, default 0.14",
+        "color": "text colour, default ink",
+        "bg": "paper colour (default per style)",
+        "accent": "numbers, spine and rule colour",
+        "scale": "scale of the whole page"
+      },
+      "description": "A large page of numbered sentences (runtime/composite.js): at is its bottom centre. Every line is a text_card <id>_l<n> (emphasize words in it, highlight it, move it toward the camera to lift it off the page) with its number <id>_n<n>; also <id>_title, <id>_pic, <id>_cap, <id>_side, <id>_paper. Covers story pages, article pages, script pages, poem scrolls and big books.",
+      "tags": [
+        "reading",
+        "comprehension",
+        "text",
+        "composite"
+      ]
+    },
+    "board": {
+      "fields": {
+        "style": "cork (default), white or chalk",
+        "layout": "pins (labeled pins, two rows when more than 3), columns (T-chart, comparison chart), venn (two circles: labels[0], labels[1], optional labels[2] for both) or timeline",
+        "labels": "slot headings, 1-8 strings of up to 28 characters (venn 2-3)",
+        "rows": "cards per slot, 1-6 (default 1; columns 3)",
+        "title": "a title strip across the top",
+        "width": "board width, default 4",
+        "height": "board height, default 2.6",
+        "easel": "true (default) stands it on easel legs, 0.55 m up; false hangs it from at",
+        "color": "frame and easel colour, default wood_dark",
+        "accent": "venn circle, timeline colour",
+        "cardWidth": "width of the cards that go in the sockets, default 0.9 (a size-1 card)",
+        "cardHeight": "their height, default 1.15",
+        "scale": "scale of the whole board"
+      },
+      "description": "A board that cards pin onto (runtime/composite.js): at is the foot of the easel. Headings <id>_h<k>, pins <id>_pin<k>, and sockets <id>_s<slot>_<row>: groups scaled so a card fits; snap a card on with reparent { parent: \"<id>_s2_1\", to: [0, 0, 0] } (a wrong card: wiggle, then drop it). Covers the evidence board (who, what, where, when, why, how), T-charts, comparison charts, Venn boards and timelines.",
+      "tags": [
+        "reading",
+        "evidence",
+        "sorting",
+        "composite"
       ]
     }
   }

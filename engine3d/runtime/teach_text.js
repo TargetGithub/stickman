@@ -113,46 +113,68 @@ export function buildPlaceValueChart(o, group, { material, font, textGeometry })
  * 0-1) sweep a marker highlight behind their words, left to right.
  */
 export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
-  const S = o.size;
+  let S = o.size;
   const W = o.width;
-  const pad = 0.7 * S;
-  const lineH = 1.4 * S;
+  let pad = 0.7 * S;
+  let lineH = 1.4 * S;
+  // depth: card thickness (a chunky word tile is ~0.15); bg "none": no card at all, just the words (on a page).
+  const depth = o.depth ?? 0.06;
   const plate = (h) => {
-    const b = solid(roundedBox(W, h, 0.06, Math.min(0.12, S * 0.5)), material(o.bg, "matte"));
+    if (o.bg === "none") return;
+    const b = solid(roundedBox(W, h, depth, Math.min(0.12, S * 0.5, depth * 0.45)), material(o.bg, "matte"));
     b.position.y = h / 2;
+    b.position.z = 0.03 - depth / 2;
     group.add(b);
   };
   const doc = typeof document !== "undefined" ? document : null;
   if (!doc) {
-    plate(cardHeight(o)); // Node (tests): no canvas, so a blank card of the guessed height
+    plate(o.height ?? cardHeight(o)); // Node (tests): no canvas, so a blank card of the guessed height
     return {};
   }
   const ppm = Math.min(4096 / W, 260 * (height / 720));
   const cv = doc.createElement("canvas");
   const g = cv.getContext("2d");
-  const font = `bold ${Math.round(S * ppm)}px ${FONT}`;
-  g.font = font;
   // Wrap: words in reading order (numbered as card_words.js numbers them), explicit line breaks kept.
   const text = cardWords(o.text);
-  const maxW = (W - 2 * pad) * ppm;
-  const space = g.measureText(" ").width;
-  const lines = [];
-  for (const para of cardParagraphs(o.text)) {
-    let line = [];
-    let x = 0;
-    for (const i of para) {
-      const w = g.measureText(text[i]).width;
-      if (line.length && x + w > maxW) {
-        lines.push(line);
-        line = [];
-        x = 0;
+  let font, space, lines;
+  const wrap = () => {
+    font = `bold ${Math.round(S * ppm)}px ${FONT}`;
+    g.font = font;
+    const maxW = (W - 2 * pad) * ppm;
+    space = g.measureText(" ").width;
+    lines = [];
+    for (const para of cardParagraphs(o.text)) {
+      let line = [];
+      let x = 0;
+      for (const i of para) {
+        const w = g.measureText(text[i]).width;
+        if (line.length && x + w > maxW) {
+          lines.push(line);
+          line = [];
+          x = 0;
+        }
+        line.push({ i, x, w });
+        x += w + space;
       }
-      line.push({ i, x, w });
-      x += w + space;
+      lines.push(line);
     }
-    lines.push(line);
+    // align "center": each line centred in the card (word cards, tiles); left otherwise.
+    for (const line of lines) {
+      const used = line.length ? line.at(-1).x + line.at(-1).w : 0;
+      line.dx = o.align === "center" ? (maxW - used) / 2 / ppm : 0;
+    }
+  };
+  wrap();
+  // height: a fixed card height; the font shrinks (never grows) until the wrapped text fits, so a laid-out page
+  // never overlaps whatever the real glyph widths are.
+  for (let k = 0; o.height && k < 12 && lines.length * lineH + 2 * pad > o.height + 1e-6; k++) {
+    S *= 0.9;
+    pad = 0.7 * S;
+    lineH = 1.4 * S;
+    wrap();
   }
-  const H = lines.length * lineH + 2 * pad;
+  const H = o.height ?? lines.length * lineH + 2 * pad;
+  const y0 = (H - lines.length * lineH) / 2; // top of the first line (text centred in a fixed-height card)
   cv.width = Math.round(W * ppm);
   cv.height = Math.round(H * ppm);
   plate(H);
@@ -173,7 +195,7 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
       // The marked words, run by run (one run per line), swept in reading order.
       const runs = lines.map((line, li) => {
         const ws = line.filter((w) => w.i >= mk.words[0] && w.i <= mk.words[1]);
-        return ws.length ? { li, x0: ws[0].x - space * 0.3, x1: ws.at(-1).x + ws.at(-1).w + space * 0.3 } : null;
+        return ws.length ? { li, dx: line.dx, x0: ws[0].x - space * 0.3, x1: ws.at(-1).x + ws.at(-1).w + space * 0.3 } : null;
       }).filter(Boolean);
       const total = runs.reduce((a, r) => a + r.x1 - r.x0, 0);
       let left = k * total;
@@ -183,8 +205,8 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
         const w = Math.min(r.x1 - r.x0, left);
         if (w <= 0) break;
         left -= w;
-        const y = px(pad + r.li * lineH + 0.1 * lineH);
-        roundRect(g, px(pad) + r.x0, y, w, px(lineH * 0.84), px(lineH * 0.18));
+        const y = px(y0 + r.li * lineH + 0.1 * lineH);
+        roundRect(g, px(pad + r.dx) + r.x0, y, w, px(lineH * 0.84), px(lineH * 0.18));
       }
       g.globalAlpha = 1;
     });
@@ -192,7 +214,7 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
     g.fillStyle = ink;
     g.textBaseline = "middle";
     lines.forEach((line, li) => {
-      for (const w of line) g.fillText(text[w.i], px(pad) + w.x, px(pad + (li + 0.55) * lineH));
+      for (const w of line) g.fillText(text[w.i], px(pad + line.dx) + w.x, px(y0 + (li + 0.55) * lineH));
     });
     tex.needsUpdate = true;
   };

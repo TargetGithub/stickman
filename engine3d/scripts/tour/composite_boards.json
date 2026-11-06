@@ -1,0 +1,22 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Composite tour: boards", "seed": 5, "music": false },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 2.3, 10.5], "lookAt": [0, 1.6, 0], "fov": 42 },
+  "objects": [
+    { "id": "tc", "kind": "board", "style": "white", "layout": "columns", "labels": ["Fact", "Opinion"], "title": "FACT OR OPINION?", "at": [-4.4, 0, 0], "width": 3.6 },
+    { "id": "vn", "kind": "board", "layout": "venn", "labels": ["Frogs", "Toads"], "style": "white", "at": [0, 0, 0], "width": 4 },
+    { "id": "tl", "kind": "board", "layout": "timeline", "labels": ["egg", "tadpole", "froglet", "frog"], "style": "chalk", "at": [4.4, 0, 0], "width": 3.8 },
+    { "id": "a", "kind": "card", "style": "word", "text": "Cats have fur.", "at": [-5, 0, 2] },
+    { "id": "b", "kind": "card", "picture": "frog", "text": "smooth skin", "at": [-1, 0, 2] },
+    { "id": "e", "kind": "card", "picture": "egg", "at": [3, 0, 2] },
+    { "id": "n", "kind": "card", "style": "name_tag", "text": "Kai", "at": [1, 0, 2] }
+  ],
+  "scenes": [{ "id": "all", "beats": [
+    { "dur": 1.5, "do": [
+      { "do": "reparent", "target": "a", "parent": "tc_s1_1", "to": [0, 0, 0], "dur": 0.8 },
+      { "do": "reparent", "target": "b", "parent": "vn_s1_1", "to": [0, 0, 0], "dur": 0.8 },
+      { "do": "reparent", "target": "e", "parent": "tl_s1_1", "to": [0, 0, 0], "dur": 0.8 }
+    ] }
+  ] }]
+}

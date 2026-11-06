@@ -3,6 +3,7 @@
 // Returns { ok, errors, warnings }; each issue is { code, path, message }.
 
 import { EASE_NAMES } from "./ease.js";
+import { expandObjects, isComposite } from "./composite.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
@@ -61,6 +62,12 @@ export function validateScript(script, catalog, opts = {}) {
   };
 
   if (!script || typeof script !== "object") return { ok: false, errors: [{ code: "E3D_NOT_OBJECT", path: "", message: "script must be a JSON object" }], warnings };
+  // Composite kinds (card, page, board) are checked here, then validated as the plain pieces they expand to.
+  if (Array.isArray(script.objects) && script.objects.some(isComposite)) {
+    const ex = expandObjects(script.objects, catalog);
+    for (const e of ex.errors) (e.warn ? warnings : errors).push({ code: e.code, path: e.path, message: e.message });
+    script = { ...script, objects: ex.objects };
+  }
   if (script.kind !== "video3d") err("E3D_KIND", "kind", 'kind must be "video3d"');
   if (script.version !== 1) err("E3D_VERSION", "version", "version must be 1");
   for (const k of Object.keys(script)) if (!KNOWN_TOP.has(k)) warn("W3D_UNKNOWN_FIELD", k, `unknown top-level field "${k}"`);

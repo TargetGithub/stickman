@@ -1,0 +1,23 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Composite tour: card, page, board", "seed": 4, "music": false },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 1.6, 7.5], "lookAt": [0, 1.3, 0], "fov": 40 },
+  "objects": [
+    { "id": "pc", "kind": "card", "text": "apple", "picture": "apple", "at": [-3.2, 0.2, 1], "size": 1.1 },
+    { "id": "wt", "kind": "card", "style": "tile", "text": "ship", "at": [-3.2, 1.8, 1] },
+    { "id": "wc", "kind": "card", "style": "word", "text": "because", "at": [-1.6, 2.6, 1] },
+    { "id": "lt", "kind": "card", "style": "tile", "text": "ai", "bg": "yellow", "at": [-1.9, 1.8, 1] },
+    { "id": "qc", "kind": "card", "style": "quote", "text": "\"The fog rolled in over the quiet harbor.\"", "tag": "S3", "at": [-2.2, 0.2, 1.4], "size": 0.8 },
+    { "id": "story", "kind": "page", "title": "Otter's Lost Shell", "picture": "turtle", "caption": "Otter looks under the rocks.",
+      "lines": ["Otter floated on her back in the bay.", "She dropped her favorite shell.", "It sank down, down, down to the sand.", "Crab found it and waved a claw."],
+      "at": [1.1, 0.1, 0] },
+    { "id": "ev", "kind": "board", "labels": ["who", "what", "where", "when", "why", "how"], "title": "EVIDENCE BOARD", "at": [4.6, 0, -0.5], "width": 3.4, "height": 2.4, "rotation": [0, -20, 0] },
+    { "id": "c1", "kind": "card", "style": "word", "text": "Otter", "at": [4.0, 0, 2] }
+  ],
+  "scenes": [{ "id": "all", "beats": [
+    { "dur": 2, "do": [{ "do": "emphasize", "target": "story_l2", "words": "favorite shell", "at": 0.3 }] },
+    { "dur": 2, "do": [{ "do": "reparent", "target": "c1", "parent": "ev_s1_1", "to": [0, 0, 0], "dur": 1 }, { "do": "highlight", "target": "story_l3", "at": 0.5 }] },
+    { "dur": 2, "do": [{ "do": "move", "target": "story_l4", "to": [0.4, 0.5, 0.6], "dur": 0.8 }] }
+  ] }]
+}

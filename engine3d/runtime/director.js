@@ -3,6 +3,7 @@
 // audio cues and spoken lines. stage.js turns the result (a plan) into three.js; tools read the same plan for
 // TTS, the audio mix and the duration. Pure: no three.js, no I/O, no clocks.
 
+import { expandComposite, isComposite } from "./composite.js";
 import { parseTune, TUNE_DEFAULTS } from "./tune.js";
 import { createTimeline } from "./timeline.js";
 import { deriveRng } from "./rng.js";
@@ -82,6 +83,13 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     /** Place an object. Fields per kind: catalog/kinds.json. */
     add(spec) {
+      // card, page and board are groups of plain objects (composite.js): add the pieces instead.
+      if (isComposite(spec)) {
+        const r = expandComposite(spec, catalog);
+        if (r.errors.length) throw new Error(`object "${spec.id}": ${r.errors.map((e) => `${e.field}: ${e.message}`).join("; ")}`);
+        for (const piece of r.objects) d.add(piece);
+        return d;
+      }
       spec = retainDefaults(placeOn(spec, objects)); // on: { line, value } stands it on a number line
       if (!spec?.id || objects.has(spec.id) || spec.id === "camera" || spec.id === "stage") throw new Error(`object id "${spec?.id}" is missing or taken`);
       if (!catalog.kinds[spec.kind] && !spec.internal) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
