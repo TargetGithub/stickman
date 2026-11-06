@@ -28,7 +28,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | br08 | Humpty Dumpty: Fix It Together | Babies | Shapes and cause and effect (rhyme) | `basic_shapes_prek`, `count_to_5_prek` | `br08_humpty_dumpty.json` | uploaded | disk1:BABY-RHYMES/br08_humpty_dumpty |
 | br09 | Hot Cross Buns | Babies | Counting and sharing (rhyme) | `count_to_5_prek`, `feelings_prek` | `br09_hot_cross_buns.json` | uploaded | disk1:BABY-RHYMES/br09_hot_cross_buns |
 | br10 | Rainbow Colours Song | Babies | Colours (rhyme) | `listening_prek`, `weather_seasons_1` | `br10_rainbow_colours.json` | uploaded | disk1:BABY-RHYMES/br10_rainbow_colours |
-| br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | uploaded | – |
+| br11 | Shapes Are Everywhere | Babies | Shapes (rhyme) | `basic_shapes_prek`, `prewriting_strokes_prek` | `br11_shapes_everywhere.json` | uploaded | disk1:BABY-RHYMES/br11_shapes_everywhere |
 | br12 | This Is the Way We Start the Day | Babies | Routines (rhyme) | `healthy_habits_prek`, `listening_prek` | `br12_start_the_day.json` | uploaded | disk1:BABY-RHYMES/br12_start_the_day |
 | br13 | Pat-a-Cake, Baker's Man | Babies | Patterns (rhyme) | `ab_patterns_prek`, `capital_letters_prek`, `listening_prek` | `br13_pat_a_cake.json` | uploaded | – |
 | br14 | Rain, Rain, Go Away | Babies | Weather and colours (rhyme) | `weather_seasons_1`, `count_to_5_prek` | `br14_rain_rain_go_away.json` | uploaded | – |

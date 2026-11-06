@@ -1,0 +1,39 @@
+{
+ "description": "Shapes Are Everywhere (br11) models: a toy shape sorter box (a purple cube with circle, square, triangle, star and heart holes on its cream top, where matching flat shape pieces drop in) and a standing heart greeting card. Same format as ../models.json. Props face +z and stand on y = 0.",
+ "critters": {},
+ "props": {
+  "shape_sorter": {
+   "color": "purple",
+   "description": "A toy shape sorter box for Shapes Are Everywhere (br11): a purple cube 1.1 m wide, deep and tall at size 1 (origin at the middle of its base, front +z) with a cream top plate (top surface at y 1.13) holding five dark holes, and five little coloured shape pictures across the front (red circle, blue square, green triangle, yellow star, pink heart). Hole centres on the top at size 1 (x, z): circle (-0.32, -0.24), square (0, -0.24), triangle (0.32, -0.24), star (-0.17, 0.22), heart (0.17, 0.22), each 0.27 m across. A flat shape object of size 0.24 turned [-90, 0, 0] (lying face up; it then reaches from at toward -z, so put at.z = hole z + 0.12 x its height factor) fits a hole; move it down through the top (below y 1.1 it is hidden inside the box) and hide it. Big shapes (size 0.62 or less) behind it at z -0.95 are fully hidden from a camera in front.",
+   "tags": ["rhymes", "shapes", "shape_sorter", "toy", "box", "puzzle"],
+   "parts": [
+    { "p": "box", "at": [0, 0.55, 0], "s": [1.1, 1.1, 1.1] },
+    { "p": "box", "at": [0, 1.11, 0], "s": [1.14, 0.04, 1.14], "c": "cream", "m": "matte" },
+    { "p": "circle", "at": [-0.32, 1.132, -0.24], "s": [0.27, 0.27, 0.02], "r": [-90, 0, 0], "c": "charcoal", "m": "matte" },
+    { "p": "square", "at": [0, 1.132, -0.24], "s": [0.27, 0.27, 0.02], "r": [-90, 0, 0], "c": "charcoal", "m": "matte" },
+    { "p": "triangle", "at": [0.32, 1.132, -0.24], "s": [0.27, 0.27, 0.02], "r": [-90, 0, 0], "c": "charcoal", "m": "matte" },
+    { "p": "star", "at": [-0.17, 1.132, 0.22], "s": [0.29, 0.29, 0.02], "r": [-90, 0, 0], "c": "charcoal", "m": "matte" },
+    { "p": "heart", "at": [0.17, 1.132, 0.22], "s": [0.28, 0.28, 0.02], "r": [-90, 0, 0], "c": "charcoal", "m": "matte" },
+    { "p": "box", "at": [0, 0.56, 0.55], "s": [1.0, 0.34, 0.02], "c": "cream", "m": "matte" },
+    { "p": "circle", "at": [-0.4, 0.56, 0.575], "s": [0.15, 0.15, 0.05], "c": "red" },
+    { "p": "square", "at": [-0.2, 0.56, 0.575], "s": [0.15, 0.15, 0.05], "c": "blue" },
+    { "p": "triangle", "at": [0, 0.56, 0.575], "s": [0.15, 0.15, 0.05], "c": "green" },
+    { "p": "star", "at": [0.2, 0.56, 0.575], "s": [0.17, 0.17, 0.05], "c": "yellow" },
+    { "p": "heart", "at": [0.4, 0.56, 0.575], "s": [0.16, 0.16, 0.05], "c": "pink" }
+   ]
+  },
+  "heart_card": {
+   "color": "cream",
+   "description": "A standing greeting card with a big red heart on the front for Shapes Are Everywhere (br11): a cream card 0.6 m wide and 0.8 m tall in a pink border, facing +z, propped up by a back flap (origin at the middle of its base). The heart's centre is at [0, 0.43, 0.09], 0.38 m across: draw a heart outline around it there.",
+   "tags": ["rhymes", "shapes", "heart", "card", "love", "home"],
+   "parts": [
+    { "p": "box", "at": [0, 0.42, 0.04], "s": [0.66, 0.84, 0.02], "c": "pink" },
+    { "p": "box", "at": [0, 0.42, 0.052], "s": [0.58, 0.76, 0.02], "m": "paper" },
+    { "p": "box", "at": [0, 0.39, -0.1], "s": [0.6, 0.78, 0.02], "r": [18, 0, 0], "c": "pink" },
+    { "p": "heart", "at": [0, 0.43, 0.075], "s": [0.38, 0.38, 0.06], "c": "red" },
+    { "p": "heart", "at": [-0.21, 0.74, 0.066], "s": [0.08, 0.08, 0.03], "c": "pink" },
+    { "p": "heart", "at": [0.21, 0.12, 0.066], "s": [0.08, 0.08, 0.03], "c": "pink" }
+   ]
+  }
+ }
+}
