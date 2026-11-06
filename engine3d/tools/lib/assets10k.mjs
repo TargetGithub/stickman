@@ -4,6 +4,7 @@
 // A need is
 //   built     when its name is now in the catalog (critters/characters, props/shapes, stages, kinds/actions/series features)
 //   mapped    when catalog/asset_map.json says how to make it from what exists (`use` names a real catalog entry)
+//   script    when 10K/script_composed.json lists it (the scripts session builds it in the script from shapes)
 //   remaining otherwise.
 // A spec is unblocked when every one of its `new:` needs is built or mapped.
 
@@ -48,17 +49,17 @@ export function mapErrors(map, sets) {
  * @param {ReturnType<typeof catalogSets>} sets
  * @param {object} map  asset_map.json
  */
-export function assetStatus(needs, sets, map) {
+export function assetStatus(needs, sets, map, composed = {}) {
   const items = {};
   const perSpec = new Map();
   for (const g of GROUPS) {
     items[g] = (needs.new[g] ?? []).map((x) => {
-      const state = sets[g].has(x.name) ? "built" : map[g]?.[x.name] ? "mapped" : "remaining";
+      const state = sets[g].has(x.name) ? "built" : map[g]?.[x.name] ? "mapped" : composed[g]?.[x.name] ? "script" : "remaining";
       for (const id of x.ids) {
         if (!perSpec.has(id)) perSpec.set(id, []);
         perSpec.get(id).push({ g, name: x.name, state });
       }
-      return { ...x, group: g, state, map: map[g]?.[x.name] };
+      return { ...x, group: g, state, map: map[g]?.[x.name] ?? (state === "script" ? { use: "script", how: composed[g][x.name] } : undefined) };
     });
   }
   const specs = [...perSpec.entries()].map(([id, list]) => ({ id, band: id.slice(0, 2), open: list.filter((n) => n.state === "remaining") }));
@@ -74,11 +75,11 @@ export function assetStatusMd(st, { specCount, allSpecIds = [], when = "", reque
   const blocked = st.specs.filter((s) => s.open.length);
   const unblocked = allSpecIds.filter((id) => !withNeeds.has(id) || !blocked.some((b) => b.id === id));
   out.push(`Updated ${when}. ${specCount} specs: **${unblocked.length} unblocked** (every \`new:\` need built or mapped), ${blocked.length} still waiting.`, "");
-  out.push("| Group | Built | Mapped | Remaining | Specs still waiting on this group |", "|---|---|---|---|---|");
+  out.push("| Group | Built | Mapped | In script | Remaining | Specs still waiting on this group |", "|---|---|---|---|---|---|");
   for (const g of GROUPS) {
     const a = st.items[g];
     const waiting = new Set(blocked.filter((s) => s.open.some((n) => n.g === g)).map((s) => s.id)).size;
-    out.push(`| ${g} | ${a.filter((x) => x.state === "built").length} | ${a.filter((x) => x.state === "mapped").length} | ${a.filter((x) => x.state === "remaining").length} | ${waiting} |`);
+    out.push(`| ${g} | ${a.filter((x) => x.state === "built").length} | ${a.filter((x) => x.state === "mapped").length} | ${a.filter((x) => x.state === "script").length} | ${a.filter((x) => x.state === "remaining").length} | ${waiting} |`);
   }
   out.push("", "How to read it: **built** names can be used as written in the spec (drop the `new:` in the script). **Mapped** names are made from existing assets as the `how` column says. **Remaining** are not available yet.", "");
   if (requests) out.push("## Engine requests (10K/ENGINE_REQUESTS.md)", "", requests, "");
@@ -113,4 +114,21 @@ export function assetStatusMd(st, { specCount, allSpecIds = [], when = "", reque
   out.push("", "## Waiting specs and what they wait on", "");
   for (const s of blocked) out.push(`- ${s.id}: ${s.open.map((n) => `${n.g.slice(0, -1)} \`${n.name}\``).join(", ")}`);
   return `${out.join("\n")}\n`;
+}
+
+/**
+ * Machine-readable twin of ASSETS_STATUS.md for the scripts session (10K/assets_map.json):
+ * resolved["new:<name>"] = { group, state, use, how }, unblocked spec ids, waiting ids with their open names,
+ * and the build order of what remains (most specs first).
+ */
+export function assetMapJson(st, allSpecIds, when = "") {
+  const resolved = {};
+  for (const g of GROUPS) for (const x of st.items[g]) {
+    resolved[`new:${x.name}`] = { group: g, state: x.state, specs: x.count, ...(x.state === "built" ? { use: x.name } : x.map ? { use: x.map.use, how: x.map.how } : {}) };
+  }
+  const blocked = st.specs.filter((s) => s.open.length);
+  const bset = new Set(blocked.map((s) => s.id));
+  const order = GROUPS.flatMap((g) => st.items[g].filter((x) => x.state === "remaining").map((x) => ({ g, name: x.name, count: x.count })))
+    .sort((a, b) => b.count - a.count).map((x) => `${x.g}:${x.name}`);
+  return { updated: when, unblocked: allSpecIds.filter((id) => !bset.has(id)), waiting: Object.fromEntries(blocked.map((s) => [s.id, s.open.map((n) => `new:${n.name}`)])), buildOrder: order, resolved };
 }
