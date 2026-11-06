@@ -1,0 +1,81 @@
+{
+ "description": "Pat-a-Cake, Baker's Man (br13) models: a baking bowl with batter, a wooden mixing spoon, a plain round cake that carries a letter on top, and HUD clap and pat icons. Robo's hat is rhymes_br09.json `baker_hat`; the oven is home_school.json `oven`. Same format as ../models.json. Props face +z and stand on y = 0 (HUD icons float).",
+ "critters": {},
+ "props": {
+  "baking_bowl": {
+   "color": "sky",
+   "description": "A round mixing bowl 0.5 m across and 0.25 m tall at size 1, in its main colour (set color), with pale cake batter inside (named part \"batter\") and a little foot. Origin at the middle of its base; a mixing_spoon parented to it stands in the batter at about [0.04, 0.17, 0].",
+   "tags": ["kitchen", "bakery", "baking", "pat_a_cake", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0.012, 0], "s": [0.22, 0.024, 0.22], "m": "glossy" },
+    { "p": "bowl", "at": [0, 0.13, 0], "s": [0.5, 0.5, 0.5], "m": "glossy" },
+    { "p": "cylinder", "at": [0, 0.205, 0], "s": [0.43, 0.02, 0.43], "c": "dough", "m": "matte", "name": "batter" },
+    { "p": "sphere", "at": [0.06, 0.212, 0.05], "s": [0.12, 0.04, 0.1], "c": "dough", "m": "matte", "name": "batter" },
+    { "p": "sphere", "at": [-0.08, 0.212, -0.04], "s": [0.1, 0.035, 0.09], "c": "dough", "m": "matte", "name": "batter" }
+   ]
+  },
+  "mixing_spoon": {
+   "color": "wood",
+   "description": "A wooden mixing spoon 0.45 m long at size 1: an oval spoon head at the bottom and a round handle up +y with a knob. Origin at the tip of the head, so tilt it (rotation [0, 0, 15]) in a bowl and spin it about y to stir.",
+   "tags": ["kitchen", "bakery", "baking", "tool", "pat_a_cake", "rhymes"],
+   "parts": [
+    { "p": "sphere", "at": [0, 0.06, 0], "s": [0.085, 0.12, 0.035], "m": "matte" },
+    { "p": "cylinder", "at": [0, 0.26, 0], "s": [0.026, 0.3, 0.026], "m": "matte" },
+    { "p": "sphere", "at": [0, 0.42, 0], "s": [0.04, 0.04, 0.04], "m": "matte" }
+   ]
+  },
+  "plain_cake": {
+   "color": "pink",
+   "description": "A plain round cake on a white board: a golden sponge 0.38 m across with a cream filling line and a smooth frosted top in the main colour (set color) with little drips, 0.21 m tall at size 1. Its top is flat at y 0.21, so a letter parented to it at [0, 0.2, 0] stands on top like an icing letter. Origin at the middle of the board's bottom.",
+   "tags": ["food", "bakery", "baking", "party", "letters", "pat_a_cake", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0.01, 0], "s": [0.47, 0.02, 0.47], "c": "white", "m": "glossy" },
+    { "p": "cylinder", "at": [0, 0.1, 0], "s": [0.38, 0.16, 0.38], "c": "bun_gold", "m": "matte" },
+    { "p": "cylinder", "at": [0, 0.1, 0], "s": [0.384, 0.025, 0.384], "c": "cream", "m": "matte" },
+    { "p": "cylinder", "at": [0, 0.193, 0], "s": [0.4, 0.034, 0.4], "m": "glossy" },
+    { "p": "capsule", "at": [0, 0.165, 0.193], "s": [0.035, 0.07, 0.03], "m": "glossy" },
+    { "p": "capsule", "at": [0.137, 0.17, 0.137], "s": [0.035, 0.05, 0.03], "r": [0, 45, 0], "m": "glossy" },
+    { "p": "capsule", "at": [0.193, 0.162, 0], "s": [0.035, 0.08, 0.03], "r": [0, 90, 0], "m": "glossy" },
+    { "p": "capsule", "at": [-0.137, 0.168, 0.137], "s": [0.035, 0.06, 0.03], "r": [0, -45, 0], "m": "glossy" },
+    { "p": "capsule", "at": [-0.193, 0.165, 0], "s": [0.035, 0.07, 0.03], "r": [0, 90, 0], "m": "glossy" },
+    { "p": "capsule", "at": [0.137, 0.165, -0.137], "s": [0.035, 0.07, 0.03], "r": [0, -45, 0], "m": "glossy" },
+    { "p": "capsule", "at": [-0.137, 0.17, -0.137], "s": [0.035, 0.05, 0.03], "r": [0, 45, 0], "m": "glossy" },
+    { "p": "capsule", "at": [0, 0.168, -0.193], "s": [0.035, 0.06, 0.03], "m": "glossy" }
+   ]
+  },
+  "clap_icon": {
+   "color": "yellow",
+   "description": "A round HUD icon for CLAP: a disc 0.9 m across in its main colour (set color) with two mitten hands meeting fingertip to fingertip and little clap lines at their tips, facing +z, 0.2 m deep. Floats: its origin is the middle.",
+   "tags": ["hud", "icon", "music", "patterns", "pat_a_cake", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0, -0.04], "s": [0.9, 0.06, 0.9], "r": [90, 0, 0], "m": "matte" },
+    { "p": "cylinder", "at": [0, 0, -0.075], "s": [1.0, 0.04, 1.0], "r": [90, 0, 0], "c": "white", "m": "glossy" },
+    { "p": "sphere", "at": [-0.105, -0.06, 0.04], "s": [0.2, 0.36, 0.09], "r": [0, 0, -16], "c": "toddler_skin", "m": "matte" },
+    { "p": "capsule", "at": [-0.2, -0.12, 0.05], "s": [0.07, 0.16, 0.07], "r": [0, 0, 40], "c": "toddler_skin", "m": "matte" },
+    { "p": "sphere", "at": [0.105, -0.06, 0.04], "s": [0.2, 0.36, 0.09], "r": [0, 0, 16], "c": "toddler_skin", "m": "matte" },
+    { "p": "capsule", "at": [0.2, -0.12, 0.05], "s": [0.07, 0.16, 0.07], "r": [0, 0, -40], "c": "toddler_skin", "m": "matte" },
+    { "p": "cylinder", "at": [-0.12, -0.27, 0.04], "s": [0.17, 0.08, 0.08], "r": [0, 0, -16], "c": "orange", "m": "matte" },
+    { "p": "cylinder", "at": [0.12, -0.27, 0.04], "s": [0.17, 0.08, 0.08], "r": [0, 0, 16], "c": "orange", "m": "matte" },
+    { "p": "capsule", "at": [0, 0.25, 0.04], "s": [0.035, 0.1, 0.035], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [-0.15, 0.2, 0.04], "s": [0.035, 0.09, 0.035], "r": [0, 0, 45], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [0.15, 0.2, 0.04], "s": [0.035, 0.09, 0.035], "r": [0, 0, -45], "c": "ink", "m": "matte" }
+   ]
+  },
+  "pat_icon": {
+   "color": "sky",
+   "description": "A round HUD icon for PAT: a disc 0.9 m across in its main colour (set color) with a flat mitten hand coming down onto a blue lap, with little down lines above it, facing +z, 0.2 m deep. Floats: its origin is the middle.",
+   "tags": ["hud", "icon", "music", "patterns", "pat_a_cake", "rhymes"],
+   "parts": [
+    { "p": "cylinder", "at": [0, 0, -0.04], "s": [0.9, 0.06, 0.9], "r": [90, 0, 0], "m": "matte" },
+    { "p": "cylinder", "at": [0, 0, -0.075], "s": [1.0, 0.04, 1.0], "r": [90, 0, 0], "c": "white", "m": "glossy" },
+    { "p": "capsule", "at": [0, -0.22, 0.03], "s": [0.12, 0.6, 0.1], "r": [0, 0, 90], "c": "denim", "m": "denim" },
+    { "p": "sphere", "at": [-0.02, -0.06, 0.05], "s": [0.42, 0.16, 0.09], "r": [0, 0, -6], "c": "toddler_skin", "m": "matte" },
+    { "p": "capsule", "at": [0.06, 0.01, 0.06], "s": [0.07, 0.14, 0.07], "r": [0, 0, -60], "c": "toddler_skin", "m": "matte" },
+    { "p": "cylinder", "at": [-0.25, -0.04, 0.04], "s": [0.09, 0.09, 0.15], "r": [0, 0, 84], "c": "orange", "m": "matte" },
+    { "p": "capsule", "at": [-0.12, 0.2, 0.04], "s": [0.035, 0.1, 0.035], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [0.02, 0.24, 0.04], "s": [0.035, 0.1, 0.035], "c": "ink", "m": "matte" },
+    { "p": "capsule", "at": [0.16, 0.2, 0.04], "s": [0.035, 0.1, 0.035], "c": "ink", "m": "matte" }
+   ]
+  }
+ }
+}
