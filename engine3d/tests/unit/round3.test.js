@@ -155,12 +155,12 @@ test("character voices: Robo's catalog voice, meta.cast, say overrides, the host
   assert.deepEqual(validateScript(s, catalog).errors, []);
   const p = compileScript(s, { catalog, speech: { "s.1.1": { dur: 1 }, "s.1.2": { dur: 2 } } });
   const [a, b, c, n] = p.lines;
-  // Robo always speaks in his own catalog voice (the toddler timbre), even where an old cast entry names another.
-  assert.deepEqual([a.voice, a.pitch, a.speed], ["toddler", 1.1, undefined]);
+  // Robo always speaks in his own catalog voice (soft at pitch 1.1), even where an old cast entry names another.
+  assert.deepEqual([a.voice, a.pitch, a.speed], ["soft", 1.1, undefined]);
   assert.deepEqual([b.voice, b.pitch, b.speed], ["squeaky", 1.3, 1.1]);
   assert.equal(c.pitch, 1.2);
   // A line without who is the host's (Robo, the episode's one voiced character): his voice, no lip-sync.
-  assert.deepEqual([n.voice, n.pitch, n.who], ["toddler", 1.1, undefined]);
+  assert.deepEqual([n.voice, n.pitch, n.who], ["soft", 1.1, undefined]);
   // meta.host: null keeps those lines in meta.voice with the default pitch, as before.
   const q = compileScript({ ...s, meta: { ...s.meta, host: null } }, { catalog });
   assert.ok(!("pitch" in q.lines[3]) && q.lines[3].voice === "soft");

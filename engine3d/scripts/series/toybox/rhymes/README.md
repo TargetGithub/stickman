@@ -22,7 +22,7 @@ Final videos: `node tools/episode3d.mjs <json> --review --final --out-dir "/Volu
 
 ## Rules every rhyme follows
 
-- Length 3–4 minutes. Audience `babies` (`rhymeMeta`). Robo hosts in the toddler voice; animals and friends get
+- Length 3–4 minutes. Audience `babies` (`rhymeMeta`). Robo hosts in his catalog voice (soft, pitch 1.1, speed 0.97, as in g103); animals and friends get
   `meta.cast` voices (soft, squeaky, deep) with pitch and speed.
 - **Hook in 0–5 s**: the first beat sings or asks with an instant payoff, no backstory.
 - **An interaction every 10–15 s**: your turn (say it, clap, count on fingers), 3-2-1 countdowns, point to it,

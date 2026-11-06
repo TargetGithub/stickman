@@ -4,7 +4,7 @@
 // so every sung beat is fitted to its spoken line (fitSung).
 //
 // Conventions (see br01.mjs for a complete example):
-// - Robo ("robo") hosts in the toddler voice; every Robo line goes through say().
+// - Robo ("robo") hosts in his catalog voice (soft, pitch 1.1; speed 0.97 from rhymeMeta); every Robo line goes through say().
 // - Sung lines: sung(text, tune) — Robo speaks the line normally and a quiet glockenspiel plays one note per
 //   syllable (`tune`, one note per syllable). Scenes with sung lines set music: false.
 // - HUD: trackerObjects() (top-left row of slots), countdownObjects() (3-2-1), bubbleObjects() (word bubble).
@@ -159,9 +159,9 @@ export function writeRhyme(script, slug) {
   return out;
 }
 
-/** The standard meta for a rhyme (audience babies, toddler Robo, soft music bed). */
+/** The standard meta for a rhyme (audience babies, Robo in the soft voice at 0.97 speed like g103, soft music bed). */
 export function rhymeMeta({ title, episode, seed, skills, cast = {}, youtube, thumbnails, music = "playful", musicGain = 0.17 }) {
-  return { title, series: "toybox", episode, audience: "babies", seed, voice: "soft", voiceSpeed: 0.92, music, musicGain, skills, cast, youtube, thumbnails };
+  return { title, series: "toybox", episode, audience: "babies", seed, voice: "soft", voiceSpeed: 0.97, music, musicGain, skills, cast, youtube, thumbnails };
 }
 
 /** The standard YouTube description tail. */

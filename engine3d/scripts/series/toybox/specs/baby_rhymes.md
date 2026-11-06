@@ -22,12 +22,12 @@ Tunes: the traditional melody when it is public domain, otherwise an original tu
    (MOO!, RED, 3), characters keep moving, the camera changes angle each verse.
 4. **Progress tracker** in the HUD (a row of slots, cars or stars) that fills one item per verse, with the
    last slot teased early ("A big surprise in the barn at the end!").
-5. **Sung verses**: the toddler Robo voice says each line in its normal voice while a toy glockenspiel plays
+5. **Sung verses**: Robo says each line in his normal voice while a toy glockenspiel plays
    the melody note on every syllable (`tune`), quietly under the voice. (Beat chanting, `rhythm: true`, sounded
    choppy and is not used.)
 6. **Recap quiz** at the end ("Which one says oink? Point to it! 3, 2, 1!"), praise, a last chorus, bye-bye.
 
-Shared cast: **Robo** (host, the toddler voice, `meta.host`), plus the animals or friends each rhyme needs.
+Shared cast: **Robo** (host, his soft voice at pitch 1.1 like g103 — Sridhar's choice after br12; br01–br07, br10 and br12 used the toddler timbre — `meta.host`), plus the animals or friends each rhyme needs.
 
 ## The twenty rhymes
 
@@ -58,4 +58,4 @@ Shared cast: **Robo** (host, the toddler voice, `meta.host`), plus the animals o
 
 br01 first (render, then Sridhar's review). Then rhymes in sets, each set starting only after Sridhar confirms
 the previous one. Assets built for one rhyme go into the catalog for the others (farm stage, HUD trackers,
-word bubbles, the toddler voice, `tune`).
+word bubbles, `tune`).
