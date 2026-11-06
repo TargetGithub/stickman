@@ -139,11 +139,12 @@ function badge(ctx, text, corner, W, H, color) {
   return { x, y, w, h };
 }
 
-/** "Toy Box Friends" in the logo's block colours, small, at a corner (above a badge sharing it). */
+/** The brand mark ("Toy Box Friends"; env THUMB_BRAND overrides it, e.g. "Toybox Elementary" for the 10K videos)
+ * in the logo's block colours, small, at a corner (above a badge sharing it). */
 function mark(ctx, corner, W, H, lift = 0) {
   const size = Math.round(H * 0.036);
   const m = Math.round(H * 0.045);
-  const text = "Toy Box Friends";
+  const text = process.env.THUMB_BRAND || "Toy Box Friends";
   ctx.font = fontAt(TITLE_FONT, size);
   const widths = [...text].map((c) => ctx.measureText(c).width);
   const total = widths.reduce((a, b) => a + b, 0);
