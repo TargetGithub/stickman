@@ -128,3 +128,16 @@ for (const [text, audience, want] of shoutCases) {
     assert.equal(captionStyle(text, { audience }), want);
   });
 }
+
+test("#11 shot frames where a target moving in the same beat ends up; #14 a pop before a challenge's options", () => {
+  const s = { kind: "video3d", version: 1, meta: { seed: 1 },
+    objects: [{ id: "bear", kind: "critter", species: "bear", at: [-4, 0, 0] }, { id: "a", kind: "prop", model: "apple", at: [1, 0, 0], hidden: true }, { id: "b", kind: "prop", model: "apple", at: [2, 0, 0], hidden: true }],
+    scenes: [{ id: "s", beats: [
+      { dur: 3, do: [{ do: "shot", target: "bear", dur: 1.5 }, { do: "move", target: "bear", to: [4, 0, 0], dur: 1 }] },
+      { dur: 8, do: [{ do: "challenge", prompt: "Which one?", options: ["a", "b"], answer: "a", dur: 3 }, { do: "pop", target: "a" }, { do: "pop", target: "b" }] },
+    ] }] };
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const p = compileScript(s, { catalog });
+  assert.equal(p.timeline.valueAt("camera", "lookAt", 1.5)[0], 4);
+  for (const t of [3.5, 5, 7]) assert.ok(p.timeline.valueAt("a", "scale", t)[0] > 0.9, `option visible at ${t}`);
+});

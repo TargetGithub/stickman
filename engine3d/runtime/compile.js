@@ -54,7 +54,12 @@ export function compileScript(script, { catalog, speech = {} }) {
         if (a.keywords) sayKeywords(d, { text: a.text, keywords: a.keywords, start: t + rel, dur, catalog });
         return dur;
       };
-      (beat.do ?? []).forEach((a, ai) => {
+      // Three passes, each in script order: plain moves first, then lines and kit macros (a challenge's options pulse
+      // from how they look after a pop in the same beat), then shots (they frame where their targets end up after the
+      // beat's moves). Times come from each action's own at, so the passes change only what each step can see.
+      const pass = (a) => (a.do === "shot" ? 2 : a.do === "say" || a.do === "caption" || RETAIN_MACROS.includes(a.do) ? 1 : 0);
+      const ordered = (beat.do ?? []).map((a, ai) => [a, ai]).sort((x, y) => pass(x[0]) - pass(y[0]) || x[1] - y[1]);
+      ordered.forEach(([a, ai]) => {
         // look's at may name what to look at (an id or a point); a number is always the time.
         // A say with at: "after" starts when the beat's previous line ends (its measured clip), plus SAY_GAP.
         const rel = a.do === "say" && a.at === "after" ? sayEnd + (sayEnd > 0 ? SAY_GAP : 0) : typeof a.at === "number" ? a.at : 0;
