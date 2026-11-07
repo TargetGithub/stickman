@@ -1,6 +1,16 @@
 {
  "description": "Toybox 10K: names the specs ask for (new:...) that are made from assets the catalog already has. use = an existing catalog name (critter, character, prop, shape, stage, kind or action); how = what the script does with it. tools/assets10k.mjs reads it.",
  "characters": {
+  "backyard_birds": {
+   "use": [
+    "wren",
+    "bluebird",
+    "woodpecker",
+    "chick",
+    "thrush"
+   ],
+   "how": "Group of five small birds. wren = brown house sparrow; thrush recolored red = cardinal; chick recolored black/white = chickadee; bluebird = blue jay (size 1.1); woodpecker = downy. hop onto feeder perch."
+  },
   "grandma_bunny": {
    "use": [
     "bunny",
@@ -24,6 +34,10 @@
    "use": "owl",
    "how": "Critter owl recolored soft gray, size 0.6 with big round eyes. Use wiggle for tufty ears; nod slowly for a yawn (sleep/wake for blinks)."
   },
+  "rooster": {
+   "use": "cockerel",
+   "how": "Cockerel recolored red and gold, tall red comb. Use wiggle/pop for chest puff, flap and crow via sound; droop head with feel or nod for embarrassment."
+  },
   "tugboat": {
    "use": [
     "boat",
@@ -46,6 +60,14 @@
    ],
    "how": "Tree prop with a flat wide green disc canopy on a thin cylinder trunk; grow from seedling in a ring-shaped pit."
   },
+  "account_chart": {
+   "use": [
+    "board",
+    "card",
+    "highlight"
+   ],
+   "how": "board kind with two columns titled FIRSTHAND (eye icon) and SECONDHAND (books icon); card kinds move into sockets; highlight glows."
+  },
   "account_pages": {
    "use": [
     "page",
@@ -59,6 +81,15 @@
   "account_scroll": {
    "use": "page",
    "how": "page style scroll; pop it in, then show lines one by one (lines start hidden: hide <id>_l<n> at 0 and pop each)"
+  },
+  "account_sorter_box": {
+   "use": [
+    "box",
+    "card",
+    "paint",
+    "sound"
+   ],
+   "how": "Wooden box with two slots labeled by cards (eye, books); cards drop in; paint slot green when right, sound soft buzz and wiggle when wrong."
   },
   "acorn_store": {
    "use": [
@@ -82,6 +113,14 @@
     "card"
    ],
    "how": "Loud page prop in bright colors with a big headline; two small cards for before and after pictures, a yellow star behind the headline, tiny print lines on a back page."
+  },
+  "agree_cards": {
+   "use": [
+    "card",
+    "circle",
+    "heart"
+   ],
+   "how": "Two round card kinds (circle shape): green AGREE with thumbs-up, blue DISAGREE with thumbs-sideways, sentence frame text on each."
   },
   "alphabet_strip": {
    "use": "card",
@@ -260,12 +299,32 @@
    ],
    "how": "Table prop stretched very long, dark wood with carved cylinder legs; chairs lined along it."
   },
+  "bar_graph_board": {
+   "use": [
+    "board",
+    "chalkboard",
+    "box",
+    "grow",
+    "callout"
+   ],
+   "how": "chalkboard with title, axis line shapes and number scale text; colored box bars grow up from zero; callout value tag on top; highlight to glow."
+  },
   "bat_house": {
    "use": [
     "box",
     "bat"
    ],
    "how": "A wooden box on a post tube with a slot and five small flat bat silhouettes on the roof."
+  },
+  "bat_wing_diagram": {
+   "use": [
+    "board",
+    "card",
+    "wedge",
+    "callout",
+    "highlight"
+   ],
+   "how": "Large board with a dark bat body and a spread wing built from wedges and thin boxes (finger bones); callout labels with leader lines glow on highlight; hand outline card overlays."
   },
   "bath_boat": {
    "use": "boat",
@@ -1422,6 +1481,14 @@
    "use": "leaf",
    "how": "Four leaf shapes in green around a small cylinder stem; held up like a lucky charm."
   },
+  "clover_patch": {
+   "use": [
+    "disc",
+    "grass",
+    "flower"
+   ],
+   "how": "Flat green disc with small grass tufts and tiny white flower props scattered on it, size about 0.8 m."
+  },
   "club_badge": {
    "use": [
     "disc",
@@ -1573,6 +1640,22 @@
    "use": "card",
    "how": "Two big jigsaw card pieces with pictures that slide together with move."
   },
+  "condor_model": {
+   "use": [
+    "eagle",
+    "grow",
+    "move"
+   ],
+   "how": "eagle critter recolored black with white underwing patches and a pink-orange head; grow/turn wings open slowly beside a metre_stick as tape."
+  },
+  "condor_puppet": {
+   "use": [
+    "hand",
+    "egg",
+    "sphere"
+   ],
+   "how": "hand prop with a pink-orange egg-shaped head plus two small dark sphere eyes and a small cone beak on the fingers; nod gently to feed a chick."
+  },
   "conductor_baton": {
    "use": "pencil",
    "how": "Use pencil recolored white, scaled thin; action move beats time, path leaves a light trail."
@@ -1680,6 +1763,15 @@
    "use": "plate",
    "how": "A thin plate hinged at a top edge; turn it down to hide a word card."
   },
+  "covered_wagon": {
+   "use": [
+    "box",
+    "dome",
+    "ring",
+    "cylinder"
+   ],
+   "how": "Brown box bed, white dome canopy, four large ring wheels with thin boxes as spokes, cylinder yoke pole in front; move slowly with spin wheels, wiggle for creaks."
+  },
   "crab_band": {
    "use": [
     "crab",
@@ -1706,6 +1798,16 @@
     "circle"
    ],
    "how": "Board kind frame with five circle step lights labeled circle, box, base, together, check; action lights in order, step 3 red."
+  },
+  "crank_globe": {
+   "use": [
+    "globe",
+    "cylinder",
+    "owl",
+    "lamp",
+    "spin"
+   ],
+   "how": "globe on a cylinder stand with a small crank (torus+box) turning it via spin; tiny owl critter parented to the globe; lamp aimed at it for lit/dark halves."
   },
   "crate": {
    "use": "box",
@@ -1799,6 +1901,15 @@
     "card"
    ],
    "how": "a low flat box tray in grey with a card style name_tag CUT; unused cards move into it and shrink with grow to 0.01 (fade)"
+  },
+  "cycle_wheel": {
+   "use": [
+    "disc",
+    "card",
+    "arrow",
+    "wiggle"
+   ],
+   "how": "Large wood disc with a crank cylinder, four station cards around the rim and arrow shapes between; spin to turn; wiggle for a jam when cards are out of order."
   },
   "daisy": {
    "use": "flower",
@@ -2103,6 +2214,14 @@
    ],
    "how": "A pale sphere in a clear bowl; grow it puffy slowly with tiny bubble spheres."
   },
+  "dragonfly": {
+   "use": [
+    "butterfly",
+    "hop",
+    "path"
+   ],
+   "how": "butterfly critter recolored slim blue, scaled narrow; path hovers and darts over pond water, wiggle for wing buzz."
+  },
   "drawer": {
    "use": [
     "box",
@@ -2337,6 +2456,14 @@
    ],
    "how": "A card on a tube stand with a printed fact; turn to flip and show the corrected fact."
   },
+  "exhibit_sign": {
+   "use": [
+    "card",
+    "box",
+    "drop"
+   ],
+   "how": "card kind (style strip) with date, event line and picture, hung by two small box hooks on a wood plate; drop to fall, move back up to rehang."
+  },
   "exhibit_stand": {
    "use": [
     "cylinder",
@@ -2419,6 +2546,16 @@
    ],
    "how": "Long thin tube with small warm-yellow spheres; steady glow via lights; roll up with grow to nothing."
   },
+  "fallen_log_pond": {
+   "use": [
+    "pond_front",
+    "log",
+    "turtle",
+    "tadpole",
+    "disc"
+   ],
+   "how": "pond_front stage with a large log across the outlet; turtles on top, tadpoles under in shade, murky green-brown disc water behind the log via paint."
+  },
   "family_heart_garland": {
    "use": [
     "heart",
@@ -2475,6 +2612,15 @@
     "hay_bale"
    ],
    "how": "Use fence in a square with a garden_gate and straw plates on the ground and a nest."
+  },
+  "farm_stage": {
+   "use": [
+    "hay_bale",
+    "fence",
+    "card",
+    "table"
+   ],
+   "how": "Four hay_bale props in a row, dark blue backdrop with stars at z -6, fence behind, four small tables as script stands each with a name card."
   },
   "farm_trailer": {
    "use": [
@@ -3138,6 +3284,16 @@
    ],
    "how": "Wide blue wedge with white foam spheres at the crest; move up the sand and back slowly, covering items with foam."
   },
+  "geyser": {
+   "use": [
+    "cone",
+    "spout_gush",
+    "water_spout",
+    "burst",
+    "cloud"
+   ],
+   "how": "Pale cone on a flat disc; spout_gush grows tall with white cloud props rising as steam; burst splash at the top; falls back slowly. Cutaway: transparent tube."
+  },
   "giant_flower_model": {
    "use": [
     "flower",
@@ -3329,6 +3485,16 @@
    ],
    "how": "Gold ring shape with a tiny star on top; glint with highlight."
   },
+  "golden_gate_model": {
+   "use": [
+    "plate",
+    "box",
+    "tube",
+    "show",
+    "cloud"
+   ],
+   "how": "Orange plates for the roadway, two tall orange boxes as towers, two tubes for swooping cables over a blue plate strait; show each part in turn moving up; cloud fog drifts under."
+  },
   "golden_key": {
    "use": [
     "crown",
@@ -3340,6 +3506,14 @@
   "golden_slipper": {
    "use": "shoe",
    "how": "Shoe prop recolored gold, scaled small, with shimmer via highlight."
+  },
+  "golden_spike": {
+   "use": [
+    "cone",
+    "cylinder",
+    "highlight"
+   ],
+   "how": "Gold cone (point down) with a cylinder head on a small box stand; highlight glints."
   },
   "gong": {
    "use": [
@@ -3440,6 +3614,22 @@
   "hand_puppet": {
    "use": "critter",
    "how": "any critter at size 0.4 with a cylinder sleeve below it (box or cylinder shape in a bright color); it bobs with hop"
+  },
+  "handwritten_journal": {
+   "use": [
+    "notebook",
+    "page",
+    "highlight"
+   ],
+   "how": "Notebook prop opened with a page kind showing dated numbered lines and tiny star/heart doodles; highlight glows the page, mark circles single words."
+  },
+  "handwritten_letter": {
+   "use": [
+    "page",
+    "highlight",
+    "move"
+   ],
+   "how": "page kind (letter style) with date, greeting line at top, signature at bottom; highlight lines to glow, move each line up 0.2 m to lift."
   },
   "harbor_flags": {
    "use": [
@@ -3715,6 +3905,15 @@
     "move"
    ],
    "how": "page kind with a title and numbered step lines plus a small diagram card; highlight a step or lift it off with move as a strip card."
+  },
+  "hubble_model": {
+   "use": [
+    "cylinder",
+    "plate",
+    "globe",
+    "orbit"
+   ],
+   "how": "Silver cylinder with a small dark disc lid and two flat plate panels; orbit slowly around a glowing globe Earth."
   },
   "hummingbird_model": {
    "use": [
@@ -4817,6 +5016,15 @@
    ],
    "how": "Card kind as a paper tag on a thin string torus; words glow via highlight."
   },
+  "lunar_lander_model": {
+   "use": [
+    "box",
+    "cylinder",
+    "disc",
+    "cone"
+   ],
+   "how": "Gold box body with a cylinder top, four thin box legs, a small ladder of boxes; gray disc base, tiny flag on a tube pole and small footprint ovals."
+  },
   "lupine": {
    "use": [
     "flower",
@@ -5570,6 +5778,15 @@
    "use": "card",
    "how": "A sepia card with a seaside picture; flip with turn to show handwriting."
   },
+  "old_tv_set": {
+   "use": [
+    "box",
+    "plate",
+    "cylinder",
+    "card"
+   ],
+   "how": "Wooden box cabinet with a gray plate screen showing card images; two thin cylinder rabbit ears angled up; wiggle the picture for fuzz."
+  },
   "olive_bowl": {
    "use": [
     "bowl",
@@ -5625,6 +5842,15 @@
     "card"
    ],
    "how": "A thin tube rail with small cards clipped on; slide with move; text or fraction on each card."
+  },
+  "oregon_trail_map": {
+   "use": [
+    "plate",
+    "signpost",
+    "path",
+    "grow"
+   ],
+   "how": "Long tan plate map with a stroke path along it; small flags (signpost) for Chimney Rock and Independence Rock; grow cone/dome shapes under the plate to rise into hills."
   },
   "organizer_frames": {
    "use": [
@@ -5739,6 +5965,15 @@
     "paint_pots"
    ],
    "how": "Open box with hinged lid and a rule card inside; three paint_pots wells glow and empty via lights as doors are used."
+  },
+  "painted_banner": {
+   "use": [
+    "plate",
+    "cylinder",
+    "globe",
+    "wiggle"
+   ],
+   "how": "Long cloth plate on two cylinder poles with a small green globe and the words GIVE EARTH A CHANCE as text card; wiggle gently for ripples."
   },
   "pair_of_shoes": {
    "use": "shoe",
@@ -5993,6 +6228,15 @@
   "park_hedge": {
    "use": "bush",
    "how": "Bush prop stretched long and low in green; things peek out above it with move."
+  },
+  "park_map": {
+   "use": [
+    "plate",
+    "drop",
+    "wedge",
+    "grow"
+   ],
+   "how": "Tan plate map with drop-shaped geyser icons, blue disc lakes and thin box roads; open to unfold flat, grow dome/wedge hills to rise into a landscape."
   },
   "park_path": {
    "use": [
@@ -7068,6 +7312,14 @@
    ],
    "how": "Round circle badge with cone mountain and small flower on it, built from five pieces that click together."
   },
+  "ranger_hat": {
+   "use": [
+    "hat",
+    "brim",
+    "dome"
+   ],
+   "how": "hat prop recolored tan with a flat wide brim (brim shape), a low dome crown and a dark band."
+  },
   "rattle": {
    "use": [
     "sphere",
@@ -7104,6 +7356,13 @@
     "card"
    ],
    "how": "Wooden board with a row of numbered hooks; each holds a sentence strip card."
+  },
+  "reason_scale": {
+   "use": [
+    "balance_scale",
+    "card"
+   ],
+   "how": "balance_scale with pans labeled BEAVER and FROG; reason cards with page number tags drop into pans; turn the beam to tip and settle."
   },
   "recipe_card": {
    "use": "page",
@@ -7155,6 +7414,14 @@
     "plate"
    ],
    "how": "Machine of a box with hopper cone, gold and blue tube chutes and a plate printer slot that rolls out paper."
+  },
+  "red_balloon": {
+   "use": [
+    "balloon",
+    "stroke",
+    "path"
+   ],
+   "how": "balloon recolored shiny red with a long curly stroke string; path rises slowly; move down gently when snagging on a grandfather_clock hand."
   },
   "red_farm_gate": {
    "use": [
@@ -7819,9 +8086,26 @@
    "use": "card",
    "how": "Folded card with categories and scores; open with turn."
   },
+  "scratchy_scarf": {
+   "use": [
+    "tube",
+    "torus",
+    "paint"
+   ],
+   "how": "Orange tube wrapped around the neck with torus rings for stitches and small sphere fuzz bits; paint inner side soft blue for the fleece later."
+  },
   "script_page": {
    "use": "page",
    "how": "page style script: lines like \"FOX: Hello!\"; highlight one line at a time"
+  },
+  "script_stand": {
+   "use": [
+    "page",
+    "cylinder",
+    "plate",
+    "highlight"
+   ],
+   "how": "Thin cylinder pole with a tilted plate base holding a page kind of script lines; highlight lines in the character's color."
   },
   "scroll_map": {
    "use": "page",
@@ -8235,6 +8519,15 @@
    ],
    "how": "shelf prop with five colored shelves labeled by name_tag cards; drop word tile cards on with a clink and highlight the shelf color."
   },
+  "signal_word_switch": {
+   "use": [
+    "board",
+    "box",
+    "card",
+    "highlight"
+   ],
+   "how": "Board panel with three box levers labeled BECAUSE, SO and AS A RESULT (turn to flip); highlight arrow shapes on a sentence strip card."
+  },
   "signal_word_tiles": {
    "use": "card",
    "how": "Chunky card tiles with signal words; each shown on its own."
@@ -8462,6 +8755,15 @@
     "snowflake"
    ],
    "how": "White dome mound across a train track; action hide or shrink melts to puddle prop when cleared."
+  },
+  "snowplow": {
+   "use": [
+    "digger",
+    "wedge",
+    "lamp",
+    "snow"
+   ],
+   "how": "digger recolored orange, wedge blade angled at the front, lamp amber on the roof glowing steadily; move along road pushing snow aside."
   },
   "sofa": {
    "use": [
@@ -8747,6 +9049,15 @@
     "cone"
    ],
    "how": "Small lamp on a stand throwing a cone beam; action lights only the words inside quotation marks."
+  },
+  "speech_vs_thought_board": {
+   "use": [
+    "board",
+    "word_bubble",
+    "cloud",
+    "circle"
+   ],
+   "how": "board with two halves: SAID uses word_bubble with a pointy tail, THOUGHT a cloud shape with small circles; lines card move to one side."
   },
   "speed_dial": {
    "use": [
@@ -9685,6 +9996,15 @@
    ],
    "how": "Cloud shape card with a trail of small circles that pin beside a character."
   },
+  "thought_bubble_cloud": {
+   "use": [
+    "cloud",
+    "circle",
+    "text_card",
+    "pop"
+   ],
+   "how": "Soft white cloud with two or three small circle shapes trailing down to the head, text_card in italic thought words on top; pop with stars sparkle."
+  },
   "thought_cloud": {
    "use": "cloud",
    "how": "A soft white cloud above a character's head; pop pictures in and out."
@@ -9723,6 +10043,14 @@
     "padlock"
    ],
    "how": "Wooden fence gate with three padlock props in a row; one clicks open."
+  },
+  "three_view_chart": {
+   "use": [
+    "board",
+    "card",
+    "highlight"
+   ],
+   "how": "board with three columns headed PIG, GIRAFFE, BLUEBIRD and rows I SAW, I FELT, I WANTED; note cards fill sockets; highlight one gold cell per column."
   },
   "ticket_bag": {
    "use": [
@@ -9769,6 +10097,16 @@
     "highlight"
    ],
    "how": "Gold cylinder with a disc screw lid, half buried (clip) under a bench; highlight softly when found."
+  },
+  "time_machine_booth": {
+   "use": [
+    "cylinder",
+    "dome",
+    "clock",
+    "spin",
+    "lamp"
+   ],
+   "how": "Brass cylinder with a glass dome, a dial from clock kind (spin when traveling), a box lever; lamp soft glow, wiggle for hum."
   },
   "timeline_board": {
    "use": "board",
@@ -10621,6 +10959,14 @@
     "butterfly"
    ],
    "how": "card style strip (wide) with two butterfly critters on it: a monarch (butterfly recolor purple -> orange) and a smaller viceroy at size 0.8; highlight a thin black stroke across the viceroy's wing"
+  },
+  "view_t_chart": {
+   "use": [
+    "board",
+    "card",
+    "highlight"
+   ],
+   "how": "board T-chart headed GOAT SAYS and BUNNY SAYS with rows WHAT HAPPENED, HOW I FELT, WHAT I THOUGHT; cards fill each cell; highlight matching facts across both sides."
   },
   "viewing_balloon": {
    "use": [
@@ -11504,6 +11850,16 @@
    ],
    "how": "classroom preset, lights evening (white for morning, gold for noon). Many alarm_clock props on the back wall at z -5, big grandfather_clock, chair as stool, a rocking toy horse."
   },
+  "club_room": {
+   "use": [
+    "classroom",
+    "table",
+    "board",
+    "flower",
+    "box"
+   ],
+   "how": "classroom preset, bright lights. At z < -2 a long wall of board for pinning cards, tables with craft props, flower props on a box windowsill and a big blue box window at z -6."
+  },
   "coral_cove": {
    "use": [
     "pond",
@@ -11632,6 +11988,18 @@
     "box"
    ],
    "how": "night preset (lights moonlit blue; evening/warm for lamp-on). rug with two bed props as sleeping bags, pillow cushions, nightstand with a lamp kind, round window box with moon."
+  },
+  "geyser_basin": {
+   "use": [
+    "desert",
+    "disc",
+    "bench",
+    "fence",
+    "cloud",
+    "dome",
+    "cone"
+   ],
+   "how": "desert preset with pale ground, brown plank box boardwalk, bench, blue and orange disc hot pools, low cone Old Faithful at z -4, steam clouds, small house far at z -8."
   },
   "grammar_garage_bay": {
    "use": [
@@ -11791,6 +12159,15 @@
     "cloud"
    ],
    "how": "studio preset, bright. Long painted plate runway on the floor, models (rocket, paper_plane, cloud) hung with tubes high, big box doors open at z -6 showing sky."
+  },
+  "museum_night_room": {
+   "use": [
+    "museum_hall",
+    "box",
+    "cylinder",
+    "moon"
+   ],
+   "how": "museum_hall with lights dim and blue; moon prop in a box window frame at z -6, glass box cases, a cylinder perch bar high for bats."
   },
   "nature_trail": {
    "use": [
