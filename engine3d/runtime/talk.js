@@ -155,7 +155,7 @@ export function createCharacterRig(model, faces) {
   const keptFaces = new Map(); // face mesh -> its Surprised influence before the talk boost
   const point = createArmAim(model, keep);
   const rig = (t, s) => {
-    if (s.point > 0.001 && s.pointAt) point(s.pointArm === "left" ? "L" : "R", s.pointAt, s.point);
+    for (const S of ["L", "R"]) if (s[`point${S}`] > 0.001 && s[`pointAt${S}`]) point(S, s[`pointAt${S}`], s[`point${S}`]);
     const k = s.talk ?? 0;
     if (!head || (!s.look && !k)) return;
     const [yaw, pitch] = s.look ?? [0, 0];

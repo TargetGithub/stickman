@@ -131,8 +131,15 @@ test("point: Robo's arm props; a critter's wing turns to aim at the target", () 
     .add({ id: "owl", kind: "critter", species: "owl", at: [-3, 0, 0] });
   d.point("robo", { at: 1, to: "apple", dur: 0.5, hold: 1 });
   const tl = d.timeline;
-  assert.equal(tl.valueAt("robo", "pointArm", 1), "left"); // the apple is on his left (+x)
-  for (const [t, want] of [[0.9, 0], [1.5, 1], [2.2, 1], [3.1, 0]]) near(tl.valueAt("robo", "point", t), want);
+  // The apple is on his left (+x): the left arm's track moves, the right one stays down.
+  for (const [t, want] of [[0.9, 0], [1.5, 1], [2.2, 1], [3.1, 0]]) near(tl.valueAt("robo", "pointL", t), want);
+  assert.equal(tl.valueAt("robo", "pointR", 1.5) ?? 0, 0);
+  // Both arms at once (a T): each arm keeps its own target.
+  d.point("robo", { at: 5, to: [-9, 1.4, 0], arm: "right", hold: 1 });
+  d.point("robo", { at: 5, to: [9, 1.4, 0], arm: "left", hold: 1 });
+  near(tl.valueAt("robo", "pointL", 5.8), 1);
+  near(tl.valueAt("robo", "pointR", 5.8), 1);
+  assert.equal(tl.valueAt("robo", "pointAtR", 5.8)[0], -9);
   assert.ok(tl.valueAt("robo", "look", 1.5)[0] > 20, "his head turns toward it");
   const target = [-1, 1.5, 0];
   d.point("owl", { at: 0, to: target, dur: 0.5, hold: 1, look: false });

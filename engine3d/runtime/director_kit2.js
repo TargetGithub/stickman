@@ -204,13 +204,13 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       const side = arm ?? (apply(rel, target.map((x, i) => x - pos[i]))[0] >= 0 ? "left" : "right");
       if (side !== "left" && side !== "right") throw new Error(`point: arm must be "left" or "right"`);
       if (o.kind === "character") {
-        baseOnce(id, "point", 0);
-        baseOnce(id, "pointAt", [0, 0, 0]);
-        baseOnce(id, "pointArm", "right");
-        tl.set(id, "pointAt", target.map(r6), t);
-        tl.set(id, "pointArm", side, t);
-        tl.tween(id, "point", { start: t, dur, from: 0, to: 1, ease: "quadOut" });
-        tl.tween(id, "point", { start: end + hold, dur, to: 0, ease: "quadInOut" });
+        // Each arm has its own track (pointL / pointR), so both can point at once: a T, a V, arms up.
+        const S = side === "left" ? "L" : "R";
+        baseOnce(id, `point${S}`, 0);
+        baseOnce(id, `pointAt${S}`, [0, 0, 0]);
+        tl.set(id, `pointAt${S}`, target.map(r6), t);
+        tl.tween(id, `point${S}`, { start: t, dur, from: 0, to: 1, ease: "quadOut" });
+        tl.tween(id, `point${S}`, { start: end + hold, dur, to: 0, ease: "quadInOut" });
       } else {
         const def = pointPart(o, catalog, part);
         if (!def) throw new Error(`point: "${id}" has no arm or wing part to point with`);

@@ -1,0 +1,18 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Robo makes a T and a V", "seed": 17, "music": false },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.5, 7], "lookAt": [0, 1.1, 0], "fov": 42 },
+  "objects": [
+    { "id": "robo", "kind": "character", "character": "robot", "at": [-2.2, 0, 0] },
+    { "id": "robo2", "kind": "character", "character": "robot", "at": [2.2, 0, 0] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 3, "do": [
+      { "do": "point", "target": "robo", "to": [-12, 1.45, 0], "arm": "right", "hold": 2.5, "look": false },
+      { "do": "point", "target": "robo", "to": [8, 1.45, 0], "arm": "left", "hold": 2.5, "look": false },
+      { "do": "point", "target": "robo2", "to": [-1, 6, 0.5], "arm": "right", "hold": 2.5, "look": false },
+      { "do": "point", "target": "robo2", "to": [5.4, 6, 0.5], "arm": "left", "hold": 2.5, "look": false }
+    ] }
+  ] }]
+}
