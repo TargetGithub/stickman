@@ -103,7 +103,7 @@ export function sayKeywords(d, { text, keywords, start, dur, catalog }) {
   for (const [word, spec] of Object.entries(keywords)) {
     const share = wordShare(text, word);
     if (share == null) throw new Error(`keyword "${word}" is not in the line "${text}"`);
-    const o = typeof spec === "string" ? (ICONS[spec] ? { icon: spec } : catalog.props[spec] ? { model: spec } : { text: spec }) : spec;
+    const o = typeof spec === "string" ? (ICONS[spec] ? { icon: spec } : catalog.props[spec] ? { model: spec } : catalog.shapes[spec] && spec.length > 4 ? { shape: spec } : { text: spec }) : spec;
     d.keyword(null, { ...o, word, at: start + dur * share });
   }
 }

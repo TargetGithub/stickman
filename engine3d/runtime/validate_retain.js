@@ -80,7 +80,7 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
     for (const [w, spec] of Object.entries(a.keywords)) {
       if (typeof a.text === "string" && wordShare(a.text, w) == null) err("E3D_KEYWORD", `${p}.keywords.${w}`, `"${w}" is not a word in the line`);
       if (typeof spec === "string") {
-        if (!ICONS[spec] && !catalog.props[spec] && !isStr(spec, 1, 4)) err("E3D_KEYWORD", `${p}.keywords.${w}`, `"${spec}" is not an icon (${Object.keys(ICONS).join(", ")}), a prop or 1-4 characters`);
+        if (!ICONS[spec] && !catalog.props[spec] && !catalog.shapes[spec] && !isStr(spec, 1, 4)) err("E3D_KEYWORD", `${p}.keywords.${w}`, `"${spec}" is not an icon (${Object.keys(ICONS).join(", ")}), a prop, a shape or 1-4 characters`);
       } else keywordFace(spec ?? {}, `${p}.keywords.${w}`);
     }
     return false;
@@ -157,8 +157,9 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
     if (a.count != null && !(Number.isInteger(a.count) && a.count >= 0 && a.count <= 5)) err("E3D_RANGE", `${p}.count`, "count must be 0-5");
   }
   function keywordFace(k, path) {
-    const faces = ["icon", "model", "text"].filter((f) => k[f] != null);
-    if (faces.length !== 1) return err("E3D_KEYWORD", path, "a keyword needs exactly one of icon, model or text");
+    const faces = ["icon", "model", "shape", "text"].filter((f) => k[f] != null);
+    if (faces.length !== 1) return err("E3D_KEYWORD", path, "a keyword needs exactly one of icon, model, shape or text");
+    if (k.shape != null && !catalog.shapes[k.shape]) err("E3D_SHAPE", `${path}.shape`, `unknown shape "${k.shape}"`);
     if (k.icon != null && !ICONS[k.icon]) err("E3D_ICON", `${path}.icon`, `unknown icon "${k.icon}" (known: ${Object.keys(ICONS).join(", ")})`);
     if (k.model != null && !catalog.props[k.model]) err("E3D_MODEL", `${path}.model`, `unknown prop "${k.model}"`);
     if (k.text != null && !isStr(String(k.text), 1, 4)) err("E3D_KEYWORD", `${path}.text`, "text must be 1-4 characters");

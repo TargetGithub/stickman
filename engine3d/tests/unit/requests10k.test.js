@@ -141,3 +141,13 @@ test("#11 shot frames where a target moving in the same beat ends up; #14 a pop 
   assert.equal(p.timeline.valueAt("camera", "lookAt", 1.5)[0], 4);
   for (const t of [3.5, 5, 7]) assert.ok(p.timeline.valueAt("a", "scale", t)[0] > 0.9, `option visible at ${t}`);
 });
+
+test("#13 keyword badges take a shape", () => {
+  const s = script("keyword_shapes");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.ok(plan.objects.some((o) => o.kind === "shape" && o.shape === "bottle" && o.hud), "a bottle on a HUD badge");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].shape = "nope_shape";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_SHAPE"));
+});

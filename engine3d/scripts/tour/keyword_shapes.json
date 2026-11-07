@@ -1,0 +1,11 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Keyword badges with shapes", "seed": 16, "music": false },
+  "stage": { "preset": "kitchen" },
+  "camera": { "position": [0, 1.5, 7], "lookAt": [0, 0.8, 0], "fov": 40 },
+  "objects": [ { "id": "bear", "kind": "critter", "species": "baby_bear", "at": [0, 0, 0] } ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2.5, "do": [{ "do": "keyword", "word": "plate", "shape": "plate", "color": "orange", "side": "left" }, { "do": "keyword", "word": "bottle", "shape": "bottle", "color": "sky", "side": "right", "at": 0.3 }] },
+    { "dur": 2.5, "do": [{ "do": "say", "text": "A plate and a bottle.", "keywords": { "bottle": "bottle" } }] }
+  ] }]
+}

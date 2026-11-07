@@ -54,7 +54,20 @@ export function installRetain(d, { catalog, tl, obj, now, sound, objects }) {
     const key = JSON.stringify(face);
     const free = badges.find((b) => b.key === key && b.until <= t);
     if (free) return free;
-    const id = internal({ kind: "badge", hud: true, hidden: true, at: [0, 0, 0], ...face, model: undefined });
+    const id = internal({ kind: "badge", hud: true, hidden: true, at: [0, 0, 0], ...face, model: undefined, shape: undefined, shapeColor: undefined });
+    if (face.shape) {
+      if (!catalog.shapes[face.shape]) throw new Error(`badge: unknown shape "${face.shape}"`);
+      // Shapes that lie flat (a plate, a coin, a hoop) are stood up to face the viewer, a little tilted back.
+      if (["plate", "disc", "hoop"].includes(face.shape)) {
+        const size = (BADGE_D * 0.62) / 1;
+        d.add({ id: `${id}_m`, kind: "shape", shape: face.shape, color: face.shapeColor, hud: true, parent: id, internal: true, size, rotation: [70, 0, 0], at: [0, 0, 0.22] });
+      } else {
+        const b = localBounds({ kind: "shape", shape: face.shape }, catalog);
+        const w = Math.max(b.max[0] - b.min[0], b.max[1] - b.min[1], 0.05);
+        const size = (BADGE_D * 0.56) / w;
+        d.add({ id: `${id}_m`, kind: "shape", shape: face.shape, color: face.shapeColor, hud: true, parent: id, internal: true, size, at: [-(b.min[0] + b.max[0]) * size / 2, -(b.min[1] + b.max[1]) * size / 2, 0.22] });
+      }
+    }
     if (face.model) {
       const m = catalog.props[face.model];
       if (!m) throw new Error(`badge: unknown prop "${face.model}"`);
@@ -161,9 +174,10 @@ export function installRetain(d, { catalog, tl, obj, now, sound, objects }) {
     },
 
     /** Pop a keyword badge at the side of the frame away from what is being taught. */
-    keyword(_, { at: t = 0, word, icon, model, text, color, sound: s, dur = 2.2, side = "auto", avoid } = {}) {
-      const face = icon ? { icon } : model ? { model } : { text: String(text ?? word ?? "?").slice(0, 4) };
-      face.color = color ?? (icon ? ICONS[icon]?.color : null) ?? "yellow";
+    keyword(_, { at: t = 0, word, icon, model, shape, text, color, sound: s, dur = 2.2, side = "auto", avoid } = {}) {
+      const face = icon ? { icon } : model ? { model } : shape ? { shape, shapeColor: color ?? "blue" } : { text: String(text ?? word ?? "?").slice(0, 4) };
+      // A shape face (a plate, a bottle, a straw) takes color for the shape; its badge stays yellow.
+      face.color = (shape ? null : color) ?? (icon ? ICONS[icon]?.color : null) ?? "yellow";
       const cam = { position: now("camera", "position", t), lookAt: now("camera", "lookAt", t), fov: now("camera", "fov", t) };
       let avoidX = 0;
       if (avoid != null) {
