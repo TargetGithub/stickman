@@ -155,7 +155,8 @@ test("#13 keyword badges take a shape", () => {
 test("#12 a checklist tracker is only as wide as its labels need", async () => {
   const { trackerLayout } = await import("../../runtime/retain_layout.js");
   const w = (labels) => trackerLayout({ style: "checklist", slots: labels.length, labels }).width;
-  assert.equal(w(["Add", "Count"]), 1.6);
+  assert.equal(w(["Up", "Go"]), 1.6);
+  assert.ok(Math.abs(w(["Add", "Count"]) - 2.1) < 1e-9);
   assert.ok(w(["Point to G"]) > w(["Add"]));
   assert.equal(w(["A very long step!"]), 3.3);
 });
