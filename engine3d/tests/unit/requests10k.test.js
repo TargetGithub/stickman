@@ -151,3 +151,11 @@ test("#13 keyword badges take a shape", () => {
   bad.scenes[0].beats[0].do[0].shape = "nope_shape";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_SHAPE"));
 });
+
+test("#12 a checklist tracker is only as wide as its labels need", async () => {
+  const { trackerLayout } = await import("../../runtime/retain_layout.js");
+  const w = (labels) => trackerLayout({ style: "checklist", slots: labels.length, labels }).width;
+  assert.equal(w(["Add", "Count"]), 1.6);
+  assert.ok(w(["Point to G"]) > w(["Add"]));
+  assert.equal(w(["A very long step!"]), 3.3);
+});

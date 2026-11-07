@@ -1,0 +1,13 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Tracker checklist", "seed": 6, "music": false },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.6, 7.5], "lookAt": [0, 1.2, 0], "fov": 40 },
+  "objects": [ { "id": "tr", "kind": "tracker", "hud": true, "style": "checklist", "slots": 3, "labels": ["Find G", "Say guh", "Point to G"], "surprise": true, "color": "blue", "accent": "yellow" } ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 1, "do": [{ "do": "progress", "target": "tr" }] },
+    { "dur": 1, "do": [{ "do": "progress", "target": "tr" }] },
+    { "dur": 1, "do": [{ "do": "progress", "target": "tr" }] },
+    { "dur": 1.5, "do": [] }
+  ] }]
+}

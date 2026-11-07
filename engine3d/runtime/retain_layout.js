@@ -48,7 +48,10 @@ export function trackerLayout(o) {
     return { slots, width: ENGINE + n * (CAR + GAP), height: 0.95, engine: [ENGINE / 2, 0.02, 0] };
   }
   if (style === "checklist") {
-    const width = 3.3;
+    // As wide as its longest line needs (a 0.24 label is about 0.23 per character in Andika Bold, starting 0.74 in, plus a margin),
+    // so short steps make a compact card that stays clear of the picture: 1.6 to 3.3.
+    const texts = Array.from({ length: n }, (_, i) => (o.surprise && i === n - 1 ? (typeof o.surprise === "string" ? o.surprise : "Surprise!") : o.labels?.[i] ?? `Step ${i + 1}`));
+    const width = Math.min(3.3, Math.max(1.6, 0.95 + 0.23 * Math.max(...texts.map((x) => String(x).length))));
     const slots = Array.from({ length: n }, (_, i) => [0.4, -0.38 - i * ROW, 0]);
     return { slots, width, height: 0.26 + n * ROW };
   }
