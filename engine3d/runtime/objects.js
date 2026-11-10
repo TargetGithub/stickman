@@ -121,12 +121,12 @@ function bookFont(font, forms) {
 export function buildObject(o, { catalog, assets, material, seed, height = 1080, handles }) {
   // retext: a word or a card whose text changes (o.texts, director_letters.js) is one sub-object per text, the
   // timeline's textIdx choosing which shows. Pieces (word#c3) follow the first text; marks, the text they were made on.
-  if (o.texts?.length > 1 && (o.kind === "letter" || o.kind === "text_card")) {
+  if (o.texts?.length > 1 && (o.kind === "letter" || o.kind === "text_card" || o.kind === "number_block")) {
     const group = new THREE.Group();
     group.name = o.id;
     const ctx = { catalog, assets, material, seed, height, handles };
     // Each text draws only the emphasize marks made while it showed (mark.text, default the first).
-    const subs = o.texts.map((text, i) => buildObject({ ...o, text, texts: undefined, marks: o.marks?.map((m) => ((m.text ?? 0) === i ? m : { ...m, off: true })) }, ctx));
+    const subs = o.texts.map((text, i) => buildObject({ ...o, text, ...(o.kind === "number_block" ? { value: Number(text) } : {}), texts: undefined, marks: o.marks?.map((m) => ((m.text ?? 0) === i ? m : { ...m, off: true })) }, ctx));
     for (const b of subs) group.add(b.group);
     return {
       group,

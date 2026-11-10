@@ -1,0 +1,26 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "#79, #82, #83: picture cards with side-on toys turned to show their length (pictureRotation), a name tag with bigger type (textSize), a blue rowing boat (color), a number block retexted 6 -> 7, the first and last letters of a word swapped (slip -> plis) and two tiles swapping places.",
+  "meta": { "title": "Cards, retext and swap", "seed": 79 },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 2, 11], "lookAt": [0, 1.3, 0], "fov": 42 },
+  "objects": [
+    { "id": "c1", "kind": "card", "text": "bike", "picture": "bike", "at": [-4.2, 1.6, 0] },
+    { "id": "c2", "kind": "card", "text": "bike", "picture": "bike", "pictureRotation": [0, 90, 0], "at": [-3.1, 1.6, 0] },
+    { "id": "c3", "kind": "card", "text": "van", "picture": "van", "pictureRotation": [0, 90, 0], "at": [-2, 1.6, 0] },
+    { "id": "c4", "kind": "card", "text": "boat", "picture": "rowing_boat", "pictureRotation": [0, 90, 0], "at": [-0.9, 1.6, 0] },
+    { "id": "tag1", "kind": "card", "style": "name_tag", "text": "Pip", "at": [1, 2.2, 0] },
+    { "id": "tag2", "kind": "card", "style": "name_tag", "text": "Pip", "textSize": 0.3, "at": [2.6, 2.0, 0] },
+    { "id": "boat", "kind": "prop", "model": "rowing_boat", "color": "blue", "rotation": [0, 90, 0], "at": [3.6, 0, -1], "scale": [0.6, 0.6, 0.6] },
+    { "id": "nb", "kind": "number_block", "value": 6, "size": 0.8, "at": [-4, 0, 1.5] },
+    { "id": "w", "kind": "letter", "text": "slip", "size": 0.7, "at": [-1.2, 0, 1.5] },
+    { "id": "ta", "kind": "card", "style": "tile", "text": "a", "at": [1.4, 0, 1.5] },
+    { "id": "tb", "kind": "card", "style": "tile", "text": "b", "at": [2.4, 0, 1.5] }
+  ],
+  "scenes": [{ "id": "a", "beats": [{ "dur": 3, "do": [
+    { "do": "retext", "target": "nb", "text": "7", "at": 0.5 },
+    { "do": "swap", "target": "w", "chars": [1, 4], "at": 0.6 },
+    { "do": "swap", "target": "ta", "with": "tb", "at": 1.2 }
+  ] }] }]
+}

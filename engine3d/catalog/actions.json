@@ -110,7 +110,7 @@
     "dur": "default 0.5: the old text dips and the new one pops back",
     "sound": "default pop; false for none"
    },
-   "description": "Change a word or a card's text in place: go -> got, a fixed word in a sentence, a speech bubble's new line. No copies to manage. Pieces (word#c3) and emphasize keep following the first text.",
+   "description": "Change a word or a card's text in place: go -> got, a fixed word in a sentence, a speech bubble's new line. No copies to manage. Pieces (word#c3) and emphasize keep following the first text. A number_block takes its new value as text (\"7\").",
    "tags": [
     "phonics",
     "text",
@@ -150,6 +150,22 @@
     "syllables",
     "stress",
     "letters"
+   ]
+  },
+  "swap": {
+   "params": {
+    "target": "a letter word (with chars) or any object (with with)",
+    "chars": "two character numbers of the word to swap ([2, 4]: \"slip\" -> \"spil\"... the letters keep their colours)",
+    "with": "another object on the same parent (tiles in a row): the two swap places",
+    "dur": "seconds, default 0.8",
+    "sound": "default whoosh; false for none"
+   },
+   "description": "Reorder: two letters of a word, or two objects, arc to each other's places, one passing in front and one behind so they never cross through each other.",
+   "tags": [
+    "phonics",
+    "letters",
+    "order",
+    "sorting"
    ]
   },
   "lie": {

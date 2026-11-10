@@ -149,6 +149,42 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       if (s) sound(s, t, { volume: 0.5 });
       return d;
     },
+    /**
+     * Swap two letters of a word (chars: [2, 4]) or two objects (with: another id on the same parent): each arcs to
+     * the other's place, one passing in front and one behind, so they never cross through each other.
+     */
+    swap(id, { at: t = 0, chars, with: other, dur = 0.8, sound: s = "whoosh" } = {}) {
+      const o = obj(id);
+      let pairs;
+      let h;
+      if (chars) {
+        if (o.kind !== "letter") throw new Error(`swap: "${id}" is a ${o.kind}; chars needs a letter word`);
+        const L = letterLayout(o, catalog.fontMetrics);
+        const [i, j] = chars;
+        if (!L[i - 1] || !L[j - 1] || i === j) throw new Error(`swap "${id}": chars must be two different character numbers 1-${L.length}`);
+        // Each piece's offset moves by the gap between the two letters' current spots.
+        const spot = (n) => L[n - 1].x + (now(`${id}#c${n}`, "position", t)?.[0] ?? 0);
+        const dx = spot(j) - spot(i);
+        const p = (n) => now(`${id}#c${n}`, "position", t) ?? [0, 0, 0];
+        pairs = [[`${id}#c${i}`, p(i), [p(i)[0] + dx, p(i)[1], p(i)[2]]], [`${id}#c${j}`, p(j), [p(j)[0] - dx, p(j)[1], p(j)[2]]]];
+        h = 0.35 * (o.size ?? 1);
+      } else {
+        const b = obj(other);
+        if ((o.parent ?? null) !== (b.parent ?? null)) throw new Error(`swap: "${id}" and "${other}" must share a parent`);
+        const pa = now(id, "position", t);
+        const pb = now(other, "position", t);
+        pairs = [[id, pa, pb], [other, pb, pa]];
+        h = 0.4;
+      }
+      pairs.forEach(([key, from, to], k) => {
+        const side = k ? -1 : 1; // the first passes in front, the second behind
+        const mid = [(from[0] + to[0]) / 2, Math.max(from[1], to[1]) + h, (from[2] + to[2]) / 2 + side * h];
+        tl.tween(key, "position", { start: t, dur: dur / 2, from, to: mid, ease: "sineOut" });
+        tl.tween(key, "position", { start: t + dur / 2, dur: dur / 2, from: mid, to, ease: "sineIn" });
+      });
+      if (s) sound(s, t, { volume: 0.5 });
+      return d;
+    },
     /** Turn a book's next leaf over the spine (back: true turns the last one back). Leaves: <id>_leaf1 .. */
     turn_page(id, { at: t = 0, dur = 1.2, back = false, sound: s = "whoosh" } = {}) {
       const leaves = [];
@@ -172,7 +208,7 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       return d;
     },
     /**
-     * Change a word or a card's text in place ("go" -> "got", a fixed word in a sentence): at the switch the old text
+     * Change a word, a card's text or a number block's value in place ("go" -> "got", a fixed word in a sentence): at the switch the old text
      * dips and the new one pops back to full size. Targets a letter word, a text_card, or a card (its <id>_text).
      * Pieces (word#c3) keep following the object's first text; emphasize after a retext marks the new text.
      */
@@ -182,8 +218,11 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
         try { o = obj(`${id}_text`); } catch { throw new Error(`retext: "${id}" has no text`); }
         id = o.id;
       }
-      if (o.kind !== "letter" && o.kind !== "text_card") throw new Error(`retext: "${id}" is a ${o.kind}, not a letter word or a text card`);
-      o.texts ??= [o.text];
+      if (o.kind !== "letter" && o.kind !== "text_card" && o.kind !== "number_block") throw new Error(`retext: "${id}" is a ${o.kind}, not a letter word, a text card or a number block`);
+      // A number block's "text" is its new value (0-999): "7" turns a 6 block into a 7.
+      if (o.kind === "number_block" && !/^\d{1,3}$/.test(String(text))) throw new Error(`retext "${id}": a number block's text is a number 0-999`);
+      o.texts ??= [o.kind === "number_block" ? String(o.value) : o.text];
+      text = String(text);
       if (!o.texts.includes(text)) o.texts.push(text);
       const idx = o.texts.indexOf(text);
       tl.base(id, "textIdx", 0);

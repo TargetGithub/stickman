@@ -16,7 +16,7 @@ export const isComposite = (o) => COMPOSITE_KINDS.includes(o?.kind);
 
 const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on"];
 export const COMPOSITE_FIELDS = {
-  card: ["style", "text", "picture", "pictureColor", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
+  card: ["style", "text", "textSize", "picture", "pictureColor", "pictureRotation", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
   page: ["style", "title", "lines", "numbers", "picture", "pictureColor", "relief", "caption", "sidebar", "width", "size", "color", "bg", "accent", "scale"],
   board: ["style", "layout", "labels", "rows", "title", "width", "height", "easel", "color", "accent", "cardWidth", "cardHeight", "scale"],
   ...COMPOSITE2_FIELDS,
@@ -48,15 +48,28 @@ const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
 const slab = (x, y, front, w, h, t, color, material = "matte") => ({ kind: "shape", shape: "plate", color, material, at: r3([x, y, front - t]), rotation: [90, 0, 0], scale: r3([w, t / 0.04, h]) });
 
 /** The object that shows a picture: a prop, critter or shape name, fitted into a w × h box standing on (x, y). */
-function picture(name, color, catalog, x, y, front, w, h, relief = 0.4) {
+function picture(name, color, catalog, x, y, front, w, h, relief = 0.4, yaw = 0) {
   const kind = catalog.props?.[name] ? "prop" : catalog.critters?.[name] ? "critter" : catalog.shapes?.[name] ? "shape" : null;
   if (!kind) return null;
   const spec = kind === "prop" ? { kind, model: name } : kind === "critter" ? { kind, species: name } : { kind, shape: name, color: color ?? "red" };
   if (color && kind !== "shape") spec.color = color;
-  const b = localBounds({ ...spec, size: 1 }, catalog);
+  const b0 = localBounds({ ...spec, size: 1 }, catalog);
+  // yaw (pictureRotation [0, yaw, 0]): a side-on toy (a bike, a boat) turned to show its length. The flattening
+  // goes on whichever local axis now points at the camera (z when facing it, x when turned a quarter).
+  const a = (yaw * Math.PI) / 180;
+  const c = Math.cos(a);
+  const sn = Math.sin(a);
+  const xs = [];
+  const zs = [];
+  for (const px of [b0.min[0], b0.max[0]]) for (const pz of [b0.min[2], b0.max[2]]) {
+    xs.push(px * c + pz * sn);
+    zs.push(-px * sn + pz * c);
+  }
+  const b = yaw ? { min: [Math.min(...xs), b0.min[1], Math.min(...zs)], max: [Math.max(...xs), b0.max[1], Math.max(...zs)] } : b0;
   const size = Math.min(h / Math.max(0.05, b.max[1] - b.min[1]), w / Math.max(0.05, b.max[0] - b.min[0]));
+  const flatX = Math.abs(sn) > Math.abs(c);
   // Flattened to 40% depth: a raised picture on the card, not a toy sticking out toward the camera.
-  return { ...spec, size: Math.round(size * 1000) / 1000, scale: [1, 1, relief], at: r3([x, y - b.min[1] * size, front - b.min[2] * size * relief + 0.01]) };
+  return { ...spec, size: Math.round(size * 1000) / 1000, scale: flatX ? [relief, 1, 1] : [1, 1, relief], ...(yaw ? { rotation: [0, yaw, 0] } : {}), at: r3([x - ((b.min[0] + b.max[0]) / 2) * size * (yaw ? 1 : 0), y - b.min[1] * size, front - b.min[2] * size * relief + 0.01]) };
 }
 
 function expandCard(o, catalog, add, err) {
@@ -66,9 +79,16 @@ function expandCard(o, catalog, add, err) {
   if (!text && !o.picture) err("E3D_REQUIRED", "text", "a card needs text, a picture or both");
   if (text.length > 160) err("E3D_TEXT", "text", "card text must be at most 160 characters");
   const n = text.length;
-  const W = o.width ?? st.w ?? { tile: Math.max(0.62, n * 0.18 + 0.25), word: Math.max(1, n * 0.13 + 0.5), strip: clamp(n * 0.085 + 0.6, 1.6, 7) }[o.style];
-  const textH = text ? (o.style === "quote" ? cardHeight({ text, width: W - 0.2, size: st.text }) : (o.picture && (o.style ?? "card") === "card" ? 0.32 : (o.height ?? st.h) - 0.08)) : 0;
-  const H = o.height ?? st.h ?? textH + 0.3;
+  // textSize: the type size (metres) instead of the style's; word, tile and strip cards grow with it (#79, #82).
+  if (o.textSize != null && !(typeof o.textSize === "number" && o.textSize >= 0.05 && o.textSize <= 0.6)) err("E3D_RANGE", "textSize", "textSize must be 0.05-0.6 m");
+  const ts = typeof o.textSize === "number" ? o.textSize : st.text;
+  const g = ts / st.text;
+  // A name tag grows with its type too (it fits a name of up to about 6 letters at its own size).
+  const W = o.width ?? (o.style === "name_tag" ? Math.max(st.w * g, n * 0.1 * g + 0.25) : st.w) ?? { tile: Math.max(0.62, n * 0.18 * g + 0.25), word: Math.max(1, n * 0.13 * g + 0.5), strip: clamp(n * 0.085 * g + 0.6, 1.6, 7) }[o.style];
+  // Bigger type on a word, tile or strip card makes the card taller to match.
+  const hBase = st.h != null && g > 1 && (o.style ?? "card") !== "card" ? st.h * g : st.h;
+  const textH = text ? (o.style === "quote" ? cardHeight({ text, width: W - 0.2, size: ts }) : (o.picture && (o.style ?? "card") === "card" ? Math.max(0.32, 0.32 * g) : (o.height ?? hBase) - 0.08)) : 0;
+  const H = o.height ?? hBase ?? textH + 0.3;
   const front = st.t;
   const bg = o.bg ?? st.bg;
   const rim = o.rim ?? st.rim;
@@ -78,13 +98,15 @@ function expandCard(o, catalog, add, err) {
     const top = text && (o.style ?? "card") === "card" ? textH + 0.08 : 0.08;
     // relief: how far the picture stands out (a share of its depth): 0.4 by default, 0.05 nearly flat for stacks.
     if (o.relief != null && !(typeof o.relief === "number" && o.relief >= 0.02 && o.relief <= 1)) err("E3D_RANGE", "relief", "relief must be 0.02-1");
-    const pic = picture(o.picture, o.pictureColor, catalog, 0, top, front, W * 0.78, (H - top - 0.08) * 0.92, o.relief ?? 0.4);
+    const pr = o.pictureRotation;
+    if (pr != null && !(Array.isArray(pr) && pr.length === 3 && pr[0] === 0 && pr[2] === 0 && Number.isFinite(pr[1]))) err("E3D_VEC", "pictureRotation", "pictureRotation turns the picture about y only: [0, degrees, 0]");
+    const pic = picture(o.picture, o.pictureColor, catalog, 0, top, front, W * 0.78, (H - top - 0.08) * 0.92, o.relief ?? 0.4, Array.isArray(pr) ? pr[1] ?? 0 : 0);
     if (!pic) err("E3D_PICTURE", "picture", `picture "${o.picture}" is not a prop, critter or shape`);
     else add("pic", pic);
   }
   if (text) {
     const y = o.picture && (o.style ?? "card") === "card" ? 0.06 : o.style === "quote" ? 0.12 : 0.04;
-    add("text", { kind: "text_card", text, width: W - 0.12, height: textH, size: st.text, align: st.align, bg: "none", pad: 0.15, color: o.color ?? "ink", at: r3([0, y, front + 0.001]) });
+    add("text", { kind: "text_card", text, width: W - 0.12, height: textH, size: ts, align: st.align, bg: "none", pad: 0.15, color: o.color ?? "ink", at: r3([0, y, front + 0.001]) });
   }
   if (o.tag != null) {
     if (String(o.tag).length > 6) err("E3D_TEXT", "tag", "tag must be at most 6 characters");

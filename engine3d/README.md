@@ -350,6 +350,8 @@ covers the kit.
 
 | Need | How |
 |---|---|
+| Bigger card type, side-on pictures | A `card` takes `textSize` (metres; word, tile, strip and name_tag cards grow with it) and `pictureRotation: [0, 90, 0]` (a bike, van or boat shown along its length, refitted to the card). |
+| Reorder letters or tiles; change a number block | `swap { target: <word>, chars: [1, 4] }` or `swap { target: "tile1", with: "tile3" }` (same parent): the two arc to each other's places, one in front, one behind. `retext` on a `number_block` takes its new value as text ("7"). Tour: `scripts/tour/cards_swap.json`. |
 | Answer cards for a challenge | `choices` (`options`: 2-6 texts, `style` word / tile / strip, `layout` auto / row / column): cards `<id>_o1..` side by side when they fit, stacked as a list when the answers are long. Tour: `scripts/tour/choices_fit.json`. |
 | A fast hook | `hook` (`question`, `behind`, `target` hidden, `style` lift / slide / tip / open / none, `answer`, `answerWho`): a question, a "?" cue, two cover wiggles, then the reveal with a sparkle, a glow and a camera push. `target` may be a list of up to 4 ids (a small group pops in turn); `style: "none"` moves no cover, so the answer pops out of the object or part (`behind: "mach#slot"`, `out: [0, 0, 0.8]` slides it out of the slot). Tour: `scripts/tour/school_stage_hooks.json`. |
 | A countdown | kind `timer_ring` (HUD, top right by default; it drains green, then yellow, then orange) and `timer` (`dur`, `count`, `keep`); with no target, the action adds a ring. Sounds: `timer_tick`, `timer_chime`. |

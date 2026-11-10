@@ -304,3 +304,28 @@ test("#80 a letter riding in a train_car stands on its lowest point; #75 the tra
   assert.equal(plan.objects.find((o) => o.id === "b").lift, "baseline", "an explicit lift wins");
   assert.match(catalog.props.train_engine.description, /\[0, 180, 0\]/);
 });
+
+test("#79 textSize grows name tags, retext on a number_block, swap letters and tiles; #82 pictureRotation; #83 rowing_boat takes color", async () => {
+  const { expandComposite } = await import("../../runtime/composite.js");
+  const text = (o) => expandComposite({ id: "n", kind: "card", ...o }, catalog).objects.find((x) => x.id === "n_text");
+  assert.ok(text({ style: "name_tag", text: "Pip", textSize: 0.3 }).width > 2 * text({ style: "name_tag", text: "Pip" }).width);
+  const pic = expandComposite({ id: "n", kind: "card", text: "bike", picture: "bike", pictureRotation: [0, 90, 0] }, catalog).objects.find((x) => x.id === "n_pic");
+  assert.deepEqual([pic.rotation, pic.scale], [[0, 90, 0], [0.4, 1, 1]], "turned a quarter, flattened along its own x");
+  assert.ok(expandComposite({ id: "n", kind: "card", picture: "bike", pictureRotation: [10, 90, 0] }, catalog).errors.some((e) => e.code === "E3D_VEC"));
+  assert.ok(!catalog.props.rowing_boat.parts[0].c, "the hull is the main colour");
+  const s = script("cards_swap");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.deepEqual(plan.objects.find((o) => o.id === "nb").texts, ["6", "7"]);
+  const tl = plan.timeline;
+  const x1 = tl.valueAt("w#c1", "position", 2.9)[0];
+  const x4 = tl.valueAt("w#c4", "position", 2.9)[0];
+  assert.ok(x1 > 0.5 && Math.abs(x1 + x4) < 1e-9, "s and p trade places");
+  const near = (a, b) => a.every((v, i) => Math.abs(v - b[i]) < 1e-9);
+  assert.ok(near(tl.valueAt("ta", "position", 2.9), [2.4, 0, 1.5]) && near(tl.valueAt("tb", "position", 2.9), [1.4, 0, 1.5]), "the tiles trade places");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].text = "seven";
+  bad.scenes[0].beats[0].do[1].chars = [2, 2];
+  bad.scenes[0].beats[0].do[2].with = "c1_text";
+  assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code), ["E3D_TEXT", "E3D_CHARS", "E3D_SWAP"]);
+});
