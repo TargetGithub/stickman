@@ -77,3 +77,13 @@ test("tracker styles islands, town, gauges and pencil lay out and validate", asy
     assert.deepEqual(validateScript(s, catalog).errors, [], style);
   }
 });
+
+test("#53 a card's word keeps its size (tight margin); #58 relief flattens its picture", () => {
+  const tile = expandComposite({ id: "t", kind: "card", style: "tile", text: "ship" }, catalog).objects.find((x) => x.id === "t_text");
+  assert.equal(tile.pad, 0.15);
+  assert.ok(2 * tile.pad * tile.size + 1.4 * tile.size <= tile.height + 1e-9, "one line fits the tile without shrinking");
+  const pic = (relief) => expandComposite({ id: "c", kind: "card", text: "apple", picture: "apple", ...(relief ? { relief } : {}) }, catalog).objects.find((x) => x.id === "c_pic");
+  assert.deepEqual(pic().scale, [1, 1, 0.4]);
+  assert.deepEqual(pic(0.05).scale, [1, 1, 0.05]);
+  assert.ok(expandComposite({ id: "c", kind: "card", picture: "apple", relief: 5 }, catalog).errors.some((e) => e.code === "E3D_RANGE"));
+});

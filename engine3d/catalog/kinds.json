@@ -428,7 +428,8 @@
         "bg": "card colour, default white; \"none\" draws only the words (on a page or a card with its own backing)",
         "align": "left (default) or center: each wrapped line centred (word cards, tiles)",
         "height": "fixed card height in metres: the text is centred in it and shrinks (never grows) until it fits",
-        "depth": "card thickness in metres, default 0.06 (a chunky word tile ~0.15)"
+        "depth": "card thickness in metres, default 0.06 (a chunky word tile ~0.15)",
+        "pad": "margin round the text as a share of the font size, default 0.7 (cards use 0.15 so big words keep their size)"
       },
       "description": "A card with a short reading passage, word-wrapped to its width and drawn crisply; at is its bottom centre. emphasize highlights a phrase with a marker sweep.",
       "tags": [
@@ -492,6 +493,7 @@
         "text": "0-160 characters (a word, a letter, a sentence or a quotation)",
         "picture": "a prop, critter or shape name drawn on the card, fitted to it",
         "pictureColor": "colour for a shape picture (or a recolor of a prop's main colour)",
+   "relief": "how far the picture stands out, as a share of its depth: 0.4 (default, a raised picture) down to 0.05 (nearly flat, for cards stacked in a pile or pages)",
         "tag": "up to 6 characters in a small corner label: a sentence number (S3), a paragraph (P2), a page (p.4)",
         "width": "metres (default per style; tiles, words and strips grow with the text)",
         "height": "metres (default per style)",

@@ -15,8 +15,8 @@ export const isComposite = (o) => COMPOSITE_KINDS.includes(o?.kind);
 
 const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on"];
 export const COMPOSITE_FIELDS = {
-  card: ["style", "text", "picture", "pictureColor", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
-  page: ["style", "title", "lines", "numbers", "picture", "pictureColor", "caption", "sidebar", "width", "size", "color", "bg", "accent", "scale"],
+  card: ["style", "text", "picture", "pictureColor", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
+  page: ["style", "title", "lines", "numbers", "picture", "pictureColor", "relief", "caption", "sidebar", "width", "size", "color", "bg", "accent", "scale"],
   board: ["style", "layout", "labels", "rows", "title", "width", "height", "easel", "color", "accent", "cardWidth", "cardHeight", "scale"],
 };
 
@@ -46,7 +46,7 @@ const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
 const slab = (x, y, front, w, h, t, color, material = "matte") => ({ kind: "shape", shape: "plate", color, material, at: r3([x, y, front - t]), rotation: [90, 0, 0], scale: r3([w, t / 0.04, h]) });
 
 /** The object that shows a picture: a prop, critter or shape name, fitted into a w × h box standing on (x, y). */
-function picture(name, color, catalog, x, y, front, w, h) {
+function picture(name, color, catalog, x, y, front, w, h, relief = 0.4) {
   const kind = catalog.props?.[name] ? "prop" : catalog.critters?.[name] ? "critter" : catalog.shapes?.[name] ? "shape" : null;
   if (!kind) return null;
   const spec = kind === "prop" ? { kind, model: name } : kind === "critter" ? { kind, species: name } : { kind, shape: name, color: color ?? "red" };
@@ -54,7 +54,7 @@ function picture(name, color, catalog, x, y, front, w, h) {
   const b = localBounds({ ...spec, size: 1 }, catalog);
   const size = Math.min(h / Math.max(0.05, b.max[1] - b.min[1]), w / Math.max(0.05, b.max[0] - b.min[0]));
   // Flattened to 40% depth: a raised picture on the card, not a toy sticking out toward the camera.
-  return { ...spec, size: Math.round(size * 1000) / 1000, scale: [1, 1, 0.4], at: r3([x, y - b.min[1] * size, front - b.min[2] * size * 0.4 + 0.01]) };
+  return { ...spec, size: Math.round(size * 1000) / 1000, scale: [1, 1, relief], at: r3([x, y - b.min[1] * size, front - b.min[2] * size * relief + 0.01]) };
 }
 
 function expandCard(o, catalog, add, err) {
@@ -74,13 +74,15 @@ function expandCard(o, catalog, add, err) {
   add("back", slab(0, H / 2, front, W, H, front, bg, o.style === "tile" ? "toy" : "matte"));
   if (o.picture) {
     const top = text && (o.style ?? "card") === "card" ? textH + 0.08 : 0.08;
-    const pic = picture(o.picture, o.pictureColor, catalog, 0, top, front, W * 0.78, (H - top - 0.08) * 0.92);
+    // relief: how far the picture stands out (a share of its depth): 0.4 by default, 0.05 nearly flat for stacks.
+    if (o.relief != null && !(typeof o.relief === "number" && o.relief >= 0.02 && o.relief <= 1)) err("E3D_RANGE", "relief", "relief must be 0.02-1");
+    const pic = picture(o.picture, o.pictureColor, catalog, 0, top, front, W * 0.78, (H - top - 0.08) * 0.92, o.relief ?? 0.4);
     if (!pic) err("E3D_PICTURE", "picture", `picture "${o.picture}" is not a prop, critter or shape`);
     else add("pic", pic);
   }
   if (text) {
     const y = o.picture && (o.style ?? "card") === "card" ? 0.06 : o.style === "quote" ? 0.12 : 0.04;
-    add("text", { kind: "text_card", text, width: W - 0.12, height: textH, size: st.text, align: st.align, bg: "none", color: o.color ?? "ink", at: r3([0, y, front + 0.001]) });
+    add("text", { kind: "text_card", text, width: W - 0.12, height: textH, size: st.text, align: st.align, bg: "none", pad: 0.15, color: o.color ?? "ink", at: r3([0, y, front + 0.001]) });
   }
   if (o.tag != null) {
     if (String(o.tag).length > 6) err("E3D_TEXT", "tag", "tag must be at most 6 characters");
@@ -127,7 +129,7 @@ function expandPage(o, catalog, add, err) {
   if (o.picture) {
     y -= picH + 0.1;
     add("frame", slab(0, y + picH / 2, 0.012, picH * 1.5, picH, 0.012, "sky"));
-    const pic = picture(o.picture, o.pictureColor, catalog, 0, y + 0.05, 0.012, picH * 1.4, picH - 0.1);
+    const pic = picture(o.picture, o.pictureColor, catalog, 0, y + 0.05, 0.012, picH * 1.4, picH - 0.1, o.relief ?? 0.4);
     if (!pic) err("E3D_PICTURE", "picture", `picture "${o.picture}" is not a prop, critter or shape`);
     else add("pic", pic);
     if (capH) {

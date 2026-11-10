@@ -115,7 +115,10 @@ export function buildPlaceValueChart(o, group, { material, font, textGeometry })
 export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
   let S = o.size;
   const W = o.width;
-  let pad = 0.7 * S;
+  // pad: the margin round the text, as a share of the font size (default 0.7); a card's word uses a tight one so a
+  // fixed-height tile keeps its big type instead of shrinking it to fit the margins.
+  const padK = o.pad ?? 0.7;
+  let pad = padK * S;
   let lineH = 1.4 * S;
   // depth: card thickness (a chunky word tile is ~0.15); bg "none": no card at all, just the words (on a page).
   const depth = o.depth ?? 0.06;
@@ -169,7 +172,7 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
   // never overlaps whatever the real glyph widths are.
   for (let k = 0; o.height && k < 12 && lines.length * lineH + 2 * pad > o.height + 1e-6; k++) {
     S *= 0.9;
-    pad = 0.7 * S;
+    pad = padK * S;
     lineH = 1.4 * S;
     wrap();
   }

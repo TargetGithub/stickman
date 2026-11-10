@@ -13,7 +13,7 @@ export const KIT2_FIELDS = {
   flow: ["points", "smooth", "closed", "count", "speed", "size", "color", "changes", "track"],
   fraction_text: ["numerator", "denominator", "whole", "color", "size", "depth"],
   place_value_chart: ["columns", "digits", "cell", "color", "bg", "digitColor", "zeroColor"],
-  text_card: ["text", "width", "size", "color", "bg", "align", "height", "depth"],
+  text_card: ["text", "width", "size", "color", "bg", "align", "height", "depth", "pad"],
 };
 const ENDS = { head: ["arrow", "none", "dot"], tail: ["none", "arrow", "dot"] };
 const PENS = [true, false, "pencil", "dot"];
@@ -94,6 +94,7 @@ export function checkKit2Object(o, p, { err, ids, catalog, name }) {
     range("size", (v) => isNum(v, 0.03, 0.6), "size must be 0.03-0.6 m");
     range("height", (v) => isNum(v, 0.1, 8), "height must be 0.1-8 m (a fixed card height; the text shrinks to fit)");
     range("depth", (v) => isNum(v, 0.01, 0.5), "depth must be 0.01-0.5 m");
+    range("pad", (v) => isNum(v, 0, 1.5), "pad must be 0-1.5 (a share of the font size)");
     if (o.align != null && !["left", "center"].includes(o.align)) err("E3D_ALIGN", `${p}.align`, 'align must be "left" or "center"');
   }
 }
