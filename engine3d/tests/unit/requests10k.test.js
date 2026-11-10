@@ -218,3 +218,16 @@ test("#50 thumbnail camera auto frames every object and keeps the title side cle
   const p = compileScript(ts, { catalog });
   assert.ok(p.timeline.valueAt("camera", "lookAt", 1)[0] < 0, "the camera looks left of the scene so it sits right of the title");
 });
+
+test("#65 stage.hide drops set pieces (and prefix*), stage.move places them; thumbnails keep them; bad ids are errors", async () => {
+  const { stageSet } = await import("../../runtime/stage_set.js");
+  const { thumbnailScript } = await import("../../runtime/thumbnails.js");
+  const stage = { preset: "fox_workshop", hide: ["machine", "window_*"], move: { plant: { at: [9, 0, -5] } } };
+  const set = stageSet(stage, catalog);
+  assert.ok(!set.some((o) => o.id === "set_machine" || o.id.startsWith("set_window_")));
+  assert.deepEqual(set.find((o) => o.id === "set_plant").at, [9, 0, -5]);
+  const th = thumbnailScript({ stage, meta: {} }, { name: "a", stage: "fox_workshop", camera: "auto", objects: [{ id: "x", kind: "shape", shape: "cube" }] });
+  assert.deepEqual(th.stage.hide, stage.hide);
+  const s = { kind: "video3d", version: 1, description: "x", meta: { title: "t", seed: 1 }, stage: { preset: "fox_workshop", hide: ["nope"], move: { plant: { at: [1, 2] } } }, camera: { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 40 }, objects: [], scenes: [{ id: "a", beats: [{ dur: 1, do: [] }] }] };
+  assert.deepEqual(validateScript(s, catalog).errors.map((e) => e.path), ["stage.hide[0]", "stage.move.plant.at"]);
+});

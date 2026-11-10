@@ -316,7 +316,7 @@ speaker's `talk` prop (`runtime/lipsync.js`), the same in Node and in the page.
 props from the catalog) that join the plan before the script's own objects, with ids prefixed `set_`
 (`set_board`, `set_water`), so actions can target them. Set pieces stay behind z = -2.4 (the walls at z = -6.6),
 clear of the teaching area. `stage: { "preset": "classroom", "set": [] }` turns the dressing off; a script's
-`stage.set` replaces the preset's list. Script object ids may not start with `set_`.
+`stage.set` replaces the preset's list. Script object ids may not start with `set_`. `stage.hide: ["machine", "window_*"]` drops single pieces (an id, or every id with a prefix; children go with their parent) and `stage.move: { "plant": { "at": [9, 0, -5] } }` places one elsewhere (at, rotation, scale). Thumbnails on the same preset keep both, and a concept's `stage` may be a full stage object.
 
 **Depth of field: not built.** A test with three's `BokehPass` (EffectComposer, 4× MSAA target, the extra depth
 pass) on `scripts/look_tour.json` at 4K60 (`--bench 240 --frames 300:540`) drew 37.6 fps against 183.3 fps

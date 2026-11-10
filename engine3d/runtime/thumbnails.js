@@ -30,11 +30,22 @@ export function thumbnailScript(script, concept) {
     kind: "video3d", version: 1,
     description: `Thumbnail concept "${concept.name}" for ${meta.title ?? "an episode"}.`,
     meta: { title: `${meta.title ?? "Thumbnail"}: ${concept.title ?? concept.name}`, seed: meta.seed ?? 1, ...(meta.voice ? { voice: meta.voice } : {}) },
-    stage: concept.stage != null ? { preset: concept.stage } : script?.stage ?? { preset: "playroom" },
+    stage: thumbStage(concept.stage, script?.stage),
     camera: auto ? { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 36 } : concept.camera,
     objects,
     scenes: [{ id: "thumb", beats: [{ dur: Math.max(2, at + 1), do: actions }] }],
   };
+}
+
+/**
+ * A concept's stage: the episode's (with its hide/move) by default; a preset name (keeping the episode's hide and
+ * move when it is the same preset); or a full stage object ({ preset, hide, move, ... }).
+ */
+function thumbStage(c, ep) {
+  if (c == null) return ep ?? { preset: "playroom" };
+  if (typeof c === "object") return c;
+  const same = (ep?.preset ?? "playroom") === c;
+  return { preset: c, ...(same && ep?.hide ? { hide: ep.hide } : {}), ...(same && ep?.move ? { move: ep.move } : {}) };
 }
 
 /** The empty spot that keeps the title's side clear in an auto-framed concept: as wide as the scene, beside it. */
@@ -103,6 +114,7 @@ export function checkThumbnails(list, script, catalog, validate) {
 /** A path in a concept's script → the same place in the episode script. */
 function movePath(path, p) {
   if (path.startsWith("stage.preset")) return `${p}.stage`;
+  if (path.startsWith("stage.")) return `${p}.${path}`;
   if (path.startsWith("scenes[0].beats[0].do[0]")) return `${p}.lights${path.slice("scenes[0].beats[0].do[0]".length)}`;
   return `${p}.${path}`;
 }

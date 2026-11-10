@@ -3,7 +3,7 @@
 // an err(code, path, message) callback. Pure.
 
 import { FRAMING } from "./camera_moves.js";
-import { SET_PREFIX, stageSet } from "./stage_set.js";
+import { SET_PREFIX, stageSet, presetPieceIds, matchPiece } from "./stage_set.js";
 import { laterSetPieces } from "./stage_change.js";
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
@@ -67,6 +67,19 @@ export function checkLookCamera(a, p, ids, err) {
  */
 export function addSetPieces(script, catalog, ids, err) {
   if (script.stage?.set !== undefined && !Array.isArray(script.stage.set)) err("E3D_STAGE_SET", "stage.set", "set must be a list of objects ([] for none)");
+  const st = script.stage ?? {};
+  if (st.hide !== undefined || st.move !== undefined) {
+    const known = presetPieceIds(st, catalog);
+    if (st.hide !== undefined && !Array.isArray(st.hide)) err("E3D_STAGE_SET", "stage.hide", "hide must be a list of set piece ids");
+    else for (const [i, h] of (st.hide ?? []).entries()) {
+      if (!known.some((id) => matchPiece(h, id))) err("E3D_STAGE_SET", `stage.hide[${i}]`, `"${h}" is not a set piece of this stage (${known.slice(0, 12).join(", ")}${known.length > 12 ? ", ..." : ""})`);
+    }
+    if (st.move !== undefined && (typeof st.move !== "object" || Array.isArray(st.move))) err("E3D_STAGE_SET", "stage.move", "move must map set piece ids to { at, rotation, scale }");
+    else for (const [id, m] of Object.entries(st.move ?? {})) {
+      if (!known.includes(id)) err("E3D_STAGE_SET", `stage.move.${id}`, `"${id}" is not a set piece of this stage`);
+      for (const k of ["at", "rotation", "scale"]) if (m?.[k] !== undefined && !(Array.isArray(m[k]) && m[k].length === 3 && m[k].every(Number.isFinite))) err("E3D_STAGE_SET", `stage.move.${id}.${k}`, `${k} must be [x, y, z]`);
+    }
+  }
   // Later presets of `stage` changes bring theirs as "set_<preset>_<id>" (stage_change.js).
   for (const o of [...stageSet(script.stage ?? {}, catalog), ...laterSetPieces(script, catalog)]) ids.set(o.id, o);
   (Array.isArray(script.objects) ? script.objects : []).forEach((o, i) => {
