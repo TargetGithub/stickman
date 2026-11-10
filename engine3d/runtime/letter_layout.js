@@ -9,7 +9,7 @@ const TYPE = 1.42;
 const BEVEL = 0.025;
 
 /**
- * @param {{ text: string, size?: number, font?: string }} o  a letter object
+ * @param {{ text: string, size?: number, font?: string, forms?: string }} o  a letter object (forms "book": two-storey a, g)
  * @param {object} metrics  catalog.fontMetrics (font_metrics.json fonts)
  * @returns {{ n: number, ch: string, x: number, w: number, space: boolean }[]}  x: the character's centre in the
  *   word's own frame (metres, the word centred on x = 0 as the page centres it); w: its inked width
@@ -23,7 +23,7 @@ export function letterLayout(o, metrics) {
   const bevel = size * BEVEL;
   let x = 0;
   const raw = chars.map((ch, i) => {
-    const g = f.g[ch] ?? f.g["?"] ?? [600, 0, 600];
+    const g = (o.forms === "book" ? f.book?.[ch] : null) ?? f.g[ch] ?? f.g["?"] ?? [600, 0, 600];
     const r = ch.trim() ? { n: i + 1, ch, x0: x + g[1] * S - bevel, x1: x + g[2] * S + bevel, space: false } : { n: i + 1, ch, x0: x, x1: x + g[0] * S, space: true };
     x += g[0] * S;
     return r;

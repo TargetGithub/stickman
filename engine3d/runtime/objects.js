@@ -106,6 +106,14 @@ function colorLetters(o, font, size, depth, material, lift = false) {
 }
 
 
+const bookFonts = new WeakMap();
+/** A font with some glyphs replaced (the book a and g), made once per font. */
+function bookFont(font, forms) {
+  if (!forms || !font) return font;
+  if (!bookFonts.has(font)) bookFonts.set(font, new Font({ ...font.data, glyphs: { ...font.data.glyphs, ...forms } }));
+  return bookFonts.get(font);
+}
+
 /**
  * @returns {{ group: THREE.Group, mixer?: THREE.AnimationMixer, actions?: Map, named?: Map, world?: THREE.Object3D[],
  *   update?: (t:number, s:object, state:object) => void }}  world: helpers the stage adds to the scene itself
@@ -177,7 +185,8 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080,
       group.add(d);
     }
   } else if (o.kind === "letter") {
-    const font = assets.fonts.get(o.font ?? "andika_bold");
+    // forms "book": the font with its two-storey a and g swapped in (catalog.fontBook), as in a reading book.
+    const font = bookFont(assets.fonts.get(o.font ?? "andika_bold"), o.forms === "book" ? catalog.fontBook?.[o.font ?? "andika_bold"] : null);
     // One mesh per character (each in its colour: blends, rhyme endings), stood at its own centre so each is a
     // named piece c1..cN (letter_layout.js numbers them the same way: every character, spaces too) that marks,
     // glows, children and the per-letter moves (<id>#c3) ride on. lift: "descender" stands the text on its lowest

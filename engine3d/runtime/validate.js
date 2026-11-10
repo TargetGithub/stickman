@@ -19,7 +19,7 @@ const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "desc
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
-  letter: ["text", "color", "colors", "material", "font", "size", "depth", "lift"],
+  letter: ["text", "color", "colors", "material", "font", "size", "depth", "lift", "forms"],
   character: ["character", "clip", "feeling"],
   confetti: ["count", "colors", "area", "height"],
   critter: ["species", "color", "size", "feeling", "recolor"],
@@ -137,6 +137,8 @@ export function validateScript(script, catalog, opts = {}) {
     if (o.kind === "letter") {
       if (typeof o.text !== "string" || o.text.length < 1 || o.text.length > 24) err("E3D_TEXT", `${p}.text`, "text must be 1-24 characters");
       name(catalog.fonts, o.font, "E3D_FONT", `${p}.font`, "font");
+      if (o.forms != null && !["school", "book"].includes(o.forms)) err("E3D_FORMS", `${p}.forms`, 'forms must be "school" (single-storey a and g, the default) or "book" (two-storey a and g)');
+      else if (o.forms === "book" && !catalog.fontBook?.[o.font ?? "andika_bold"]) err("E3D_FORMS", `${p}.forms`, `font "${o.font}" has no book forms`);
     }
     if (o.kind === "character") {
       if (!catalog.characters[o.character]) err("E3D_CHARACTER", `${p}.character`, `unknown character "${o.character}"`);

@@ -106,3 +106,15 @@ test("#70 underline, bracket and circle mark a group of letters", () => {
   assert.ok(circle && circle.points.length === 24);
   assert.ok(marks.filter((m) => m.at[1] < 0).length === 2, "underline and bracket sit below the baseline");
 });
+
+test("#74 letter forms book: two-storey a and g glyphs exist and lay out with their own widths", () => {
+  assert.ok(catalog.fontBook.andika_bold.a.o.length > 20 && catalog.fontBook.andika_bold.g.o.length > 20);
+  const school = letterLayout({ text: "bag", size: 1 }, M);
+  const book = letterLayout({ text: "bag", size: 1, forms: "book" }, M);
+  assert.notDeepEqual(school.map((c) => c.x), book.map((c) => c.x));
+  const s = JSON.parse(readFileSync(new URL("../../scripts/tour/book_forms.json", import.meta.url), "utf8"));
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const bad = structuredClone(s);
+  bad.objects[1].forms = "fancy";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_FORMS"));
+});
