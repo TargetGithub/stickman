@@ -107,7 +107,10 @@ export function descendants(id, objects) {
 export function shotBounds(o, catalog, now, get, t, objects, exact = false) {
   const kids = descendants(o.id, objects);
   // exact (shot fit: "exact"): thin shapes at their real height and every turn applied; else positions only.
-  const one = (x) => (exact ? transformedBox(x, ownBox(x, catalog, true), now, get, t) : placeBox(x, ownBox(x, catalog, false), now, get, t));
+  // A turned shape (a card's backing plate stood up, a page's paper) is measured exactly: the loose box ignores
+  // turns, so an upright plate would count as a 1 m slab and push the camera far back.
+  const turned = (x) => x.kind === "shape" && (x.rotation ?? [0, 0, 0]).some((v) => Math.abs(v) > 1e-6);
+  const one = (x) => (exact || turned(x) ? transformedBox(x, ownBox(x, catalog, true), now, get, t) : placeBox(x, ownBox(x, catalog, false), now, get, t));
   if (!kids.length) return one(o);
   return unionBounds([...(o.kind === "group" ? [] : [one(o)]), ...kids.map(one)]);
 }

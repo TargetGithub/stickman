@@ -1,0 +1,14 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Shot on cards and pages", "seed": 23, "music": false },
+  "stage": { "preset": "toybox_library" },
+  "camera": { "position": [0, 2, 11], "lookAt": [0, 1.2, 0], "fov": 42 },
+  "objects": [
+    { "id": "pg", "kind": "page", "title": "The Foggy Harbor", "lines": ["The fog rolled in over the quiet harbor.", "The boats stayed home all day.", "Then the lighthouse lamp began to shine."], "at": [-2.5, 0.2, 0] },
+    { "id": "tc", "kind": "text_card", "text": "Which sentence tells you the boats were safe?", "width": 3, "size": 0.18, "at": [2.6, 1.2, 0] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2.2, "do": [{ "do": "shot", "target": "pg", "framing": "medium", "dur": 1.5 }] },
+    { "dur": 2.2, "do": [{ "do": "shot", "target": "tc", "framing": "medium", "dur": 1.5 }] }
+  ] }]
+}

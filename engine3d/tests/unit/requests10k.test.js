@@ -174,3 +174,17 @@ test("#16 fog rolls in and lifts on the stage's fog track", () => {
   bad.scenes[0].beats[0].do[0].amount = 2;
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
 });
+
+test("#25 shot frames cards and pages by their real (upright) size, straight on", () => {
+  const s = script("shot_cards");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const p = compileScript(s, { catalog });
+  for (const t of [2, 4.2]) {
+    const pos = p.timeline.valueAt("camera", "position", t);
+    const look = p.timeline.valueAt("camera", "lookAt", t);
+    const elev = Math.atan2(pos[1] - look[1], Math.hypot(pos[0] - look[0], pos[2] - look[2])) * (180 / Math.PI);
+    const dist = Math.hypot(...pos.map((x, i) => x - look[i]));
+    assert.ok(elev < 12, `upright target seen nearly straight on (${elev.toFixed(1)}°)`);
+    assert.ok(dist < 7, `close enough (${dist.toFixed(2)} m)`);
+  }
+});

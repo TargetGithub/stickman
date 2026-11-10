@@ -88,7 +88,8 @@ export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
       if (height == null) {
         const real = unionBounds(ids.map((id) => shotBounds(obj(id), catalog, now, (p) => obj(p), end, list, true)));
         const [w, h, dpt] = real.min.map((x, i) => real.max[i] - x);
-        height = h < 0.3 * Math.max(w, dpt) ? FLAT_HEIGHT : 8;
+        // Lying flat: low compared with its width or depth, and deep (an upright card or sign is low but thin).
+        height = h < 0.3 * Math.max(w, dpt) && dpt > 2 * h ? FLAT_HEIGHT : 8;
       }
       const f = frameBox(box, { framing, yaw, height, fov: now("camera", "fov", t) ?? 40 });
       tl.tween("camera", "position", { start: t, dur, to: f.position, ease });
