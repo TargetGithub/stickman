@@ -73,7 +73,7 @@ One beat = one spoken line or one kit macro, plus what happens during it. Sugar 
 
 | Field | Becomes |
 |---|---|
-| `say`, `who`, `keywords`, `caption` (default true), `voice`, `pitch`, `at` | a `say` action (subtitled) |
+| `say`, `who`, `keywords`, `caption` (default true), `voice`, `pitch`, `at`, `spoken` | a `say` action (subtitled); `spoken` is what the voice reads (respelling or IPA in `[[ ]]`), `say` stays the caption |
 | `hook: { question, behind, target, style, answer }` | the kit hook (must be the first beat; target starts `hidden`, placed where the cover stands). The tracker pops in with it. Prefer `style: "lift"` so the cover leaves the teaching area. |
 | `call: { prompt, cue, wait, answer, answerWho, reveal }` | call-and-response with a cue badge and a pause |
 | `challenge: { prompt, options, answer, dur, praise }` | prompt, pulsing options, 3-2-1 timer ring, celebrated answer (not for babies) |
