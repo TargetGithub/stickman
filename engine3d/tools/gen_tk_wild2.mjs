@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Writes catalog/models/tk_wild2.json: wild animals for the Toybox 10K wave (hare, snake, tortoise, coyote, wolf,
-// arctic fox, toads, newt, axolotl, badger, chipmunk, dormouse, elk, mouse deer, pocket gopher, sloth, snow
+// arctic fox, toads, newt, axolotl, badger, chipmunk, dormouse, elk, caribou, deer, mouse deer, raccoon, skunk, salmon, seahorse, pocket gopher, sloth, snow
 // leopard, tardigrade, termites, turtle hatchling). Parts are laid out here in code (faces placed on each head's
 // curve, rods between points, spots on body surfaces), so edit this file, not the JSON:
 //   node engine3d/tools/gen_tk_wild2.mjs
@@ -659,8 +659,162 @@ C.dormouse = {
   };
 }
 
+// ---------------------------------------------------------------- caribou and deer (from elk)
+{
+  const k = 0.9;
+  const hoofs = [["leg_front_left", 0.17, 0.32], ["leg_front_right", -0.17, 0.32], ["leg_back_left", 0.17, -0.38], ["leg_back_right", -0.17, -0.38]].map(([nm, x, z]) =>
+    P("cylinder", [x * k, 0.72 * k, z * k], [0.24, 0.07, 0.27], { hang: [0, -0.72 * k + 0.035, 0.02], c: "hoof", m: "glossy", name: nm }));
+  // A forward brow shovel and an extra tine on each antler (in the caribou's own units, on the head).
+  const beam = (p0, p1) => ({ ...rod(p0, p1, 0.05, { c: "wood" }), on: "head", name: "antlers", ...M });
+  C.caribou = {
+    like: "elk", scale: k, recolor: { horse_mane: "cream", brown: "wood_dark" },
+    description: "A brown caribou (reindeer): darker brown body, a pale cream neck and chest, a pale rump, a dark muzzle, wide flat dark hooves for snow and big branching cream antlers with a brow tine reaching forward; scrapes snow with a front hoof to find lichens. About 1.8 m tall to the antler tips at size 1. Named parts: antlers, ears, tail, leg_front_left, leg_front_right, leg_back_left, leg_back_right (each with its wide hoof, pivot at the hip: turn leg_front_left [-30, 0, 0] and back to scrape).",
+    tags: ["arctic", "tundra", "snow", "mammal", "hoofed", "migration"],
+    add: [...hoofs, beam([0.07, 0.15, -0.05], [0.05, 0.2, 0.15]), beam([0.05, 0.2, 0.15], [0.03, 0.12, 0.24]), beam([0.38, 0.55, -0.26], [0.5, 0.62, -0.18])],
+  };
+}
+{
+  const k = 0.6;
+  const bc = [0, 0.86 * k, -0.04 * k], br = [0.3 * k, 0.28 * k, 0.56 * k];
+  const spots = [];
+  for (const [th, ph] of [[160, 55], [200, 55], [145, 35], [215, 35], [175, 75], [130, 55], [230, 55], [120, 30], [240, 30], [185, 45], [100, 45], [260, 45]])
+    spots.push(decor(bc, br, th, ph, "sphere", [0.045, 0.045, 0.015], { c: "white" }, 0));
+  C.deer = {
+    like: "elk", scale: k, drop: ["antlers"], recolor: { brown: "horse_brown", horse_mane: "horse_brown", wood_dark: "horse_tan" },
+    eyes: { size: 0.06 },
+    description: "A gentle young deer (a fawn): a soft chestnut coat with white spots on its back, a pale rump and tail, a dark nose, big eyes, big ears and thin legs on little dark hooves; steps quietly into a clearing. About 0.98 m tall to the ear tips at size 1. Named parts: ears (big, twitch on their own), tail, leg_front_left, leg_front_right, leg_back_left, leg_back_right (each with its hoof, pivot at the hip).",
+    tags: ["forest", "woods", "mammal", "hoofed", "baby", "meadow"],
+    add: [
+      ...spots,
+      H("sphere", [0.12, 0.072, -0.042], [0.09, 0.2, 0.04], { r: [0, 0, -50], hang: [0, 0.08, 0], name: "ears", ...M, idle: { r: [0, 0, 6], hz: 0.4 } }),
+      H("sphere", [0.12, 0.072, -0.025], [0.055, 0.14, 0.02], { r: [0, 0, -50], hang: [0, 0.08, 0], c: "pig", name: "ears", ...M, idle: { r: [0, 0, 6], hz: 0.4 } }),
+    ],
+  };
+}
+
+// ---------------------------------------------------------------- raccoon
+{
+  const hs = [0.54, 0.46, 0.48];
+  const fd = [0.44, 0.3, 0.28], fc = [0, -0.04, 0.12];
+  const sn = [0.18, 0.13, 0.14], snc = [0, -0.1, 0.2];
+  const tail = [];
+  [0.1, 0.22, 0.34, 0.46, 0.58].forEach((h, i) => tail.push(P("sphere", [0.12, 0.16, -0.22], [0.26 - i * 0.015, 0.16, 0.26 - i * 0.015], { r: [-40, 0, -45], hang: [0, h, 0], c: i % 2 ? "charcoal" : "grey", name: "tail", idle: { r: [0, 0, 10], hz: 0.5 } })));
+  tail.push(P("sphere", [0.12, 0.16, -0.22], [0.18, 0.16, 0.18], { r: [-40, 0, -45], hang: [0, 0.68, 0], c: "charcoal", name: "tail", idle: { r: [0, 0, 10], hz: 0.5 } }));
+  C.raccoon = {
+    color: "grey", sound: "Chitter!",
+    description: "A friendly raccoon: a gray coat with a white tummy, a white face with a black mask around her big brown eyes, a pointed white snout with a black nose, round ears with dark centers, dark hands and feet and a bushy tail ringed gray and black. Her front paws reach forward to carry a picnic basket (parent it at about [0, 0.36, 0.34]). About 1.0 m tall at size 1. Named parts: paw (both front paws, for carry, point and wave), ears, tail (sways).",
+    tags: ["forest", "woods", "mammal", "nocturnal", "town", "picnic"],
+    head: { at: [0, 0.82, 0.06] },
+    ...face(fd, { hc: fc, ex: 0.095, ey: 0.03, es: 0.075, iris: "eye_brown", my: -0.15, ms: 0.07, mc: snc, ms3: sn, cx: 0.17, cy: -0.08, cs: 0.06 }),
+    bob: 0.02,
+    parts: [
+      P("sphere", [0, 0.34, 0], [0.58, 0.62, 0.54]),
+      P("sphere", [0, 0.31, 0.15], [0.36, 0.4, 0.26], { c: "white" }),
+      P("sphere", [0.15, 0.04, 0.14], [0.16, 0.08, 0.22], { c: "charcoal", ...M }),
+      P("capsule", [0.17, 0.48, 0.12], [0.11, 0.3, 0.11], { r: [-55, 0, 8], hang: [0, -0.12, 0], name: "paw", ...M }),
+      P("sphere", [0.17, 0.48, 0.12], [0.12, 0.1, 0.12], { r: [-55, 0, 8], hang: [0, -0.26, 0], c: "charcoal", name: "paw", ...M }),
+      ...tail,
+      H("sphere", [0, 0, 0], hs),
+      H("sphere", fc, fd, { c: "white" }),
+      H("sphere", [0.1, 0.03, 0.2], [0.2, 0.12, 0.05], { r: [0, 20, -12], c: "black", ...M }),
+      H("sphere", [0, 0.06, 0.2], [0.07, 0.16, 0.05], { r: [-25, 0, 0], c: "grey" }),
+      H("sphere", snc, sn, { c: "white" }),
+      H("sphere", [0, -0.075, 0.27], [0.07, 0.05, 0.05], { c: "ink", m: "glossy" }),
+      H("sphere", [0.19, 0.19, -0.03], [0.16, 0.16, 0.06], { name: "ears", ...M, idle: { r: [0, 0, 6], hz: 0.4 } }),
+      H("sphere", [0.19, 0.19, -0.005], [0.1, 0.1, 0.03], { c: "charcoal", name: "ears", ...M, idle: { r: [0, 0, 6], hz: 0.4 } }),
+    ],
+  };
+}
+
+// ---------------------------------------------------------------- skunk
+{
+  const hs = [0.5, 0.44, 0.46];
+  const sn = [0.2, 0.15, 0.16], snc = [0, -0.08, 0.17];
+  const bc = [0, 0.32, -0.02], br = [0.28, 0.3, 0.26];
+  const stripe = [];
+  for (const ph of [88, 72, 56, 40, 24]) stripe.push(decor(bc, br, 180, ph, "sphere", [0.16, 0.16, 0.03], { c: "white" }, -0.004));
+  const tp = [0.08, 0.2, -0.22], tr = [-22, 0, -14];
+  C.skunk = {
+    color: "charcoal", sound: "Peek-a-boo!",
+    description: "A friendly black skunk with big brown eyes, a pink nose and a smile; a white stripe runs from its forehead over its head and down its back, and a big bushy black tail with a white stripe curls up behind it; peeks out from behind a log. About 1.2 m tall to the tail top at size 1. Named parts: paw (both front paws, for point and wave), ears, tail (big and bushy, sways).",
+    tags: ["forest", "woods", "mammal", "nocturnal", "garden"],
+    head: { at: [0, 0.78, 0.06] },
+    ...face(hs, { ex: 0.1, ey: 0.04, es: 0.08, iris: "eye_brown", my: -0.13, ms: 0.07, mc: snc, ms3: sn, cx: 0.16, cy: -0.07, cs: 0.07 }),
+    bob: 0.02,
+    parts: [
+      P("sphere", bc, br.map((v) => v * 2)),
+      ...stripe,
+      P("sphere", [0.14, 0.04, 0.13], [0.15, 0.08, 0.2], M),
+      P("capsule", [0.15, 0.42, 0.13], [0.1, 0.28, 0.1], { r: [-30, 0, 8], hang: [0, -0.11, 0], name: "paw", ...M }),
+      ...[[0.48, [0.44, 1.0, 0.4]], [0.74, [0.5, 0.52, 0.46]]].flatMap(([h, sz]) => [
+        P("sphere", tp, sz, { r: tr, hang: [0, h, -0.02], name: "tail", idle: { r: [0, 0, 8], hz: 0.5 } }),
+        P("sphere", tp, [0.16, sz[1] * 0.98, sz[2]], { r: tr, hang: [0, h, -0.09], c: "white", name: "tail", idle: { r: [0, 0, 8], hz: 0.5 } }),
+      ]),
+      H("sphere", [0, 0, 0], hs),
+      H("sphere", [0, 0.1, 0.16], [0.08, 0.26, 0.12], { r: [-38, 0, 0], c: "white" }),
+      H("sphere", [0, 0.2, -0.02], [0.12, 0.08, 0.3], { c: "white" }),
+      H("sphere", snc, sn),
+      H("sphere", [0, -0.05, 0.25], [0.065, 0.05, 0.045], { c: "rose", m: "glossy" }),
+      H("sphere", [0.18, 0.17, -0.03], [0.12, 0.12, 0.05], { name: "ears", ...M, idle: { r: [0, 0, 6], hz: 0.4 } }),
+      H("sphere", [0.18, 0.17, -0.008], [0.07, 0.07, 0.02], { c: "pig", name: "ears", ...M, idle: { r: [0, 0, 6], hz: 0.4 } }),
+    ],
+  };
+}
+
+// ---------------------------------------------------------------- salmon (from fish)
+{
+  const bc = [0, 0.6, 0], br = [0.32, 0.35, 0.46];
+  const spots = [];
+  for (const [th, ph] of [[150, 60], [210, 60], [120, 65], [240, 65], [180, 72], [100, 55], [260, 55], [165, 50], [195, 50]])
+    spots.push(decor(bc, br, th, ph, "sphere", [0.04, 0.04, 0.012], { c: "charcoal" }, 0.002));
+  C.salmon = {
+    like: "fish", recolor: { orange: "grey", white: "lab_white" },
+    description: "A silver-and-pink Pacific salmon with a friendly face: a silvery blue-gray body with white bands, a pink stripe along each side, small dark spots on its back, waving side fins and a swishing tail. Sizes: a tiny fry at size 0.3, a young fish in a school at 0.5-0.6, a strong adult leaping upstream at size 1 (about 1.1 m tall, 0.9 m long). Named parts: fin (the back fin), tail (swishes on its own).",
+    tags: ["river", "ocean", "fish", "water", "life_cycle", "migration"],
+    add: [P("sphere", [0, 0.55, -0.02], [0.7, 0.17, 0.88], { c: "knot_pink" }), ...spots],
+  };
+}
+
+// ---------------------------------------------------------------- seahorse
+{
+  const hs = [0.3, 0.3, 0.3];
+  const tailPts = [[0, 0.36, -0.04], [0, 0.22, -0.08], [0, 0.11, -0.05], [0, 0.055, 0.03], [0, 0.085, 0.1], [0, 0.145, 0.095], [0, 0.15, 0.045]];
+  const widths = [0.2, 0.16, 0.12, 0.09, 0.07, 0.055];
+  const root = tailPts[0];
+  const tail = widths.map((w, i) => {
+    const a = tailPts[i], b = tailPts[i + 1];
+    const d = b.map((v, j) => v - a[j]);
+    const L = Math.hypot(...d);
+    const mid = a.map((v, j) => (v + b[j]) / 2 - root[j]);
+    return P("capsule", root, [w, L + w * 0.6, w], { hang: mid, hr: r3(yTo(d)), name: "tail", idle: { r: [6, 0, 0], hz: 0.4 } });
+  });
+  const belly = [];
+  const tc = [0, 0.52, 0.03], trd = [0.17, 0.23, 0.17];
+  for (const ph of [-40, -22, -4, 14, 32]) belly.push(decor(tc, trd, 0, ph, "sphere", [0.15, 0.05, 0.02], { c: "hay" }, -0.004));
+  C.seahorse = {
+    color: "orange", sound: "Bloop bloop!",
+    description: "A small orange seahorse that swims upright: a round head with big eyes and a little crown, a long tube snout with a tiny smiling mouth at its tip, a curved tummy with golden belly plates, a small golden back fin that flutters slowly and a curly tail that can curl around grass. About 0.95 m tall at size 1 (lift it with `at` to float it in water). Named parts: fin (back fin, flutters on its own), tail (the whole curl, pivot at its root: turn [±20, 0, 0] to curl and uncurl).",
+    tags: ["ocean", "sea", "fish", "water", "reef", "small"],
+    head: { at: [0, 0.84, 0.05], tilt: 0.8 },
+    ...face(hs, { ex: 0.075, ey: 0.04, es: 0.07, my: -0.055, ms: 0.04, mc: [0, -0.06, 0.3], ms3: [0.08, 0.07, 0.06], cx: 0.1, cy: -0.04, cs: 0.045 }),
+    bob: 0.03,
+    parts: [
+      P("sphere", tc, trd.map((v) => v * 2), { r: [-10, 0, 0] }),
+      ...belly,
+      rod([0, 0.62, 0.0], [0, 0.82, 0.03], 0.18),
+      ...tail,
+      P("sphere", [0, 0.56, -0.15], [0.03, 0.2, 0.14], { r: [-15, 0, 0], c: "hay", name: "fin", idle: { r: [0, 25, 0], hz: 1.2 } }),
+      H("sphere", [0, 0, 0], hs),
+      { ...rod([0, -0.04, 0.1], [0, -0.06, 0.28], 0.08), on: "head" },
+      H("sphere", [0, -0.06, 0.29], [0.08, 0.07, 0.06]),
+      H("cone", [0, 0.15, -0.02], [0.1, 0.1, 0.1], { c: "hay" }),
+      H("sphere", [0.13, -0.04, -0.04], [0.02, 0.08, 0.06], { c: "hay", ...M, idle: { r: [0, 20, 0], hz: 1.4 } }),
+    ],
+  };
+}
+
 const out = {
-  description: "Toybox 10K wave 2 wild animals: hare and arctic_hare, snake, tortoise and turtle_hatchling (from turtle), coyote and wolf (from fox), arctic_fox and arctic_fox_summer, toad and spadefoot_toad (from frog), newt, axolotl and axolotl_wild, badger, chipmunk, dormouse (from mouse), pocket_gopher, sloth, snow_leopard, elk, mouse_deer, tardigrade and tardigrade_tun, termite, termite_soldier and termite_queen. Generated by tools/gen_tk_wild2.mjs: edit the generator and rerun it, not the JSON.",
+  description: "Toybox 10K wave 2 wild animals: hare and arctic_hare, snake, tortoise and turtle_hatchling (from turtle), coyote and wolf (from fox), arctic_fox and arctic_fox_summer, toad and spadefoot_toad (from frog), newt, axolotl and axolotl_wild, badger, chipmunk, dormouse (from mouse), pocket_gopher, sloth, snow_leopard, elk, caribou and deer (from elk), mouse_deer, raccoon, skunk, salmon (from fish), seahorse, tardigrade and tardigrade_tun, termite, termite_soldier and termite_queen. Generated by tools/gen_tk_wild2.mjs: edit the generator and rerun it, not the JSON.",
   critters: C,
 };
 const file = fileURLToPath(new URL("../catalog/models/tk_wild2.json", import.meta.url));
