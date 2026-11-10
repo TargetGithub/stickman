@@ -82,4 +82,4 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - music: flute_tune, leaf_tune, twang, drum
 - weather: thunder, rain
 - ui: timer_tick, timer_chime, wrong_soft, listen_cue
-- vehicle: train_whistle, rocket
+- vehicle: train_whistle, foghorn, rocket
