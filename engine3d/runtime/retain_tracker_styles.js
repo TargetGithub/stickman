@@ -19,6 +19,9 @@ const mesh = (geo, mat, x = 0, y = 0, z = 0) => {
   return m;
 };
 
+/** Type size for a stop's label: short words full size, longer ones shrunk to the stop's width (lit or not, #64). */
+const stopType = (label, full = 0.16) => (label.length <= 3 ? full : Math.max(0.09, Math.min(full, 0.42 / label.length)));
+
 /** One slot of an extra style. ctx: { i, n, p, prev, empty, full, node, label, surprise, gift, kit, main, accent, filledColor }. */
 export function buildExtraSlot(style, ctx) {
   const { i, n, p, prev, empty, full, node, label, surprise, gift, kit, main, accent, filledColor } = ctx;
@@ -45,7 +48,7 @@ export function buildExtraSlot(style, ctx) {
       node.add(isle);
       const pole = mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.3, 6), M("charcoal"), 0.1, 0.05, 0.02);
       node.add(pole);
-      if (label) empty.add(kit.label(label, label.length <= 3 ? 0.16 : Math.max(0.09, 0.42 / label.length), M("grey"), 0.02).translateY(-0.36));
+      if (label) empty.add(kit.label(label, stopType(label), M("grey"), 0.02).translateY(-0.36));
       full.add(flag(kit, filledColor(i), label));
     }
     return;
@@ -63,7 +66,7 @@ export function buildExtraSlot(style, ctx) {
       full.add(mesh(new THREE.BoxGeometry(0.07, 0.07, 0.02), M("yellow", "glow"), x, 0.04, 0.105));
     }
     full.add(mesh(new THREE.SphereGeometry(0.06, 12, 8), M(c, "glossy"), 0, 0.42, 0));
-    if (label) node.add(kit.label(label, label.length <= 3 ? 0.16 : Math.max(0.09, 0.42 / label.length), M("ink"), 0.02).translateY(-0.34));
+    if (label) node.add(kit.label(label, stopType(label), M("ink"), 0.02).translateY(-0.34));
     if (surprise) empty.add(gift(0.3).translateY(0.5));
     return;
   }
@@ -110,7 +113,7 @@ export function buildExtraSlot(style, ctx) {
     full.add(needle(-Math.PI / 2 + 0.25, "green"), kit.disc(0.07, 0.03, M("green", "glow")).translateY(-0.2).translateZ(0.06));
     if (surprise) empty.add(gift(0.28).translateY(0.42));
     // Word names ("closed", "flex") shrink to stay under their dial.
-    if (label) node.add(kit.label(label, label.length <= 3 ? 0.15 : Math.max(0.09, 0.42 / label.length), M("ink"), 0.02).translateY(-0.44));
+    if (label) node.add(kit.label(label, stopType(label, 0.15), M("ink"), 0.02).translateY(-0.44));
     return;
   }
   // pencil: one written line per slot on a page (the page and the pencil are added by addPencilPage).
@@ -126,7 +129,7 @@ function flag(kit, color, label) {
   g.add(mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.36, 6), kit.material("charcoal", "toy"), 0.1, 0.08, 0.02));
   const cloth = mesh(new THREE.BoxGeometry(0.16, 0.11, 0.015), kit.material(color, "glossy"), 0.18, 0.2, 0.02);
   g.add(cloth);
-  if (label) g.add(kit.label(label, 0.16, kit.material("ink", "toy"), 0.02).translateY(-0.36));
+  if (label) g.add(kit.label(label, stopType(label), kit.material("ink", "toy"), 0.02).translateY(-0.36));
   return g;
 }
 
