@@ -135,6 +135,17 @@ const RECIPES = {
     drive(o, 2.2);
     noise(o, r, { gain: 0.25, attack: 0.5, decay: 1.6, lp0: 2400, lp1: 900, hp: 400, start: 0.3 });
   },
+  whale_song: (o, r) => {
+    // A gentle whale call: a low tone that glides up and slowly falls back, then a softer echo; calm, no squeal.
+    sweepSine(o, { f0: 180, f1: 330, sweep: 0.9, attack: 0.35, decay: 1.0, gain: 0.7, vibrato: 0.01, vibratoRate: 3 });
+    sweepSine(o, { f0: 330, f1: 220, sweep: 0.7, attack: 0.1, decay: 0.9, gain: 0.5, start: 0.95, vibrato: 0.01, vibratoRate: 3 });
+    sweepSine(o, { f0: 360, f1: 600, sweep: 0.5, attack: 0.08, decay: 0.45, gain: 0.12, start: 0.95 });
+    noise(o, r, { gain: 0.05, attack: 0.5, decay: 2.0, lp0: 500, hp: 80 });
+  },
+  hum: (o) => {
+    // A soft low hum (an underwater swell, a machine purring, a sleepy hum): a warm drone that swells and fades.
+    for (const [f, g] of [[98, 0.6], [196, 0.25], [294, 0.1]]) sweepSine(o, { f0: f, f1: f, sweep: 1, attack: 0.5, decay: 1.6, gain: g, vibrato: 0.004, vibratoRate: 2 });
+  },
   foghorn: (o, r) => {
     // A distant lighthouse foghorn for little ears: two long, low, soft notes (A2 then F2, "baaa-ooo"), slow to
     // swell and fade, with a breath of sea air. Deep but gentle: no blare, no sharp attack.
@@ -308,7 +319,7 @@ const RECIPES = {
   clock_tick_big: (o) => { partials(o, [880, 1320], { gain: 0.7, decay: 0.08, attack: 0.001 }); partials(o, [660, 990], { gain: 0.6, decay: 0.09, attack: 0.001, start: 0.5 }); },
 };
 
-const LENGTH = { timer_tick: 0.25, timer_chime: 1.4, wrong_soft: 0.6, listen_cue: 0.75, buzz: 1.2, crack: 0.65, cloud_pop: 0.9, whisper: 1.6, flute_tune: 2.5, leaf_tune: 1.3, thunder: 2.5, clock_tick_big: 1.0, tick: 0.7, fizz: 1.4, rain: 2.2, twang: 1.2, drum: 0.6, train_whistle: 1.4, cha_ching: 1.1, clink: 0.4, rocket: 2.2, pour: 1.5, giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, foghorn: 2.5, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { timer_tick: 0.25, timer_chime: 1.4, wrong_soft: 0.6, listen_cue: 0.75, buzz: 1.2, crack: 0.65, cloud_pop: 0.9, whisper: 1.6, flute_tune: 2.5, leaf_tune: 1.3, thunder: 2.5, clock_tick_big: 1.0, tick: 0.7, fizz: 1.4, rain: 2.2, twang: 1.2, drum: 0.6, train_whistle: 1.4, cha_ching: 1.1, clink: 0.4, rocket: 2.2, pour: 1.5, giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, foghorn: 2.5, whale_song: 2.4, hum: 2.2, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 
