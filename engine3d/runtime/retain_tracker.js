@@ -8,6 +8,8 @@ import { trackerFit } from "./retain_layout.js";
 import { EXTRA_TRACKER_STYLES, addPencilPage, buildExtraSlot } from "./retain_tracker_styles.js";
 
 const PALETTE = ["blue", "green", "orange", "purple", "pink", "teal"];
+/** Type size for a train car's label: 1-2 characters at full size, a word ("scarf") shrunk to fit the 0.7 m car. */
+const carType = (label, full) => (label.length <= 2 ? full : Math.max(0.09, Math.min(full, 0.62 / label.length)));
 
 /** @returns {(t:number, s:object) => void} */
 export function buildTracker(o, group, kit) {
@@ -62,10 +64,10 @@ export function buildTracker(o, group, kit) {
       if (i === surpriseAt) empty.add(gift(0.56).translateY(0.02));
       else {
         empty.add(box(0.7, 0.44, 0.28, "cream"));
-        if (label) empty.add(kit.label(label, 0.27, kit.material("grey", "toy"), 0.03).translateZ(0.15));
+        if (label) empty.add(kit.label(label, carType(label, 0.27), kit.material("grey", "toy"), 0.03).translateZ(0.15));
       }
       full.add(box(0.7, 0.44, 0.28, filledColor(i), "glossy"));
-      if (label) full.add(kit.label(label, 0.3, kit.material("white", "glossy"), 0.04).translateZ(0.15));
+      if (label) full.add(kit.label(label, carType(label, 0.3), kit.material("white", "glossy"), 0.04).translateZ(0.15));
       else if (i === surpriseAt) full.add(starMesh(0.2, "white").translateZ(0.15));
     } else if (style === "checklist") {
       node.add(box(0.36, 0.36, 0.05, "cream").translateZ(0.04));
