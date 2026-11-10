@@ -6,7 +6,8 @@ import { EASE_NAMES } from "./ease.js";
 import { expandObjects, isComposite } from "./composite.js";
 import { spokenError } from "./spoken.js";
 import { letterPieces } from "./letter_layout.js";
-import { checkStartPose } from "./start_pose.js";
+import { LETTER_START_FIELDS, checkStartPose } from "./start_pose.js";
+import { checkLetterAction } from "./validate_letters.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
@@ -20,7 +21,7 @@ const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "desc
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
-  letter: ["text", "color", "colors", "material", "font", "size", "depth", "lift", "forms"],
+  letter: ["text", "color", "colors", "material", "font", "size", "depth", "lift", "forms", ...LETTER_START_FIELDS],
   character: ["character", "clip", "feeling"],
   confetti: ["count", "colors", "area", "height"],
   critter: ["species", "color", "size", "feeling", "recolor"],
@@ -275,29 +276,7 @@ export function validateScript(script, catalog, opts = {}) {
     }
     checkTeachAction(a, p, o, { err, ids, catalog });
     if ((a.do === "drop" || a.do === "move" || a.do === "roll") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
-    if (a.do === "vowel_mark") {
-      if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `vowel_mark needs a letter word, "${a.target}" is a ${o.kind}`);
-      const n = String(o.text ?? "").length;
-      const group = ["underline", "bracket", "circle"].includes(a.mark);
-      const most = group ? 12 : 3;
-      if (!a.clear && (!Array.isArray(a.chars) || !a.chars.length || a.chars.length > most || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be 1-${most} character numbers 1-${n}`);
-      if (a.mark != null && !["long", "short", "underline", "bracket", "circle"].includes(a.mark)) err("E3D_MARK", `${p}.mark`, "mark must be long (a bar), short (a cup), underline, bracket or circle");
-      name(catalog.colors, a.color, "E3D_COLOR", `${p}.color`, "color");
-    }
-    if (a.do === "turn_page" && !ids.has(`${a.target}_leaf1`)) err("E3D_TARGET_KIND", `${p}.target`, `turn_page needs a book with at least two spreads, "${a.target}" is not one`);
-    if (a.do === "retext") {
-      const real = o.kind === "group" ? ids.get(`${a.target}_text`) : o;
-      if (!real || !["letter", "text_card"].includes(real.kind)) err("E3D_TARGET_KIND", `${p}.target`, `retext needs a letter word, a text_card or a card with text, "${a.target}" is a ${o.kind}`);
-      else if (typeof a.text !== "string" || !a.text.trim()) err("E3D_TEXT", `${p}.text`, "retext needs text");
-      else if (real.kind === "letter" && a.text.length > 24) err("E3D_TEXT", `${p}.text`, "a letter word is 1-24 characters");
-      else if (real.kind === "text_card" && a.text.length > 300) err("E3D_TEXT", `${p}.text`, "a text card holds 1-300 characters");
-    }
-    if (a.do === "split") {
-      if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `split needs a letter word, "${a.target}" is a ${o.kind}`);
-      const n = String(o.text ?? "").length;
-      if (!Array.isArray(a.after) || a.after.some((c) => !Number.isInteger(c) || c < 1 || c >= n)) err("E3D_SPLIT", `${p}.after`, `after must be a list of character numbers 1-${n - 1} (split after them; [] joins the word)`);
-      if (a.gap != null && !isNum(a.gap, 0, 5)) err("E3D_RANGE", `${p}.gap`, "gap must be 0-5 m");
-    }
+    checkLetterAction(a, p, o, { err, ids, catalog, name }); // vowel_mark, stress, turn_page, retext, split
     if (a.do === "lie" && a.pose != null && !["side", "back", "up"].includes(a.pose)) err("E3D_LIE", `${p}.pose`, "pose must be side, back or up");
     if (a.do === "lie" && a.side != null && a.side !== 1 && a.side !== -1) err("E3D_LIE", `${p}.side`, "side must be 1 (head to the left) or -1");
     if (a.do === "roll" && a.radius != null && !isNum(a.radius, 0.01, 20)) err("E3D_RANGE", `${p}.radius`, "radius must be 0.01-20 m");

@@ -58,6 +58,7 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
   };
   const turned = new Map(); // book id -> how many leaves are over
   const marks = new Map(); // word id -> its vowel mark ids
+  let rings = 0; // stress rings made so far (their ids)
   Object.assign(d, {
     /**
      * A mark on letters of a word, drawn on as a stroke that stays (clear: true wipes the word's marks): long (a bar)
@@ -105,6 +106,46 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       d.add({ id: mid2, kind: "stroke", points: pts, smooth: mark === "short" || mark === "circle", closed, width: (mark === "circle" ? 0.05 : 0.07) * size, color, parent: id, at: [r4(mid), r4(y), 0.05], hidden: true, internal: true });
       d.draw(mid2, { at: t, dur });
       marks.set(id, [...(marks.get(id) ?? []), mid2]);
+      if (s) sound(s, t, { volume: 0.5 });
+      return d;
+    },
+    /**
+     * Show a syllable's stress: rings spread out from the letters `chars` (default the whole word) and fade, one
+     * after another, while the syllable swells and settles (grow: false keeps it still).
+     */
+    stress(id, { at: t = 0, chars, color = "orange", count = 3, dur = 1.2, grow: swell = true, sound: s = "pop" } = {}) {
+      const o = obj(id);
+      if (o.kind !== "letter") throw new Error(`stress: "${id}" is a ${o.kind}, not a letter word`);
+      const L = letterLayout(o, catalog.fontMetrics);
+      const sel = (chars ?? L.map((c) => c.n)).map((n) => L[n - 1]);
+      if (!sel.length || sel.some((c) => !c)) throw new Error(`stress "${id}": chars must be character numbers 1-${L.length}`);
+      const size = o.size ?? 1;
+      const r4 = (v) => Math.round(v * 1e4) / 1e4;
+      const lo = Math.min(...sel.map((c) => c.x - c.w / 2));
+      const hi = Math.max(...sel.map((c) => c.x + c.w / 2));
+      // A hoop (a thin flat band 1 m across) stood up facing the camera, sized to the syllable plus a margin.
+      const sx = hi - lo + 0.4 * size;
+      const sy = 1.2 * size;
+      const each = Math.min(0.8, dur * 0.7);
+      for (let i = 0; i < count; i++) {
+        const ti = t + (count > 1 ? (i * (dur - each)) / (count - 1) : 0);
+        const rid = `${id}~ring${++rings}`;
+        const s0 = [r4(sx * 0.85), 1, r4(sy * 0.85)];
+        d.add({ id: rid, kind: "shape", shape: "hoop", color, material: "glow", parent: id, at: [r4((lo + hi) / 2), r4(0.5 * size), -0.08], rotation: [90, 0, 0], scale: s0, hidden: true, internal: true });
+        tl.base(rid, "fade", 1);
+        tl.set(rid, "visible", true, ti);
+        tl.set(rid, "scale", s0, ti);
+        tl.tween(rid, "scale", { start: ti, dur: each, from: s0, to: [r4(sx * 1.7), 1, r4(sy * 1.6)], ease: "sineOut" });
+        tl.tween(rid, "fade", { start: ti, dur: each, from: 1, to: 0, ease: "quadIn" });
+        tl.set(rid, "visible", false, ti + each);
+      }
+      if (swell) {
+        for (const c of sel) {
+          const key = `${id}#c${c.n}`;
+          tl.tween(key, "scale", { start: t, dur: 0.18, to: [1.18, 1.18, 1.18], ease: "quadOut" });
+          tl.tween(key, "scale", { start: t + 0.18, dur: 0.35, to: [1, 1, 1], ease: "backOut" });
+        }
+      }
       if (s) sound(s, t, { volume: 0.5 });
       return d;
     },

@@ -12,6 +12,7 @@ const tour = () => JSON.parse(readFileSync(new URL("../../scripts/tour/start_pos
 test("start pose: parts and a split word begin moved, and a later action moves on from there", () => {
   const s = tour();
   assert.deepEqual(validateScript(s, catalog).errors, []);
+  assert.deepEqual(validateScript(s, catalog).warnings, [], "split and pose are known fields");
   const tl = compileScript(s, { catalog }).timeline;
   assert.deepEqual(tl.valueAt("mach#lever", "rotation", 0), [0, 0, -45]);
   assert.deepEqual(tl.valueAt("cur#curtain", "position", 0), [0, 1.6, 0]);

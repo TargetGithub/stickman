@@ -1,0 +1,16 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "stress (#71): rings spread from the stressed syllable of a split word (RAB-bit, ba-NAN-a) while it swells.",
+  "meta": { "title": "Stress rings", "seed": 71 },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.6, 8], "lookAt": [0, 1.1, 0], "fov": 40 },
+  "objects": [
+    { "id": "w1", "kind": "letter", "text": "rabbit", "size": 0.75, "at": [0, 1.5, 0], "split": [3], "colors": ["red", "red", "red", "blue", "blue", "blue"] },
+    { "id": "w2", "kind": "letter", "text": "banana", "size": 0.75, "at": [0, 0, 0], "split": [2, 4], "colors": ["blue", "blue", "red", "red", "blue", "blue"] }
+  ],
+  "scenes": [{ "id": "a", "beats": [{ "dur": 4, "do": [
+    { "do": "stress", "target": "w1", "chars": [1, 2, 3], "at": 0.5 },
+    { "do": "stress", "target": "w2", "chars": [3, 4], "color": "pink", "at": 2.2 }
+  ] }] }]
+}

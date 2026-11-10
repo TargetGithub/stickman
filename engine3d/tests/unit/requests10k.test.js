@@ -260,3 +260,20 @@ test("#68 school_stage, dress_form, hook revealing a group; #78 hook with no cov
   const codes = validateScript(bad, catalog).errors.map((e) => e.path);
   assert.ok(codes.includes("scenes[0].beats[0].do[0].target") && codes.includes("scenes[0].beats[1].do[0].style"), codes.join());
 });
+
+test("#71 stress: rings spread from the syllable and fade, the syllable swells; bad chars are errors", () => {
+  const s = script("stress_ring");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const rings = plan.objects.filter((o) => o.id.startsWith("w1~ring"));
+  assert.equal(rings.length, 3);
+  const tl = plan.timeline;
+  assert.equal(tl.valueAt(rings[0].id, "visible", 0.4), false);
+  assert.equal(tl.valueAt(rings[0].id, "visible", 0.6), true);
+  assert.ok(tl.valueAt(rings[0].id, "fade", 1.2) < 0.3 && tl.valueAt(rings[0].id, "scale", 1.0)[0] > rings[0].scale[0]);
+  assert.ok(tl.valueAt("w1#c1", "scale", 0.68)[0] > 1.1 && tl.valueAt("w1#c4", "scale", 0.68)[0] === 1, "only the stressed syllable swells");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].chars = [7];
+  bad.scenes[0].beats[0].do[1].count = 9;
+  assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code), ["E3D_CHARS", "E3D_RANGE"]);
+});

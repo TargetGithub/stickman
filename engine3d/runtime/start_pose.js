@@ -54,5 +54,4 @@ export function checkStartPose(o, p, { err, partNames }) {
   if (o.splitGap != null && !(Number.isFinite(o.splitGap) && o.splitGap >= 0 && o.splitGap <= 5)) err("E3D_RANGE", `${p}.splitGap`, "splitGap must be 0-5 m");
 }
 
-export const START_POSE_FIELDS = ["pose"];
 export const LETTER_START_FIELDS = ["split", "splitGap"];
