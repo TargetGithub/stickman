@@ -1,0 +1,14 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Praise caption size", "seed": 21, "music": false, "audience": "grade5" },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 1.4, 6], "lookAt": [0, 1.0, 0], "fov": 40 },
+  "objects": [
+    { "id": "a", "kind": "card", "style": "word", "text": "ta-ble", "at": [-1.2, 0.6, 0], "hidden": true },
+    { "id": "b", "kind": "card", "style": "word", "text": "tab-le", "at": [1.2, 0.6, 0], "hidden": true }
+  ],
+  "scenes": [{ "id": "s", "beats": [
+    { "dur": 1, "do": [{ "do": "pop", "target": "a" }, { "do": "pop", "target": "b" }] },
+    { "dur": 6, "do": [{ "do": "challenge", "prompt": "Which split is right?", "options": ["a", "b"], "answer": "a", "dur": 2, "praise": "Yes! Ta-ble: an open syllable and a consonant-le." }] }
+  ] }]
+}

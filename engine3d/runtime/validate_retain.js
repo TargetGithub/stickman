@@ -46,7 +46,8 @@ export function checkRetainObject(o, p, { err, warn, name }) {
   if (o.kind !== "tracker") return;
   if (o.style != null && !TRACKER_STYLES.includes(o.style)) err("E3D_TRACKER", `${p}.style`, `style must be ${TRACKER_STYLES.join(", ")}`);
   if (!(Number.isInteger(o.slots) && o.slots >= 1 && o.slots <= 10)) return err("E3D_TRACKER", `${p}.slots`, "slots must be a whole number 1-10");
-  const max = o.style === "checklist" ? 14 : 2;
+  // Labels: a checklist line up to 14 characters; a gauge, island or town name up to 7 ("closed", "flex"); else 1-2.
+  const max = o.style === "checklist" ? 14 : ["gauges", "islands", "town"].includes(o.style) ? 7 : 2;
   if (o.labels != null && !(Array.isArray(o.labels) && o.labels.length <= o.slots && o.labels.every((l) => isStr(l, 1, max)))) err("E3D_TRACKER", `${p}.labels`, `labels must be at most ${o.slots} strings of 1-${max} characters`);
   if (o.surprise != null && typeof o.surprise !== "boolean" && !isStr(o.surprise, 1, max)) err("E3D_TRACKER", `${p}.surprise`, `surprise must be true or 1-${max} characters`);
   if (o.corner != null && !TRACKER_CORNERS.includes(o.corner)) err("E3D_TRACKER", `${p}.corner`, `corner must be ${TRACKER_CORNERS.join(", ")}`);
