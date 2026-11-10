@@ -9,6 +9,8 @@ import { validateScript } from "../../runtime/validate.js";
 import { compileScript } from "../../runtime/compile.js";
 import { US_SPELLING, US_VOCAB } from "../lib/spec10k/usenglish.mjs";
 import { BANDS, MOODS, bandOf } from "./bands.mjs";
+import { cardHeight } from "../../runtime/teach_layout.js";
+import { beatTimes } from "./polish.mjs";
 
 const BANNED = ["bloody", "gore", "gory", "gun", "guns", "weapon", "weapons", "kill", "killed", "kills", "corpse", "dead body", "stupid", "shut up", "hate you"];
 const INTERACTIVE = new Set(["hook", "challenge", "call", "options", "answer", "timer"]);
@@ -137,6 +139,40 @@ export function qaScript(script, spec, lesson, catalog, { allow = [] } = {}) {
   script.scenes.forEach((sc, i) => {
     if (sc.music != null && sc.music !== false && !MOODS.includes(sc.music)) E("Q_MUSIC", `scenes[${i}].music`, `unknown music mood "${sc.music}" (${MOODS.join(", ")} or false)`);
   });
+
+  // Text cards that overlap where they stand (a card grows upward from its base; stacked cards 0.5 m apart collide).
+  // Only pairs that are on screen at the same time count (sampled every 0.5 s on the estimated plan).
+  const cards = plan ? (script.objects ?? []).filter((o) => o.kind === "text_card" && !o.hud && Array.isArray(o.at)) : [];
+  const vis = new Map(cards.map((c) => {
+    const v = [];
+    for (let t = 0; t < plan.duration; t += 0.5) { const sc = plan.timeline.valueAt(c.id, "scale", t); v.push(plan.timeline.valueAt(c.id, "visible", t) !== false && (!Array.isArray(sc) || sc[0] > 0.05)); }
+    return [c.id, v];
+  }));
+  const together = (a, b) => { const va = vis.get(a.id), vb = vis.get(b.id); for (let k = 0; k < va.length; k++) if (va[k] && vb[k]) return k * 0.5; return null; };
+  for (let i = 0; i < cards.length; i++) for (let j = i + 1; j < cards.length; j++) {
+    const a = cards[i], b = cards[j];
+    if ((a.parent ?? null) !== (b.parent ?? null) || Math.abs((a.at[2] ?? 0) - (b.at[2] ?? 0)) > 0.3) continue;
+    const box = (c) => { const w = (c.width ?? 4) / 2, h = cardHeight(c); return [c.at[0] - w, c.at[0] + w, c.at[1], c.at[1] + h]; };
+    const [ax0, ax1, ay0, ay1] = box(a), [bx0, bx1, by0, by1] = box(b);
+    if (!(ax0 < bx1 - 0.05 && bx0 < ax1 - 0.05 && ay0 < by1 - 0.05 && by0 < ay1 - 0.05)) continue;
+    const t = together(a, b);
+    if (t != null) W("Q_TEXT_OVERLAP", "objects", `text cards "${a.id}" and "${b.id}" overlap where they stand and are both shown at ${t.toFixed(1)} s (check the stills; fine if one has moved away)`);
+  }
+
+  // Timed actions that run past their beat (the next beat's hide can come first and leave things on screen).
+  if (plan) {
+    try {
+      const { beats } = beatTimes(script, catalog);
+      beats.forEach((bt, k) => {
+        const next = beats[k + 1]?.t ?? plan.duration;
+        const len = next - bt.t;
+        script.scenes[bt.si].beats[bt.bi].do.forEach((a, ai) => {
+          if (typeof a.at !== "number" || ["say", "caption", "camera", "shot", "orbit"].includes(a.do)) return;
+          if (a.at > len + 0.3) W("Q_ACTION_PAST_BEAT", `scenes[${bt.si}].beats[${bt.bi}].do[${ai}]`, `${a.do} at ${a.at} s starts after its beat ends (${len.toFixed(1)} s on the estimate): give the beat a dur or move the action`);
+        });
+      });
+    } catch { /* timing is best effort */ }
+  }
 
   // 4. Structure the spec promises.
   const first = script.scenes[0]?.beats[0]?.do ?? [];

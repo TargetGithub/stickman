@@ -4,7 +4,7 @@
 // engine3d/tools/script10k/README.md.
 //   node engine3d/tools/script10k.mjs build <id|band|all>...     compile + QA (writes the script and qa.json)
 //   node engine3d/tools/script10k.mjs qa <id>                     compile + print the full QA report
-//   node engine3d/tools/script10k.mjs stills <id> [--every 10] [--speech off]   1080p stills + labelled contact sheet
+//   node engine3d/tools/script10k.mjs stills <id> [--every 10] [--times 61.5,90] [--speech off]   1080p stills + labelled contact sheet
 //   node engine3d/tools/script10k.mjs thumbs <id>                 designed thumbnails + sheet into the qa folder
 //   node engine3d/tools/script10k.mjs review <id> --ok|--fix "note"   record the eye check (qa/<id>/review.json)
 //   node engine3d/tools/script10k.mjs ready [--band b] [--json]   specs whose assets all exist and have no lesson yet
@@ -32,7 +32,7 @@ const args = process.argv.slice(2);
 const cmd = args[0];
 const flag = (f) => args.includes(f);
 const opt = (f, d) => (args.includes(f) ? args[args.indexOf(f) + 1] : d);
-const positional = args.slice(1).filter((a, i, all) => !a.startsWith("--") && !["--every", "--speech", "--band", "--ok", "--fix"].includes(all[i - 1]));
+const positional = args.slice(1).filter((a, i, all) => !a.startsWith("--") && !["--every", "--speech", "--band", "--ok", "--fix", "--times"].includes(all[i - 1]));
 const catalog = loadCatalog3d();
 
 function expandIds(list) {
@@ -87,6 +87,8 @@ if (cmd === "stills") {
     if (beat.id?.endsWith(".magic")) add(b.t + 3, `MAGIC ${script.scenes[b.si].title}`);
   }
   for (let t = every; t < plan.duration; t += every) add(t, sceneOf(t)?.title ?? "");
+  // --times 61.5,90 renders just those moments (spot checks), labelled with their chapter.
+  if (opt("--times", null)) { times.clear(); for (const t of opt("--times").split(",").map(Number)) times.set(t, `spot ${sceneOf(t)?.title ?? ""}`); }
   const list = [...times.entries()].sort((a, b) => a[0] - b[0]).slice(0, 100);
   const dir = join(p.qaDir, "stills");
   rmSync(dir, { recursive: true, force: true });
