@@ -6,6 +6,7 @@ import { EASE_NAMES } from "./ease.js";
 import { expandObjects, isComposite } from "./composite.js";
 import { spokenError } from "./spoken.js";
 import { letterPieces } from "./letter_layout.js";
+import { checkStartPose } from "./start_pose.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
@@ -15,7 +16,7 @@ import { PAINT_KINDS, checkCast, checkLift, checkR3Action } from "./validate_r3.
 import { RETAIN_FIELDS, checkRetainAction, checkRetainObject, checkRetentionMeta, lintsOn, retentionLints } from "./validate_retain.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
-const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit", "hud"]);
+const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit", "hud", "pose"]);
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
@@ -116,6 +117,7 @@ export function validateScript(script, catalog, opts = {}) {
     if (!catalog.kinds[o.kind]) return err("E3D_OBJ_KIND", `${p}.kind`, `unknown kind "${o.kind}" (known: ${Object.keys(catalog.kinds).join(", ")})`);
     for (const k of Object.keys(o)) if (!COMMON.has(k) && !FIELDS[o.kind].includes(k)) warn("W3D_UNKNOWN_FIELD", `${p}.${k}`, `${o.kind} has no field "${k}"`);
     for (const k of ["at", "rotation"]) if (o[k] != null && !isVec(o[k])) err("E3D_VEC", `${p}.${k}`, "must be [x, y, z]");
+    checkStartPose(o, p, { err, partNames });
     if (o.scale != null && !isVec(o.scale) && !isNum(o.scale, 0.01, 100)) err("E3D_VEC", `${p}.scale`, "must be a number or [x, y, z]");
     if (o.size != null && !isNum(o.size, 0.05, 50)) err("E3D_RANGE", `${p}.size`, "size must be 0.05-50");
     name(catalog.colors, o.color, "E3D_COLOR", `${p}.color`, "color");

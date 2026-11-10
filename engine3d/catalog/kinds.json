@@ -39,7 +39,9 @@
         "depth": "extrusion depth, default 0.35",
         "lift": "\"descender\": raise the text so its lowest point (a Q's tail, the loop of g, j, p, q, y) sits on at's y instead of hanging below the floor; absent: the text stands on the font baseline",
         "forms": "school (default: single-storey a and g, as children learn to write) or book (two-storey a and g, as in reading books)",
-        "colors": "list of colors.json names, one per character (blend letters, rhyme endings); characters past the list use color"
+        "colors": "list of colors.json names, one per character (blend letters, rhyme endings); characters past the list use color",
+        "split": "start split after these character numbers ([2]: \"ca ble\"), as the split action leaves it",
+        "splitGap": "the gap of a starting split, default 0.35 x size"
       },
       "description": "Extruded 3D text, centred on x and standing on the font baseline: at is the baseline, so flat-bottomed letters touch it and g, j, p, q and y hang below it (letters, digits, short words).",
       "tags": [

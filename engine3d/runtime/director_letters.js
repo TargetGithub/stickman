@@ -2,6 +2,7 @@
 // syllables or chunks (the characters after each split slide apart, with an optional blade that slices down
 // through each gap), or close it up again. Pure: it only records timeline offsets on the pieces <id>#c<n>.
 
+import { splitOffsets } from "./start_pose.js";
 import { letterLayout } from "./letter_layout.js";
 import { LEAF } from "./composite2.js";
 
@@ -38,7 +39,6 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
     const p = piece(id);
     if (!p) return grow(id, opts);
     const { at: t = 0, to = 1.3, dur = 0.4, ease = "backOut" } = opts;
-    tl.base(p.key, "scale", [1, 1, 1]);
     const v = Array.isArray(to) ? to : [to, to, to];
     tl.tween(p.key, "scale", { start: t, dur, to: v, ease });
     return d;
@@ -161,15 +161,9 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
     split(id, { at: t = 0, after = [], gap, dur = 0.6, ease = "backOut", blade = false, sound: s = "whoosh" } = {}) {
       const o = obj(id);
       if (o.kind !== "letter") throw new Error(`split: "${id}" is a ${o.kind}, not a letter word`);
-      const L = letterLayout(o, catalog.fontMetrics);
       const size = o.size ?? 1;
-      const g = gap ?? 0.35 * size;
-      const cuts = [...new Set(after)].sort((a, b) => a - b);
-      for (const c of cuts) if (!Number.isInteger(c) || c < 1 || c >= L.length) throw new Error(`split "${id}": after must be character numbers 1-${L.length - 1}`);
-      for (const ch of L) {
-        const k = cuts.filter((c) => ch.n > c).length;
-        tl.tween(`${id}#c${ch.n}`, "position", { start: t, dur, to: [Math.round(k * g * 1e4) / 1e4, 0, 0], ease });
-      }
+      const { L, g, cuts, dx } = splitOffsets(o, catalog.fontMetrics, after, gap);
+      for (const ch of L) tl.tween(`${id}#c${ch.n}`, "position", { start: t, dur, to: [dx.get(ch.n), 0, 0], ease });
       if (s) sound(s, t, { volume: 0.6 });
       if (blade) {
         cuts.forEach((c, j) => {

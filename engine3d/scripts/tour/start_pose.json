@@ -1,0 +1,14 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Starting poses (#66): a word machine with its lever already pulled, a stage curtain already raised, and the word cable already split into ca + ble, all from object fields, no t = 0 actions.",
+  "meta": { "title": "Start pose tour", "seed": 66 },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 2.2, 11], "lookAt": [0, 1.2, 0], "fov": 40 },
+  "objects": [
+    { "id": "mach", "kind": "prop", "model": "word_machine", "at": [-3.2, 0, 0], "pose": { "lever": { "rotation": [0, 0, -45] } } },
+    { "id": "cur", "kind": "prop", "model": "stage_curtain", "at": [3, 0, -1.5], "pose": { "curtain": { "position": [0, 1.6, 0] } } },
+    { "id": "w", "kind": "letter", "text": "cable", "size": 0.8, "at": [0.8, 0.3, 1.5], "split": [2], "colors": ["red", "red", "blue", "blue", "blue"] }
+  ],
+  "scenes": [{ "id": "a", "beats": [{ "dur": 2.5, "do": [{ "do": "split", "target": "w", "after": [], "at": 1, "dur": 0.8 }] }] }]
+}

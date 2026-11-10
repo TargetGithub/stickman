@@ -4,6 +4,7 @@
 // TTS, the audio mix and the duration. Pure: no three.js, no I/O, no clocks.
 
 import { expandComposite, isComposite } from "./composite.js";
+import { applyStartPose } from "./start_pose.js";
 import { letterPieces } from "./letter_layout.js";
 import { installLetters } from "./director_letters.js";
 import { parseTune, TUNE_DEFAULTS } from "./tune.js";
@@ -121,6 +122,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
           tl.base(`${o.id}#${n}`, "rotation", [0, 0, 0]);
           tl.base(`${o.id}#${n}`, "position", [0, 0, 0]);
         }
+        applyStartPose(o, { tl, parts, catalog }); // pose / split: parts already moved at t = 0
       }
       if (o.kind === "critter" || (o.kind === "shape" && o.face) || o.kind === "character") {
         tl.base(o.id, "feeling", o.feeling ?? "happy");
