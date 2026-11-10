@@ -77,7 +77,7 @@ One beat = one spoken line or one kit macro, plus what happens during it. Sugar 
 | `hook: { question, behind, target, style, answer }` | the kit hook (must be the first beat; target starts `hidden`, placed where the cover stands). The tracker pops in with it. Prefer `style: "lift"` so the cover leaves the teaching area. |
 | `call: { prompt, cue, wait, answer, answerWho, reveal }` | call-and-response with a cue badge and a pause |
 | `challenge: { prompt, options, answer, dur, praise }` | prompt, pulsing options, 3-2-1 timer ring, celebrated answer (not for babies) |
-| `shot: "id"` / `["a", "b"]` / `{ target, framing, yaw, height, dur, pad }` | a framing camera move (default medium, 1.5 s, pad 0.15) |
+| `shot: "id"` / `["a", "b"]` / `{ target, framing, yaw, height, dur, pad }` | a framing camera move (default medium, 1.5 s, pad 0.15). Shots run after the beat's other actions, so leave it off a beat whose `do` moves the camera itself. |
 | `orbit: 20` / `{ degrees, around, dur }` | a slow arc |
 | `pop`, `show` / `hide` (id or list), `popAt`, `popGap`, `showAt`, `hideAt` | pop (staggered 0.45 s), show (staggered 0.25 s), hide |
 | `progress: true` / `"tease"` / `7`, `progressAt` (default 0.8 s) | fill the next tracker step / tease the surprise / fill to a step (surprise = slots + 1) |
