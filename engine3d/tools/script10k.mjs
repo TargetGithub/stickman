@@ -87,7 +87,7 @@ if (cmd === "stills") {
     if (beat.id?.endsWith(".magic")) add(b.t + 3, `MAGIC ${script.scenes[b.si].title}`);
   }
   for (let t = every; t < plan.duration; t += every) add(t, sceneOf(t)?.title ?? "");
-  const list = [...times.entries()].sort((a, b) => a[0] - b[0]).slice(0, 60);
+  const list = [...times.entries()].sort((a, b) => a[0] - b[0]).slice(0, 100);
   const dir = join(p.qaDir, "stills");
   rmSync(dir, { recursive: true, force: true });
   mkdirSync(dir, { recursive: true });

@@ -34,7 +34,8 @@ export function beatTimes(script, catalog, speech = {}) {
   const probe = structuredClone(script);
   const keys = [];
   probe.scenes.forEach((s, si) => s.beats.forEach((b, bi) => {
-    b.do = [{ do: "caption", text: `@@${si}.${bi}`, at: 0, dur: 0.01 }, ...b.do];
+    // Appended, not prepended: line ids are `${beat}.${action index}`, and measured TTS clips are keyed by them.
+    b.do = [...b.do, { do: "caption", text: `@@${si}.${bi}`, at: 0, dur: 0.01 }];
     keys.push([si, bi]);
   }));
   const plan = compileScript(probe, { catalog, speech });
