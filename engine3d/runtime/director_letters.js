@@ -8,9 +8,32 @@ import { letterLayout } from "./letter_layout.js";
  * @param {object} d  the director
  * @param {{ catalog, tl, obj, sound }} k  director internals
  */
-export function installLetters(d, { catalog, tl, obj, sound }) {
+export function installLetters(d, { catalog, tl, obj, sound, now }) {
   let blades = 0;
   Object.assign(d, {
+    /**
+     * Change a word or a card's text in place ("go" -> "got", a fixed word in a sentence): at the switch the old text
+     * dips and the new one pops back to full size. Targets a letter word, a text_card, or a card (its <id>_text).
+     * Pieces (word#c3) and emphasize marks keep following the object's first text.
+     */
+    retext(id, { at: t = 0, text, dur = 0.5, sound: s = "pop" } = {}) {
+      let o = obj(id);
+      if (o.kind === "group") {
+        try { o = obj(`${id}_text`); } catch { throw new Error(`retext: "${id}" has no text`); }
+        id = o.id;
+      }
+      if (o.kind !== "letter" && o.kind !== "text_card") throw new Error(`retext: "${id}" is a ${o.kind}, not a letter word or a text card`);
+      o.texts ??= [o.text];
+      if (!o.texts.includes(text)) o.texts.push(text);
+      const idx = o.texts.indexOf(text);
+      tl.base(id, "textIdx", 0);
+      const sc = now(id, "scale", t) ?? [1, 1, 1];
+      tl.tween(id, "scale", { start: t, dur: dur * 0.4, to: sc.map((v) => v * 0.55), ease: "quadIn" });
+      tl.set(id, "textIdx", idx, t + dur * 0.4);
+      tl.tween(id, "scale", { start: t + dur * 0.4, dur: dur * 0.6, from: sc.map((v) => v * 0.55), to: sc, ease: "backOut" });
+      if (s) sound(s, t + dur * 0.4, { volume: 0.5 });
+      return d;
+    },
     /**
      * Split a letter word after characters `after` ([2] splits "cable" into "ca" + "ble"; [] or gap 0 joins it).
      * Each character slides right by gap × the number of splits before it, from where it is now (a join undoes a

@@ -262,6 +262,13 @@ export function validateScript(script, catalog, opts = {}) {
     }
     checkTeachAction(a, p, o, { err, ids, catalog });
     if ((a.do === "drop" || a.do === "move" || a.do === "roll") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    if (a.do === "retext") {
+      const real = o.kind === "group" ? ids.get(`${a.target}_text`) : o;
+      if (!real || !["letter", "text_card"].includes(real.kind)) err("E3D_TARGET_KIND", `${p}.target`, `retext needs a letter word, a text_card or a card with text, "${a.target}" is a ${o.kind}`);
+      else if (typeof a.text !== "string" || !a.text.trim()) err("E3D_TEXT", `${p}.text`, "retext needs text");
+      else if (real.kind === "letter" && a.text.length > 24) err("E3D_TEXT", `${p}.text`, "a letter word is 1-24 characters");
+      else if (real.kind === "text_card" && a.text.length > 300) err("E3D_TEXT", `${p}.text`, "a text card holds 1-300 characters");
+    }
     if (a.do === "split") {
       if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `split needs a letter word, "${a.target}" is a ${o.kind}`);
       const n = String(o.text ?? "").length;

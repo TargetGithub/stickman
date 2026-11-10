@@ -346,7 +346,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   installTeach(d, { catalog, tl, obj, now, sound, objects });
   installCameraMoves(d, { catalog, tl, obj, now, V, objects });
   installLook(d, { catalog, tl, obj, now, V });
-  installLetters(d, { catalog, tl, obj, sound });
+  installLetters(d, { catalog, tl, obj, sound, now });
   const kit2 = installKit2(d, { catalog, tl, obj, now, sound, objects, V });
   const retain = installRetain(d, { catalog, tl, obj, now, sound, objects });
   return d;

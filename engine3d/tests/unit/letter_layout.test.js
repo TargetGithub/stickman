@@ -54,3 +54,17 @@ test("split pulls chunks apart after characters and joins them again", () => {
     assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_SPLIT"), JSON.stringify(after));
   }
 });
+
+test("#47 retext changes a word, a card's text or a text card in place", () => {
+  const s = JSON.parse(readFileSync(new URL("../../scripts/tour/retext.json", import.meta.url), "utf8"));
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const word = plan.objects.find((o) => o.id === "word");
+  assert.deepEqual(word.texts, ["go", "got"]);
+  assert.equal(plan.timeline.valueAt("word", "textIdx", 0.5), 0);
+  assert.equal(plan.timeline.valueAt("word", "textIdx", 2), 1);
+  assert.deepEqual(plan.objects.find((o) => o.id === "tile_text").texts, ["hop", "hope"]);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[1].do[0].text = "x".repeat(30);
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TEXT"));
+});

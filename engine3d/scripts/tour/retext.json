@@ -1,0 +1,15 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Change a word in place", "seed": 24, "music": false },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 1.4, 7], "lookAt": [0, 1.0, 0], "fov": 40 },
+  "objects": [
+    { "id": "word", "kind": "letter", "text": "go", "size": 0.7, "at": [-2.4, 1.0, 0] },
+    { "id": "tile", "kind": "card", "style": "tile", "text": "hop", "at": [0, 0.8, 0] },
+    { "id": "sent", "kind": "text_card", "text": "The cat sat on the hat.", "width": 3, "size": 0.2, "at": [2.6, 0.9, 0] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 1, "do": [] },
+    { "dur": 2, "do": [{ "do": "retext", "target": "word", "text": "got" }, { "do": "retext", "target": "tile", "text": "hope", "at": 0.3 }, { "do": "retext", "target": "sent", "text": "The cat sat on the mat.", "at": 0.6 }] }
+  ] }]
+}

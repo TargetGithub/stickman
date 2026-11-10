@@ -111,6 +111,26 @@ function colorLetters(o, font, size, depth, material, lift = false) {
  *   update?: (t:number, s:object, state:object) => void }}  world: helpers the stage adds to the scene itself
  */
 export function buildObject(o, { catalog, assets, material, seed, height = 1080, handles }) {
+  // retext: a word or a card whose text changes (o.texts, director_letters.js) is one sub-object per text, the
+  // timeline's textIdx choosing which shows. Pieces (word#c3) and marks follow the first text.
+  if (o.texts?.length > 1 && (o.kind === "letter" || o.kind === "text_card")) {
+    const group = new THREE.Group();
+    group.name = o.id;
+    const ctx = { catalog, assets, material, seed, height, handles };
+    const subs = o.texts.map((text) => buildObject({ ...o, text, texts: undefined }, ctx));
+    for (const b of subs) group.add(b.group);
+    return {
+      group,
+      named: subs[0].named,
+      update(t, s, state) {
+        const k = Math.max(0, Math.min(subs.length - 1, Math.round(s.textIdx ?? 0)));
+        subs.forEach((b, i) => {
+          b.group.visible = i === k;
+          if (i === k) b.update?.(t, s, state);
+        });
+      },
+    };
+  }
   // The teaching kit (teach.js): handles lets marks and glows measure the object they ride on.
   if (isTeachKind(o.kind)) return buildTeach(o, { catalog, material, font: assets.fonts.get("andika_bold"), textGeometry, handles, height });
   if (isRetainKind(o.kind)) return buildRetain(o, { catalog, material, font: assets.fonts.get("andika_bold"), textGeometry });
