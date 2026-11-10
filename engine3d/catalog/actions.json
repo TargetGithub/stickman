@@ -697,6 +697,7 @@
   "hook": {
    "params": {
     "question": "the opening question, spoken and captioned (required)",
+    "keywords": "keyword badges on the opening line: word -> icon, prop, shape or keyword options (as on say)",
     "questionSpoken": "what the voice reads for question when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "behind": "the cover object, or a named part of one such as \"toy_box#lid\" (required)",
     "target": "the object it hides, hidden until the reveal (required)",
@@ -721,6 +722,8 @@
   "challenge": {
    "params": {
     "prompt": "the challenge line (required)",
+    "hideWrong": "true: the wrong options shrink away once the answer shows, and stay hidden",
+    "keywords": "keyword badges on the opening line: word -> icon, prop, shape or keyword options (as on say)",
     "promptSpoken": "what the voice reads for prompt when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "options": "2-6 object ids (required)",
     "answer": "the right option (required)",
@@ -743,6 +746,7 @@
   "call": {
    "params": {
     "prompt": "the call (required)",
+    "keywords": "keyword badges on the opening line: word -> icon, prop, shape or keyword options (as on say)",
     "promptSpoken": "what the voice reads for prompt when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "answer": "the response, spoken after the pause (required)",
     "answerSpoken": "what the voice reads for answer when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",

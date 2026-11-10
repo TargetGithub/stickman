@@ -188,3 +188,19 @@ test("#25 shot frames cards and pages by their real (upright) size, straight on"
     assert.ok(dist < 7, `close enough (${dist.toFixed(2)} m)`);
   }
 });
+
+test("#59 challenge hideWrong keeps wrong options hidden after the praise; keywords on kit prompts; sineOut", async () => {
+  const { EASE_NAMES } = await import("../../runtime/ease.js");
+  assert.ok(EASE_NAMES.includes("sineOut") && EASE_NAMES.includes("sineIn"));
+  const s = { kind: "video3d", version: 1, meta: { seed: 1 },
+    objects: [{ id: "a", kind: "prop", model: "apple", at: [-1, 0, 0] }, { id: "b", kind: "prop", model: "apple", at: [1, 0, 0] }],
+    scenes: [{ id: "s", beats: [{ dur: 10, do: [{ do: "challenge", prompt: "Which apple is red?", keywords: { apple: "apple" }, options: ["a", "b"], answer: "a", dur: 2, praise: "Yes, that one!", hideWrong: true }] }] }] };
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const p = compileScript(s, { catalog });
+  assert.equal(p.timeline.valueAt("b", "visible", p.duration - 0.6), false);
+  assert.ok(p.timeline.valueAt("a", "visible", p.duration - 0.6));
+  assert.ok(p.objects.some((o) => o.kind === "badge"), "a keyword badge for apple");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].keywords = { pear: "apple" };
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_KEYWORD"));
+});

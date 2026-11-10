@@ -76,17 +76,18 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
     v.forEach((id, i) => exists(id, `${p}.${k}[${i}]`));
     return true;
   };
-  if (a.do === "say") {
-    if (a.keywords == null) return false;
+  // keywords: on a say's text, or on the opening line of a hook (question), challenge or call (prompt).
+  const keyLine = a.do === "say" ? a.text : a.do === "hook" ? a.question : a.do === "challenge" || a.do === "call" ? a.prompt : null;
+  if ((a.do === "say" || KIT_ACTIONS.includes(a.do)) && a.keywords != null) {
     if (typeof a.keywords !== "object" || Array.isArray(a.keywords)) return err("E3D_KEYWORD", `${p}.keywords`, "keywords must map words to icons, props or keyword options"), false;
     for (const [w, spec] of Object.entries(a.keywords)) {
-      if (typeof a.text === "string" && wordShare(a.text, w) == null) err("E3D_KEYWORD", `${p}.keywords.${w}`, `"${w}" is not a word in the line`);
+      if (typeof keyLine === "string" && wordShare(keyLine, w) == null) err("E3D_KEYWORD", `${p}.keywords.${w}`, `"${w}" is not a word in the line`);
       if (typeof spec === "string") {
         if (!ICONS[spec] && !catalog.props[spec] && !catalog.shapes[spec] && !isStr(spec, 1, 4)) err("E3D_KEYWORD", `${p}.keywords.${w}`, `"${spec}" is not an icon (${Object.keys(ICONS).join(", ")}), a prop, a shape or 1-4 characters`);
       } else keywordFace(spec ?? {}, `${p}.keywords.${w}`);
     }
-    return false;
   }
+  if (a.do === "say") return false;
   if (!KIT_ACTIONS.includes(a.do)) return false;
   if (a.sound != null && a.sound !== false && !catalog.sounds[a.sound]) err("E3D_SOUND", `${p}.sound`, `unknown sound "${a.sound}"`);
   for (const f of ["questionSpoken", "answerSpoken", "promptSpoken", "praiseSpoken"]) {

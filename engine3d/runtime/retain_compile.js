@@ -18,7 +18,7 @@ export const RETAIN_MACROS = ["hook", "challenge", "call"];
 export function runMacro(a, { d, t, rel, speak, audience }) {
   const at = (r) => t + r;
   // A line's spoken form (respelling or [[ IPA ]]) comes from <field>Spoken: questionSpoken, answerSpoken, ...
-  const line = (text, who, spoken) => ({ do: "say", text, caption: a.caption !== false, ...(who != null ? { who } : {}), ...(spoken != null ? { spoken } : {}) });
+  const line = (text, who, spoken, keywords) => ({ do: "say", text, caption: a.caption !== false, ...(who != null ? { who } : {}), ...(spoken != null ? { spoken } : {}), ...(keywords ? { keywords } : {}) });
 
   if (a.do === "hook") {
     // behind may be a named part ("toy_box#lid"): the camera frames its owner and the reveal opens the part.
@@ -27,7 +27,7 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     const slow = audience === "babies" || a.slow === true;
     d.engage("hook", { at: at(rel) });
     if (a.shot !== false) d.shot({ at: at(rel), target: owner, framing: "close", pad: 0.2, dur: 1.2 });
-    const q = speak(line(a.question, a.who, a.questionSpoken), rel + 0.2);
+    const q = speak(line(a.question, a.who, a.questionSpoken, a.keywords), rel + 0.2);
     const reveal = rel + 0.2 + q + (a.reveal ?? 0.6);
     if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, reveal - rel - 0.3) });
     d.wiggle(a.behind, { at: at(rel + 0.6), deg: 8, dur: 0.6 });
@@ -46,7 +46,7 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
   }
 
   if (a.do === "challenge") {
-    const q = speak(line(a.prompt, a.who, a.promptSpoken), rel);
+    const q = speak(line(a.prompt, a.who, a.promptSpoken, a.keywords), rel);
     const start = rel + q + 0.3;
     const dur = a.dur ?? 5;
     d.engage("challenge", { at: at(rel) });
@@ -56,12 +56,14 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     d.answer(a.answer, { at: at(rang + 0.2), result: "correct", confetti: a.confetti });
     let end = rang + 2.2;
     if (a.praise) end = Math.max(end, rang + 0.9 + speak(line(a.praise, a.who, a.praiseSpoken), rang + 0.9) + 0.35);
+    // hideWrong: the wrong options shrink away once the answer shows (after the options' last pulse), and stay away.
+    if (a.hideWrong) for (const id of a.options ?? []) if (id !== a.answer) d.hide(id, { at: at(rang + 0.8), dur: 0.4 });
     return end;
   }
 
   if (a.do === "call") {
     const wait = a.wait ?? 2.5;
-    const q = speak(line(a.prompt, a.who, a.promptSpoken), rel);
+    const q = speak(line(a.prompt, a.who, a.promptSpoken, a.keywords), rel);
     d.engage("call", { at: at(rel) });
     d.cue(a.cue ?? "hand", { at: at(rel + q + 0.15), dur: wait + 0.1 });
     d.music({ at: at(rel + q), gain: 0.45, dur: 0.4 });
