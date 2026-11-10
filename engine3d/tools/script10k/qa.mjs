@@ -8,7 +8,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { validateScript } from "../../runtime/validate.js";
 import { compileScript } from "../../runtime/compile.js";
 import { US_SPELLING, US_VOCAB } from "../lib/spec10k/usenglish.mjs";
-import { BANDS, bandOf } from "./bands.mjs";
+import { BANDS, MOODS, bandOf } from "./bands.mjs";
 
 const BANNED = ["bloody", "gore", "gory", "gun", "guns", "weapon", "weapons", "kill", "killed", "kills", "corpse", "dead body", "stupid", "shut up", "hate you"];
 const INTERACTIVE = new Set(["hook", "challenge", "call", "options", "answer", "timer"]);
@@ -132,6 +132,11 @@ export function qaScript(script, spec, lesson, catalog, { allow = [] } = {}) {
       if (a.do === "lights" && (a.dur ?? 1) < 1.5) W("Q_BABY_FLASH", path, "babies: light changes over 1.5 s or more (no flashing)");
     }
   }
+
+  // Scene music moods (the runtime validator ignores scene keys; render3d would reject an unknown mood).
+  script.scenes.forEach((sc, i) => {
+    if (sc.music != null && sc.music !== false && !MOODS.includes(sc.music)) E("Q_MUSIC", `scenes[${i}].music`, `unknown music mood "${sc.music}" (${MOODS.join(", ")} or false)`);
+  });
 
   // 4. Structure the spec promises.
   const first = script.scenes[0]?.beats[0]?.do ?? [];
