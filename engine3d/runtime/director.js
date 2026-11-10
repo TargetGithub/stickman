@@ -94,6 +94,8 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
         return d;
       }
       spec = retainDefaults(placeOn(spec, objects)); // on: { line, value } stands it on a number line
+      // A letter riding in a train car stands on its lowest point, so a g's or y's tail clears the walls (#80).
+      if (spec.kind === "letter" && spec.lift === undefined && objects.get(spec.parent)?.model === "train_car") spec = { ...spec, lift: "descender" };
       if (!spec?.id || objects.has(spec.id) || spec.id === "camera" || spec.id === "stage") throw new Error(`object id "${spec?.id}" is missing or taken`);
       if (!catalog.kinds[spec.kind] && !spec.internal) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
       if (spec.parent != null && !objects.has(spec.parent)) throw new Error(`object "${spec.id}": parent "${spec.parent}" must be added first`);

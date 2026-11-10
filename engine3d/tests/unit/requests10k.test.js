@@ -294,3 +294,13 @@ test("#73 choices stack long answers and row short ones; a beat with dur fit las
   const codes = validateScript(bad, catalog).errors.map((e) => e.code);
   assert.ok(codes.includes("E3D_OPTIONS") && codes.includes("E3D_RANGE"), codes.join());
 });
+
+test("#80 a letter riding in a train_car stands on its lowest point; #75 the train docs say which way it faces", () => {
+  const s = { kind: "video3d", version: 1, description: "x", meta: { title: "t", seed: 1 }, camera: { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 40 },
+    objects: [{ id: "car", kind: "prop", model: "train_car" }, { id: "g", kind: "letter", text: "g", parent: "car", at: [0, 0.22, 0] }, { id: "b", kind: "letter", text: "b", parent: "car", at: [0, 0.22, 0], lift: "baseline" }],
+    scenes: [{ id: "a", beats: [{ dur: 1, do: [] }] }] };
+  const plan = compileScript(s, { catalog });
+  assert.equal(plan.objects.find((o) => o.id === "g").lift, "descender");
+  assert.equal(plan.objects.find((o) => o.id === "b").lift, "baseline", "an explicit lift wins");
+  assert.match(catalog.props.train_engine.description, /\[0, 180, 0\]/);
+});
