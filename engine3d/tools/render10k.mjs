@@ -67,7 +67,8 @@ function ready(id) {
 /** Another heavy render running (Doopi record.mjs, any render3d/episode3d not started by us). */
 function busy() {
   const r = sh("pgrep", ["-fl", "tools/record.mjs|render3d.mjs|episode3d.mjs"]);
-  return r.stdout.trim().split("\n").filter((l) => l && !l.includes("render10k")).length > 0;
+  // Writers' review stills (short 1080p --stills renders) do not count: they would starve the queue.
+  return r.stdout.trim().split("\n").filter((l) => /^\d+ \S*node /.test(l) && !l.includes("render10k") && !l.includes("--stills")).length > 0;
 }
 
 /** Spot-check a final: resolution, fps, length vs the plan, loudness from the stats, kit files. */
