@@ -6863,6 +6863,756 @@
      "size": 2.2
     }
    ]
+  },
+  "town_street": {
+   "background": "sky",
+   "floor": "grey",
+   "rug": null,
+   "fog": [
+    24,
+    60
+   ],
+   "lights": "soft_day",
+   "description": "A friendly town street on grey paving: a sand-colored sidewalk with a curb at z -3.6, a back row of six small houses in soft colors (size 2.1, z -6.6) with trees between, a market stall in the middle, street lamps, a bench, a traffic light at the right and a stop sign at the left. The street in front (z > -3.5) is the teaching area. For an empty square use the town preset.",
+   "tags": [
+    "outdoor",
+    "community",
+    "town",
+    "neighborhood"
+   ],
+   "set": [
+    {
+     "id": "sidewalk",
+     "kind": "shape",
+     "shape": "plate",
+     "color": "sand",
+     "material": "matte",
+     "at": [
+      0,
+      0.003,
+      -4.4
+     ],
+     "scale": [
+      60,
+      0.1,
+      1.6
+     ]
+    },
+    {
+     "id": "curb",
+     "kind": "shape",
+     "shape": "box",
+     "color": "wall_warm",
+     "material": "matte",
+     "at": [
+      0,
+      0,
+      -3.62
+     ],
+     "scale": [
+      60,
+      0.06,
+      0.12
+     ]
+    },
+    {
+     "id": "house1",
+     "kind": "prop",
+     "model": "house",
+     "at": [
+      -9.6,
+      0,
+      -6.6
+     ],
+     "size": 2.1
+    },
+    {
+     "id": "house2",
+     "kind": "prop",
+     "model": "house",
+     "at": [
+      -6.4,
+      0,
+      -6.6
+     ],
+     "size": 2.1,
+     "recolor": {
+      "cream": "sky"
+     }
+    },
+    {
+     "id": "house3",
+     "kind": "prop",
+     "model": "house",
+     "at": [
+      -3.2,
+      0,
+      -6.6
+     ],
+     "size": 2.1,
+     "recolor": {
+      "cream": "pig"
+     }
+    },
+    {
+     "id": "house4",
+     "kind": "prop",
+     "model": "house",
+     "at": [
+      3.2,
+      0,
+      -6.6
+     ],
+     "size": 2.1,
+     "recolor": {
+      "cream": "mint"
+     }
+    },
+    {
+     "id": "house5",
+     "kind": "prop",
+     "model": "house",
+     "at": [
+      6.4,
+      0,
+      -6.6
+     ],
+     "size": 2.1,
+     "recolor": {
+      "cream": "sand"
+     }
+    },
+    {
+     "id": "house6",
+     "kind": "prop",
+     "model": "house",
+     "at": [
+      9.6,
+      0,
+      -6.6
+     ],
+     "size": 2.1,
+     "recolor": {
+      "cream": "wall_warm"
+     }
+    },
+    {
+     "id": "shop",
+     "kind": "prop",
+     "model": "market_stall",
+     "at": [
+      0,
+      0,
+      -6.3
+     ],
+     "size": 1.3
+    },
+    {
+     "id": "tree1",
+     "kind": "prop",
+     "model": "tree",
+     "at": [
+      -8.0,
+      0,
+      -7.6
+     ],
+     "size": 1.2
+    },
+    {
+     "id": "tree2",
+     "kind": "prop",
+     "model": "tree",
+     "at": [
+      -4.8,
+      0,
+      -7.6
+     ],
+     "size": 1.2
+    },
+    {
+     "id": "tree3",
+     "kind": "prop",
+     "model": "tree",
+     "at": [
+      4.8,
+      0,
+      -7.6
+     ],
+     "size": 1.2
+    },
+    {
+     "id": "tree4",
+     "kind": "prop",
+     "model": "tree",
+     "at": [
+      8.0,
+      0,
+      -7.6
+     ],
+     "size": 1.2
+    },
+    {
+     "id": "lamp1",
+     "kind": "prop",
+     "model": "street_lamp",
+     "at": [
+      -6.0,
+      0,
+      -3.9
+     ]
+    },
+    {
+     "id": "lamp2",
+     "kind": "prop",
+     "model": "street_lamp",
+     "at": [
+      6.0,
+      0,
+      -3.9
+     ]
+    },
+    {
+     "id": "bench",
+     "kind": "prop",
+     "model": "bench",
+     "at": [
+      -3.6,
+      0,
+      -4.6
+     ]
+    },
+    {
+     "id": "lights",
+     "kind": "prop",
+     "model": "traffic_light",
+     "at": [
+      9.0,
+      0,
+      -3.9
+     ]
+    },
+    {
+     "id": "stop",
+     "kind": "prop",
+     "model": "stop_sign",
+     "at": [
+      -9.0,
+      0,
+      -3.9
+     ]
+    },
+    {
+     "id": "bush1",
+     "kind": "prop",
+     "model": "bush",
+     "at": [
+      2.2,
+      0,
+      -5.2
+     ],
+     "size": 0.7
+    },
+    {
+     "id": "cloud1",
+     "kind": "prop",
+     "model": "cloud",
+     "at": [
+      -5,
+      7.5,
+      -14
+     ],
+     "size": 2
+    },
+    {
+     "id": "cloud2",
+     "kind": "prop",
+     "model": "cloud",
+     "at": [
+      6,
+      8.2,
+      -15
+     ],
+     "size": 2.4
+    }
+   ]
+  },
+  "beach_islands": {
+   "background": "sky",
+   "floor": "sea",
+   "rug": "sand",
+   "fog": [
+    30,
+    80
+   ],
+   "lights": "soft_day",
+   "description": "A sunny beach on a calm turquoise sea: the teaching area is a round sand beach (radius 4.6 round x 0, z 0), with small palm islands stepping back into the distance, a little sailboat, sun and clouds. The same sea and islands as phonics_island_chain without its flags and signposts, for any seaside lesson.",
+   "tags": [
+    "outdoor",
+    "water",
+    "beach",
+    "sea",
+    "islands"
+   ],
+   "set": [
+    {
+     "id": "isle2_shallow",
+     "kind": "shape",
+     "shape": "disc",
+     "color": "sea_shallow",
+     "material": "matte",
+     "at": [
+      -2,
+      0,
+      -9.4
+     ],
+     "scale": [
+      6.6,
+      0.05,
+      4.5
+     ]
+    },
+    {
+     "id": "isle2",
+     "kind": "shape",
+     "shape": "dome",
+     "color": "sand",
+     "material": "matte",
+     "at": [
+      -2,
+      -0.02,
+      -9.4
+     ],
+     "scale": [
+      5.2,
+      1.3,
+      3.4
+     ]
+    },
+    {
+     "id": "isle2_palm",
+     "kind": "prop",
+     "model": "palm_tree",
+     "at": [
+      -3.2,
+      0.46,
+      -9.9
+     ],
+     "size": 1,
+     "rotation": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "id": "isle3_shallow",
+     "kind": "shape",
+     "shape": "disc",
+     "color": "sea_shallow",
+     "material": "matte",
+     "at": [
+      2,
+      0,
+      -15.6
+     ],
+     "scale": [
+      7,
+      0.05,
+      4.7
+     ]
+    },
+    {
+     "id": "isle3",
+     "kind": "shape",
+     "shape": "dome",
+     "color": "sand",
+     "material": "matte",
+     "at": [
+      2,
+      -0.02,
+      -15.6
+     ],
+     "scale": [
+      5.6,
+      1.3,
+      3.6
+     ]
+    },
+    {
+     "id": "isle4_shallow",
+     "kind": "shape",
+     "shape": "disc",
+     "color": "sea_shallow",
+     "material": "matte",
+     "at": [
+      -2.2,
+      0,
+      -22
+     ],
+     "scale": [
+      7.4,
+      0.05,
+      4.9
+     ]
+    },
+    {
+     "id": "isle4",
+     "kind": "shape",
+     "shape": "dome",
+     "color": "sand",
+     "material": "matte",
+     "at": [
+      -2.2,
+      -0.02,
+      -22
+     ],
+     "scale": [
+      6,
+      1.3,
+      3.8
+     ]
+    },
+    {
+     "id": "isle4_palm",
+     "kind": "prop",
+     "model": "palm_tree",
+     "at": [
+      -3.4,
+      0.46,
+      -22.5
+     ],
+     "size": 1.5,
+     "rotation": [
+      0,
+      180,
+      0
+     ]
+    },
+    {
+     "id": "isle5_shallow",
+     "kind": "shape",
+     "shape": "disc",
+     "color": "sea_shallow",
+     "material": "matte",
+     "at": [
+      2.3,
+      0,
+      -28.6
+     ],
+     "scale": [
+      7.8,
+      0.05,
+      5.1
+     ]
+    },
+    {
+     "id": "isle5",
+     "kind": "shape",
+     "shape": "dome",
+     "color": "sand",
+     "material": "matte",
+     "at": [
+      2.3,
+      -0.02,
+      -28.6
+     ],
+     "scale": [
+      6.4,
+      1.3,
+      4
+     ]
+    },
+    {
+     "id": "isle5_palm",
+     "kind": "prop",
+     "model": "palm_tree",
+     "at": [
+      3.5,
+      0.46,
+      -29.1
+     ],
+     "size": 1.75,
+     "rotation": [
+      0,
+      180,
+      0
+     ]
+    },
+    {
+     "id": "islet_l_shallow",
+     "kind": "shape",
+     "shape": "disc",
+     "color": "sea_shallow",
+     "material": "matte",
+     "at": [
+      -9.6,
+      0,
+      -6.4
+     ],
+     "scale": [
+      5.4,
+      0.05,
+      3.6
+     ]
+    },
+    {
+     "id": "islet_l",
+     "kind": "shape",
+     "shape": "dome",
+     "color": "sand",
+     "material": "matte",
+     "at": [
+      -9.6,
+      -0.02,
+      -6.4
+     ],
+     "scale": [
+      4.2,
+      1,
+      2.6
+     ]
+    },
+    {
+     "id": "islet_l_palm",
+     "kind": "prop",
+     "model": "palm_tree",
+     "at": [
+      -9.9,
+      0.3,
+      -6.6
+     ],
+     "size": 1.3
+    },
+    {
+     "id": "islet_l_rock",
+     "kind": "prop",
+     "model": "rock",
+     "at": [
+      -8.6,
+      0.2,
+      -5.9
+     ],
+     "size": 0.9
+    },
+    {
+     "id": "islet_r_shallow",
+     "kind": "shape",
+     "shape": "disc",
+     "color": "sea_shallow",
+     "material": "matte",
+     "at": [
+      9.8,
+      0,
+      -8.4
+     ],
+     "scale": [
+      5.8,
+      0.05,
+      3.8
+     ]
+    },
+    {
+     "id": "islet_r",
+     "kind": "shape",
+     "shape": "dome",
+     "color": "sand",
+     "material": "matte",
+     "at": [
+      9.8,
+      -0.02,
+      -8.4
+     ],
+     "scale": [
+      4.6,
+      1,
+      2.8
+     ]
+    },
+    {
+     "id": "islet_r_palm",
+     "kind": "prop",
+     "model": "palm_tree",
+     "at": [
+      10.2,
+      0.3,
+      -8.6
+     ],
+     "size": 1.4,
+     "rotation": [
+      0,
+      180,
+      0
+     ]
+    },
+    {
+     "id": "islet_r_rock",
+     "kind": "prop",
+     "model": "rock",
+     "at": [
+      8.8,
+      0.2,
+      -7.8
+     ],
+     "size": 0.7
+    },
+    {
+     "id": "ripple1",
+     "kind": "shape",
+     "shape": "hoop",
+     "color": "white",
+     "material": "matte",
+     "at": [
+      -5.4,
+      0.005,
+      -4.2
+     ],
+     "scale": [
+      1.2,
+      0.4,
+      0.66
+     ]
+    },
+    {
+     "id": "ripple2",
+     "kind": "shape",
+     "shape": "hoop",
+     "color": "white",
+     "material": "matte",
+     "at": [
+      5.6,
+      0.005,
+      -3.6
+     ],
+     "scale": [
+      1.5,
+      0.4,
+      0.825
+     ]
+    },
+    {
+     "id": "ripple3",
+     "kind": "shape",
+     "shape": "hoop",
+     "color": "white",
+     "material": "matte",
+     "at": [
+      -4.6,
+      0.005,
+      -12.5
+     ],
+     "scale": [
+      1.8,
+      0.4,
+      0.99
+     ]
+    },
+    {
+     "id": "ripple4",
+     "kind": "shape",
+     "shape": "hoop",
+     "color": "white",
+     "material": "matte",
+     "at": [
+      5.2,
+      0.005,
+      -13.5
+     ],
+     "scale": [
+      1.4,
+      0.4,
+      0.77
+     ]
+    },
+    {
+     "id": "ripple5",
+     "kind": "shape",
+     "shape": "hoop",
+     "color": "white",
+     "material": "matte",
+     "at": [
+      6.2,
+      0.005,
+      -21
+     ],
+     "scale": [
+      2,
+      0.4,
+      1.1
+     ]
+    },
+    {
+     "id": "ripple6",
+     "kind": "shape",
+     "shape": "hoop",
+     "color": "white",
+     "material": "matte",
+     "at": [
+      -6.4,
+      0.005,
+      -19.5
+     ],
+     "scale": [
+      1.6,
+      0.4,
+      0.88
+     ]
+    },
+    {
+     "id": "sun",
+     "kind": "prop",
+     "model": "sun",
+     "at": [
+      -9,
+      7.6,
+      -22
+     ],
+     "size": 1.9
+    },
+    {
+     "id": "cloud1",
+     "kind": "prop",
+     "model": "cloud",
+     "at": [
+      -3.5,
+      7.8,
+      -24
+     ],
+     "size": 2
+    },
+    {
+     "id": "cloud2",
+     "kind": "prop",
+     "model": "cloud",
+     "at": [
+      5.5,
+      7,
+      -22
+     ],
+     "size": 2.4
+    },
+    {
+     "id": "cloud3",
+     "kind": "prop",
+     "model": "cloud",
+     "at": [
+      12,
+      8.4,
+      -26
+     ],
+     "size": 1.8
+    },
+    {
+     "id": "boat",
+     "kind": "prop",
+     "model": "boat",
+     "at": [
+      4.6,
+      0,
+      -9.5
+     ],
+     "size": 1.2
+    }
+   ]
   }
  }
 }
