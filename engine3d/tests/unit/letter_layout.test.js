@@ -81,3 +81,17 @@ test("#46 vowel_mark draws a bar or cup over a vowel or vowel team; it clears an
   bad.scenes[0].beats[0].do[0].chars = [9];
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_CHARS"));
 });
+
+test("#69 a letter piece hops, grows and turns gold on its own", () => {
+  const s = JSON.parse(readFileSync(new URL("../../scripts/tour/letter_actions.json", import.meta.url), "utf8"));
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.ok(plan.timeline.valueAt("word#c2", "position", 0.82)[1] > 0.1, "c2 is up mid-hop");
+  assert.deepEqual(plan.timeline.valueAt("word#c2", "position", 1.5), [0, 0, 0]);
+  assert.ok(plan.timeline.valueAt("word#c4", "scale", 2)[0] > 1.2);
+  const gold = plan.timeline.valueAt("word", "tint@1", 1.5);
+  assert.ok(gold[0] > 0.9 && gold[2] < 0.4, "c2 (index 1) is gold");
+  const blue = plan.timeline.valueAt("word", "tint@0", 1.5);
+  assert.ok(blue[2] > 0.8, "c1 stays blue");
+  assert.equal(plan.objects.find((o) => o.id === "word").paintChars, true);
+});

@@ -11,6 +11,51 @@ import { LEAF } from "./composite2.js";
  */
 export function installLetters(d, { catalog, tl, obj, sound, now }) {
   let blades = 0;
+  // Per-letter hop, grow and paint on a word's pieces ("word#c3"): one vowel team bounces, swells or turns gold.
+  const piece = (target) => {
+    const m = /^(.+)#c(\d+)$/.exec(String(target));
+    if (!m) return null;
+    const o = obj(m[1]);
+    return o.kind === "letter" ? { id: m[1], o, n: Number(m[2]), key: `${m[1]}#c${m[2]}` } : null;
+  };
+  const { hop, grow, paint } = d;
+  const rgbOf = (name) => {
+    const h = catalog.colors[name].hex.replace("#", "");
+    return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+  };
+  d.hop = (id, opts = {}) => {
+    const p = piece(id);
+    if (!p) return hop(id, opts);
+    const { at: t = 0, height = 0.6, dur = 0.45, sound: s } = opts;
+    const h = height * (p.o.size ?? 1) * 0.6; // a letter hops about its own height, not a critter's
+    const base = now(p.key, "position", t) ?? [0, 0, 0];
+    tl.tween(p.key, "position", { start: t, dur: dur / 2, to: [base[0], base[1] + h, base[2]], ease: "quadOut" });
+    tl.tween(p.key, "position", { start: t + dur / 2, dur: dur / 2, to: base, ease: "quadIn" });
+    if (s) sound(s, t);
+    return d;
+  };
+  d.grow = (id, opts = {}) => {
+    const p = piece(id);
+    if (!p) return grow(id, opts);
+    const { at: t = 0, to = 1.3, dur = 0.4, ease = "backOut" } = opts;
+    tl.base(p.key, "scale", [1, 1, 1]);
+    const v = Array.isArray(to) ? to : [to, to, to];
+    tl.tween(p.key, "scale", { start: t, dur, to: v, ease });
+    return d;
+  };
+  d.paint = (id, opts = {}) => {
+    const p = piece(id);
+    if (!p) return paint(id, opts);
+    const { at: t = 0, color, dur = 0.8, ease = "sineInOut" } = opts;
+    if (!catalog.colors[color]) throw new Error(`unknown color "${color}"`);
+    // Every character gets its own colour track the first time one is painted (objects.js paintChars).
+    if (!p.o.paintChars) {
+      p.o.paintChars = true;
+      Array.from(p.o.text).forEach((ch, i) => ch.trim() && tl.base(p.id, `tint@${i}`, rgbOf(p.o.colors?.[i] ?? p.o.color ?? "blue")));
+    }
+    tl.tween(p.id, `tint@${p.n - 1}`, { start: t, dur, to: rgbOf(color), ease });
+    return d;
+  };
   const turned = new Map(); // book id -> how many leaves are over
   const marks = new Map(); // word id -> its vowel mark ids
   Object.assign(d, {

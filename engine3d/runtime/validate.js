@@ -236,7 +236,10 @@ export function validateScript(script, catalog, opts = {}) {
       const [base, part] = a.target.split("#");
       const owner = ids.get(base);
       if (!owner) return err("E3D_TARGET", `${p}.target`, `no object "${base}"`);
-      if (!PART_MOVES.has(a.do) && !PIECE_ACTIONS.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES, ...PIECE_ACTIONS].join(", ")})`);
+      // A letter word's characters also take hop, grow and paint (one vowel team bounces or turns gold).
+      const letterOnly = owner.kind === "letter" && ["hop", "grow", "paint"].includes(a.do);
+      if (!letterOnly && !PART_MOVES.has(a.do) && !PIECE_ACTIONS.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES, ...PIECE_ACTIONS].join(", ")}; letter pieces also hop, grow, paint)`);
+      if (a.do === "paint" && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `paint needs a known color, got "${a.color}"`);
       if (!partNames(owner).includes(part)) return err("E3D_PART", `${p}.target`, `"${base}" has no named part "${part}" (known: ${partNames(owner).join(", ") || "none"})`);
       if (PART_MOVES.has(a.do) && teachPieces(owner).length && !MOVABLE_PIECES.has(owner.kind)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot move a piece of a ${owner.kind} (only fraction bar parts and circle slices move)`);
       if (a.do === "move" && a.to == null) err("E3D_REQUIRED", `${p}.to`, "move needs to: [x, y, z]");

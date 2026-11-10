@@ -1,0 +1,14 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "One letter hops, grows, turns gold", "seed": 29, "music": false },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 1.4, 6], "lookAt": [0, 1.1, 0], "fov": 40 },
+  "objects": [ { "id": "word", "kind": "letter", "text": "rain", "size": 0.7, "color": "blue", "at": [0, 0.8, 0] } ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2.2, "do": [
+      { "do": "paint", "target": "word#c2", "color": "gold" }, { "do": "paint", "target": "word#c3", "color": "gold" },
+      { "do": "hop", "target": "word#c2", "at": 0.6 }, { "do": "hop", "target": "word#c3", "at": 0.8 },
+      { "do": "grow", "target": "word#c4", "to": 1.3, "at": 1.2 }
+    ] }
+  ] }]
+}

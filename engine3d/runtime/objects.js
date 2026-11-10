@@ -208,6 +208,7 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080,
           m.rotation.set(0, 0, 0);
           if (sub?.position) m.position.add(new THREE.Vector3(...sub.position));
           if (sub?.rotation) m.rotation.set(...sub.rotation.map((d) => (d * Math.PI) / 180));
+          m.scale.set(...(sub?.scale ?? [1, 1, 1])); // grow on one letter (word#c3)
         }
       },
     };
