@@ -15,6 +15,7 @@ import { loadCatalogSync } from "../../../catalog/index.js";
 import { REPO } from "./server.mjs";
 import { applyMusicCues, musicTimeline, renderMusicBed } from "./music3d.mjs";
 import { ensurePhonemes } from "../phonemes.mjs";
+import { normalizeSpoken } from "../../runtime/spoken.js";
 import { renderTunes, tuneSlots } from "./tune3d.mjs";
 import { CHANT_VERSION } from "../../../tools/lib/tts/chant.mjs";
 
@@ -28,7 +29,7 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   if (!plan.lines.length) return {};
   const table = loadVoiceTable();
   const lines = plan.lines.map((l) => ({
-    id: l.id, who: l.voice, text: l.text, spoken: cleanText(l.text), bubble: "speech",
+    id: l.id, who: l.voice, text: l.text, spoken: cleanText(l.spoken != null ? normalizeSpoken(l.spoken) : l.text), bubble: "speech",
     // A line's pitch and speed (meta.cast, or the say itself) feed resolveVoice like a 2D cast voice: pitch becomes
     // semitones (soft: round(12 log2(pitch) x 0.6), so 0.8 is -2, 1.1 +1, 1.3 +3) and speed scales the rate.
     // Both are in the TTS cache key (synth.mjs cacheKey: pitch, rate), so characters on one timbre get their own clips.

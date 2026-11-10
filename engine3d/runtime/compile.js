@@ -47,7 +47,7 @@ export function compileScript(script, { catalog, speech = {} }) {
         const cast = speaker != null ? meta.cast?.[speaker] ?? {} : {};
         const voice = { voice: a.voice ?? own.voice ?? cast.voice, pitch: a.pitch ?? own.pitch ?? cast.pitch, speed: a.speed ?? cast.speed ?? own.speed };
         const id = a.id ?? (ai != null ? `${beatId}.${ai + 1}` : `${beatId}.k${++kitLines}`);
-        const dur = d.say(a.text, { at: t + rel, ...voice, id, who: a.who, tune: a.tune, sing: a.sing, tunePatch: a.tunePatch, tuneGain: a.tuneGain, tempo: a.tempo, rhythm: a.rhythm });
+        const dur = d.say(a.text, { at: t + rel, ...voice, id, who: a.who, spoken: a.spoken, tune: a.tune, sing: a.sing, tunePatch: a.tunePatch, tuneGain: a.tuneGain, tempo: a.tempo, rhythm: a.rhythm });
         sayEnd = Math.max(sayEnd, rel + dur);
         len = Math.max(len, rel + dur + SAY_TAIL);
         if (a.caption) later.push({ do: "caption", text: a.text, at: rel, dur: a.dur ?? dur + SAY_TAIL });

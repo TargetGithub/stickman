@@ -2,6 +2,7 @@
 // (warnings) that time a script the way compile.js does: the first interaction by 8 s, no talk stretch over 15 s
 // without an interaction, no camera still for over 20 s, and every tracker filled to the end.
 
+import { spokenError } from "./spoken.js";
 import { compileScript } from "./compile.js";
 import { RETAIN_ACTIONS, trackerSteps } from "./director_retain.js";
 import { RETAIN_MACROS } from "./retain_compile.js";
@@ -87,6 +88,10 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
   }
   if (!KIT_ACTIONS.includes(a.do)) return false;
   if (a.sound != null && a.sound !== false && !catalog.sounds[a.sound]) err("E3D_SOUND", `${p}.sound`, `unknown sound "${a.sound}"`);
+  for (const f of ["questionSpoken", "answerSpoken", "promptSpoken", "praiseSpoken"]) {
+    const why = a[f] != null ? spokenError(a[f]) : null;
+    if (why) err("E3D_SPOKEN", `${p}.${f}`, why);
+  }
   if (a.do === "hook") {
     text("question", "E3D_HOOK");
     // behind may be a named part of an object ("toy_box#lid"); it then opens (style "open") instead of lifting.

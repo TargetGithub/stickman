@@ -372,6 +372,7 @@ What the 10K specs needed beyond the kits above (`runtime/composite.js`, `catalo
 | Family members, babies, recolors, dressed-up looks | A model entry `{ "like": "<base>", "scale", "recolor", "drop", "add", "eyes": {...} }` is expanded from its base when the catalog loads (`catalog/variants.mjs`). |
 | Island map, town map, gauges, growing pencil trackers | `tracker` `style`: `islands` (flags rise; the surprise island waits in mist), `town` (windows light), `gauges` (needles swing to full), `pencil` (a page writes one line per step). |
 | Which spec needs exist | `node tools/assets10k.mjs` writes 10K/ASSETS_STATUS.md and 10K/assets_map.json: built, mapped (`catalog/asset_map.json`: how to make a need from existing assets), in script (10K/script_composed.json) or remaining. |
+| Saying a sound, syllable or word part exactly | `say` takes `spoken`: what the voice reads while `text` stays the caption (and the keyword timing). A respelling works for words; for sounds use IPA in `[[ ]]`, which Piper speaks exactly: open syllables `ca` `[[ kˈeɪ ]]`, `ma` `[[ mˈeɪ ]]`, `ti` `[[ tˈaɪ ]]`, `go` `[[ ɡˈoʊ ]]`; -le endings `ble` `[[ bəl ]]`, `dle` `[[ dəl ]]`, `tle` `[[ təl ]]`; the letter name A `[[ ˈeɪ ]]`; short a `[[ ˈæ ]]`. Punctuation after `]]` becomes a pause inside the block (runtime/spoken.js). `hook`, `challenge` and `call` take `questionSpoken`, `answerSpoken`, `promptSpoken`, `praiseSpoken`. Tour: `scripts/tour/say_spoken.json`. |
 | Extra stages | `catalog/stages/*.json` files are merged into `stages.json` (a name once). |
 
 ## Rules (as for /engine)

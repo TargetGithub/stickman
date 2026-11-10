@@ -4,6 +4,7 @@
 
 import { EASE_NAMES } from "./ease.js";
 import { expandObjects, isComposite } from "./composite.js";
+import { spokenError } from "./spoken.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
@@ -199,6 +200,11 @@ export function validateScript(script, catalog, opts = {}) {
         else if (a.do === "caption" && a.text.length > 60) warn("W3D_LONG_CAPTION", `${p}.text`, "captions over 60 characters are hard for kids to read");
       }
       if (a.do === "say") checkWho(a, p, ids, err);
+      if (a.do === "say" && a.spoken != null) {
+        // spoken: what Piper reads instead of text (the caption): a respelling ("kay bull") or IPA in [[ ]].
+        const why = spokenError(a.spoken);
+        if (why) err("E3D_SPOKEN", `${p}.spoken`, why);
+      }
       if (a.do === "say" && a.voice != null && !catalog.voices.includes(a.voice)) err("E3D_VOICE", `${p}.voice`, `unknown voice "${a.voice}"`);
       if (a.do === "say" && a.id != null) {
         if (lineIds.has(a.id)) err("E3D_DUP_ID", `${p}.id`, `line id "${a.id}" is used twice`);

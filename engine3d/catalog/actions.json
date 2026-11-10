@@ -166,7 +166,8 @@
   },
   "say": {
    "params": {
-    "text": "spoken words (required)",
+    "text": "spoken words (required); also the caption",
+    "spoken": "what the voice reads when it must differ from the caption: a respelling (\"kay\" for an open syllable \"ca\") or IPA phonemes in [[ ]] that Piper speaks exactly (\"the [[ kˈeɪ ]] syllable\", \"[[ bəl ]]\"); text stays the caption and the keyword timing",
     "voice": "a timbre from catalog/story/tts_voices.json or \"narrator\", default the speaker's meta.cast voice, else meta.voice",
     "caption": "true to also show the words as a caption",
     "who": "the speaker's object id (a critter, a character or a shape with face: true): its mouth moves with the voice (Robo nods his head)",
@@ -621,6 +622,7 @@
   "hook": {
    "params": {
     "question": "the opening question, spoken and captioned (required)",
+    "questionSpoken": "what the voice reads for question when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "behind": "the cover object, or a named part of one such as \"toy_box#lid\" (required)",
     "target": "the object it hides, hidden until the reveal (required)",
     "style": "lift (default: rises and floats away), slide (moves aside), tip (tips back) or open (the default for a part: turns it to `open`)",
@@ -628,6 +630,7 @@
   "slow": "true: a gentle reveal about twice as long, no spin (automatic when meta.audience is babies)",
     "reveal": "seconds after the question before the reveal, default 0.6",
     "answer": "optional line said after the reveal",
+    "answerSpoken": "what the voice reads for answer when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "badge": "default true: a pulsing ? badge while asking",
     "shot": "default true: push in on the cover, then frame the answer",
     "who": "optional speaker",
@@ -643,12 +646,14 @@
   "challenge": {
    "params": {
     "prompt": "the challenge line (required)",
+    "promptSpoken": "what the voice reads for prompt when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "options": "2-6 object ids (required)",
     "answer": "the right option (required)",
     "dur": "timer seconds, default 5",
     "count": "countdown numbers, default 3",
     "timer": "a timer_ring id (default an automatic one at the top right)",
     "praise": "optional line after the answer",
+    "praiseSpoken": "what the voice reads for praise when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "confetti": "optional confetti id to burst",
     "who": "optional speaker",
     "caption": "default true"
@@ -663,7 +668,9 @@
   "call": {
    "params": {
     "prompt": "the call (required)",
+    "promptSpoken": "what the voice reads for prompt when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "answer": "the response, spoken after the pause (required)",
+    "answerSpoken": "what the voice reads for answer when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "cue": "ear, hand (default), mouth, eye or question",
     "wait": "pause seconds, 1-6, default 2.5",
     "who": "prompt speaker",
