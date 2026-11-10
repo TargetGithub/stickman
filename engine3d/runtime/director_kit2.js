@@ -142,7 +142,7 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       return d;
     },
 
-    /** Highlight a phrase on a text card with a marker sweep (words: "a phrase" or [start, end] word indices). */
+    /** Highlight a phrase on a text card with a marker sweep (words: "a phrase" or [start, end] word indices), on the text the card shows then (#67). */
     emphasize(id, { at: t = 0, words, color = "yellow", dur = 0.6, clear = false, sound: s } = {}) {
       const o = kindOf(id, ["text_card"], "emphasize");
       if (!catalog.colors[color]) throw new Error(`unknown color "${color}"`);
@@ -150,9 +150,11 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       // clear: the earlier highlights wipe away first.
       if (clear) o.marks.forEach((_, i) => tl.tween(id, `hl${i}`, { start: t, dur: 0.3, to: 0, ease: "linear" }));
       if (words != null) {
-        const range = findWords(o.text, words);
+        // After a retext the card shows another text: the words are found in, and drawn on, the text showing then.
+        const ti = Math.round(now(id, "textIdx", t) ?? 0);
+        const range = findWords(o.texts?.[ti] ?? o.text, words);
         if (!range) throw new Error(`emphasize "${id}": no words ${JSON.stringify(words)} on the card`);
-        o.marks.push({ words: range, color });
+        o.marks.push({ words: range, color, ...(ti ? { text: ti } : {}) });
         const i = o.marks.length - 1;
         tl.base(id, `hl${i}`, 0);
         tl.tween(id, `hl${i}`, { start: t + (clear ? 0.3 : 0), dur, from: 0, to: 1, ease: "sineInOut" });

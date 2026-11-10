@@ -110,7 +110,7 @@ const fits = (o, entries) => {
  * action (validate.js then skips its own checks).
  * @param {{ err, ids: Map, catalog, partNames: (o:object) => string[] }} k
  */
-export function createKit2Checker({ err, ids, catalog, partNames }) {
+export function createKit2Checker({ err, ids, catalog, partNames, texts }) {
   const charts = new Map();
   const digitsOf = (o) => {
     if (!charts.has(o.id)) charts.set(o.id, o.digits && digitsOk(o.digits) ? parseDigits(o.digits) : []);
@@ -154,7 +154,7 @@ export function createKit2Checker({ err, ids, catalog, partNames }) {
       const o = target(a, p, ["text_card"], "emphasize");
       if (a.color != null && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
       if (a.words == null && !a.clear) err("E3D_REQUIRED", `${p}.words`, 'emphasize needs words: "a phrase" or [start, end] (or clear: true)');
-      else if (o && a.words != null && !findWords(o.text, a.words)) err("E3D_EMPHASIZE", `${p}.words`, `"${a.target}" has no words ${JSON.stringify(a.words)}`);
+      else if (o && a.words != null && ![o.text, ...(texts?.get(o.id) ?? [])].some((tx) => findWords(tx, a.words))) err("E3D_EMPHASIZE", `${p}.words`, `"${a.target}" has no words ${JSON.stringify(a.words)}`);
       return true;
     }
     if (a.do === "reparent") {

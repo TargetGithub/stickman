@@ -194,7 +194,7 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
     const px = (v) => v * ppm;
     marks.forEach((mk, j) => {
       const k = prog[j];
-      if (k <= 0.001) return;
+      if (k <= 0.001 || mk.off) return; // off: made on another text of a retexted card
       // The marked words, run by run (one run per line), swept in reading order.
       const runs = lines.map((line, li) => {
         const ws = line.filter((w) => w.i >= mk.words[0] && w.i <= mk.words[1]);

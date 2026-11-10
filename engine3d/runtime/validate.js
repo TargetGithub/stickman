@@ -165,7 +165,7 @@ export function validateScript(script, catalog, opts = {}) {
   // Scenes and beats.
   if (!Array.isArray(script.scenes) || !script.scenes.length) err("E3D_SCENES", "scenes", "scenes must be a non-empty list");
   const lineIds = new Set();
-  const kit2 = createKit2Checker({ err, ids, catalog, partNames });
+  const kit2 = createKit2Checker({ err, ids, catalog, partNames, texts: retextTexts(script, ids) });
   const progress = new Map(); // tracker id → steps filled so far, in script order
   (Array.isArray(script.scenes) ? script.scenes : []).forEach((s, si) => {
     const sp = `scenes[${si}]`;
@@ -328,6 +328,16 @@ export function validateScript(script, catalog, opts = {}) {
     } else if (!isNum(th?.t, 0, 3600)) err("E3D_RANGE", "meta.thumbnail.t", "thumbnail needs t (seconds) or scene (a scene id) with at");
   }
 
+  /** Every text a retext gives a word or text card (a card's goes to its <id>_text): emphasize may mark any of them. */
+  function retextTexts(sc, all) {
+    const m = new Map();
+    for (const s of Array.isArray(sc.scenes) ? sc.scenes : []) for (const b of s?.beats ?? []) for (const a of Array.isArray(b?.do) ? b.do : []) {
+      if (a?.do !== "retext" || typeof a.text !== "string") continue;
+      const id = all.get(a.target)?.kind === "group" ? `${a.target}_text` : a.target;
+      m.set(id, [...(m.get(id) ?? []), a.text]);
+    }
+    return m;
+  }
   function partNames(o) {
     const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
     if (o.kind === "letter") return letterPieces(o); // a word's characters c1..cN, spaces too

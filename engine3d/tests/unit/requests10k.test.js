@@ -231,3 +231,13 @@ test("#65 stage.hide drops set pieces (and prefix*), stage.move places them; thu
   const s = { kind: "video3d", version: 1, description: "x", meta: { title: "t", seed: 1 }, stage: { preset: "fox_workshop", hide: ["nope"], move: { plant: { at: [1, 2] } } }, camera: { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 40 }, objects: [], scenes: [{ id: "a", beats: [{ dur: 1, do: [] }] }] };
   assert.deepEqual(validateScript(s, catalog).errors.map((e) => e.path), ["stage.hide[0]", "stage.move.plant.at"]);
 });
+
+test("#67 emphasize after a retext finds and marks words on the new text", () => {
+  const s = script("emphasize_retext");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const card = compileScript(s, { catalog }).objects.find((o) => o.id === "line_text");
+  assert.deepEqual(card.marks, [{ words: [3, 3], color: "yellow" }, { words: [3, 6], color: "pink", text: 1 }]);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[2].words = "nap on a rug";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_EMPHASIZE"));
+});

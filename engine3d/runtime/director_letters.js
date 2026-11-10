@@ -133,7 +133,7 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
     /**
      * Change a word or a card's text in place ("go" -> "got", a fixed word in a sentence): at the switch the old text
      * dips and the new one pops back to full size. Targets a letter word, a text_card, or a card (its <id>_text).
-     * Pieces (word#c3) and emphasize marks keep following the object's first text.
+     * Pieces (word#c3) keep following the object's first text; emphasize after a retext marks the new text.
      */
     retext(id, { at: t = 0, text, dur = 0.5, sound: s = "pop" } = {}) {
       let o = obj(id);
