@@ -35,7 +35,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   const changes = visits.length > 0;
   const scene = new THREE.Scene();
   scene.background = color(preset.background);
-  if (preset.fog || changes) scene.fog = new THREE.Fog(color(preset.background), ...(preset.fog ?? NO_FOG));
+  if (preset.fog || changes || plan.stage.fogAction) scene.fog = new THREE.Fog(color(preset.background), ...(preset.fog ?? NO_FOG));
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   scene.environmentIntensity = rig.environment;

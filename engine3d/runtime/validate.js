@@ -42,7 +42,7 @@ const TARGETS = {
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
 const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast", "host", "retention"]);
 const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2", "grade3", "grade4", "grade5"];
-const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music"]);
+const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music", "fog"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
@@ -195,6 +195,10 @@ export function validateScript(script, catalog, opts = {}) {
       if (!ok) err("E3D_VEC", `${p}.${k}`, a.do === "grow" ? "to must be a scale number or [x, y, z] factors" : "must be [x, y, z]");
     }
     if (a.sound != null && a.sound !== false && !catalog.sounds[a.sound]) err("E3D_SOUND", `${p}.sound`, `unknown sound "${a.sound}"`);
+    if (a.do === "fog") {
+      if (a.amount != null && !isNum(a.amount, 0, 1)) err("E3D_RANGE", `${p}.amount`, "amount must be 0 (clear) to 1 (thick)");
+      name(catalog.colors, a.color, "E3D_COLOR", `${p}.color`, "color");
+    }
     if (NO_TARGET.has(a.do)) {
       if (a.do === "say" || a.do === "caption") {
         if (typeof a.text !== "string" || !a.text.trim()) err("E3D_TEXT", `${p}.text`, `${a.do} needs text`);

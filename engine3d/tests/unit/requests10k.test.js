@@ -160,3 +160,17 @@ test("#12 a checklist tracker is only as wide as its labels need", async () => {
   assert.ok(w(["Point to G"]) > w(["Add"]));
   assert.equal(w(["A very long step!"]), 3.3);
 });
+
+test("#16 fog rolls in and lifts on the stage's fog track", () => {
+  const s = script("fog");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const thick = plan.timeline.valueAt("stage", "fog", 2.5);
+  assert.ok(thick[0] <= 3.01 && thick[1] <= 20.01, `thick fog ${thick}`);
+  assert.equal(plan.stage.fogAction, true);
+  const clear = plan.timeline.valueAt("stage", "fog", 5.9);
+  assert.ok(clear[1] > 50, `cleared ${clear}`);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].amount = 2;
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
+});

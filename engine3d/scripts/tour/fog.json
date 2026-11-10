@@ -1,0 +1,11 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Fog rolls in and lifts", "seed": 22, "music": false },
+  "stage": { "preset": "phonics_island_chain" },
+  "camera": { "position": [0, 2.2, 9], "lookAt": [0, 1, -6], "fov": 42 },
+  "objects": [ { "id": "house", "kind": "prop", "model": "lighthouse", "at": [2.5, 0, -2.5] } ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 3, "do": [{ "do": "fog", "amount": 1, "dur": 2 }, { "do": "lights", "rig": "overcast", "dur": 2 }] },
+    { "dur": 3, "do": [{ "do": "fog", "amount": 0, "dur": 2 }, { "do": "lights", "rig": "soft_day", "dur": 2 }] }
+  ] }]
+}

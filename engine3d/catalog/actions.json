@@ -59,6 +59,19 @@
     "move"
    ]
   },
+  "fog": {
+   "params": {
+    "amount": "0 (clear: the stage's own fog or none) to 1 (thick fog: hazy from 3 m, nothing past 20 m; the teaching area stays readable), default 1",
+    "color": "the misty sky the background blends toward as the fog thickens, default rain_sky",
+    "dur": "seconds to roll in or lift, default 2",
+    "ease": "ease name"
+   },
+   "description": "Fog rolls in or lifts over the whole scene (distance fog in the background's colour). Pair with lights overcast for a grey day; fog 0 clears it. A lamp beam (lighthouse) still shines through.",
+   "tags": [
+    "weather",
+    "stage"
+   ]
+  },
   "split": {
    "params": {
     "target": "a letter word",

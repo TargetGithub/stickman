@@ -90,6 +90,27 @@ export function installStageChange(d, { catalog, tl, objects, getStage, stageBas
     tl.base("stage", "shadow", !!rig.sun.shadow);
   }
 
+  /**
+   * Fog rolls in or lifts: amount 0 (the preset's own fog, or none) to 1 (thick: haze from 3 m, nothing past 20 m, so the teaching area stays readable), and the sky
+   * blends toward `color` (default misty rain_sky) as it thickens (fog takes the background's colour), back to the
+   * preset's when it clears. Use with lights overcast for a grey day; a lighthouse beam (lamp) still cuts through.
+   */
+  d.fog = ({ at: t = 0, amount = 1, dur = 2, color = "rain_sky", ease = "sineInOut" } = {}) => {
+    if (!(typeof amount === "number" && amount >= 0 && amount <= 1)) throw new Error("fog: amount must be 0-1");
+    if (!catalog.colors[color]) throw new Error(`fog: unknown color "${color}"`);
+    setStage({ fogAction: true }); // the page makes a fog for the scene even when the preset has none
+    bases([]);
+    const s = { ...catalog.stages[getStage().preset ?? "playroom"], ...getStage() };
+    const [n0, f0] = s.fog ?? NO_FOG;
+    const lerp = (a, b) => Math.round((a + (b - a) * amount) * 1000) / 1000;
+    const tw = (prop, to) => tl.tween("stage", prop, { start: t, dur, to, ease });
+    tw("fog", [lerp(n0, 3), lerp(f0, 20)]);
+    const bg = colour(s.background);
+    const mist = colour(color);
+    tw("background", bg.map((x, i) => Math.round((x + (mist[i] - x) * Math.min(1, amount * 1.2)) * 1e4) / 1e4));
+    return d;
+  };
+
   d.changeStage = (preset, { at: t = 0, dur = 2, ease = "sineInOut" } = {}) => {
     const next = catalog.stages[preset];
     if (!next) throw new Error(`unknown stage "${preset}"`);
