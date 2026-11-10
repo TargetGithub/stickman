@@ -95,3 +95,14 @@ test("#69 a letter piece hops, grows and turns gold on its own", () => {
   assert.ok(blue[2] > 0.8, "c1 stays blue");
   assert.equal(plan.objects.find((o) => o.id === "word").paintChars, true);
 });
+
+test("#70 underline, bracket and circle mark a group of letters", () => {
+  const s = JSON.parse(readFileSync(new URL("../../scripts/tour/letter_group_marks.json", import.meta.url), "utf8"));
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const marks = plan.objects.filter((o) => o.id.includes("~vowel"));
+  assert.equal(marks.length, 3);
+  const circle = marks.find((m) => m.closed);
+  assert.ok(circle && circle.points.length === 24);
+  assert.ok(marks.filter((m) => m.at[1] < 0).length === 2, "underline and bracket sit below the baseline");
+});

@@ -60,8 +60,9 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
   const marks = new Map(); // word id -> its vowel mark ids
   Object.assign(d, {
     /**
-     * A long (bar) or short (cup) vowel mark drawn above one letter or a vowel team of a letter word: chars [2] or
-     * [2, 3] (ea, ai). The mark is a stroke that draws on and stays; clear: true wipes the word's marks.
+     * A mark on letters of a word, drawn on as a stroke that stays (clear: true wipes the word's marks): long (a bar)
+     * or short (a cup) over a vowel or vowel team (chars [2] or [2, 3]); underline or bracket under a group of letters
+     * and circle (a flat oval) round them (chars [1, 2, 3]: "circle the prefix").
      */
     vowel_mark(id, { at: t = 0, chars = [], mark = "long", color = "red", dur = 0.6, clear = false, sound: s = "pop" } = {}) {
       const o = obj(id);
@@ -77,18 +78,31 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       const size = o.size ?? 1;
       const lo = Math.min(...sel.map((c) => c.x - c.w / 2));
       const hi = Math.max(...sel.map((c) => c.x + c.w / 2));
-      const w = (hi - lo) * 0.78;
+      const r4 = (v) => Math.round(v * 1e4) / 1e4;
+      const span = hi - lo;
+      const w = span * (["underline", "bracket", "circle"].includes(mark) ? 1 : 0.78);
       const h = 0.13 * size;
-      const pts = mark === "short"
-        ? Array.from({ length: 9 }, (_, i) => { const u = i / 8 * 2 - 1; return [Math.round(u * w / 2 * 1e4) / 1e4, Math.round(h * u * u * 1e4) / 1e4, 0]; })
-        : [[-w / 2, 0, 0], [w / 2, 0, 0]].map((p) => p.map((v) => Math.round(v * 1e4) / 1e4));
       const mid = (lo + hi) / 2;
-      // Just above the lowercase letters (x-height 0.98 x size); over an i or j, above its dot (near cap height,
-      // 1.41 x size) so a bar over "ai" clears it.
+      let pts;
+      let y;
+      let closed = false;
+      if (mark === "short") pts = Array.from({ length: 9 }, (_, i) => { const u = i / 8 * 2 - 1; return [r4(u * w / 2), r4(h * u * u), 0]; });
+      else if (mark === "underline") pts = [[-w / 2, 0, 0], [w / 2, 0, 0]];
+      else if (mark === "bracket") pts = [[-w / 2, 0.1 * size, 0], [-w / 2, 0, 0], [w / 2, 0, 0], [w / 2, 0.1 * size, 0]];
+      else if (mark === "circle") {
+        // A flat oval round the letters (circle the prefix), drawn on like a pen, not a ring that hides the tile.
+        const rx = w / 2 + 0.22 * size;
+        const ry = 0.85 * size;
+        pts = Array.from({ length: 24 }, (_, i) => { const a = Math.PI / 2 + (i / 24) * 2 * Math.PI; return [r4(rx * Math.cos(a)), r4(ry * Math.sin(a)), 0]; });
+        closed = true;
+      } else pts = [[-w / 2, 0, 0], [w / 2, 0, 0]];
+      pts = pts.map((p) => p.map(r4));
+      // Marks above: just over the lowercase letters (x-height 0.98 x size), and over an i or j above its dot (near
+      // cap height, 1.41 x size). Underline and bracket: under the baseline, below descenders; circle: round the middle.
       const dotted = sel.some((c) => c.ch === "i" || c.ch === "j");
-      const y = (dotted ? 1.66 : mark === "short" ? 1.14 : 1.2) * size;
+      y = mark === "underline" || mark === "bracket" ? -0.55 * size : mark === "circle" ? 0.55 * size : (dotted ? 1.66 : mark === "short" ? 1.14 : 1.2) * size;
       const mid2 = `${id}~vowel${(marks.get(id)?.length ?? 0) + 1}_${Math.round(t * 1000)}`;
-      d.add({ id: mid2, kind: "stroke", points: pts, smooth: mark === "short", width: 0.07 * size, color, parent: id, at: [Math.round(mid * 1e4) / 1e4, Math.round(y * 1e4) / 1e4, 0.05], hidden: true, internal: true });
+      d.add({ id: mid2, kind: "stroke", points: pts, smooth: mark === "short" || mark === "circle", closed, width: (mark === "circle" ? 0.05 : 0.07) * size, color, parent: id, at: [r4(mid), r4(y), 0.05], hidden: true, internal: true });
       d.draw(mid2, { at: t, dur });
       marks.set(id, [...(marks.get(id) ?? []), mid2]);
       if (s) sound(s, t, { volume: 0.5 });

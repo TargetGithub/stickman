@@ -274,8 +274,10 @@ export function validateScript(script, catalog, opts = {}) {
     if (a.do === "vowel_mark") {
       if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `vowel_mark needs a letter word, "${a.target}" is a ${o.kind}`);
       const n = String(o.text ?? "").length;
-      if (!a.clear && (!Array.isArray(a.chars) || !a.chars.length || a.chars.length > 3 || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be 1-3 character numbers 1-${n} (one vowel or a vowel team)`);
-      if (a.mark != null && !["long", "short"].includes(a.mark)) err("E3D_MARK", `${p}.mark`, "mark must be long (a bar) or short (a cup)");
+      const group = ["underline", "bracket", "circle"].includes(a.mark);
+      const most = group ? 12 : 3;
+      if (!a.clear && (!Array.isArray(a.chars) || !a.chars.length || a.chars.length > most || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be 1-${most} character numbers 1-${n}`);
+      if (a.mark != null && !["long", "short", "underline", "bracket", "circle"].includes(a.mark)) err("E3D_MARK", `${p}.mark`, "mark must be long (a bar), short (a cup), underline, bracket or circle");
       name(catalog.colors, a.color, "E3D_COLOR", `${p}.color`, "color");
     }
     if (a.do === "turn_page" && !ids.has(`${a.target}_leaf1`)) err("E3D_TARGET_KIND", `${p}.target`, `turn_page needs a book with at least two spreads, "${a.target}" is not one`);
