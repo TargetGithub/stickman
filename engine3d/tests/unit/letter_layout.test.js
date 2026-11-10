@@ -38,3 +38,19 @@ test("letterPieces and the tour script: marks, glows, children and moves on char
   bad.scenes[0].beats[0].do[0].target = "word#c9";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_PART"));
 });
+
+test("split pulls chunks apart after characters and joins them again", () => {
+  const s = JSON.parse(readFileSync(new URL("../../scripts/tour/syllable_split.json", import.meta.url), "utf8"));
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const x = (n, t) => plan.timeline.valueAt(`word#c${n}`, "position", t)[0];
+  assert.equal(x(3, 1.2), 0);
+  assert.ok(Math.abs(x(4, 1.2) - 0.245) < 1e-6, "ble moves one gap (0.35 x 0.7)");
+  assert.equal(x(4, 4.3), 0, "joined again");
+  assert.ok(plan.objects.some((o) => o.id.startsWith("word~blade")));
+  for (const after of [[0], [6], ["a"]]) {
+    const bad = structuredClone(s);
+    bad.scenes[0].beats[0].do[0].after = after;
+    assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_SPLIT"), JSON.stringify(after));
+  }
+});

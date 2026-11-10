@@ -59,6 +59,23 @@
     "move"
    ]
   },
+  "split": {
+   "params": {
+    "target": "a letter word",
+    "after": "character numbers to split after: [2] splits \"cable\" into \"ca\" + \"ble\", [2, 4] into three chunks; [] joins the word again",
+    "gap": "metres between chunks, default 0.35 x the word's size",
+    "dur": "default 0.6",
+    "ease": "default backOut",
+    "blade": "true: a slim silver blade slices down through each gap as it opens, then lifts away",
+    "sound": "default whoosh; false for none"
+   },
+   "description": "Split a word into syllables or chunks (the characters after each split slide apart) or join it again. Each chunk's characters stay pieces <id>#c<n> for highlight, mark and paint-like emphasis; flex a vowel with wiggle on its piece.",
+   "tags": [
+    "phonics",
+    "syllables",
+    "letters"
+   ]
+  },
   "lie": {
    "params": {
     "target": "a critter, character or prop",

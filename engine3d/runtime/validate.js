@@ -258,6 +258,12 @@ export function validateScript(script, catalog, opts = {}) {
     }
     checkTeachAction(a, p, o, { err, ids, catalog });
     if ((a.do === "drop" || a.do === "move" || a.do === "roll") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    if (a.do === "split") {
+      if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `split needs a letter word, "${a.target}" is a ${o.kind}`);
+      const n = String(o.text ?? "").length;
+      if (!Array.isArray(a.after) || a.after.some((c) => !Number.isInteger(c) || c < 1 || c >= n)) err("E3D_SPLIT", `${p}.after`, `after must be a list of character numbers 1-${n - 1} (split after them; [] joins the word)`);
+      if (a.gap != null && !isNum(a.gap, 0, 5)) err("E3D_RANGE", `${p}.gap`, "gap must be 0-5 m");
+    }
     if (a.do === "lie" && a.pose != null && !["side", "back", "up"].includes(a.pose)) err("E3D_LIE", `${p}.pose`, "pose must be side, back or up");
     if (a.do === "lie" && a.side != null && a.side !== 1 && a.side !== -1) err("E3D_LIE", `${p}.side`, "side must be 1 (head to the left) or -1");
     if (a.do === "roll" && a.radius != null && !isNum(a.radius, 0.01, 20)) err("E3D_RANGE", `${p}.radius`, "radius must be 0.01-20 m");

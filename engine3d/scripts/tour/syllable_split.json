@@ -1,0 +1,12 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Split a word into syllables", "seed": 20, "music": false },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 1.4, 6], "lookAt": [0, 1.1, 0], "fov": 40 },
+  "objects": [ { "id": "word", "kind": "letter", "text": "tablet", "size": 0.7, "color": "blue", "at": [0, 0.8, 0] } ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 1.6, "do": [{ "do": "split", "target": "word", "after": [3], "blade": true }] },
+    { "dur": 1.4, "do": [{ "do": "wiggle", "target": "word#c2" }, { "do": "highlight", "target": "word#c5", "at": 0.3 }] },
+    { "dur": 1.4, "do": [{ "do": "split", "target": "word", "after": [] }] }
+  ] }]
+}

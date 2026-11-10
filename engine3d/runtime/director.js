@@ -5,6 +5,7 @@
 
 import { expandComposite, isComposite } from "./composite.js";
 import { letterPieces } from "./letter_layout.js";
+import { installLetters } from "./director_letters.js";
 import { parseTune, TUNE_DEFAULTS } from "./tune.js";
 import { createTimeline } from "./timeline.js";
 import { deriveRng } from "./rng.js";
@@ -345,6 +346,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   installTeach(d, { catalog, tl, obj, now, sound, objects });
   installCameraMoves(d, { catalog, tl, obj, now, V, objects });
   installLook(d, { catalog, tl, obj, now, V });
+  installLetters(d, { catalog, tl, obj, sound });
   const kit2 = installKit2(d, { catalog, tl, obj, now, sound, objects, V });
   const retain = installRetain(d, { catalog, tl, obj, now, sound, objects });
   return d;
