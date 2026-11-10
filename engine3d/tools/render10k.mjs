@@ -108,6 +108,12 @@ function writeStatus(man, queue) {
 async function main() {
   mkdirSync(LOGS, { recursive: true });
   for (;;) {
+    // The 10K folder lives on an external drive: if it is unplugged, wait for it instead of crashing.
+    if (!existsSync(ROOT)) {
+      log(`waits: ${ROOT} is not mounted`);
+      await new Promise((r) => setTimeout(r, 300_000));
+      continue;
+    }
     const man = readJson(MANIFEST, {});
     const todo = (ONLY ?? specIds(ROOT, BAND)).filter((id) => !(man[id]?.ok && existsSync(join(man[id].dir, "final_4k60.mp4"))) && !man[id]?.failed && ready(id));
     writeStatus(man, todo.length);
