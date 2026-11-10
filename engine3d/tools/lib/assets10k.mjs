@@ -122,13 +122,24 @@ export function assetStatusMd(st, { specCount, allSpecIds = [], when = "", reque
  * and the build order of what remains (most specs first).
  */
 export function assetMapJson(st, allSpecIds, when = "") {
+  // groups[g]["new:x"]: one entry per group. A name can be needed both as a character and as a prop (firefly), so
+  // the flat resolved["new:x"] keeps the entry whose state is worst (remaining before script before mapped before
+  // built): nothing reads as done while one of its uses is still open.
+  const rank = { remaining: 0, script: 1, mapped: 2, built: 3 };
+  const groups = {};
   const resolved = {};
-  for (const g of GROUPS) for (const x of st.items[g]) {
-    resolved[`new:${x.name}`] = { group: g, state: x.state, specs: x.count, ...(x.state === "built" ? { use: x.name } : x.map ? { use: x.map.use, how: x.map.how } : {}) };
+  for (const g of GROUPS) {
+    groups[g] = {};
+    for (const x of st.items[g]) {
+      const e = { group: g, state: x.state, specs: x.count, ...(x.state === "built" ? { use: x.name } : x.map ? { use: x.map.use, how: x.map.how } : {}) };
+      groups[g][`new:${x.name}`] = e;
+      const k = `new:${x.name}`;
+      if (!resolved[k] || rank[e.state] < rank[resolved[k].state]) resolved[k] = e;
+    }
   }
   const blocked = st.specs.filter((s) => s.open.length);
   const bset = new Set(blocked.map((s) => s.id));
   const order = GROUPS.flatMap((g) => st.items[g].filter((x) => x.state === "remaining").map((x) => ({ g, name: x.name, count: x.count })))
     .sort((a, b) => b.count - a.count).map((x) => `${x.g}:${x.name}`);
-  return { updated: when, unblocked: allSpecIds.filter((id) => !bset.has(id)), waiting: Object.fromEntries(blocked.map((s) => [s.id, s.open.map((n) => `new:${n.name}`)])), buildOrder: order, resolved };
+  return { updated: when, unblocked: allSpecIds.filter((id) => !bset.has(id)), waiting: Object.fromEntries(blocked.map((s) => [s.id, s.open.map((n) => `new:${n.name}`)])), buildOrder: order, resolved, groups };
 }
