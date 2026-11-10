@@ -10,6 +10,7 @@
 //   node engine3d/tools/script10k.mjs ready [--band b] [--json]   specs whose assets all exist and have no lesson yet
 //   node engine3d/tools/script10k.mjs compose props <name> "how"  record a small prop composed in the script
 //   node engine3d/tools/script10k.mjs needs <id>...               which new: assets are mapped (and how to build them) or missing
+//   node engine3d/tools/script10k.mjs assign <batch> <band> [n]  next ready, unassigned specs for a writer batch
 //   node engine3d/tools/script10k.mjs status                     10K/SCRIPT_STATUS.md
 // Env TOYBOX_10K overrides the 10K folder.
 
@@ -162,6 +163,26 @@ if (cmd === "compose") {
   (j[group] ??= {})[name] = how;
   writeFileSync(f, `${JSON.stringify(j, null, 1)}\n`);
   console.log(`${group}.${name} recorded`);
+  process.exit(0);
+}
+
+if (cmd === "assign") {
+  // Hand out the next n ready, unassigned, lesson-less specs of a band (slot order) to a writer batch;
+  // 10K/lesson_assignments.json records id -> batch. script10k assign w3-07 g1 4
+  const { assetContext, needState } = await import("./script10k/index.mjs");
+  const [batch, band, n] = positional;
+  const f = join(ROOT, "lesson_assignments.json");
+  const a = existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : {};
+  const ctx = assetContext(catalog);
+  const out = [];
+  for (const id of specIds(ROOT, band)) {
+    if (out.length >= Number(n ?? 6)) break;
+    if (a[id] || existsSync(paths(id).lesson) || needState(loadSpec(id), ctx).missing.length) continue;
+    out.push(id);
+    a[id] = batch;
+  }
+  writeFileSync(f, `${JSON.stringify(a, null, 1)}\n`);
+  console.log(out.join(" "));
   process.exit(0);
 }
 
