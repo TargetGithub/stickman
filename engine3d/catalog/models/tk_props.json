@@ -1485,6 +1485,118 @@
      }
     }
    ]
+  },
+  "ticket_plain": {
+   "like": "ticket",
+   "recolor": {
+    "red": "cream"
+   },
+   "description": "The ride ticket with no red lines or star (they blend into the cream card), so a letter or word put in front reads clearly (a T stays a T). Named part `stub` (move it to tear it off).",
+   "tags": [
+    "ticket",
+    "letters",
+    "fair"
+   ]
+  },
+  "clam": {
+   "color": "rose",
+   "description": "A friendly scallop clam 0.9 m wide that opens and closes: the bottom shell with a pink inside and a glowing white `pearl`, and a ridged top shell `lid` hinged at its back edge: turn `<id>#lid` to [-70, 0, 0] to open it (and back to [0, 0, 0] to close), or use it as a hook cover (behind: \"clam#lid\"). Hide the pearl for an empty shell.",
+   "tags": [
+    "sea",
+    "ocean",
+    "shell",
+    "hinged"
+   ],
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.08,
+      0
+     ],
+     "s": [
+      0.9,
+      0.18,
+      0.75
+     ],
+     "c": "rose",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.11,
+      0.02
+     ],
+     "s": [
+      0.78,
+      0.08,
+      0.62
+     ],
+     "c": "pig",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.17,
+      0.06
+     ],
+     "s": [
+      0.16,
+      0.16,
+      0.16
+     ],
+     "c": "white",
+     "m": "glow",
+     "name": "pearl"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.12,
+      -0.36
+     ],
+     "s": [
+      0.92,
+      0.24,
+      0.77
+     ],
+     "hang": [
+      0,
+      0.03,
+      0.36
+     ],
+     "c": "rose",
+     "m": "glossy",
+     "name": "lid"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.12,
+      -0.36
+     ],
+     "s": [
+      0.8,
+      0.1,
+      0.65
+     ],
+     "hang": [
+      0,
+      -0.04,
+      0.38
+     ],
+     "c": "pig",
+     "m": "matte",
+     "name": "lid"
+    }
+   ]
   }
  }
 }
