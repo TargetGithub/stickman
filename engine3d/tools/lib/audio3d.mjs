@@ -20,6 +20,16 @@ import { renderTunes, tuneSlots } from "./tune3d.mjs";
 import { CHANT_VERSION } from "../../../tools/lib/tts/chant.mjs";
 
 /**
+ * A say's `spoken` as Piper reads it. With a [[ phoneme ]] block it skips cleanText (which drops text without a
+ * Latin letter, so a lone sound like "[[ ə ]]" became null and crashed Piper) and only ends it with a full stop.
+ */
+export function forPiper(spoken) {
+  const t = normalizeSpoken(spoken);
+  if (!/\[\[/.test(t)) return cleanText(t);
+  return /[.!?]$/.test(t) ? t : `${t}.`;
+}
+
+/**
  * Render (or reuse) a clip for every spoken line of a plan.
  * Each clip carries its loudness envelope (env, hz: tools/lib/tts/lipsync.mjs) for lines with a speaker
  * (say.who): it travels to the page inside `speech`, like the clip lengths, so lip-sync is the same everywhere.
@@ -29,7 +39,7 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   if (!plan.lines.length) return {};
   const table = loadVoiceTable();
   const lines = plan.lines.map((l) => ({
-    id: l.id, who: l.voice, text: l.text, spoken: cleanText(l.spoken != null ? normalizeSpoken(l.spoken) : l.text), bubble: "speech",
+    id: l.id, who: l.voice, text: l.text, spoken: l.spoken != null ? forPiper(l.spoken) : cleanText(l.text), bubble: "speech",
     // A line's pitch and speed (meta.cast, or the say itself) feed resolveVoice like a 2D cast voice: pitch becomes
     // semitones (soft: round(12 log2(pitch) x 0.6), so 0.8 is -2, 1.1 +1, 1.3 +3) and speed scales the rate.
     // Both are in the TTS cache key (synth.mjs cacheKey: pitch, rate), so characters on one timbre get their own clips.

@@ -32,3 +32,11 @@ for (const [spoken, ok] of [["[[ bəl ]]", true], ["[[ bəl", false], ["[[ [[ b�
     assert.equal(validateScript(s, catalog).errors.some((e) => e.code === "E3D_SPOKEN"), !ok);
   });
 }
+
+test("#56 a spoken line that is only an IPA block reaches Piper (no null)", async () => {
+  const { forPiper } = await import("../../tools/lib/audio3d.mjs");
+  assert.equal(forPiper("[[ ə ]]"), "[[ ə ]].");
+  assert.equal(forPiper("[[ ə ]]!"), "[[ ə. ]]");
+  assert.equal(forPiper("uh"), "uh.");
+  assert.equal(forPiper("[[ kˈeɪ ]], cable"), "[[ kˈeɪ, ]] cable.");
+});
