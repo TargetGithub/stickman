@@ -3,6 +3,7 @@
 // through each gap), or close it up again. Pure: it only records timeline offsets on the pieces <id>#c<n>.
 
 import { letterLayout } from "./letter_layout.js";
+import { LEAF } from "./composite2.js";
 
 /**
  * @param {object} d  the director
@@ -10,7 +11,30 @@ import { letterLayout } from "./letter_layout.js";
  */
 export function installLetters(d, { catalog, tl, obj, sound, now }) {
   let blades = 0;
+  const turned = new Map(); // book id -> how many leaves are over
   Object.assign(d, {
+    /** Turn a book's next leaf over the spine (back: true turns the last one back). Leaves: <id>_leaf1 .. */
+    turn_page(id, { at: t = 0, dur = 1.2, back = false, sound: s = "whoosh" } = {}) {
+      const leaves = [];
+      for (let k = 1; ; k++) {
+        try { leaves.push(obj(`${id}_leaf${k}`)); } catch { break; }
+      }
+      if (!leaves.length) throw new Error(`turn_page: "${id}" is not a book with more than one spread`);
+      const n = leaves.length;
+      const done = turned.get(id) ?? 0;
+      const k = back ? done : done + 1;
+      if (k < 1 || k > n) throw new Error(`turn_page "${id}": no leaf to turn ${back ? "back" : "over"} (${done} of ${n} are over)`);
+      const leaf = `${id}_leaf${k}`;
+      const zUp = LEAF * (n - k) + LEAF; // where it lies unturned (the next leaf on top)
+      const zOver = LEAF * k + LEAF; // where it lies turned (the last one turned on top)
+      tl.tween(leaf, "rotation", { start: t, dur, to: back ? [0, 0, 0] : [0, -180, 0], ease: "sineInOut" });
+      // Lift a little off the stack while it turns, then settle into its new place.
+      tl.tween(leaf, "position", { start: t, dur: dur / 2, to: [0, 0, LEAF * (n + 1.5)], ease: "sineOut" });
+      tl.tween(leaf, "position", { start: t + dur / 2, dur: dur / 2, to: [0, 0, back ? zUp : zOver], ease: "sineIn" });
+      turned.set(id, back ? done - 1 : done + 1);
+      if (s) sound(s, t, { volume: 0.6 });
+      return d;
+    },
     /**
      * Change a word or a card's text in place ("go" -> "got", a fixed word in a sentence): at the switch the old text
      * dips and the new one pops back to full size. Targets a letter word, a text_card, or a card (its <id>_text).

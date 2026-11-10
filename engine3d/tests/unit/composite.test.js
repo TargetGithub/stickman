@@ -87,3 +87,21 @@ test("#53 a card's word keeps its size (tight margin); #58 relief flattens its p
   assert.deepEqual(pic(0.05).scale, [1, 1, 0.05]);
   assert.ok(expandComposite({ id: "c", kind: "card", picture: "apple", relief: 5 }, catalog).errors.some((e) => e.code === "E3D_RANGE"));
 });
+
+test("#60 sign, word_train and book expand; riders sit in their cars; pages ride their leaves; turn_page turns them", () => {
+  const sign = expandComposite({ id: "s", kind: "sign", text: "Quiet please" }, catalog);
+  assert.deepEqual(sign.errors, []);
+  assert.ok(sign.objects.some((x) => x.id === "s_post") && sign.objects.some((x) => x.id === "s_text"));
+  const tr = expandComposite({ id: "t", kind: "word_train", words: ["the", "cat"] }, catalog).objects;
+  assert.equal(tr.find((x) => x.id === "t_w1").parent, "t_car1");
+  assert.ok(tr.find((x) => x.id === "t_car1").at[0] < tr.find((x) => x.id === "t_car2").at[0], "the first word is leftmost");
+  const s = JSON.parse(readFileSync(new URL("../../scripts/tour/book_sign_train.json", import.meta.url), "utf8"));
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.equal(plan.objects.find((x) => x.id === "bk_leaf1_f_text").parent, "bk_leaf1");
+  assert.deepEqual(plan.timeline.valueAt("bk_leaf1", "rotation", 3.6), [0, -180, 0]);
+  assert.deepEqual(plan.timeline.valueAt("bk_leaf2", "rotation", 5.4), [0, -180, 0]);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[1].do[0].target = "sn";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TARGET_KIND"));
+});

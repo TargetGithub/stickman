@@ -9,8 +9,9 @@
 
 import { localBounds } from "./bounds.js";
 import { cardHeight } from "./teach_layout.js";
+import { COMPOSITE2_FIELDS, expandBook, expandSign, expandWordTrain } from "./composite2.js";
 
-export const COMPOSITE_KINDS = ["card", "page", "board"];
+export const COMPOSITE_KINDS = ["card", "page", "board", "sign", "word_train", "book"];
 export const isComposite = (o) => COMPOSITE_KINDS.includes(o?.kind);
 
 const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on"];
@@ -18,6 +19,7 @@ export const COMPOSITE_FIELDS = {
   card: ["style", "text", "picture", "pictureColor", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
   page: ["style", "title", "lines", "numbers", "picture", "pictureColor", "relief", "caption", "sidebar", "width", "size", "color", "bg", "accent", "scale"],
   board: ["style", "layout", "labels", "rows", "title", "width", "height", "easel", "color", "accent", "cardWidth", "cardHeight", "scale"],
+  ...COMPOSITE2_FIELDS,
 };
 
 const CARD = {
@@ -225,7 +227,10 @@ function expandBoard(o, catalog, add, err) {
   }
 }
 
-const EXPAND = { card: expandCard, page: expandPage, board: expandBoard };
+const EXPAND = {
+  card: expandCard, page: expandPage, board: expandBoard, sign: expandSign, word_train: expandWordTrain,
+  book: (o, catalog, add, err) => expandBook(o, catalog, add, err, picture),
+};
 
 /**
  * One composite object → [group, ...children]. errors: [{ code, field, message }] (field relative to the object).
@@ -234,13 +239,14 @@ const EXPAND = { card: expandCard, page: expandPage, board: expandBoard };
 export function expandComposite(o, catalog) {
   const errors = [];
   const err = (code, field, message) => errors.push({ code, field, message });
-  const k = o.kind === "card" ? o.size ?? 1 : 1; // a page's size is its font size; boards and pages scale with scale
+  const k = o.kind === "card" ? o.size ?? 1 : 1; // page, sign and book size is a font size; scale those with scale
   const sc = vec3(o.scale, [1, 1, 1]).map((v) => v * k);
   const group = { id: o.id, kind: "group" };
   for (const f of COMMON) if (o[f] !== undefined) group[f] = o[f];
   if (sc.some((v) => v !== 1)) group.scale = r3(sc);
   const out = [group];
-  const add = (suffix, spec) => out.push({ ...spec, id: `${o.id}_${suffix}`, parent: o.id, ...(o.hud ? { hud: true } : {}) });
+  // A piece rides on the composite unless it names its own parent (a word train's rider in its car, a book page on its leaf).
+  const add = (suffix, spec) => out.push({ ...spec, id: `${o.id}_${suffix}`, parent: spec.parent ?? o.id, ...(o.hud ? { hud: true } : {}) });
   EXPAND[o.kind](o, catalog, add, err);
   return { objects: out, errors };
 }
@@ -257,7 +263,10 @@ export function expandObjects(list, catalog, prefix = "objects") {
     const r = expandComposite(o, catalog);
     for (const k of Object.keys(o)) if (![...COMPOSITE_FIELDS[o.kind], ...COMMON, "id", "kind"].includes(k)) errors.push({ code: "W3D_UNKNOWN_FIELD", path: `${prefix}[${i}].${k}`, message: `${o.kind} has no field "${k}"`, warn: true });
     for (const e of r.errors) errors.push({ code: e.code, path: `${prefix}[${i}].${e.field}`, message: e.message });
-    objects.push(...r.objects);
+    // A composite may hold composites (a word train's riders are cards): expand those too, as the director does.
+    const inner = r.objects.some(isComposite) ? expandObjects(r.objects, catalog, `${prefix}[${i}]`) : { objects: r.objects, errors: [] };
+    errors.push(...inner.errors);
+    objects.push(...inner.objects);
   });
   return { objects, errors };
 }

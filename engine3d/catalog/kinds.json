@@ -559,6 +559,59 @@
         "sorting",
         "composite"
       ]
+    },
+    "sign": {
+      "fields": {
+        "style": "post (default: a board on a post), hanging (from two ropes, board 2.2 m up) or wall (board 1.2 m up, no post)",
+        "text": "1-120 characters, word-wrapped and centred on the board",
+        "width": "board width, default 1.6",
+        "height": "board height (default: fits the text)",
+        "size": "font size, default 0.18",
+        "color": "text colour, default ink",
+        "bg": "board colour, default wood",
+        "rim": "frame colour, default wood_dark",
+        "post": "post height for style post, default 1.2"
+      },
+      "description": "A wooden sign with its words laid out (runtime/composite2.js): at is its foot. Pieces <id>_board, <id>_text (emphasize, retext), <id>_post. Covers town signs, stall signs, cave and park signs, exhibit signs.",
+      "tags": [
+        "text",
+        "signs",
+        "composite"
+      ]
+    },
+    "word_train": {
+      "fields": {
+        "words": "1-8 words (up to 12 characters each), one per car",
+        "colors": "car colours in order (default red, blue, green, ...)",
+        "engine": "false for cars only (default true: an engine in front)",
+        "gap": "metres between cars, default 1.2",
+        "tile": "rider style: tile (default) or word"
+      },
+      "description": "A toy train whose cars each carry a word tile (runtime/composite2.js): the engine at at facing +x, the words reading left to right (car1 is the leftmost). Pieces <id>_engine, <id>_car<k>, riders <id>_w<k> (cards: retext, highlight, reparent them; move the whole train with move or path). Covers word trains, letter trains and sentence trains.",
+      "tags": [
+        "phonics",
+        "words",
+        "train",
+        "composite"
+      ]
+    },
+    "book": {
+      "fields": {
+        "spreads": "1-8 spreads: [{ left: { text, picture }, right: { text, picture } }]",
+        "width": "page width, default 1.6 (the open book is twice this)",
+        "height": "page height, default 2",
+        "size": "font size, default 0.13",
+        "color": "text colour",
+        "bg": "paper colour, default cream",
+        "accent": "cover colour, default red"
+      },
+      "description": "A big open storybook standing on a stand (runtime/composite2.js), spine at at. turn_page turns the next leaf (<id>_leaf<k>) over to show the next spread; text on each page is a text_card (emphasize it), pictures are props, critters or shapes in low relief.",
+      "tags": [
+        "reading",
+        "story",
+        "book",
+        "composite"
+      ]
     }
   }
 }

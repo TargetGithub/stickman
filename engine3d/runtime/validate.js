@@ -262,6 +262,7 @@ export function validateScript(script, catalog, opts = {}) {
     }
     checkTeachAction(a, p, o, { err, ids, catalog });
     if ((a.do === "drop" || a.do === "move" || a.do === "roll") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    if (a.do === "turn_page" && !ids.has(`${a.target}_leaf1`)) err("E3D_TARGET_KIND", `${p}.target`, `turn_page needs a book with at least two spreads, "${a.target}" is not one`);
     if (a.do === "retext") {
       const real = o.kind === "group" ? ids.get(`${a.target}_text`) : o;
       if (!real || !["letter", "text_card"].includes(real.kind)) err("E3D_TARGET_KIND", `${p}.target`, `retext needs a letter word, a text_card or a card with text, "${a.target}" is a ${o.kind}`);
