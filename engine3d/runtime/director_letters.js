@@ -12,7 +12,43 @@ import { LEAF } from "./composite2.js";
 export function installLetters(d, { catalog, tl, obj, sound, now }) {
   let blades = 0;
   const turned = new Map(); // book id -> how many leaves are over
+  const marks = new Map(); // word id -> its vowel mark ids
   Object.assign(d, {
+    /**
+     * A long (bar) or short (cup) vowel mark drawn above one letter or a vowel team of a letter word: chars [2] or
+     * [2, 3] (ea, ai). The mark is a stroke that draws on and stays; clear: true wipes the word's marks.
+     */
+    vowel_mark(id, { at: t = 0, chars = [], mark = "long", color = "red", dur = 0.6, clear = false, sound: s = "pop" } = {}) {
+      const o = obj(id);
+      if (o.kind !== "letter") throw new Error(`vowel_mark: "${id}" is a ${o.kind}, not a letter word`);
+      if (clear) {
+        for (const m of marks.get(id) ?? []) d.hide(m, { at: t, dur: 0.3 });
+        marks.set(id, []);
+        return d;
+      }
+      const L = letterLayout(o, catalog.fontMetrics);
+      const sel = chars.map((n) => L[n - 1]);
+      if (!sel.length || sel.some((c) => !c)) throw new Error(`vowel_mark "${id}": chars must be character numbers 1-${L.length}`);
+      const size = o.size ?? 1;
+      const lo = Math.min(...sel.map((c) => c.x - c.w / 2));
+      const hi = Math.max(...sel.map((c) => c.x + c.w / 2));
+      const w = (hi - lo) * 0.78;
+      const h = 0.13 * size;
+      const pts = mark === "short"
+        ? Array.from({ length: 9 }, (_, i) => { const u = i / 8 * 2 - 1; return [Math.round(u * w / 2 * 1e4) / 1e4, Math.round(h * u * u * 1e4) / 1e4, 0]; })
+        : [[-w / 2, 0, 0], [w / 2, 0, 0]].map((p) => p.map((v) => Math.round(v * 1e4) / 1e4));
+      const mid = (lo + hi) / 2;
+      // Just above the lowercase letters (x-height 0.98 x size); over an i or j, above its dot (near cap height,
+      // 1.41 x size) so a bar over "ai" clears it.
+      const dotted = sel.some((c) => c.ch === "i" || c.ch === "j");
+      const y = (dotted ? 1.66 : mark === "short" ? 1.14 : 1.2) * size;
+      const mid2 = `${id}~vowel${(marks.get(id)?.length ?? 0) + 1}_${Math.round(t * 1000)}`;
+      d.add({ id: mid2, kind: "stroke", points: pts, smooth: mark === "short", width: 0.07 * size, color, parent: id, at: [Math.round(mid * 1e4) / 1e4, Math.round(y * 1e4) / 1e4, 0.05], hidden: true, internal: true });
+      d.draw(mid2, { at: t, dur });
+      marks.set(id, [...(marks.get(id) ?? []), mid2]);
+      if (s) sound(s, t, { volume: 0.5 });
+      return d;
+    },
     /** Turn a book's next leaf over the spine (back: true turns the last one back). Leaves: <id>_leaf1 .. */
     turn_page(id, { at: t = 0, dur = 1.2, back = false, sound: s = "whoosh" } = {}) {
       const leaves = [];

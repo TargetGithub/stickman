@@ -121,6 +121,7 @@ function run(d, a, start) {
     case "split": return d.split(a.target, o);
     case "retext": return d.retext(a.target, o);
     case "turn_page": return d.turn_page(a.target, o);
+    case "vowel_mark": return d.vowel_mark(a.target, o);
     case "fog": return d.fog(o);
     case "turn": return d.turn(a.target, o);
     case "spin": return d.spin(a.target, o);

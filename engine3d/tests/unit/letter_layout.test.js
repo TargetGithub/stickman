@@ -68,3 +68,16 @@ test("#47 retext changes a word, a card's text or a text card in place", () => {
   bad.scenes[0].beats[1].do[0].text = "x".repeat(30);
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TEXT"));
 });
+
+test("#46 vowel_mark draws a bar or cup over a vowel or vowel team; it clears an i's dot", () => {
+  const s = JSON.parse(readFileSync(new URL("../../scripts/tour/vowel_marks.json", import.meta.url), "utf8"));
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const m = (w) => plan.objects.find((o) => o.id.startsWith(`${w}~vowel`));
+  assert.equal(m("w1").points.length, 2, "long: a bar");
+  assert.equal(m("w3").points.length, 9, "short: a cup");
+  assert.ok(m("w2").at[1] > m("w1").at[1], "the bar over ai sits above the i's dot");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].chars = [9];
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_CHARS"));
+});

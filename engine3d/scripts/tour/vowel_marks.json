@@ -1,0 +1,18 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Vowel marks", "seed": 26, "music": false },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 1.4, 6], "lookAt": [0, 1.1, 0], "fov": 40 },
+  "objects": [
+    { "id": "w1", "kind": "letter", "text": "cake", "size": 0.45, "at": [-3, 0.8, 0] },
+    { "id": "w2", "kind": "letter", "text": "rain", "size": 0.45, "at": [0, 0.8, 0] },
+    { "id": "w3", "kind": "letter", "text": "cat", "size": 0.45, "at": [2.8, 0.8, 0] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 2, "do": [
+      { "do": "vowel_mark", "target": "w1", "chars": [2], "mark": "long" },
+      { "do": "vowel_mark", "target": "w2", "chars": [2, 3], "mark": "long", "at": 0.4 },
+      { "do": "vowel_mark", "target": "w3", "chars": [2], "mark": "short", "color": "blue", "at": 0.8 }
+    ] }
+  ] }]
+}
