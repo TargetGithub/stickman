@@ -216,6 +216,12 @@ export function validateScript(script, catalog, opts = {}) {
         lineIds.add(a.id);
       }
       if (a.do === "sound" && a.sound == null) err("E3D_REQUIRED", `${p}.sound`, "sound is required");
+      if (a.do === "sound" && (a.voice != null || a.who != null || a.pitch != null)) {
+        if (a.sound != null && catalog.sounds[a.sound]?.ipa == null) warn("W3D_SOUND_VOICE", `${p}.voice`, `only letter sounds (ph_...) have voices; "${a.sound}" plays as it is`);
+        if (a.voice != null && (!catalog.voices.includes(a.voice) || a.voice === "narrator")) err("E3D_VOICE", `${p}.voice`, `unknown voice "${a.voice}"`);
+        if (a.pitch != null && !isNum(a.pitch, 0.8, 1.3)) err("E3D_RANGE", `${p}.pitch`, "pitch must be 0.8-1.3");
+        if (a.who != null && !ids.has(a.who)) err("E3D_TARGET", `${p}.who`, `no object "${a.who}"`);
+      }
       if (a.do === "camera" && a.position == null && a.lookAt == null && a.fov == null) err("E3D_REQUIRED", p, "camera needs position, lookAt or fov");
       if (a.do === "caption" && a.color != null && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
       if (a.do === "lights") {

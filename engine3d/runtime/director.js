@@ -282,8 +282,11 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       endAt = Math.max(endAt, t + dur);
       return d;
     },
-    sound(name, { at: t = 0, volume = 1, pan = 0 } = {}) {
-      sound(name, t, { volume, pan });
+    sound(name, { at: t = 0, volume = 1, pan = 0, voice: v, pitch } = {}) {
+      // A letter sound (an `ipa` entry) in a speaker's voice plays that voice's own clip, "ph_p__deep_110"
+      // (tools/phonemes.mjs makes it on first use); the plain name is the series' soft voice at pitch 1.1.
+      const phon = catalog.sounds[name]?.ipa != null && ((v != null && v !== "soft") || (pitch != null && pitch !== 1.1));
+      sound(phon ? `${name}__${v ?? "soft"}_${Math.round((pitch ?? 1.1) * 100)}` : name, t, { volume, pan });
       return d;
     },
     /** Speak a line; returns its length in seconds (the measured clip, else an estimate). */

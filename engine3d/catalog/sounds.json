@@ -442,34 +442,37 @@
       "ipa": "ˈuː"
     },
     "ph_b": {
-      "description": "Letter sound /b/ as in ball (a clipped \"buh\"): the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /b/ as in ball, clipped with no added uh: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "bə"
+      "ipa": "bə",
+      "cut": "voicing"
     },
     "ph_c": {
-      "description": "Letter sound hard c, as in cat (same sound as k): the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound hard c, as in cat (same sound as k): the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "kə"
+      "ipa": "kə",
+      "cut": "voicing"
     },
     "ph_d": {
-      "description": "Letter sound /d/ as in dog: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /d/ as in dog: the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "də"
+      "ipa": "də",
+      "cut": "voicing"
     },
     "ph_f": {
       "description": "Letter sound /f/ as in fish (held): the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
@@ -482,44 +485,48 @@
       "ipa": "fː"
     },
     "ph_g": {
-      "description": "Letter sound hard g, as in goat: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound hard g, as in goat: the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "ɡə"
+      "ipa": "ɡə",
+      "cut": "voicing"
     },
     "ph_h": {
-      "description": "Letter sound /h/ as in hat (a breathy \"huh\"): the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /h/ as in hat: a soft breathed hhh with no vowel after it (made, not TTS: engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "hə"
+      "ipa": "hə",
+      "breath": 0.24
     },
     "ph_j": {
-      "description": "Letter sound /j/ as in jam: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /j/ as in jam: the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "dʒə"
+      "ipa": "dʒə",
+      "cut": "voicing"
     },
     "ph_k": {
-      "description": "Letter sound /k/ as in kite: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /k/ as in kite: the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "kə"
+      "ipa": "kə",
+      "cut": "voicing"
     },
     "ph_l": {
       "description": "Letter sound /l/ as in lion (held): the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
@@ -552,14 +559,15 @@
       "ipa": "nː"
     },
     "ph_p": {
-      "description": "Letter sound /p/ as in pig: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /p/ as in pig: the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "pə"
+      "ipa": "pə",
+      "cut": "voicing"
     },
     "ph_qu": {
       "description": "Letter sound /kw/ as in queen: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
@@ -592,14 +600,16 @@
       "ipa": "sː"
     },
     "ph_t": {
-      "description": "Letter sound /t/ as in top: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /t/ as in top: the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "stop"
       ],
-      "ipa": "tə"
+      "ipa": "tə",
+      "cut": "voicing",
+      "cutMax": 0.07
     },
     "ph_v": {
       "description": "Letter sound /v/ as in van (held): the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
@@ -662,14 +672,15 @@
       "ipa": "ʃː"
     },
     "ph_ch": {
-      "description": "Letter sound /ch/ as in chip: the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",
+      "description": "Letter sound /ch/ as in chip: the soft voice saying the bare sound, cut before any vowel (no added uh) (engine3d/tools/phonemes.mjs).",
       "tags": [
         "phonics",
         "phoneme",
         "consonant",
         "digraph"
       ],
-      "ipa": "tʃə"
+      "ipa": "tʃə",
+      "cut": "voicing"
     },
     "ph_th": {
       "description": "Letter sound /th/ as in thin (held, unvoiced): the soft voice saying the bare sound (engine3d/tools/phonemes.mjs).",

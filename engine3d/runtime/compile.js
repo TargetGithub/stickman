@@ -68,6 +68,11 @@ export function compileScript(script, { catalog, speech = {} }) {
         else if (a.do === "caption") later.push(a);
         else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(a, { d, t, rel, speak: (l, r) => speak(l, r), audience: meta.audience }));
         else {
+          // sound who: a letter sound in that speaker's voice (its catalog voice, else meta.cast).
+          if (a.do === "sound" && a.who != null && a.voice == null) {
+            const v = { ...meta.cast?.[a.who], ...speakerVoice.get(a.who) };
+            a = { ...a, voice: v.voice ?? meta.voice ?? "soft", pitch: a.pitch ?? v.pitch };
+          }
           run(d, a, start);
           if (ENGAGING.includes(a.do)) d.engage(a.do, { at: start });
         }

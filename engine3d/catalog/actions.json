@@ -279,9 +279,12 @@
    "params": {
     "sound": "sounds.json name (required)",
     "volume": "default 1",
-    "pan": "-1..1"
+    "pan": "-1..1",
+    "voice": "a letter sound (ph_...) in this voice's timbre (soft, squeaky, deep, robot...), made on first use",
+    "pitch": "with a letter sound: the voice's pitch, 0.8-1.3 (default 1.1)",
+    "who": "with a letter sound: say it in this speaker's voice (its catalog voice, else meta.cast)"
    },
-   "description": "Play a sound effect.",
+   "description": "Play a sound effect. Letter sounds (ph_...) can be said in a speaker's voice (who, or voice + pitch).",
    "tags": [
     "audio"
    ]
@@ -702,8 +705,8 @@
     "behind": "the cover object, or a named part of one such as \"toy_box#lid\" (required)",
     "target": "the object it hides, hidden until the reveal (required)",
     "style": "lift (default: rises and floats away), slide (moves aside), tip (tips back) or open (the default for a part: turns it to `open`)",
-  "open": "[x, y, z] degrees the part turns to with style open, default [-100, 0, 0] (a lid hinged at its back)",
-  "slow": "true: a gentle reveal about twice as long, no spin (automatic when meta.audience is babies)",
+    "open": "[x, y, z] degrees the part turns to with style open, default [-100, 0, 0] (a lid hinged at its back)",
+    "slow": "true: a gentle reveal about twice as long, no spin (automatic when meta.audience is babies)",
     "reveal": "seconds after the question before the reveal, default 0.6",
     "answer": "optional line said after the reveal",
     "answerSpoken": "what the voice reads for answer when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
