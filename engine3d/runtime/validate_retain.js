@@ -103,15 +103,23 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
       const m = b.kind === "critter" ? catalog.critters[b.species] : b.kind === "prop" ? catalog.props[b.model] : null;
       const names = (m?.parts ?? []).filter((x) => x.name).map((x) => x.name);
       if (!names.includes(partName)) err("E3D_HOOK", `${p}.behind`, `"${ownerId}" has no named part "${partName}" (known: ${names.join(", ") || "none"})`);
-      if (a.style != null && a.style !== "open") err("E3D_HOOK", `${p}.style`, 'a part cover (behind "<id>#<part>") opens: style must be "open" or left out');
+      if (a.style != null && !["open", "none"].includes(a.style)) err("E3D_HOOK", `${p}.style`, 'a part cover (behind "<id>#<part>") opens or stays: style must be "open", "none" or left out');
     }
     if (a.style === "open" && partName == null) err("E3D_HOOK", `${p}.style`, 'style "open" needs behind to be a named part, like "toy_box#lid"');
     if (a.open != null && !(Array.isArray(a.open) && a.open.length === 3 && a.open.every((x) => typeof x === "number"))) err("E3D_VEC", `${p}.open`, "open must be [x, y, z] degrees");
+    if (a.out != null && !(Array.isArray(a.out) && a.out.length === 3 && a.out.every((x) => typeof x === "number"))) err("E3D_VEC", `${p}.out`, "out must be [x, y, z] metres");
     if (a.slow != null && typeof a.slow !== "boolean") err("E3D_HOOK", `${p}.slow`, "slow must be true or false");
-    const t = exists(a.target, `${p}.target`);
-    if (b && t && ownerId === a.target) err("E3D_HOOK", `${p}.target`, "the target must be a different object from behind");
-    if (t && !t.hidden) err("E3D_HOOK", `${p}.target`, `"${a.target}" must start hidden (hidden: true) so the reveal is a surprise`);
-    if (a.style != null && !["lift", "slide", "tip", "open"].includes(a.style)) err("E3D_HOOK", `${p}.style`, "style must be lift, slide, tip or open");
+    // target: one hidden object, or a small group of up to 4 that pop in turn.
+    const tids = Array.isArray(a.target) ? a.target : [a.target];
+    if (Array.isArray(a.target) && (a.target.length < 1 || a.target.length > 4)) err("E3D_HOOK", `${p}.target`, "target is one object id or a list of 1-4");
+    tids.forEach((id, i) => {
+      const tp = Array.isArray(a.target) ? `${p}.target[${i}]` : `${p}.target`;
+      const t = exists(id, tp);
+      if (b && t && ownerId === id) err("E3D_HOOK", tp, "the target must be a different object from behind");
+      if (t && !t.hidden) err("E3D_HOOK", tp, `"${id}" must start hidden (hidden: true) so the reveal is a surprise`);
+    });
+    if (a.style != null && !["lift", "slide", "tip", "open", "none"].includes(a.style)) err("E3D_HOOK", `${p}.style`, "style must be lift, slide, tip, open or none");
+    for (const k of ["who", "answerWho"]) if (a[k] != null) exists(a[k], `${p}.${k}`);
     if (a.answer != null) text("answer", "E3D_HOOK");
     if (a.reveal != null && !isNum(a.reveal, 0, 5)) err("E3D_RANGE", `${p}.reveal`, "reveal must be 0-5 s");
   } else if (a.do === "challenge") {

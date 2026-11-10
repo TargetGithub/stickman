@@ -34,14 +34,26 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     d.sound("squeak", { at: at(rel + 0.65), volume: 0.6 });
     d.wiggle(a.behind, { at: at(rel + 0.6 + Math.max(0.9, Math.min(1.6, q / 2))), deg: 10, dur: 0.6 });
     d.sound("squeak", { at: at(rel + 0.65 + Math.max(0.9, Math.min(1.6, q / 2))), volume: 0.6 });
-    revealCover(d, a.behind, a.style ?? (isPart ? "open" : "lift"), at(reveal), { slow, open: a.open });
-    d.pop(a.target, { at: at(reveal + 0.25), sound: "magic_sparkle" });
-    d.highlight(a.target, { at: at(reveal + 0.3), color: "gold", dur: 2.2 });
-    d.sound("ding", { at: at(reveal + 0.35), volume: 0.7 });
+    // style none: no cover goes away; the answer pops out of the part or object (a print slot), out: then slides it.
+    const style = a.style ?? (isPart ? "open" : "lift");
+    if (style !== "none") revealCover(d, a.behind, style, at(reveal), { slow, open: a.open });
+    else d.sound("whoosh", { at: at(reveal), volume: slow ? 0.5 : 0.7 });
+    // target: one object, or a small group (up to 4 ids) that pops one after another.
+    const targets = Array.isArray(a.target) ? a.target : [a.target];
+    targets.forEach((id, i) => {
+      const tp = reveal + 0.25 + i * 0.18;
+      d.pop(id, { at: at(tp), sound: i ? "pop" : "magic_sparkle" });
+      if (a.out) {
+        const p = d.timeline.valueAt(id, "position", at(tp));
+        d.move(id, { at: at(tp + 0.1), to: p.map((v, k) => v + a.out[k]), dur: 0.6 * (slow ? 1.6 : 1), ease: "backOut" });
+      }
+      d.highlight(id, { at: at(tp + 0.05), color: "gold", dur: 2.2 });
+    });
+    d.sound("ding", { at: at(reveal + 0.35 + (targets.length - 1) * 0.18), volume: 0.7 });
     // A part cover (a lid, a door) keeps its owner in the frame, so the box and what peeks out both show.
-    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart ? owner : a.target, framing: isPart ? "medium" : "wide", pad: 0.6, dur: 1 });
-    let end = reveal + 2.2;
-    if (a.answer) end = Math.max(end, reveal + 0.9 + speak(line(a.answer, a.who, a.answerSpoken), reveal + 0.9) + 0.35);
+    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart || style === "none" ? [owner, ...targets] : targets.length > 1 ? targets : targets[0], framing: isPart ? "medium" : "wide", pad: 0.6, dur: 1 });
+    let end = reveal + 2.2 + (targets.length - 1) * 0.18;
+    if (a.answer) end = Math.max(end, reveal + 0.9 + speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), reveal + 0.9) + 0.35);
     return end;
   }
 

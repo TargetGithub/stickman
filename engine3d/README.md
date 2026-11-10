@@ -349,7 +349,7 @@ covers the kit.
 
 | Need | How |
 |---|---|
-| A fast hook | `hook` (`question`, `behind`, `target` hidden, `style` lift / slide / tip, `answer`): a question, a "?" cue, two cover wiggles, then the reveal with a sparkle, a glow and a camera push. |
+| A fast hook | `hook` (`question`, `behind`, `target` hidden, `style` lift / slide / tip / open / none, `answer`, `answerWho`): a question, a "?" cue, two cover wiggles, then the reveal with a sparkle, a glow and a camera push. `target` may be a list of up to 4 ids (a small group pops in turn); `style: "none"` moves no cover, so the answer pops out of the object or part (`behind: "mach#slot"`, `out: [0, 0, 0.8]` slides it out of the slot). Tour: `scripts/tour/school_stage_hooks.json`. |
 | A countdown | kind `timer_ring` (HUD, top right by default; it drains green, then yellow, then orange) and `timer` (`dur`, `count`, `keep`); with no target, the action adds a ring. Sounds: `timer_tick`, `timer_chime`. |
 | Answer choices | `options` (`targets`, `style` pulse / blink) and `answer` (`result` correct: tick, glow, hop, ding, `confetti`; wrong: soft shake, soft cross, `wrong_soft`, `hint` glow). `challenge` chains a prompt, options with a timer, the answer and `praise`. |
 | Keyword pop-ins | `say` `keywords: { "water": "drop" }` (an icon, a prop or text), or a `keyword` action: a HUD badge pops when the word is spoken, on the side away from the camera's look point (or `avoid`), stacking and keeping clear of trackers. |

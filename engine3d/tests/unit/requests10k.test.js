@@ -241,3 +241,22 @@ test("#67 emphasize after a retext finds and marks words on the new text", () =>
   bad.scenes[0].beats[0].do[2].words = "nap on a rug";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_EMPHASIZE"));
 });
+
+test("#68 school_stage, dress_form, hook revealing a group; #78 hook with no cover out of a slot, answerWho", () => {
+  assert.ok(catalog.stages.school_stage.set.length > 20 && catalog.lights.stage_bright);
+  assert.ok(catalog.props.dress_form.parts.some((p) => p.name === "torso"));
+  const s = script("school_stage_hooks");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const tl = plan.timeline;
+  const shown = (id) => plan.duration && [...Array(120).keys()].map((i) => (i / 120) * plan.duration).find((t) => tl.valueAt(id, "visible", t));
+  assert.ok(shown("t1") < shown("t2") && shown("t2") < shown("t3"), "the group pops in turn");
+  assert.deepEqual(tl.valueAt("mach#slot", "rotation", plan.duration), [0, 0, 0], "style none moves no cover");
+  assert.ok(tl.valueAt("print", "position", plan.duration)[2] > 1, "out slides the print toward the camera");
+  assert.ok(plan.lines.some((l) => l.text === "Cat!" && l.who === "bear"), "answerWho speaks the answer");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].target = ["t1", "t2", "t3", "box", "mach"];
+  bad.scenes[0].beats[1].do[0].style = "slide";
+  const codes = validateScript(bad, catalog).errors.map((e) => e.path);
+  assert.ok(codes.includes("scenes[0].beats[0].do[0].target") && codes.includes("scenes[0].beats[1].do[0].style"), codes.join());
+});

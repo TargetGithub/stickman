@@ -1,0 +1,23 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "#68 and #78: the bright school_stage preset with a dress_form; a hook that reveals a small group (three letter tiles under a box), and a hook with no cover that prints a tile out of the word machine's slot, the answer said by another speaker (answerWho).",
+  "meta": { "title": "School stage and hooks", "seed": 68 },
+  "stage": { "preset": "school_stage" },
+  "camera": { "position": [0, 2.4, 12], "lookAt": [0, 1.4, 0], "fov": 40 },
+  "objects": [
+    { "id": "form", "kind": "prop", "model": "dress_form", "color": "pink", "at": [-4.6, 0, -1] },
+    { "id": "fox", "kind": "critter", "species": "fox", "at": [4.6, 0, 0.5], "rotation": [0, -30, 0] },
+    { "id": "bear", "kind": "critter", "species": "bear", "at": [-2.6, 0, 1.2], "rotation": [0, 20, 0] },
+    { "id": "box", "kind": "prop", "model": "toy_box", "at": [-0.6, 0, 1], "scale": [1.6, 1.6, 1.6] },
+    { "id": "t1", "kind": "card", "style": "tile", "text": "c", "at": [-1.3, 0.1, 1.2], "hidden": true },
+    { "id": "t2", "kind": "card", "style": "tile", "text": "a", "at": [-0.6, 0.1, 1.2], "hidden": true },
+    { "id": "t3", "kind": "card", "style": "tile", "text": "t", "at": [0.1, 0.1, 1.2], "hidden": true },
+    { "id": "mach", "kind": "prop", "model": "word_machine", "at": [2.4, 0, -0.5] },
+    { "id": "print", "kind": "card", "style": "tile", "text": "cat", "parent": "mach", "at": [0, 0.42, 0.47], "hidden": true }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 1, "do": [{ "do": "hook", "question": "What is hiding in the box?", "who": "bear", "behind": "box", "target": ["t1", "t2", "t3"], "answer": "Three letters!" }] },
+    { "dur": 1, "do": [{ "do": "hook", "question": "What will the machine print?", "who": "fox", "behind": "mach#slot", "style": "none", "target": "print", "out": [0, -0.1, 0.8], "answer": "Cat!", "answerWho": "bear" }] }
+  ] }]
+}
