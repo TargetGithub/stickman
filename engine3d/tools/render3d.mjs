@@ -97,8 +97,21 @@ async function main() {
     const enc = !piped ? null : startEncoder(join(tmp, `chunk${job.id}.mp4`), width, height, { fps: o.fps, encoder: o.encoder, threads });
     sinks.set(job.id, { job, enc, h264, fd: h264 ? openSync(h264, "w") : null, next: job.from, waiting: new Map() });
   }
+  // Watchdog: a frame that never comes back (the page's renderer died, or the GPU starved while another render ran)
+  // used to leave the run waiting forever with no output. No new frame for RENDER_WATCHDOG_S seconds (default 180 for
+  // stills, 300 for videos, counted after the page has loaded) stops the run with an error, so a queue can retry it.
+  let lastFrame = Infinity; // armed once the pages have loaded
+  const limit = Number(process.env.RENDER_WATCHDOG_S) || (o.stills ? 180 : 300);
+  const watchdog = setInterval(() => {
+    if (lastFrame !== Infinity && (Date.now() - lastFrame) / 1000 > limit) {
+      console.error(`render3d: no frame for ${limit} s (the page may have crashed or the GPU stalled under another render); stopping`);
+      process.exit(3);
+    }
+  }, 5000);
+  watchdog.unref();
   // Frames can arrive out of order (several uploads in flight): hold them until their turn.
   const onFrame = async (id, i, rgba) => {
+    lastFrame = Date.now();
     const s = sinks.get(id);
     if (s.fd != null) return void writeSync(s.fd, rgba); // encoded chunks arrive in decode order on one socket
     await new Promise((res) => {
@@ -130,12 +143,15 @@ async function main() {
   const tLoad = Date.now();
   const players = await Promise.all(jobs.map(async (job) => {
     const p = await openPlayer(browser, server.origin);
+    // A dead page never sends its frame: fail at once instead of waiting.
+    p.page.on("crash", () => { console.error("render3d: the page crashed; stopping"); process.exit(3); });
     const info = await p.page.evaluate((a) => window.engine3d.load(a), { ...pageSrc(server.origin), catalog, speech, width, height, base: "/" });
     gpu = info.gpu;
     if (Math.abs(info.duration - plan.duration) > 1e-9) throw new Error(`page plan is ${info.duration} s, Node plan ${plan.duration} s`);
     return p;
   }));
   const loadSec = (Date.now() - tLoad) / 1000;
+  lastFrame = Date.now(); // arm the watchdog: the load (speech, assets) is not frame time
   log(`  gpu: ${gpu}; pages loaded in ${loadSec.toFixed(1)} s`);
 
   const stats = { input: o.input, res: o.res, width, height, fps: o.fps, gl: o.gl, gpu, jobs: o.jobs, encoder: o.encoder, inflight: o.inflight, frames: to - from, duration: plan.duration, loadSec };
