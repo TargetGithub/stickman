@@ -61,6 +61,8 @@ export function loadCatalog3d() {
     materials: read("materials").materials,
     shapes: read("shapes").shapes,
     fonts: read("fonts").fonts,
+    // Glyph advances and ink extents (tools/gen_font_metrics.mjs): where each character of a letter word is.
+    fontMetrics: read("font_metrics").fonts,
     characters: Object.fromEntries(Object.entries(read("characters").characters).map(([k, c]) => [k, { ...c, clipDurations: glbClipDurations(REPO + c.file) }])),
     stages: stages.stages,
     lights: stages.lights,

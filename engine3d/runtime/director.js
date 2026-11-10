@@ -4,6 +4,7 @@
 // TTS, the audio mix and the duration. Pure: no three.js, no I/O, no clocks.
 
 import { expandComposite, isComposite } from "./composite.js";
+import { letterPieces } from "./letter_layout.js";
 import { parseTune, TUNE_DEFAULTS } from "./tune.js";
 import { createTimeline } from "./timeline.js";
 import { deriveRng } from "./rng.js";
@@ -110,9 +111,10 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       tl.base(o.id, "hop", 0); // a lift added on top of position, so hops combine with moves
       if (o.kind === "confetti" || o.kind === "bubbles") tl.base(o.id, "burst", -1);
       if (o.kind === "critter" || (o.kind === "shape" && o.face)) tl.base(o.id, "eyes", 1);
-      if (o.kind === "critter" || o.kind === "prop") {
-        const m = o.kind === "critter" ? catalog.critters[o.species] : catalog.props[o.model];
-        const names = ["head", "body", ...(m?.parts ?? []).filter((p) => p.name).map((p) => p.name)];
+      if (o.kind === "critter" || o.kind === "prop" || o.kind === "letter") {
+        const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
+        // A letter word's pieces are its characters, c1..cN (letter_layout.js).
+        const names = o.kind === "letter" ? letterPieces(o) : ["head", "body", ...(m?.parts ?? []).filter((p) => p.name).map((p) => p.name)];
         for (const n of names) {
           parts.add(`${o.id}#${n}`);
           tl.base(`${o.id}#${n}`, "rotation", [0, 0, 0]);

@@ -5,6 +5,7 @@
 import { EASE_NAMES } from "./ease.js";
 import { expandObjects, isComposite } from "./composite.js";
 import { spokenError } from "./spoken.js";
+import { letterPieces } from "./letter_layout.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
@@ -289,6 +290,7 @@ export function validateScript(script, catalog, opts = {}) {
 
   function partNames(o) {
     const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
+    if (o.kind === "letter") return letterPieces(o); // a word's characters c1..cN, spaces too
     return m ? ["head", "body", ...m.parts.filter((x) => x.name).map((x) => x.name)] : teachPieces(o);
   }
 }

@@ -1,0 +1,15 @@
+{
+  "kind": "video3d", "version": 1,
+  "meta": { "title": "Letters in a word", "seed": 19, "music": false },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 1.4, 6], "lookAt": [0, 1.1, 0], "fov": 40 },
+  "objects": [
+    { "id": "word", "kind": "letter", "text": "cable", "size": 0.7, "color": "blue", "at": [0, 0.8, 0] },
+    { "id": "dot", "kind": "shape", "shape": "sphere", "color": "orange", "size": 0.14, "parent": "word", "part": "c1", "at": [0, -0.25, 0.1] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": 1.5, "do": [{ "do": "highlight", "target": "word#c1", "dur": 1.4 }] },
+    { "dur": 1.5, "do": [{ "do": "reparent", "target": "dot", "parent": "word", "part": "c3", "to": [0, -0.25, 0.1], "dur": 0.6 }, { "do": "mark", "target": "word#c3", "at": 0.6 }] },
+    { "dur": 2, "do": [{ "do": "move", "target": "word#c3", "to": [0.25, 0, 0], "dur": 0.5 }, { "do": "move", "target": "word#c4", "to": [0.25, 0, 0], "dur": 0.5 }, { "do": "move", "target": "word#c5", "to": [0.25, 0, 0], "dur": 0.5 }, { "do": "wiggle", "target": "word#c2", "at": 0.8 }] }
+  ] }]
+}

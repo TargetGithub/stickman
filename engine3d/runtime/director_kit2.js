@@ -3,6 +3,7 @@
 // raises an arm toward something). Like the rest of the director it only records timeline data. Pure: no
 // three.js, no I/O, no clocks.
 
+import { letterLayout } from "./letter_layout.js";
 import { focusPoint } from "./bounds.js";
 import { findWords } from "./card_words.js";
 import { parseDigits, pvLayout, shiftDigits } from "./place_value.js";
@@ -79,6 +80,13 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
   }
   /** A critter or prop part's pivot in its object's frame (rest pose plus the part's timeline offsets). */
   function partLocal(o, part, t) {
+    if (o.kind === "letter") {
+      // A character of a word: at its centre on the baseline (letter_layout.js), plus its own offsets.
+      const c = letterLayout(o, catalog.fontMetrics).find((x) => `c${x.n}` === part);
+      if (!c) throw new Error(`"${o.id}" has no character "${part}"`);
+      const pos = now(`${o.id}#${part}`, "position", t) ?? [0, 0, 0];
+      return compose([c.x + pos[0], pos[1], pos[2]], now(`${o.id}#${part}`, "rotation", t) ?? [0, 0, 0], [1, 1, 1]);
+    }
     const m = modelOf(o, catalog);
     const size = o.size ?? 1;
     const off = (name, prop) => now(`${o.id}#${name}`, prop, t) ?? [0, 0, 0];
@@ -162,7 +170,7 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       if (String(id).includes("#")) throw new Error("reparent moves whole objects, not parts");
       if (parent != null) {
         const p = obj(parent);
-        if (part != null && !["critter", "prop"].includes(p.kind)) throw new Error(`reparent "${id}": only critters and props have parts`);
+        if (part != null && !["critter", "prop", "letter"].includes(p.kind)) throw new Error(`reparent "${id}": only critters, props and letter words have parts`);
         // No loops: the new parent must not ride on the object itself.
         for (let r = String(parent); r; r = parentRef(objects.get(r.split("#")[0]), t)) {
           if (r.split("#")[0] === id) throw new Error(`reparent "${id}": "${parent}" rides on it`);

@@ -162,7 +162,7 @@ export function createKit2Checker({ err, ids, catalog, partNames }) {
         const par = ids.get(a.parent);
         if (!par) err("E3D_REPARENT", `${p}.parent`, `no object "${a.parent}" (null puts it back in the world)`);
         else if (a.parent === a.target) err("E3D_REPARENT", `${p}.parent`, "an object cannot ride on itself");
-        else if (a.part != null && !(["critter", "prop"].includes(par.kind) && partNames(par).includes(a.part))) err("E3D_PART", `${p}.part`, `"${a.parent}" has no named part "${a.part}"`);
+        else if (a.part != null && !(["critter", "prop", "letter"].includes(par.kind) && partNames(par).includes(a.part))) err("E3D_PART", `${p}.part`, `"${a.parent}" has no named part "${a.part}"`);
       } else if (a.part != null) err("E3D_PART", `${p}.part`, "part needs a parent");
       if (o && String(a.target).includes("#")) err("E3D_REPARENT", `${p}.target`, "reparent moves whole objects, not parts");
       if (a.to != null && !isVec(a.to)) err("E3D_VEC", `${p}.to`, "must be [x, y, z] (in the new parent)");
