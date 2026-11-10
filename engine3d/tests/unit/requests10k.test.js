@@ -204,3 +204,17 @@ test("#59 challenge hideWrong keeps wrong options hidden after the praise; keywo
   bad.scenes[0].beats[0].do[0].keywords = { pear: "apple" };
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_KEYWORD"));
 });
+
+test("#50 thumbnail camera auto frames every object and keeps the title side clear; silent_e colour", async () => {
+  const { thumbnailScript } = await import("../../runtime/thumbnails.js");
+  const s = script("thumb_auto");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  assert.ok(catalog.colors.silent_e);
+  const ts = thumbnailScript(s, s.meta.thumbnails[0]);
+  const room = ts.objects.find((o) => o.id === "thumb_room");
+  assert.ok(room.at[0] < -2.6, "the empty spot is on the title's (left) side");
+  const shot = ts.scenes[0].beats[0].do.find((a) => a.do === "shot");
+  assert.deepEqual(shot.target, ["fox", "w", "bunny", "thumb_room"]);
+  const p = compileScript(ts, { catalog });
+  assert.ok(p.timeline.valueAt("camera", "lookAt", 1)[0] < 0, "the camera looks left of the scene so it sits right of the title");
+});

@@ -2,7 +2,7 @@
 // never a video frame. This module is pure (Node + page): it turns a concept into a video3d script for
 // render3d (tools/thumbnail3d.mjs) and checks concepts for validate.js with the script's own object rules.
 //
-// Concept: { name, title, subtitle?, titleColor?, side?, badge?, at?, stage?, camera, objects, lights? }
+// Concept: { name, title, subtitle?, titleColor?, side?, badge?, at?, stage?, camera (or "auto"), objects, lights? }
 
 export const THUMB_SIDES = ["left", "right", "top", "bottom"];
 export const THUMB_LIMITS = { concepts: 4, title: 18, subtitle: 32, badge: 12 };
@@ -21,15 +21,35 @@ export function thumbnailScript(script, concept) {
   const meta = script?.meta ?? {};
   const at = concept.at ?? THUMB_AT;
   const actions = concept.lights ? [{ do: "lights", ...concept.lights, dur: 0.1 }] : [];
+  // camera "auto": frame every top-level object (shot) plus an empty spot on the title's side, so nothing at the
+  // edges is cut off and the title's half stays clear.
+  const auto = concept.camera === "auto";
+  const objects = auto ? [...(concept.objects ?? []), roomFor(concept)] : concept.objects;
+  if (auto) actions.unshift({ do: "shot", target: [...(concept.objects ?? []).filter((o) => o?.parent == null).map((o) => o.id), "thumb_room"], framing: "close", pad: 0.04, height: 6, dur: 0.05 });
   return {
     kind: "video3d", version: 1,
     description: `Thumbnail concept "${concept.name}" for ${meta.title ?? "an episode"}.`,
     meta: { title: `${meta.title ?? "Thumbnail"}: ${concept.title ?? concept.name}`, seed: meta.seed ?? 1, ...(meta.voice ? { voice: meta.voice } : {}) },
     stage: concept.stage != null ? { preset: concept.stage } : script?.stage ?? { preset: "playroom" },
-    camera: concept.camera,
-    objects: concept.objects,
+    camera: auto ? { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 36 } : concept.camera,
+    objects,
     scenes: [{ id: "thumb", beats: [{ dur: Math.max(2, at + 1), do: actions }] }],
   };
+}
+
+/** The empty spot that keeps the title's side clear in an auto-framed concept: as wide as the scene, beside it. */
+function roomFor(concept) {
+  const tops = (concept.objects ?? []).filter((o) => o?.parent == null && Array.isArray(o.at));
+  const xs = tops.map((o) => o.at[0]);
+  const ys = tops.map((o) => o.at[1]);
+  const zs = tops.map((o) => o.at[2]);
+  const [x0, x1] = xs.length ? [Math.min(...xs), Math.max(...xs)] : [0, 0];
+  const w = Math.max(1.6, x1 - x0 + 1.2);
+  const y = ys.length ? Math.max(...ys) : 0;
+  const z = zs.length ? zs.reduce((a, b) => a + b, 0) / zs.length : 0;
+  const side = concept.side ?? "left";
+  const at = side === "left" ? [x0 - w * 0.78, y, z] : side === "right" ? [x1 + w * 0.78, y, z] : side === "top" ? [(x0 + x1) / 2, y + 2.2, z] : [(x0 + x1) / 2, y - 1, z];
+  return { id: "thumb_room", kind: "group", at: at.map((v) => Math.round(v * 1000) / 1000) };
 }
 
 /**
@@ -62,7 +82,7 @@ export function checkThumbnails(list, script, catalog, validate) {
     if (c.titleColor != null && !catalog.colors[c.titleColor] && !/^#[0-9a-f]{6}$/i.test(String(c.titleColor))) err("E3D_COLOR", `${p}.titleColor`, `titleColor must be a colour name or #rrggbb, got "${c.titleColor}"`);
     if (c.side != null && !THUMB_SIDES.includes(c.side)) err("E3D_THUMB_SIDE", `${p}.side`, `side must be one of ${THUMB_SIDES.join(", ")}`);
     if (c.at != null && !(typeof c.at === "number" && c.at >= 0.2 && c.at <= 30)) err("E3D_RANGE", `${p}.at`, "at must be 0.2-30 s into the pose");
-    if (c.camera == null || typeof c.camera !== "object") err("E3D_REQUIRED", `${p}.camera`, "a concept needs its own camera { position, lookAt, fov }");
+    if (c.camera !== "auto" && (c.camera == null || typeof c.camera !== "object")) err("E3D_REQUIRED", `${p}.camera`, 'a concept needs its own camera { position, lookAt, fov }, or "auto" (frames every object and keeps the title side clear)');
     if (!Array.isArray(c.objects) || !c.objects.length) err("E3D_REQUIRED", `${p}.objects`, "a concept needs objects (one teaching object and 1-2 characters)");
     if (c.lights != null && (typeof c.lights !== "object" || !LIGHT_KEYS.some((k) => c.lights[k] != null))) err("E3D_LIGHTS", `${p}.lights`, `lights must set ${LIGHT_KEYS.join(", ")} (any of them)`);
     // The concept's own scene, checked like a script.
