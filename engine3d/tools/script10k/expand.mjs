@@ -24,7 +24,7 @@ export function trackerFrom(spec, lesson) {
   let style = own.style ?? (/\btrain|\bcars?\b|caboose|wagon/.test(text) ? "train" : /check|list|tick|clipboard/.test(text) ? "checklist" : /\bstar/.test(text) ? "stars" : /path|map|island|road|trail|stone|step|bridge|ladder/.test(text) ? "path" : BANDS[band].tracker);
   if (band === "bb" && !own.style) style = "stars";
   const raw = pt.labels ?? [];
-  const slots = Math.min(10, own.slots ?? (pt.steps || raw.length || 4));
+  const slots = Math.min(10, own.slots ?? own.labels?.length ?? (pt.steps || raw.length || 4));
   let labels = own.labels;
   if (!labels && raw.length) {
     if (style === "checklist") labels = raw.slice(0, slots).map((l) => fitLabel(String(l), 14));
