@@ -11,6 +11,7 @@
 //   node engine3d/tools/script10k.mjs compose props <name> "how"  record a small prop composed in the script
 //   node engine3d/tools/script10k.mjs needs <id>...               which new: assets are mapped (and how to build them) or missing
 //   node engine3d/tools/script10k.mjs assign <batch> <band> [n]  next ready, unassigned specs for a writer batch
+//   node engine3d/tools/script10k.mjs uploads                     10K/UPLOADS.md: what is on YouTube already
 //   node engine3d/tools/script10k.mjs status                     10K/SCRIPT_STATUS.md
 // Env TOYBOX_10K overrides the 10K folder.
 
@@ -183,6 +184,26 @@ if (cmd === "assign") {
   }
   writeFileSync(f, `${JSON.stringify(a, null, 1)}\n`);
   console.log(out.join(" "));
+  process.exit(0);
+}
+
+if (cmd === "uploads") {
+  // What is on YouTube already: every render folder's youtube_upload.json (written by tools/youtube_upload.mjs)
+  // -> 10K/UPLOADS.md. Check it before uploading; the upload tool also refuses a folder that has one.
+  const man = existsSync(join(ROOT, "render_manifest.json")) ? JSON.parse(readFileSync(join(ROOT, "render_manifest.json"), "utf8")) : {};
+  const rows = [];
+  for (const [id, m] of Object.entries(man).sort()) {
+    const f = join(m.dir, "youtube_upload.json");
+    const u = existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : null;
+    rows.push({ id, rendered: m.ok, ...(u ?? {}) });
+  }
+  const up = rows.filter((r) => r.videoId);
+  const md = ["# 10K uploads (Toybox Elementary)", "", `Updated ${new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16).replace("T", " ")} by \`script10k uploads\` from each render folder's youtube_upload.json.`, "",
+    `Uploaded: **${up.length}**; rendered, not uploaded: ${rows.filter((r) => r.rendered && !r.videoId).map((r) => r.id).join(", ") || "none"}.`, "",
+    "| Id | Video | Privacy | Uploaded | Title |", "|---|---|---|---|---|",
+    ...up.map((r) => `| ${r.id} | ${r.url} | ${r.privacy} | ${String(r.uploadedAt).slice(0, 10)} | ${r.title} |`), ""].join("\n");
+  writeFileSync(join(ROOT, "UPLOADS.md"), md);
+  console.log(md);
   process.exit(0);
 }
 
