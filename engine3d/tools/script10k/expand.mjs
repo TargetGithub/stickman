@@ -6,6 +6,7 @@
 import { BANDS, bandOf } from "./bands.mjs";
 import { buildMeta } from "./meta.mjs";
 import { buildThumbnails } from "./thumbs.mjs";
+import { cardHeight } from "../../runtime/teach_layout.js";
 
 export const LESSON_SCHEMA = "toybox-10k-lesson/1";
 export const TRACKER_ID = "trk";
@@ -81,9 +82,29 @@ function buildObjects(lesson, band) {
   }
   const spread = new Map();
   for (const o of lesson.objects ?? []) if (o.spread) for (const [id, p] of spreadPositions(o.spread)) spread.set(id, p);
+  // stack: text cards listed top to bottom, one size, `gap` metres apart; `top` is the top edge of the first card
+  // (a text_card grows upward from its at, so each at is that card's bottom).
+  const stackSize = new Map();
   for (const o of lesson.objects ?? []) {
-    if (o.spread) continue;
-    objects.push(spread.has(o.id) && o.at == null ? { ...o, at: spread.get(o.id) } : o);
+    if (!o.stack) continue;
+    const { ids, top = [0, 2.2, 1], gap = 0.12, size } = o.stack;
+    let y = top[1];
+    for (const id of ids) {
+      const card = (lesson.objects ?? []).find((c) => c.id === id);
+      if (!card) continue;
+      const c = { ...card, ...(size ? { size } : {}) };
+      delete c.height;
+      y -= cardHeight(c);
+      spread.set(id, [top[0], round(y), top[2]]);
+      stackSize.set(id, c.size);
+      y -= gap;
+    }
+  }
+  for (const o of lesson.objects ?? []) {
+    if (o.spread || o.stack) continue;
+    let out = spread.has(o.id) && o.at == null ? { ...o, at: spread.get(o.id) } : o;
+    if (stackSize.has(o.id)) { out = { ...out, size: stackSize.get(o.id) }; delete out.height; }
+    objects.push(out);
   }
   return { objects, cast, ids: new Set(objects.map((o) => o.id)) };
 }

@@ -59,7 +59,9 @@ stages and anything used by several specs wait for the assets session.
    "bunny": { "species": "bunny", "at": [4.5, 0, 1.3], "size": 0.85, "rotation": [0, -35, 0], "voice": "squeaky" }
  },
  "objects": [ engine3d objects (README "Object kinds", catalog/kinds.json),
-              { "spread": { "ids": ["q1", "q2", "q3"], "center": [0, 0, 0.8], "gap": 1.9 } } ],  // sets their at
+              { "spread": { "ids": ["q1", "q2", "q3"], "center": [0, 0, 0.8], "gap": 1.9 } },   // sets their at
+              { "stack": { "ids": ["rc1", "rc2", "rc3"], "top": [0, 2.2, 1], "size": 0.2, "gap": 0.12 } } ],
+              // stack: text cards top to bottom at one size, gap apart (recaps!); leave their at out
  "tracker": { "style": "train", "labels": ["A", "B", "C", "D", "E", "F"] },     // optional override
  "allow": ["kancil"],                                 // optional: words the spell check should accept
  "scenes": [ { "id": "hook", "title": "Letters in hiding", "music": "calm", "beats": [ ... ] } ],
