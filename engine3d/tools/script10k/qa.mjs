@@ -56,11 +56,13 @@ export function scriptTexts(script) {
     push(s.title, `scenes[${si}].title`, "chapter");
     s.beats.forEach((b, bi) => b.do.forEach((a, ai) => {
       const p = `scenes[${si}].beats[${bi}].do[${ai}]`;
-      if (a.do === "say") push(a.text, p, "spoken");
+      // With a *spoken twin the text is only a caption (the voice reads the twin, often IPA): no TTS checks on it.
+      const k = (spoken) => (spoken != null ? "screen" : "spoken");
+      if (a.do === "say") push(a.text, p, k(a.spoken));
       if (a.do === "caption") push(a.text, p, "screen");
-      if (a.do === "hook") { push(a.question, p, "spoken"); push(a.answer, p, "spoken"); }
-      if (a.do === "call") { push(a.prompt, p, "spoken"); push(a.answer, p, "spoken"); }
-      if (a.do === "challenge") { push(a.prompt, p, "spoken"); push(a.praise, p, "spoken"); }
+      if (a.do === "hook") { push(a.question, p, k(a.questionSpoken)); push(a.answer, p, k(a.answerSpoken)); }
+      if (a.do === "call") { push(a.prompt, p, k(a.promptSpoken)); push(a.answer, p, k(a.answerSpoken)); }
+      if (a.do === "challenge") { push(a.prompt, p, k(a.promptSpoken)); push(a.praise, p, k(a.praiseSpoken)); }
     }));
   });
   (script.meta?.thumbnails ?? []).forEach((c, i) => { push(c.title, `meta.thumbnails[${i}].title`, "screen"); push(c.subtitle, `meta.thumbnails[${i}].subtitle`, "screen"); });
