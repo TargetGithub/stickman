@@ -1,6 +1,7 @@
 // JSON script → director calls (docs: engine3d/README.md "Script format"). Beats run one after another; an
 // action's `at` is seconds from its beat's start. A beat lasts its `dur` or until its last voice line ends
-// (plus SAY_TAIL), whichever is longer, so a measured TTS clip stretches its beat the way 2D speech does.
+// (plus SAY_TAIL), whichever is longer, so a measured TTS clip stretches its beat the way 2D speech does. With
+// dur "fit" it lasts until its last timed action ends too (plus 0.2 s).
 
 import { createDirector } from "./director.js";
 import { TEACH_ACTIONS } from "./director_teach.js";
@@ -34,7 +35,10 @@ export function compileScript(script, { catalog, speech = {} }) {
     scenes.push({ id: scene.id, title: scene.title ?? null, start: t });
     scene.beats.forEach((beat, bi) => {
       const beatId = beat.id ?? `${scene.id}.${bi + 1}`;
-      let len = beat.dur ?? 1;
+      // dur "fit": the beat lasts until its last timed action (a move, a draw, a pop) ends, or its last line.
+      const fit = beat.dur === "fit";
+      let len = fit ? 0.5 : beat.dur ?? 1;
+      const mark = d.timeline.mark();
       const later = [];
       let sayEnd = 0; // where the beat's last line so far ends (seconds from the beat start)
       let kitLines = 0;
@@ -77,6 +81,7 @@ export function compileScript(script, { catalog, speech = {} }) {
           if (ENGAGING.includes(a.do)) d.engage(a.do, { at: start });
         }
       });
+      if (fit) len = Math.max(len, d.timeline.endSince(mark) - t + 0.2);
       // Captions without a dur last to the end of their beat, known only now.
       for (const c of later) d.caption(c.text, { at: t + (c.at ?? 0), dur: c.dur ?? Math.max(0.5, len - (c.at ?? 0)), style: c.style ?? captionStyle(c.text, meta), color: c.color, pos: c.pos });
       t += len;

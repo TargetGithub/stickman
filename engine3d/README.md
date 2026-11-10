@@ -287,7 +287,8 @@ cropped to `maxDur`) in the `soft` voice, levelled like speech, into `assets/sfx
 render makes any missing clip it cues). It prints each clip's length, level and bursts to check by eye.
 
 Beats run one after another; `at` is seconds from the beat start. A beat lasts `dur` or until its last voice
-line ends, whichever is longer, so measured TTS clips stretch beats like 2D speech does. Kinds and their
+line ends, whichever is longer, so measured TTS clips stretch beats like 2D speech does. `dur: "fit"` makes a
+beat last until its last timed action (a move, a draw, a pop) ends as well. Kinds and their
 fields: `catalog/kinds.json`. Actions and their parameters: `catalog/actions.json`.
 
 **JS scene** (for custom animation): a module whose default export receives the director, plus optional
@@ -349,6 +350,7 @@ covers the kit.
 
 | Need | How |
 |---|---|
+| Answer cards for a challenge | `choices` (`options`: 2-6 texts, `style` word / tile / strip, `layout` auto / row / column): cards `<id>_o1..` side by side when they fit, stacked as a list when the answers are long. Tour: `scripts/tour/choices_fit.json`. |
 | A fast hook | `hook` (`question`, `behind`, `target` hidden, `style` lift / slide / tip / open / none, `answer`, `answerWho`): a question, a "?" cue, two cover wiggles, then the reveal with a sparkle, a glow and a camera push. `target` may be a list of up to 4 ids (a small group pops in turn); `style: "none"` moves no cover, so the answer pops out of the object or part (`behind: "mach#slot"`, `out: [0, 0, 0.8]` slides it out of the slot). Tour: `scripts/tour/school_stage_hooks.json`. |
 | A countdown | kind `timer_ring` (HUD, top right by default; it drains green, then yellow, then orange) and `timer` (`dur`, `count`, `keep`); with no target, the action adds a ring. Sounds: `timer_tick`, `timer_chime`. |
 | Answer choices | `options` (`targets`, `style` pulse / blink) and `answer` (`result` correct: tick, glow, hop, ding, `confetti`; wrong: soft shake, soft cross, `wrong_soft`, `hint` glow). `challenge` chains a prompt, options with a timer, the answer and `praise`. |

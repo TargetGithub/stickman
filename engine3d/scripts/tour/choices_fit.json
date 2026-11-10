@@ -1,0 +1,17 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "#73: choices lays out answer cards for their text (short answers in a row, long ones stacked as a list), and a beat with dur \"fit\" lasts until its last move ends.",
+  "meta": { "title": "Choices and fitted beats", "seed": 73 },
+  "stage": { "preset": "playroom" },
+  "camera": { "position": [0, 1.6, 9], "lookAt": [0, 1.2, 0], "fov": 40 },
+  "objects": [
+    { "id": "short", "kind": "choices", "options": ["cat", "cot", "cut"], "at": [0, 2.3, 0] },
+    { "id": "long", "kind": "choices", "options": ["place again", "put in the wrong place", "place before"], "at": [0, 0.1, 0.5] },
+    { "id": "ball", "kind": "prop", "model": "ball", "at": [-4, 0, 1.5] }
+  ],
+  "scenes": [{ "id": "a", "beats": [
+    { "dur": "fit", "do": [{ "do": "move", "target": "ball", "to": [4, 0, 1.5], "at": 0.2, "dur": 2.5 }] },
+    { "dur": 3, "do": [{ "do": "challenge", "prompt": "Which one means put in the wrong place?", "options": ["long_o1", "long_o2", "long_o3"], "answer": "long_o2", "dur": 2 }] }
+  ] }]
+}

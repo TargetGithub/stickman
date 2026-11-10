@@ -14,7 +14,46 @@ export const COMPOSITE2_FIELDS = {
   sign: ["style", "text", "width", "height", "size", "color", "bg", "rim", "post"],
   word_train: ["words", "colors", "engine", "gap", "tile"],
   book: ["spreads", "width", "height", "size", "color", "bg", "accent"],
+  choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth"],
 };
+
+/** Card widths as composite.js sizes them (word and tile grow with the text). */
+const cardWidth = (style, n) => (style === "tile" ? Math.max(0.62, n * 0.18 + 0.25) : style === "strip" ? Math.min(7, Math.max(1.6, n * 0.085 + 0.6)) : Math.max(1, n * 0.13 + 0.5));
+const CARD_H = { word: 0.55, tile: 0.62, strip: 0.5 };
+
+/**
+ * choices: 2-6 answer cards (<id>_o1 .. <id>_oN, challenge options) laid out for their text. layout auto: a row
+ * when the cards fit side by side within maxWidth (default 7.6 m), else a column, the first on top, all one width
+ * so long answers read as a list. at: the foot of the row's middle, or of the column's bottom card.
+ */
+export function expandChoices(o, catalog, add, err) {
+  const opts = o.options ?? [];
+  if (!Array.isArray(opts) || opts.length < 2 || opts.length > 6 || opts.some((t) => typeof t !== "string" || !t.trim() || t.length > 60)) {
+    return err("E3D_OPTIONS", "options", "options must be 2-6 strings of 1-60 characters");
+  }
+  const style = o.style ?? "word";
+  if (!CARD_H[style]) return err("E3D_STYLE", "style", "choices style must be word, tile or strip");
+  const layout = o.layout ?? "auto";
+  if (!["auto", "row", "column"].includes(layout)) return err("E3D_LAYOUT", "layout", "layout must be auto, row or column");
+  const gap = o.gap ?? 0.3;
+  const maxW = o.maxWidth ?? 7.6;
+  const ws = opts.map((t) => o.width ?? cardWidth(style, t.length));
+  const rowW = ws.reduce((a, w) => a + w, 0) + gap * (opts.length - 1);
+  const row = layout === "row" || (layout === "auto" && rowW <= maxW);
+  const H = CARD_H[style];
+  const card = (i, x, y, w) => add(`o${i + 1}`, { kind: "card", style, text: opts[i], width: r3([w])[0], ...(o.color ? { color: o.color } : {}), ...(o.bg ? { bg: o.bg } : {}), at: r3([x, y, 0]) });
+  if (row) {
+    let x = -rowW / 2;
+    opts.forEach((_, i) => {
+      card(i, x + ws[i] / 2, 0, ws[i]);
+      x += ws[i] + gap;
+    });
+  } else {
+    const w = Math.min(maxW, Math.max(...ws));
+    const g = Math.min(gap, 0.2);
+    opts.forEach((_, i) => card(i, 0, (opts.length - 1 - i) * (H + g), w));
+  }
+}
 
 /** sign: a board (text word-wrapped, centred) on a post, hanging from two ropes, or flat on a wall. at: the foot. */
 export function expandSign(o, catalog, add, err) {

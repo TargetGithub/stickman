@@ -615,6 +615,25 @@
         "book",
         "composite"
       ]
+    },
+    "choices": {
+      "fields": {
+        "options": "2-6 answer texts (1-60 characters each); the cards are <id>_o1 .. <id>_oN, in this order (challenge options)",
+        "style": "word (default), tile or strip cards",
+        "layout": "auto (default: a row when the cards fit side by side within maxWidth, otherwise a column, first on top), row or column",
+        "gap": "space between cards, default 0.3 (0.2 at most in a column)",
+        "width": "one width for every card (default: each grows with its text; a column uses the widest)",
+        "maxWidth": "the widest a row may be before auto stacks the answers, default 7.6",
+        "color": "text colour",
+        "bg": "card colour"
+      },
+      "description": "A set of answer cards laid out for their text (runtime/composite2.js): short answers side by side, long ones stacked as a list so they never run into each other. at is the foot of the row's middle, or of the column's bottom card. Use the pieces in challenge options and answer.",
+      "tags": [
+        "quiz",
+        "retention",
+        "choices",
+        "composite"
+      ]
     }
   }
 }

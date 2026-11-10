@@ -27,6 +27,7 @@ export function createTimeline() {
   /** @type {Map<string, Array<{ name:string, start:number, loop:boolean, fade:number, speed:number }>>} */
   const clips = new Map();
   let sorted = true;
+  const ends = []; // where each segment ends, in the order added (mark / endSince: how long a step's moves run)
 
   const segs = (target, prop) => {
     if (!tracks.has(target)) tracks.set(target, new Map());
@@ -44,11 +45,22 @@ export function createTimeline() {
     tween(target, prop, { start, dur, from, to, ease: e = "quadInOut", curve }) {
       if (!(dur >= 0)) throw new Error(`tween ${target}.${prop}: dur must be >= 0`);
       segs(target, prop).push(curve ? { start, dur, from, to, ease: e, curve } : { start, dur, from, to, ease: e });
+      ends.push(start + dur);
       sorted = false;
     },
     set(target, prop, value, start) {
       segs(target, prop).push({ start, dur: 0, to: value, ease: "linear" });
+      ends.push(start);
       sorted = false;
+    },
+    /** A bookmark in the segments added so far; endSince(mark) is where the latest of those added after it ends. */
+    mark() {
+      return ends.length;
+    },
+    endSince(mark) {
+      let e = -Infinity;
+      for (let i = mark; i < ends.length; i++) if (ends[i] > e) e = ends[i];
+      return e;
     },
     clip(target, name, { start, loop = true, fade = 0.3, speed = 1 }) {
       if (!clips.has(target)) clips.set(target, []);

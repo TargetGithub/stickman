@@ -277,3 +277,20 @@ test("#71 stress: rings spread from the syllable and fade, the syllable swells; 
   bad.scenes[0].beats[0].do[1].count = 9;
   assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code), ["E3D_CHARS", "E3D_RANGE"]);
 });
+
+test("#73 choices stack long answers and row short ones; a beat with dur fit lasts until its last move", () => {
+  const s = script("choices_fit");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const at = (id) => plan.objects.find((o) => o.id === id).at;
+  assert.ok(at("short_o1")[1] === at("short_o3")[1] && at("short_o1")[0] < at("short_o3")[0], "short answers in a row");
+  assert.ok(at("long_o1")[0] === at("long_o3")[0] && at("long_o1")[1] > at("long_o3")[1], "long answers stacked, first on top");
+  assert.ok(Math.abs(plan.timeline.valueAt("ball", "position", 2.75)[0] - 4) < 1e-9);
+  const beat2 = plan.lines[0].t; // the challenge prompt starts its beat
+  assert.ok(beat2 >= 2.7 && beat2 < 3.2, `fit beat ends after the 2.7 s move (${beat2})`);
+  const bad = structuredClone(s);
+  bad.objects[0].options = ["one"];
+  bad.scenes[0].beats[0].dur = "long";
+  const codes = validateScript(bad, catalog).errors.map((e) => e.code);
+  assert.ok(codes.includes("E3D_OPTIONS") && codes.includes("E3D_RANGE"), codes.join());
+});

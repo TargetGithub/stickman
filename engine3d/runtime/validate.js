@@ -174,7 +174,7 @@ export function validateScript(script, catalog, opts = {}) {
     if (!Array.isArray(s?.beats) || !s.beats.length) return err("E3D_BEATS", `${sp}.beats`, "beats must be a non-empty list");
     s.beats.forEach((b, bi) => {
       const bp = `${sp}.beats[${bi}]`;
-      if (b.dur != null && !isNum(b.dur, 0.1, 60)) err("E3D_RANGE", `${bp}.dur`, "dur must be 0.1-60 s");
+      if (b.dur != null && b.dur !== "fit" && !isNum(b.dur, 0.1, 60)) err("E3D_RANGE", `${bp}.dur`, 'dur must be 0.1-60 s, or "fit" (until its last action ends)');
       if (!Array.isArray(b.do)) return err("E3D_DO", `${bp}.do`, "do must be a list of actions");
       b.do.forEach((a, ai) => checkAction(a, `${bp}.do[${ai}]`, b));
     });
@@ -187,7 +187,7 @@ export function validateScript(script, catalog, opts = {}) {
     // look's at may name what to look at; a say's at may be "after" (queued after the beat's previous line).
     const timed = (a.do !== "look" || typeof a.at === "number") && !(a.do === "say" && a.at === "after");
     if (a.at != null && timed && !isNum(a.at, 0, 60)) err("E3D_RANGE", `${p}.at`, "at must be 0-60 s from the beat start");
-    if (a.at != null && timed && beat.dur != null && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
+    if (a.at != null && timed && typeof beat.dur === "number" && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
     if (checkR3Action(a, p, { err, warn, ids, catalog })) return; // stage, voices, shot pad, paint from on fractions
