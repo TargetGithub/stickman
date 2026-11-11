@@ -45,10 +45,10 @@ export function checkLetterAction(a, p, o, { err, ids, catalog, name }) {
       else if (a.with === a.target) err("E3D_SWAP", `${p}.with`, "an object cannot swap with itself");
     }
   }
-  if (a.do === "stress") {
-    if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `stress needs a letter word, "${a.target}" is a ${o.kind}`);
+  if (a.do === "stress" || a.do === "ripple") {
     const n = Array.from(String(o.text ?? "")).length;
-    if (a.chars != null && (!Array.isArray(a.chars) || !a.chars.length || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be character numbers 1-${n} (the stressed syllable)`);
+    if (a.chars != null && o.kind !== "letter") err("E3D_CHARS", `${p}.chars`, `chars picks letters of a letter word; "${a.target}" is a ${o.kind} (its rings go round all of it)`);
+    else if (a.chars != null && (!Array.isArray(a.chars) || !a.chars.length || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be character numbers 1-${n} (the stressed syllable)`);
     if (a.count != null && !(Number.isInteger(a.count) && a.count >= 1 && a.count <= 6)) err("E3D_RANGE", `${p}.count`, "count must be 1-6 rings");
     if (a.dur != null && !isNum(a.dur, 0.3, 6)) err("E3D_RANGE", `${p}.dur`, "dur must be 0.3-6 s");
     if (a.grow != null && typeof a.grow !== "boolean") err("E3D_RANGE", `${p}.grow`, "grow must be true or false");

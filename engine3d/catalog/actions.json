@@ -136,7 +136,7 @@
   },
   "stress": {
    "params": {
-    "target": "a letter word",
+    "target": "a letter word (rings off its chars), or any object (rings off all of it, upright or flat on the floor)",
     "chars": "the stressed syllable's character numbers ([1, 2, 3] in \"rabbit\" is rab), default the whole word",
     "color": "the rings' colour, default orange",
     "count": "rings, 1-6, default 3",
@@ -144,7 +144,7 @@
     "grow": "default true: the syllable swells and settles as the first ring goes out",
     "sound": "default pop; false for none"
    },
-   "description": "Show which syllable is stressed: glowing rings spread out from its letters and fade, one after another, like sound waves, while the syllable swells.",
+   "description": "Show which syllable is stressed: glowing rings spread out from its letters and fade, one after another, like sound waves, while the syllable swells. On any other object the rings go round all of it (ripple is the same action).",
    "tags": [
     "phonics",
     "syllables",
@@ -739,6 +739,21 @@
    "tags": [
     "move",
     "pose"
+   ]
+  },
+  "ripple": {
+   "params": {
+    "target": "any object (or a letter word, with chars)",
+    "color": "default orange",
+    "count": "rings, 1-6, default 3",
+    "dur": "seconds from the first ring to the last one fading, default 1.2",
+    "sound": "default pop; false for none"
+   },
+   "description": "Rings spread out from an object and fade (a sound wave, a splash, a look-here): upright round a standing object, flat on the floor round a lying one; never stretched by the object's own scale. Same as stress.",
+   "tags": [
+    "look_here",
+    "sound",
+    "rings"
    ]
   },
   "point": {

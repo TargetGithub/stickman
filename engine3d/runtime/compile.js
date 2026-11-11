@@ -133,6 +133,7 @@ function run(d, a, start) {
     case "turn_page": return d.turn_page(a.target, o);
     case "vowel_mark": return d.vowel_mark(a.target, o);
     case "stress": return d.stress(a.target, o);
+    case "ripple": return d.stress(a.target, o);
     case "swap": return d.swap(a.target, o);
     case "reset": return d.reset(a.target, o);
     case "alive": return d.alive(a.target, o);

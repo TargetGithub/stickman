@@ -399,3 +399,17 @@ test("#85 alive swells a card picture out of its card and back; a hook pushes in
   const close = frameBox({ min: [0.8, 0, -1.3], max: [4, 2.6, -0.7] }, { framing: "close" });
   assert.ok(cam[2] > close.position[2] - 1e-6, "a big cover is framed medium, not close");
 });
+
+test("#89 ripple / stress off any object: rings in the world, upright or flat, sized from the object", () => {
+  const s = script("ripple");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const ring = (id) => plan.objects.find((o) => o.id === `${id}~ring1` || o.id.startsWith(`${id}~ring`));
+  assert.equal(ring("r").parent, undefined, "rings live in the world");
+  assert.deepEqual(ring("r").rotation, [90, 0, 0]);
+  assert.deepEqual(ring("m").rotation, [0, 0, 0], "flat round the mat");
+  assert.ok(ring("m").scale[0] > 1.3 && ring("m").scale[2] > 1, "sized from the mat");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].chars = [1];
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_CHARS"));
+});

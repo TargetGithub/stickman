@@ -1,0 +1,6 @@
+{"kind":"video3d","version":1,"description":"#89: ripple rings off any object: a stood-up ring, a mat on the floor and a duck, never stretched by the object.",
+"meta":{"title":"Ripples","seed":89},"stage":{"preset":"playroom"},"camera":{"position":[0,2.4,8],"lookAt":[0,0.8,0],"fov":40},
+"objects":[{"id":"r","kind":"shape","shape":"ring","color":"blue","at":[-2.6,0,0],"scale":[1.2,1.2,1.2]},
+{"id":"m","kind":"shape","shape":"plate","color":"pink","at":[0,0,0.5],"scale":[1.6,1,1.2]},
+{"id":"duck","kind":"critter","species":"duck","at":[2.6,0,0]}],
+"scenes":[{"id":"a","beats":[{"dur":2,"do":[{"do":"ripple","target":"r","at":0.2},{"do":"ripple","target":"m","color":"teal","at":0.2},{"do":"stress","target":"duck","color":"yellow","at":0.2}]}]}]}
