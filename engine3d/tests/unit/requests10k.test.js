@@ -384,3 +384,18 @@ test("#98 reset puts an object back; a lifted hook cover is put back unseen; res
   plan = compileScript(moved, { catalog });
   assert.deepEqual(plan.timeline.valueAt("box", "position", plan.duration), [0, 0, 0]);
 });
+
+test("#85 alive swells a card picture out of its card and back; a hook pushes in less on a big cover", async () => {
+  const s = script("photo_alive");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const tl = plan.timeline;
+  const pic = plan.objects.find((o) => o.id === "card_pic");
+  assert.ok(tl.valueAt("card_pic", "scale", 1.3)[2] > pic.scale[2] * 1.5, "full depth");
+  assert.ok(tl.valueAt("card_pic", "position", 1.3)[2] > pic.at[2] + 0.3, "out of the card");
+  assert.deepEqual(tl.valueAt("card_pic", "scale", 3), pic.scale, "back flat");
+  const { frameBox } = await import("../../runtime/camera_moves.js");
+  const cam = tl.valueAt("camera", "position", 4.3);
+  const close = frameBox({ min: [0.8, 0, -1.3], max: [4, 2.6, -0.7] }, { framing: "close" });
+  assert.ok(cam[2] > close.position[2] - 1e-6, "a big cover is framed medium, not close");
+});

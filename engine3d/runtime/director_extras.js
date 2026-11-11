@@ -67,6 +67,28 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
 
   Object.assign(d, {
     /**
+     * A card's or page's picture comes alive (#85): the flat picture swells to its full depth, steps out of the card
+     * toward the camera and wiggles; back: true flattens it into the card again.
+     */
+    alive(id, { at: t = 0, dur = 0.8, out = 0.35, back = false, sound: s = "magic_sparkle" } = {}) {
+      let pid = id;
+      try { obj(`${id}_pic`); pid = `${id}_pic`; } catch { /* the target is the picture itself */ }
+      const p = obj(pid);
+      const sc = Array.isArray(p.scale) ? p.scale : [1, 1, 1];
+      const full = [sc[0], sc[1], Math.max(sc[2], sc[0])];
+      const pos = now(pid, "position", t) ?? p.at;
+      if (back) {
+        tl.tween(pid, "scale", { start: t, dur, to: sc, ease: "quadInOut" });
+        tl.tween(pid, "position", { start: t, dur, to: p.at, ease: "quadInOut" });
+      } else {
+        tl.tween(pid, "scale", { start: t, dur, to: full, ease: "backOut" });
+        tl.tween(pid, "position", { start: t, dur, to: [pos[0], pos[1], pos[2] + out], ease: "backOut" });
+        d.wiggle(pid, { at: t + dur, deg: 10, dur: 0.7 });
+      }
+      if (s) sound(s, t, { volume: 0.6 });
+      return d;
+    },
+    /**
      * Put an object back the way it started (#98): position, rotation and size glide back over dur (0: at once).
      * A part ("box#lid") goes back to its rest pose. A hidden object stays hidden; a lying one stands as it was.
      */

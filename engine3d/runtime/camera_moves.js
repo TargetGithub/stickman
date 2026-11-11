@@ -91,6 +91,12 @@ export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
         // Lying flat: low compared with its width or depth, and deep (an upright card or sign is low but thin).
         height = h < 0.3 * Math.max(w, dpt) && dpt > 2 * h ? FLAT_HEIGHT : 8;
       }
+      // framing "cover" (a hook's push-in): close on a small cover, medium on a big one (a curtain, a wall) so the
+      // camera does not end up nose to nose with it (#85).
+      if (framing === "cover") {
+        const real = unionBounds(ids.map((id) => shotBounds(obj(id), catalog, now, (p) => obj(p), end, list, true)));
+        framing = Math.max(real.max[0] - real.min[0], real.max[1] - real.min[1]) > 1.6 ? "medium" : "close";
+      }
       const f = frameBox(box, { framing, yaw, height, fov: now("camera", "fov", t) ?? 40 });
       tl.tween("camera", "position", { start: t, dur, to: f.position, ease });
       tl.tween("camera", "lookAt", { start: t, dur, to: f.lookAt, ease });

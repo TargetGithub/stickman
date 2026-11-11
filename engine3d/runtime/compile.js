@@ -135,6 +135,7 @@ function run(d, a, start) {
     case "stress": return d.stress(a.target, o);
     case "swap": return d.swap(a.target, o);
     case "reset": return d.reset(a.target, o);
+    case "alive": return d.alive(a.target, o);
     case "fog": return d.fog(o);
     case "turn": return d.turn(a.target, o);
     case "spin": return d.spin(a.target, o);

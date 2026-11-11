@@ -26,7 +26,7 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     const isPart = owner !== a.behind;
     const slow = audience === "babies" || a.slow === true;
     d.engage("hook", { at: at(rel) });
-    if (a.shot !== false) d.shot({ at: at(rel), target: owner, framing: "close", pad: 0.2, dur: 1.2 });
+    if (a.shot !== false) d.shot({ at: at(rel), target: owner, framing: "cover", pad: 0.2, dur: 1.2 });
     const q = speak(line(a.question, a.who, a.questionSpoken, a.keywords), rel + 0.2);
     const reveal = rel + 0.2 + q + (a.reveal ?? 0.6);
     if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, reveal - rel - 0.3) });

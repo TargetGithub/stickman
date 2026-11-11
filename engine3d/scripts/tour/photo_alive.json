@@ -1,0 +1,7 @@
+{"kind":"video3d","version":1,"description":"#85: a picture card's photo comes alive (alive), hops, then flattens back; a hook on a big curtain pushes in at a medium framing.",
+"meta":{"title":"Photo comes alive","seed":85},"stage":{"preset":"playroom"},"camera":{"position":[0,1.5,8],"lookAt":[0,1.2,0],"fov":40},
+"objects":[{"id":"card","kind":"card","text":"frog","picture":"frog","at":[-2.2,0.4,0],"size":1.4},
+{"id":"cur","kind":"prop","model":"stage_curtain","at":[2.4,0,-1]},{"id":"duck","kind":"critter","species":"duck","at":[2.4,0,-0.6],"hidden":true}],
+"scenes":[{"id":"a","beats":[
+ {"dur":3,"do":[{"do":"alive","target":"card","at":0.3},{"do":"hop","target":"card_pic","at":1.6},{"do":"alive","target":"card","back":true,"at":2.3,"dur":0.6}]},
+ {"dur":1,"do":[{"do":"hook","question":"Who is behind the curtain?","behind":"cur","target":"duck","style":"slide"}]}]}]}
