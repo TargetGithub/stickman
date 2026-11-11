@@ -79,12 +79,31 @@ const textParams = (font, size, depth) => ({ font, size: size * 1.42, depth, cur
  * as the font lays out the whole string (advance widths, no kerning, like TextGeometry) and centred and
  * stood on the baseline exactly as the single mesh would be.
  */
+/** Arrow characters drawn as shapes in letter words (degrees the right-pointing arrow turns). */
+const ARROW_TURN = { "→": 0, "←": 180, "↑": 90, "↓": -90 };
+
 function colorLetters(o, font, size, depth, material, lift = false) {
   const p = textParams(font, size, depth);
   const scale = p.size / font.data.resolution;
   let x = 0;
   const pieces = [];
   for (const [i, ch] of Array.from(o.text).entries()) {
+    // Arrows (#139: "next →"): the fonts have none, so a solid arrow as wide as an m sits on the x-height middle.
+    if (ARROW_TURN[ch] != null && !font.data.glyphs[ch]) {
+      const mw = (font.data.glyphs.m?.ha ?? 900) * scale;
+      const g = shapeGeometry("arrow").clone();
+      g.computeBoundingBox();
+      const bb = g.boundingBox;
+      const k = (mw * 0.8) / (bb.max.x - bb.min.x);
+      g.translate(-(bb.min.x + bb.max.x) / 2, -(bb.min.y + bb.max.y) / 2, -bb.min.z);
+      g.scale(k, k, depth / Math.max(1e-6, bb.max.z - bb.min.z));
+      g.rotateZ((ARROW_TURN[ch] * Math.PI) / 180);
+      g.translate(x + mw / 2, size * 0.49, 0);
+      g.computeBoundingBox();
+      pieces.push({ g, color: o.colors?.[i] ?? o.color ?? "blue", i });
+      x += mw;
+      continue;
+    }
     const glyph = font.data.glyphs[ch] ?? font.data.glyphs["?"];
     if (ch.trim()) {
       const g = new TextGeometry(ch, p);

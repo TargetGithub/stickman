@@ -103,15 +103,20 @@ export function buildTracker(o, group, kit) {
       if (i === surpriseAt) empty.add(gift(0.56));
       else empty.add(starMesh(0.34, "cream"));
       full.add(starMesh(0.36, "gold"));
-      if (label) {
+      if (label && label.length <= 2) {
         empty.add(kit.label(label, 0.2, kit.material("grey", "toy"), 0.02).translateZ(0.1));
         full.add(kit.label(label, 0.2, kit.material(main, "glossy"), 0.02).translateZ(0.1));
+      } else if (label) {
+        // A word (#125): under the star, shrunk to the star's width.
+        const ts = Math.min(0.18, 0.76 / label.length);
+        empty.add(kit.label(label, ts, kit.material("grey", "toy"), 0.02).translateY(-0.5));
+        full.add(kit.label(label, ts, kit.material("ink", "toy"), 0.02).translateY(-0.5));
       }
     } else {
       if (i === surpriseAt) empty.add(gift(0.5));
       else empty.add(kit.disc(0.19, 0.06, kit.material("cream", "toy")));
       full.add(i === surpriseAt ? starMesh(0.32, "gold") : kit.disc(0.21, 0.08, kit.material(accent, "glossy")));
-      if (label) node.add(kit.label(label, 0.22, kit.material("ink", "toy"), 0.02).translateY(-0.42));
+      if (label) node.add(kit.label(label, Math.min(0.22, 0.82 / label.length), kit.material("ink", "toy"), 0.02).translateY(-0.42)); // a word shrinks to its stop (#139)
       if (i > 0) {
         const prev = layout.slots[i - 1];
         for (let j = 1; j < 4; j++) {

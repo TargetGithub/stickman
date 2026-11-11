@@ -23,7 +23,9 @@ export function letterLayout(o, metrics) {
   const bevel = size * BEVEL;
   let x = 0;
   const raw = chars.map((ch, i) => {
-    const g = (o.forms === "book" ? f.book?.[ch] : null) ?? f.g[ch] ?? f.g["?"] ?? [600, 0, 600];
+    // Arrows (→ ← ↑ ↓, drawn as shapes by objects.js) take an m's advance, inked over its middle 80%.
+    const m = f.g.m ?? [900, 60, 840];
+    const g = (o.forms === "book" ? f.book?.[ch] : null) ?? f.g[ch] ?? ("→←↑↓".includes(ch) ? [m[0], m[0] * 0.1, m[0] * 0.9] : null) ?? f.g["?"] ?? [600, 0, 600];
     const r = ch.trim() ? { n: i + 1, ch, x0: x + g[1] * S - bevel, x1: x + g[2] * S + bevel, space: false } : { n: i + 1, ch, x0: x, x1: x + g[0] * S, space: true };
     x += g[0] * S;
     return r;

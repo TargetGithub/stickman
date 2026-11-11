@@ -716,3 +716,15 @@ test("#134 mist size makes small puffs; lion_paws can point", () => {
   assert.ok(puffs.length > 8 && puffs.every((p) => p.scale[0] === 0.3));
   assert.ok(catalog.critters.lion_paws.parts.some((p) => p.name === "paw"));
 });
+
+test("#139 #125 arrow characters lay out like a letter m; stars and path trackers take word labels", async () => {
+  const { letterLayout } = await import("../../runtime/letter_layout.js");
+  const L = letterLayout({ text: "a→m", size: 1 }, catalog.fontMetrics);
+  const M = letterLayout({ text: "amm", size: 1 }, catalog.fontMetrics);
+  assert.ok(Math.abs(L[1].x - M[1].x) < 0.01, "the arrow takes an m's place");
+  const s = script("arrows_labels");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const bad = structuredClone(s);
+  bad.objects[2].labels = ["elephants"];
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.path === "objects[2].labels"));
+});
