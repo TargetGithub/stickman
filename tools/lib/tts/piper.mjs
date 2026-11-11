@@ -95,7 +95,17 @@ export function createPiperBackend({ bin = findPiper(), modelsDir = MODELS_DIR }
           return { text: j.line.spoken, out: `${j.out}.piper.wav`, speaker: j.line.voice.speaker ?? 0, length_scale: Number((1 / r.rate).toFixed(4)),
             noise_scale: r.noise, noise_w: r.noiseW, sentence_silence: r.pause, seed: j.seed };
         }) };
-        const r = spawnSync(python, ["-I", BATCH], { input: JSON.stringify(req), encoding: "utf8", cwd: PIPER_DIR, maxBuffer: 1 << 26 });
+        // A stuck Piper process (seen under heavy load next to other renders) used to hang the run with no output:
+        // it gets 60 s plus 15 s a line (PIPER_TIMEOUT_S overrides), is killed and tried once more, then fails loudly.
+        const limit = 1000 * (Number(process.env.PIPER_TIMEOUT_S) || 60 + 15 * list.length);
+        const run = () => spawnSync(python, ["-I", BATCH], { input: JSON.stringify(req), encoding: "utf8", cwd: PIPER_DIR, maxBuffer: 1 << 26, timeout: limit, killSignal: "SIGKILL" });
+        const timedOut = (x) => x.error?.code === "ETIMEDOUT" || x.signal === "SIGKILL";
+        let r = run();
+        if (timedOut(r)) {
+          console.error(`piper: no result from ${name} after ${limit / 1000} s (${list.length} lines); trying once more`);
+          r = run();
+          if (timedOut(r)) throw new Error(`piper timed out twice with ${name} (${list.length} lines, ${limit / 1000} s each): is the machine overloaded?`);
+        }
         if (r.status !== 0) throw new Error(`piper failed with ${name}: ${(r.stderr || r.error?.message || "").trim().split("\n").slice(-3).join(" ")}`);
         const inputRate = sampleRateOf(m.config);
         for (const j of list) {
