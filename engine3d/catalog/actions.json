@@ -91,7 +91,7 @@
     "target": "a letter word",
     "chars": "the letters marked: a vowel [2], a vowel team [2, 3], or a group for underline / bracket / circle [1, 2] (up to 12)",
     "words": "instead of chars: word numbers of a letter sentence ([3, 4] marks words 3 and 4 with one mark)",
-    "mark": "long (a bar over a vowel, the default), short (a cup over it), underline or bracket (under a group of letters), circle (a flat oval drawn round them: circle the prefix), or scoop (a smile-shaped curve under a phrase)",
+    "mark": "long (a bar over a vowel, the default), short (a cup over it), underline or bracket (under a group of letters), circle (a flat oval drawn round them: circle the prefix), scoop (a smile-shaped curve under a phrase) or box (a rectangle round the letters: box the vowel team)",
     "color": "default red",
     "dur": "seconds to draw it on, default 0.6",
     "clear": "true wipes the word's marks",
@@ -818,7 +818,7 @@
     "dur": "seconds to glide back, default 0.5; 0 puts it back at once",
     "ease": "default quadInOut"
    },
-   "description": "Put an object back the way it started (its at, rotation and size; a part to its rest pose), e.g. a hook cover after a slide or tip. A hidden object stays hidden but is back in place for a later show.",
+   "description": "Put an object back the way it started (its at, rotation and size; a part to its rest pose), e.g. a hook cover after a slide or tip. A hidden object stays hidden but is back in place for a later show. On a letter word it also wipes its vowel marks and closes a split (every letter back in place).",
    "tags": [
     "move",
     "pose"

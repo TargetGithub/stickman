@@ -695,3 +695,15 @@ test("#120 #123 #124 #125 #127 #128 #137 #140 props and the dromedary (one hump)
   assert.deepEqual(validateScript(script("props_r24"), catalog).errors, []);
   assert.deepEqual(validateScript(script("props_r24_big"), catalog).errors, []);
 });
+
+test("#133 box mark; reset on a word clears its marks and its split", () => {
+  const s = script("box_reset");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const box = plan.objects.find((o) => o.id.startsWith("w~vowel"));
+  assert.equal(box.points.length, 4);
+  const tl = plan.timeline;
+  assert.ok(tl.valueAt("w#c2", "position", 1.9)[0] > 0.1, "split");
+  assert.deepEqual(tl.valueAt("w#c2", "position", 3.4), [0, 0, 0], "closed by reset");
+  assert.equal(tl.valueAt(box.id, "visible", 3.4), false, "the box is wiped");
+});

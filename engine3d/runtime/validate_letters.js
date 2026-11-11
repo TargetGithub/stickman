@@ -13,7 +13,7 @@ export function checkLetterAction(a, p, o, { err, ids, catalog, name }) {
   if (a.do === "vowel_mark") {
     if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `vowel_mark needs a letter word, "${a.target}" is a ${o.kind}`);
     const n = String(o.text ?? "").length;
-    const group = ["underline", "bracket", "circle", "scoop"].includes(a.mark);
+    const group = ["underline", "bracket", "circle", "scoop", "box"].includes(a.mark);
     const most = group ? 60 : 3;
     const nw = letterWords(o).length;
     if (a.words != null) {
@@ -21,7 +21,7 @@ export function checkLetterAction(a, p, o, { err, ids, catalog, name }) {
       if (!Array.isArray(a.words) || !a.words.length || a.words.some((w) => !Number.isInteger(w) || w < 1 || w > nw)) err("E3D_CHARS", `${p}.words`, `words must be word numbers 1-${nw}`);
       if (a.chars != null) err("E3D_CHARS", `${p}.chars`, "give chars or words, not both");
     } else if (!a.clear && (!Array.isArray(a.chars) || !a.chars.length || a.chars.length > most || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be 1-${most} character numbers 1-${n}`);
-    if (a.mark != null && !["long", "short", "underline", "bracket", "circle", "scoop"].includes(a.mark)) err("E3D_MARK", `${p}.mark`, "mark must be long (a bar), short (a cup), underline, bracket, circle or scoop");
+    if (a.mark != null && !["long", "short", "underline", "bracket", "circle", "scoop", "box"].includes(a.mark)) err("E3D_MARK", `${p}.mark`, "mark must be long (a bar), short (a cup), underline, bracket, circle, scoop or box");
     name(catalog.colors, a.color, "E3D_COLOR", `${p}.color`, "color");
   }
   if (a.do === "turn_page" && !ids.has(`${a.target}_leaf1`)) err("E3D_TARGET_KIND", `${p}.target`, `turn_page needs a book with at least two spreads, "${a.target}" is not one`);

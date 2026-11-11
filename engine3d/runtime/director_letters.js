@@ -21,6 +21,24 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
     return o.kind === "letter" ? { id: m[1], o, n: Number(m[2]), key: `${m[1]}#c${m[2]}` } : null;
   };
   const { hop, grow, paint, hide, pop, show, drop } = d;
+  // reset on a letter word (#133) also wipes its marks and closes a split: every letter back in place and size.
+  const baseReset = d.reset;
+  d.reset = (id, opts = {}) => {
+    const o = String(id).includes("#") ? null : obj(id);
+    if (o?.kind === "letter") {
+      const { at: t = 0, dur = 0.5 } = opts;
+      for (const m of marks.get(id) ?? []) d.hide(m, { at: t, dur: Math.min(0.3, dur || 0.01) });
+      marks.set(id, []);
+      Array.from(String(o.text ?? "")).forEach((_, i) => {
+        const key = `${id}#c${i + 1}`;
+        for (const [prop, v] of [["position", [0, 0, 0]], ["scale", [1, 1, 1]], ["rotation", [0, 0, 0]]]) {
+          if (dur > 0) tl.tween(key, prop, { start: t, dur, to: v, ease: "quadInOut" });
+          else tl.set(key, prop, v, t);
+        }
+      });
+    }
+    return baseReset(id, opts);
+  };
   // One letter of a word hides, pops, shows or drops in (#114: tiles dropping one letter at a time). A letter that
   // should start hidden takes pose { c3: { scale: 0 } } on the word.
   d.hide = (id, opts = {}) => {
@@ -149,7 +167,7 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       const hi = Math.max(...sel.map((c) => c.x + c.w / 2));
       const r4 = (v) => Math.round(v * 1e4) / 1e4;
       const span = hi - lo;
-      const w = span * (["underline", "bracket", "circle", "scoop"].includes(mark) ? 1 : 0.78);
+      const w = span * (["underline", "bracket", "circle", "scoop", "box"].includes(mark) ? 1 : 0.78);
       const h = 0.13 * size;
       const mid = (lo + hi) / 2;
       let pts;
@@ -157,7 +175,14 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       let closed = false;
       if (mark === "short") pts = Array.from({ length: 9 }, (_, i) => { const u = i / 8 * 2 - 1; return [r4(u * w / 2), r4(h * u * u), 0]; });
       else if (mark === "underline") pts = [[-w / 2, 0, 0], [w / 2, 0, 0]];
-      else if (mark === "scoop") pts = Array.from({ length: 13 }, (_, i) => { const u = (i / 12) * 2 - 1; return [r4((u * w) / 2), r4(0.28 * size * (u * u - 1)), 0]; }); // a phrase scoop: a smile under the words
+      else if (mark === "box") {
+        // A rectangle round the letters (box the vowel team), drawn on like a pen.
+        const bx = w / 2 + 0.1 * size;
+        const top = (sel.some((c) => c.ch === "i" || c.ch === "j") ? 1.78 : 1.22) * size; // over an i's dot too
+        const bot = -0.12 * size;
+        pts = [[-bx, bot, 0], [bx, bot, 0], [bx, top, 0], [-bx, top, 0]];
+        closed = true;
+      } else if (mark === "scoop") pts = Array.from({ length: 13 }, (_, i) => { const u = (i / 12) * 2 - 1; return [r4((u * w) / 2), r4(0.28 * size * (u * u - 1)), 0]; }); // a phrase scoop: a smile under the words
       else if (mark === "bracket") pts = [[-w / 2, 0.1 * size, 0], [-w / 2, 0, 0], [w / 2, 0, 0], [w / 2, 0.1 * size, 0]];
       else if (mark === "circle") {
         // A flat oval round the letters (circle the prefix), drawn on like a pen, not a ring that hides the tile.
@@ -170,7 +195,7 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       // Marks above: just over the lowercase letters (x-height 0.98 x size), and over an i or j above its dot (near
       // cap height, 1.41 x size). Underline and bracket: under the baseline, below descenders; circle: round the middle.
       const dotted = sel.some((c) => c.ch === "i" || c.ch === "j");
-      y = mark === "scoop" ? -0.3 * size : mark === "underline" || mark === "bracket" ? -0.55 * size : mark === "circle" ? 0.55 * size : (dotted ? 1.66 : mark === "short" ? 1.14 : 1.2) * size;
+      y = mark === "box" ? 0 : mark === "scoop" ? -0.3 * size : mark === "underline" || mark === "bracket" ? -0.55 * size : mark === "circle" ? 0.55 * size : (dotted ? 1.66 : mark === "short" ? 1.14 : 1.2) * size;
       const mid2 = `${id}~vowel${(marks.get(id)?.length ?? 0) + 1}_${Math.round(t * 1000)}`;
       d.add({ id: mid2, kind: "stroke", points: pts, smooth: mark === "short" || mark === "circle" || mark === "scoop", closed, width: mark === "scoop" ? Math.max(0.04, 0.09 * size) : (mark === "circle" ? 0.05 : 0.07) * size, color, parent: id, at: [r4(mid), r4(y), 0.05], hidden: true, internal: true });
       d.draw(mid2, { at: t, dur });

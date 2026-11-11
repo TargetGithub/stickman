@@ -1,0 +1,4 @@
+{"kind":"video3d","version":1,"description":"#133: box the vowel team in rain, split the word, then reset clears the box and closes the split.",
+"meta":{"title":"Box and reset","seed":133},"stage":{"preset":"playroom"},"camera":{"position":[0,1.2,6],"lookAt":[0,0.8,0],"fov":40},
+"objects":[{"id":"w","kind":"letter","text":"rain","size":0.8,"at":[0,0.3,0]}],
+"scenes":[{"id":"a","beats":[{"dur":2,"do":[{"do":"vowel_mark","target":"w","chars":[2,3],"mark":"box","color":"orange","at":0.2},{"do":"split","target":"w","after":[1],"at":0.9}]},{"dur":1.5,"do":[{"do":"reset","target":"w","at":0.2}]}]}]}
