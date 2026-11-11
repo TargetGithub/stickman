@@ -135,6 +135,13 @@ Title ≤ 18 characters, subtitle ≤ 32, from the spec's thumbnail ideas. The t
 x > 0 (objects without `at` are laid out on the right; characters at the right edge facing in). The badge (grade)
 is added. One clear teaching object, 1-2 expressive characters, 3-5 objects in all. Check `thumbs` at phone size.
 
+## Preview gate
+
+`review --ok` needs `qa/<band>/<id>/stills.json` from a full-timeline `stills` run (gaps ≤ 30 s, real TTS) on the exact
+current script (sha1); review.json records the script hash, and `render10k` renders only when review, preview and
+script all match. Spot `--times` runs don't count. Any change to the lesson (or a rebuild that changes the script)
+needs a new full preview before the next review.
+
 ## Done means
 
 `qa` shows 0 errors and no warning you have not judged; the contact sheets were looked at and every overlap, crop,
