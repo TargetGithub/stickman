@@ -211,10 +211,8 @@ test("#50 thumbnail camera auto frames every object and keeps the title side cle
   assert.deepEqual(validateScript(s, catalog).errors, []);
   assert.ok(catalog.colors.silent_e);
   const ts = thumbnailScript(s, s.meta.thumbnails[0]);
-  const room = ts.objects.find((o) => o.id === "thumb_room");
-  assert.ok(room.at[0] < -2.6, "the empty spot is on the title's (left) side");
   const shot = ts.scenes[0].beats[0].do.find((a) => a.do === "shot");
-  assert.deepEqual(shot.target, ["fox", "w", "bunny", "thumb_room"]);
+  assert.deepEqual([shot.target, shot.clear], [["fox", "w", "bunny"], "left"], "#90: the shot itself keeps the title side clear");
   const p = compileScript(ts, { catalog });
   assert.ok(p.timeline.valueAt("camera", "lookAt", 1)[0] < 0, "the camera looks left of the scene so it sits right of the title");
 });
@@ -412,4 +410,36 @@ test("#89 ripple / stress off any object: rings in the world, upright or flat, s
   const bad = structuredClone(s);
   bad.scenes[0].beats[0].do[0].chars = [1];
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_CHARS"));
+});
+
+test("#90 thumbnail auto: every object's real box lands in the part of the picture the title leaves free", async () => {
+  const { thumbnailScript } = await import("../../runtime/thumbnails.js");
+  const { shotBounds } = await import("../../runtime/bounds_teach.js");
+  const concept = { name: "a", title: "Big words", side: "left", camera: "auto", objects: [
+    { id: "card", kind: "card", style: "word", text: "caterpillar", at: [-1.5, 0.5, 0], size: 1.6 },
+    { id: "fox", kind: "critter", species: "fox", at: [1.8, 0, 0], size: 1.4 },
+  ] };
+  const ts = thumbnailScript({ meta: { title: "t", seed: 1 } }, concept);
+  const plan = compileScript(ts, { catalog });
+  const t = 1;
+  const cam = plan.timeline.valueAt("camera", "position", t);
+  const look = plan.timeline.valueAt("camera", "lookAt", t);
+  const fov = 36;
+  const f = look.map((v, i) => v - cam[i]);
+  const L = Math.hypot(...f);
+  const fw = f.map((v) => v / L);
+  const right = [fw[2] * -1, 0, fw[0]].map((v, _, a) => v / Math.hypot(...a));
+  const up = [right[1] * fw[2] - right[2] * fw[1], right[2] * fw[0] - right[0] * fw[2], right[0] * fw[1] - right[1] * fw[0]];
+  const tanV = Math.tan((fov * Math.PI) / 360);
+  const objs = new Map(plan.objects.map((o) => [o.id, o]));
+  for (const id of ["card", "fox"]) {
+    const b = shotBounds(objs.get(id), catalog, (x, p, tt) => plan.timeline.valueAt(x, p, tt), (x) => objs.get(x), t, plan.objects, true);
+    for (const x of [b.min[0], b.max[0]]) for (const y of [b.min[1], b.max[1]]) for (const z of [b.min[2], b.max[2]]) {
+      const d = [x - cam[0], y - cam[1], z - cam[2]];
+      const depth = d.reduce((a, v, i) => a + v * fw[i], 0);
+      const sx = 0.5 + d.reduce((a, v, i) => a + v * right[i], 0) / depth / (tanV * (16 / 9)) / 2;
+      const sy = 0.5 + d.reduce((a, v, i) => a + v * up[i], 0) / depth / tanV / 2;
+      assert.ok(sx > 0.5 && sx <= 1.0001 && sy >= -0.0001 && sy <= 1.0001, `${id} corner at ${sx.toFixed(3)}, ${sy.toFixed(3)}`);
+    }
+  }
 });

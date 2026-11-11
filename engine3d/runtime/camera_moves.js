@@ -10,6 +10,8 @@ const DEG = Math.PI / 180;
 export const ASPECT = 16 / 9;
 /** Share of the frame the targets fill (width or height, whichever is tighter). */
 export const FRAMING = { wide: 0.64, medium: 0.78, close: 0.9 };
+/** The share of the frame left for the targets when shot clears a side (thumbnail titles take 52% + margins). */
+export const CLEAR_FREE = { left: 0.44, right: 0.44, top: 0.5, bottom: 0.5 };
 const LIFT = 0.06; // targets sit this share of the half-frame above the centre (subtitles live at the bottom)
 
 const sub = (a, b) => a.map((x, i) => x - b[i]);
@@ -75,7 +77,7 @@ export function orbitPoint(from, around, k, { degrees, radius, height }) {
 export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
   Object.assign(d, {
     /** Frame one or more objects (wide, medium or close) from a direction, easing there over dur (0 = a cut). */
-    shot({ at: t = 0, target, framing = "medium", yaw = 0, height, dur = 1.5, ease = "sineInOut", pad = 0, fit } = {}) {
+    shot({ at: t = 0, target, framing = "medium", yaw = 0, height, dur = 1.5, ease = "sineInOut", pad = 0, fit, clear } = {}) {
       const ids = Array.isArray(target) ? target : [target];
       if (!ids.length) throw new Error("shot needs a target");
       // Frame where the targets are when the move ends (they may still be walking into place).
@@ -96,6 +98,17 @@ export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
       if (framing === "cover") {
         const real = unionBounds(ids.map((id) => shotBounds(obj(id), catalog, now, (p) => obj(p), end, list, true)));
         framing = Math.max(real.max[0] - real.min[0], real.max[1] - real.min[1]) > 1.6 ? "medium" : "close";
+      }
+      // clear: keep one side of the frame empty (a thumbnail's title column, #90): the box is widened toward that side
+      // so the targets fill only the rest (left/right: the other 44% of the width; top/bottom: the other half).
+      if (clear) {
+        const free = CLEAR_FREE[clear];
+        const w = box.max[0] - box.min[0];
+        const h = box.max[1] - box.min[1];
+        if (clear === "left") box.min[0] = box.max[0] - w / free;
+        if (clear === "right") box.max[0] = box.min[0] + w / free;
+        if (clear === "top") box.max[1] = box.min[1] + h / free;
+        if (clear === "bottom") box.min[1] = box.max[1] - h / free;
       }
       const f = frameBox(box, { framing, yaw, height, fov: now("camera", "fov", t) ?? 40 });
       tl.tween("camera", "position", { start: t, dur, to: f.position, ease });

@@ -21,11 +21,13 @@ export function thumbnailScript(script, concept) {
   const meta = script?.meta ?? {};
   const at = concept.at ?? THUMB_AT;
   const actions = concept.lights ? [{ do: "lights", ...concept.lights, dur: 0.1 }] : [];
-  // camera "auto": frame every top-level object (shot) plus an empty spot on the title's side, so nothing at the
-  // edges is cut off and the title's half stays clear.
+  // camera "auto": frame every top-level object (shot), so nothing at the edges is cut off, in the part of the
+  // picture the title leaves free.
   const auto = concept.camera === "auto";
-  const objects = auto ? [...(concept.objects ?? []), roomFor(concept)] : concept.objects;
-  if (auto) actions.unshift({ do: "shot", target: [...(concept.objects ?? []).filter((o) => o?.parent == null).map((o) => o.id), "thumb_room"], framing: "close", pad: 0.04, height: 6, dur: 0.05 });
+  // The shot measures each object's real box and keeps the title's side clear (#90: a spacer point beside the
+  // objects' origins let a wide card slide under the title and cropped tall characters).
+  const objects = concept.objects;
+  if (auto) actions.unshift({ do: "shot", target: (concept.objects ?? []).filter((o) => o?.parent == null).map((o) => o.id), framing: "close", pad: 0.12, height: 6, dur: 0.05, clear: concept.side ?? "left" });
   return {
     kind: "video3d", version: 1,
     description: `Thumbnail concept "${concept.name}" for ${meta.title ?? "an episode"}.`,
@@ -46,21 +48,6 @@ function thumbStage(c, ep) {
   if (typeof c === "object") return c;
   const same = (ep?.preset ?? "playroom") === c;
   return { preset: c, ...(same && ep?.hide ? { hide: ep.hide } : {}), ...(same && ep?.move ? { move: ep.move } : {}) };
-}
-
-/** The empty spot that keeps the title's side clear in an auto-framed concept: as wide as the scene, beside it. */
-function roomFor(concept) {
-  const tops = (concept.objects ?? []).filter((o) => o?.parent == null && Array.isArray(o.at));
-  const xs = tops.map((o) => o.at[0]);
-  const ys = tops.map((o) => o.at[1]);
-  const zs = tops.map((o) => o.at[2]);
-  const [x0, x1] = xs.length ? [Math.min(...xs), Math.max(...xs)] : [0, 0];
-  const w = Math.max(1.6, x1 - x0 + 1.2);
-  const y = ys.length ? Math.max(...ys) : 0;
-  const z = zs.length ? zs.reduce((a, b) => a + b, 0) / zs.length : 0;
-  const side = concept.side ?? "left";
-  const at = side === "left" ? [x0 - w * 0.78, y, z] : side === "right" ? [x1 + w * 0.78, y, z] : side === "top" ? [(x0 + x1) / 2, y + 2.2, z] : [(x0 + x1) / 2, y - 1, z];
-  return { id: "thumb_room", kind: "group", at: at.map((v) => Math.round(v * 1000) / 1000) };
 }
 
 /**
