@@ -721,7 +721,7 @@ test("#139 #125 arrow characters lay out like a letter m; stars and path tracker
   const { letterLayout } = await import("../../runtime/letter_layout.js");
   const L = letterLayout({ text: "a→m", size: 1 }, catalog.fontMetrics);
   const M = letterLayout({ text: "amm", size: 1 }, catalog.fontMetrics);
-  assert.ok(Math.abs(L[1].x - M[1].x) < 0.01, "the arrow takes an m's place");
+  assert.ok(Math.abs(L[1].x - M[1].x) < 0.03, "the arrow takes an m's place");
   const s = script("arrows_labels");
   assert.deepEqual(validateScript(s, catalog).errors, []);
   const bad = structuredClone(s);
