@@ -5,7 +5,9 @@
 import { join } from "node:path";
 import { createPiperBackend } from "../../../tools/lib/tts/piper.mjs";
 import { synthesizeLines, clipSampler } from "../../../tools/lib/tts/synth.mjs";
-import { cleanText, resolveVoice, narratorVoice } from "../../../tools/lib/tts/lines.mjs";
+import { cleanText, resolveVoice, narratorVoice, moodTone } from "../../../tools/lib/tts/lines.mjs";
+import { VOICE_STYLES } from "../../runtime/voice_style.js";
+import { stressClip, STRESS_DB, STRESS_SEMITONES } from "./speech_stress.mjs";
 import { loadVoiceTable } from "../../../tools/lib/tts/index.mjs";
 import { mixdownStory, SR } from "../../../tools/lib/mixer.mjs";
 import { measureLoudness, normalizeLoudness } from "../../../tools/lib/loudness.mjs";
@@ -39,7 +41,10 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   if (!plan.lines.length) return {};
   const table = loadVoiceTable();
   const lines = plan.lines.map((l) => ({
-    id: l.id, who: l.voice, text: l.text, spoken: l.spoken != null ? forPiper(l.spoken) : cleanText(l.text), bubble: "speech",
+    id: l.id, who: l.voice, text: l.text, spoken: l.spoken != null ? forPiper(l.spoken) : cleanText(l.text),
+    // say style (#104): whisper / shout / groan, or a mood (happy, sad, tired...) from the voice table.
+    bubble: VOICE_STYLES[l.style]?.bubble ?? "speech",
+    ...(l.style ? { tone: VOICE_STYLES[l.style]?.tone ?? moodTone(l.style, table) } : {}),
     // A line's pitch and speed (meta.cast, or the say itself) feed resolveVoice like a 2D cast voice: pitch becomes
     // semitones (soft: round(12 log2(pitch) x 0.6), so 0.8 is -2, 1.1 +1, 1.3 +3) and speed scales the rate.
     // Both are in the TTS cache key (synth.mjs cacheKey: pitch, rate), so characters on one timbre get their own clips.
@@ -54,8 +59,12 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   if (mute) throw new Error(`line ${mute.id} uses voice "${mute.who}", which has no TTS voice (use soft, squeaky, deep or robot)`);
   const out = {};
   const talking = new Set(plan.lines.filter((l) => l.who != null).map((l) => l.id));
+  const stressed = new Map(plan.lines.filter((l) => l.stress).map((l) => [l.id, l]));
   for (const l of synthesizeLines(lines, createPiperBackend(), { log })) {
-    out[l.id] = { dur: l.dur, key: l.key, file: l.file, ...(talking.has(l.id) ? { env: envelope(readWav(l.file).samples), hz: LIP_HZ } : {}) };
+    // say stress (#104): the word's stretch of the clip lifted in pitch and loudness (a copy beside the cache).
+    const st = stressed.get(l.id);
+    const file = st ? stressClip(l.file, `${l.file}.stress-${STRESS_SEMITONES}-${STRESS_DB}-${st.stress.toLowerCase().replace(/[^a-z0-9]/g, "")}.wav`, st.text, st.stress) : l.file;
+    out[l.id] = { dur: l.dur, key: st ? `${l.key}:stress:${st.stress}` : l.key, file, ...(talking.has(l.id) ? { env: envelope(readWav(file).samples), hz: LIP_HZ } : {}) };
   }
   return out;
 }

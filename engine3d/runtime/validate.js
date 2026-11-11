@@ -9,6 +9,7 @@ import { letterPieces } from "./letter_layout.js";
 import { cardWords } from "./card_words.js";
 import { LETTER_START_FIELDS, checkStartPose } from "./start_pose.js";
 import { checkLetterAction } from "./validate_letters.js";
+import { voiceStyleErrors } from "./voice_style.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
@@ -212,6 +213,7 @@ export function validateScript(script, catalog, opts = {}) {
         else if (a.do === "caption" && a.text.length > 60) warn("W3D_LONG_CAPTION", `${p}.text`, "captions over 60 characters are hard for kids to read");
       }
       if (a.do === "say") checkWho(a, p, ids, err);
+      if (a.do === "say") for (const [f, m] of voiceStyleErrors(a)) err("E3D_VOICE_STYLE", `${p}.${f}`, m); // style, stress (#104)
       if (a.do === "say" && a.spoken != null) {
         // spoken: what Piper reads instead of text (the caption): a respelling ("kay bull") or IPA in [[ ]].
         const why = spokenError(a.spoken);

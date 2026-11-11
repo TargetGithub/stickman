@@ -282,6 +282,8 @@
     "who": "the speaker's object id (a critter, a character or a shape with face: true): its mouth moves with the voice (Robo nods his head)",
     "pitch": "0.8-1.3 (default 1.1, or the speaker's meta.cast pitch): higher or lower voice; soft moves about 0.6 semitones per 10%",
     "speed": "0.8-1.2 (default 1, or the speaker's meta.cast speed): times meta.voiceSpeed",
+    "style": "how the whole line is said: whisper, shout, groan, or a mood (happy, laugh, love, surprised, determined, smug, sad, cry, angry, scared, tired, dizzy, asleep)",
+    "stress": "one word of the line said with stress (a little higher and louder) while the line stays one clip: \"I did not say SHE took it\" is stress: \"she\"",
     "at": "seconds from the beat start, or \"after\": start when the beat's previous line ends (its measured clip) plus 0.25 s, so two lines in one beat never overlap",
     "tune": "a melody for a sung line: note names, one per syllable, with :beats for longer or shorter notes (\"G4 G4 G4 D4 E4 E4 D4:2\"; \"|\" bar lines ignored). The voice is chanted on the beat (each syllable placed on its note) and a toy glockenspiel plays each note",
     "sing": "with tune: true (or 0.3-1, how far) to move the voice itself onto the notes (experimental: PSOLA, tools/lib/tts/psola.mjs)",

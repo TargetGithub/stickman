@@ -295,7 +295,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       return d;
     },
     /** Speak a line; returns its length in seconds (the measured clip, else an estimate). */
-    say(text, { at: t = 0, voice: v = voice, id, who, spoken, pitch, speed, tune, sing, tunePatch, tuneGain, tempo, rhythm } = {}) {
+    say(text, { at: t = 0, voice: v = voice, id, who, spoken, pitch, speed, tune, sing, tunePatch, tuneGain, tempo, rhythm, style, stress } = {}) {
       const lineId = id ?? `line${++lineNo}`;
       const dur = speech[lineId]?.dur ?? estimateSpeech(text);
       // pitch (0.8-1.3, default 1.1) and speed (0.8-1.2, times meta.voiceSpeed) only when given: a character's voice.
@@ -305,7 +305,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       const melody = parsed ? { tune: { notes: parsed.notes, beats: parsed.beats, tempo: tempo ?? TUNE_DEFAULTS.tempo, rhythm: rhythm === true,
         patch: tunePatch ?? TUNE_DEFAULTS.patch, gain: tuneGain ?? TUNE_DEFAULTS.gain, ...(sing ? { sing: sing === true ? 1 : sing } : {}) } } : {};
       // spoken: what the voice reads when it differs from the caption (a respelling, or [[ IPA ]] for Piper).
-      lines.push({ id: lineId, text, voice: v, t, dur, ...(spoken != null ? { spoken } : {}), ...(who != null ? { who } : {}), ...(pitch != null ? { pitch } : {}), ...(speed != null ? { speed } : {}), ...melody });
+      lines.push({ id: lineId, text, voice: v, t, dur, ...(spoken != null ? { spoken } : {}), ...(who != null ? { who } : {}), ...(pitch != null ? { pitch } : {}), ...(speed != null ? { speed } : {}), ...(style != null ? { style } : {}), ...(stress != null ? { stress } : {}), ...melody });
       // who: the speaker's mouth (or Robo's head) moves with the clip's loudness (lipsync.js).
       if (who != null) {
         obj(who).talks = true;
