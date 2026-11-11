@@ -13,9 +13,41 @@ const slab = (x, y, front, w, h, t, color, material = "matte") => ({ kind: "shap
 export const COMPOSITE2_FIELDS = {
   sign: ["style", "text", "width", "height", "size", "color", "bg", "rim", "post"],
   word_train: ["words", "colors", "engine", "gap", "tile", "tileSize"],
-  book: ["spreads", "width", "height", "size", "color", "bg", "accent"],
+  book: ["spreads", "width", "height", "size", "color", "bg", "accent", "frame"],
   choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth"],
+  track: ["style", "length", "width", "color", "posts"],
 };
+
+/**
+ * track (#92): a toy rail track (two rails on wooden sleepers) or a plank bridge (planks across, rope rails on
+ * posts) lying on the floor along x, at its middle. Pieces: <id>_rail1/2, <id>_s<k> sleepers; <id>_p<k> planks,
+ * <id>_post<k>, <id>_rope1/2. A train or a walker moves along x on top (rails at y 0.12, planks at y 0.1).
+ */
+export function expandTrack(o, catalog, add, err) {
+  const style = o.style ?? "rail";
+  if (!["rail", "plank"].includes(style)) return err("E3D_STYLE", "style", "track style must be rail or plank");
+  const L = o.length ?? 6;
+  const W = o.width ?? (style === "rail" ? 1 : 1.4);
+  if (!(typeof L === "number" && L >= 1 && L <= 40)) return err("E3D_RANGE", "length", "length must be 1-40 m");
+  if (!(typeof W === "number" && W >= 0.4 && W <= 4)) return err("E3D_RANGE", "width", "width must be 0.4-4 m");
+  const box = (x, y, z, sx, sy, sz, color, material = "toy") => ({ kind: "shape", shape: "box", color, material, at: r3([x, y, z]), scale: r3([sx, sy, sz]) });
+  if (style === "rail") {
+    const n = Math.max(2, Math.round(L / 0.5));
+    for (let k = 0; k < n; k++) add(`s${k + 1}`, box(-L / 2 + (k + 0.5) * (L / n), 0, 0, 0.18, 0.06, W + 0.2, o.color ?? "wood_dark"));
+    for (const [i, z] of [[1, -W / 2 + 0.1], [2, W / 2 - 0.1]]) add(`rail${i}`, box(0, 0.06, z, L, 0.06, 0.07, "grey", "glossy"));
+    return;
+  }
+  const n = Math.max(2, Math.round(L / 0.3));
+  for (let k = 0; k < n; k++) add(`p${k + 1}`, box(-L / 2 + (k + 0.5) * (L / n), 0, 0, (L / n) * 0.86, 0.1, W, k % 2 ? o.color ?? "wood" : "plank", "matte"));
+  if (o.posts !== false) {
+    const posts = Math.max(2, Math.round(L / 1.5) + 1);
+    for (let k = 0; k < posts; k++) {
+      const x = -L / 2 + (k * L) / (posts - 1);
+      for (const [j, z] of [[0, -W / 2], [1, W / 2]]) add(`post${2 * k + j + 1}`, { kind: "shape", shape: "cylinder", color: "wood_dark", at: r3([x, 0, z]), scale: [0.08, 0.75, 0.08] });
+    }
+    for (const [i, z] of [[1, -W / 2], [2, W / 2]]) add(`rope${i}`, { kind: "shape", shape: "cylinder", color: "twine", at: r3([-L / 2, 0.68, z]), rotation: [0, 0, -90], scale: r3([0.04, L, 0.04]) });
+  }
+}
 
 /** Card widths as composite.js sizes them (word and tile grow with the text). */
 const cardWidth = (style, n) => (style === "tile" ? Math.max(0.62, n * 0.18 + 0.25) : style === "strip" ? Math.min(7, Math.max(1.6, n * 0.085 + 0.6)) : Math.max(1, n * 0.13 + 0.5));
@@ -125,7 +157,10 @@ export function expandBook(o, catalog, add, err, picture) {
     const rot = flip ? [0, 180, 0] : [0, 0, 0];
     const cx = flip ? -x0 : x0;
     if (side.picture) {
-      const pic = picture(side.picture, side.pictureColor, catalog, cx, base + H * 0.45, z, W * 0.7, H * 0.42, 0.15);
+      // A pale panel behind the picture and a fuller relief (#92): a yellow moon on cream paper was nearly invisible.
+      // Pages of a turned or waiting leaf are hidden (turn_page), so the depth never shows through another page.
+      add(`${prefix}_frame`, { ...slab(cx, base + H * 0.66, z + 0.004, W * 0.78, H * 0.48, 0.004, o.frame ?? "sky"), rotation: flip ? [90, 180, 0] : [90, 0, 0], ...(covered ? { hidden: true } : {}) });
+      const pic = picture(side.picture, side.pictureColor, catalog, cx, base + H * 0.45, z + 0.005, W * 0.7, H * 0.42, 0.3);
       if (!pic) err("E3D_PICTURE", "spreads", `picture "${side.picture}" is not a prop, critter or shape`);
       else add(`${prefix}_pic`, { ...pic, rotation: rot, at: [cx, pic.at[1], flip ? z - (pic.at[2] - z) : pic.at[2]], ...(covered ? { hidden: true } : {}) });
     }
@@ -158,7 +193,9 @@ export function expandBook(o, catalog, add, err, picture) {
     if (!side) return;
     const rot = flip ? [0, 180, 0] : [0, 0, 0];
     if (side.picture) {
-      const pic = picture(side.picture, side.pictureColor, catalog, x0, base + H * 0.45, z, W * 0.7, H * 0.42, 0.04);
+      const fz = flip ? z - 0.004 : z + 0.004;
+      addTo("_frame", { ...slab(x0, base + H * 0.66, fz, W * 0.78, H * 0.48, 0.004, o.frame ?? "sky"), rotation: flip ? [90, 180, 0] : [90, 0, 0], ...hid });
+      const pic = picture(side.picture, side.pictureColor, catalog, x0, base + H * 0.45, z + 0.005, W * 0.7, H * 0.42, 0.3);
       if (pic) addTo("_pic", { ...pic, rotation: rot, at: [x0, pic.at[1], flip ? z - (pic.at[2] - z) : pic.at[2]], ...hid });
     }
     if (side.text) {

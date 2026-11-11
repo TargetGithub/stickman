@@ -1,0 +1,89 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "#92: book pictures read on the page (a pale panel, fuller relief); a picture pops out with alive.",
+ "meta": {
+  "title": "Book pictures",
+  "seed": 92
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   1.6,
+   6
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "bk",
+   "kind": "book",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "spreads": [
+    {
+     "left": {
+      "text": "The moon came up."
+     },
+     "right": {
+      "picture": "moon",
+      "text": "It was big and round."
+     }
+    },
+    {
+     "left": {
+      "picture": "owl",
+      "text": "Owl woke up."
+     },
+     "right": {
+      "text": "Hoo!"
+     }
+    }
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "a",
+   "beats": [
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "alive",
+       "target": "bk_leaf1_f_pic",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "alive",
+       "target": "bk_leaf1_f_pic",
+       "back": true,
+       "at": 0
+      },
+      {
+       "do": "turn_page",
+       "target": "bk",
+       "at": 0.8
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

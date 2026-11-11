@@ -638,6 +638,22 @@
         "choices",
         "composite"
       ]
+    },
+    "track": {
+      "fields": {
+        "style": "rail (default: two grey rails on wooden sleepers) or plank (a plank bridge with rope rails on posts)",
+        "length": "metres along x, default 6 (1-40)",
+        "width": "metres across, default 1 (rail) or 1.4 (plank)",
+        "color": "sleeper or plank colour",
+        "posts": "plank bridge: false for no posts and ropes"
+      },
+      "description": "A toy rail track or a plank bridge lying on the floor along x, at its middle (runtime/composite2.js). Pieces <id>_rail1/2 and sleepers <id>_s<k>; planks <id>_p<k>, posts <id>_post<k>, ropes <id>_rope1/2. A train runs on the rails (top at y 0.12), a walker on the planks (top at y 0.1).",
+      "tags": [
+        "train",
+        "bridge",
+        "track",
+        "composite"
+      ]
     }
   }
 }

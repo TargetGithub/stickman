@@ -9,9 +9,9 @@
 
 import { localBounds } from "./bounds.js";
 import { cardHeight } from "./teach_layout.js";
-import { COMPOSITE2_FIELDS, expandBook, expandChoices, expandSign, expandWordTrain } from "./composite2.js";
+import { COMPOSITE2_FIELDS, expandBook, expandChoices, expandSign, expandTrack, expandWordTrain } from "./composite2.js";
 
-export const COMPOSITE_KINDS = ["card", "page", "board", "sign", "word_train", "book", "choices"];
+export const COMPOSITE_KINDS = ["card", "page", "board", "sign", "word_train", "book", "choices", "track"];
 export const isComposite = (o) => COMPOSITE_KINDS.includes(o?.kind);
 
 const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on"];
@@ -53,7 +53,7 @@ function picture(name, color, catalog, x, y, front, w, h, relief = 0.4, yaw = 0)
   if (!kind) return null;
   const spec = kind === "prop" ? { kind, model: name } : kind === "critter" ? { kind, species: name } : { kind, shape: name, color: color ?? "red" };
   if (color && kind !== "shape") spec.color = color;
-  const b0 = localBounds({ ...spec, size: 1 }, catalog);
+  const b0 = localBounds({ ...spec, size: 1, floor: false }, catalog);
   // yaw (pictureRotation [0, yaw, 0]): a side-on toy (a bike, a boat) turned to show its length. The flattening
   // goes on whichever local axis now points at the camera (z when facing it, x when turned a quarter).
   const a = (yaw * Math.PI) / 180;
@@ -253,6 +253,7 @@ const EXPAND = {
   card: expandCard, page: expandPage, board: expandBoard, sign: expandSign, word_train: expandWordTrain,
   book: (o, catalog, add, err) => expandBook(o, catalog, add, err, picture),
   choices: expandChoices,
+  track: expandTrack,
 };
 
 /**

@@ -443,3 +443,19 @@ test("#90 thumbnail auto: every object's real box lands in the part of the pictu
     }
   }
 });
+
+test("#92 book pictures sit on a pale panel with depth and fit their panel (a floating moon too); track and bridge composites", async () => {
+  const s = script("book_pictures");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const pic = plan.objects.find((o) => o.id === "bk_leaf1_f_pic");
+  assert.equal(pic.scale[2], 0.3);
+  assert.ok(plan.objects.some((o) => o.id === "bk_leaf1_f_frame"));
+  const { localBounds } = await import("../../runtime/bounds.js");
+  assert.ok(localBounds({ kind: "prop", model: "moon", floor: false }, catalog).min[1] < -0.4, "the moon is measured below its origin for pictures");
+  assert.equal(localBounds({ kind: "prop", model: "moon" }, catalog).min[1], 0, "shots still count it from its origin up");
+  const t = script("track_bridge");
+  assert.deepEqual(validateScript(t, catalog).errors, []);
+  const ids = compileScript(t, { catalog }).objects.map((o) => o.id);
+  assert.ok(ids.includes("tr_rail2") && ids.includes("tr_s16") && ids.includes("br_rope1") && ids.includes("br_p17"));
+});

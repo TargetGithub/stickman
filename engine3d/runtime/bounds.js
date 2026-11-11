@@ -20,7 +20,7 @@ const FLAT = new Set(["circle", "square", "triangle", "rectangle", "oval", "diam
 export const THIN = { plate: 0.04, disc: 0.12, hoop: 0.03, bowl: 0.5, dome: 0.5 };
 
 /** Box of a part-built model (critter or prop) in its own units: every part's centre ± half its scale. */
-function modelBox(m) {
+function modelBox(m, floor = true) {
   const min = [Infinity, Infinity, Infinity];
   const max = [-Infinity, -Infinity, -Infinity];
   const head = m.head?.at ?? [0, 0, 0];
@@ -48,7 +48,9 @@ function modelBox(m) {
     }
   }
   if (!Number.isFinite(min[0])) return { min: [-0.5, 0, -0.5], max: [0.5, 1, 0.5] };
-  min[1] = Math.max(0, Math.min(min[1], 0));
+  // floor: shots treat a model as standing on its at (a floating moon or cloud counts from there up); pictures
+  // fitted to a card measure the real box (floor false), so a model centred on its origin is not pushed down.
+  if (floor) min[1] = Math.max(0, Math.min(min[1], 0));
   return { min, max };
 }
 
@@ -81,7 +83,7 @@ export function localBounds(o, catalog) {
     case "critter":
     case "prop": {
       const m = o.kind === "critter" ? catalog.critters?.[o.species] : catalog.props?.[o.model];
-      ({ min, max } = m ? modelBox(m) : { min: [-0.5, 0, -0.5], max: [0.5, 1, 0.5] });
+      ({ min, max } = m ? modelBox(m, o.floor !== false) : { min: [-0.5, 0, -0.5], max: [0.5, 1, 0.5] });
       break;
     }
     case "character": {
