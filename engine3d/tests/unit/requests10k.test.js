@@ -584,3 +584,10 @@ test("#112 retext on a hidden word, then show or pop, ends at full size with the
     assert.equal(tl.valueAt(id, "textIdx", 1.9), 1, id);
   }
 });
+
+test("#113 props vine, plum, rake, sled, cliff, ink_blot, bitten_apple, coat_peg, pen, spiral_shell, lighthouse_split; pug", () => {
+  for (const n of ["vine", "plum", "rake", "sled", "cliff", "ink_blot", "bitten_apple", "coat_peg", "pen", "spiral_shell", "lighthouse_split"]) assert.ok(catalog.props[n], n);
+  assert.equal(catalog.props.lighthouse_split.parts.filter((p) => p.name === "beam").length, 2, "two beams that spin together");
+  assert.ok(catalog.critters.pug);
+  assert.deepEqual(validateScript(script("props113"), catalog).errors, []);
+});
