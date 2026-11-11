@@ -37,7 +37,9 @@ export function trackerFrom(spec, lesson) {
     else if (style === "train" || style === "path") labels = Array.from({ length: slots }, (_, i) => String(i + 1));
   }
   if (style === "checklist" && raw.length > slots) labels = undefined; // too many steps for the card: unlabelled ticks
-  const t = { id: TRACKER_ID, kind: "tracker", hud: true, style, slots, surprise: own.surprise ?? true, color: own.color ?? "red", accent: own.accent ?? "yellow", hidden: true };
+  const t = { id: TRACKER_ID, kind: "tracker", hud: true, style, slots, surprise: own.surprise ?? true, color: own.color ?? "red", accent: own.accent ?? "yellow", hidden: true,
+    // A slot's label shows only once it fills, so labels never give an answer away (ENGINE_REQUESTS #138).
+    hideEmptyLabels: own.hideEmptyLabels ?? true };
   if (labels?.length === slots) t.labels = labels;
   if (own.corner) t.corner = own.corner;
   return t;
