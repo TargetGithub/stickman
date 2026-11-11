@@ -115,6 +115,12 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     else if (!a.clear && !(Number.isInteger(a.box ?? 1) && ids.has(`${a.target}_t${a.box ?? 1}`))) err("E3D_RANGE", `${p}.box`, `"${a.target}" has no box ${a.box}`);
     return true;
   }
+  if (a.do === "conga") {
+    if (!Array.isArray(a.targets) || !a.targets.length || a.targets.some((id) => !ids.has(id))) err("E3D_TARGET", `${p}.targets`, "conga needs targets: a list of object ids (the first leads)");
+    if (!Array.isArray(a.points) || !a.points.length || a.points.some((q) => !(Array.isArray(q) && q.length === 3 && q.every(Number.isFinite)))) err("E3D_VEC", `${p}.points`, "conga needs points: [[x, y, z], ...] the leader dances to");
+    if (a.beat != null && !isNum(a.beat, 0.2, 2)) err("E3D_RANGE", `${p}.beat`, "beat must be 0.2-2 s a step");
+    return true;
+  }
   if (a.do === "circle") {
     if (!Array.isArray(a.targets) || !a.targets.length || a.targets.some((id) => !ids.has(id))) err("E3D_TARGET", `${p}.targets`, "circle needs targets: a list of object ids");
     if (a.center != null && !(Array.isArray(a.center) && a.center.length === 3 && a.center.every(Number.isFinite))) err("E3D_VEC", `${p}.center`, "center must be [x, y, z]");

@@ -747,3 +747,13 @@ test("#119 open swings a prop's door or lid the right way; close (and slam) shut
   bad.scenes[0].beats[0].do[3].target = "w";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TARGET_KIND"));
 });
+
+test("#136 conga: a line forms behind the leader and dances along the points, swaying", () => {
+  const s = script("conga");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const tl = compileScript(s, { catalog }).timeline;
+  const pa = tl.valueAt("a", "position", 4.8);
+  const pb = tl.valueAt("b", "position", 4.8);
+  assert.ok(Math.abs(pa[0] - 2.5) < 1e-6 && Math.abs(Math.hypot(pa[0] - pb[0], pa[2] - pb[2]) - 0.8) < 1e-3, "the leader arrives, the next one 0.8 m behind");
+  assert.ok(Math.abs(tl.valueAt("c", "rotation", 1.2)[2]) > 3, "swaying");
+});

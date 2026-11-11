@@ -142,6 +142,7 @@ function run(d, a, start) {
     case "gesture": return d.gesture(a.target, o);
     case "rewind": return d.rewind(o);
     case "circle": return d.circle(o);
+    case "conga": return d.conga(o);
     case "photo": return d.photo(o);
     case "fill_box": return d.fill_box(a.target, o);
     case "close": return d.close(a.target, o);

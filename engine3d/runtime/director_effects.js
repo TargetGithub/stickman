@@ -7,6 +7,11 @@ import { shotBounds } from "./bounds_teach.js";
  * @param {object} d  the director
  * @param {{ catalog, tl, obj, now, sound, objects: Map }} k  director internals
  */
+const norm2 = ([x, z]) => {
+  const l = Math.hypot(x, z) || 1;
+  return [x / l, z / l];
+};
+
 export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
   let puffs = 0;
   const mists = new Map(); // target id -> its mist puff ids
@@ -138,6 +143,45 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
         tl.set(gid, "visible", false, t + dur + 0.25);
       }
       if (s) sound(s, t, { volume: 0.9 });
+      return d;
+    },
+
+    /**
+     * A conga line (#136): the targets line up behind the first (spacing apart, behind its facing), then the whole
+     * line dances along `points` together, each one swaying side to side and bouncing on the beat (`beat` seconds
+     * a step), the sway passed down the line.
+     */
+    conga({ at: t = 0, targets = [], points = [], dur = 4, spacing = 0.8, beat = 0.4 } = {}) {
+      if (!targets.length) return d;
+      const lead = targets[0];
+      const p0 = now(lead, "position", t) ?? obj(lead).at;
+      const path = [p0, ...points];
+      const dir = path.length > 1 ? norm2([path[1][0] - p0[0], path[1][2] - p0[2]]) : [1, 0];
+      const yaw = r4((Math.atan2(dir[0], dir[1]) * 180) / Math.PI);
+      const lineUp = 0.5;
+      targets.forEach((id, i) => {
+        const back = [-dir[0] * spacing * i, 0, -dir[1] * spacing * i];
+        const start = [r4(p0[0] + back[0]), r4(p0[1]), r4(p0[2] + back[2])];
+        tl.tween(id, "position", { start: t, dur: lineUp, to: start, ease: "quadInOut" });
+        tl.tween(id, "rotation", { start: t, dur: lineUp, to: [0, yaw, 0], ease: "quadOut" });
+        const lens = path.slice(1).map((q, k) => Math.hypot(q[0] - path[k][0], q[2] - path[k][2]));
+        const total = lens.reduce((a, b) => a + b, 0) || 1;
+        let s0 = t + lineUp;
+        lens.forEach((len, k) => {
+          const sd = ((dur - lineUp) * len) / total;
+          tl.tween(id, "position", { start: s0, dur: sd, to: [r4(path[k + 1][0] + back[0]), r4(path[k + 1][1] ?? p0[1]), r4(path[k + 1][2] + back[2])], ease: "linear" });
+          s0 += sd;
+        });
+        const steps = Math.max(1, Math.floor((dur - lineUp) / beat));
+        for (let k = 0; k < steps; k++) {
+          const st = t + lineUp + k * beat;
+          const side = (k + i) % 2 ? 1 : -1;
+          tl.tween(id, "rotation", { start: st, dur: beat, to: [0, yaw, side * 10], ease: "sineInOut" });
+          tl.tween(id, "hop", { start: st, dur: beat / 2, to: 0.12, ease: "quadOut" });
+          tl.tween(id, "hop", { start: st + beat / 2, dur: beat / 2, to: 0, ease: "quadIn" });
+        }
+        tl.tween(id, "rotation", { start: t + lineUp + steps * beat, dur: 0.2, to: [0, yaw, 0], ease: "quadOut" });
+      });
       return d;
     },
 
