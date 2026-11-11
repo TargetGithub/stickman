@@ -165,7 +165,7 @@ Each file is Markdown with compact tables. A model reads them as project knowled
 | `01_script_format.md` | v1 clip format and v2 story format (cast, locations, scenes, beats, macro beats, the four `at` forms), with one minimal example of each | 8 KB |
 | `02_characters.md` | Body plans (height, look), appearance options and conflicts, faces, voices, character presets, contrast guidance | 6 KB |
 | `03_moves.md` | Every move: category, seconds, params, needsProp, anchors, notes (paired, loop, defeat), one description line. No keyframes. | 18 KB |
-| `04_effects_and_sound.md` | Beat FX, world FX commands, SFX keys (automatic), impact words | 4 KB |
+| `04_effects_and_sound.md` | Beat FX, world FX commands, SFX keys (automatic), impact words | 5.5 KB |
 | `05_places_and_objects.md` | Themes (background, good character colors), time, weather, ambience, objects (behavior, states), props, set pieces, extras | 6 KB |
 | `06_story_tools.md` | Macros (params, defaults, anchors, what you get, an example each), activities, defeat styles, music moods, camera shots, transitions and cards, audience rules | 12 KB |
 | `07_rules_and_codes.md` | Validation rules, every validator code with its fix, limits, the "before you answer" checklist | 9 KB |

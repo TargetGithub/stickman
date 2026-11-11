@@ -103,6 +103,11 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     if (a.targets != null && (!Array.isArray(a.targets) || a.targets.some((id) => !ids.has(id)))) err("E3D_TARGET", `${p}.targets`, "targets must be a list of object ids");
     return true;
   }
+  if (a.do === "gesture") {
+    if (a.kind != null && !["wide", "snap", "thumbs_up", "thumbs_down"].includes(a.kind)) err("E3D_GESTURE", `${p}.kind`, "kind must be wide, snap, thumbs_up or thumbs_down");
+    const o = ids.get(a.target);
+    if (o && !["critter", "character"].includes(o.kind)) err("E3D_TARGET_KIND", `${p}.target`, `gesture needs a critter, "${a.target}" is a ${o.kind}`);
+  }
   if (a.do === "mist") {
     if (a.amount != null && !isNum(a.amount, 0.1, 1)) err("E3D_RANGE", `${p}.amount`, "amount must be 0.1-1 (how thick the mist is)");
     if (a.clear != null && typeof a.clear !== "boolean") err("E3D_RANGE", `${p}.clear`, "clear must be true or false");

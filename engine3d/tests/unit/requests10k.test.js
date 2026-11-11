@@ -544,3 +544,19 @@ test("#108 low flat props tip toward the camera on picture cards and fill them; 
   assert.deepEqual(pic("rug", { pictureRotation: [0, 0, 0] }).rotation, undefined, "pictureRotation [0, 0, 0] keeps it face-on");
   assert.deepEqual(validateScript(script("flat_pictures"), catalog).errors, []);
 });
+
+test("#109 gestures: arms wide, snap, thumbs up and down (a thumb pops beside the head); snap and clap sounds", () => {
+  const s = script("gestures");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const tl = plan.timeline;
+  assert.ok(tl.valueAt("bb#arm", "rotation", 0.8)[2] > 60, "baby bear's arms go wide");
+  assert.ok(tl.valueAt("td#arm_l", "rotation", 0.8)[2] > 90, "the toddler's arm flicks up");
+  const thumbs = plan.objects.filter((o) => o.model === "thumb_icon");
+  assert.equal(thumbs.length, 2);
+  assert.deepEqual(thumbs.find((o) => o.id.startsWith("fox")).rotation, [0, 0, 180], "thumbs down");
+  assert.ok(catalog.sounds.snap && catalog.sounds.clap);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].kind = "wave";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_GESTURE"));
+});

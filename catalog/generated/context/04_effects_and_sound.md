@@ -78,7 +78,7 @@ Sounds play by themselves; scripts never name them.
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn, pirate_horn, hum
 - object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding, tick, clock_tick_big, fizz, press_thump, cha_ching, clink, pour, crack
 - magic: sparkle, magic_sparkle, crystal_chime, cloud_pop, whisper
-- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh, whale_song, quack, buzz
+- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh, whale_song, quack, snap, clap, buzz
 - music: flute_tune, leaf_tune, twang, drum, wind_chimes
 - weather: thunder, rain
 - ui: timer_tick, timer_chime, wrong_soft, listen_cue

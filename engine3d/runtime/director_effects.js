@@ -12,7 +12,55 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
   const mists = new Map(); // target id -> its mist puff ids
   const r4 = (v) => Math.round(v * 1e4) / 1e4;
 
+  /** A critter's arms as [part, side]: side +1 for an arm on its left (+x; a mirrored arm moves both), -1 on its right. */
+  const armsOf = (o) => {
+    const names = new Set((catalog.critters?.[o.species]?.parts ?? []).map((p) => p.name).filter(Boolean));
+    if (names.has("arm_l") || names.has("arm_r")) return [["arm_l", 1], ["arm_r", -1]].filter(([n]) => names.has(n));
+    const n = ["arm", "wing", "paw", "flipper"].find((x) => names.has(x));
+    return n ? [[n, 1]] : [];
+  };
+
   Object.assign(d, {
+    /**
+     * A gesture (#109): wide (arms thrown wide: a big stretch, "this big!"), snap (an arm flicks up with a finger
+     * snap), thumbs_up / thumbs_down (an arm lifts and a big thumb pops up beside the head). Critters without arms
+     * stretch tall instead; the thumb and the sound still come.
+     */
+    gesture(id, { at: t = 0, kind = "wide", dur = 1.4, sound: s } = {}) {
+      const o = obj(id);
+      const arms = o.kind === "critter" ? armsOf(o) : [];
+      const back = t + Math.max(0.6, dur - 0.35);
+      const raise = (deg, list, up = 0.3) => {
+        for (const [part, side] of list) {
+          const key = `${id}#${part}`;
+          tl.tween(key, "rotation", { start: t, dur: up, to: [0, 0, side * deg], ease: "backOut" });
+          tl.tween(key, "rotation", { start: back, dur: 0.35, to: [0, 0, 0], ease: "quadInOut" });
+        }
+      };
+      if (kind === "wide") {
+        if (arms.length) raise(75, arms);
+        else {
+          const sc = now(id, "scale", t) ?? [1, 1, 1];
+          tl.tween(id, "scale", { start: t, dur: 0.35, to: [sc[0] * 0.94, sc[1] * 1.12, sc[2] * 0.94], ease: "backOut" });
+          tl.tween(id, "scale", { start: back, dur: 0.35, to: sc, ease: "quadInOut" });
+        }
+        if (s) sound(s, t);
+      } else if (kind === "snap") {
+        raise(110, arms.slice(0, 1), 0.18);
+        sound(s ?? "snap", t + 0.18, { volume: 0.8 });
+      } else if (kind === "thumbs_up" || kind === "thumbs_down") {
+        raise(95, arms.slice(0, 1));
+        const b = shotBounds(o, catalog, now, obj, t, [], true);
+        const size = Math.max(0.6, Math.min(1.2, (b.max[1] - b.min[1]) * 0.55));
+        const tid = `${id}~thumb${++puffs}`;
+        const pos = [r4(b.max[0] + 0.25 * size), r4(b.min[1] + (b.max[1] - b.min[1]) * 0.8), r4((b.min[2] + b.max[2]) / 2 + 0.2)];
+        d.add({ id: tid, kind: "prop", model: "thumb_icon", size: r4(size), at: pos, rotation: kind === "thumbs_down" ? [0, 0, 180] : [0, 0, 0], hidden: true, internal: true });
+        d.pop(tid, { at: t + 0.15, sound: s ?? (kind === "thumbs_up" ? "ding" : "boing") });
+        d.hide(tid, { at: back, dur: 0.3 });
+      } else throw new Error(`gesture "${id}": kind must be wide, snap, thumbs_up or thumbs_down`);
+      return d;
+    },
+
     /**
      * Mist over one object (a sentence, a picture): soft white puffs drift in front of it and hide it; clear: true
      * blows them apart and away. amount 0-1: how thick (default 0.9).
