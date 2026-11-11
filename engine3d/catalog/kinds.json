@@ -557,6 +557,7 @@
         "accent": "venn circle, timeline colour",
         "cardWidth": "width of the cards that go in the sockets, default 0.9 (a size-1 card)",
         "cardHeight": "their height, default 1.15",
+        "headSize": "header type size in metres (default: 20% of the column width, 0.12-0.24)",
         "scale": "scale of the whole board"
       },
       "description": "A board that cards pin onto (runtime/composite.js): at is the foot of the easel. Headings <id>_h<k>, pins <id>_pin<k>, and sockets <id>_s<slot>_<row>: groups scaled so a card fits; snap a card on with reparent { parent: \"<id>_s2_1\", to: [0, 0, 0] } (a wrong card: wiggle, then drop it). Covers the evidence board (who, what, where, when, why, how), T-charts, comparison charts, Venn boards and timelines.",

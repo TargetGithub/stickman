@@ -178,6 +178,7 @@ export function validateScript(script, catalog, opts = {}) {
     s.beats.forEach((b, bi) => {
       const bp = `${sp}.beats[${bi}]`;
       if (b.dur != null && b.dur !== "fit" && !isNum(b.dur, 0.1, 60)) err("E3D_RANGE", `${bp}.dur`, 'dur must be 0.1-60 s, or "fit" (until its last action ends)');
+      if (b.caption != null && typeof b.caption !== "boolean") err("E3D_RANGE", `${bp}.caption`, "caption must be true or false (false: no captions for the beat's kit lines)");
       if (!Array.isArray(b.do)) return err("E3D_DO", `${bp}.do`, "do must be a list of actions");
       b.do.forEach((a, ai) => checkAction(a, `${bp}.do[${ai}]`, b));
     });

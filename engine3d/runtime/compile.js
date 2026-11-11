@@ -70,7 +70,8 @@ export function compileScript(script, { catalog, speech = {} }) {
         const start = t + rel;
         if (a.do === "say") speak(a, rel, ai);
         else if (a.do === "caption") later.push(a);
-        else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(a, { d, t, rel, speak: (l, r) => speak(l, r), audience: meta.audience }));
+        // A beat's caption: false reaches the kit macros' spoken lines too (#111), unless the macro says otherwise.
+        else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(beat.caption === false && a.caption == null ? { ...a, caption: false } : a, { d, t, rel, speak: (l, r) => speak(l, r), audience: meta.audience }));
         else {
           // sound who: a letter sound in that speaker's voice (its catalog voice, else meta.cast).
           if (a.do === "sound" && a.who != null && a.voice == null) {

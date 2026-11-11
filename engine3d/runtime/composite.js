@@ -18,7 +18,7 @@ const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "i
 export const COMPOSITE_FIELDS = {
   card: ["style", "text", "textSize", "picture", "pictureColor", "pictureRotation", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
   page: ["style", "title", "lines", "numbers", "picture", "pictureColor", "relief", "caption", "sidebar", "width", "size", "color", "bg", "accent", "scale"],
-  board: ["style", "layout", "labels", "rows", "title", "width", "height", "easel", "color", "accent", "cardWidth", "cardHeight", "scale"],
+  board: ["style", "layout", "labels", "rows", "title", "width", "height", "easel", "color", "accent", "cardWidth", "cardHeight", "headSize", "scale"],
   ...COMPOSITE2_FIELDS,
 };
 
@@ -181,6 +181,7 @@ function expandBoard(o, catalog, add, err) {
   const st = BOARD[o.style ?? "cork"];
   if (!st) return err("E3D_STYLE", "style", `board style must be one of ${Object.keys(BOARD).join(", ")}`);
   const layout = o.layout ?? "pins";
+  if (o.headSize != null && !(typeof o.headSize === "number" && o.headSize >= 0.08 && o.headSize <= 0.4)) err("E3D_RANGE", "headSize", "headSize must be 0.08-0.4 m");
   if (!LAYOUTS.includes(layout)) return err("E3D_LAYOUT", "layout", `layout must be one of ${LAYOUTS.join(", ")}`);
   const labels = o.labels ?? [];
   const max = layout === "venn" ? 3 : 8;
@@ -208,7 +209,11 @@ function expandBoard(o, catalog, add, err) {
     top -= 0.42;
   }
   const bottom = base + m;
-  const head = (k, text, x, y, w) => add(`h${k}`, { kind: "text_card", text, width: w, height: 0.26, size: 0.12, align: "center", bg: st.head, depth: 0.02, color: st.head === "none" ? ink : "ink", at: r3([x, y, 0.012]) });
+  // Header type grows with its column (#111: 0.12 m was unreadable on a big board): 20% of the column width, 0.12-0.24
+  // m, or headSize. A long label still shrinks to fit (a text_card with a fixed height).
+  const hsOf = (w) => o.headSize ?? Math.max(0.12, Math.min(0.24, w * 0.2));
+  const hhOf = (w) => (hsOf(w) * 0.26) / 0.12;
+  const head = (k, text, x, y, w) => add(`h${k}`, { kind: "text_card", text, width: w, height: r3([hhOf(w)])[0], size: r3([hsOf(w)])[0], align: "center", bg: st.head, depth: 0.02, color: st.head === "none" ? ink : "ink", at: r3([x, y, 0.012]) });
   // A socket is a group where a card's at goes (its bottom centre); its scale makes a cardWidth x cardHeight
   // card fit the cell. Cards snap on with reparent { parent: "<board>_s2_1", to: [0, 0, 0] }.
   const sockets = (k, x, yTop, w, h) => {
@@ -229,12 +234,13 @@ function expandBoard(o, catalog, add, err) {
       const r = Math.floor(i / cols);
       const x = -W / 2 + m + w * (c + 0.5);
       const yTop = top - r * h;
-      head(i + 1, l, x, yTop - 0.28, w * 0.9);
-      if (layout === "pins") add(`pin${i + 1}`, { kind: "shape", shape: "sphere", color: "red", size: 0.08, at: r3([x, yTop - 0.4, 0.02]) });
+      const hh = hhOf(w * 0.9); // the header's height: 0.26 at the smallest type, the old layout
+      head(i + 1, l, x, yTop - hh - 0.02, w * 0.9);
+      if (layout === "pins") add(`pin${i + 1}`, { kind: "shape", shape: "sphere", color: "red", size: 0.08, at: r3([x, yTop - hh - 0.14, 0.02]) });
       else if (c > 0) add(`div${c}`, { kind: "shape", shape: "box", color: ink, at: r3([x - w / 2, bottom, 0.01]), scale: r3([0.025, top - bottom, 0.02]) });
-      sockets(i + 1, x, yTop - 0.46, w, h - 0.5);
+      sockets(i + 1, x, yTop - hh - 0.2, w, h - hh - 0.24);
     });
-    if (layout === "columns") add("rule", { kind: "shape", shape: "box", color: ink, at: r3([0, top - 0.34, 0.01]), scale: r3([W - 2 * m, 0.025, 0.02]) });
+    if (layout === "columns") add("rule", { kind: "shape", shape: "box", color: ink, at: r3([0, top - hhOf(((W - 2 * m) / n) * 0.9) - 0.08, 0.01]), scale: r3([W - 2 * m, 0.025, 0.02]) });
   } else if (layout === "venn") {
     const R = Math.min((top - bottom - 0.35) / 2, (W - 2 * m) / 3.2);
     const cy = bottom + R;

@@ -560,3 +560,16 @@ test("#109 gestures: arms wide, snap, thumbs up and down (a thumb pops beside th
   bad.scenes[0].beats[0].do[0].kind = "wave";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_GESTURE"));
 });
+
+test("#111 a beat's caption: false reaches kit macros; board headers grow with their column", async () => {
+  const mk = (caption) => ({ kind: "video3d", version: 1, description: "x", meta: { title: "t", seed: 1 }, camera: { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 40 },
+    objects: [{ id: "box", kind: "prop", model: "toy_box" }, { id: "ball", kind: "prop", model: "ball", hidden: true }],
+    scenes: [{ id: "a", beats: [{ dur: 1, ...(caption != null ? { caption } : {}), do: [{ do: "hook", question: "What is in the box?", behind: "box", target: "ball", answer: "A ball!" }] }] }] });
+  assert.ok(compileScript(mk(), { catalog }).captions.length >= 2);
+  assert.deepEqual(validateScript(mk(false), catalog).errors, []);
+  assert.equal(compileScript(mk(false), { catalog }).captions.length, 0);
+  const { expandComposite } = await import("../../runtime/composite.js");
+  const head = (o) => expandComposite({ id: "b", kind: "board", labels: ["Fact", "Opinion"], layout: "columns", ...o }, catalog).objects.find((x) => x.id === "b_h1");
+  assert.ok(head({}).size > 0.2, "a wide column gets big type");
+  assert.equal(head({ headSize: 0.15 }).size, 0.15);
+});
