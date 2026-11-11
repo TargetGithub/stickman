@@ -1,0 +1,8 @@
+{"kind":"video3d","version":1,"description":"#106: mist rolls over one sentence and blows away; a ball rolls off and rewinds back.",
+"meta":{"title":"Mist and rewind","seed":106},"stage":{"preset":"playroom"},"camera":{"position":[0,1.5,8],"lookAt":[0,1.1,0],"fov":40},
+"objects":[{"id":"s1","kind":"text_card","text":"The fog rolled in.","width":3.2,"size":0.26,"at":[-1.6,1.6,0]},
+{"id":"s2","kind":"text_card","text":"The ship was lost.","width":3.2,"size":0.26,"at":[1.8,1.6,0]},
+{"id":"ball","kind":"prop","model":"ball","at":[-2,0,1.2]}],
+"scenes":[{"id":"a","beats":[
+ {"dur":3,"do":[{"do":"mist","target":"s2","at":0.2},{"do":"mist","target":"s2","clear":true,"at":2}]},
+ {"dur":4,"do":[{"do":"move","target":"ball","to":[3,0,1.2],"dur":1.5,"at":0.2},{"do":"rewind","at":2,"back":2}]}]}]}

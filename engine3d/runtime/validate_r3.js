@@ -97,6 +97,16 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     else if (o && !rectCells(withDefaults(o), a.rect)) err("E3D_CELLS", `${p}.rect`, `rect must be [row, col, rows, cols] (from 1) inside the ${withDefaults(o).rows} x ${withDefaults(o).cols} ${o.kind}`);
     if (a.cells != null || a.to != null) err("E3D_CELLS", `${p}.rect`, "shade takes one of to, cells or rect");
   }
+  if (a.do === "rewind") {
+    // Effects (director_effects.js): rewind has no target; it lists targets (default everything in the scene).
+    if (a.back != null && !isNum(a.back, 0.2, 60)) err("E3D_RANGE", `${p}.back`, "back must be 0.2-60 s: how far back the objects go");
+    if (a.targets != null && (!Array.isArray(a.targets) || a.targets.some((id) => !ids.has(id)))) err("E3D_TARGET", `${p}.targets`, "targets must be a list of object ids");
+    return true;
+  }
+  if (a.do === "mist") {
+    if (a.amount != null && !isNum(a.amount, 0.1, 1)) err("E3D_RANGE", `${p}.amount`, "amount must be 0.1-1 (how thick the mist is)");
+    if (a.clear != null && typeof a.clear !== "boolean") err("E3D_RANGE", `${p}.clear`, "clear must be true or false");
+  }
   if (a.do === "stage") {
     if (a.preset == null) err("E3D_REQUIRED", `${p}.preset`, "stage needs preset: a stage name");
     else if (!catalog.stages[a.preset]) err("E3D_STAGE", `${p}.preset`, `unknown stage "${a.preset}" (known: ${Object.keys(catalog.stages).join(", ")})`);

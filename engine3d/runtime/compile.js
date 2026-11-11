@@ -137,6 +137,8 @@ function run(d, a, start) {
     case "swap": return d.swap(a.target, o);
     case "reset": return d.reset(a.target, o);
     case "alive": return d.alive(a.target, o);
+    case "mist": return d.mist(a.target, o);
+    case "rewind": return d.rewind(o);
     case "fog": return d.fog(o);
     case "turn": return d.turn(a.target, o);
     case "spin": return d.spin(a.target, o);

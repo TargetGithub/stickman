@@ -46,7 +46,7 @@ const TARGETS = {
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
 const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast", "host", "retention"]);
 const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2", "grade3", "grade4", "grade5"];
-const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music", "fog"]);
+const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music", "fog", "rewind"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));

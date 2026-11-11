@@ -436,6 +436,21 @@
     "seasons"
    ]
   },
+  "mist": {
+   "params": {
+    "target": "the object to hide in mist (a sentence, a card, a picture)",
+    "amount": "how thick, 0.1-1 (default 0.9)",
+    "dur": "seconds to roll in (or blow away), default 1",
+    "clear": "true: blow the mist away",
+    "sound": "default none (whoosh when clearing); false for none"
+   },
+   "description": "Fog over one thing: soft white puffs drift in front of it and hide it; mist with clear: true blows them apart and away (a sentence read again after the fog lifts).",
+   "tags": [
+    "weather",
+    "story",
+    "reveal"
+   ]
+  },
   "stage": {
    "params": {
     "preset": "stages.json name (required)",
@@ -744,6 +759,20 @@
    "tags": [
     "move",
     "pose"
+   ]
+  },
+  "rewind": {
+   "params": {
+    "back": "seconds back in time the objects return to, default 2",
+    "dur": "seconds the rewind takes, default 1.2",
+    "targets": "object ids (default every object in the scene)",
+    "sound": "default whoosh; false for none"
+   },
+   "description": "Rewind: the objects run back to where, how turned and how big they were `back` seconds ago, while a rewind badge (two arrows pointing left) pulses at the top of the screen.",
+   "tags": [
+    "story",
+    "time",
+    "replay"
    ]
   },
   "ripple": {

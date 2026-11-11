@@ -504,3 +504,19 @@ test("#105 a letter sentence (up to 60 characters) has word pieces: scoop words,
   bad.scenes[0].beats[0].do[1] = { do: "hop", target: "s#w2" };
   assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code), ["E3D_CHARS", "E3D_TARGET_KIND"]);
 });
+
+test("#106 mist hides one object and blows away; rewind runs objects back with a badge", () => {
+  const s = script("mist_rewind");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const tl = plan.timeline;
+  const puffs = plan.objects.filter((o) => o.id.startsWith("s2~mist"));
+  assert.ok(puffs.length >= 4);
+  assert.ok(tl.valueAt(puffs[0].id, "fade", 1.5) > 0.8 && tl.valueAt(puffs[0].id, "visible", 3.2) === false, "in, then gone");
+  assert.deepEqual(tl.valueAt("ball", "position", 4.9), [3, 0, 1.2]);
+  assert.deepEqual(tl.valueAt("ball", "position", 6.4), [-2, 0, 1.2], "back where it was 2 s before");
+  assert.ok(plan.objects.some((o) => o.id.startsWith("rewind") && o.hud));
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[1].do[1].back = 100;
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
+});
