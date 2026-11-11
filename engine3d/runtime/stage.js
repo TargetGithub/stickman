@@ -83,7 +83,14 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     // meshes rebuilt later, like a pointer's head), which "tint" drives.
     const own = o.paint && KIT_PAINT.has(o.kind) ? ownColor(material, o.paint) : null;
     const h = buildObject(o, { catalog, assets, material: own?.material ?? material, seed: plan.seed, height, handles });
-    if (o.pivot) for (const c of h.group.children) c.position.sub(new THREE.Vector3(...o.pivot));
+    // pivot: the object turns and grows about this point of itself. Its pieces move into one inner node set back by
+    // the pivot, so builders that place their pieces every frame (a letter word's characters) keep the offset (#93).
+    if (o.pivot) {
+      const inner = new THREE.Group();
+      inner.position.set(...o.pivot.map((v) => -v));
+      for (const c of [...h.group.children]) inner.add(c);
+      h.group.add(inner);
+    }
     if (own) h.tinted = own.copies;
     else if (o.paint) h.tinted = paintable(h.group, catalog.colors[o.paint].hex);
     // paint with from: one material list per colour, driven by the timeline prop "tint:<colour>".
