@@ -687,3 +687,11 @@ test("#135 sound_boxes: tokens slide up into their boxes with fill_box; clear se
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
   bad.scenes[0].beats[0].do[0] = { do: "clear_x" };
 });
+
+test("#120 #123 #124 #125 #127 #128 #137 #140 props and the dromedary (one hump)", () => {
+  for (const n of ["lemon", "napkin", "muffin", "hand_puppet", "saw", "bugle", "bubble_machine", "letter_sock", "letter_kite", "bed_sign", "teacup", "teapot", "suitcase", "puppet_theater", "mouse_door", "luggage_cart", "letter_board", "lamp_post", "windup_key", "smiling_rock", "house_cutaway"]) assert.ok(catalog.props[n], n);
+  assert.equal(catalog.critters.dromedary.parts.length, catalog.critters.camel.parts.length - 1, "two humps became one");
+  assert.ok(["light", "pool"].every((n) => catalog.props.lamp_post.parts.some((p) => p.name === n)));
+  assert.deepEqual(validateScript(script("props_r24"), catalog).errors, []);
+  assert.deepEqual(validateScript(script("props_r24_big"), catalog).errors, []);
+});

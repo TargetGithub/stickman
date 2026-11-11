@@ -9,12 +9,13 @@
 //            cheeks, brows) is multiplied by it, so a grown-up bear is a bigger bear with the same proportions
 //   recolor  { "<colour>": "<colour>" }: part, eye, mouth, cheek and brow colours and the main colour are swapped
 //   drop     [part names]: parts with these names are removed (a tail, a hat)
+//   dropIndex [part numbers, 0-based]: unnamed parts removed by their place in the base's list (a camel's humps)
 //   add      [parts]: appended after scaling, in the variant's own units (glasses, a scarf, horns)
 //   eyes, mouth, head, cheeks, brows: an object is merged into the base's (change one field, keep the rest)
 
 const LEN_KEYS = ["at", "s", "hang"];
 const FACE_KEYS = ["eyes", "mouth", "head", "cheeks", "brows"];
-const OWN_KEYS = new Set(["like", "scale", "recolor", "drop", "add"]);
+const OWN_KEYS = new Set(["like", "scale", "recolor", "drop", "dropIndex", "add"]);
 
 const clone = (v) => JSON.parse(JSON.stringify(v));
 const mul = (v, k) => (Array.isArray(v) ? v.map((x) => (typeof x === "number" ? x * k : x)) : typeof v === "number" ? v * k : v);
@@ -57,6 +58,11 @@ export function applyVariant(base, v) {
     scaleFace(m, v.scale);
   }
   if (v.recolor) recolorModel(m, v.recolor);
+  if (v.dropIndex) {
+    for (const i of v.dropIndex) if (!(Number.isInteger(i) && i >= 0 && i < m.parts.length)) throw new Error(`variant of ${v.like}: dropIndex ${i} is not a part number (0-${m.parts.length - 1})`);
+    const gone = new Set(v.dropIndex);
+    m.parts = m.parts.filter((_, i) => !gone.has(i));
+  }
   if (v.drop) {
     const drop = new Set(v.drop);
     m.parts = m.parts.filter((p) => !drop.has(p.name));
