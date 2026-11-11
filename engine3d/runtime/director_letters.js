@@ -270,6 +270,12 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       const idx = o.texts.indexOf(text);
       tl.base(id, "textIdx", 0);
       const sc = now(id, "scale", t) ?? [1, 1, 1];
+      // A hidden word just takes its new text (#112): a dip-and-pop on a zero size would end at zero after a show
+      // in the same beat, and the word would never appear.
+      if (now(id, "visible", t) === false || !sc.some((v) => Math.abs(v) > 1e-3)) {
+        tl.set(id, "textIdx", idx, t);
+        return d;
+      }
       tl.tween(id, "scale", { start: t, dur: dur * 0.4, to: sc.map((v) => v * 0.55), ease: "quadIn" });
       tl.set(id, "textIdx", idx, t + dur * 0.4);
       tl.tween(id, "scale", { start: t + dur * 0.4, dur: dur * 0.6, from: sc.map((v) => v * 0.55), to: sc, ease: "backOut" });

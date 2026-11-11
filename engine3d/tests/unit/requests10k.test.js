@@ -573,3 +573,14 @@ test("#111 a beat's caption: false reaches kit macros; board headers grow with t
   assert.ok(head({}).size > 0.2, "a wide column gets big type");
   assert.equal(head({ headSize: 0.15 }).size, 0.15);
 });
+
+test("#112 retext on a hidden word, then show or pop, ends at full size with the new text", () => {
+  const s = { kind: "video3d", version: 1, description: "x", meta: { title: "t", seed: 1 }, camera: { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 40 },
+    objects: [{ id: "w", kind: "letter", text: "go", hidden: true }, { id: "v", kind: "letter", text: "cap", hidden: true, at: [2, 0, 0] }],
+    scenes: [{ id: "a", beats: [{ dur: 2, do: [{ do: "retext", target: "w", text: "got", at: 0.1 }, { do: "show", target: "w", at: 0.2 }, { do: "pop", target: "v", at: 0.2 }, { do: "retext", target: "v", text: "cape", at: 0.1 }] }] }] };
+  const tl = compileScript(s, { catalog }).timeline;
+  for (const id of ["w", "v"]) {
+    assert.deepEqual(tl.valueAt(id, "scale", 1.9), [1, 1, 1], id);
+    assert.equal(tl.valueAt(id, "textIdx", 1.9), 1, id);
+  }
+});
