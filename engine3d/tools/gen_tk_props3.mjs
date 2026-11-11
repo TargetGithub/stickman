@@ -181,6 +181,15 @@ add("house_cutaway", "cream", "A dolls'-house cutaway (#140): a two-storey house
   P("box", [0.6, 0.65, -0.8], [0.5, 0.5, 0.03], { c: "sky", m: "glow" }),
 ]);
 
+// A lion that can point (#134): the catalog lion with a front paw on each side (named `paw`, mirrored), so point,
+// gesture and wiggle have something to move.
+critters.lion_paws = {
+  like: "lion",
+  add: [{ p: "capsule", at: [0.24, 0.42, 0.1], s: [0.11, 0.26, 0.11], r: [0, 0, 28], hang: [0, -0.12, 0], name: "paw", mirror: true }],
+  description: "The kind golden lion with two front paws (named `paw`, a mirrored pair at the shoulders) so it can point, wave and stretch (point, gesture, turn <id>#paw).",
+  tags: ["animal", "savanna", "lion", "toybox10k"],
+};
+
 // A one-hump camel (dromedary, #124): the camel with its two humps replaced by one big one in the middle.
 critters.dromedary = {
   like: "camel",

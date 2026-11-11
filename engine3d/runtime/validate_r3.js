@@ -124,6 +124,7 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
   }
   if (a.do === "mist") {
     if (a.amount != null && !isNum(a.amount, 0.1, 1)) err("E3D_RANGE", `${p}.amount`, "amount must be 0.1-1 (how thick the mist is)");
+    if (a.size != null && !isNum(a.size, 0.1, 5)) err("E3D_RANGE", `${p}.size`, "size must be 0.1-5 m (each puff)");
     if (a.clear != null && typeof a.clear !== "boolean") err("E3D_RANGE", `${p}.clear`, "clear must be true or false");
   }
   if (a.do === "stage") {

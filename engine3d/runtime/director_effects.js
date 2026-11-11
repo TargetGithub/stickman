@@ -182,7 +182,7 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
      * Mist over one object (a sentence, a picture): soft white puffs drift in front of it and hide it; clear: true
      * blows them apart and away. amount 0-1: how thick (default 0.9).
      */
-    mist(id, { at: t = 0, dur = 1, clear = false, amount = 0.9, sound: s } = {}) {
+    mist(id, { at: t = 0, dur = 1, clear = false, amount = 0.9, size: puff, sound: s } = {}) {
       const o = obj(id);
       if (clear) {
         for (const [i, pid] of (mists.get(id) ?? []).entries()) {
@@ -198,8 +198,9 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
       const b = shotBounds(o, catalog, now, obj, t, [...objects.values()], true);
       const [w, h] = [b.max[0] - b.min[0], b.max[1] - b.min[1]];
       const z = b.max[2] + 0.15;
-      const cols = Math.max(2, Math.ceil(w / 0.55));
-      const rows = Math.max(1, Math.ceil(h / 0.55));
+      const step = puff != null ? Math.max(0.1, puff * 0.6) : 0.55;
+      const cols = Math.max(2, Math.ceil(w / step));
+      const rows = Math.max(1, Math.ceil(h / step));
       const ids = [];
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
@@ -209,7 +210,8 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
           const jy = ((c * 3 + r * 5) % 4) / 4 - 0.35;
           const x = b.min[0] + ((c + 0.5) * w) / cols + jx * 0.18;
           const y = b.min[1] + ((r + 0.5) * h) / rows + jy * 0.15;
-          const size = Math.max(0.75, Math.min(1.2, (w / cols) * 1.9));
+          // size (#134): the puffs' size in metres; by default they follow the object (0.75-1.2 m).
+          const size = puff ?? Math.max(0.75, Math.min(1.2, (w / cols) * 1.9));
           const pz = r4(z + ((c + r) % 3) * 0.05);
           d.add({ id: pid, kind: "shape", shape: "sphere", color: "white", material: "matte", at: [r4(x), r4(y - size * 0.35), pz], scale: [r4(size), r4(size * 0.7), 0.25], hidden: true, internal: true });
           tl.base(pid, "fade", 0);

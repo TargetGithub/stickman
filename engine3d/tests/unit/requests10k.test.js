@@ -707,3 +707,12 @@ test("#133 box mark; reset on a word clears its marks and its split", () => {
   assert.deepEqual(tl.valueAt("w#c2", "position", 3.4), [0, 0, 0], "closed by reset");
   assert.equal(tl.valueAt(box.id, "visible", 3.4), false, "the box is wiped");
 });
+
+test("#134 mist size makes small puffs; lion_paws can point", () => {
+  const s = script("lion_point");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const puffs = plan.objects.filter((o) => o.id.startsWith("s~mist"));
+  assert.ok(puffs.length > 8 && puffs.every((p) => p.scale[0] === 0.3));
+  assert.ok(catalog.critters.lion_paws.parts.some((p) => p.name === "paw"));
+});
