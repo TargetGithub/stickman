@@ -692,6 +692,23 @@
         "segmenting",
         "composite"
       ]
+    },
+    "dial": {
+      "fields": {
+        "labels": "2-6 labels round the half circle, left to right (\"sad\", \"ok\", \"happy\")",
+        "value": "the label the needle starts on (1 = leftmost); default straight up",
+        "radius": "metres, default 1.2",
+        "color": "label colour",
+        "bg": "face colour, default cream",
+        "needle": "needle colour, default red"
+      },
+      "description": "A dial or expression meter (runtime/composite2.js): labels round a half circle and a needle <id>_needle from its middle. Label k of n is at angle 90 - 180 x (k - 0.5) / n degrees: turn <id>_needle with { to: [0, 0, angle] } to point at it (3 labels: 60, 0, -60). at is the foot of the dial's middle.",
+      "tags": [
+        "meter",
+        "feelings",
+        "dial",
+        "composite"
+      ]
     }
   }
 }

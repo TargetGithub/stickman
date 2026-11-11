@@ -9,9 +9,9 @@
 
 import { localBounds } from "./bounds.js";
 import { cardHeight } from "./teach_layout.js";
-import { COMPOSITE2_FIELDS, expandBook, expandChoices, expandCrowd, expandSign, expandSoundBoxes, expandTrack, expandWordTrain } from "./composite2.js";
+import { COMPOSITE2_FIELDS, expandBook, expandChoices, expandCrowd, expandDial, expandSign, expandSoundBoxes, expandTrack, expandWordTrain } from "./composite2.js";
 
-export const COMPOSITE_KINDS = ["card", "page", "board", "sign", "word_train", "book", "choices", "track", "crowd", "sound_boxes"];
+export const COMPOSITE_KINDS = ["card", "page", "board", "sign", "word_train", "book", "choices", "track", "crowd", "sound_boxes", "dial"];
 export const isComposite = (o) => COMPOSITE_KINDS.includes(o?.kind);
 
 const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on", "shadow"];
@@ -270,6 +270,7 @@ const EXPAND = {
   track: expandTrack,
   crowd: expandCrowd,
   sound_boxes: expandSoundBoxes,
+  dial: expandDial,
 };
 
 /**

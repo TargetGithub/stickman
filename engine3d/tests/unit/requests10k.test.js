@@ -757,3 +757,13 @@ test("#136 conga: a line forms behind the leader and dances along the points, sw
   assert.ok(Math.abs(pa[0] - 2.5) < 1e-6 && Math.abs(Math.hypot(pa[0] - pb[0], pa[2] - pb[2]) - 0.8) < 1e-3, "the leader arrives, the next one 0.8 m behind");
   assert.ok(Math.abs(tl.valueAt("c", "rotation", 1.2)[2]) > 3, "swaying");
 });
+
+test("#130 dial: labels round a half circle, the needle starts on value and turns to a label's angle", async () => {
+  const { dialAngle } = await import("../../runtime/composite2.js");
+  assert.deepEqual([1, 2, 3].map((k) => dialAngle(k, 3)), [60, 0, -60]);
+  const s = script("dial");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.deepEqual(plan.timeline.valueAt("d_needle", "rotation", 0), [0, 0, 60]);
+  assert.deepEqual(plan.timeline.valueAt("d_needle", "rotation", 1.9), [0, 0, -60]);
+});

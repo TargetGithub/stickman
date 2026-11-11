@@ -18,7 +18,33 @@ export const COMPOSITE2_FIELDS = {
   track: ["style", "length", "width", "color", "posts"],
   crowd: ["count", "rows", "cast", "spacing", "facing", "size"],
   sound_boxes: ["count", "box", "color", "tokenColor", "tokenColors", "gap", "bg"],
+  dial: ["labels", "value", "radius", "color", "bg", "needle"],
 };
+
+/**
+ * dial (#130): an expression meter: labels round a half circle (left to right), a needle from the middle. Turn
+ * <id>_needle to point: label k of n sits at angle 90 - 180 (k - 0.5) / n degrees (z), so `set` or `turn` with
+ * { to: [0, 0, angle] }; value (1-based label) starts it there. at: the foot of the dial's middle.
+ */
+export const dialAngle = (k, n) => Math.round((90 - (180 * (k - 0.5)) / n) * 100) / 100;
+export function expandDial(o, catalog, add, err) {
+  const labels = o.labels ?? [];
+  if (!Array.isArray(labels) || labels.length < 2 || labels.length > 6 || labels.some((l) => typeof l !== "string" || !l.trim() || l.length > 12)) return err("E3D_LABELS", "labels", "labels must be 2-6 strings of 1-12 characters");
+  const R = o.radius ?? 1.2;
+  const n = labels.length;
+  const cy = 0.25;
+  add("face", { kind: "shape", shape: "half_circle", color: o.bg ?? "cream", at: r3([0, cy, -0.05]), scale: r3([2 * R + 0.3, R + 0.15, 0.2]) });
+  labels.forEach((l, i) => {
+    const a = (dialAngle(i + 1, n) * Math.PI) / 180;
+    const x = -Math.sin(a) * R * 0.72; // a positive turn about z points left
+    const y = cy + Math.cos(a) * R * 0.72;
+    add(`l${i + 1}`, { kind: "text_card", text: l, width: Math.min(0.9, (2 * R) / n + 0.2), height: 0.3, size: 0.14, align: "center", bg: "none", color: o.color ?? "ink", at: r3([x, y - 0.15, 0.05]) });
+  });
+  const start = o.value != null ? dialAngle(o.value, n) : 90;
+  add("needle", { kind: "group", at: r3([0, cy, 0.08]), rotation: [0, 0, start] });
+  add("needle_arm", { kind: "shape", shape: "box", color: o.needle ?? "red", parent: `${o.id}_needle`, at: [0, 0, 0], scale: r3([0.06, R * 0.55, 0.04]) });
+  add("hub", { kind: "shape", shape: "sphere", color: o.needle ?? "red", at: r3([0, cy - 0.06, 0.1]), size: 0.14 });
+}
 
 /**
  * sound_boxes (#135): a row of empty boxes (one per sound in a word: Elkonin boxes) on a board, with a round token
