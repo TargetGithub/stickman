@@ -134,7 +134,7 @@ function expandBeat(b, ctx) {
   if (b.challenge) acts.push({ do: "challenge", ...b.challenge });
   if (b.say != null) {
     const a = { do: "say", text: b.say, caption: b.caption ?? true };
-    for (const k of ["who", "voice", "pitch", "speed", "spoken"]) if (b[k] != null) a[k] = b[k];
+    for (const k of ["who", "voice", "pitch", "speed", "spoken", "style", "stress"]) if (b[k] != null) a[k] = b[k];
     if (b.at != null) a.at = b.at;
     if (b.keywords && Object.keys(b.keywords).length) a.keywords = b.keywords;
     acts.push(a);
