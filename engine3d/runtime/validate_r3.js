@@ -98,6 +98,18 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     else if (o && !rectCells(withDefaults(o), a.rect)) err("E3D_CELLS", `${p}.rect`, `rect must be [row, col, rows, cols] (from 1) inside the ${withDefaults(o).rows} x ${withDefaults(o).cols} ${o.kind}`);
     if (a.cells != null || a.to != null) err("E3D_CELLS", `${p}.rect`, "shade takes one of to, cells or rect");
   }
+  if ((a.do === "open" || a.do === "close") && typeof a.target === "string") {
+    // A prop's door, lid or gate (#119): it needs one of those named parts.
+    const [base, part] = a.target.split("#");
+    const o = ids.get(base);
+    if (o?.kind === "prop") {
+      const names = (catalog.props[o.model]?.parts ?? []).map((q) => q.name).filter((n) => /^(door|lid|flap|gate)(_|$)/.test(n ?? ""));
+      if (!names.length || (part && !names.includes(part))) err("E3D_TARGET_KIND", `${p}.target`, `"${a.target}" has no door, lid or gate to ${a.do}`);
+      if (a.to != null && !(Array.isArray(a.to) && a.to.length === 3 && a.to.every(Number.isFinite))) err("E3D_VEC", `${p}.to`, "to (for a prop) is the part's turn [x, y, z] in degrees");
+      return true;
+    }
+    if (a.do === "close") return err("E3D_TARGET_KIND", `${p}.target`, `close needs a prop with a door, lid or gate`), true;
+  }
   if (a.do === "fill_box") {
     if (!ids.has(`${a.target}_t1`) || !ids.has(`${a.target}_b1`)) err("E3D_TARGET_KIND", `${p}.target`, `fill_box needs a sound_boxes object, "${a.target}" is not one`);
     else if (!a.clear && !(Number.isInteger(a.box ?? 1) && ids.has(`${a.target}_t${a.box ?? 1}`))) err("E3D_RANGE", `${p}.box`, `"${a.target}" has no box ${a.box}`);

@@ -60,7 +60,39 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
     return d;
   });
 
+  // open / close a hinged part (#119): a door, a lid, a gate swings the right way without hand-made angles.
+  const OPEN_BY_MODEL = { mouse_door: { door: [0, -80, 0] }, oven: { door: [85, 0, 0] }, clam: { lid: [-70, 0, 0] } };
+  const OPEN_BY_NAME = { door: [0, -95, 0], lid: [-100, 0, 0], flap: [-100, 0, 0], gate: [0, -90, 0], door_left: [0, -100, 0], door_right: [0, 100, 0], gate_left: [0, -90, 0], gate_right: [0, 90, 0], gate_back_left: [0, 90, 0], gate_back_right: [0, -90, 0] };
+  const hinges = (target) => {
+    const [base, part] = String(target).split("#");
+    const o = objects.get(base);
+    if (!o || o.kind !== "prop") return null;
+    const names = [...new Set((catalog.props[o.model]?.parts ?? []).map((p) => p.name).filter((n) => n && OPEN_BY_NAME[n]))];
+    const list = part ? names.filter((n) => n === part) : names;
+    return list.length ? list.map((n) => [`${base}#${n}`, OPEN_BY_MODEL[o.model]?.[n] ?? OPEN_BY_NAME[n]]) : null;
+  };
+  const prevOpen = d.open;
+  d.open = (id, opts = {}) => {
+    const h = hinges(id);
+    if (!h) return prevOpen(id, opts);
+    const { at: t = 0, dur = 0.8, to, sound: s = "door_open" } = opts;
+    for (const [key, angle] of h) tl.tween(key, "rotation", { start: t, dur, to: Array.isArray(to) ? to : angle, ease: "backOut" });
+    if (s) sound(s, t, { volume: 0.6 });
+    return d;
+  };
+
   Object.assign(d, {
+    /** Close a prop's door, lid or gate (#119); slam: true bangs it shut fast with a thud. */
+    close(id, { at: t = 0, dur, slam = false, sound: s } = {}) {
+      const h = hinges(id);
+      if (!h) throw new Error(`close: "${id}" has no door, lid or gate`);
+      const len = dur ?? (slam ? 0.16 : 0.6);
+      for (const [key] of h) tl.tween(key, "rotation", { start: t, dur: len, to: [0, 0, 0], ease: slam ? "quadIn" : "quadInOut" });
+      const snd = s === undefined ? (slam ? "block" : "door_open") : s;
+      if (snd) sound(snd, t + (slam ? len : 0), { volume: slam ? 0.9 : 0.5 });
+      if (slam) d.wiggle(String(id).split("#")[0], { at: t + len, deg: 4, dur: 0.3 });
+      return d;
+    },
     /**
      * Slide a sound-box token up into its box (#135): token k of a sound_boxes object glides into box k and settles
      * with a soft tap. clear: true sends every token back to its place under the boxes.

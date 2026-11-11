@@ -1,0 +1,4 @@
+{"kind":"video3d","version":1,"description":"#119: a door opens as a word splits (slam/ming), then slams shut; a toy box lid opens and closes.",
+"meta":{"title":"Doors open and slam","seed":119},"stage":{"preset":"playroom"},"camera":{"position":[0,1.6,8],"lookAt":[0,1.1,0],"fov":40},
+"objects":[{"id":"dr","kind":"prop","model":"door","at":[-2,0,-0.5]},{"id":"bx","kind":"prop","model":"toy_box","at":[2,0,0]},{"id":"w","kind":"letter","text":"slamming","size":0.45,"at":[0,0.2,1.2]}],
+"scenes":[{"id":"a","beats":[{"dur":3,"do":[{"do":"split","target":"w","after":[4],"at":0.3},{"do":"open","target":"dr","at":0.3},{"do":"open","target":"bx","at":0.5},{"do":"close","target":"dr","slam":true,"at":2},{"do":"close","target":"bx","at":2.2}]}]}]}

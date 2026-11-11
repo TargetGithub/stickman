@@ -17,7 +17,7 @@ export const TEACH_FIELDS = {
 
 export const TEACH_TARGETS = {
   build: Object.keys(BUILD_ORDERS), shade: ["fraction_bar", "fraction_circle", "grid", "array"], draw: ["pointer", "number_line", "callout", "stroke"],
-  open: ["angle"], trace: ["grid"], clear: ["number_line"],
+  open: ["angle", "prop"], trace: ["grid"], clear: ["number_line"],
 };
 /** Actions that may target any piece ("pie#s2", "grid#c5") as well as whole objects. */
 export const PIECE_ACTIONS = new Set(["mark", "highlight"]);
@@ -117,7 +117,7 @@ export function checkTeachAction(a, p, o, { err, ids, catalog }) {
     const n = pieceCount(withDefaults(o));
     if (!isInt(a.to, 0, n)) err("E3D_SHADED", `${p}.to`, `shade to must be a whole number 0-${n} (the parts of "${a.target}")`);
   }
-  if (a.do === "open" && !isNum(a.to, 0, 360)) err("E3D_RANGE", `${p}.to`, "open needs to: 0-360 degrees");
+  if (a.do === "open" && o?.kind === "angle" && !isNum(a.to, 0, 360)) err("E3D_RANGE", `${p}.to`, "open needs to: 0-360 degrees");
   if (a.do === "mark" && a.result != null && a.result !== "correct" && a.result !== "incorrect") err("E3D_RESULT", `${p}.result`, 'result must be "correct" or "incorrect"');
   if (a.do === "leap") {
     const line = ids.get(a.line);

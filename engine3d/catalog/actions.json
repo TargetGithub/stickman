@@ -642,15 +642,28 @@
   },
   "open": {
    "params": {
-    "target": "angle id",
-    "to": "degrees, 0-360",
+    "target": "angle id; or a prop with a door, lid or gate (door, toy_box, barn, oven, clam, garden_gate, mouse_door...), or one part (\"barn#door_left\")",
+    "to": "degrees, 0-360 (for a prop: optional [x, y, z] turn; it swings the right way by itself)",
     "dur": "default 1.2",
     "sound": "optional"
    },
-   "description": "Open or close an angle; the arc and the degrees follow.",
+   "description": "Open or close an angle; the arc and the degrees follow. On a prop it swings its door, lid or gate open (close shuts it).",
    "tags": [
     "teaching",
     "geometry"
+   ]
+  },
+  "close": {
+   "params": {
+    "target": "a prop with a door, lid or gate, or one part (\"barn#door_left\")",
+    "slam": "true: bangs shut fast with a thud and a little shake",
+    "dur": "seconds, default 0.6 (0.16 when slamming)",
+    "sound": "default door_open (block when slamming); false for none"
+   },
+   "description": "Shut a prop's door, lid or gate again (slam: true for a bang).",
+   "tags": [
+    "props",
+    "doors"
    ]
   },
   "mark": {

@@ -735,3 +735,15 @@ test("#121 a part posed out of sight (scale 0) leaves the bounding box", async (
   const off = localBounds({ kind: "prop", model: "lighthouse", pose: { beam: { scale: 0 } } }, catalog);
   assert.ok(off.max[2] < full.max[2] - 1, "the 2.6 m beam no longer stretches the box toward the camera");
 });
+
+test("#119 open swings a prop's door or lid the right way; close (and slam) shuts it", () => {
+  const s = script("door_open");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const tl = compileScript(s, { catalog }).timeline;
+  assert.deepEqual(tl.valueAt("dr#door", "rotation", 1.5), [0, -95, 0]);
+  assert.deepEqual(tl.valueAt("bx#lid", "rotation", 1.5), [-100, 0, 0]);
+  assert.deepEqual(tl.valueAt("dr#door", "rotation", 2.9), [0, 0, 0]);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[3].target = "w";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TARGET_KIND"));
+});
