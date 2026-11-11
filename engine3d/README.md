@@ -350,6 +350,7 @@ covers the kit.
 
 | Need | How |
 |---|---|
+| Where a word on a text card is | Text cards lay out from the font's glyph advances (`runtime/text_layout.js`), so the page and the director agree: `wordSpots(card, catalog.fontMetrics)` gives each word's centre and box in the card's frame, and `point { to: "card#w3" }` aims at word 3 (`"word#c3"` at a letter). Tour: `scripts/tour/point_words.json`. |
 | A page's height and line spots (tools) | `pageLayout(page, catalog)` from `runtime/composite.js` gives `{ width, height, lines: [{ id, y, height }] }` in the page's own frame. `shot` on the page id frames the whole page, on `<id>_l3` one line. |
 | Bigger card type, side-on pictures | A `card` takes `textSize` (metres; word, tile, strip and name_tag cards grow with it) and `pictureRotation: [0, 90, 0]` (a bike, van or boat shown along its length, refitted to the card). |
 | Reorder letters or tiles; change a number block | `swap { target: <word>, chars: [1, 4] }` or `swap { target: "tile1", with: "tile3" }` (same parent): the two arc to each other's places, one in front, one behind. `retext` on a `number_block` takes its new value as text ("7"). Tour: `scripts/tour/cards_swap.json`. |

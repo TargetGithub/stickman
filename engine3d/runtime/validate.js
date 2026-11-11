@@ -6,6 +6,7 @@ import { EASE_NAMES } from "./ease.js";
 import { expandObjects, isComposite } from "./composite.js";
 import { spokenError } from "./spoken.js";
 import { letterPieces } from "./letter_layout.js";
+import { cardWords } from "./card_words.js";
 import { LETTER_START_FIELDS, checkStartPose } from "./start_pose.js";
 import { checkLetterAction } from "./validate_letters.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
@@ -242,6 +243,7 @@ export function validateScript(script, catalog, opts = {}) {
       const [base, part] = a.target.split("#");
       const owner = ids.get(base);
       if (!owner) return err("E3D_TARGET", `${p}.target`, `no object "${base}"`);
+      if (owner.kind === "text_card") return err("E3D_TARGET_KIND", `${p}.target`, `a text card's words (${a.target}) are spots to point at (point to: "${a.target}"); to mark them use emphasize`);
       // A letter word's characters also take hop, grow and paint (one vowel team bounces or turns gold).
       const letterOnly = owner.kind === "letter" && ["hop", "grow", "paint"].includes(a.do);
       if (!letterOnly && !PART_MOVES.has(a.do) && !PIECE_ACTIONS.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES, ...PIECE_ACTIONS].join(", ")}; letter pieces also hop, grow, paint)`);
@@ -321,6 +323,7 @@ export function validateScript(script, catalog, opts = {}) {
   function partNames(o) {
     const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
     if (o.kind === "letter") return letterPieces(o); // a word's characters c1..cN, spaces too
+    if (o.kind === "text_card") return cardWords(o.text).map((_, i) => `w${i + 1}`); // a card's words w1..wN (#84)
     return m ? ["head", "body", ...m.parts.filter((x) => x.name).map((x) => x.name)] : teachPieces(o);
   }
 }

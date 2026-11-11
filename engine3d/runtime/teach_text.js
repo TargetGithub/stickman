@@ -5,7 +5,8 @@
 
 import * as THREE from "three";
 import { FONT } from "./overlay.js";
-import { cardParagraphs, cardWords } from "./card_words.js";
+import { cardWords } from "./card_words.js";
+import { textCardLayout } from "./text_layout.js";
 import { placeX, pvLayout, POINT } from "./place_value.js";
 import { cardHeight } from "./teach_layout.js";
 import { roundedBox, setPiece, solid } from "./teach_common.js";
@@ -137,47 +138,19 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
   const ppm = Math.min(4096 / W, 260 * (height / 720));
   const cv = doc.createElement("canvas");
   const g = cv.getContext("2d");
-  // Wrap: words in reading order (numbered as card_words.js numbers them), explicit line breaks kept.
+  // Wrap: words in reading order (numbered as card_words.js numbers them), explicit line breaks kept, laid out from
+  // the font's glyph advances (text_layout.js) so word spots known to the director match what is drawn.
   const text = cardWords(o.text);
-  let font, space, lines;
-  const wrap = () => {
-    font = `bold ${Math.round(S * ppm)}px ${FONT}`;
-    g.font = font;
-    const maxW = (W - 2 * pad) * ppm;
-    space = g.measureText(" ").width;
-    lines = [];
-    for (const para of cardParagraphs(o.text)) {
-      let line = [];
-      let x = 0;
-      for (const i of para) {
-        const w = g.measureText(text[i]).width;
-        if (line.length && x + w > maxW) {
-          lines.push(line);
-          line = [];
-          x = 0;
-        }
-        line.push({ i, x, w });
-        x += w + space;
-      }
-      lines.push(line);
-    }
-    // align "center": each line centred in the card (word cards, tiles); left otherwise.
-    for (const line of lines) {
-      const used = line.length ? line.at(-1).x + line.at(-1).w : 0;
-      line.dx = o.align === "center" ? (maxW - used) / 2 / ppm : 0;
-    }
-  };
-  wrap();
-  // height: a fixed card height; the font shrinks (never grows) until the wrapped text fits, so a laid-out page
-  // never overlaps whatever the real glyph widths are.
-  for (let k = 0; o.height && k < 12 && lines.length * lineH + 2 * pad > o.height + 1e-6; k++) {
-    S *= 0.9;
-    pad = padK * S;
-    lineH = 1.4 * S;
-    wrap();
-  }
-  const H = o.height ?? lines.length * lineH + 2 * pad;
-  const y0 = (H - lines.length * lineH) / 2; // top of the first line (text centred in a fixed-height card)
+  const L = textCardLayout(o, catalog.fontMetrics);
+  S = L.size;
+  pad = L.pad;
+  lineH = L.lineH;
+  const font = `bold ${Math.round(S * ppm)}px ${FONT}`;
+  g.font = font;
+  const space = L.space * ppm;
+  const lines = L.lines.map((ln) => Object.assign(ln.words.map((w) => ({ i: w.i, x: w.x * ppm, w: w.w * ppm })), { dx: ln.dx }));
+  const H = L.height;
+  const y0 = L.y0; // top of the first line (text centred in a fixed-height card)
   cv.width = Math.round(W * ppm);
   cv.height = Math.round(H * ppm);
   plate(H);

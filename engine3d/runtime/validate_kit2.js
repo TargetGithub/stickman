@@ -174,7 +174,13 @@ export function createKit2Checker({ err, ids, catalog, partNames, texts }) {
       const o = target(a, p, ["character", "critter", "prop"], "point");
       if (o && o.kind !== "character" && !pointPart(o, catalog, a.part)) err("E3D_POINT", `${p}.${a.part != null ? "part" : "target"}`, `"${a.target}" has no ${a.part ?? "arm or wing"} part to point with`);
       if (a.to == null) err("E3D_REQUIRED", `${p}.to`, "point needs to: an object id or [x, y, z]");
-      else if (typeof a.to === "string" ? !ids.has(a.to) || a.to === a.target : !isVec(a.to)) err("E3D_POINT", `${p}.to`, "to must be another object's id or [x, y, z]");
+      else if (typeof a.to === "string" && a.to.includes("#")) {
+        // A piece: a letter of a word (c3), a word of a text card (w3) or a critter's or prop's named part.
+        const [oid, piece] = a.to.split("#");
+        const owner = ids.get(oid);
+        if (!owner) err("E3D_POINT", `${p}.to`, `no object "${oid}"`);
+        else if (!partNames(owner).includes(piece)) err("E3D_POINT", `${p}.to`, `"${oid}" has no piece "${piece}" (${owner.kind === "text_card" ? "words are w1, w2, ..." : `known: ${partNames(owner).slice(0, 12).join(", ")}`})`);
+      } else if (typeof a.to === "string" ? !ids.has(a.to) || a.to === a.target : !isVec(a.to)) err("E3D_POINT", `${p}.to`, "to must be another object's id, a piece (\"word#c3\", \"card#w2\") or [x, y, z]");
       if (a.arm != null && a.arm !== "left" && a.arm !== "right") err("E3D_POINT", `${p}.arm`, 'arm must be "left" or "right"');
       if (a.hold != null && !isNum(a.hold, 0, 60)) err("E3D_RANGE", `${p}.hold`, "hold must be 0-60 s");
       return true;

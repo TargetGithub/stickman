@@ -4,6 +4,7 @@
 // three.js, no I/O, no clocks.
 
 import { letterLayout } from "./letter_layout.js";
+import { wordSpots } from "./text_layout.js";
 import { focusPoint } from "./bounds.js";
 import { findWords } from "./card_words.js";
 import { parseDigits, pvLayout, shiftDigits } from "./place_value.js";
@@ -80,6 +81,12 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
   }
   /** A critter or prop part's pivot in its object's frame (rest pose plus the part's timeline offsets). */
   function partLocal(o, part, t) {
+    if (o.kind === "text_card") {
+      // A word on a text card: its centre on the card's face (text_layout.js).
+      const w = wordSpots(o, catalog.fontMetrics).find((x) => `w${x.n}` === part);
+      if (!w) throw new Error(`"${o.id}" has no word "${part}"`);
+      return compose([w.x, w.y, 0.04], [0, 0, 0], [1, 1, 1]);
+    }
     if (o.kind === "letter") {
       // A character of a word: at its centre on the baseline (letter_layout.js), plus its own offsets.
       const c = letterLayout(o, catalog.fontMetrics).find((x) => `c${x.n}` === part);
@@ -207,7 +214,8 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
     point(id, { at: t = 0, to, arm, part, dur = 0.5, hold = 1.5, look = true, sound: s } = {}) {
       const o = obj(id);
       const end = t + dur;
-      const target = Array.isArray(to) ? V(to) : focusPoint(obj(to), catalog, now, (x) => obj(x), end);
+      // A piece ("word#c3" a letter, "card#w3" a word on a text card, "dog#tail") is aimed at exactly (#84).
+      const target = Array.isArray(to) ? V(to) : String(to).includes("#") ? nodeWorld(to, end).p.map((v) => Math.round(v * 1e6) / 1e6) : focusPoint(obj(to), catalog, now, (x) => obj(x), end);
       const pos = now(id, "position", end) ?? o.at;
       const R = eulerMat(now(id, "rotation", end) ?? [0, 0, 0]);
       const rel = transpose(R);
@@ -247,7 +255,7 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       }
       if (look && (o.kind === "critter" || o.kind === "character")) {
         const before = now(id, "look", t) ?? [0, 0];
-        d.look(id, { at: t, to: Array.isArray(to) ? target : to, dur });
+        d.look(id, { at: t, to: Array.isArray(to) || String(to).includes("#") ? target : to, dur });
         tl.tween(id, "look", { start: end + hold, dur, to: before, ease: "quadInOut" });
       }
       sound(s, t);

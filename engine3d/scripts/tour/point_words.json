@@ -1,0 +1,6 @@
+{"kind":"video3d","version":1,"description":"#84: point at one word of a text card (card#w5) and one letter of a word (word#c3); word spots come from the font metrics, so they land on the drawn words.",
+"meta":{"title":"Pointing at words","seed":84},"stage":{"preset":"playroom"},"camera":{"position":[0,1.6,8],"lookAt":[0,1.4,0],"fov":40},
+"objects":[{"id":"c","kind":"text_card","text":"The quick brown fox jumps over the lazy dog.","width":4,"size":0.26,"at":[0,1.2,0]},
+{"id":"w","kind":"letter","text":"ship","size":0.6,"at":[0,0.15,0.5]},
+{"id":"fox","kind":"character","character":"robot","at":[-3.2,0,0.8],"rotation":[0,30,0]}],
+"scenes":[{"id":"a","beats":[{"dur":2.5,"do":[{"do":"point","target":"fox","to":"c#w5","at":0.2,"hold":1.2}]},{"dur":2,"do":[{"do":"point","target":"fox","to":"w#c3","at":0.1,"hold":1.2}]}]}]}
