@@ -62,6 +62,25 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
 
   Object.assign(d, {
     /**
+     * Slide a sound-box token up into its box (#135): token k of a sound_boxes object glides into box k and settles
+     * with a soft tap. clear: true sends every token back to its place under the boxes.
+     */
+    fill_box(id, { at: t = 0, box: k = 1, dur = 0.5, clear = false, sound: s = "pop" } = {}) {
+      if (clear) {
+        for (let i = 1; objects.has(`${id}_t${i}`); i++) tl.tween(`${id}_t${i}`, "position", { start: t, dur, to: objects.get(`${id}_t${i}`).at, ease: "quadInOut" });
+        if (s) sound("whoosh", t, { volume: 0.4 });
+        return d;
+      }
+      const tok = objects.get(`${id}_t${k}`);
+      const bx = objects.get(`${id}_b${k}`);
+      if (!tok || !bx) throw new Error(`fill_box: "${id}" has no box ${k}`);
+      // A token (a disc turned to face the camera) is centred on its at: it lands on the box's middle.
+      const to = [bx.at[0], bx.at[1], tok.at[2]];
+      tl.tween(`${id}_t${k}`, "position", { start: t, dur, to: to.map(r4), ease: "backOut" });
+      if (s) sound(s, t + dur * 0.6, { volume: 0.6 });
+      return d;
+    },
+    /**
      * A photo moment (#116): a white camera flash over the whole picture with a shutter click, then a white photo
      * border round the screen that holds for dur (the moment "frozen" as a snapshot) and pops away.
      */

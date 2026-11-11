@@ -672,3 +672,18 @@ test("#118 #126 #137 parts hide, show, pop and paint; a part can start hidden wi
   bad.scenes[0].beats[0].do[1] = { do: "paint", target: "mach#nope", color: "red" };
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_PART"));
 });
+
+test("#135 sound_boxes: tokens slide up into their boxes with fill_box; clear sends them back", () => {
+  const s = script("sound_boxes");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const at = (id) => plan.objects.find((o) => o.id === id).at;
+  const tl = plan.timeline;
+  assert.deepEqual(tl.valueAt("sb_t2", "position", 0.2), at("sb_t2"), "waiting under the box");
+  const p = tl.valueAt("sb_t2", "position", 2.9);
+  assert.ok(Math.abs(p[0] - at("sb_b2")[0]) < 1e-6 && Math.abs(p[1] - at("sb_b2")[1]) < 1e-6, "in box 2");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].box = 5;
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
+  bad.scenes[0].beats[0].do[0] = { do: "clear_x" };
+});

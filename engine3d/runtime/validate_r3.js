@@ -98,6 +98,11 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     else if (o && !rectCells(withDefaults(o), a.rect)) err("E3D_CELLS", `${p}.rect`, `rect must be [row, col, rows, cols] (from 1) inside the ${withDefaults(o).rows} x ${withDefaults(o).cols} ${o.kind}`);
     if (a.cells != null || a.to != null) err("E3D_CELLS", `${p}.rect`, "shade takes one of to, cells or rect");
   }
+  if (a.do === "fill_box") {
+    if (!ids.has(`${a.target}_t1`) || !ids.has(`${a.target}_b1`)) err("E3D_TARGET_KIND", `${p}.target`, `fill_box needs a sound_boxes object, "${a.target}" is not one`);
+    else if (!a.clear && !(Number.isInteger(a.box ?? 1) && ids.has(`${a.target}_t${a.box ?? 1}`))) err("E3D_RANGE", `${p}.box`, `"${a.target}" has no box ${a.box}`);
+    return true;
+  }
   if (a.do === "circle") {
     if (!Array.isArray(a.targets) || !a.targets.length || a.targets.some((id) => !ids.has(id))) err("E3D_TARGET", `${p}.targets`, "circle needs targets: a list of object ids");
     if (a.center != null && !(Array.isArray(a.center) && a.center.length === 3 && a.center.every(Number.isFinite))) err("E3D_VEC", `${p}.center`, "center must be [x, y, z]");

@@ -674,6 +674,24 @@
         "visitors",
         "composite"
       ]
+    },
+    "sound_boxes": {
+      "fields": {
+        "count": "boxes, 1-6 (default 3): one per sound of the word",
+        "box": "box size in metres, default 0.7",
+        "color": "the box lines, default ink",
+        "tokenColor": "the tokens, default red",
+        "tokenColors": "one colour per token (vowels in another colour)",
+        "gap": "space between boxes, default 0.12",
+        "bg": "board colour, default cream"
+      },
+      "description": "Sound boxes (Elkonin boxes) on a board (runtime/composite2.js): a row of empty boxes with a round token waiting under each; fill_box slides token k up into box k as each sound is said. Pieces <id>_b<k> (box frames), <id>_t<k> (tokens), <id>_board. at is the foot of the board's middle.",
+      "tags": [
+        "phonics",
+        "sounds",
+        "segmenting",
+        "composite"
+      ]
     }
   }
 }

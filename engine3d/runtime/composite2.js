@@ -17,7 +17,36 @@ export const COMPOSITE2_FIELDS = {
   choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth"],
   track: ["style", "length", "width", "color", "posts"],
   crowd: ["count", "rows", "cast", "spacing", "facing", "size"],
+  sound_boxes: ["count", "box", "color", "tokenColor", "tokenColors", "gap", "bg"],
 };
+
+/**
+ * sound_boxes (#135): a row of empty boxes (one per sound in a word: Elkonin boxes) on a board, with a round token
+ * waiting under each. fill_box slides token k up into box k. Pieces: <id>_board, <id>_b<k> (box frames, each a
+ * group whose middle is where its token lands), <id>_t<k> (tokens). at: the foot of the board's middle.
+ */
+export function expandSoundBoxes(o, catalog, add, err) {
+  const n = o.count ?? 3;
+  if (!(Number.isInteger(n) && n >= 1 && n <= 6)) return err("E3D_RANGE", "count", "count must be 1-6 boxes");
+  const B = o.box ?? 0.7;
+  if (!(typeof B === "number" && B >= 0.3 && B <= 1.5)) return err("E3D_RANGE", "box", "box must be 0.3-1.5 m");
+  const gap = o.gap ?? 0.12;
+  const W = n * B + (n - 1) * gap;
+  const by = 0.25 + B * 1.35; // box middles: the tokens wait below them
+  const ty = 0.25 + B * 0.4;
+  add("board", slab(0, (by + B / 2 + 0.15 + 0.1) / 2, -0.02, W + 0.5, by + B / 2 + 0.15 - 0.1, 0.04, o.bg ?? "cream"));
+  const colors = o.tokenColors ?? [];
+  for (let k = 0; k < n; k++) {
+    const x = -W / 2 + B / 2 + k * (B + gap);
+    add(`b${k + 1}`, { kind: "group", at: r3([x, by, 0.03]) });
+    // The box: four bars round an empty square.
+    const t = 0.05;
+    for (const [nm, dx, dy, w, h] of [["top", 0, B / 2, B, t], ["bot", 0, -B / 2, B, t], ["l", -B / 2, 0, t, B + t], ["r", B / 2, 0, t, B + t]]) {
+      add(`b${k + 1}_${nm}`, { kind: "shape", shape: "box", color: o.color ?? "ink", parent: `${o.id}_b${k + 1}`, at: r3([dx, dy - h / 2, 0]), scale: r3([w, h, 0.04]) });
+    }
+    add(`t${k + 1}`, { kind: "shape", shape: "disc", color: colors[k] ?? o.tokenColor ?? "red", material: "glossy", at: r3([x, ty, 0.06]), rotation: [90, 0, 0], scale: r3([B * 0.55, 1, B * 0.55]) });
+  }
+}
 
 const CROWD_CAST = ["bunny", "bear", "cat", "dog", "pig", "mouse", "duck", "squirrel", "owl", "raccoon", "hedgehog", "penguin"];
 

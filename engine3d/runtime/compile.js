@@ -143,6 +143,7 @@ function run(d, a, start) {
     case "rewind": return d.rewind(o);
     case "circle": return d.circle(o);
     case "photo": return d.photo(o);
+    case "fill_box": return d.fill_box(a.target, o);
     case "fog": return d.fog(o);
     case "turn": return d.turn(a.target, o);
     case "spin": return d.spin(a.target, o);
