@@ -108,7 +108,11 @@ export function buildMark(o, group, { material, handles }) {
         wb.getCenter(c);
         inner.position.copy(group.worldToLocal(new THREE.Vector3(c.x, wb.max.y + 0.14 + D / 2, c.z + size.z * 0.25)));
         inner.quaternion.copy(group.getWorldQuaternion(q).invert());
-        inner.scale.setScalar(D).divide(k);
+        // Undo the target's stretch along the badge's own (world-aligned) axes: a stood-up plate's thin local y now
+        // points at the camera, so dividing by the local scales would make a tall, stretched badge (#88).
+        const m3 = new THREE.Matrix3().setFromMatrix4(group.matrixWorld);
+        const len = (x, y, z) => new THREE.Vector3(x, y, z).applyQuaternion(inner.quaternion).applyMatrix3(m3).length() || 1;
+        inner.scale.set(D / len(1, 0, 0), D / len(0, 1, 0), D / len(0, 0, 1));
       } else inner.position.set(c.x, box.max.y + (0.14 + D / 2) / k.y, c.z + size.z * 0.25);
       const u = s.ping >= 0 ? t - s.ping : -1;
       ring.visible = u >= 0 && u < 0.9;
