@@ -728,3 +728,10 @@ test("#139 #125 arrow characters lay out like a letter m; stars and path tracker
   bad.objects[2].labels = ["elephants"];
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.path === "objects[2].labels"));
 });
+
+test("#121 a part posed out of sight (scale 0) leaves the bounding box", async () => {
+  const { localBounds } = await import("../../runtime/bounds.js");
+  const full = localBounds({ kind: "prop", model: "lighthouse" }, catalog);
+  const off = localBounds({ kind: "prop", model: "lighthouse", pose: { beam: { scale: 0 } } }, catalog);
+  assert.ok(off.max[2] < full.max[2] - 1, "the 2.6 m beam no longer stretches the box toward the camera");
+});

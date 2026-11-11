@@ -20,12 +20,13 @@ const FLAT = new Set(["circle", "square", "triangle", "rectangle", "oval", "diam
 export const THIN = { plate: 0.04, disc: 0.12, hoop: 0.03, bowl: 0.5, dome: 0.5 };
 
 /** Box of a part-built model (critter or prop) in its own units: every part's centre ± half its scale. */
-function modelBox(m, floor = true) {
+function modelBox(m, floor = true, hidden = null) {
   const min = [Infinity, Infinity, Infinity];
   const max = [-Infinity, -Infinity, -Infinity];
   const head = m.head?.at ?? [0, 0, 0];
   const pivots = new Map([["head", head]]); // where each named part's pivot is, for parts hung "on" it
   for (const p of m.parts ?? []) {
+    if (hidden?.has(p.name)) continue; // a part posed out of sight (scale 0) does not count (#121)
     const base = p.on === "head" ? head : p.on ? pivots.get(p.on) ?? [0, 0, 0] : [0, 0, 0];
     const at = (p.at ?? [0, 0, 0]).map((x, i) => x + base[i]);
     if (p.name && !pivots.has(p.name)) pivots.set(p.name, at);
@@ -84,7 +85,8 @@ export function localBounds(o, catalog) {
     case "critter":
     case "prop": {
       const m = o.kind === "critter" ? catalog.critters?.[o.species] : catalog.props?.[o.model];
-      ({ min, max } = m ? modelBox(m, o.floor !== false) : { min: [-0.5, 0, -0.5], max: [0.5, 1, 0.5] });
+      const gone = new Set(Object.entries(o.pose ?? {}).filter(([, v]) => v?.scale === 0 || (Array.isArray(v?.scale) && v.scale.every((x) => x === 0))).map(([n]) => n));
+      ({ min, max } = m ? modelBox(m, o.floor !== false, gone.size ? gone : null) : { min: [-0.5, 0, -0.5], max: [0.5, 1, 0.5] });
       break;
     }
     case "character": {
