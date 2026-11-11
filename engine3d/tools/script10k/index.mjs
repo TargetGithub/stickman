@@ -2,6 +2,7 @@
 // CLI: tools/script10k.mjs. Format and workflow: tools/script10k/README.md.
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { DEFAULT_ROOT } from "../lib/spec10k/load.mjs";
 import { bandOf } from "./bands.mjs";
@@ -109,3 +110,21 @@ export function needState(spec, ctx) {
 }
 
 export const missingNeeds = (spec, catalog, root = ROOT) => needState(spec, assetContext(catalog, root)).missing;
+
+/** sha1 of the compiled script on disk: the review and the preview stills must match it (see review, render10k). */
+export function scriptHash(id, root = ROOT) {
+  const f = paths(id, root).script;
+  return existsSync(f) ? createHash("sha1").update(readFileSync(f)).digest("hex").slice(0, 16) : null;
+}
+
+/** The preview gate: a full-timeline stills run on this exact script, gaps of at most MAX_GAP s. */
+export const MAX_GAP = 30;
+export function previewOk(id, root = ROOT) {
+  const f = join(paths(id, root).qaDir, "stills.json");
+  if (!existsSync(f)) return { ok: false, why: "no preview stills: run `script10k stills <id>`" };
+  const s = readJson(f);
+  if (s.scriptHash !== scriptHash(id, root)) return { ok: false, why: "the script changed after the last preview stills: run `script10k stills <id>` again and look" };
+  if (!s.tts) return { ok: false, why: "preview stills must use real TTS timing" };
+  if (s.maxGap > MAX_GAP) return { ok: false, why: `preview stills leave a ${s.maxGap.toFixed(0)} s gap (max ${MAX_GAP}): use --every 20 or 25` };
+  return { ok: true };
+}

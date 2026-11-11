@@ -15,7 +15,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync } from "no
 import { join, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { ROOT, paths, specIds } from "./script10k/index.mjs";
+import { ROOT, paths, specIds, scriptHash, previewOk } from "./script10k/index.mjs";
 import { bandOf } from "./script10k/bands.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -61,7 +61,9 @@ function ready(id) {
   const p = paths(id);
   if (!existsSync(p.script) || !existsSync(p.qa)) return false;
   if (!readJson(p.qa, {}).ok) return false;
-  return !!readJson(join(p.qaDir, "review.json"), {}).ok;
+  // The review must be of this exact script, with full-timeline preview stills of it (inspect previews first).
+  const r = readJson(join(p.qaDir, "review.json"), {});
+  return !!r.ok && r.scriptHash === scriptHash(id) && previewOk(id).ok;
 }
 
 /** Another heavy render running (Doopi record.mjs, any render3d/episode3d not started by us). */

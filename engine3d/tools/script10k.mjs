@@ -23,7 +23,7 @@ import { loadCatalog3d } from "../catalog/index.mjs";
 import { buildPlan } from "../runtime/plan.js";
 import { speakPlan } from "./lib/audio3d.mjs";
 import { BANDS, bandOf } from "./script10k/bands.mjs";
-import { ROOT, paths, buildId, specIds, loadSpec, missingNeeds } from "./script10k/index.mjs";
+import { ROOT, paths, buildId, specIds, loadSpec, missingNeeds, scriptHash, previewOk } from "./script10k/index.mjs";
 import { beatTimes } from "./script10k/polish.mjs";
 
 export const BRAND = "Toybox Elementary";
@@ -105,6 +105,12 @@ if (cmd === "stills") {
     console.log(out);
   }
   console.log(`${pngs.length} stills over ${plan.duration.toFixed(1)} s (real TTS: ${speechMode === "tts"}); PNGs in ${pngDir}`);
+  // A full-timeline run is the preview the review gate needs (spot --times runs don't count).
+  if (!opt("--times", null)) {
+    const ts = [0, ...list.map(([t]) => t), plan.duration];
+    const maxGap = Math.max(...ts.slice(1).map((t, i) => t - ts[i]));
+    writeFileSync(join(p.qaDir, "stills.json"), `${JSON.stringify({ id, scriptHash: scriptHash(id), count: list.length, duration: plan.duration, maxGap, tts: speechMode === "tts", at: new Date().toISOString() }, null, 1)}\n`);
+  }
   process.exit(0);
 }
 
@@ -124,7 +130,13 @@ if (cmd === "review") {
   const ok = flag("--ok");
   const note = opt(ok ? "--ok" : "--fix", "");
   mkdirSync(p.qaDir, { recursive: true });
-  writeFileSync(join(p.qaDir, "review.json"), `${JSON.stringify({ id, ok, note, at: new Date().toISOString() }, null, 1)}\n`);
+  // GUIDELINES 12: inspect scene previews before rendering the full video. An ok review needs a full-timeline
+  // preview stills run on this exact script (render10k checks the same hash before it renders).
+  if (ok) {
+    const g = previewOk(id);
+    if (!g.ok) { console.error(`${id}: review refused: ${g.why}`); process.exit(1); }
+  }
+  writeFileSync(join(p.qaDir, "review.json"), `${JSON.stringify({ id, ok, note, scriptHash: scriptHash(id), at: new Date().toISOString() }, null, 1)}\n`);
   console.log(`${id}: review ${ok ? "ok" : "needs fixes"}`);
   process.exit(0);
 }
