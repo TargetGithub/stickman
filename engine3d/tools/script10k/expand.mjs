@@ -6,7 +6,12 @@
 import { BANDS, bandOf } from "./bands.mjs";
 import { buildMeta } from "./meta.mjs";
 import { buildThumbnails } from "./thumbs.mjs";
-import { cardHeight } from "../../runtime/teach_layout.js";
+import { readFileSync } from "node:fs";
+import { textCardLayout } from "../../runtime/text_layout.js";
+
+// Text cards are laid out from the font's glyph advances, as the page draws them (runtime/text_layout.js).
+const FONT_METRICS = JSON.parse(readFileSync(new URL("../../catalog/font_metrics.json", import.meta.url), "utf8")).fonts;
+const cardHeight = (c) => textCardLayout({ kind: "text_card", ...c }, FONT_METRICS).height;
 
 export const LESSON_SCHEMA = "toybox-10k-lesson/1";
 export const TRACKER_ID = "trk";
@@ -83,7 +88,8 @@ function buildObjects(lesson, band) {
   const spread = new Map();
   for (const o of lesson.objects ?? []) if (o.spread) for (const [id, p] of spreadPositions(o.spread)) spread.set(id, p);
   // stack: text cards listed top to bottom, one size, `gap` metres apart; `top` is the top edge of the first card
-  // (a text_card grows upward from its at, so each at is that card's bottom).
+  // (a text_card grows upward from its at, so each at is that card's bottom). Each card keeps its own width, and its
+  // height is measured exactly as the page wraps it (#94), so a long line that wraps never runs into the next card.
   const stackSize = new Map();
   for (const o of lesson.objects ?? []) {
     if (!o.stack) continue;
