@@ -532,5 +532,5 @@ test("#107 crowd composite, lantern and audio_recorder props, water keeps its co
   assert.ok(catalog.props.lantern && catalog.props.audio_recorder);
   assert.ok(catalog.materials.water.opacity >= 0.8);
   const { expandComposite } = await import("../../runtime/composite.js");
-  assert.ok(expandComposite({ id: "c", kind: "crowd", cast: ["unicorn"] }, catalog).errors.some((e) => e.code === "E3D_SPECIES"));
+  assert.ok(expandComposite({ id: "c", kind: "crowd", cast: ["dragonfly_xyz"] }, catalog).errors.some((e) => e.code === "E3D_SPECIES"));
 });
