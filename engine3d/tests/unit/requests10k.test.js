@@ -479,3 +479,13 @@ test("#101 glowing strokes and a torch pen validate; a stroke's material must be
   bad.objects[0].pen = "laser";
   assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code).sort(), ["E3D_MATERIAL", "E3D_PEN"]);
 });
+
+test("#102 shot below keeps the camera under a waterline", () => {
+  const s = script("below_water");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.ok(plan.timeline.valueAt("camera", "position", 1)[1] <= 1.45 + 1e-9);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].below = "deep";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
+});

@@ -77,7 +77,7 @@ export function orbitPoint(from, around, k, { degrees, radius, height }) {
 export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
   Object.assign(d, {
     /** Frame one or more objects (wide, medium or close) from a direction, easing there over dur (0 = a cut). */
-    shot({ at: t = 0, target, framing = "medium", yaw = 0, height, dur = 1.5, ease = "sineInOut", pad = 0, fit, clear } = {}) {
+    shot({ at: t = 0, target, framing = "medium", yaw = 0, height, dur = 1.5, ease = "sineInOut", pad = 0, fit, clear, below } = {}) {
       const ids = Array.isArray(target) ? target : [target];
       if (!ids.length) throw new Error("shot needs a target");
       // Frame where the targets are when the move ends (they may still be walking into place).
@@ -110,7 +110,10 @@ export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
         if (clear === "top") box.max[1] = box.min[1] + h / free;
         if (clear === "bottom") box.min[1] = box.max[1] - h / free;
       }
-      const f = frameBox(box, { framing, yaw, height, fov: now("camera", "fov", t) ?? 40 });
+      const f = frameBox(box, { framing, yaw, height: below != null && height == null ? 0 : height, fov: now("camera", "fov", t) ?? 40 });
+      // below: keep the camera under a waterline or a dock edge at that height (#102: a fish's view, where only the
+      // ducks' tails and feet show). It stays as far away as the framing asked and looks up at the targets.
+      if (below != null && f.position[1] > below - 0.15) f.position[1] = Math.round((below - 0.15) * 1e4) / 1e4;
       tl.tween("camera", "position", { start: t, dur, to: f.position, ease });
       tl.tween("camera", "lookAt", { start: t, dur, to: f.lookAt, ease });
       return d;

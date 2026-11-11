@@ -49,6 +49,7 @@ export function checkLookCamera(a, p, ids, err) {
     if (a.framing != null && !FRAMING[a.framing]) err("E3D_FRAMING", `${p}.framing`, `framing must be one of ${Object.keys(FRAMING).join(", ")}`);
     if (a.yaw != null && !isNum(a.yaw, -360, 360)) err("E3D_RANGE", `${p}.yaw`, "yaw must be -360 to 360 degrees");
     if (a.height != null && !isNum(a.height, -30, 75)) err("E3D_RANGE", `${p}.height`, "height must be -30 to 75 degrees (elevation)");
+    if (a.below != null && !isNum(a.below, -5, 50)) err("E3D_RANGE", `${p}.below`, "below must be a height in metres (-5 to 50): the waterline the camera stays under");
     if (a.clear != null && !["left", "right", "top", "bottom"].includes(a.clear)) err("E3D_RANGE", `${p}.clear`, "clear must be left, right, top or bottom (the side kept empty)");
     return true;
   }
