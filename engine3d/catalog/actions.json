@@ -714,6 +714,18 @@
     "story"
    ]
   },
+  "reset": {
+   "params": {
+    "target": "an object, or a part (\"box#lid\")",
+    "dur": "seconds to glide back, default 0.5; 0 puts it back at once",
+    "ease": "default quadInOut"
+   },
+   "description": "Put an object back the way it started (its at, rotation and size; a part to its rest pose), e.g. a hook cover after a slide or tip. A hidden object stays hidden but is back in place for a later show.",
+   "tags": [
+    "move",
+    "pose"
+   ]
+  },
   "point": {
    "params": {
     "target": "Robo, or a critter or prop with an arm or wing part",
@@ -749,7 +761,8 @@
     "badge": "default true: a pulsing ? badge while asking",
     "shot": "default true: push in on the cover, then frame the answer",
     "who": "optional speaker",
-    "caption": "default true"
+    "caption": "default true",
+    "reset": "true: a slid, tipped or opened cover glides back to where it started once the hook is over (a lifted cover is always put back unseen, so a later show finds it in place)"
    },
    "description": "Open with a surprise: ask a question, wiggle the cover twice, then take it away and pop the hidden answer with a sparkle (peekaboo). Put it in the first beat; the beat stretches to fit.",
    "tags": [

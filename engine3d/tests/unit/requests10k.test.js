@@ -366,3 +366,21 @@ test("#97 book faces show only while open (no picture through a page); pageLayou
   assert.equal(L.width, 3.4);
   assert.ok(L.height > 0.5 && L.lines.length === 2 && L.lines[0].y > L.lines[1].y);
 });
+
+test("#98 reset puts an object back; a lifted hook cover is put back unseen; reset: true glides a slid cover back", () => {
+  const mk = (hook, extra = []) => ({ kind: "video3d", version: 1, description: "x", meta: { title: "t", seed: 1 }, camera: { position: [0, 1.5, 9], lookAt: [0, 1, 0], fov: 40 },
+    objects: [{ id: "box", kind: "prop", model: "toy_box", at: [0, 0, 0] }, { id: "ball", kind: "prop", model: "ball", at: [0, 0, 0.6], hidden: true }],
+    scenes: [{ id: "a", beats: [{ dur: 1, do: [{ do: "hook", question: "What is in here?", behind: "box", target: "ball", ...hook }] }, { dur: 2, do: extra }] }] });
+  const lift = mk({}, [{ do: "show", target: "box", at: 0.2 }]);
+  assert.deepEqual(validateScript(lift, catalog).errors, []);
+  let plan = compileScript(lift, { catalog });
+  assert.deepEqual(plan.timeline.valueAt("box", "position", plan.duration), [0, 0, 0], "shown again where it started");
+  const slide = mk({ style: "slide", reset: true });
+  assert.deepEqual(validateScript(slide, catalog).errors, []);
+  plan = compileScript(slide, { catalog });
+  assert.deepEqual(plan.timeline.valueAt("box", "position", plan.duration), [0, 0, 0]);
+  const moved = mk({ style: "slide" }, [{ do: "reset", target: "box", at: 0.5, dur: 0 }]);
+  assert.deepEqual(validateScript(moved, catalog).errors, []);
+  plan = compileScript(moved, { catalog });
+  assert.deepEqual(plan.timeline.valueAt("box", "position", plan.duration), [0, 0, 0]);
+});

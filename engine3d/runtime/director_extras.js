@@ -67,6 +67,25 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
 
   Object.assign(d, {
     /**
+     * Put an object back the way it started (#98): position, rotation and size glide back over dur (0: at once).
+     * A part ("box#lid") goes back to its rest pose. A hidden object stays hidden; a lying one stands as it was.
+     */
+    reset(id, { at: t = 0, dur = 0.5, ease = "quadInOut" } = {}) {
+      const [base, part] = String(id).split("#");
+      const o = obj(base);
+      // Size goes back only on a shown object: a hidden one keeps its zero size until a show or pop.
+      const sc = now(id, "scale", t);
+      const shown = now(id, "visible", t) !== false && Array.isArray(sc) && sc.some((v) => v > 1e-3);
+      const to = part != null ? { position: [0, 0, 0], rotation: [0, 0, 0] } : { position: o.at, rotation: o.rotation, ...(shown ? { scale: o.scale } : {}) };
+      for (const [prop, v] of Object.entries(to)) {
+        if (dur > 0) tl.tween(id, prop, { start: t, dur, to: v, ease });
+        else tl.set(id, prop, v, t);
+      }
+      if (part == null) tl.set(id, "hop", 0, t + dur);
+      lying.delete(base);
+      return d;
+    },
+    /**
      * Lie down (critters, characters, props): pose "side" lays it on its side facing the camera (side 1: head to
      * the left), "back" on its back face up (head to the left with side 1, so the camera sees its profile), "up" stands it again. It turns about its
      * base and lifts by its half thickness so it rests on the floor; then look or feel as usual (looks up at the sky:

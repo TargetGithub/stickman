@@ -54,6 +54,13 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart || style === "none" ? [owner, ...targets] : targets.length > 1 ? targets : targets[0], framing: isPart ? "medium" : "wide", pad: 0.6, dur: 1 });
     let end = reveal + 2.2 + (targets.length - 1) * 0.18;
     if (a.answer) end = Math.max(end, reveal + 0.9 + speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), reveal + 0.9) + 0.35);
+    // A lifted cover is hidden by now: it is put back where it started, unseen, so a later show finds it in place
+    // (#98). reset: true also glides a slid, tipped or opened cover back once the hook is over.
+    if (style === "lift") d.reset(a.behind, { at: at(reveal + (slow ? 1.8 : 1)), dur: 0 });
+    else if (a.reset && style !== "none") {
+      d.reset(a.behind, { at: at(end), dur: 0.5 });
+      end += 0.6;
+    }
     return end;
   }
 

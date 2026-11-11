@@ -109,6 +109,7 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
     if (a.open != null && !(Array.isArray(a.open) && a.open.length === 3 && a.open.every((x) => typeof x === "number"))) err("E3D_VEC", `${p}.open`, "open must be [x, y, z] degrees");
     if (a.out != null && !(Array.isArray(a.out) && a.out.length === 3 && a.out.every((x) => typeof x === "number"))) err("E3D_VEC", `${p}.out`, "out must be [x, y, z] metres");
     if (a.slow != null && typeof a.slow !== "boolean") err("E3D_HOOK", `${p}.slow`, "slow must be true or false");
+    if (a.reset != null && typeof a.reset !== "boolean") err("E3D_HOOK", `${p}.reset`, "reset must be true or false");
     // target: one hidden object, or a small group of up to 4 that pop in turn.
     const tids = Array.isArray(a.target) ? a.target : [a.target];
     if (Array.isArray(a.target) && (a.target.length < 1 || a.target.length > 4)) err("E3D_HOOK", `${p}.target`, "target is one object id or a list of 1-4");
