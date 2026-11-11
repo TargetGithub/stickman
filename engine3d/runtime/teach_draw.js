@@ -26,7 +26,8 @@ export function pathCurve(o) {
  */
 export function buildStroke(o, group, { material }) {
   const r = o.width / 2;
-  const mat = material(o.color, "toy");
+  // material "glow": a line of light (light painting, #101); any materials.json name works.
+  const mat = material(o.color, o.material ?? "toy");
   const curve = pathCurve(o);
   const L = Math.max(1e-6, curve.getLength());
   const ball = new THREE.SphereGeometry(r, 20, 14);
@@ -66,7 +67,7 @@ export function buildStroke(o, group, { material }) {
   const start = solid(ball, mat); // and the round start
   curve.getPointAt(0, start.position);
   group.add(tip, start);
-  const pen = o.pen ? (o.pen === "dot" ? dotPen(r, material) : pencil(o, material)) : null;
+  const pen = o.pen ? (o.pen === "dot" ? dotPen(r, material) : o.pen === "torch" ? torch(o, material) : pencil(o, material)) : null;
   if (pen) group.add(pen);
   return {
     update(t, s) {
@@ -99,6 +100,31 @@ function pencil(o, material) {
   g.quaternion.setFromUnitVectors(UP, new THREE.Vector3(0.35, 0.5, 0.8).normalize());
   // Lift the tip just in front of the stroke so it never sinks into the tube.
   g.children.forEach((m) => m.position.set(0, o.width * 0.4, 0));
+  return g;
+}
+
+/**
+ * A little flashlight above and in front of the tip, its soft beam (a see-through cone of the stroke's colour)
+ * shining down on the point being drawn: light painting (#101). Its origin is the tip, so it follows the pen.
+ */
+function torch(o, material) {
+  const g = new THREE.Group();
+  const from = new THREE.Vector3(0.55, 0.85, 0.9);
+  const dist = from.length();
+  const beamMat = material(o.color, "glow").clone();
+  beamMat.transparent = true;
+  beamMat.opacity = 0.22;
+  beamMat.depthWrite = false;
+  const beam = new THREE.Mesh(new THREE.ConeGeometry(0.22, dist, 32, 1, true).translate(0, -dist / 2, 0), beamMat);
+  beam.position.copy(from);
+  beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), from.clone().negate().normalize());
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.07, 0.32, 16).translate(0, -0.16, 0).rotateX(Math.PI), material("charcoal", "toy"));
+  const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.07, 0.07, 20).translate(0, -0.03, 0), material("yellow", "glow"));
+  const head = new THREE.Group();
+  head.add(body, lens);
+  head.position.copy(from);
+  head.quaternion.copy(beam.quaternion); // the lens faces down the beam, the handle up and away
+  g.add(beam, head);
   return g;
 }
 

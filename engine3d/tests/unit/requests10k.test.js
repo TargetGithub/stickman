@@ -469,3 +469,13 @@ test("#100 hook peek: a target that shows a little under the cover hops at the r
   delete bad.scenes[0].beats[0].do[0].peek;
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_HOOK"), "without peek it must start hidden");
 });
+
+test("#101 glowing strokes and a torch pen validate; a stroke's material must be known", () => {
+  const s = script("light_paint");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  assert.deepEqual(validateScript(s, catalog).warnings, []);
+  const bad = structuredClone(s);
+  bad.objects[0].material = "lava";
+  bad.objects[0].pen = "laser";
+  assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code).sort(), ["E3D_MATERIAL", "E3D_PEN"]);
+});

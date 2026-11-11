@@ -9,14 +9,14 @@ import { pointPart } from "./director_kit2.js";
 import { cardHeight, withDefaults } from "./teach_layout.js";
 
 export const KIT2_FIELDS = {
-  stroke: ["points", "smooth", "closed", "width", "color", "pen"],
+  stroke: ["points", "smooth", "closed", "width", "color", "pen", "material"],
   flow: ["points", "smooth", "closed", "count", "speed", "size", "color", "changes", "track"],
   fraction_text: ["numerator", "denominator", "whole", "color", "size", "depth"],
   place_value_chart: ["columns", "digits", "cell", "color", "bg", "digitColor", "zeroColor"],
   text_card: ["text", "width", "size", "color", "bg", "align", "height", "depth", "pad"],
 };
 const ENDS = { head: ["arrow", "none", "dot"], tail: ["none", "arrow", "dot"] };
-const PENS = [true, false, "pencil", "dot"];
+const PENS = [true, false, "pencil", "dot", "torch"];
 const AXES = ["x", "y", "z"];
 const HANDLED = new Set(["shift", "set", "emphasize", "reparent", "point"]);
 
@@ -57,7 +57,7 @@ export function checkKit2Object(o, p, { err, ids, catalog, name }) {
   }
   if (o.kind === "stroke") {
     range("width", (v) => isNum(v, 0.01, 1), "width must be 0.01-1 m");
-    range("pen", (v) => PENS.includes(v), 'pen must be true, false, "pencil" or "dot"', "E3D_PEN");
+    range("pen", (v) => PENS.includes(v), 'pen must be true, false, "pencil", "dot" or "torch"', "E3D_PEN");
   }
   if (o.kind === "flow") {
     range("count", (v) => isInt(v, 1, 200), "count must be a whole number 1-200");
