@@ -293,3 +293,18 @@ export function expandObjects(list, catalog, prefix = "objects") {
   });
   return { objects, errors };
 }
+
+/**
+ * Where a page's parts land (#97), for tools that write scripts: its width and height (the paper, at standing on its
+ * foot) and each line's piece id, bottom y and height in the page's own frame (before scale). Frame the whole page
+ * with shot on the page's id; one line with shot on "<id>_l3".
+ * @returns {{ width: number, height: number, lines: { id: string, y: number, height: number }[] } | null}
+ */
+export function pageLayout(o, catalog) {
+  if (o?.kind !== "page") return null;
+  const r = expandComposite(o, catalog);
+  const paper = r.objects.find((x) => x.id === `${o.id}_paper`);
+  if (!paper) return null;
+  const lines = r.objects.filter((x) => new RegExp(`^${o.id}_l\\d+$`).test(x.id)).map((x) => ({ id: x.id, y: x.at[1], height: x.height }));
+  return { width: paper.scale[0], height: paper.scale[2], lines };
+}

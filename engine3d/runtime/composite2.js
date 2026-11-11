@@ -119,7 +119,7 @@ export function expandBook(o, catalog, add, err, picture) {
   const base = 0.3;
   const bg = o.bg ?? "cream";
   const n = spreads.length;
-  const face = (prefix, side, x0, z, flip) => {
+  const face = (prefix, side, x0, z, flip, covered = false) => {
     // One page's content, in the frame of whatever carries it; flip turns it to read from the back of a leaf.
     if (!side) return;
     const rot = flip ? [0, 180, 0] : [0, 0, 0];
@@ -127,19 +127,21 @@ export function expandBook(o, catalog, add, err, picture) {
     if (side.picture) {
       const pic = picture(side.picture, side.pictureColor, catalog, cx, base + H * 0.45, z, W * 0.7, H * 0.42, 0.15);
       if (!pic) err("E3D_PICTURE", "spreads", `picture "${side.picture}" is not a prop, critter or shape`);
-      else add(`${prefix}_pic`, { ...pic, rotation: rot, at: [cx, pic.at[1], flip ? z - (pic.at[2] - z) : pic.at[2]] });
+      else add(`${prefix}_pic`, { ...pic, rotation: rot, at: [cx, pic.at[1], flip ? z - (pic.at[2] - z) : pic.at[2]], ...(covered ? { hidden: true } : {}) });
     }
     if (side.text) {
       const th = side.picture ? H * 0.35 : H * 0.8;
-      add(`${prefix}_text`, { kind: "text_card", text: String(side.text), width: W - 0.25, height: th, size: S, bg: "none", pad: 0.3, color: o.color ?? "ink", rotation: rot, at: r3([cx, base + 0.08, z]) });
+      add(`${prefix}_text`, { kind: "text_card", text: String(side.text), width: W - 0.25, height: th, size: S, bg: "none", pad: 0.3, color: o.color ?? "ink", rotation: rot, at: r3([cx, base + 0.08, z]), ...(covered ? { hidden: true } : {}) });
     }
   };
   add("cover", slab(0, base + H / 2, -0.03, 2 * W + 0.16, H + 0.16, 0.04, o.accent ?? "red", "toy"));
   add("left", slab(-W / 2, base + H / 2, 0, W, H, 0.03, bg));
   add("right", slab(W / 2, base + H / 2, 0, W, H, 0.03, bg));
   add("stand", { kind: "shape", shape: "box", color: "wood_dark", at: [0, 0, -0.25], scale: r3([2 * W * 0.5, base, 0.4]) });
+  // Only the open spread's words and pictures show; the rest wait under the leaves (turn_page shows and hides them as
+  // leaves turn, so a picture never shows through a page, #97).
   face("l1", spreads[0].left, -W / 2, 0.002, false);
-  face(`r${n}`, spreads[n - 1].right, W / 2, 0.002, false);
+  face(`r${n}`, spreads[n - 1].right, W / 2, 0.002, false, n > 1);
   for (let k = 1; k < n; k++) {
     const id = `leaf${k}`;
     // Unturned leaves stack on the right, the next one on top (the higher z).
@@ -148,19 +150,20 @@ export function expandBook(o, catalog, add, err, picture) {
     leafAdd("page", slab(W / 2, base + H / 2, 0.0015, W, H, 0.003, bg));
     // Its front: spread k's right page; its back: spread k+1's left page (turned to read once the leaf is over).
     const frontAdd = (p, spec) => leafAdd(p.replace(/^/, "f"), spec);
-    face2(frontAdd, spreads[k - 1].right, W / 2, 0.003, false);
-    face2((p, spec) => leafAdd(p.replace(/^/, "b"), spec), spreads[k].left, W / 2, -0.0015, true);
+    face2(frontAdd, spreads[k - 1].right, W / 2, 0.003, false, k > 1);
+    face2((p, spec) => leafAdd(p.replace(/^/, "b"), spec), spreads[k].left, W / 2, -0.0015, true, true);
   }
-  function face2(addTo, side, x0, z, flip) {
+  function face2(addTo, side, x0, z, flip, covered) {
+    const hid = covered ? { hidden: true } : {};
     if (!side) return;
     const rot = flip ? [0, 180, 0] : [0, 0, 0];
     if (side.picture) {
       const pic = picture(side.picture, side.pictureColor, catalog, x0, base + H * 0.45, z, W * 0.7, H * 0.42, 0.04);
-      if (pic) addTo("_pic", { ...pic, rotation: rot, at: [x0, pic.at[1], flip ? z - (pic.at[2] - z) : pic.at[2]] });
+      if (pic) addTo("_pic", { ...pic, rotation: rot, at: [x0, pic.at[1], flip ? z - (pic.at[2] - z) : pic.at[2]], ...hid });
     }
     if (side.text) {
       const th = side.picture ? H * 0.35 : H * 0.8;
-      addTo("_text", { kind: "text_card", text: String(side.text), width: W - 0.25, height: th, size: S, bg: "none", pad: 0.3, color: o.color ?? "ink", rotation: rot, at: r3([x0, base + 0.08, z]) });
+      addTo("_text", { kind: "text_card", text: String(side.text), width: W - 0.25, height: th, size: S, bg: "none", pad: 0.3, color: o.color ?? "ink", rotation: rot, at: r3([x0, base + 0.08, z]), ...hid });
     }
   }
 }

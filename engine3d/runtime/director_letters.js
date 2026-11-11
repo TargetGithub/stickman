@@ -197,6 +197,16 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
       const k = back ? done : done + 1;
       if (k < 1 || k > n) throw new Error(`turn_page "${id}": no leaf to turn ${back ? "back" : "over"} (${done} of ${n} are over)`);
       const leaf = `${id}_leaf${k}`;
+      // The words and pictures of each face show only while that face is open (#97): the face coming into view shows
+      // as the leaf starts to turn, the one it covers hides once it lies down.
+      const faceOf = (pre) => ["_pic", "_text"].map((x) => `${pre}${x}`).filter((pid) => { try { return !!obj(pid); } catch { return false; } });
+      const left = (j) => (j < 1 ? faceOf(`${id}_l1`) : faceOf(`${id}_leaf${j}_b`)); // the left page with j leaves over
+      const right = (j) => (j >= n ? faceOf(`${id}_r${n + 1}`) : faceOf(`${id}_leaf${j + 1}_f`)); // the right page then
+      const show = (pid, at) => (tl.set(pid, "visible", true, at), tl.set(pid, "scale", obj(pid).scale, at));
+      const before = done;
+      const after = back ? done - 1 : done + 1;
+      for (const pid of [...left(after), ...right(after)]) show(pid, t);
+      for (const pid of [...left(before), ...right(before)]) if (![...left(after), ...right(after)].includes(pid)) tl.set(pid, "visible", false, t + dur);
       const zUp = LEAF * (n - k) + LEAF; // where it lies unturned (the next leaf on top)
       const zOver = LEAF * k + LEAF; // where it lies turned (the last one turned on top)
       tl.tween(leaf, "rotation", { start: t, dur, to: back ? [0, 0, 0] : [0, -180, 0], ease: "sineInOut" });

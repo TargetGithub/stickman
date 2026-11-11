@@ -353,3 +353,16 @@ test("#96 a long word on a word_train keeps a readable tile in a stretched car; 
   assert.deepEqual(short.filter((x) => /_car\d$/.test(x.id)).map((x) => x.at[0]), [-2.4, -1.2]);
   assert.deepEqual(validateScript(script("word_train_long"), catalog).errors, []);
 });
+
+test("#97 book faces show only while open (no picture through a page); pageLayout gives a page's size and line spots", async () => {
+  const s = script("book_sign_train");
+  const plan = compileScript(s, { catalog });
+  const tl = plan.timeline;
+  const shown = (t) => plan.objects.map((o) => o.id).filter((id) => /^bk_.*(pic|text)$/.test(id) && tl.valueAt(id, "visible", t));
+  assert.deepEqual(shown(0.5).sort(), ["bk_l1_text", "bk_leaf1_f_pic", "bk_leaf1_f_text"]);
+  assert.deepEqual(shown(6.5).sort(), ["bk_leaf2_b_pic", "bk_leaf2_b_text", "bk_r3_text"]);
+  const { pageLayout } = await import("../../runtime/composite.js");
+  const L = pageLayout({ id: "p", kind: "page", lines: ["One.", "Two."] }, catalog);
+  assert.equal(L.width, 3.4);
+  assert.ok(L.height > 0.5 && L.lines.length === 2 && L.lines[0].y > L.lines[1].y);
+});
