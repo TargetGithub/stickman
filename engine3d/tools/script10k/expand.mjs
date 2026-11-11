@@ -72,12 +72,16 @@ const PITCHES = { soft: [1.3, 0.9, 1.2, 0.85], squeaky: [1.1, 1.25, 0.95, 1.2], 
  */
 function buildObjects(lesson, band) {
   const objects = [];
+  const deferred = [];
   const cast = {};
   const used = {};
   for (const [id, c] of Object.entries(lesson.cast ?? {})) {
     const { voice, pitch, speed, species, character, ...rest } = c;
-    if (character) objects.push({ id, kind: "character", character, ...rest });
-    else objects.push({ id, kind: "critter", species: species ?? id, ...rest });
+    // A cast member riding on a lesson object (a camel in a caravan group) goes after the objects, since a parent
+    // must be listed before its children; everyone else stays first, so existing scripts are unchanged.
+    const obj = character ? { id, kind: "character", character, ...rest } : { id, kind: "critter", species: species ?? id, ...rest };
+    if (rest.parent && !(lesson.cast ?? {})[rest.parent]) deferred.push(obj);
+    else objects.push(obj);
     if (character === "robot") continue;
     if (voice && voice !== "bark") {
       const list = PITCHES[voice] ?? [1];
@@ -112,6 +116,7 @@ function buildObjects(lesson, band) {
     if (stackSize.has(o.id)) { out = { ...out, size: stackSize.get(o.id) }; delete out.height; }
     objects.push(out);
   }
+  objects.push(...deferred);
   return { objects, cast, ids: new Set(objects.map((o) => o.id)) };
 }
 
