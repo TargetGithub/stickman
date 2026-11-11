@@ -132,7 +132,7 @@ function effects(src) {
     `Hit effects come by themselves from hits, explosions and props; do not list them: ${auto.join(", ")}.`,
     `Kids audience: comic impact words (${pops.map((n) => n.replace("pop_", "").toUpperCase()).join(", ")}) pop over hits by themselves; scripts never name them.`,
     "## Screen effects (world beats: `\"who\": \"world\"`)", worldTable(src, WORLD_GROUPS.fx),
-    "## Sounds", "Sounds play by themselves from moves, hits, objects and cards; scripts never name them.",
+    "## Sounds", "Sounds play by themselves; scripts never name them.",
     Object.entries(cats).map(([k, v]) => `- ${k}: ${v.join(", ")}`).join("\n"));
 }
 

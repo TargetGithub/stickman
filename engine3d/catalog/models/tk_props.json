@@ -1987,6 +1987,604 @@
      "c": "grey"
     }
    ]
+  },
+  "vowel_compass": {
+   "color": "cream",
+   "description": "A big compass dial on a wooden stand for sorting vowel sounds (vowel compass): a cream face in a gold rim (centre at y 1.0, radius 0.6, face at z 0.06), four coloured points at the top (red), right (blue), bottom (green) and left (orange) (named `points`), and a red `needle` that spins about its middle: turn `<id>#needle` by [0, 0, -90] to swing it to the right point. Put a letter or word card by each point (about 0.75 m out from the centre).",
+   "tags": [
+    "phonics",
+    "vowels",
+    "sorting",
+    "compass",
+    "toybox10k"
+   ],
+   "parts": [
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.05,
+      0
+     ],
+     "s": [
+      0.6,
+      0.1,
+      0.6
+     ],
+     "c": "wood_dark"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.45,
+      -0.05
+     ],
+     "s": [
+      0.08,
+      0.8,
+      0.08
+     ],
+     "c": "wood_dark"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.0,
+      0
+     ],
+     "s": [
+      1.3,
+      0.08,
+      1.3
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.0,
+      0.03
+     ],
+     "s": [
+      1.18,
+      0.06,
+      1.18
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ]
+    },
+    {
+     "p": "triangle",
+     "at": [
+      0.0,
+      1.47,
+      0.07
+     ],
+     "s": [
+      0.16,
+      0.16,
+      0.15
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "c": "red",
+     "name": "points"
+    },
+    {
+     "p": "triangle",
+     "at": [
+      0.47,
+      1.0,
+      0.07
+     ],
+     "s": [
+      0.16,
+      0.16,
+      0.15
+     ],
+     "r": [
+      0,
+      0,
+      -90
+     ],
+     "c": "blue",
+     "name": "points"
+    },
+    {
+     "p": "triangle",
+     "at": [
+      -0.0,
+      0.53,
+      0.07
+     ],
+     "s": [
+      0.16,
+      0.16,
+      0.15
+     ],
+     "r": [
+      0,
+      0,
+      180
+     ],
+     "c": "green",
+     "name": "points"
+    },
+    {
+     "p": "triangle",
+     "at": [
+      -0.47,
+      1.0,
+      0.07
+     ],
+     "s": [
+      0.16,
+      0.16,
+      0.15
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "c": "orange",
+     "name": "points"
+    },
+    {
+     "p": "diamond",
+     "at": [
+      0,
+      1.0,
+      0.09
+     ],
+     "s": [
+      0.12,
+      0.78,
+      0.12
+     ],
+     "c": "red",
+     "m": "glossy",
+     "name": "needle"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      1.0,
+      0.12
+     ],
+     "s": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "c": "gold",
+     "m": "glossy"
+    }
+   ]
+  },
+  "newspaper_press": {
+   "color": "barn_red",
+   "description": "A toy newspaper printing press, 1.4 m wide and 1.9 m tall: a wooden base with a paper sheet on its bed (named `paper`, top at y 0.455), two dark posts, a red crossbar, a gold handwheel on top (`wheel`: spin it about y) and a grey press `plate` that comes down (move `<id>#plate` by [0, -0.45, 0] onto the paper, then back; play press_thump as it lands). A printed page (a page or card) can slide out toward +z from the bed.",
+   "tags": [
+    "newspaper",
+    "press",
+    "printing",
+    "machine",
+    "toybox10k"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.2,
+      0
+     ],
+     "s": [
+      1.4,
+      0.4,
+      0.9
+     ],
+     "c": "wood_dark",
+     "name": "body"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.42,
+      0.05
+     ],
+     "s": [
+      1.1,
+      0.04,
+      0.7
+     ],
+     "c": "charcoal",
+     "name": "bed"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.45,
+      0.05
+     ],
+     "s": [
+      0.8,
+      0.01,
+      0.55
+     ],
+     "c": "white",
+     "name": "paper"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.6,
+      0.95,
+      0
+     ],
+     "s": [
+      0.1,
+      1.1,
+      0.1
+     ],
+     "c": "charcoal",
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.6,
+      0.95,
+      0
+     ],
+     "s": [
+      0.1,
+      1.1,
+      0.1
+     ],
+     "c": "charcoal",
+     "m": "glossy"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.5,
+      0
+     ],
+     "s": [
+      1.4,
+      0.18,
+      0.3
+     ],
+     "c": "barn_red",
+     "m": "glossy"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.95,
+      0.05
+     ],
+     "s": [
+      1.0,
+      0.12,
+      0.65
+     ],
+     "c": "grey",
+     "m": "glossy",
+     "name": "plate"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.25,
+      0.05
+     ],
+     "s": [
+      0.08,
+      0.5,
+      0.08
+     ],
+     "c": "grey",
+     "m": "glossy",
+     "name": "plate"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      1.75,
+      0
+     ],
+     "s": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "m": "glossy",
+     "name": "wheel"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.66,
+      0
+     ],
+     "s": [
+      0.06,
+      0.2,
+      0.06
+     ],
+     "c": "gold",
+     "m": "glossy",
+     "name": "wheel"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.75,
+      0
+     ],
+     "s": [
+      0.45,
+      0.03,
+      0.03
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ],
+     "c": "gold",
+     "m": "glossy",
+     "name": "wheel"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.75,
+      0
+     ],
+     "s": [
+      0.45,
+      0.03,
+      0.03
+     ],
+     "r": [
+      0,
+      90,
+      0
+     ],
+     "c": "gold",
+     "m": "glossy",
+     "name": "wheel"
+    }
+   ]
+  },
+  "chime_tube": {
+   "color": "grey",
+   "description": "One shiny metal chime tube hanging on a string from a little wooden bar (bar at y 1.85, the tube from about y 1.65 down to 0.75): named part `tube` hangs from its top, so wiggle `<id>#tube` to swing it as it rings (play wind_chimes or ding). Hang a word card in front of it at about [0, 1.2, 0.12]. Main colour grey (set color for a gold or coloured chime).",
+   "tags": [
+    "music",
+    "chime",
+    "sound",
+    "toybox10k"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      1.85,
+      -0.05
+     ],
+     "s": [
+      0.6,
+      0.06,
+      0.12
+     ],
+     "c": "wood_dark"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.75,
+      0
+     ],
+     "s": [
+      0.015,
+      0.18,
+      0.015
+     ],
+     "c": "twine",
+     "name": "tube",
+     "hang": [
+      0,
+      -0.0,
+      0
+     ]
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      1.66,
+      0
+     ],
+     "s": [
+      0.12,
+      0.9,
+      0.12
+     ],
+     "c": "grey",
+     "m": "glossy",
+     "name": "tube",
+     "hang": [
+      0,
+      -0.46,
+      0
+     ]
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      1.66,
+      0
+     ],
+     "s": [
+      0.13,
+      0.13,
+      0.2
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "gold",
+     "m": "glossy",
+     "name": "tube",
+     "hang": [
+      0,
+      -0.01,
+      0
+     ]
+    }
+   ]
+  },
+  "price_tag": {
+   "color": "hay",
+   "description": "A cardboard shop price tag lying on its side like an arrow pointing right (+x): a tan tag (named `tag`, face at z 0.06, 0.6 m long, centre at [0.05, 0.4]) with a reinforced hole at its left end and a loop of string. Put a price or word in front of it (a letter or text_card at about [0.08, 0.3, 0.08], size 0.18). Main colour tan (set color).",
+   "tags": [
+    "shop",
+    "money",
+    "price",
+    "toybox10k"
+   ],
+   "parts": [
+    {
+     "p": "pentagon",
+     "at": [
+      0,
+      0.4,
+      0
+     ],
+     "s": [
+      0.6,
+      0.76,
+      0.12
+     ],
+     "r": [
+      0,
+      0,
+      90
+     ],
+     "name": "tag"
+    },
+    {
+     "p": "torus",
+     "at": [
+      -0.24,
+      0.4,
+      0.03
+     ],
+     "s": [
+      0.08,
+      0.08,
+      0.3
+     ],
+     "c": "white",
+     "name": "tag"
+    },
+    {
+     "p": "ring",
+     "at": [
+      -0.24,
+      0.4,
+      0.03
+     ],
+     "s": [
+      0.1,
+      0.1,
+      0.3
+     ],
+     "c": "wood_dark",
+     "name": "tag"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.42,
+      0.52,
+      0
+     ],
+     "s": [
+      0.03,
+      0.3,
+      0.03
+     ],
+     "r": [
+      0,
+      0,
+      55
+     ],
+     "c": "twine",
+     "name": "string"
+    },
+    {
+     "p": "capsule",
+     "at": [
+      -0.42,
+      0.28,
+      0
+     ],
+     "s": [
+      0.03,
+      0.3,
+      0.03
+     ],
+     "r": [
+      0,
+      0,
+      -55
+     ],
+     "c": "twine",
+     "name": "string"
+    }
+   ]
   }
  }
 }

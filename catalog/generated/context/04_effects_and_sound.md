@@ -66,7 +66,7 @@ Kids audience: comic impact words (POW, BONK, BAM, BOING) pop over hits by thems
 
 ## Sounds
 
-Sounds play by themselves from moves, hits, objects and cards; scripts never name them.
+Sounds play by themselves; scripts never name them.
 
 - movement: whoosh, land, land_heavy, step, footstep_soft, footstep_hard, robot_stomp
 - hit: punch_light, punch_heavy, kick_light, kick_heavy, block, parry
@@ -76,10 +76,10 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - comic: pop, boing, slip, bonk, pow, raspberry, slide_whistle, squeak, sprout_spring
 - crowd: crowd_cheer, crowd_gasp, giggle_crowd
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn, pirate_horn, hum
-- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding, tick, clock_tick_big, fizz, cha_ching, clink, pour, crack
+- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding, tick, clock_tick_big, fizz, press_thump, cha_ching, clink, pour, crack
 - magic: sparkle, magic_sparkle, crystal_chime, cloud_pop, whisper
-- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh, whale_song, buzz
-- music: flute_tune, leaf_tune, twang, drum
+- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh, whale_song, quack, buzz
+- music: flute_tune, leaf_tune, twang, drum, wind_chimes
 - weather: thunder, rain
 - ui: timer_tick, timer_chime, wrong_soft, listen_cue
 - vehicle: train_whistle, foghorn, rocket

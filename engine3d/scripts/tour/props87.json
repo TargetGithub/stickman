@@ -1,0 +1,6 @@
+{"kind":"video3d","version":1,"description":"#87 props: vowel_compass (needle swung), newspaper_press (plate down), chime_tube (swinging), price_tag with a price.",
+"meta":{"title":"Compass, press, chime, tag","seed":87},"stage":{"preset":"playroom"},"camera":{"position":[0,1.4,8],"lookAt":[0,1,0],"fov":42},
+"objects":[{"id":"vc","kind":"prop","model":"vowel_compass","at":[-3,0,0]},{"id":"np","kind":"prop","model":"newspaper_press","at":[-0.6,0,0]},
+{"id":"ch","kind":"prop","model":"chime_tube","at":[1.6,0,0]},{"id":"pt","kind":"prop","model":"price_tag","at":[3.2,0.2,0.5]},
+{"id":"pr","kind":"letter","text":"$5","size":0.18,"color":"ink","parent":"pt","at":[0.08,0.3,0.08]}],
+"scenes":[{"id":"a","beats":[{"dur":2,"do":[{"do":"turn","target":"vc#needle","by":-90,"axis":"z","at":0.2},{"do":"move","target":"np#plate","to":[0,-0.45,0],"at":0.2,"dur":0.5},{"do":"sound","sound":"press_thump","at":0.7},{"do":"wiggle","target":"ch#tube","at":0.3},{"do":"sound","sound":"wind_chimes","at":0.3},{"do":"sound","sound":"quack","at":1.4}]}]}]}
