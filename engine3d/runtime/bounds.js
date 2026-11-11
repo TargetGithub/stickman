@@ -31,7 +31,8 @@ function modelBox(m, floor = true) {
     if (p.name && !pivots.has(p.name)) pivots.set(p.name, at);
     // The part's own box, turned by its pivot (r) and mesh (hr) turns, offset by hang inside the turned pivot:
     // exact for unturned parts (a swing's tall thin pole stays thin), the bounding box of the turned box otherwise.
-    const half = vec(p.s, 0.2).map((x) => x / 2);
+    // Thin shapes (a plate, a coin, a hoop) are that thin at scale 1, not a 1 m cube (#108: a tray made paint pots tiny).
+    const half = vec(p.s, 0.2).map((x, i) => (i === 1 && THIN[p.p] ? x * THIN[p.p] : x) / 2);
     const R = p.r ? eulerMat(p.r) : null;
     const M = R && p.hr ? mul(R, eulerMat(p.hr)) : R ?? (p.hr ? eulerMat(p.hr) : null);
     const ext = M ? [0, 1, 2].map((i) => [0, 1, 2].reduce((a, j) => a + Math.abs(M[i * 3 + j]) * half[j], 0)) : half;

@@ -309,7 +309,7 @@ test("#79 textSize grows name tags, retext on a number_block, swap letters and t
   assert.ok(text({ style: "name_tag", text: "Pip", textSize: 0.3 }).width > 2 * text({ style: "name_tag", text: "Pip" }).width);
   const pic = expandComposite({ id: "n", kind: "card", text: "bike", picture: "bike", pictureRotation: [0, 90, 0] }, catalog).objects.find((x) => x.id === "n_pic");
   assert.deepEqual([pic.rotation, pic.scale], [[0, 90, 0], [0.4, 1, 1]], "turned a quarter, flattened along its own x");
-  assert.ok(expandComposite({ id: "n", kind: "card", picture: "bike", pictureRotation: [10, 90, 0] }, catalog).errors.some((e) => e.code === "E3D_VEC"));
+  assert.ok(expandComposite({ id: "n", kind: "card", picture: "bike", pictureRotation: [10, 90, 5] }, catalog).errors.some((e) => e.code === "E3D_VEC"));
   assert.ok(!catalog.props.rowing_boat.parts[0].c, "the hull is the main colour");
   const s = script("cards_swap");
   assert.deepEqual(validateScript(s, catalog).errors, []);
@@ -533,4 +533,14 @@ test("#107 crowd composite, lantern and audio_recorder props, water keeps its co
   assert.ok(catalog.materials.water.opacity >= 0.8);
   const { expandComposite } = await import("../../runtime/composite.js");
   assert.ok(expandComposite({ id: "c", kind: "crowd", cast: ["dragonfly_xyz"] }, catalog).errors.some((e) => e.code === "E3D_SPECIES"));
+});
+
+test("#108 low flat props tip toward the camera on picture cards and fill them; upright ones stay face-on", async () => {
+  const { expandComposite } = await import("../../runtime/composite.js");
+  const pic = (name, extra = {}) => expandComposite({ id: "c", kind: "card", text: "x", picture: name, ...extra }, catalog).objects.find((o) => o.id === "c_pic");
+  for (const n of ["rug", "hat", "cookie", "paint_pots"]) assert.deepEqual(pic(n).rotation, [55, 0, 0], n);
+  assert.equal(pic("apple").rotation, undefined, "an upright apple stays face-on");
+  assert.ok(pic("paint_pots").size > 1, "the tray no longer counts as a 1 m slab");
+  assert.deepEqual(pic("rug", { pictureRotation: [0, 0, 0] }).rotation, undefined, "pictureRotation [0, 0, 0] keeps it face-on");
+  assert.deepEqual(validateScript(script("flat_pictures"), catalog).errors, []);
 });

@@ -48,28 +48,35 @@ const r3 = (v) => v.map((x) => Math.round(x * 1000) / 1000);
 const slab = (x, y, front, w, h, t, color, material = "matte") => ({ kind: "shape", shape: "plate", color, material, at: r3([x, y, front - t]), rotation: [90, 0, 0], scale: r3([w, t / 0.04, h]) });
 
 /** The object that shows a picture: a prop, critter or shape name, fitted into a w × h box standing on (x, y). */
-function picture(name, color, catalog, x, y, front, w, h, relief = 0.4, yaw = 0) {
+function picture(name, color, catalog, x, y, front, w, h, relief = 0.4, turn = null) {
   const kind = catalog.props?.[name] ? "prop" : catalog.critters?.[name] ? "critter" : catalog.shapes?.[name] ? "shape" : null;
   if (!kind) return null;
   const spec = kind === "prop" ? { kind, model: name } : kind === "critter" ? { kind, species: name } : { kind, shape: name, color: color ?? "red" };
   if (color && kind !== "shape") spec.color = color;
   const b0 = localBounds({ ...spec, size: 1, floor: false }, catalog);
-  // yaw (pictureRotation [0, yaw, 0]): a side-on toy (a bike, a boat) turned to show its length. The flattening
-  // goes on whichever local axis now points at the camera (z when facing it, x when turned a quarter).
-  const a = (yaw * Math.PI) / 180;
-  const c = Math.cos(a);
-  const sn = Math.sin(a);
-  const xs = [];
-  const zs = [];
-  for (const px of [b0.min[0], b0.max[0]]) for (const pz of [b0.min[2], b0.max[2]]) {
-    xs.push(px * c + pz * sn);
-    zs.push(-px * sn + pz * c);
-  }
-  const b = yaw ? { min: [Math.min(...xs), b0.min[1], Math.min(...zs)], max: [Math.max(...xs), b0.max[1], Math.max(...zs)] } : b0;
+  const [w0, h0, d0] = b0.min.map((v, i) => b0.max[i] - v);
+  // A low, deep toy (a rug, a hat, a cookie, a bed, a nest) seen face-on is a sliver: tip it toward the camera so
+  // its top shows (#108). pictureRotation [tilt, yaw, 0] sets the turn by hand: yaw shows a side-on toy (a bike, a
+  // boat) along its length, tilt shows a flat one from above.
+  const rot = turn ?? (h0 < 0.45 * Math.max(w0, d0) && d0 > h0 ? [55, 0, 0] : [0, 0, 0]);
+  const [ax, ay] = rot.map((v) => (v * Math.PI) / 180);
+  // Three's XYZ Euler: v' = Rx · Ry · v (no z turn here).
+  const R = (v) => {
+    const x1 = v[0] * Math.cos(ay) + v[2] * Math.sin(ay);
+    const z1 = -v[0] * Math.sin(ay) + v[2] * Math.cos(ay);
+    return [x1, v[1] * Math.cos(ax) - z1 * Math.sin(ax), v[1] * Math.sin(ax) + z1 * Math.cos(ax)];
+  };
+  // Flattened (relief, 40% by default) along whichever of its own axes now points most at the camera: a raised
+  // picture on the card, not a toy sticking out toward the camera.
+  const toCam = [0, 1, 2].map((i) => Math.abs(R([0, 1, 2].map((j) => (j === i ? 1 : 0)))[2]));
+  const flat = toCam.indexOf(Math.max(...toCam));
+  const sc = [1, 1, 1].map((v, i) => (i === flat ? relief : 1));
+  const turned = rot.some((v) => v !== 0);
+  const corners = [];
+  for (const cx of [b0.min[0], b0.max[0]]) for (const cy of [b0.min[1], b0.max[1]]) for (const cz of [b0.min[2], b0.max[2]]) corners.push(R([cx * sc[0], cy * sc[1], cz * sc[2]]));
+  const b = turned ? { min: [0, 1, 2].map((i) => Math.min(...corners.map((c) => c[i]))), max: [0, 1, 2].map((i) => Math.max(...corners.map((c) => c[i]))) } : { min: b0.min.map((v, i) => v * sc[i]), max: b0.max.map((v, i) => v * sc[i]) };
   const size = Math.min(h / Math.max(0.05, b.max[1] - b.min[1]), w / Math.max(0.05, b.max[0] - b.min[0]));
-  const flatX = Math.abs(sn) > Math.abs(c);
-  // Flattened to 40% depth: a raised picture on the card, not a toy sticking out toward the camera.
-  return { ...spec, size: Math.round(size * 1000) / 1000, scale: flatX ? [relief, 1, 1] : [1, 1, relief], ...(yaw ? { rotation: [0, yaw, 0] } : {}), at: r3([x - ((b.min[0] + b.max[0]) / 2) * size * (yaw ? 1 : 0), y - b.min[1] * size, front - b.min[2] * size * relief + 0.01]) };
+  return { ...spec, size: Math.round(size * 1000) / 1000, scale: sc, ...(turned ? { rotation: rot } : {}), at: r3([x - ((b.min[0] + b.max[0]) / 2) * size * (turned ? 1 : 0), y - b.min[1] * size, front - b.min[2] * size + 0.01]) };
 }
 
 function expandCard(o, catalog, add, err) {
@@ -99,8 +106,9 @@ function expandCard(o, catalog, add, err) {
     // relief: how far the picture stands out (a share of its depth): 0.4 by default, 0.05 nearly flat for stacks.
     if (o.relief != null && !(typeof o.relief === "number" && o.relief >= 0.02 && o.relief <= 1)) err("E3D_RANGE", "relief", "relief must be 0.02-1");
     const pr = o.pictureRotation;
-    if (pr != null && !(Array.isArray(pr) && pr.length === 3 && pr[0] === 0 && pr[2] === 0 && Number.isFinite(pr[1]))) err("E3D_VEC", "pictureRotation", "pictureRotation turns the picture about y only: [0, degrees, 0]");
-    const pic = picture(o.picture, o.pictureColor, catalog, 0, top, front, W * 0.78, (H - top - 0.08) * 0.92, o.relief ?? 0.4, Array.isArray(pr) ? pr[1] ?? 0 : 0);
+    const prOk = Array.isArray(pr) && pr.length === 3 && pr[2] === 0 && Number.isFinite(pr[1]) && Number.isFinite(pr[0]) && Math.abs(pr[0]) <= 90;
+    if (pr != null && !prOk) err("E3D_VEC", "pictureRotation", "pictureRotation is [tilt, yaw, 0]: tilt -90 to 90 tips the top toward the camera, yaw turns it about y");
+    const pic = picture(o.picture, o.pictureColor, catalog, 0, top, front, W * 0.78, (H - top - 0.08) * 0.92, o.relief ?? 0.4, prOk ? pr : null);
     if (!pic) err("E3D_PICTURE", "picture", `picture "${o.picture}" is not a prop, critter or shape`);
     else add("pic", pic);
   }
