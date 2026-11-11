@@ -39,8 +39,8 @@ export function trackerFrom(spec, lesson) {
   if (style === "checklist" && raw.length > slots) labels = undefined; // too many steps for the card: unlabelled ticks
   const t = { id: TRACKER_ID, kind: "tracker", hud: true, style, slots, surprise: own.surprise ?? true, color: own.color ?? "red", accent: own.accent ?? "yellow", hidden: true,
     // A slot's label shows only once it fills, so labels never give an answer away (ENGINE_REQUESTS #138).
-    hideEmptyLabels: own.hideEmptyLabels ?? style !== "checklist" };
-  // Checklist labels name the steps (not answers) and an unlabelled checklist reads as an empty card, so they show.
+    hideEmptyLabels: own.hideEmptyLabels ?? true };
+  // On for every style, checklists too: their labels are often answers (names, words). Set false for step names.
   if (labels?.length === slots) t.labels = labels;
   if (own.corner) t.corner = own.corner;
   return t;
