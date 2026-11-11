@@ -2898,6 +2898,264 @@
      "name": "dots"
     }
    ]
+  },
+  "lantern": {
+   "color": "red",
+   "description": "A glowing paper lantern, 0.8 m tall: a round paper body lit from inside in its main colour (set color; named `light`, glow material: paint it to change the glow) between dark wooden caps, a gold tassel below and a carrying `handle` loop on top (hang it from a stick or a critter's hand at the loop's top, local [0, 0.8, 0]).",
+   "tags": [
+    "light",
+    "night",
+    "festival",
+    "toybox10k"
+   ],
+   "parts": [
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.38,
+      0
+     ],
+     "s": [
+      0.46,
+      0.5,
+      0.46
+     ],
+     "m": "glow",
+     "name": "light"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.12,
+      0
+     ],
+     "s": [
+      0.26,
+      0.06,
+      0.26
+     ],
+     "c": "wood_dark"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.64,
+      0
+     ],
+     "s": [
+      0.26,
+      0.06,
+      0.26
+     ],
+     "c": "wood_dark"
+    },
+    {
+     "p": "torus",
+     "at": [
+      0,
+      0.75,
+      0
+     ],
+     "s": [
+      0.2,
+      0.2,
+      0.3
+     ],
+     "c": "wood_dark",
+     "name": "handle"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.05,
+      0
+     ],
+     "s": [
+      0.04,
+      0.08,
+      0.04
+     ],
+     "c": "gold",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [
+      0,
+      0.0,
+      0
+     ],
+     "s": [
+      0.07,
+      0.07,
+      0.07
+     ],
+     "c": "gold",
+     "m": "glossy"
+    }
+   ]
+  },
+  "audio_recorder": {
+   "color": "charcoal",
+   "description": "A small handheld audio recorder standing upright, 0.5 m tall: a dark body with a silver mic grille on top, a red record light (named `light`: paint it or pop it; glow), three round buttons and a little screen with a sound wave. Hold it in a hand or stand it on a table; the front faces +z.",
+   "tags": [
+    "sound",
+    "recording",
+    "listening",
+    "toybox10k"
+   ],
+   "parts": [
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.2,
+      0
+     ],
+     "s": [
+      0.22,
+      0.4,
+      0.08
+     ]
+    },
+    {
+     "p": "capsule",
+     "at": [
+      0,
+      0.45,
+      0
+     ],
+     "s": [
+      0.2,
+      0.12,
+      0.12
+     ],
+     "c": "grey",
+     "m": "metal",
+     "name": "mic"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.27,
+      0.042
+     ],
+     "s": [
+      0.15,
+      0.08,
+      0.01
+     ],
+     "c": "sky",
+     "m": "glow",
+     "name": "screen"
+    },
+    {
+     "p": "box",
+     "at": [
+      -0.04,
+      0.27,
+      0.048
+     ],
+     "s": [
+      0.012,
+      0.04,
+      0.005
+     ],
+     "c": "ink"
+    },
+    {
+     "p": "box",
+     "at": [
+      0,
+      0.27,
+      0.048
+     ],
+     "s": [
+      0.012,
+      0.06,
+      0.005
+     ],
+     "c": "ink"
+    },
+    {
+     "p": "box",
+     "at": [
+      0.04,
+      0.27,
+      0.048
+     ],
+     "s": [
+      0.012,
+      0.03,
+      0.005
+     ],
+     "c": "ink"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0,
+      0.16,
+      0.045
+     ],
+     "s": [
+      0.06,
+      0.02,
+      0.06
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "red",
+     "m": "glow",
+     "name": "light"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      -0.06,
+      0.08,
+      0.045
+     ],
+     "s": [
+      0.04,
+      0.02,
+      0.04
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "grey"
+    },
+    {
+     "p": "cylinder",
+     "at": [
+      0.06,
+      0.08,
+      0.045
+     ],
+     "s": [
+      0.04,
+      0.02,
+      0.04
+     ],
+     "r": [
+      90,
+      0,
+      0
+     ],
+     "c": "grey"
+    }
+   ]
   }
  }
 }

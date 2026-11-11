@@ -16,7 +16,36 @@ export const COMPOSITE2_FIELDS = {
   book: ["spreads", "width", "height", "size", "color", "bg", "accent", "frame"],
   choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth"],
   track: ["style", "length", "width", "color", "posts"],
+  crowd: ["count", "rows", "cast", "spacing", "facing", "size"],
 };
+
+const CROWD_CAST = ["bunny", "bear", "cat", "dog", "pig", "mouse", "duck", "squirrel", "owl", "raccoon", "hedgehog", "penguin"];
+
+/**
+ * crowd (#107): visitors or an audience of toy animals in rows, at the middle of the front row, facing +z (the
+ * camera) or turned by facing. Each is <id>_m<k>; back rows stand a little to the side so faces show between.
+ * cast: species to cycle through (default a mixed set); the mix and small turns are fixed, not random.
+ */
+export function expandCrowd(o, catalog, add, err) {
+  const n = o.count ?? 8;
+  if (!(Number.isInteger(n) && n >= 1 && n <= 24)) return err("E3D_RANGE", "count", "count must be 1-24");
+  const rows = o.rows ?? (n > 8 ? 2 : 1);
+  if (!(Number.isInteger(rows) && rows >= 1 && rows <= 4)) return err("E3D_RANGE", "rows", "rows must be 1-4");
+  const cast = o.cast ?? CROWD_CAST;
+  if (!Array.isArray(cast) || !cast.length) return err("E3D_CAST", "cast", "cast must be a list of critter species");
+  const bad = cast.find((c) => !catalog.critters?.[c]);
+  if (bad) return err("E3D_SPECIES", "cast", `"${bad}" is not a critter`);
+  const gap = o.spacing ?? 0.9;
+  const per = Math.ceil(n / rows);
+  for (let k = 0; k < n; k++) {
+    const r = Math.floor(k / per);
+    const i = k % per;
+    const inRow = Math.min(per, n - r * per);
+    const x = (i - (inRow - 1) / 2) * gap + (r % 2 ? gap / 2 : 0);
+    const turn = (((k * 37) % 5) - 2) * 5; // -10..10 degrees, a lively but fixed mix
+    add(`m${k + 1}`, { kind: "critter", species: cast[(k * 5 + r) % cast.length], ...(o.size != null ? { size: o.size } : {}), at: r3([x, 0, -r * gap * 0.9]), rotation: [0, (o.facing ?? 0) + turn, 0] });
+  }
+}
 
 /**
  * track (#92): a toy rail track (two rails on wooden sleepers) or a plank bridge (planks across, rope rails on

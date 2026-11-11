@@ -520,3 +520,17 @@ test("#106 mist hides one object and blows away; rewind runs objects back with a
   bad.scenes[0].beats[1].do[1].back = 100;
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
 });
+
+test("#107 crowd composite, lantern and audio_recorder props, water keeps its colour", async () => {
+  const s = script("crowd_lantern");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const objs = compileScript(s, { catalog }).objects;
+  const crowd = objs.filter((o) => /^crowd_m\d+$/.test(o.id));
+  assert.equal(crowd.length, 10);
+  assert.ok(new Set(crowd.map((o) => o.species)).size >= 5, "a mixed crowd");
+  assert.ok(crowd.some((o) => o.at[2] < 0) && crowd.some((o) => o.at[2] === 0), "two rows");
+  assert.ok(catalog.props.lantern && catalog.props.audio_recorder);
+  assert.ok(catalog.materials.water.opacity >= 0.8);
+  const { expandComposite } = await import("../../runtime/composite.js");
+  assert.ok(expandComposite({ id: "c", kind: "crowd", cast: ["unicorn"] }, catalog).errors.some((e) => e.code === "E3D_SPECIES"));
+});
