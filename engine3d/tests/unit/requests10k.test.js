@@ -156,9 +156,9 @@ test("#12 a checklist tracker is only as wide as its labels need", async () => {
   const { trackerLayout } = await import("../../runtime/retain_layout.js");
   const w = (labels) => trackerLayout({ style: "checklist", slots: labels.length, labels }).width;
   assert.equal(w(["Up", "Go"]), 1.6);
-  assert.ok(Math.abs(w(["Add", "Count"]) - 2.1) < 1e-9);
+  assert.ok(Math.abs(w(["Add", "Count"]) - 2.175) < 1e-9);
   assert.ok(w(["Point to G"]) > w(["Add"]));
-  assert.equal(w(["A very long step!"]), 3.3);
+  assert.equal(w(["A very long step!"]), 4.2);
 });
 
 test("#16 fog rolls in and lifts on the stage's fog track", () => {
@@ -636,4 +636,17 @@ test("#116 photo flash and snapshot border; pages cast no shadow unless asked; s
   const bad = structuredClone(s);
   bad.objects[0].shadow = "no";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.path === "objects[0].shadow"));
+});
+
+test("#117 checklist: the first row clears the card's top, long words shrink to stay inside", async () => {
+  const { trackerLayout, trackerRect } = await import("../../runtime/retain_layout.js");
+  const labels = ["zopnet", "mibolt", "fleebarn", "snorgle", "preglorping", "unflimpable", "trocketeering"];
+  const L = trackerLayout({ style: "checklist", slots: 7, surprise: true, labels });
+  assert.ok(L.slots[0][1] <= -0.48, "a margin above the first row");
+  assert.ok(0.74 + 0.245 * (L.type / 0.24) * 13 <= L.width + 1e-9, "trocketeering fits");
+  const long = trackerLayout({ style: "checklist", slots: 1, labels: ["supercalifragilistic"] });
+  assert.ok(long.type < 0.24 && long.width === 4.2 && 0.74 + 0.245 * (long.type / 0.24) * 20 <= 4.2 + 1e-9, "a longer word shrinks its type");
+  const r = trackerRect({ style: "checklist", slots: 7, surprise: true, labels, hud: true });
+  assert.ok(r.y1 <= 4.5 && r.y0 > -2.5, "inside the frame, above the captions");
+  assert.equal(trackerLayout({ style: "checklist", slots: 2, labels: ["Add", "Count"] }).type, 0.24);
 });

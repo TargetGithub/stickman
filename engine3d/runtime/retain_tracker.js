@@ -72,7 +72,7 @@ export function buildTracker(o, group, kit) {
     } else if (style === "checklist") {
       node.add(box(0.36, 0.36, 0.05, "cream").translateZ(0.04));
       const text = i === surpriseAt ? label ?? "Surprise!" : label ?? `Step ${i + 1}`;
-      const ink = kit.label(text, 0.24, kit.material(i === surpriseAt ? main : "ink", "toy"), 0.02);
+      const ink = kit.label(text, layout.type ?? 0.24, kit.material(i === surpriseAt ? main : "ink", "toy"), 0.02);
       ink.geometry.computeBoundingBox();
       ink.position.set(0.36 - ink.geometry.boundingBox.min.x, 0, 0.05);
       if (i === surpriseAt) {
