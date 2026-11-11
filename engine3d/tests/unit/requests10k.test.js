@@ -591,3 +591,15 @@ test("#113 props vine, plum, rake, sled, cliff, ink_blot, bitten_apple, coat_peg
   assert.ok(catalog.critters.pug);
   assert.deepEqual(validateScript(script("props113"), catalog).errors, []);
 });
+
+test("#114 single letters of a word hide, show, pop and drop in", () => {
+  const s = script("letter_drop");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const tl = compileScript(s, { catalog }).timeline;
+  assert.deepEqual(tl.valueAt("w#c3", "scale", 0.5), [0, 0, 0], "t waits hidden");
+  assert.deepEqual(tl.valueAt("w#c1", "scale", 0.5), [1, 1, 1]);
+  assert.ok(tl.valueAt("w#c3", "position", 1.7)[1] > 0.3, "t falls from above");
+  assert.deepEqual(tl.valueAt("w#c3", "position", 2.5), [0, 0, 0]);
+  assert.ok(tl.valueAt("w#c2", "scale", 3).every((v) => Math.abs(v) < 1e-9), "a hides");
+  assert.deepEqual(tl.valueAt("w#c2", "scale", 3.9), [1, 1, 1], "and comes back");
+});

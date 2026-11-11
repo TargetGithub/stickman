@@ -20,7 +20,43 @@ export function installLetters(d, { catalog, tl, obj, sound, now }) {
     const o = obj(m[1]);
     return o.kind === "letter" ? { id: m[1], o, n: Number(m[2]), key: `${m[1]}#c${m[2]}` } : null;
   };
-  const { hop, grow, paint } = d;
+  const { hop, grow, paint, hide, pop, show, drop } = d;
+  // One letter of a word hides, pops, shows or drops in (#114: tiles dropping one letter at a time). A letter that
+  // should start hidden takes pose { c3: { scale: 0 } } on the word.
+  d.hide = (id, opts = {}) => {
+    const p = piece(id);
+    if (!p) return hide(id, opts);
+    const { at: t = 0, dur = 0.3 } = opts;
+    tl.tween(p.key, "scale", { start: t, dur, to: [0, 0, 0], ease: "backIn" });
+    return d;
+  };
+  d.show = (id, opts = {}) => {
+    const p = piece(id);
+    if (!p) return show(id, opts);
+    const { at: t = 0, dur = 0.4 } = opts;
+    tl.tween(p.key, "scale", { start: t, dur, from: [0, 0, 0], to: [1, 1, 1], ease: "backOut" });
+    return d;
+  };
+  d.pop = (id, opts = {}) => {
+    const p = piece(id);
+    if (!p) return pop(id, opts);
+    const { at: t = 0, dur = 0.5, sound: s = "pop" } = opts;
+    tl.tween(p.key, "scale", { start: t, dur, from: [0, 0, 0], to: [1, 1, 1], ease: "elasticOut" });
+    if (s) sound(s, t);
+    return d;
+  };
+  d.drop = (id, opts = {}) => {
+    const p = piece(id);
+    if (!p) return drop(id, opts);
+    // A letter falls into its place in the word from above and lands with a small bounce.
+    const { at: t = 0, height = 1.2, dur = 0.6, sound: s = "block" } = opts;
+    const base = now(p.key, "position", t) ?? [0, 0, 0];
+    const h = height * (p.o.size ?? 1);
+    tl.set(p.key, "scale", [1, 1, 1], t);
+    tl.tween(p.key, "position", { start: t, dur, from: [base[0], base[1] + h, base[2]], to: base, ease: "bounceOut" });
+    if (s) sound(s, t + dur * 0.4, { volume: 0.6 });
+    return d;
+  };
   const rgbOf = (name) => {
     const h = catalog.colors[name].hex.replace("#", "");
     return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);

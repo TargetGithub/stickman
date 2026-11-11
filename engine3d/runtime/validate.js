@@ -249,8 +249,8 @@ export function validateScript(script, catalog, opts = {}) {
       if (owner.kind === "letter" && /^w\d+$/.test(part)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.target} is a word of a sentence: point at it (point to: "${a.target}") or mark it (vowel_mark words: [${part.slice(1)}]); actions on letters take c1..cN`);
       if (owner.kind === "text_card") return err("E3D_TARGET_KIND", `${p}.target`, `a text card's words (${a.target}) are spots to point at (point to: "${a.target}"); to mark them use emphasize`);
       // A letter word's characters also take hop, grow and paint (one vowel team bounces or turns gold).
-      const letterOnly = owner.kind === "letter" && ["hop", "grow", "paint"].includes(a.do);
-      if (!letterOnly && !PART_MOVES.has(a.do) && !PIECE_ACTIONS.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES, ...PIECE_ACTIONS].join(", ")}; letter pieces also hop, grow, paint)`);
+      const letterOnly = owner.kind === "letter" && ["hop", "grow", "paint", "hide", "show", "pop", "drop"].includes(a.do);
+      if (!letterOnly && !PART_MOVES.has(a.do) && !PIECE_ACTIONS.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES, ...PIECE_ACTIONS].join(", ")}; letter pieces also hop, grow, paint, hide, show, pop, drop)`);
       if (a.do === "paint" && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `paint needs a known color, got "${a.color}"`);
       if (!partNames(owner).includes(part)) return err("E3D_PART", `${p}.target`, `"${base}" has no named part "${part}" (known: ${partNames(owner).join(", ") || "none"})`);
       if (PART_MOVES.has(a.do) && teachPieces(owner).length && !MOVABLE_PIECES.has(owner.kind)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot move a piece of a ${owner.kind} (only fraction bar parts and circle slices move)`);

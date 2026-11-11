@@ -1,0 +1,4 @@
+{"kind":"video3d","version":1,"description":"#114: single letters of a word: c and t drop in one at a time, a pops, then a hides and comes back.",
+"meta":{"title":"Letters one at a time","seed":114},"stage":{"preset":"playroom"},"camera":{"position":[0,1.2,6],"lookAt":[0,0.8,0],"fov":40},
+"objects":[{"id":"w","kind":"letter","text":"cat","size":0.9,"at":[0,0.2,0],"pose":{"c1":{"scale":0},"c2":{"scale":0},"c3":{"scale":0}}}],
+"scenes":[{"id":"a","beats":[{"dur":4,"do":[{"do":"drop","target":"w#c1","at":0.2},{"do":"pop","target":"w#c2","at":1},{"do":"drop","target":"w#c3","at":1.6},{"do":"hide","target":"w#c2","at":2.6},{"do":"show","target":"w#c2","at":3.2}]}]}]}
