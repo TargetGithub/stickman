@@ -329,3 +329,15 @@ test("#79 textSize grows name tags, retext on a number_block, swap letters and t
   bad.scenes[0].beats[0].do[2].with = "c1_text";
   assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code), ["E3D_TEXT", "E3D_CHARS", "E3D_SWAP"]);
 });
+
+test("#95 base: true sits a turned shape on at like a prop (lowest point on at, middle over it)", async () => {
+  const { baseAt } = await import("../../runtime/start_pose.js");
+  const near = (a, b) => a.every((v, i) => Math.abs(v - b[i]) < 1e-3);
+  assert.deepEqual(baseAt({ shape: "box", at: [1, 0, 2] }), [1, 0, 2], "unturned shapes already stand on at");
+  assert.ok(near(baseAt({ shape: "box", at: [0, 0, 0], rotation: [0, 0, 45] }), [0.3536, 0.3536, 0]), "a tipped cube rests on its corner");
+  assert.ok(near(baseAt({ shape: "torus", at: [0, 0, 0], rotation: [90, 0, 0] }), [0, 0.15, -0.5]), "a torus laid flat sits centred");
+  assert.ok(near(baseAt({ shape: "dome", at: [0, 0, 0], rotation: [180, 0, 0] }), [0, 0.5, 0]), "an upturned dome is a bowl on the floor");
+  const s = script("shape_base");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  assert.ok(near(compileScript(s, { catalog }).timeline.valueAt("e", "position", 0), [3, 0.15, -0.5]));
+});

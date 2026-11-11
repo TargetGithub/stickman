@@ -19,7 +19,7 @@ import { RETAIN_FIELDS, checkRetainAction, checkRetainObject, checkRetentionMeta
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
 const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit", "hud", "pose"]);
 const FIELDS = {
-  shape: ["shape", "color", "material", "size", "face", "feeling"],
+  shape: ["shape", "color", "material", "size", "face", "feeling", "base"],
   number_block: ["value", "color", "digitColor", "size"],
   letter: ["text", "color", "colors", "material", "font", "size", "depth", "lift", "forms", ...LETTER_START_FIELDS],
   character: ["character", "clip", "feeling"],
@@ -119,6 +119,7 @@ export function validateScript(script, catalog, opts = {}) {
     for (const k of Object.keys(o)) if (!COMMON.has(k) && !FIELDS[o.kind].includes(k)) warn("W3D_UNKNOWN_FIELD", `${p}.${k}`, `${o.kind} has no field "${k}"`);
     for (const k of ["at", "rotation"]) if (o[k] != null && !isVec(o[k])) err("E3D_VEC", `${p}.${k}`, "must be [x, y, z]");
     checkStartPose(o, p, { err, partNames });
+    if (o.base != null && typeof o.base !== "boolean") err("E3D_RANGE", `${p}.base`, "base must be true or false");
     if (o.scale != null && !isVec(o.scale) && !isNum(o.scale, 0.01, 100)) err("E3D_VEC", `${p}.scale`, "must be a number or [x, y, z]");
     if (o.size != null && !isNum(o.size, 0.05, 50)) err("E3D_RANGE", `${p}.size`, "size must be 0.05-50");
     name(catalog.colors, o.color, "E3D_COLOR", `${p}.color`, "color");

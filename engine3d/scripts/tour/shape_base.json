@@ -1,0 +1,168 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "base true on shapes (#95): turned shapes sit on at like props",
+ "meta": {
+  "title": "o",
+  "seed": 1
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   0.8,
+   8
+  ],
+  "lookAt": [
+   0,
+   0.5,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "a",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    -3,
+    0,
+    0
+   ],
+   "base": true
+  },
+  {
+   "id": "b",
+   "kind": "shape",
+   "shape": "torus",
+   "at": [
+    -1.5,
+    0,
+    0
+   ],
+   "color": "blue",
+   "base": true
+  },
+  {
+   "id": "c",
+   "kind": "shape",
+   "shape": "dome",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "color": "green",
+   "base": true
+  },
+  {
+   "id": "d",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    1.5,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    45
+   ],
+   "color": "yellow",
+   "base": true
+  },
+  {
+   "id": "e",
+   "kind": "shape",
+   "shape": "torus",
+   "at": [
+    3,
+    0,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "color": "purple",
+   "base": true
+  },
+  {
+   "id": "f",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    1.5
+   ],
+   "scale": [
+    2,
+    0.3,
+    1
+   ],
+   "color": "orange",
+   "pivot": [
+    0,
+    0.5,
+    0
+   ],
+   "base": true
+  },
+  {
+   "id": "g",
+   "kind": "shape",
+   "shape": "dome",
+   "at": [
+    -3,
+    0,
+    1.5
+   ],
+   "rotation": [
+    180,
+    0,
+    0
+   ],
+   "base": true,
+   "color": "pink"
+  },
+  {
+   "id": "h",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    3,
+    0,
+    1.5
+   ],
+   "rotation": [
+    0,
+    0,
+    90
+   ],
+   "base": true,
+   "color": "teal",
+   "scale": [
+    0.5,
+    1.5,
+    0.5
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "a",
+   "beats": [
+    {
+     "dur": 1,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

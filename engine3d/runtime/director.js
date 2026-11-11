@@ -4,7 +4,7 @@
 // TTS, the audio mix and the duration. Pure: no three.js, no I/O, no clocks.
 
 import { expandComposite, isComposite } from "./composite.js";
-import { applyStartPose } from "./start_pose.js";
+import { applyStartPose, baseAt } from "./start_pose.js";
 import { letterPieces } from "./letter_layout.js";
 import { installLetters } from "./director_letters.js";
 import { parseTune, TUNE_DEFAULTS } from "./tune.js";
@@ -94,6 +94,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
         return d;
       }
       spec = retainDefaults(placeOn(spec, objects)); // on: { line, value } stands it on a number line
+      if (spec.base === true && spec.kind === "shape") spec = { ...spec, at: baseAt(spec), base: undefined }; // #95: sits like a prop when turned
       // A letter riding in a train car stands on its lowest point, so a g's or y's tail clears the walls (#80).
       if (spec.kind === "letter" && spec.lift === undefined && objects.get(spec.parent)?.model === "train_car") spec = { ...spec, lift: "descender" };
       if (!spec?.id || objects.has(spec.id) || spec.id === "camera" || spec.id === "stage") throw new Error(`object id "${spec?.id}" is missing or taken`);

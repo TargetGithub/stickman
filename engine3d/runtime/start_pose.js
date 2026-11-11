@@ -55,3 +55,38 @@ export function checkStartPose(o, p, { err, partNames }) {
 }
 
 export const LETTER_START_FIELDS = ["split", "splitGap"];
+
+/** Exact boxes of shapes in their own frame (geometry.js, lifted to stand on y = 0), where they differ from 1 m. */
+const SHAPE_BOX = {
+  plate: [[-0.5, 0, -0.5], [0.5, 0.04, 0.5]], disc: [[-0.5, 0, -0.5], [0.5, 0.12, 0.5]], hoop: [[-0.5, 0, -0.5], [0.5, 0.03, 0.5]],
+  bowl: [[-0.5, 0, -0.5], [0.5, 0.5, 0.5]], dome: [[-0.5, 0, -0.5], [0.5, 0.5, 0.5]], torus: [[-0.5, 0, -0.15], [0.5, 1, 0.15]],
+};
+const FLAT_SHAPES = new Set(["circle", "square", "triangle", "rectangle", "oval", "diamond", "crescent", "pentagon", "hexagon", "octagon", "half_circle",
+  "quarter_circle", "arrow", "cross", "snowflake", "drop", "leaf", "ring", "star", "heart"]);
+
+/**
+ * base: true (#95): where to put a turned shape so it sits like a prop: turned about its middle, then lowered or
+ * raised so its lowest point is on at, its middle over at. Without a rotation a shape already stands on at.
+ * @returns {number[]} the at to use instead
+ */
+export function baseAt(o) {
+  const [lo, hi] = SHAPE_BOX[o.shape] ?? (FLAT_SHAPES.has(o.shape) ? [[-0.5, 0, -0.08], [0.5, 1, 0.08]] : [[-0.5, 0, -0.5], [0.5, 1, 0.5]]);
+  const size = o.size ?? 1;
+  const sc = Array.isArray(o.scale) ? o.scale : [1, 1, 1].map(() => (typeof o.scale === "number" ? o.scale : 1));
+  const [rx, ry, rz] = (o.rotation ?? [0, 0, 0]).map((d) => (d * Math.PI) / 180);
+  // Three's XYZ Euler: v' = Rx · Ry · Rz · v.
+  const rot = ([x, y, z]) => {
+    [x, y] = [x * Math.cos(rz) - y * Math.sin(rz), x * Math.sin(rz) + y * Math.cos(rz)];
+    [x, z] = [x * Math.cos(ry) + z * Math.sin(ry), -x * Math.sin(ry) + z * Math.cos(ry)];
+    [y, z] = [y * Math.cos(rx) - z * Math.sin(rx), y * Math.sin(rx) + z * Math.cos(rx)];
+    return [x, y, z];
+  };
+  const pt = (v) => rot(v.map((c, i) => c * size * sc[i]));
+  const corners = [];
+  for (const x of [lo[0], hi[0]]) for (const y of [lo[1], hi[1]]) for (const z of [lo[2], hi[2]]) corners.push(pt([x, y, z]));
+  const mid = pt(lo.map((v, i) => (v + hi[i]) / 2));
+  const minY = Math.min(...corners.map((c) => c[1]));
+  const at = o.at ?? [0, 0, 0];
+  const r4 = (v) => Math.round(v * 1e4) / 1e4;
+  return [r4(at[0] - mid[0]), r4(at[1] - minY), r4(at[2] - mid[2])];
+}
