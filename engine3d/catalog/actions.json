@@ -534,6 +534,25 @@
     "maps"
    ]
   },
+  "circle": {
+   "params": {
+    "targets": "object ids that go round together (required), spaced evenly",
+    "center": "[x, y, z] the middle of the circle, default [0, 0, 0]",
+    "radius": "metres, default 1.5",
+    "turns": "how many times round, default 1",
+    "dur": "seconds, default 4 (0.5 s of it to glide into place)",
+    "sink": "metres they sit lower (swimming in a pond: only their tops show), default 0",
+    "bob": "default true: a gentle bob as they go",
+    "dir": "1 anticlockwise seen from above (default), -1 the other way"
+   },
+   "description": "A group swims, flies or runs round in a circle together: evenly spaced, each facing the way it moves, bobbing gently; sink lowers them into water.",
+   "tags": [
+    "move",
+    "group",
+    "swim",
+    "dance"
+   ]
+  },
   "build": {
    "params": {
     "target": "number_line, fraction_bar, fraction_circle, array, grid or cubes",

@@ -603,3 +603,20 @@ test("#114 single letters of a word hide, show, pop and drop in", () => {
   assert.ok(tl.valueAt("w#c2", "scale", 3).every((v) => Math.abs(v) < 1e-9), "a hides");
   assert.deepEqual(tl.valueAt("w#c2", "scale", 3.9), [1, 1, 1], "and comes back");
 });
+
+test("#115 circle: a group goes round evenly spaced, sitting lower with sink", () => {
+  const s = script("swim_circle");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const tl = compileScript(s, { catalog }).timeline;
+  const p = (id, t) => tl.valueAt(id, "position", t);
+  for (const id of ["d1", "d2", "d3"]) {
+    const q = p(id, 2);
+    assert.ok(Math.abs(Math.hypot(q[0], q[2]) - 1.6) < 0.05 && Math.abs(q[1] + 0.25) < 1e-9, `${id} on the circle, sunk`);
+  }
+  const ang = (id) => Math.atan2(p(id, 2)[0], p(id, 2)[2]);
+  const gap = ((ang("d2") - ang("d1") + 4 * Math.PI) % (2 * Math.PI));
+  assert.ok(Math.abs(gap - (2 * Math.PI) / 3) < 0.05, "evenly spaced");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].targets = ["d1", "nobody"];
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TARGET"));
+});

@@ -22,6 +22,35 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
 
   Object.assign(d, {
     /**
+     * Several critters swim or run round in a circle together (#115): each glides to its own place on the circle
+     * (evenly spaced), then goes round `turns` times facing the way it moves, bobbing gently. sink: how far down
+     * they sit (in a pond: only their tops show above the water); dir -1 goes the other way.
+     */
+    circle({ at: t = 0, targets = [], center = [0, 0, 0], radius = 1.5, turns = 1, dur = 4, sink = 0, bob = true, dir = 1 } = {}) {
+      const n = targets.length;
+      const steps = Math.max(8, Math.round(24 * Math.abs(turns)));
+      const lead = 0.5;
+      targets.forEach((id, i) => {
+        obj(id);
+        const a0 = (2 * Math.PI * i) / n;
+        const at = (a) => [r4(center[0] + radius * Math.sin(a)), r4(center[1] - sink), r4(center[2] + radius * Math.cos(a))];
+        const yawAt = (a) => r4(((a + (dir > 0 ? Math.PI / 2 : -Math.PI / 2)) * 180) / Math.PI);
+        tl.tween(id, "position", { start: t, dur: lead, to: at(a0), ease: "quadInOut" });
+        tl.tween(id, "rotation", { start: t, dur: lead, to: [0, yawAt(a0), 0], ease: "quadOut" });
+        const sd = (dur - lead) / steps;
+        for (let k = 0; k < steps; k++) {
+          const a1 = a0 + (dir * 2 * Math.PI * turns * (k + 1)) / steps;
+          const s0 = t + lead + k * sd;
+          tl.tween(id, "position", { start: s0, dur: sd, to: at(a1), ease: "linear" });
+          tl.tween(id, "rotation", { start: s0, dur: sd, to: [0, yawAt(a1 - (dir * Math.PI * turns) / steps), 0], ease: "linear" });
+          if (bob) tl.tween(id, "hop", { start: s0, dur: sd, to: k % 2 ? 0 : 0.06, ease: "sineInOut" });
+        }
+        if (bob) tl.set(id, "hop", 0, t + dur);
+      });
+      return d;
+    },
+
+    /**
      * A gesture (#109): wide (arms thrown wide: a big stretch, "this big!"), snap (an arm flicks up with a finger
      * snap), thumbs_up / thumbs_down (an arm lifts and a big thumb pops up beside the head). Critters without arms
      * stretch tall instead; the thumb and the sound still come.

@@ -98,6 +98,14 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     else if (o && !rectCells(withDefaults(o), a.rect)) err("E3D_CELLS", `${p}.rect`, `rect must be [row, col, rows, cols] (from 1) inside the ${withDefaults(o).rows} x ${withDefaults(o).cols} ${o.kind}`);
     if (a.cells != null || a.to != null) err("E3D_CELLS", `${p}.rect`, "shade takes one of to, cells or rect");
   }
+  if (a.do === "circle") {
+    if (!Array.isArray(a.targets) || !a.targets.length || a.targets.some((id) => !ids.has(id))) err("E3D_TARGET", `${p}.targets`, "circle needs targets: a list of object ids");
+    if (a.center != null && !(Array.isArray(a.center) && a.center.length === 3 && a.center.every(Number.isFinite))) err("E3D_VEC", `${p}.center`, "center must be [x, y, z]");
+    if (a.radius != null && !isNum(a.radius, 0.3, 20)) err("E3D_RANGE", `${p}.radius`, "radius must be 0.3-20 m");
+    if (a.turns != null && !isNum(Math.abs(a.turns), 0.25, 10)) err("E3D_RANGE", `${p}.turns`, "turns must be 0.25-10");
+    if (a.sink != null && !isNum(a.sink, 0, 2)) err("E3D_RANGE", `${p}.sink`, "sink must be 0-2 m");
+    return true;
+  }
   if (a.do === "rewind") {
     // Effects (director_effects.js): rewind has no target; it lists targets (default everything in the scene).
     if (a.back != null && !isNum(a.back, 0.2, 60)) err("E3D_RANGE", `${p}.back`, "back must be 0.2-60 s: how far back the objects go");
