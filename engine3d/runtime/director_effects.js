@@ -22,6 +22,35 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
 
   Object.assign(d, {
     /**
+     * A photo moment (#116): a white camera flash over the whole picture with a shutter click, then a white photo
+     * border round the screen that holds for dur (the moment "frozen" as a snapshot) and pops away.
+     */
+    photo({ at: t = 0, dur = 1.6, frame = true, sound: s = "snap" } = {}) {
+      const k = ++puffs;
+      const fid = `photo${k}_flash`;
+      d.add({ id: fid, kind: "shape", shape: "plate", color: "white", material: "glow", hud: true, at: [0, 0, 10], rotation: [90, 0, 0], scale: [17, 1, 10], hidden: true, internal: true });
+      tl.base(fid, "fade", 0);
+      tl.set(fid, "visible", true, t);
+      tl.set(fid, "scale", [17, 1, 10], t);
+      tl.set(fid, "fade", 0.95, t);
+      tl.tween(fid, "fade", { start: t + 0.06, dur: 0.45, to: 0, ease: "quadOut" });
+      tl.set(fid, "visible", false, t + 0.55);
+      if (frame) {
+        const gid = `photo${k}`;
+        d.add({ id: gid, kind: "group", hud: true, at: [0, 0, 9], hidden: true, internal: true });
+        for (const [n, x, y, w, h] of [["top", 0, 4.25, 16.5, 0.6], ["bottom", 0, -4.1, 16.5, 0.9], ["left", -7.85, 0, 0.6, 9], ["right", 7.85, 0, 0.6, 9]]) {
+          d.add({ id: `${gid}_${n}`, kind: "shape", shape: "plate", color: "white", material: "matte", hud: true, parent: gid, at: [x, y, 0], rotation: [90, 0, 0], scale: [w, 1, h], internal: true });
+        }
+        tl.set(gid, "visible", true, t + 0.05);
+        tl.tween(gid, "scale", { start: t + 0.05, dur: 0.3, from: [1.08, 1.08, 1], to: [1, 1, 1], ease: "backOut" });
+        tl.tween(gid, "scale", { start: t + dur, dur: 0.25, to: [1.15, 1.15, 1], ease: "quadIn" });
+        tl.set(gid, "visible", false, t + dur + 0.25);
+      }
+      if (s) sound(s, t, { volume: 0.9 });
+      return d;
+    },
+
+    /**
      * Several critters swim or run round in a circle together (#115): each glides to its own place on the circle
      * (evenly spaced), then goes round `turns` times facing the way it moves, bobbing gently. sink: how far down
      * they sit (in a pond: only their tops show above the water); dir -1 goes the other way.

@@ -620,3 +620,20 @@ test("#115 circle: a group goes round evenly spaced, sitting lower with sink", (
   bad.scenes[0].beats[0].do[0].targets = ["d1", "nobody"];
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TARGET"));
 });
+
+test("#116 photo flash and snapshot border; pages cast no shadow unless asked; shadow: false on any object", async () => {
+  const s = script("photo_flash");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const tl = plan.timeline;
+  const flash = plan.objects.find((o) => o.id.endsWith("_flash"));
+  assert.ok(flash.hud && tl.valueAt(flash.id, "fade", 0.81) > 0.9 && tl.valueAt(flash.id, "visible", 1.5) === false);
+  const frame = plan.objects.find((o) => /^photo\d+$/.test(o.id));
+  assert.equal(tl.valueAt(frame.id, "visible", 1.5), true);
+  assert.equal(plan.objects.find((o) => o.id === "pg").shadow, false, "a page casts no shadow by default");
+  const { expandComposite } = await import("../../runtime/composite.js");
+  assert.equal(expandComposite({ id: "p", kind: "page", lines: ["a"], shadow: true }, catalog).objects[0].shadow, true);
+  const bad = structuredClone(s);
+  bad.objects[0].shadow = "no";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.path === "objects[0].shadow"));
+});

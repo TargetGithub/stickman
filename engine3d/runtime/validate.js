@@ -19,7 +19,7 @@ import { PAINT_KINDS, checkCast, checkLift, checkR3Action } from "./validate_r3.
 import { RETAIN_FIELDS, checkRetainAction, checkRetainObject, checkRetentionMeta, lintsOn, retentionLints } from "./validate_retain.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
-const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit", "hud", "pose"]);
+const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit", "hud", "pose", "shadow"]);
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling", "base"],
   number_block: ["value", "color", "digitColor", "size"],
@@ -46,7 +46,7 @@ const TARGETS = {
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
 const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast", "host", "retention"]);
 const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2", "grade3", "grade4", "grade5"];
-const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music", "fog", "rewind", "circle"]);
+const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music", "fog", "rewind", "circle", "photo"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
@@ -122,6 +122,7 @@ export function validateScript(script, catalog, opts = {}) {
     for (const k of ["at", "rotation"]) if (o[k] != null && !isVec(o[k])) err("E3D_VEC", `${p}.${k}`, "must be [x, y, z]");
     checkStartPose(o, p, { err, partNames });
     if (o.base != null && typeof o.base !== "boolean") err("E3D_RANGE", `${p}.base`, "base must be true or false");
+    if (o.shadow != null && typeof o.shadow !== "boolean") err("E3D_RANGE", `${p}.shadow`, "shadow must be true or false");
     if (o.scale != null && !isVec(o.scale) && !isNum(o.scale, 0.01, 100)) err("E3D_VEC", `${p}.scale`, "must be a number or [x, y, z]");
     if (o.size != null && !isNum(o.size, 0.05, 50)) err("E3D_RANGE", `${p}.size`, "size must be 0.05-50");
     name(catalog.colors, o.color, "E3D_COLOR", `${p}.color`, "color");

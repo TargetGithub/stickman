@@ -14,7 +14,7 @@ import { COMPOSITE2_FIELDS, expandBook, expandChoices, expandCrowd, expandSign, 
 export const COMPOSITE_KINDS = ["card", "page", "board", "sign", "word_train", "book", "choices", "track", "crowd"];
 export const isComposite = (o) => COMPOSITE_KINDS.includes(o?.kind);
 
-const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on"];
+const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on", "shadow"];
 export const COMPOSITE_FIELDS = {
   card: ["style", "text", "textSize", "picture", "pictureColor", "pictureRotation", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
   page: ["style", "title", "lines", "numbers", "picture", "pictureColor", "relief", "caption", "sidebar", "width", "size", "color", "bg", "accent", "scale"],
@@ -282,6 +282,8 @@ export function expandComposite(o, catalog) {
   const sc = vec3(o.scale, [1, 1, 1]).map((v) => v * k);
   const group = { id: o.id, kind: "group" };
   for (const f of COMMON) if (o[f] !== undefined) group[f] = o[f];
+  // A page stands tall and thin: its shadow is a faint ghost on the floor, so pages cast none unless asked (#116).
+  if (o.kind === "page" && o.shadow == null) group.shadow = false;
   if (sc.some((v) => v !== 1)) group.scale = r3(sc);
   const out = [group];
   // A piece rides on the composite unless it names its own parent (a word train's rider in its car, a book page on its leaf).

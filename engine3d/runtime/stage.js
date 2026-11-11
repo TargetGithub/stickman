@@ -104,6 +104,9 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     h.group.userData.handle = true;
     handles.set(o.id, h);
   }
+  // shadow: false: the object and everything riding on it cast no shadow (#116: a big standing page left a ghost
+  // shadow on the sand).
+  for (const o of plan.objects) if (o.shadow === false && o.kind !== "lamp") handles.get(o.id)?.group.traverse((m) => { if (m.isMesh) m.castShadow = false; });
   /** reparent: hang an object on the node its "parentRef" prop names at t ("id", "id#part" or "" for the world). */
   const attach = (h, ref) => {
     const [pid, part] = ref.split("#");
