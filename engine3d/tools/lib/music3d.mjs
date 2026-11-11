@@ -53,12 +53,36 @@ export function moodGainAt(segs, mood, t, xfade = XFADE) {
   return g;
 }
 
+/**
+ * How busy the music is over time (#110): [{ t, v }] points for renderMusic, from each scene's musicIntensity
+ * (ramping over a second round the scene start) and the music action's intensity cues; null when neither is set.
+ */
+export function intensityPoints(planScenes, scriptScenes = [], cues = []) {
+  const byId = new Map((scriptScenes ?? []).map((s) => [s.id, s]));
+  const marks = [];
+  for (const p of planScenes ?? []) {
+    const v = byId.get(p.id)?.musicIntensity;
+    if (typeof v === "number") marks.push({ t: p.start, v, dur: 1 });
+  }
+  for (const c of cues ?? []) marks.push({ t: c.t, v: c.v, dur: c.dur ?? 0.5 });
+  if (!marks.length) return null;
+  marks.sort((a, b) => a.t - b.t);
+  const pts = [];
+  let cur = marks[0].v;
+  for (const m of marks) {
+    pts.push({ t: Math.max(0, m.t - m.dur / 2), v: cur }, { t: m.t + m.dur / 2, v: m.v });
+    cur = m.v;
+  }
+  return pts;
+}
+
 /** Errors { code, path, message } for scene music fields (the runtime validator ignores unknown scene keys). */
 export function checkSceneMusic(script, moods) {
   const errors = [];
   (script?.scenes ?? []).forEach((s, i) => {
     if (s.music != null && s.music !== false && !moods.includes(s.music)) errors.push({ code: "E3D_MUSIC", path: `scenes[${i}].music`, message: `unknown music mood "${s.music}" (known: ${moods.join(", ")})` });
     if (s.musicGain != null && !(typeof s.musicGain === "number" && s.musicGain >= 0 && s.musicGain <= 1)) errors.push({ code: "E3D_RANGE", path: `scenes[${i}].musicGain`, message: "musicGain must be 0-1" });
+    if (s.musicIntensity != null && !(typeof s.musicIntensity === "number" && s.musicIntensity >= 0 && s.musicIntensity <= 1)) errors.push({ code: "E3D_RANGE", path: `scenes[${i}].musicIntensity`, message: "musicIntensity must be 0 (calm) to 1 (lively)" });
   });
   return errors;
 }
@@ -68,13 +92,13 @@ export function checkSceneMusic(script, moods) {
  * where it would be), each scaled by its gain curve (computed every 10 ms, linear between).
  * @returns {Float32Array|null}  interleaved stereo at SR, or null when no scene has music
  */
-export function renderMusicBed(segs, { catalog, seed, duration, xfade = XFADE }) {
+export function renderMusicBed(segs, { catalog, seed, duration, xfade = XFADE, intensity }) {
   const moods = [...new Set(segs.map((s) => s.mood).filter(Boolean))];
   if (!moods.length) return null;
   const frames = Math.max(1, Math.round(duration * SR));
   let bed = null;
   for (const mood of moods) {
-    const m = renderMusic({ mood, catalog, seed, seconds: duration }).samples;
+    const m = renderMusic({ mood, catalog, seed, seconds: duration, ...(intensity ? { intensity } : {}) }).samples;
     const step = SR / 100;
     const ctl = Float64Array.from({ length: Math.ceil(frames / step) + 2 }, (_, k) => moodGainAt(segs, mood, (k * step) / SR, xfade));
     for (let i = 0; i < frames; i++) {

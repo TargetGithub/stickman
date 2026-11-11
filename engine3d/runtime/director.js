@@ -49,6 +49,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   const lines = [];
   const hooks = [];
   const musicCues = []; // the music action: { t, gain, dur } ramps of the bed (tools/lib/music3d.mjs)
+  const intensityCues = []; // the music action's intensity: { t, v, dur }
   const chapters = []; // JS scenes' chapters: { id, start, music?, musicGain? } (the music bed changes mood at each)
   let stage = { preset: "playroom" };
   let endAt = 0;
@@ -328,8 +329,10 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
     },
 
     /** Ramp the music bed to gain (0-1, times the scene's level) over dur seconds; gain 1 brings it back. */
-    music({ at: t = 0, gain = 1, dur = 0.5 } = {}) {
-      musicCues.push({ t, gain, dur });
+    music({ at: t = 0, gain, dur = 0.5, intensity } = {}) {
+      // intensity 0-1: how busy the music gets from here (#110: a calm round, then a lively one); gain: its level.
+      if (gain != null || intensity == null) musicCues.push({ t, gain: gain ?? 1, dur });
+      if (intensity != null) intensityCues.push({ t, v: intensity, dur });
       return d;
     },
 
@@ -344,7 +347,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     plan() {
       const duration = Math.max(endAt, tl.end(), ...captions.map((c) => c.start + c.dur)) + 0.5;
-      const cues = musicCues.length ? { musicCues: [...musicCues].sort((a, b) => a.t - b.t) } : {};
+      const cues = { ...(musicCues.length ? { musicCues: [...musicCues].sort((a, b) => a.t - b.t) } : {}), ...(intensityCues.length ? { intensityCues: [...intensityCues].sort((a, b) => a.t - b.t) } : {}) };
       const scenes = chapters.length ? { scenes: [...chapters].sort((a, b) => a.start - b.start) } : {};
       const engagement = [...retain.engagement].sort((a, b) => a.t - b.t);
       return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration, engagement, ...cues, ...scenes };

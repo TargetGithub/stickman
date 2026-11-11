@@ -15,7 +15,7 @@ import { readWav, writeWav } from "../../../tools/lib/wav.mjs";
 import { envelope, LIP_HZ } from "../../../tools/lib/tts/lipsync.mjs";
 import { loadCatalogSync } from "../../../catalog/index.js";
 import { REPO } from "./server.mjs";
-import { applyMusicCues, musicTimeline, renderMusicBed } from "./music3d.mjs";
+import { applyMusicCues, intensityPoints, musicTimeline, renderMusicBed } from "./music3d.mjs";
 import { ensurePhonemes } from "../phonemes.mjs";
 import { normalizeSpoken } from "../../runtime/spoken.js";
 import { renderTunes, tuneSlots } from "./tune3d.mjs";
@@ -112,7 +112,8 @@ export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy
   if (music !== null) {
     // A JS scene's chapters (director.chapter) carry their own music; a JSON script's moods come in `scenes`.
     const segs = musicTimeline(plan.scenes, scenes.length ? scenes : plan.scenes, { music: music || null, musicGain, duration: plan.duration });
-    bed = applyMusicCues(renderMusicBed(segs, { catalog: loadCatalogSync(), seed: plan.seed, duration: plan.duration }), plan.musicCues);
+    const intensity = intensityPoints(plan.scenes, scenes, plan.intensityCues); // musicIntensity / music intensity (#110)
+    bed = applyMusicCues(renderMusicBed(segs, { catalog: loadCatalogSync(), seed: plan.seed, duration: plan.duration, intensity }), plan.musicCues);
     log(`  music: ${segs.map((s) => `${s.mood ?? "none"}${s.gain !== musicGain && s.mood ? ` x${s.gain}` : ""}@${s.start.toFixed(1)}`).join(" -> ")}`);
   }
   const duck = speechDuck(spans);

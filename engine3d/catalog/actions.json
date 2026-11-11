@@ -328,8 +328,9 @@
   },
   "music": {
    "params": {
-    "gain": "0-1 (required): the bed's level, times the scene's own (0.15: a dip under a freeze; 1: back to normal)",
-    "dur": "ramp seconds, default 0.5"
+    "gain": "0-1 (required): the bed's level, times the scene's own (0.15: a dip under a freeze; 1: back to normal) (or give intensity instead)",
+    "dur": "ramp seconds, default 0.5",
+    "intensity": "0 (calm, sparse) to 1 (lively, full): how busy the music gets from here, easing over dur (a quiet round, then a fast one); gain may be left out"
    },
    "description": "Ramp the music bed's level inside a scene and hold it until the next music action: dip it for a freeze, a sound cue or a quiet moment, then bring it back with gain 1.",
    "tags": [

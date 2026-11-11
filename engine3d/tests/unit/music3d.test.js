@@ -81,3 +81,12 @@ test("phonemes: every ph_ sound has IPA, a description and phonics tags", () => 
   const ids = JSON.parse(readFileSync(cfg, "utf8")).phoneme_id_map;
   for (const n of names) for (const ch of table[n].ipa) assert.ok(ids[ch], `${n}: "${ch}" is not a Piper phoneme`);
 });
+
+test("music intensity (#110): scene musicIntensity and music action intensity become ramps for the generator", async () => {
+  const { intensityPoints, checkSceneMusic } = await import("../../tools/lib/music3d.mjs");
+  assert.equal(intensityPoints([{ id: "a", start: 0 }], [{ id: "a" }], []), null);
+  const pts = intensityPoints([{ id: "a", start: 0 }, { id: "b", start: 10 }], [{ id: "a", musicIntensity: 0.2 }, { id: "b", musicIntensity: 0.9 }], [{ t: 15, v: 0.5, dur: 1 }]);
+  assert.deepEqual(pts.map((p) => p.v), [0.2, 0.2, 0.2, 0.9, 0.9, 0.5]);
+  assert.deepEqual(pts.slice(2, 4).map((p) => p.t), [9.5, 10.5]);
+  assert.ok(checkSceneMusic({ scenes: [{ id: "a", musicIntensity: 2 }] }, []).some((e) => e.path === "scenes[0].musicIntensity"));
+});

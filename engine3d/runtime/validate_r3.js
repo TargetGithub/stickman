@@ -88,7 +88,8 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
   if (a.do === "shot" && a.fit != null && !FITS.includes(a.fit)) err("E3D_FIT", `${p}.fit`, `fit must be ${FITS.join(" or ")}`);
   if (a.do === "caption" && a.pos != null && !CAPTION_POS.includes(a.pos)) err("E3D_POS", `${p}.pos`, `pos must be ${CAPTION_POS.join(", ")}`);
   if (a.do === "music") {
-    if (!isNum(a.gain, 0, 1)) err(a.gain == null ? "E3D_REQUIRED" : "E3D_RANGE", `${p}.gain`, "music needs gain: 0-1 (times the scene's level; 1 brings it back)");
+    if (a.intensity != null && !isNum(a.intensity, 0, 1)) err("E3D_RANGE", `${p}.intensity`, "intensity must be 0 (calm, sparse) to 1 (lively, full)");
+    if (a.gain == null ? a.intensity == null : !isNum(a.gain, 0, 1)) err(a.gain == null ? "E3D_REQUIRED" : "E3D_RANGE", `${p}.gain`, "music needs gain: 0-1 (times the scene's level; 1 brings it back), or intensity");
     return true;
   }
   if (a.do === "shade" && a.rect != null) {
