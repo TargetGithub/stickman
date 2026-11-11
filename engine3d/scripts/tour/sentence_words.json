@@ -1,0 +1,7 @@
+{"kind":"video3d","version":1,"description":"#105: a 3D sentence (letter, up to 60 characters) whose words are pieces: a phrase scoop under words 3-4, Robo pointing at word 2, and a thought bubble.",
+"meta":{"title":"Sentence words","seed":105},"stage":{"preset":"playroom"},"camera":{"position":[0,1.6,8],"lookAt":[0,1.2,0],"fov":40},
+"objects":[{"id":"s","kind":"letter","text":"The cat sat on the mat.","size":0.3,"color":"blue","at":[0.9,0.6,0.5]},
+{"id":"robo","kind":"character","character":"robot","at":[-3.4,0,0.6],"rotation":[0,30,0]},
+{"id":"tb","kind":"prop","model":"thought_bubble","at":[-2,2.6,0],"scale":[0.9,0.9,0.9]},
+{"id":"tw","kind":"letter","text":"cat?","size":0.2,"color":"ink","parent":"tb","at":[0,-0.12,0.15]}],
+"scenes":[{"id":"a","beats":[{"dur":3,"do":[{"do":"vowel_mark","target":"s","words":[3,4],"mark":"scoop","color":"orange","at":0.3},{"do":"point","target":"robo","to":"s#w2","at":0.8,"hold":1.5}]}]}]}

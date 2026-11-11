@@ -3,7 +3,7 @@
 // raises an arm toward something). Like the rest of the director it only records timeline data. Pure: no
 // three.js, no I/O, no clocks.
 
-import { letterLayout } from "./letter_layout.js";
+import { letterLayout, letterWords } from "./letter_layout.js";
 import { wordSpots } from "./text_layout.js";
 import { focusPoint } from "./bounds.js";
 import { findWords } from "./card_words.js";
@@ -86,6 +86,15 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       const w = wordSpots(o, catalog.fontMetrics).find((x) => `w${x.n}` === part);
       if (!w) throw new Error(`"${o.id}" has no word "${part}"`);
       return compose([w.x, w.y, 0.04], [0, 0, 0], [1, 1, 1]);
+    }
+    if (o.kind === "letter" && /^w\d+$/.test(part)) {
+      // A word of a letter sentence (#105): the middle of its characters, half the x-height up.
+      const L = letterLayout(o, catalog.fontMetrics);
+      const cs = (letterWords(o)[Number(part.slice(1)) - 1] ?? []).map((n) => L[n - 1]);
+      if (!cs.length) throw new Error(`"${o.id}" has no word "${part}"`);
+      const lo = Math.min(...cs.map((c) => c.x - c.w / 2));
+      const hi = Math.max(...cs.map((c) => c.x + c.w / 2));
+      return compose([(lo + hi) / 2, 0.5 * (o.size ?? 1), 0.1], [0, 0, 0], [1, 1, 1]);
     }
     if (o.kind === "letter") {
       // A character of a word: at its centre on the baseline (letter_layout.js), plus its own offsets.

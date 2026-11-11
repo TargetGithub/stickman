@@ -38,3 +38,15 @@ export function letterLayout(o, metrics) {
 
 /** The piece names of a letter word: c1 .. cN. */
 export const letterPieces = (o) => Array.from(String(o.text ?? ""), (_, i) => `c${i + 1}`);
+
+/** The words of a letter sentence: each word's character numbers (1-based), split on spaces. */
+export function letterWords(o) {
+  const out = [];
+  let cur = [];
+  Array.from(String(o.text ?? "")).forEach((ch, i) => {
+    if (ch.trim()) cur.push(i + 1);
+    else if (cur.length) (out.push(cur), (cur = []));
+  });
+  if (cur.length) out.push(cur);
+  return out;
+}

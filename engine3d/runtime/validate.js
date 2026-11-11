@@ -5,7 +5,7 @@
 import { EASE_NAMES } from "./ease.js";
 import { expandObjects, isComposite } from "./composite.js";
 import { spokenError } from "./spoken.js";
-import { letterPieces } from "./letter_layout.js";
+import { letterPieces, letterWords } from "./letter_layout.js";
 import { cardWords } from "./card_words.js";
 import { LETTER_START_FIELDS, checkStartPose } from "./start_pose.js";
 import { checkLetterAction } from "./validate_letters.js";
@@ -141,7 +141,7 @@ export function validateScript(script, catalog, opts = {}) {
       for (const [j, c] of (o.colors ?? []).entries()) name(catalog.colors, c, "E3D_COLOR", `${p}.colors[${j}]`, "color");
     }
     if (o.kind === "letter") {
-      if (typeof o.text !== "string" || o.text.length < 1 || o.text.length > 24) err("E3D_TEXT", `${p}.text`, "text must be 1-24 characters");
+      if (typeof o.text !== "string" || o.text.length < 1 || o.text.length > 60) err("E3D_TEXT", `${p}.text`, "text must be 1-60 characters (a word or a short sentence)");
       name(catalog.fonts, o.font, "E3D_FONT", `${p}.font`, "font");
       if (o.forms != null && !["school", "book"].includes(o.forms)) err("E3D_FORMS", `${p}.forms`, 'forms must be "school" (single-storey a and g, the default) or "book" (two-storey a and g)');
       else if (o.forms === "book" && !catalog.fontBook?.[o.font ?? "andika_bold"]) err("E3D_FORMS", `${p}.forms`, `font "${o.font}" has no book forms`);
@@ -245,6 +245,7 @@ export function validateScript(script, catalog, opts = {}) {
       const [base, part] = a.target.split("#");
       const owner = ids.get(base);
       if (!owner) return err("E3D_TARGET", `${p}.target`, `no object "${base}"`);
+      if (owner.kind === "letter" && /^w\d+$/.test(part)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.target} is a word of a sentence: point at it (point to: "${a.target}") or mark it (vowel_mark words: [${part.slice(1)}]); actions on letters take c1..cN`);
       if (owner.kind === "text_card") return err("E3D_TARGET_KIND", `${p}.target`, `a text card's words (${a.target}) are spots to point at (point to: "${a.target}"); to mark them use emphasize`);
       // A letter word's characters also take hop, grow and paint (one vowel team bounces or turns gold).
       const letterOnly = owner.kind === "letter" && ["hop", "grow", "paint"].includes(a.do);
@@ -324,7 +325,7 @@ export function validateScript(script, catalog, opts = {}) {
   }
   function partNames(o) {
     const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
-    if (o.kind === "letter") return letterPieces(o); // a word's characters c1..cN, spaces too
+    if (o.kind === "letter") return [...letterPieces(o), ...letterWords(o).map((_, i) => `w${i + 1}`)]; // characters c1..cN (spaces too), words w1..wK
     if (o.kind === "text_card") return cardWords(o.text).map((_, i) => `w${i + 1}`); // a card's words w1..wN (#84)
     return m ? ["head", "body", ...m.parts.filter((x) => x.name).map((x) => x.name)] : teachPieces(o);
   }

@@ -65,7 +65,7 @@ test("#47 retext changes a word, a card's text or a text card in place", () => {
   assert.equal(plan.timeline.valueAt("word", "textIdx", 2), 1);
   assert.deepEqual(plan.objects.find((o) => o.id === "tile_text").texts, ["hop", "hope"]);
   const bad = structuredClone(s);
-  bad.scenes[0].beats[1].do[0].text = "x".repeat(30);
+  bad.scenes[0].beats[1].do[0].text = "x".repeat(70); // a letter word or sentence is 1-60 characters (#105)
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_TEXT"));
 });
 

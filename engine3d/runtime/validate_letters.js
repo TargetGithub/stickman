@@ -1,6 +1,8 @@
 // Validation for the word and letter actions (director_letters.js): vowel_mark, stress, swap, turn_page, retext
 // and split. validate.js calls checkLetterAction for every action with a target. Pure.
 
+import { letterWords } from "./letter_layout.js";
+
 const isNum = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 
 /**
@@ -11,10 +13,15 @@ export function checkLetterAction(a, p, o, { err, ids, catalog, name }) {
   if (a.do === "vowel_mark") {
     if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `vowel_mark needs a letter word, "${a.target}" is a ${o.kind}`);
     const n = String(o.text ?? "").length;
-    const group = ["underline", "bracket", "circle"].includes(a.mark);
-    const most = group ? 12 : 3;
-    if (!a.clear && (!Array.isArray(a.chars) || !a.chars.length || a.chars.length > most || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be 1-${most} character numbers 1-${n}`);
-    if (a.mark != null && !["long", "short", "underline", "bracket", "circle"].includes(a.mark)) err("E3D_MARK", `${p}.mark`, "mark must be long (a bar), short (a cup), underline, bracket or circle");
+    const group = ["underline", "bracket", "circle", "scoop"].includes(a.mark);
+    const most = group ? 60 : 3;
+    const nw = letterWords(o).length;
+    if (a.words != null) {
+      // words: whole words of a sentence (scoop a phrase, underline a word) instead of character numbers.
+      if (!Array.isArray(a.words) || !a.words.length || a.words.some((w) => !Number.isInteger(w) || w < 1 || w > nw)) err("E3D_CHARS", `${p}.words`, `words must be word numbers 1-${nw}`);
+      if (a.chars != null) err("E3D_CHARS", `${p}.chars`, "give chars or words, not both");
+    } else if (!a.clear && (!Array.isArray(a.chars) || !a.chars.length || a.chars.length > most || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > n))) err("E3D_CHARS", `${p}.chars`, `chars must be 1-${most} character numbers 1-${n}`);
+    if (a.mark != null && !["long", "short", "underline", "bracket", "circle", "scoop"].includes(a.mark)) err("E3D_MARK", `${p}.mark`, "mark must be long (a bar), short (a cup), underline, bracket, circle or scoop");
     name(catalog.colors, a.color, "E3D_COLOR", `${p}.color`, "color");
   }
   if (a.do === "turn_page" && !ids.has(`${a.target}_leaf1`)) err("E3D_TARGET_KIND", `${p}.target`, `turn_page needs a book with at least two spreads, "${a.target}" is not one`);
@@ -23,7 +30,7 @@ export function checkLetterAction(a, p, o, { err, ids, catalog, name }) {
     if (!real || !["letter", "text_card", "number_block"].includes(real.kind)) err("E3D_TARGET_KIND", `${p}.target`, `retext needs a letter word, a text_card, a card with text or a number_block, "${a.target}" is a ${o.kind}`);
     else if (real.kind === "number_block" && !/^\d{1,3}$/.test(String(a.text ?? ""))) err("E3D_TEXT", `${p}.text`, "a number block's text is its new value, a number 0-999");
     else if (typeof a.text !== "string" || !a.text.trim()) err("E3D_TEXT", `${p}.text`, "retext needs text");
-    else if (real.kind === "letter" && a.text.length > 24) err("E3D_TEXT", `${p}.text`, "a letter word is 1-24 characters");
+    else if (real.kind === "letter" && a.text.length > 60) err("E3D_TEXT", `${p}.text`, "a letter word is 1-60 characters");
     else if (real.kind === "text_card" && a.text.length > 300) err("E3D_TEXT", `${p}.text`, "a text card holds 1-300 characters");
   }
   if (a.do === "split") {

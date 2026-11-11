@@ -489,3 +489,18 @@ test("#102 shot below keeps the camera under a waterline", () => {
   bad.scenes[0].beats[0].do[0].below = "deep";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_RANGE"));
 });
+
+test("#105 a letter sentence (up to 60 characters) has word pieces: scoop words, point at a word; thought_bubble prop", async () => {
+  const { letterWords } = await import("../../runtime/letter_layout.js");
+  assert.deepEqual(letterWords({ text: "The cat  sat." }), [[1, 2, 3], [5, 6, 7], [10, 11, 12, 13]]);
+  const s = script("sentence_words");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  const scoop = plan.objects.find((o) => o.id.startsWith("s~vowel"));
+  assert.ok(scoop && scoop.points.length === 13 && scoop.points[6][1] < scoop.points[0][1], "a smile under the phrase");
+  assert.ok(catalog.props.thought_bubble);
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[0].words = [9];
+  bad.scenes[0].beats[0].do[1] = { do: "hop", target: "s#w2" };
+  assert.deepEqual(validateScript(bad, catalog).errors.map((e) => e.code), ["E3D_CHARS", "E3D_TARGET_KIND"]);
+});
