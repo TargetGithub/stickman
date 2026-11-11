@@ -25,7 +25,7 @@ test("start pose: parts and a split word begin moved, and a later action moves o
 const bad = [
   { o: { kind: "prop", model: "word_machine", pose: { nope: { rotation: [0, 0, 1] } } }, path: "pose.nope", code: "E3D_PART" },
   { o: { kind: "prop", model: "word_machine", pose: { lever: { rotation: [0, 1] } } }, path: "pose.lever.rotation", code: "E3D_POSE" },
-  { o: { kind: "prop", model: "word_machine", pose: { lever: { scale: [1, 1, 1] } } }, path: "pose.lever.scale", code: "E3D_POSE" },
+  { o: { kind: "prop", model: "word_machine", pose: { lever: { scale: -1 } } }, path: "pose.lever.scale", code: "E3D_POSE" },
   { o: { kind: "letter", text: "cab", split: [3] }, path: "split", code: "E3D_POSE" },
   { o: { kind: "shape", shape: "cube", pose: {} }, path: "pose", code: "E3D_POSE" },
   { o: { kind: "shape", shape: "cube", split: [1] }, path: "split", code: "E3D_POSE" },

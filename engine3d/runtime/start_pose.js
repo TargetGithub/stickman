@@ -25,8 +25,8 @@ export function applyStartPose(o, { tl, parts, catalog }) {
     const key = `${o.id}#${n}`;
     if (!parts.has(key)) throw new Error(`object "${o.id}": pose names no part "${n}"`);
     for (const k of ["rotation", "position"]) if (v?.[k]) tl.base(key, k, v[k]);
-    // scale 0: the letter starts hidden (#114).
-    if (v?.scale != null && o.kind === "letter") tl.base(key, "scale", typeof v.scale === "number" ? [v.scale, v.scale, v.scale] : v.scale);
+    // scale 0: the letter or part starts hidden (#114, #118: a lighthouse beam off until it is needed).
+    if (v?.scale != null) tl.base(key, "scale", typeof v.scale === "number" ? [v.scale, v.scale, v.scale] : v.scale);
   }
 }
 
@@ -41,8 +41,8 @@ export function checkStartPose(o, p, { err, partNames }) {
       for (const [n, v] of Object.entries(o.pose)) {
         if (!known.includes(n)) err("E3D_PART", `${p}.pose.${n}`, `"${o.id}" has no named part "${n}" (known: ${known.join(", ") || "none"})`);
         for (const k of Object.keys(v ?? {})) {
-          const ok = k === "scale" ? o.kind === "letter" && (vec(v[k]) || (Number.isFinite(v[k]) && v[k] >= 0)) : ["rotation", "position"].includes(k) && vec(v[k]);
-          if (!ok) err("E3D_POSE", `${p}.pose.${n}.${k}`, o.kind === "letter" ? "a letter piece takes rotation, position or scale: [x, y, z] (scale may be one number)" : "a part takes rotation or position: [x, y, z]");
+          const ok = k === "scale" ? vec(v[k]) || (Number.isFinite(v[k]) && v[k] >= 0) : ["rotation", "position"].includes(k) && vec(v[k]);
+          if (!ok) err("E3D_POSE", `${p}.pose.${n}.${k}`, o.kind === "letter" ? "a letter piece takes rotation, position or scale: [x, y, z] (scale may be one number)" : "a part takes rotation, position or scale: [x, y, z] (scale may be one number; 0 starts it hidden)");
         }
       }
     }

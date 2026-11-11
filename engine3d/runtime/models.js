@@ -274,14 +274,28 @@ export function buildModel(o, model, material) {
   const phase = (hash32(o.id) % 3600) / 1000;
   const bob = model.bob ?? 0;
   // Every frame starts from the rest pose, so a frame never depends on the frames drawn before it.
-  const rests = [...new Set([...groups.values()].flat())].map((n) => [n, n.userData.rest ?? n.rotation.clone(), n.position.clone()]);
+  const rests = [...new Set([...groups.values()].flat())].map((n) => [n, n.userData.rest ?? n.rotation.clone(), n.position.clone(), n.scale.clone()]);
+  // paint on a part (#118, #126): the part's meshes get their own materials the first time, so only it changes.
+  const tintPart = (node, rgbv) => {
+    node.traverse((m) => {
+      if (!m.isMesh) return;
+      if (!m.userData.ownMat) {
+        m.material = m.material.clone();
+        m.userData.ownMat = true;
+      }
+      m.material.color.setRGB(...rgbv);
+      if (m.material.emissive && m.material.emissiveIntensity > 0) m.material.emissive.setRGB(...rgbv);
+    });
+  };
   return {
     group,
     named,
     update(t, s, state) {
-      for (const [n, r, p] of rests) {
+      for (const [n, r, p, sc] of rests) {
         n.rotation.copy(r);
         n.position.copy(p);
+        n.scale.copy(sc);
+        if (n.userData.partHidden) n.visible = n.userData.partHidden = false;
       }
       body.position.y = bob * (0.5 + 0.5 * Math.sin(t * Math.PI * 1.1 + phase));
       // look (look.js): [yaw, pitch] in degrees on top of the rest pose, held until the next look.
@@ -311,6 +325,12 @@ export function buildModel(o, model, material) {
           if (sub.position) node.position.set(node.position.x + m * sub.position[0], node.position.y + sub.position[1], node.position.z + sub.position[2]);
           // point: "lift" turns one copy only (liftSide 1: the part as listed, -1: its mirror image).
           if (sub.lift && m === (sub.liftSide ?? 1)) node.rotation.set(node.rotation.x + sub.lift[0] * DEG, node.rotation.y + sub.lift[1] * DEG, node.rotation.z + sub.lift[2] * DEG);
+          // hide / show / pop a part (#118): its scale on top of the rest; paint: its colour (tint, 0-1 rgb).
+          if (sub.scale) {
+            node.scale.set(node.scale.x * Math.max(1e-4, sub.scale[0]), node.scale.y * Math.max(1e-4, sub.scale[1]), node.scale.z * Math.max(1e-4, sub.scale[2]));
+            if (Math.max(...sub.scale) < 1e-3) node.visible = !(node.userData.partHidden = true);
+          }
+          if (sub.tint) tintPart(node, sub.tint);
         }
       }
       if (voice) voice(s.talk ?? 0);

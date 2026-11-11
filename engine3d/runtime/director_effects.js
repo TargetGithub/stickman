@@ -20,6 +20,46 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
     return n ? [[n, 1]] : [];
   };
 
+  // hide, show, pop and paint on a critter's or prop's named part (#118, #126, #137): "lamp#light" dims, a beam hides.
+  const partOf = (target) => {
+    const m = /^(.+)#([A-Za-z_][\w]*)$/.exec(String(target));
+    if (!m || /^c\d+$/.test(m[2])) return null;
+    const o = objects.get(m[1]);
+    if (!o || (o.kind !== "critter" && o.kind !== "prop")) return null;
+    return { o, key: target, name: m[2] };
+  };
+  const baseScale = (key) => {
+    if (!tl.hasBase(key, "scale")) tl.base(key, "scale", [1, 1, 1]); // a pose may have set it (scale 0: starts hidden)
+  };
+  const partColor = (o, name) => {
+    const model = o.kind === "critter" ? catalog.critters[o.species] : catalog.props[o.model];
+    const c = model?.parts?.find((p) => p.name === name)?.c ?? o.color ?? model?.color ?? "white";
+    const hex = catalog.colors[o.recolor?.[c] ?? c]?.hex ?? "#ffffff";
+    return [0, 2, 4].map((i) => parseInt(hex.slice(1 + i, 3 + i), 16) / 255);
+  };
+  const wrap = (name, fn) => {
+    const prev = d[name];
+    d[name] = (id, opts = {}) => {
+      const p = partOf(id);
+      return p ? fn(p, opts) : prev(id, opts);
+    };
+  };
+  wrap("hide", ({ key }, { at: t = 0, dur = 0.3 }) => (baseScale(key), tl.tween(key, "scale", { start: t, dur, to: [0, 0, 0], ease: "backIn" }), d));
+  wrap("show", ({ key }, { at: t = 0, dur = 0.4 }) => (baseScale(key), tl.tween(key, "scale", { start: t, dur, from: [0, 0, 0], to: [1, 1, 1], ease: "backOut" }), d));
+  wrap("pop", ({ key }, { at: t = 0, dur = 0.5, sound: s = "pop" }) => {
+    baseScale(key);
+    tl.tween(key, "scale", { start: t, dur, from: [0, 0, 0], to: [1, 1, 1], ease: "elasticOut" });
+    if (s) sound(s, t);
+    return d;
+  });
+  wrap("paint", ({ o, key, name }, { at: t = 0, color, dur = 0.8, ease = "sineInOut" }) => {
+    if (!catalog.colors[color]) throw new Error(`unknown color "${color}"`);
+    if (!tl.hasBase(key, "tint")) tl.base(key, "tint", partColor(o, name));
+    const hex = catalog.colors[color].hex;
+    tl.tween(key, "tint", { start: t, dur, to: [0, 2, 4].map((i) => parseInt(hex.slice(1 + i, 3 + i), 16) / 255), ease });
+    return d;
+  });
+
   Object.assign(d, {
     /**
      * A photo moment (#116): a white camera flash over the whole picture with a shutter click, then a white photo

@@ -659,3 +659,16 @@ test("#138 hideEmptyLabels validates on every tracker style", () => {
   bad.objects[0].hideEmptyLabels = "yes";
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.path === "objects[0].hideEmptyLabels"));
 });
+
+test("#118 #126 #137 parts hide, show, pop and paint; a part can start hidden with pose scale 0", () => {
+  const s = script("part_hide_paint");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const tl = compileScript(s, { catalog }).timeline;
+  assert.deepEqual(tl.valueAt("lh#beam", "scale", 0.3), [0, 0, 0]);
+  assert.deepEqual(tl.valueAt("lh#beam", "scale", 2), [1, 1, 1]);
+  const red = tl.valueAt("mach#light", "tint", 2);
+  assert.ok(red[0] > 0.8 && red[1] < 0.4, "the machine light turned red");
+  const bad = structuredClone(s);
+  bad.scenes[0].beats[0].do[1] = { do: "paint", target: "mach#nope", color: "red" };
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_PART"));
+});

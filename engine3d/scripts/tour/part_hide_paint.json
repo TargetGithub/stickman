@@ -1,0 +1,4 @@
+{"kind":"video3d","version":1,"description":"#118/#126/#137: parts hide, show and paint: the lighthouse beam starts hidden (pose scale 0) and pops on, the word machine's light turns red, the lighthouse lamp turns green.",
+"meta":{"title":"Parts hide and paint","seed":118},"stage":{"preset":"playroom","background":"night","lights":"dim"},"camera":{"position":[0,2,10],"lookAt":[0,1.4,0],"fov":40},
+"objects":[{"id":"lh","kind":"prop","model":"lighthouse","at":[-2.2,0,-1],"pose":{"beam":{"scale":0}}},{"id":"mach","kind":"prop","model":"word_machine","at":[2,0,0]}],
+"scenes":[{"id":"a","beats":[{"dur":3,"do":[{"do":"pop","target":"lh#beam","at":0.5},{"do":"paint","target":"mach#light","color":"red","at":0.5},{"do":"paint","target":"lh#lamp","color":"green","at":1}]}]}]}

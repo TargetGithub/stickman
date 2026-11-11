@@ -53,6 +53,10 @@ export function createTimeline() {
       ends.push(start);
       sorted = false;
     },
+    /** True when a prop has a base value (its spawn state was set, by a pose for example). */
+    hasBase(target, prop) {
+      return bases.get(target)?.has(prop) ?? false;
+    },
     /** A bookmark in the segments added so far; endSince(mark) is where the latest of those added after it ends. */
     mark() {
       return ends.length;
