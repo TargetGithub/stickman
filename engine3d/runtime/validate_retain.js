@@ -110,6 +110,7 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
     if (a.out != null && !(Array.isArray(a.out) && a.out.length === 3 && a.out.every((x) => typeof x === "number"))) err("E3D_VEC", `${p}.out`, "out must be [x, y, z] metres");
     if (a.slow != null && typeof a.slow !== "boolean") err("E3D_HOOK", `${p}.slow`, "slow must be true or false");
     if (a.reset != null && typeof a.reset !== "boolean") err("E3D_HOOK", `${p}.reset`, "reset must be true or false");
+    if (a.peek != null && typeof a.peek !== "boolean") err("E3D_HOOK", `${p}.peek`, "peek must be true or false");
     // target: one hidden object, or a small group of up to 4 that pop in turn.
     const tids = Array.isArray(a.target) ? a.target : [a.target];
     if (Array.isArray(a.target) && (a.target.length < 1 || a.target.length > 4)) err("E3D_HOOK", `${p}.target`, "target is one object id or a list of 1-4");
@@ -117,7 +118,8 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
       const tp = Array.isArray(a.target) ? `${p}.target[${i}]` : `${p}.target`;
       const t = exists(id, tp);
       if (b && t && ownerId === id) err("E3D_HOOK", tp, "the target must be a different object from behind");
-      if (t && !t.hidden) err("E3D_HOOK", tp, `"${id}" must start hidden (hidden: true) so the reveal is a surprise`);
+      if (t && !t.hidden && !a.peek) err("E3D_HOOK", tp, `"${id}" must start hidden (hidden: true) so the reveal is a surprise, or give the hook peek: true when a bit of it shows under the cover on purpose`);
+      if (t && t.hidden && a.peek) err("E3D_HOOK", tp, `peek: true is for a target that shows a little under the cover; "${id}" starts hidden`);
     });
     if (a.style != null && !["lift", "slide", "tip", "open", "none"].includes(a.style)) err("E3D_HOOK", `${p}.style`, "style must be lift, slide, tip, open or none");
     for (const k of ["who", "answerWho"]) if (a[k] != null) exists(a[k], `${p}.${k}`);

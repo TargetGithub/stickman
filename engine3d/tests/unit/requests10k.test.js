@@ -459,3 +459,13 @@ test("#92 book pictures sit on a pale panel with depth and fit their panel (a fl
   const ids = compileScript(t, { catalog }).objects.map((o) => o.id);
   assert.ok(ids.includes("tr_rail2") && ids.includes("tr_s16") && ids.includes("br_rope1") && ids.includes("br_p17"));
 });
+
+test("#100 hook peek: a target that shows a little under the cover hops at the reveal instead of popping", () => {
+  const s = script("hook_peek");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.equal(plan.timeline.valueAt("g", "visible", 0), true, "the tail shows from the start");
+  const bad = structuredClone(s);
+  delete bad.scenes[0].beats[0].do[0].peek;
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.code === "E3D_HOOK"), "without peek it must start hidden");
+});

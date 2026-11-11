@@ -42,7 +42,12 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     const targets = Array.isArray(a.target) ? a.target : [a.target];
     targets.forEach((id, i) => {
       const tp = reveal + 0.25 + i * 0.18;
-      d.pop(id, { at: at(tp), sound: i ? "pop" : "magic_sparkle" });
+      // peek: the target was showing a little all along (a tail under the cover): it is already there, so it gets a
+      // happy hop and the sparkle instead of popping in (#100).
+      if (a.peek) {
+        d.sound(i ? "pop" : "magic_sparkle", { at: at(tp) });
+        d.hop(id, { at: at(tp), height: 0.25, dur: 0.4 });
+      } else d.pop(id, { at: at(tp), sound: i ? "pop" : "magic_sparkle" });
       if (a.out) {
         const p = d.timeline.valueAt(id, "position", at(tp));
         d.move(id, { at: at(tp + 0.1), to: p.map((v, k) => v + a.out[k]), dur: 0.6 * (slow ? 1.6 : 1), ease: "backOut" });
