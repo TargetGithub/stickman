@@ -1,0 +1,264 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "#138: trackers with hideEmptyLabels: only the filled first slot shows its label; empty slots give nothing away.",
+ "meta": {
+  "title": "Hidden empty labels",
+  "seed": 138
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   1.5,
+   9
+  ],
+  "lookAt": [
+   0,
+   1,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "t0",
+   "kind": "tracker",
+   "hud": true,
+   "style": "train",
+   "slots": 4,
+   "labels": [
+    "pig",
+    "quilt",
+    "bat",
+    "dog"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    -7.4,
+    4.0,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t1",
+   "kind": "tracker",
+   "hud": true,
+   "style": "checklist",
+   "slots": 4,
+   "labels": [
+    "pig",
+    "quilt",
+    "bat",
+    "dog"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    -2.4000000000000004,
+    4.0,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t2",
+   "kind": "tracker",
+   "hud": true,
+   "style": "stars",
+   "slots": 4,
+   "labels": [
+    "p",
+    "q",
+    "b",
+    "d"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    2.5999999999999996,
+    4.0,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t3",
+   "kind": "tracker",
+   "hud": true,
+   "style": "path",
+   "slots": 4,
+   "labels": [
+    "p",
+    "q",
+    "b",
+    "d"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    -7.4,
+    1.4,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t4",
+   "kind": "tracker",
+   "hud": true,
+   "style": "islands",
+   "slots": 4,
+   "labels": [
+    "pig",
+    "quilt",
+    "bat",
+    "dog"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    -2.4000000000000004,
+    1.4,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t5",
+   "kind": "tracker",
+   "hud": true,
+   "style": "town",
+   "slots": 4,
+   "labels": [
+    "pig",
+    "quilt",
+    "bat",
+    "dog"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    2.5999999999999996,
+    1.4,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t6",
+   "kind": "tracker",
+   "hud": true,
+   "style": "gauges",
+   "slots": 4,
+   "labels": [
+    "pig",
+    "quilt",
+    "bat",
+    "dog"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    -7.4,
+    -1.2000000000000002,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t7",
+   "kind": "tracker",
+   "hud": true,
+   "style": "pencil",
+   "slots": 4,
+   "labels": [
+    "p",
+    "q",
+    "b",
+    "d"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    -2.4000000000000004,
+    -1.2000000000000002,
+    0
+   ],
+   "size": 0.6
+  },
+  {
+   "id": "t8",
+   "kind": "tracker",
+   "hud": true,
+   "style": "rainbow",
+   "slots": 4,
+   "labels": [
+    "p",
+    "q",
+    "b",
+    "d"
+   ],
+   "hideEmptyLabels": true,
+   "at": [
+    2.5999999999999996,
+    -1.2000000000000002,
+    0
+   ],
+   "size": 0.6
+  }
+ ],
+ "scenes": [
+  {
+   "id": "a",
+   "beats": [
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "progress",
+       "target": "t0",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t1",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t2",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t3",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t4",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t5",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t6",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t7",
+       "at": 0.3
+      },
+      {
+       "do": "progress",
+       "target": "t8",
+       "at": 0.3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -13,6 +13,18 @@ const carType = (label, full) => (label.length <= 2 ? full : Math.max(0.09, Math
 
 /** @returns {(t:number, s:object) => void} */
 export function buildTracker(o, group, kit) {
+  // hideEmptyLabels (#138): a slot's label shows only once the slot fills, so an empty row never gives the answer
+  // away. Labels are tagged as they are made; after each slot is built the grey empty-slot copy goes and a label
+  // shown in both states moves into the filled look.
+  let slotLabel = null;
+  if (o.hideEmptyLabels) {
+    const base = kit;
+    kit = { ...base, label: (text, ...rest) => {
+      const m = base.label(text, ...rest);
+      if (slotLabel != null && text === slotLabel) m.userData.slotLabel = true;
+      return m;
+    } };
+  }
   const { k, layout } = trackerFit(o);
   const inner = new THREE.Group();
   inner.scale.setScalar(k);
@@ -56,6 +68,7 @@ export function buildTracker(o, group, kit) {
     const full = new THREE.Group();
     node.add(empty, full);
     const label = labelOf(i);
+    slotLabel = i === surpriseAt ? null : label;
     if (EXTRA_TRACKER_STYLES.includes(style)) {
       buildExtraSlot(style, { i, n, p, prev: layout.slots[i - 1], empty, full, node, label, surprise: i === surpriseAt, gift, kit, main, accent, filledColor });
     } else if (style === "train") {
@@ -106,6 +119,17 @@ export function buildTracker(o, group, kit) {
           dot.position.set(prev[0] + ((p[0] - prev[0]) * j) / 4 - p[0], prev[1] + ((p[1] - prev[1]) * j) / 4 - p[1], 0);
           node.add(dot);
         }
+      }
+    }
+    if (o.hideEmptyLabels) {
+      const tagged = [];
+      node.traverse((m) => m.userData.slotLabel && tagged.push(m));
+      for (const m of tagged) {
+        let inFull = false;
+        let inEmpty = false;
+        for (let q = m.parent; q && q !== node; q = q.parent) (inFull ||= q === full), (inEmpty ||= q === empty);
+        if (inEmpty) m.parent.remove(m);
+        else if (!inFull) full.attach(m);
       }
     }
     return { node, empty, full };

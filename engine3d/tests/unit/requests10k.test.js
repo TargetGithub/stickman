@@ -650,3 +650,12 @@ test("#117 checklist: the first row clears the card's top, long words shrink to 
   assert.ok(r.y1 <= 4.5 && r.y0 > -2.5, "inside the frame, above the captions");
   assert.equal(trackerLayout({ style: "checklist", slots: 2, labels: ["Add", "Count"] }).type, 0.24);
 });
+
+test("#138 hideEmptyLabels validates on every tracker style", () => {
+  const s = script("tracker_hide_labels");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  assert.equal(s.objects.length, 9);
+  const bad = structuredClone(s);
+  bad.objects[0].hideEmptyLabels = "yes";
+  assert.ok(validateScript(bad, catalog).errors.some((e) => e.path === "objects[0].hideEmptyLabels"));
+});
