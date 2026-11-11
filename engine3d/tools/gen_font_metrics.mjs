@@ -28,7 +28,7 @@ const REPO = new URL("../../", import.meta.url);
 const fonts = JSON.parse(readFileSync(new URL("../catalog/fonts.json", import.meta.url), "utf8")).fonts;
 const CHARS = [...Array.from({ length: 95 }, (_, i) => String.fromCharCode(32 + i)), "°", "·", "’", "‘", "“", "”", "—", "–", "é", "ñ", "ü"];
 const book = { description: "Two-storey (book) a and g glyphs per catalog font, in TTFLoader's format, swapped in for letter words with forms: \"book\" (tools/gen_font_metrics.mjs; do not edit).", fonts: {} };
-const out = { description: "Glyph advance and ink extents per catalog font (tools/gen_font_metrics.mjs; do not edit). g[ch] = [ha, x_min, x_max] in font units of `resolution`.", fonts: {} };
+const out = { description: "Glyph advance and ink extents per catalog font (tools/gen_font_metrics.mjs; do not edit). g[ch] = [ha, x_min, x_max] in font units of `resolution`. In metres for a letter word: value × 1.42 × size / resolution (a lowercase letter is about 1.0 × size wide, i 0.4, m 1.5, capitals 1.3); for text cards: value × 0.72 × font size / resolution. Use letterLayout (runtime/letter_layout.js) or wordSpots (runtime/text_layout.js) rather than adding these up by hand.", fonts: {} };
 for (const [name, f] of Object.entries(fonts)) {
   const buf = readFileSync(new URL(f.file, REPO));
   const j = new TTFLoader().parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
