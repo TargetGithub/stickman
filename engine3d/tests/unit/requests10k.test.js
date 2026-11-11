@@ -341,3 +341,15 @@ test("#95 base: true sits a turned shape on at like a prop (lowest point on at, 
   assert.deepEqual(validateScript(s, catalog).errors, []);
   assert.ok(near(compileScript(s, { catalog }).timeline.valueAt("e", "position", 0), [3, 0.15, -0.5]));
 });
+
+test("#96 a long word on a word_train keeps a readable tile in a stretched car; short words keep the old spacing", async () => {
+  const { expandComposite } = await import("../../runtime/composite.js");
+  const o = expandComposite({ id: "t", kind: "word_train", words: ["the", "caterpillar", "ate"] }, catalog).objects;
+  const get = (id) => o.find((x) => x.id === id);
+  assert.ok(get("t_w2").size >= 0.6 && get("t_car2").scale[0] > 1.3);
+  assert.ok(Math.abs(get("t_w2").scale[0] * get("t_car2").scale[0] - 1) < 0.01, "the rider is not stretched");
+  assert.equal(get("t_car3").at[0], -1.2, "the last car still sits 1.2 m behind the engine");
+  const short = expandComposite({ id: "s", kind: "word_train", words: ["a", "cat"] }, catalog).objects;
+  assert.deepEqual(short.filter((x) => /_car\d$/.test(x.id)).map((x) => x.at[0]), [-2.4, -1.2]);
+  assert.deepEqual(validateScript(script("word_train_long"), catalog).errors, []);
+});

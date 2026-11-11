@@ -12,7 +12,7 @@ const slab = (x, y, front, w, h, t, color, material = "matte") => ({ kind: "shap
 
 export const COMPOSITE2_FIELDS = {
   sign: ["style", "text", "width", "height", "size", "color", "bg", "rim", "post"],
-  word_train: ["words", "colors", "engine", "gap", "tile"],
+  word_train: ["words", "colors", "engine", "gap", "tile", "tileSize"],
   book: ["spreads", "width", "height", "size", "color", "bg", "accent"],
   choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth"],
 };
@@ -81,16 +81,27 @@ export function expandWordTrain(o, catalog, add, err) {
   if (!Array.isArray(words) || words.length < 1 || words.length > 8 || words.some((w) => typeof w !== "string" || !w.trim() || w.length > 12)) {
     return err("E3D_WORDS", "words", "words must be 1-8 strings of 1-12 characters");
   }
-  const gap = o.gap ?? 1.2;
   const colors = o.colors ?? ["red", "blue", "green", "orange", "purple", "teal", "yellow", "pink"];
   if (o.engine !== false) add("engine", { kind: "prop", model: "train_engine", at: [0, 0, 0] });
+  // Each word keeps a readable tile (size 0.6 at least, #96): a long word's car stretches along the track to carry
+  // it, and its rider is squeezed back by the same amount so the word is not stretched. gap: the space between cars.
+  const space = o.gap != null ? Math.max(0.1, o.gap - 0.86) : 0.34;
+  const minSize = o.tileSize ?? 0.6;
+  const sizes = words.map((w) => Math.max(minSize, Math.min(0.9, 2.2 / Math.max(2, w.length + 0.5))));
+  const stretch = words.map((w, i) => Math.max(1, ((w.length * 0.18 + 0.25) * sizes[i] + 0.12) / 0.86));
+  // The train faces +x, so the first word rides in the last car: the sentence reads left to right on screen.
+  let x = 0;
+  const xs = [];
+  for (let i = words.length - 1; i >= 0; i--) {
+    x -= space + (0.86 * stretch[i]) / 2 + (i === words.length - 1 ? 0.86 / 2 : (0.86 * stretch[i + 1]) / 2);
+    xs[i] = x;
+  }
   words.forEach((w, i) => {
-    // The train faces +x, so the first word rides in the last car: the sentence reads left to right on screen.
-    const x = -(words.length - i) * gap;
-    add(`car${i + 1}`, { kind: "prop", model: "train_car", color: colors[i % colors.length], at: r3([x, 0, 0]) });
+    const k = stretch[i];
+    add(`car${i + 1}`, { kind: "prop", model: "train_car", color: colors[i % colors.length], at: r3([xs[i], 0, 0]), ...(k > 1 ? { scale: r3([k, 1, 1]) } : {}) });
     // The rider: a chunky word tile standing up in the wagon, its bottom just inside the 0.52 m walls so the whole
-    // word shows above them, facing the camera; sized to stay within the 0.86 m wagon.
-    add(`w${i + 1}`, { kind: "card", style: o.tile ?? "tile", text: w, size: Math.min(0.9, 2.2 / Math.max(2, w.length + 0.5)), parent: `${o.id}_car${i + 1}`, at: [0, 0.42, 0] });
+    // word shows above them, facing the camera.
+    add(`w${i + 1}`, { kind: "card", style: o.tile ?? "tile", text: w, size: r3([sizes[i]])[0], ...(k > 1 ? { scale: r3([1 / k, 1, 1]) } : {}), parent: `${o.id}_car${i + 1}`, at: r3([0, Math.max(0.42, 0.52 - 0.16 * sizes[i]), 0]) });
   });
 }
 

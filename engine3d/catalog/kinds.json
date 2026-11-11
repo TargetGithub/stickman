@@ -590,8 +590,9 @@
         "words": "1-8 words (up to 12 characters each), one per car",
         "colors": "car colours in order (default red, blue, green, ...)",
         "engine": "false for cars only (default true: an engine in front)",
-        "gap": "metres between cars, default 1.2",
-        "tile": "rider style: tile (default) or word"
+        "gap": "metres from one car's middle to the next for short words, default 1.2 (a long word's car is longer and the gap between cars stays the same)",
+        "tile": "rider style: tile (default) or word",
+        "tileSize": "the smallest a word's tile may get, default 0.6 (a long word's car stretches to carry it at this size)"
       },
       "description": "A toy train whose cars each carry a word tile (runtime/composite2.js): the engine at at facing +x, the words reading left to right (car1 is the leftmost). Pieces <id>_engine, <id>_car<k>, riders <id>_w<k> (cards: retext, highlight, reparent them; move the whole train with move or path). Covers word trains, letter trains and sentence trains.",
       "tags": [
