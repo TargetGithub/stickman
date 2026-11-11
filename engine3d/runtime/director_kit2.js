@@ -143,7 +143,7 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
     },
 
     /** Highlight a phrase on a text card with a marker sweep (words: "a phrase" or [start, end] word indices), on the text the card shows then (#67). */
-    emphasize(id, { at: t = 0, words, color = "yellow", dur = 0.6, clear = false, sound: s } = {}) {
+    emphasize(id, { at: t = 0, words, color = "yellow", dur = 0.4, clear = false, sound: s } = {}) {
       const o = kindOf(id, ["text_card"], "emphasize");
       if (!catalog.colors[color]) throw new Error(`unknown color "${color}"`);
       o.marks ??= [];
