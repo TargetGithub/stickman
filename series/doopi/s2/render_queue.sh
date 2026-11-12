@@ -1,7 +1,7 @@
 #!/bin/zsh
 # Doopi & Friends season 2: the 4K60 render queue (series/doopi/S2_RENDER_PLAN.md).
-# Renders episodes one at a time (multi-core, --resume), builds each 4-episode compilation as soon as its episodes
-# exist, then writes and renders two Shorts per episode. Safe to stop and start again: finished work is skipped and
+# Renders episodes one at a time (multi-core, --resume), then writes and renders two Shorts per episode. Season 2
+# goes up as single episodes: no compilations. Safe to stop and start again: finished work is skipped and
 # a stopped render keeps its finished chunks.
 # Usage: zsh series/doopi/s2/render_queue.sh [first last]   (default 1 24)
 # Run detached:  nohup zsh series/doopi/s2/render_queue.sh > out/logs/s2_queue.out 2>&1 &; caffeinate -is -w $!
@@ -49,25 +49,8 @@ render_ep() {
   echo "$(stamp) ep$i done: $(du -sh "$d/$slug/final.mp4" | cut -f1), $(free_gb "$d") GB free"
 }
 
-# Compilation c (1-6) of episodes 4c-3 .. 4c, once all four exist.
-compile() {
-  local c=$1 a=$(( $1 * 4 - 3 )) b=$(( $1 * 4 )) dirs=() k slug d p
-  slug="s2_compilation_$(nn $c)"
-  if done_dir $slug >/dev/null; then echo "$(stamp) compilation $c already done"; return 0; fi
-  for k in $(seq $a $b); do
-    p=$(done_dir s2_ep$(nn $k)_4k60) || { echo "$(stamp) compilation $c waits for ep$(nn $k)"; return 0; }
-    dirs+=("$p")
-  done
-  d=$(target)
-  echo "$(stamp) compilation $c (episodes $a-$b) into $d"
-  node tools/compilation.mjs "${dirs[@]}" --out "$d/$slug" --title "Doopi & Friends Season 2: Episodes $a-$b" > $L/s2_compilation_$(nn $c).log 2>&1 \
-    || { echo "$(stamp) compilation $c FAILED (see $L/s2_compilation_$(nn $c).log)"; exit 1; }
-  echo "$(stamp) compilation $c done: $(du -sh "$d/$slug/final.mp4" | cut -f1)"
-}
-
 for e in $(seq $FIRST $LAST); do
   render_ep $e
-  [ $(( e % 4 )) -eq 0 ] && compile $(( e / 4 ))
 done
 
 # Shorts: the two best scenes of each episode as 9:16 Shorts, rendered 4K60 next to the episodes.
