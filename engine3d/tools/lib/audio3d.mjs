@@ -2,7 +2,7 @@
 // (tools/lib/tts), the story mixer and loudness levelling (tools/lib/mixer.mjs, loudness.mjs), procedural
 // music (tools/lib/music_gen.mjs) and the shared SFX in assets/sfx/generated/.
 
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { createPiperBackend } from "../../../tools/lib/tts/piper.mjs";
 import { synthesizeLines, clipSampler } from "../../../tools/lib/tts/synth.mjs";
 import { cleanText, resolveVoice, narratorVoice, moodTone } from "../../../tools/lib/tts/lines.mjs";
@@ -37,6 +37,15 @@ export function forPiper(spoken) {
  * (say.who): it travels to the page inside `speech`, like the clip lengths, so lip-sync is the same everywhere.
  * @returns {Record<string, { dur:number, key:string, file:string, env?:number[], hz?:number }>} line id → clip
  */
+/**
+ * The stressed copy of a clip (#104): its key and its file, named so the mixer's clipSampler (cache/<key>.wav)
+ * finds it. The key and file must agree: a key that names no file failed renders with ENOENT.
+ */
+export function stressedClip(line, word) {
+  const key = `${line.key}.stress-${STRESS_SEMITONES}-${STRESS_DB}-${String(word).toLowerCase().replace(/[^a-z0-9]/g, "")}`;
+  return { key, file: join(dirname(line.file), `${key}.wav`) };
+}
+
 export function speakPlan(plan, { log = () => {} } = {}) {
   if (!plan.lines.length) return {};
   const table = loadVoiceTable();
@@ -63,8 +72,9 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   for (const l of synthesizeLines(lines, createPiperBackend(), { log })) {
     // say stress (#104): the word's stretch of the clip lifted in pitch and loudness (a copy beside the cache).
     const st = stressed.get(l.id);
-    const file = st ? stressClip(l.file, `${l.file}.stress-${STRESS_SEMITONES}-${STRESS_DB}-${st.stress.toLowerCase().replace(/[^a-z0-9]/g, "")}.wav`, st.text, st.stress) : l.file;
-    out[l.id] = { dur: l.dur, key: st ? `${l.key}:stress:${st.stress}` : l.key, file, ...(talking.has(l.id) ? { env: envelope(readWav(file).samples), hz: LIP_HZ } : {}) };
+    const sk = st ? stressedClip(l, st.stress) : { key: l.key, file: l.file };
+    const file = st ? stressClip(l.file, sk.file, st.text, st.stress) : l.file;
+    out[l.id] = { dur: l.dur, key: sk.key, file, ...(talking.has(l.id) ? { env: envelope(readWav(file).samples), hz: LIP_HZ } : {}) };
   }
   return out;
 }

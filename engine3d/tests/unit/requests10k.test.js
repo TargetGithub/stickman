@@ -783,3 +783,15 @@ test("#153 a sign with letters: true has letter pieces", () => {
   assert.equal(plan.objects.find((o) => o.id === "s_text").kind, "letter");
   assert.ok(plan.timeline.valueAt("s_text", "tint@1", 1.5)[0] > 0.8, "the a is painted red");
 });
+
+test("stressed clip key names its own file in the cache (render ENOENT fix)", async () => {
+  const { stressedClip } = await import("../../tools/lib/audio3d.mjs");
+  const { join, dirname, basename } = await import("node:path");
+  for (const word of ["louder", "says", "Don't", "ICE cream"]) {
+    const line = { key: "63b1517e", file: "/cache/63b1517e.wav" };
+    const s = stressedClip(line, word);
+    assert.equal(s.file, join(dirname(line.file), `${s.key}.wav`));
+    assert.match(basename(s.file), /^63b1517e\.stress-2-4-[a-z0-9]+\.wav$/);
+  }
+  assert.notEqual(stressedClip({ key: "k", file: "/c/k.wav" }, "a").key, stressedClip({ key: "k", file: "/c/k.wav" }, "b").key);
+});
