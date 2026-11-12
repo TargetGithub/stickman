@@ -146,6 +146,8 @@ function run(d, a, start) {
     case "photo": return d.photo(o);
     case "fill_box": return d.fill_box(a.target, o);
     case "close": return d.close(a.target, o);
+    case "slump": return d.slump(a.target, o);
+    case "fade": return d.fade(a.target, o);
     case "fog": return d.fog(o);
     case "turn": return d.turn(a.target, o);
     case "spin": return d.spin(a.target, o);

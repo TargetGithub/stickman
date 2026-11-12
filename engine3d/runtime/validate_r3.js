@@ -110,6 +110,9 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     }
     if (a.do === "close") return err("E3D_TARGET_KIND", `${p}.target`, `close needs a prop with a door, lid or gate`), true;
   }
+  if (a.do === "fade" && a.to != null && !isNum(a.to, 0, 1)) err("E3D_RANGE", `${p}.to`, "fade to must be 0 (gone) to 1 (solid)");
+  if (a.do === "fade") return true;
+  if (a.do === "slump" && a.deg != null && !isNum(a.deg, 0, 60)) err("E3D_RANGE", `${p}.deg`, "deg must be 0-60");
   if (a.do === "fill_box") {
     if (!ids.has(`${a.target}_t1`) || !ids.has(`${a.target}_b1`)) err("E3D_TARGET_KIND", `${p}.target`, `fill_box needs a sound_boxes object, "${a.target}" is not one`);
     else if (!a.clear && !(Number.isInteger(a.box ?? 1) && ids.has(`${a.target}_t${a.box ?? 1}`))) err("E3D_RANGE", `${p}.box`, `"${a.target}" has no box ${a.box}`);

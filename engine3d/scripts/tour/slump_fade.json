@@ -1,0 +1,4 @@
+{"kind":"video3d","version":1,"description":"#152: Robo slumps and straightens again; a wall fades to see-through to show the box behind it.",
+"meta":{"title":"Slump and fade","seed":152},"stage":{"preset":"playroom"},"camera":{"position":[0,1.5,7],"lookAt":[0,1,0],"fov":40},
+"objects":[{"id":"robo","kind":"character","character":"robot","at":[-1.6,0,0.5]},{"id":"wall","kind":"shape","shape":"box","color":"wall_sage","at":[1.6,0,0],"scale":[2,2,0.2]},{"id":"bx","kind":"prop","model":"toy_box","at":[1.6,0,-0.8]}],
+"scenes":[{"id":"a","beats":[{"dur":3,"do":[{"do":"slump","target":"robo","at":0.2},{"do":"fade","target":"wall","to":0.2,"at":0.5}]}]}]}

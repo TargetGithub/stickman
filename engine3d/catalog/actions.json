@@ -421,6 +421,33 @@
     "social"
    ]
   },
+  "slump": {
+   "params": {
+    "target": "a character, critter or any object",
+    "deg": "how far it droops forward, default 18",
+    "dur": "seconds to droop, default 0.6",
+    "hold": "seconds it stays slumped, default 1.2",
+    "back": "default true: it straightens again; false stays slumped"
+   },
+   "description": "Slump: droop forward and sag (tired, sad, Robo out of power), hold, then straighten.",
+   "tags": [
+    "feelings",
+    "body",
+    "pose"
+   ]
+  },
+  "fade": {
+   "params": {
+    "target": "any object (a wall, a box)",
+    "to": "0 (gone) to 1 (solid), default 0.25: see-through",
+    "dur": "seconds, default 0.8"
+   },
+   "description": "Fade an object to see-through (a wall you can see inside) or back to solid.",
+   "tags": [
+    "effect",
+    "reveal"
+   ]
+  },
   "gesture": {
    "params": {
     "target": "a critter",

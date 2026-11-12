@@ -767,3 +767,11 @@ test("#130 dial: labels round a half circle, the needle starts on value and turn
   assert.deepEqual(plan.timeline.valueAt("d_needle", "rotation", 0), [0, 0, 60]);
   assert.deepEqual(plan.timeline.valueAt("d_needle", "rotation", 1.9), [0, 0, -60]);
 });
+
+test("#152 slump droops and straightens; fade makes any object see-through", () => {
+  const s = script("slump_fade");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const tl = compileScript(s, { catalog }).timeline;
+  assert.ok(tl.valueAt("robo", "rotation", 1)[0] > 15 && Math.abs(tl.valueAt("robo", "rotation", 2.95)[0]) < 1e-6);
+  assert.ok(Math.abs(tl.valueAt("wall", "fade", 2) - 0.2) < 1e-9);
+});

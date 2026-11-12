@@ -87,6 +87,26 @@ export function installEffects(d, { catalog, tl, obj, now, sound, objects }) {
   };
 
   Object.assign(d, {
+    /** Slump (#152): droop forward and sag a little (tired, sad, out of power), hold, then straighten (back: false keeps it). */
+    slump(id, { at: t = 0, dur = 0.6, hold = 1.2, back = true, deg = 18 } = {}) {
+      const o = obj(id);
+      const r = now(id, "rotation", t) ?? o.rotation ?? [0, 0, 0];
+      const sc = now(id, "scale", t) ?? o.scale ?? [1, 1, 1];
+      tl.tween(id, "rotation", { start: t, dur, to: [r[0] + deg, r[1], r[2]], ease: "quadOut" });
+      tl.tween(id, "scale", { start: t, dur, to: [sc[0] * 1.03, sc[1] * 0.92, sc[2] * 1.03], ease: "quadOut" });
+      if (back) {
+        tl.tween(id, "rotation", { start: t + dur + hold, dur: dur * 0.8, to: r, ease: "backOut" });
+        tl.tween(id, "scale", { start: t + dur + hold, dur: dur * 0.8, to: sc, ease: "backOut" });
+      }
+      return d;
+    },
+    /** Fade any object to see-through and back (#152: a wall that lets you see inside): to 0 (gone) - 1 (solid). */
+    fade(id, { at: t = 0, to = 0.25, dur = 0.8 } = {}) {
+      obj(id);
+      if (!tl.hasBase(id, "fade")) tl.base(id, "fade", 1);
+      tl.tween(id, "fade", { start: t, dur, to, ease: "sineInOut" });
+      return d;
+    },
     /** Close a prop's door, lid or gate (#119); slam: true bangs it shut fast with a thud. */
     close(id, { at: t = 0, dur, slam = false, sound: s } = {}) {
       const h = hinges(id);
