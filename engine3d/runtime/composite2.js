@@ -11,7 +11,7 @@ export const LEAF = 0.05;
 const slab = (x, y, front, w, h, t, color, material = "matte") => ({ kind: "shape", shape: "plate", color, material, at: r3([x, y, front - t]), rotation: [90, 0, 0], scale: r3([w, t / 0.04, h]) });
 
 export const COMPOSITE2_FIELDS = {
-  sign: ["style", "text", "width", "height", "size", "color", "bg", "rim", "post"],
+  sign: ["style", "text", "width", "height", "size", "color", "bg", "rim", "post", "letters"],
   word_train: ["words", "colors", "engine", "gap", "tile", "tileSize"],
   book: ["spreads", "width", "height", "size", "color", "bg", "accent", "frame"],
   choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth"],
@@ -188,7 +188,12 @@ export function expandSign(o, catalog, add, err) {
   }
   add("rim", slab(0, y0 + H / 2, -0.005, W + 0.1, H + 0.1, 0.05, o.rim ?? "wood_dark", "toy"));
   add("board", slab(0, y0 + H / 2, 0, W, H, 0.05, o.bg ?? "wood", "toy"));
-  add("text", { kind: "text_card", text, width: W - 0.12, height: H - 0.08, size: S, align: "center", bg: "none", pad: 0.2, color: o.color ?? "ink", at: r3([0, y0 + 0.04, 0.002]) });
+  if (o.letters) {
+    // letters: true (#153): one line of 3D letters instead of a text card, so each letter is a piece
+    // (<id>_text#c3: highlight, mark, paint or pop one letter on the sign). Sized to fit the board.
+    const k = Math.min(S * 2.2, (W - 0.3) / Math.max(1, text.length), (H - 0.2) / 1.5);
+    add("text", { kind: "letter", text, size: r3([k])[0], color: o.color ?? "ink", depth: 0.12, lift: "descender", at: r3([0, y0 + (H - 1.4 * k) / 2, 0.01]) });
+  } else add("text", { kind: "text_card", text, width: W - 0.12, height: H - 0.08, size: S, align: "center", bg: "none", pad: 0.2, color: o.color ?? "ink", at: r3([0, y0 + 0.04, 0.002]) });
 }
 
 /** word_train: an engine (unless engine: false) pulling one car per word, each carrying a word tile, the words reading left to right (car1 is the leftmost, the engine at the right). at: the engine's foot; the train runs toward +x. */

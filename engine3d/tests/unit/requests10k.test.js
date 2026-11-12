@@ -775,3 +775,11 @@ test("#152 slump droops and straightens; fade makes any object see-through", () 
   assert.ok(tl.valueAt("robo", "rotation", 1)[0] > 15 && Math.abs(tl.valueAt("robo", "rotation", 2.95)[0]) < 1e-6);
   assert.ok(Math.abs(tl.valueAt("wall", "fade", 2) - 0.2) < 1e-9);
 });
+
+test("#153 a sign with letters: true has letter pieces", () => {
+  const s = script("sign_letters");
+  assert.deepEqual(validateScript(s, catalog).errors, []);
+  const plan = compileScript(s, { catalog });
+  assert.equal(plan.objects.find((o) => o.id === "s_text").kind, "letter");
+  assert.ok(plan.timeline.valueAt("s_text", "tint@1", 1.5)[0] > 0.8, "the a is painted red");
+});
