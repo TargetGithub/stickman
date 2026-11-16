@@ -70,6 +70,9 @@ export function checkLookCamera(a, p, ids, err) {
 export function addSetPieces(script, catalog, ids, err) {
   if (script.stage?.set !== undefined && !Array.isArray(script.stage.set)) err("E3D_STAGE_SET", "stage.set", "set must be a list of objects ([] for none)");
   const st = script.stage ?? {};
+  // stage.lights (#160): a light rig from the start; background a colour (else the stage's, or the rig's own sky).
+  if (st.lights != null && !catalog.lights[st.lights]) err("E3D_LIGHTS", "stage.lights", `unknown light rig "${st.lights}" (known: ${Object.keys(catalog.lights).join(", ")})`);
+  if (st.background != null && !catalog.colors[st.background]) err("E3D_COLOR", "stage.background", `unknown color "${st.background}"`);
   if (st.hide !== undefined || st.move !== undefined) {
     const known = presetPieceIds(st, catalog);
     if (st.hide !== undefined && !Array.isArray(st.hide)) err("E3D_STAGE_SET", "stage.hide", "hide must be a list of set piece ids");

@@ -66,9 +66,10 @@
   "move": {
    "params": {
     "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",
-    "to": "[x, y, z]",
+    "to": "[x, y, z] (or give by)",
     "dur": "default 1",
-    "ease": "ease name"
+    "ease": "ease name",
+    "by": "[dx, dy, dz] instead of to: move this far from where it is when the move starts (#163)"
    },
    "description": "Glide to a position.",
    "tags": [

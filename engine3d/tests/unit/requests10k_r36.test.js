@@ -178,3 +178,31 @@ test("#159 thumbnail letters leave the characters their own strip", () => {
   assert.ok(xs.every((x) => x > w.at[0] + 0.5), "characters stand right of the word");
   assert.ok(xs.every((x) => x < 3.5));
 });
+
+test("#160 stage.lights is checked; a thumbnail on the same preset keeps the episode's lights", async () => {
+  const { thumbnailScript } = await import("../../runtime/thumbnails.js");
+  const s = (stage) => ({ ...S([], []), stage });
+  assert.deepEqual(errs(s({ preset: "farm", lights: "night" })), []);
+  assert.ok(codes(s({ preset: "farm", lights: "starlight" })).includes("E3D_LIGHTS"));
+  assert.equal(catalog.lights.night.background, "midnight");
+  const ep = { meta: { title: "Night" }, stage: { preset: "farm", lights: "moonlight", background: "midnight", hide: ["sun*"] } };
+  assert.deepEqual(thumbnailScript(ep, { name: "a", stage: "farm", camera: "auto", objects: [] }).stage, ep.stage);
+  assert.deepEqual(thumbnailScript(ep, { name: "a", stage: "playroom", camera: "auto", objects: [] }).stage, { preset: "playroom" });
+});
+
+test("#163 move by goes from where the target is", () => {
+  const s = S([{ id: "w", kind: "prop", model: "ball", at: [1, 0, 0] }], [
+    { do: "move", target: "w", by: [2, 0, 0], at: 0, dur: 1 },
+    { do: "move", target: "w", by: [0, 0, -1], at: 2, dur: 1 },
+  ]);
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  assert.deepEqual(p.timeline.valueAt("w", "position", 1.5), [3, 0, 0]);
+  assert.deepEqual(p.timeline.valueAt("w", "position", 3.5), [3, 0, -1]);
+  assert.ok(codes(S([{ id: "w", kind: "prop", model: "ball" }], [{ do: "move", target: "w", by: [1, 0, 0], to: [0, 0, 0] }])).includes("E3D_VEC"));
+});
+
+test("#161 #162 floats, wagons, carts, harps, corn and stepping stones are in the catalog", () => {
+  for (const m of ["parade_float", "wagon", "cart", "harp", "corn_cob", "stepping_stone"]) assert.ok(catalog.props[m], m);
+  assert.ok(catalog.props.harp.parts.some((p) => p.name === "strings"));
+});

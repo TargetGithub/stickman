@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Writes catalog/models/tk_props4.json: Toybox 10K props from ENGINE_REQUESTS #142, #145, #147, #150 and #158
 // (flower_face, hair_bow, torn_sail, sort_chute, cubby_shelf, star_map, mailbox, echo_machine, fountain,
-// chick_face, chick_feet, choir_bench). Edit this file, not the JSON:
+// chick_face, chick_feet, choir_bench) and #161-#162 (parade_float, wagon, cart, harp, corn_cob, stepping_stone). Edit this file, not the JSON:
 //   node engine3d/tools/gen_tk_props4.mjs
 // Conventions: props stand on y = 0 facing +z, readable on a picture card. Letter spots are in each description.
 
@@ -128,8 +128,61 @@ add("choir_bench", "red", "A two-step choir riser bench 1.6 m wide in its main c
   P("box", [0, 0.605, -0.22], [1.6, 0.01, 0.44], { c: "white", m: "matte" }),
 ]);
 
+// #161: riders on top, not hidden by walls: a low parade float and a little wagon.
+const wheel = (x, z, r, o = {}) => P("cylinder", [x, r, z], [r * 2, 0.08, r * 2], { c: "charcoal", r: [0, 0, 90], ...o });
+add("parade_float", "pink", "A low parade float 1.6 m long (along x) and 0.9 m deep, facing +z: a flat deck in its main colour (top at y 0.32) with a scalloped white skirt down to four hidden wheels, a gold rail along the back and a sign board on two poles above the back edge (board middle at local [0, 1.2, -0.38], a card or letter of width up to 1.3 goes on its front at z -0.34). Riders stand on the deck at y 0.32 (z -0.1 to 0.3): nothing hides them. Move it along x for a parade.", ["parade", "vehicle", "float", "festival"], [
+  ...[[-0.6, 0.3], [0.6, 0.3], [-0.6, -0.3], [0.6, -0.3]].map(([x, z]) => wheel(x, z, 0.1)),
+  P("box", [0, 0.24, 0], [1.6, 0.16, 0.9], { m: "glossy" }),
+  ...Array.from({ length: 8 }, (_, k) => P("half_circle", [-0.7 + k * 0.2, 0.17, 0.455], [0.2, 0.1, 0.03], { c: "white", m: "matte", r: [0, 0, 180] })),
+  P("box", [0, 0.42, -0.4], [1.6, 0.04, 0.04], { c: "gold", m: "glossy" }),
+  ...[-0.7, 0.7].map((x) => P("cylinder", [x, 0.72, -0.42], [0.04, 0.8, 0.04], { c: "gold", m: "glossy" })),
+  P("box", [0, 1.2, -0.4], [1.5, 0.5, 0.05], { c: "white", m: "matte" }),
+]);
+add("wagon", "red", "A little pull wagon 1 m long (along x) in its main colour (red): a low open tray (floor at y 0.26, rim only 0.08 high, so riders and labels show), four black wheels and a handle at the front (+x end) that tilts up. A rider stands on the floor at y 0.26; a label goes on the side at [0, 0.27, 0.31] (a card of width 0.6). Pull it with move (`by` works well).", ["vehicle", "wagon", "toy", "parade"], [
+  ...[[-0.35, 0.26], [0.35, 0.26], [-0.35, -0.26], [0.35, -0.26]].map(([x, z]) => wheel(x, z, 0.1)),
+  P("box", [0, 0.22, 0], [1.0, 0.06, 0.6], { m: "glossy" }),
+  P("box", [0, 0.29, 0.29], [1.0, 0.08, 0.03], { m: "glossy" }),
+  P("box", [0, 0.29, -0.29], [1.0, 0.08, 0.03], { m: "glossy" }),
+  ...[-0.49, 0.49].map((x) => P("box", [x, 0.29, 0], [0.03, 0.08, 0.6], { m: "glossy" })),
+  P("cylinder", [0.75, 0.36, 0], [0.03, 0.55, 0.03], { c: "charcoal", r: [0, 0, -60] }),
+  P("box", [0.98, 0.5, 0], [0.04, 0.04, 0.22], { c: "charcoal" }),
+]);
+
+// #162: a farm cart, a harp, a corn cob, a stepping stone.
+add("cart", "wood", "A wooden farm cart 1.5 m long (along x): an open box bed (floor at y 0.55, sides 0.25 high) on two spoked wheels (0.8 m across) with two long handles reaching out to +x. A load (pumpkins, hay, letters) sits on the floor; a label goes on the side board at [0, 0.68, 0.36]. Main colour: the bed.", ["farm", "vehicle", "cart", "market"], [
+  ...[-1, 1].flatMap((sd) => [P("torus", [0, 0.4, sd * 0.42], [0.8, 0.8, 0.1], { c: "wood_dark" }), P("cylinder", [0, 0.4, sd * 0.42], [0.1, 0.1, 0.1], { c: "wood_dark", r: [90, 0, 0] }),
+    ...[0, 45, 90, 135].map((a) => P("box", [0, 0.4, sd * 0.42], [0.035, 0.72, 0.025], { c: "wood_dark", r: [0, 0, a] }))]),
+  P("box", [0, 0.55, 0], [1.3, 0.06, 0.7]),
+  ...[-1, 1].map((sd) => P("box", [0, 0.7, sd * 0.34], [1.3, 0.25, 0.04])),
+  ...[-1, 1].map((sd) => P("box", [-0.63, 0.7, 0], [0.04, 0.25, 0.7])),
+  ...[-1, 1].map((sd) => P("cylinder", [1.0, 0.5, sd * 0.25], [0.05, 0.8, 0.05], { c: "wood_dark", r: [0, 0, 80] })),
+]);
+add("harp", "gold", "A golden harp 1.3 m tall, facing +z (its strings in the x-y plane): a curved neck on top, a straight pillar at the front (-x) and a sloping sound box at the back (+x), with nine white strings that are `strings` (wiggle or highlight them to play; pair with a soft chime sound).", ["music", "instrument", "harp"], [
+  P("box", [-0.38, 0.62, 0], [0.08, 1.2, 0.08], { m: "glossy" }),
+  P("box", [0.22, 0.6, 0], [0.16, 1.15, 0.16], { m: "glossy", r: [0, 0, 22] }),
+  P("box", [0.03, 1.17, 0], [0.86, 0.1, 0.08], { m: "glossy", r: [0, 0, -5] }),
+  ball([-0.4, 1.24, 0], 0.13, { m: "glossy" }),
+  P("box", [0, 0.05, 0], [0.7, 0.1, 0.24], { m: "glossy" }),
+  ...Array.from({ length: 9 }, (_, k) => {
+    const x = -0.3 + k * 0.06;
+    const top = 1.08 - Math.abs(x + 0.06) * 0.15;
+    const bot = 0.22 + (x + 0.3) * 1.5;
+    return P("cylinder", [x, (top + bot) / 2, 0], [0.012, top - bot, 0.012], { c: "white", m: "glossy", name: "strings" });
+  }),
+]);
+add("corn_cob", "yellow", "A corn cob 0.45 m long standing up: a glossy yellow cob of kernel bumps with three green husk leaves peeled down round its foot and a little stalk. Lay it down with rotation [0, 0, 90] (it then lies along x, middle about 0.12 m up).", ["food", "vegetable", "corn", "farm", "harvest"], [
+  P("capsule", [0, 0.27, 0], [0.16, 0.42, 0.16], { m: "glossy" }),
+  ...Array.from({ length: 12 }, (_, k) => ball([Math.cos(k * 1.05) * 0.075, 0.12 + (k % 6) * 0.055, Math.sin(k * 1.05) * 0.075], 0.04, { c: "gold", m: "glossy" })),
+  ...[0, 120, 240].map((a) => P("leaf", [Math.cos((a * Math.PI) / 180) * 0.08, 0.14, Math.sin((a * Math.PI) / 180) * 0.08], [0.12, 0.3, 0.06], { c: "leaf", r: [0, -a, 12] })),
+  P("cylinder", [0, 0.02, 0], [0.05, 0.05, 0.05], { c: "leaf" }),
+]);
+add("stepping_stone", "grey", "A flat round stepping stone 0.6 m across, top at y 0.1, in its main colour (grey) with a mossy green rim. Lay several in a line across water or grass; a letter, number or tile stands on top at y 0.1 (a hop target for a critter).", ["garden", "water", "path", "stone"], [
+  P("cylinder", [0, 0.045, 0], [0.62, 0.09, 0.56], { c: "leaf", m: "matte" }),
+  P("cylinder", [0, 0.06, 0], [0.56, 0.09, 0.5], { m: "matte" }),
+]);
+
 const out = {
-  description: "Toybox 10K props from ENGINE_REQUESTS #142-#158 (flower_face, hair_bow, torn_sail, sort_chute, cubby_shelf, star_map, mailbox, echo_machine, fountain, chick_face, chick_feet, choir_bench). Generated by tools/gen_tk_props4.mjs: edit the generator and rerun it, not the JSON.",
+  description: "Toybox 10K props from ENGINE_REQUESTS #142-#158 (flower_face, hair_bow, torn_sail, sort_chute, cubby_shelf, star_map, mailbox, echo_machine, fountain, chick_face, chick_feet, choir_bench) and #161-#162 (parade_float, wagon, cart, harp, corn_cob, stepping_stone). Generated by tools/gen_tk_props4.mjs: edit the generator and rerun it, not the JSON.",
   props,
 };
 const file = fileURLToPath(new URL("../catalog/models/tk_props4.json", import.meta.url));

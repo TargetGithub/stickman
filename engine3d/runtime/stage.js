@@ -27,7 +27,10 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.autoClear = false;
 
-  const preset = { ...catalog.stages[plan.stage.preset ?? "playroom"], ...plan.stage };
+  // stage.lights (#160) may bring its rig's own sky (night: midnight) unless the stage names a background.
+  const base = catalog.stages[plan.stage.preset ?? "playroom"];
+  const rigSky = plan.stage.lights != null && plan.stage.background == null ? catalog.lights[plan.stage.lights]?.background : null;
+  const preset = { ...base, ...plan.stage, ...(rigSky ? { background: rigSky } : {}) };
   const rig = catalog.lights[preset.lights];
   const color = (name) => new THREE.Color(catalog.colors[name].hex);
   // A plan with `stage` changes lists every preset it shows: fog, floor, rug and shadows exist for all of them.

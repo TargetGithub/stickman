@@ -1,0 +1,14 @@
+{"kind":"video3d","version":1,"description":"ENGINE_REQUESTS #160-#163: stage.lights night from the start, parade_float and wagon with riders, cart, harp, corn_cob, stepping stones, move by.",
+"meta":{"title":"Round 37 props","seed":37},"stage":{"preset":"farm","lights":"night","hide":["sun*","cloud*"]},"camera":{"position":[0,2,9],"lookAt":[0,0.8,0],"fov":42},
+"objects":[
+{"id":"fl","kind":"prop","model":"parade_float","at":[-3.6,0,0]},
+{"id":"fl_d","kind":"critter","species":"duck","size":0.6,"parent":"fl","at":[0,0.32,0.1]},
+{"id":"fl_l","kind":"letter","text":"ar","size":0.4,"color":"red","parent":"fl","at":[0,1.05,-0.33]},
+{"id":"wg","kind":"prop","model":"wagon","at":[-1.3,0,0.4]},
+{"id":"wg_b","kind":"letter","text":"b","size":0.5,"color":"blue","parent":"wg","at":[0,0.26,0]},
+{"id":"ct","kind":"prop","model":"cart","at":[0.9,0,-0.6]},
+{"id":"ct_c","kind":"prop","model":"corn_cob","parent":"ct","at":[0,0.58,0],"rotation":[0,0,90]},
+{"id":"hp","kind":"prop","model":"harp","at":[2.8,0,0]},
+{"id":"cc","kind":"prop","model":"corn_cob","at":[3.8,0,0.5]},
+{"id":"s1","kind":"prop","model":"stepping_stone","at":[-1,0,2]},{"id":"s2","kind":"prop","model":"stepping_stone","at":[0,0,2.2]},{"id":"s3","kind":"prop","model":"stepping_stone","at":[1,0,2]}],
+"scenes":[{"id":"a","beats":[{"dur":2.5,"do":[{"do":"move","target":"wg","by":[0.4,0,0],"at":0.5,"dur":1}]}]}]}

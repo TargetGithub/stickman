@@ -40,14 +40,15 @@ export function thumbnailScript(script, concept) {
 }
 
 /**
- * A concept's stage: the episode's (with its hide/move) by default; a preset name (keeping the episode's hide and
- * move when it is the same preset); or a full stage object ({ preset, hide, move, ... }).
+ * A concept's stage: the episode's by default; a preset name (keeping the episode's hide, move, lights and colours
+ * when it is the same preset); or a full stage object ({ preset, hide, move, lights, ... }).
  */
 function thumbStage(c, ep) {
   if (c == null) return ep ?? { preset: "playroom" };
   if (typeof c === "object") return c;
-  const same = (ep?.preset ?? "playroom") === c;
-  return { preset: c, ...(same && ep?.hide ? { hide: ep.hide } : {}), ...(same && ep?.move ? { move: ep.move } : {}) };
+  // The same preset keeps everything the episode set on it: hide, move, and its lights and colours (#160: a night
+  // lesson's thumbnail came out daylit).
+  return (ep?.preset ?? "playroom") === c ? { ...ep, preset: c } : { preset: c };
 }
 
 /**

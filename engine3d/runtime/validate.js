@@ -261,7 +261,7 @@ export function validateScript(script, catalog, opts = {}) {
       if (a.do === "paint" && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `paint needs a known color, got "${a.color}"`);
       if (!partNames(owner).includes(part)) return err("E3D_PART", `${p}.target`, `"${base}" has no named part "${part}" (known: ${partNames(owner).join(", ") || "none"})`);
       if (PART_MOVES.has(a.do) && teachPieces(owner).length && !MOVABLE_PIECES.has(owner.kind)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot move a piece of a ${owner.kind} (only fraction bar parts and circle slices move)`);
-      if (a.do === "move" && a.to == null) err("E3D_REQUIRED", `${p}.to`, "move needs to: [x, y, z]");
+      if (a.do === "move" && a.to == null && a.by == null) err("E3D_REQUIRED", `${p}.to`, "move needs to: [x, y, z] (or by)");
       if (a.do === "mark" && a.result != null && a.result !== "correct" && a.result !== "incorrect") err("E3D_RESULT", `${p}.result`, 'result must be "correct" or "incorrect"');
       return;
     }
@@ -289,7 +289,9 @@ export function validateScript(script, catalog, opts = {}) {
       if (ch && a.then != null && !ch.clips[a.then]) err("E3D_CLIP", `${p}.then`, `${o.character} has no clip "${a.then}"`);
     }
     checkTeachAction(a, p, o, { err, ids, catalog });
-    if ((a.do === "drop" || a.do === "move" || a.do === "roll") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    if ((a.do === "drop" || a.do === "roll" || (a.do === "move" && a.by == null)) && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
+    // move by (#163): an offset from where the target is when the move starts, instead of to.
+    if (a.do === "move" && a.by != null && (!isVec(a.by) || a.to != null)) err("E3D_VEC", `${p}.by`, "by is [dx, dy, dz] and replaces to (give one of them)");
     checkLetterAction(a, p, o, { err, ids, catalog, name }); // vowel_mark, stress, turn_page, retext, split
     if (a.do === "lie" && a.pose != null && !["side", "back", "up"].includes(a.pose)) err("E3D_LIE", `${p}.pose`, "pose must be side, back or up");
     if (a.do === "lie" && a.side != null && a.side !== 1 && a.side !== -1) err("E3D_LIE", `${p}.side`, "side must be 1 (head to the left) or -1");

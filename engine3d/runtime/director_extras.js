@@ -53,7 +53,9 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
   const stageBases = () => {
     if (lit) return;
     lit = true;
-    const s = { ...catalog.stages[getStage().preset ?? "playroom"], ...getStage() };
+    const st = getStage();
+    const rigSky = st.lights != null && st.background == null ? catalog.lights[st.lights]?.background : null; // as stage.js
+    const s = { ...catalog.stages[st.preset ?? "playroom"], ...st, ...(rigSky ? { background: rigSky } : {}) };
     const rig = catalog.lights[s.lights];
     tl.base("stage", "background", rgb(catalog.colors[s.background].hex));
     if (s.floor) tl.base("stage", "floor", rgb(catalog.colors[s.floor].hex));

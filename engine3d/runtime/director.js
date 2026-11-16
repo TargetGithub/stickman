@@ -201,7 +201,13 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       sound(s, land, { pan: Math.max(-1, Math.min(1, p[0] / 6)) });
       return d;
     },
-    move(id, { at: t = 0, to, dur = 1, ease = "quadInOut" } = {}) {
+    move(id, { at: t = 0, to, by, dur = 1, ease = "quadInOut" } = {}) {
+      // by (#163): relative to where it is at t (its moves so far included).
+      if (by != null) {
+        obj(id);
+        const p = now(id, "position", t) ?? [0, 0, 0];
+        to = p.map((v, i) => Math.round((v + by[i]) * 1e4) / 1e4);
+      }
       return d.tween(id, "position", V(to), { at: t, dur, ease });
     },
     /** Turn to angles `to`, or by `by` degrees about one axis (x, y or z) from where it is. */
