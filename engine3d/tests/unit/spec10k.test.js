@@ -149,6 +149,23 @@ test("blood: allowed in science and health (any band), banned elsewhere; bloody 
   assert.ok(bad("Blood carries oxygen."), "ela");
 });
 
+test("grades 2-5 reading specs must carry the passage (notes or quoted scene lines)", () => {
+  const s = clone(example);
+  Object.assign(s, { standards: ["RL.3.1"] });
+  const ctx = { schema, names, file: "/x/kg0101.json" };
+  const missing = () => validateSpec(s, ctx).errors.some((e) => /reading text missing/.test(e));
+  assert.ok(missing(), "no passage");
+  s.notes = "Story: " + "Hen planted seeds by the barn and waited for rain. ".repeat(7);
+  assert.ok(!missing(), "passage in notes");
+  delete s.notes;
+  s.scenes[1].visuals = `Owl reads: '${"Fox found a red kite stuck in the old oak tree. ".repeat(7)}'`;
+  assert.ok(!missing(), "passage quoted in visuals");
+  s.standards = ["K.CC.B.5"];
+  delete s.scenes[1].visuals;
+  s.scenes[1].visuals = "Fireflies on the fence in a line.";
+  assert.ok(!missing(), "not a reading spec");
+});
+
 test("babies: no timers, no tests, no confetti", () => {
   const s = clone(example);
   Object.assign(s, { id: "bb0101", band: "bb", subject: "math", strand: "s", standards: ["XX"], series: "peekaboo_world", target_length_s: 300 });

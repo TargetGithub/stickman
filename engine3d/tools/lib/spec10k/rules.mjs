@@ -12,6 +12,8 @@ export const RULES = {
   endGapMaxS: 20,
   teaseMaxS: 60,
   chapterMinS: 10,
+  /** Grades 2-5 reading specs (primary standard RL/RI) must carry the text being read: notes plus quoted lines in scenes. */
+  readingTextMin: 300,
   checkMin: { bb: 1, pk: 2, kg: 3, g1: 3, g2: 3, g3: 3, g4: 3, g5: 3 },
   /** Not allowed in baby videos (no timers, no confetti, no fast flashes). */
   babyBannedInteractions: ["point_before_timer", "solve_step", "vote", "explain_why", "spot_mistake"],
@@ -98,6 +100,10 @@ export function validateSpec(s, ctx) {
     for (const x of s.interactions) if (RULES.babyBannedInteractions.includes(x.type)) errors.push(`babies: no "${x.type}" interactions (no timers or tests for 0-2)`);
     if (RULES.babyBannedMagic.includes(s.magical_moment.id)) errors.push(`babies: magical moment "${s.magical_moment.id}" is too loud or fast`);
   }
+  if (/^R[LI]\.[2-5]\./.test(s.standards[0])) {
+    const n = readingTextLength(s);
+    if (n < RULES.readingTextMin) errors.push(`reading text missing: ${s.standards[0]} specs carry the passage or story being read (in notes, or quoted in scene visuals); found ${n} characters, need ${RULES.readingTextMin}`);
+  }
   const text = allText(s);
   // "blood" is allowed where science or body parts call for it (science and health specs, any band); "bloody",
   // gore and weapons never are (Sridhar, 2026-11-06).
@@ -115,6 +121,15 @@ export function validateSpec(s, ctx) {
     for (const n of s.needs.features) if (typeof n === "string" && ctx.names.aliases?.[n]) warnings.push(`needs.features: "${n}" is a provisional name; use the retention-kit name "${ctx.names.aliases[n]}"`);
   }
   return { errors, warnings };
+}
+
+/**
+ * Characters of reading text in a spec: notes plus passage lines quoted in scene visuals.
+ * @param {object} s
+ */
+export function readingTextLength(s) {
+  const quoted = (s.scenes ?? []).reduce((a, sc) => a + (sc.visuals?.match(/['"\u2018\u201c][^'"\u2019\u201d]{25,}['"\u2019\u201d]/g) ?? []).join("").length, 0);
+  return (s.notes ?? "").length + quoted;
 }
 
 /** Series, magic library and allocation slot. */
