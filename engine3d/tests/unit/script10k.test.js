@@ -141,6 +141,18 @@ test("qa: hook first, magic, banned words, blood only in science", () => {
   assert.ok(codes(SPEC).includes("Q_HOOK_FIRST"));
 });
 
+test("qa: spoken twins must sit inside their call, challenge or hook", () => {
+  const s = expandLesson(LESSON, SPEC, { catalog, skills: {} });
+  const lesson = (beat) => ({ ...LESSON, scenes: [{ title: "x", beats: [beat] }] });
+  const codes = (beat) => qaScript(s, SPEC, lesson(beat), catalog).errors.map((e) => e.code);
+  for (const [beat, bad] of [
+    [{ call: { prompt: "Say howk?" }, promptSpoken: "Say [[ hˈaʊk ]]?" }, true],
+    [{ challenge: { prompt: "Which?" }, praiseSpoken: "Yes!" }, true],
+    [{ call: { prompt: "Say howk?", promptSpoken: "Say [[ hˈaʊk ]]?" } }, false],
+    [{ say: "Hi!", spoken: "Hi!" }, false],
+  ]) assert.equal(codes(beat).includes("Q_SPOKEN_MISPLACED"), bad, JSON.stringify(beat));
+});
+
 test("thumbnails: right-half layout, badge, robot waves", () => {
   const [t] = buildThumbnails([{ title: "HI", objects: [{ id: "x", kind: "prop", model: "apple" }, { id: "r", kind: "character", character: "robot" }] }], { band: "g3" });
   assert.equal(t.badge, "GRADE 3");

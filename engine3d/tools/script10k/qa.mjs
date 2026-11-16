@@ -119,6 +119,14 @@ export function qaScript(script, spec, lesson, catalog, { allow = [] } = {}) {
     if (kind === "spoken" && /[←-⇿☀-➿]|\*|_/.test(text)) W("Q_TTS_SYMBOL", path, `symbols the voice would read oddly: "${text}"`);
   }
   for (const [w, path] of unknown) W("Q_SPELLING", path, `"${w}" is not in the dictionary: check the spelling (or add it to the lesson's "allow")`);
+  // Spoken twins of a call/challenge/hook belong inside that object; at beat level they are ignored and TTS reads the caption.
+  (lesson.scenes ?? []).forEach((s, si) => (s.beats ?? []).forEach((b, bi) => {
+    const host = ["call", "challenge", "hook"].find((k) => b[k] && typeof b[k] === "object");
+    if (!host) return;
+    for (const k of ["promptSpoken", "answerSpoken", "praiseSpoken", "questionSpoken"]) {
+      if (k in b) E("Q_SPOKEN_MISPLACED", `lesson.scenes[${si}].beats[${bi}].${k}`, `"${k}" sits on the beat, so it is ignored: move it inside "${host}"`);
+    }
+  }));
 
   // 3. Band rules.
   const acts = script.scenes.flatMap((s, si) => s.beats.flatMap((b, bi) => b.do.map((a, ai) => ({ a, path: `scenes[${si}].beats[${bi}].do[${ai}]` }))));
