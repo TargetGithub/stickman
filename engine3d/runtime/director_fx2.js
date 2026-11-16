@@ -66,6 +66,45 @@ export function installFx2(d, { catalog, tl, obj, now, sound, objects }) {
     return d;
   };
 
+  // rewind path: true (#174): objects run back through where they went (sampled about 8 times a second), not in a
+  // straight line; the badge and sound are the plain rewind's.
+  const rewind = d.rewind;
+  d.rewind = (opts = {}) => {
+    if (!opts.path) return rewind(opts);
+    const { at: t = 0, back = 2, dur = 1.2 } = opts;
+    const ids = opts.targets ?? [...objects.values()].filter((o) => !o.internal && o.parent == null && !o.hud && !String(o.id).startsWith("set_")).map((o) => o.id);
+    const n = Math.max(4, Math.min(48, Math.round(back * 8)));
+    const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+    for (const id of ids) {
+      obj(id);
+      for (const prop of ["position", "rotation", "scale"]) {
+        const pts = Array.from({ length: n + 1 }, (_, k) => now(id, prop, Math.max(0, t - (back * k) / n)));
+        if (pts[0] == null || pts.every((v) => same(v, pts[0]))) continue;
+        for (let k = 1; k <= n; k++) tl.tween(id, prop, { start: t + (dur * (k - 1)) / n, dur: dur / n, to: pts[k], ease: "linear" });
+      }
+      const vis = now(id, "visible", Math.max(0, t - back));
+      if (vis != null && vis !== now(id, "visible", t)) tl.set(id, "visible", vis, vis ? t : t + dur);
+    }
+    return rewind({ ...opts, targets: [] });
+  };
+
+  // camera via (#176): the camera passes a waypoint on the way (up and over a page, round a wall) instead of
+  // cutting straight through what lies between; the two legs share dur by their lengths, eased as one glide.
+  const camera = d.camera;
+  d.camera = (opts = {}) => {
+    if (opts.via == null || opts.position == null) return camera(opts);
+    const { at: t = 0, dur = 1.5, via, position } = opts;
+    const p0 = now("camera", "position", t) ?? [0, 1.3, 7];
+    const len = (a, b) => Math.hypot(...a.map((v, i) => v - b[i]));
+    const l1 = len(p0, via);
+    const k = l1 / Math.max(1e-6, l1 + len(via, position));
+    const t1 = Math.round(dur * Math.min(0.85, Math.max(0.15, k)) * 1e4) / 1e4;
+    camera({ ...opts, position: undefined, via: undefined }); // lookAt and fov over the whole move
+    tl.tween("camera", "position", { start: t, dur: t1, to: via, ease: "sineIn" });
+    tl.tween("camera", "position", { start: t + t1, dur: dur - t1, to: position, ease: "sineOut" });
+    return d;
+  };
+
   // sound echo (#158): the sound comes back softer, `echo` times (true: 3), 0.35 s apart (echoGap), halving each time.
   const play = d.sound;
   d.sound = (name, opts = {}) => {

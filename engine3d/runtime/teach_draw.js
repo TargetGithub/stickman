@@ -196,7 +196,10 @@ export function buildFlow(o, group, { material, catalog }) {
  */
 export function buildPointer(o, group, { material, handles }) {
   const w = o.width;
-  const mat = material(o.color, "toy");
+  // style (#171): thread glows (a line of light between ideas); chain is a row of links, drawn link by link.
+  const chain = o.style === "chain";
+  const mat = material(o.color, o.style === "thread" ? "glow" : chain ? "glossy" : "toy");
+  let links = [];
   const headLen0 = w * 2.8;
   const cone = (len) => solid(new THREE.ConeGeometry(w * 1.35, len, 28).translate(0, -len / 2, 0), mat);
   const ball = (r) => solid(new THREE.SphereGeometry(r, 16, 12), mat);
@@ -235,6 +238,26 @@ export function buildPointer(o, group, { material, handles }) {
       group.add(head);
     }
     geo = { curve, L, headLen, tube, key };
+    if (chain) {
+      for (const m of links) (group.remove(m), m.geometry.dispose());
+      const n = Math.max(2, Math.round(L / (w * 1.25)));
+      const t = new THREE.Vector3();
+      const side = new THREE.Vector3();
+      const up = new THREE.Vector3();
+      links = Array.from({ length: n }, (_, i) => {
+        const m = solid(new THREE.TorusGeometry(w * 0.5, w * 0.14, 8, 20).scale(1.35, 1, 1), mat);
+        const u = (i + 0.5) / n;
+        curve.getPointAt(u, m.position);
+        curve.getTangentAt(u, t).normalize();
+        side.copy(Math.abs(t.z) < 0.9 ? new THREE.Vector3(0, 0, 1) : new THREE.Vector3(0, 1, 0)).cross(t).normalize();
+        up.crossVectors(t, side);
+        // Every other link turns a quarter about the chain, as real links hang.
+        m.quaternion.setFromRotationMatrix(i % 2 ? new THREE.Matrix4().makeBasis(t, side, up) : new THREE.Matrix4().makeBasis(t, up, side.clone().negate()));
+        m.userData.u = u;
+        group.add(m);
+        return m;
+      });
+    }
   };
   build();
   const tan = new THREE.Vector3();
@@ -257,6 +280,10 @@ export function buildPointer(o, group, { material, handles }) {
       const k = clamp01(s.drawn ?? 1);
       tube.show(o.head === "arrow" ? Math.max(0, k - (headLen * 0.85) / L) : k);
       head.visible = cap.visible = k > 0.005;
+      if (chain) {
+        shaft.visible = head.visible = cap.visible = false;
+        for (const m of links) m.visible = m.userData.u <= k + 1e-6;
+      }
       curve.getPointAt(k, head.position);
       cap.position.copy(a);
       if (o.head === "arrow") {

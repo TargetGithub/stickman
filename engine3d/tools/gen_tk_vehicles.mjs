@@ -231,12 +231,12 @@ const props = {};
     P("cylinder", [0, 2.45, 0], [0.54, 0.05, 0.54], { c: "charcoal" }),
     P("cone", [0, 2.6, 0], [0.56, 0.28, 0.56], {}),
     ball([0, 2.78, 0], 0.1, { c: "charcoal" }),
-    // the beam: a long see-through cone from the lamp toward +z, turning about y
-    P("cone", [0, 2.24, 0], [0.75, 2.6, 0.42], { c: "yellow", m: "glass", hr: [-90, 0, 0], hang: [0, 0, 1.3], name: "beam" }),
+    // the beam: a long glowing see-through cone from the lamp, pointing -x at rest, turning about y
+    P("cone", [0, 2.24, 0], [0.75, 2.6, 0.42], { c: "yellow", m: "beam", hr: [-90, 0, 0], hang: [0, 0, 1.3], name: "beam" }),
   ];
   props.lighthouse = {
     color: "red",
-    description: "A small striped toy lighthouse on a rock, 2.8 m tall: red and white bands (main colour red), a door, a dark gallery with a railing, a glass lamp room and a red cone roof. Named parts: `lamp` (a glowing yellow ball in the lamp room at [0, 2.24, 0]: pulse it or paint it) and `beam` (a long soft see-through cone, 2.6 m, from the lamp toward +z: `spin` `<id>#beam` about y, slowly, to sweep; paint it for a coloured beam, or add two more beam props for a split beam).",
+    description: "A small striped toy lighthouse on a rock, 2.8 m tall: red and white bands (main colour red), a door, a dark gallery with a railing, a glass lamp room and a red cone roof. Named parts: `lamp` (a glowing yellow ball in the lamp room at [0, 2.24, 0]: pulse it or paint it) and `beam` (a long soft glowing see-through cone, 2.6 m, from the lamp out to the left (-x) at rest: `spin` `<id>#beam` about y, slowly, to sweep; off and on: `hide` it, `show` it; paint the lamp charcoal for off and gold for on; paint the beam for a coloured beam, or add two more beam props for a split beam).",
     tags: ["sea", "coast", "buildings", "light", "boats"],
     parts,
   };

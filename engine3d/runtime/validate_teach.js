@@ -10,7 +10,7 @@ export const TEACH_FIELDS = {
   array: ["rows", "cols", "item", "gap", "color", "size", "trays"],
   grid: ["rows", "cols", "cell", "color", "upright", "labels"],
   cubes: ["l", "w", "h", "cell", "color", "box"],
-  pointer: ["from", "to", "color", "width", "bend", "head", "tail", "fromTarget", "toTarget"],
+  pointer: ["from", "to", "color", "width", "bend", "head", "tail", "fromTarget", "toTarget", "style"],
   callout: ["text", "point", "target", "offset", "color", "bg"],
   angle: ["degrees", "radius", "color", "arc", "label"],
 };
@@ -78,6 +78,7 @@ export function checkTeachObject(o, p, { err, warn, ids, catalog, name }) {
     }
     range("width", (v) => isNum(v, 0.01, 1), "width must be 0.01-1 m");
     range("bend", (v) => isNum(v, -10, 10), "bend must be -10 to 10 m");
+    range("style", (v) => ["arrow", "thread", "chain"].includes(v), 'style must be arrow (default), thread (a thin glowing line) or chain (links)');
   }
   if (o.kind === "callout") {
     if (typeof o.text !== "string" || !o.text.trim() || o.text.length > 40) err("E3D_TEXT", `${p}.text`, "callout text must be 1-40 characters");

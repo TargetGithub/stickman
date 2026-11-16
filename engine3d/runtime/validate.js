@@ -240,6 +240,7 @@ export function validateScript(script, catalog, opts = {}) {
         if (a.who != null && !ids.has(a.who)) err("E3D_TARGET", `${p}.who`, `no object "${a.who}"`);
       }
       if (a.do === "camera" && a.position == null && a.lookAt == null && a.fov == null) err("E3D_REQUIRED", p, "camera needs position, lookAt or fov");
+      if (a.do === "camera" && a.via != null && (!isVec(a.via) || a.position == null)) err("E3D_VEC", `${p}.via`, "via is an [x, y, z] waypoint for a camera move with a position (#176)");
       if (a.do === "caption" && a.color != null && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
       if (a.do === "lights") {
         name(catalog.lights, a.rig, "E3D_LIGHTS", `${p}.rig`, "light rig");

@@ -150,6 +150,7 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     // Effects (director_effects.js): rewind has no target; it lists targets (default everything in the scene).
     if (a.back != null && !isNum(a.back, 0.2, 60)) err("E3D_RANGE", `${p}.back`, "back must be 0.2-60 s: how far back the objects go");
     if (a.targets != null && (!Array.isArray(a.targets) || a.targets.some((id) => !ids.has(id)))) err("E3D_TARGET", `${p}.targets`, "targets must be a list of object ids");
+    if (a.path != null && typeof a.path !== "boolean") err("E3D_RANGE", `${p}.path`, "path must be true or false");
     return true;
   }
   if (a.do === "gesture") {

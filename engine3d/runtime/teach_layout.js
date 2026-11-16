@@ -31,7 +31,9 @@ export const DEFAULTS = {
 };
 
 /** An object's fields with the kind's defaults filled in. */
-export const withDefaults = (o) => ({ ...DEFAULTS[o.kind], ...o });
+/** A pointer's style changes its defaults (#171): a thread is thin and glowing, a chain is links; neither has a head. */
+const STYLE_DEFAULTS = { thread: { width: 0.035, head: "none", color: "gold" }, chain: { width: 0.09, head: "none", color: "grey" } };
+export const withDefaults = (o) => ({ ...DEFAULTS[o.kind], ...(o.kind === "pointer" ? STYLE_DEFAULTS[o.style] : null), ...o });
 
 const round = (v) => Math.round(v * 1e9) / 1e9;
 

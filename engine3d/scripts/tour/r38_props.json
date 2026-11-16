@@ -1,0 +1,12 @@
+{"kind":"video3d","version":1,"description":"ENGINE_REQUESTS #171-#176: glowing thread and chain pointers, trophy_cup, trophy_cabinet, ferry, quiz_buzzer, spotlight with its beam, camera via.",
+"meta":{"title":"Round 38 props","seed":38},"stage":{"preset":"theatre"},"camera":{"position":[0,2.2,10],"lookAt":[0,1.1,0],"fov":44},
+"objects":[
+{"id":"c1","kind":"card","text":"cause","at":[-5,1.6,0]},{"id":"c2","kind":"card","text":"effect","at":[-2.2,1.6,0]},
+{"id":"th","kind":"pointer","style":"thread","fromTarget":"c1","toTarget":"c2","bend":0.4},
+{"id":"ch","kind":"pointer","style":"chain","from":[-5,0.6,0.4],"to":[-2.2,0.6,0.4],"bend":-0.3},
+{"id":"tc","kind":"prop","model":"trophy_cabinet","at":[0,0,-1]},
+{"id":"tp","kind":"prop","model":"trophy_cup","at":[1.4,0,0.6],"size":1.4},
+{"id":"qb","kind":"prop","model":"quiz_buzzer","at":[2.4,0,0.6]},
+{"id":"sp","kind":"prop","model":"spotlight","at":[4.6,0,-1],"rotation":[0,-30,0]},
+{"id":"fe","kind":"prop","model":"ferry","at":[-3.4,0,2.6],"size":0.6}],
+"scenes":[{"id":"a","beats":[{"dur":3,"do":[{"do":"draw","target":"th","at":0,"dur":1},{"do":"draw","target":"ch","at":0,"dur":1.5}]}]}]}

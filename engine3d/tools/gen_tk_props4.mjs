@@ -181,8 +181,51 @@ add("stepping_stone", "grey", "A flat round stepping stone 0.6 m across, top at 
   P("cylinder", [0, 0.06, 0], [0.56, 0.09, 0.5], { m: "matte" }),
 ]);
 
+// #172: trophies, a ferry, a quiz buzzer, a spotlight.
+const cupParts = (x, y, z, k, o = {}) => [
+  P("box", [x, y + 0.04 * k, z], [0.22 * k, 0.08 * k, 0.16 * k], { c: "wood_dark", ...o }),
+  P("cylinder", [x, y + 0.13 * k, z], [0.05 * k, 0.1 * k, 0.05 * k], { c: "gold", m: "glossy", ...o }),
+  P("cup", [x, y + 0.18 * k, z], [0.26 * k, 0.24 * k, 0.26 * k], { c: "gold", m: "glossy", ...o }),
+  ...[-1, 1].map((sd) => P("torus", [x + sd * 0.14 * k, y + 0.32 * k, z], [0.1 * k, 0.12 * k, 0.04 * k], { c: "gold", m: "glossy", ...o })),
+];
+add("trophy_cup", "gold", "A gold trophy cup 0.45 m tall on a dark wooden base, with two loop handles, facing +z. A label goes on the base front at [0, 0.04, 0.09] (a card of width 0.2) or a letter or number of size 0.12 on the cup at [0, 0.3, 0.14].", ["prize", "trophy", "award", "competition"], cupParts(0, 0, 0, 1));
+add("trophy_cabinet", "wood", "A glass-fronted trophy cabinet 1.4 m wide and 1.8 m tall, facing +z: a wooden frame in its main colour with three shelves (tops at y 0.42, 0.92, 1.42), a gold trophy cup on each, and a see-through glass `door` hinged at its left edge (turn it [0, -100, 0] to open). Put a `trophy_cup` (size 0.8) on a shelf at z 0, x -0.4 to 0.4 to add one; the middle of the top shelf is free.", ["prize", "trophy", "cabinet", "school"], [
+  P("box", [0, 0.9, -0.22], [1.4, 1.8, 0.06]),
+  ...[-0.68, 0.68].map((x) => P("box", [x, 0.9, 0], [0.06, 1.8, 0.5])),
+  ...[0.04, 0.42, 0.92, 1.42, 1.78].map((y) => P("box", [0, y - 0.02, 0], [1.4, 0.04, 0.5])),
+  ...cupParts(-0.4, 0.42, 0, 0.9), ...cupParts(0.35, 0.92, 0, 0.9), ...cupParts(-0.3, 1.42, 0, 0.8),
+  P("box", [0.66, 0.9, 0.26], [1.32, 1.72, 0.02], { c: "white", m: "glass", hang: [-0.66, 0, 0], name: "door" }),
+]);
+add("ferry", "white", "A friendly little car ferry 3 m long (along x, bow at +x), floating with its waterline at y 0.25: a white hull with a red stripe and a row of round windows, a flat open deck (top at y 0.6) where a car or characters ride, a small blue cabin with a funnel at the back (-x) and a fold-down `ramp` at the bow (hinged at [1.45, 0.6, 0]; turn it [0, 0, -60] to lower). Move it along x to cross the water; label spot on the cabin front at [-0.55, 1.05, 0.46].", ["boat", "vehicle", "water", "transport"], [
+  P("box", [0, 0.35, 0], [2.9, 0.5, 1.0], { m: "glossy" }),
+  P("box", [0, 0.3, 0.505], [2.9, 0.1, 0.02], { c: "red", m: "glossy" }),
+  P("box", [0, 0.3, -0.505], [2.9, 0.1, 0.02], { c: "red", m: "glossy" }),
+  ...[-1, -0.5, 0, 0.5, 1].map((x) => P("disc", [x, 0.46, 0.51], [0.12, 0.02, 0.12], { c: "sky", m: "glossy", r: [90, 0, 0] })),
+  P("box", [0, 0.61, 0], [2.9, 0.02, 1.0], { c: "grey", m: "matte" }),
+  P("box", [-0.95, 0.9, 0], [0.8, 0.58, 0.9], { c: "blue", m: "glossy" }),
+  P("box", [-0.95, 0.95, 0.455], [0.6, 0.18, 0.01], { c: "sky", m: "glossy" }),
+  P("cylinder", [-1.15, 1.35, 0], [0.18, 0.4, 0.18], { c: "red", m: "glossy" }),
+  P("cylinder", [-1.15, 1.56, 0], [0.19, 0.04, 0.19], { c: "charcoal" }),
+  P("box", [1.6, 0.6, 0], [0.3, 0.04, 0.8], { c: "grey", hang: [0.15, 0, 0], name: "ramp" }),
+]);
+add("quiz_buzzer", "red", "A big round quiz buzzer on a little desk post, 1 m tall, facing +z: a black base and a domed `button` in its main colour (red) on top (press: move `<id>#button` by [0, -0.04, 0] and back, with a buzz or ding sound) and a `light` ring that glows (pop or paint it when a team buzzes in). A team label goes on the post front at [0, 0.55, 0.13] (a card of width 0.35).", ["quiz", "game", "button", "competition"], [
+  P("cylinder", [0, 0.03, 0], [0.4, 0.06, 0.4], { c: "charcoal" }),
+  P("box", [0, 0.45, 0], [0.24, 0.8, 0.24], { c: "charcoal" }),
+  P("cylinder", [0, 0.88, 0], [0.42, 0.08, 0.42], { c: "charcoal" }),
+  P("torus", [0, 0.93, 0], [0.38, 0.38, 0.1], { c: "yellow", m: "glow", r: [90, 0, 0], name: "light" }),
+  P("dome", [0, 0.92, 0], [0.3, 0.16, 0.3], { m: "glossy", name: "button" }),
+]);
+add("spotlight", "charcoal", "A stage spotlight 1.7 m tall on a tripod: a dark lamp can (main colour) tilted down toward +z with a glowing lens, and a soft see-through `beam` of light (cream) reaching 3 m ahead and down to the floor about 2.6 m in front. Turn the whole spotlight about y to aim it; hide / show `<id>#beam` to switch it off and on (paint the beam for a coloured light). For a pool of light on the floor add a glowing `disc` shape there.", ["stage", "light", "theatre", "show"], [
+  ...[0, 120, 240].map((a) => P("cylinder", [Math.sin((a * Math.PI) / 180) * 0.25, 0.5, Math.cos((a * Math.PI) / 180) * 0.25], [0.04, 1.05, 0.04], { c: "grey", r: [Math.cos((a * Math.PI) / 180) * 14, 0, -Math.sin((a * Math.PI) / 180) * 14] })),
+  P("cylinder", [0, 1.15, 0], [0.05, 0.5, 0.05], { c: "grey" }),
+  P("cylinder", [0, 1.5, 0], [0.34, 0.5, 0.34], { r: [-55, 0, 0], m: "glossy" }),
+  P("disc", [0, 1.36, 0.2], [0.3, 0.03, 0.3], { c: "cream", m: "light", r: [-55, 0, 0] }),
+  // The cone's wide end (its -y) turned to point forward and down along the lens axis; its tip on the lens.
+  P("cone", [0, 1.36, 0.2], [1.1, 3.0, 1.1], { c: "cream", m: "beam", hr: [-55, 0, 0], hang: [0, -0.86, 1.229], name: "beam" }),
+]);
+
 const out = {
-  description: "Toybox 10K props from ENGINE_REQUESTS #142-#158 (flower_face, hair_bow, torn_sail, sort_chute, cubby_shelf, star_map, mailbox, echo_machine, fountain, chick_face, chick_feet, choir_bench) and #161-#162 (parade_float, wagon, cart, harp, corn_cob, stepping_stone). Generated by tools/gen_tk_props4.mjs: edit the generator and rerun it, not the JSON.",
+  description: "Toybox 10K props from ENGINE_REQUESTS #142-#158 (flower_face, hair_bow, torn_sail, sort_chute, cubby_shelf, star_map, mailbox, echo_machine, fountain, chick_face, chick_feet, choir_bench) and #161-#162 (parade_float, wagon, cart, harp, corn_cob, stepping_stone), #172 (trophy_cup, trophy_cabinet, ferry, quiz_buzzer, spotlight). Generated by tools/gen_tk_props4.mjs: edit the generator and rerun it, not the JSON.",
   props,
 };
 const file = fileURLToPath(new URL("../catalog/models/tk_props4.json", import.meta.url));

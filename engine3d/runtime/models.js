@@ -276,6 +276,7 @@ export function buildModel(o, model, material) {
   // Every frame starts from the rest pose, so a frame never depends on the frames drawn before it.
   const rests = [...new Set([...groups.values()].flat())].map((n) => [n, n.userData.rest ?? n.rotation.clone(), n.position.clone(), n.scale.clone()]);
   // paint on a part (#118, #126): the part's meshes get their own materials the first time, so only it changes.
+  const hiddenParts = [];
   const tintPart = (node, rgbv) => {
     node.traverse((m) => {
       if (!m.isMesh) return;
@@ -297,6 +298,9 @@ export function buildModel(o, model, material) {
         n.scale.copy(sc);
         if (n.userData.partHidden) n.visible = n.userData.partHidden = false;
       }
+      // Parts hidden last frame come back (#173: a hung part, like a lighthouse beam, is not in rests).
+      for (const n of hiddenParts) n.visible = n.userData.partHidden = false;
+      hiddenParts.length = 0;
       body.position.y = bob * (0.5 + 0.5 * Math.sin(t * Math.PI * 1.1 + phase));
       // look (look.js): [yaw, pitch] in degrees on top of the rest pose, held until the next look.
       // head.look scales it (a head that is most of the body turns less; its toon eyes still lead the whole way).
@@ -328,7 +332,10 @@ export function buildModel(o, model, material) {
           // hide / show / pop a part (#118): its scale on top of the rest; paint: its colour (tint, 0-1 rgb).
           if (sub.scale) {
             node.scale.set(node.scale.x * Math.max(1e-4, sub.scale[0]), node.scale.y * Math.max(1e-4, sub.scale[1]), node.scale.z * Math.max(1e-4, sub.scale[2]));
-            if (Math.max(...sub.scale) < 1e-3) node.visible = !(node.userData.partHidden = true);
+            if (Math.max(...sub.scale) < 1e-3) {
+              node.visible = !(node.userData.partHidden = true);
+              hiddenParts.push(node);
+            }
           }
           if (sub.tint) tintPart(node, sub.tint);
         }

@@ -206,3 +206,51 @@ test("#161 #162 floats, wagons, carts, harps, corn and stepping stones are in th
   for (const m of ["parade_float", "wagon", "cart", "harp", "corn_cob", "stepping_stone"]) assert.ok(catalog.props[m], m);
   assert.ok(catalog.props.harp.parts.some((p) => p.name === "strings"));
 });
+
+test("#171 pointer style thread and chain set their defaults", async () => {
+  const { withDefaults } = await import("../../runtime/teach_layout.js");
+  assert.equal(withDefaults({ kind: "pointer", style: "thread" }).head, "none");
+  assert.equal(withDefaults({ kind: "pointer", style: "thread", color: "pink" }).color, "pink");
+  assert.equal(withDefaults({ kind: "pointer" }).head, "arrow");
+  const s = (style) => S([{ id: "p", kind: "pointer", from: [0, 1, 0], to: [2, 1, 0], style }], []);
+  assert.deepEqual(errs(s("chain")), []);
+  assert.ok(codes(s("rope")).includes("E3D_RANGE"));
+});
+
+test("#172 trophies, ferry, buzzer and spotlight are in the catalog; the beam material glows", () => {
+  for (const m of ["trophy_cup", "trophy_cabinet", "ferry", "quiz_buzzer", "spotlight"]) assert.ok(catalog.props[m], m);
+  assert.ok(catalog.materials.beam.emissive > 0 && catalog.materials.beam.opacity < 1);
+  assert.equal(catalog.props.lighthouse.parts.find((p) => p.name === "beam").m, "beam");
+});
+
+test("#174 rewind path runs back through the way the target came", () => {
+  const s = S([{ id: "b", kind: "prop", model: "ball" }], [
+    { do: "move", target: "b", to: [2, 0, 0], at: 0, dur: 1 },
+    { do: "move", target: "b", to: [2, 0, -2], at: 1, dur: 1 },
+    { do: "rewind", at: 2.5, back: 2.5, dur: 2, targets: ["b"], path: true },
+  ], 6);
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  const mid = p.timeline.valueAt("b", "position", 3.5); // halfway back: at the corner, not on the straight line
+  assert.ok(Math.abs(mid[0] - 2) < 0.3 && Math.abs(mid[2]) < 0.3, JSON.stringify(mid));
+  assert.deepEqual(p.timeline.valueAt("b", "position", 5), [0, 0, 0]);
+});
+
+test("#175 a page line lifts in place with move by", () => {
+  const s = S([{ id: "pg", kind: "page", style: "book", lines: ["One line.", "Two line."] }], [{ do: "move", target: "pg_l2", by: [0, 0, 0.3], at: 0, dur: 0.5 }]);
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  const rest = p.timeline.valueAt("pg_l2", "position", 0);
+  assert.ok(Math.abs(p.timeline.valueAt("pg_l2", "position", 1)[2] - rest[2] - 0.3) < 1e-6);
+});
+
+test("#176 camera via passes the waypoint", () => {
+  const s = S([], [{ do: "camera", position: [0, 1.5, 6], via: [0, 4, 2], at: 0, dur: 2 }]);
+  s.camera = { position: [0, 1, -1], lookAt: [0, 1, 0] };
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  const ys = [0.25, 0.5, 0.75, 1, 1.25, 1.5].map((t) => p.timeline.valueAt("camera", "position", t)[1]);
+  assert.ok(Math.max(...ys) > 3.5, JSON.stringify(ys));
+  assert.deepEqual(p.timeline.valueAt("camera", "position", 2.5), [0, 1.5, 6]);
+  assert.ok(codes(S([], [{ do: "camera", via: [0, 4, 2] }])).includes("E3D_VEC"));
+});
