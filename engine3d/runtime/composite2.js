@@ -18,7 +18,7 @@ export const COMPOSITE2_FIELDS = {
   track: ["style", "length", "width", "color", "posts"],
   crowd: ["count", "rows", "cast", "spacing", "facing", "size"],
   sound_boxes: ["count", "box", "color", "tokenColor", "tokenColors", "gap", "bg"],
-  dial: ["labels", "value", "radius", "color", "bg", "needle"],
+  dial: ["labels", "value", "radius", "color", "bg", "needle", "zones"],
 };
 
 /**
@@ -40,6 +40,19 @@ export function expandDial(o, catalog, add, err) {
     const y = cy + Math.cos(a) * R * 0.72;
     add(`l${i + 1}`, { kind: "text_card", text: l, width: Math.min(0.9, (2 * R) / n + 0.2), height: 0.3, size: 0.14, align: "center", bg: "none", color: o.color ?? "ink", at: r3([x, y - 0.15, 0.05]) });
   });
+  // zones (#148): a colour per label, painted as an arc band round the rim (red / yellow / green for a gauge).
+  if (o.zones != null) {
+    if (!Array.isArray(o.zones) || o.zones.length !== n || o.zones.some((c) => !catalog.colors[c])) return err("E3D_COLOR", "zones", `zones must be ${n} colour names, one per label`);
+    const m = 10;
+    const Rb = R * 0.98;
+    o.zones.forEach((c, k) => {
+      for (let j = 0; j < m; j++) {
+        const th = Math.PI - (Math.PI * (k + (j + 0.5) / m)) / n;
+        const len = ((Math.PI * Rb) / (n * m)) * 1.12;
+        add(`z${k + 1}_${j + 1}`, { kind: "shape", shape: "box", color: c, at: r3([Math.cos(th) * (Rb - 0.09), cy + Math.sin(th) * (Rb - 0.09), -0.02]), rotation: [0, 0, Math.round(((th * 180) / Math.PI - 90) * 100) / 100], scale: r3([len, 0.18, 0.06]) });
+      }
+    });
+  }
   const start = o.value != null ? dialAngle(o.value, n) : 90;
   add("needle", { kind: "group", at: r3([0, cy, 0.08]), rotation: [0, 0, start] });
   add("needle_arm", { kind: "shape", shape: "box", color: o.needle ?? "red", parent: `${o.id}_needle`, at: [0, 0, 0], scale: r3([0.06, R * 0.55, 0.04]) });

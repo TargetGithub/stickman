@@ -32,16 +32,22 @@ export function trackerFrom(spec, lesson) {
   const slots = Math.min(10, own.slots ?? own.labels?.length ?? (pt.steps || raw.length || 4));
   let labels = own.labels;
   if (!labels && raw.length) {
-    if (style === "checklist") labels = raw.slice(0, slots).map((l) => fitLabel(String(l), 14));
-    else if ((style === "train" || style === "path") && raw.every((l) => String(l).length <= 2)) labels = raw.slice(0, slots).map(String);
-    else if (style === "train" || style === "path") labels = Array.from({ length: slots }, (_, i) => String(i + 1));
+    // Each style's longest label (validate_retain.js); words that do not fit become step numbers (#142: word labels
+    // on trains, paths and stars used to be dropped or numbered).
+    const max = style === "checklist" ? 14 : style === "fuel" ? 3 : style === "pencil" ? 2 : 7;
+    // A checklist line shortens at a word boundary; on the other styles a label that does not fit whole ("line
+    // of 5" on a train car) would read wrong cut down, so the row is numbered instead.
+    const list = raw.slice(0, slots).map((l) => String(l).trim());
+    if (style === "checklist") labels = list.map((l) => fitLabel(l, max));
+    else labels = list.every((l) => l.length >= 1 && l.length <= max) ? list : Array.from({ length: slots }, (_, i) => String(i + 1));
   }
   if (style === "checklist" && raw.length > slots) labels = undefined; // too many steps for the card: unlabelled ticks
   const t = { id: TRACKER_ID, kind: "tracker", hud: true, style, slots, surprise: own.surprise ?? true, color: own.color ?? "red", accent: own.accent ?? "yellow", hidden: true,
     // A slot's label shows only once it fills, so labels never give an answer away (ENGINE_REQUESTS #138).
     hideEmptyLabels: own.hideEmptyLabels ?? true };
   // On for every style, checklists too: their labels are often answers (names, words). Set false for step names.
-  if (labels?.length === slots) t.labels = labels;
+  // Fewer labels than slots label the first ones (#142: 9-10 step lessons with a short list lost them all).
+  if (labels?.length && labels.length <= slots) t.labels = labels;
   if (own.corner) t.corner = own.corner;
   return t;
 }
@@ -192,7 +198,9 @@ export function expandLesson(lesson, spec, { catalog, skills }) {
   const tracker = lesson.tracker === false ? null : trackerFrom(spec, lesson);
   if (tracker) objects.push(tracker);
   const confetti = BANDS[band].confetti && lesson.confetti !== false;
-  if (confetti && !ids.has(CONFETTI_ID)) objects.push({ id: CONFETTI_ID, kind: "confetti", count: 120, area: [7, 3], height: 6 });
+  // Light, bright colours that read on red curtains and dark stages too (#159: red and orange pieces vanished
+  // against the theatre curtain in g10136).
+  if (confetti && !ids.has(CONFETTI_ID)) objects.push({ id: CONFETTI_ID, kind: "confetti", count: 160, area: [7, 3], height: 6, colors: ["yellow", "white", "sky", "green", "pink", "gold"] });
   const byId = new Map(objects.map((o) => [o.id, o]));
   const focus = (target) => {
     const o = byId.get(asList(target)[0]);

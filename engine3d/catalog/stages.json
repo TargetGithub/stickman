@@ -148,8 +148,24 @@
         14,
         40
       ],
+      "lights": "theatre_warm",
+      "description": "A little theatre with a dark backdrop, lit warm and bright on the performers (#145); theatre_dark is the dim one for shadow puppets and lamp light.",
+      "tags": [
+        "indoor",
+        "light",
+        "shows"
+      ]
+    },
+    "theatre_dark": {
+      "background": "charcoal",
+      "floor": "brown",
+      "rug": null,
+      "fog": [
+        14,
+        40
+      ],
       "lights": "dim",
-      "description": "A dim little theatre with a dark backdrop, for shadow puppets and lamp light.",
+      "description": "A dim little theatre with a dark backdrop, for shadow puppets and lamp light (the theatre stage before #145 brightened it).",
       "tags": [
         "indoor",
         "light",
@@ -1466,6 +1482,28 @@
         "night"
       ],
       "background": "dusk_sky"
+    },
+    "theatre_warm": {
+      "hemisphere": [
+        0.8,
+        "#fff2dc",
+        "#3a3040"
+      ],
+      "sun": {
+        "intensity": 2.0,
+        "dir": [
+          1,
+          8,
+          8
+        ],
+        "shadow": true
+      },
+      "environment": 0.5,
+      "description": "Warm, bright show light from above the audience on a dark theatre: the performers read clearly.",
+      "tags": [
+        "theatre",
+        "light"
+      ]
     },
     "dim": {
       "hemisphere": [

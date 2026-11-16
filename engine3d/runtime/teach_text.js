@@ -171,6 +171,14 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
       // The marked words, run by run (one run per line), swept in reading order.
       const runs = lines.map((line, li) => {
         const ws = line.filter((w) => w.i >= mk.words[0] && w.i <= mk.words[1]);
+        if (ws.length && mk.chars) {
+          // One mark inside a word (#144): measured in the card's own font (renderer-only text metrics).
+          g.font = font;
+          const word = text[ws[0].i];
+          const a = g.measureText(word.slice(0, mk.chars[0])).width;
+          const b = g.measureText(word.slice(0, mk.chars[1] + 1)).width;
+          return { li, dx: line.dx, x0: ws[0].x + a - space * 0.15, x1: ws[0].x + b + space * 0.15 };
+        }
         return ws.length ? { li, dx: line.dx, x0: ws[0].x - space * 0.3, x1: ws.at(-1).x + ws.at(-1).w + space * 0.3 } : null;
       }).filter(Boolean);
       const total = runs.reduce((a, r) => a + r.x1 - r.x0, 0);

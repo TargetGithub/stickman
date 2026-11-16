@@ -6,11 +6,15 @@
 //   pencil:  a page whose lines write in one by one, a big pencil riding to the newest line (growing pencil)
 //   rainbow: an arch of pale bands, outermost first, each painting in its rainbow colour as a step is done; the
 //            surprise is a sun (gift until it fills) at the arch's right foot
+//   fuel:    a many-bar fuel gauge (#142): bars step up in height left to right in a dark case and fill red, then
+//            yellow, then green as steps are done; the surprise bar is a gift until it fills gold
+//   moon:    a row of moons (#150) that wax from a thin crescent to full as steps are done (the dark side stays
+//            as a midnight disc); the surprise is a gift until it fills as a gold full moon with a star
 // Each style fills `empty` (before) and `full` (after) of a slot; the tracker pops `full` in at the slot's time.
 
 import * as THREE from "three";
 
-export const EXTRA_TRACKER_STYLES = ["islands", "town", "gauges", "pencil", "rainbow"];
+export const EXTRA_TRACKER_STYLES = ["islands", "town", "gauges", "pencil", "rainbow", "fuel", "moon"];
 const RAINBOW = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "teal", "rose", "sky"];
 
 const mesh = (geo, mat, x = 0, y = 0, z = 0) => {
@@ -29,6 +33,40 @@ export function buildExtraSlot(style, ctx) {
   if (style === "islands" || style === "town") {
     // Dotted path from the previous stop.
     if (prev) for (let j = 1; j < 4; j++) node.add(mesh(new THREE.SphereGeometry(0.04, 10, 8), M(style === "islands" ? "white" : "grey"), prev[0] + ((p[0] - prev[0]) * j) / 4 - p[0], prev[1] + ((p[1] - prev[1]) * j) / 4 - p[1] - 0.12, 0));
+  }
+  if (style === "moon") {
+    const R = 0.27;
+    empty.add(kit.disc(R, 0.04, M("grey", "matte")));
+    if (surprise) {
+      empty.add(gift(0.4).translateZ(0.06));
+      full.add(kit.disc(R + 0.02, 0.06, M("gold", "glow")));
+      full.add(mesh(new THREE.SphereGeometry(0.06, 10, 8), M("white", "glow"), R * 0.9, R * 0.9, 0.05));
+    } else {
+      // Waxing: the dark disc slides off the lit one a little more each step; the last moon of the row is full.
+      const k = (i + 1) / n;
+      full.add(kit.disc(R + 0.01, 0.05, M("cream", "glow")));
+      // The shadow narrows from the left edge (a thin lit crescent at the right first), inside the moon's outline;
+      // gone when full.
+      const lit = Math.min(1, 0.15 + 0.85 * k);
+      if (k < 1) {
+        const shade = kit.disc(R + 0.005, 0.06, M("midnight", "matte"));
+        shade.scale.x = 1 - lit;
+        shade.position.set(-R * lit, 0, 0.01);
+        full.add(shade);
+      }
+    }
+    if (label) node.add(kit.label(label, Math.min(0.17, 0.5 / label.length), M("ink"), 0.02).translateY(-0.42));
+    return;
+  }
+  if (style === "fuel") {
+    const h = 0.32 + (0.52 * i) / Math.max(1, n - 1);
+    const fill = surprise ? "gold" : i < n / 3 ? "red" : i < (2 * n) / 3 ? "yellow" : "green";
+    node.add(mesh(new THREE.BoxGeometry(0.27, 0.92, 0.06), M("charcoal"), 0, 0, -0.04));
+    empty.add(mesh(new THREE.BoxGeometry(0.19, h, 0.05), M("grey"), 0, -0.42 + h / 2, 0.01));
+    if (surprise) empty.add(gift(0.24).translateY(0.24).translateZ(0.06));
+    full.add(mesh(new THREE.BoxGeometry(0.2, h, 0.07), M(fill, "glossy"), 0, -0.42 + h / 2, 0.02));
+    if (label) node.add(kit.label(label, Math.min(0.17, 0.3 / label.length), M("ink"), 0.02).translateY(-0.6));
+    return;
   }
   if (style === "islands") {
     const isle = new THREE.Group();
@@ -89,7 +127,14 @@ export function buildExtraSlot(style, ctx) {
     const band = (c, tube, z) => mesh(new THREE.TorusGeometry(r, tube, 12, 48, Math.PI), M(c, c === "cream" ? "matte" : "glossy"), 0, 0, z);
     empty.add(band("cream", 0.045, 0));
     full.add(band(RAINBOW[i % RAINBOW.length], 0.062, 0.01));
-    if (label) node.add(kit.label(label, 0.12, M("ink"), 0.02).translateX(-r).translateY(-0.14));
+    if (label && label.length <= 2) node.add(kit.label(label, 0.12, M("ink"), 0.02).translateX(-r).translateY(-0.14));
+    else if (label) {
+      // A word (#148): on its own band, each band's word at a different point of the arch so they never overlap.
+      const th = Math.PI * (0.82 - (0.64 * i) / Math.max(1, n - 1));
+      const w = kit.label(label, Math.max(0.07, Math.min(0.11, 0.42 / label.length)), M("ink"), 0.02);
+      w.position.set(Math.cos(th) * r, Math.sin(th) * r - 0.04, 0.08);
+      node.add(w);
+    }
     return;
   }
   if (style === "gauges") {

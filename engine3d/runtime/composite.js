@@ -83,7 +83,8 @@ function expandCard(o, catalog, add, err) {
   const st = CARD[o.style ?? "card"];
   if (!st) return err("E3D_STYLE", "style", `card style must be one of ${Object.keys(CARD).join(", ")}`);
   const text = o.text == null ? "" : String(o.text);
-  if (!text && !o.picture) err("E3D_REQUIRED", "text", "a card needs text, a picture or both");
+  // text: "" (#141) is a blank board on purpose (a sign without words); leaving text out still needs a picture.
+  if (!text && !o.picture && o.text !== "") err("E3D_REQUIRED", "text", "a card needs text, a picture or both (text: \"\" for a blank board)");
   if (text.length > 160) err("E3D_TEXT", "text", "card text must be at most 160 characters");
   const n = text.length;
   // textSize: the type size (metres) instead of the style's; word, tile and strip cards grow with it (#79, #82).

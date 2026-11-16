@@ -36,3 +36,20 @@ export function findWords(text, words) {
   for (let i = 0; i + want.length <= idx.length; i++) if (want.every((w, j) => all[idx[i + j]] === w)) return [idx[i], idx[i + want.length - 1]];
   return null;
 }
+
+/**
+ * A punctuation mark to emphasize on its own (#144): words "?" or "!" (only punctuation) names the first card
+ * word that holds it, and the characters of the mark inside that word.
+ * @returns {{ words: [number, number], chars: [number, number] } | null}
+ */
+export function findMark(text, words) {
+  if (typeof words !== "string") return null;
+  const mark = words.trim();
+  if (!mark || /[\p{L}\p{N}\s]/u.test(mark)) return null;
+  const all = cardWords(text);
+  for (let i = 0; i < all.length; i++) {
+    const c = all[i].indexOf(mark);
+    if (c >= 0) return { words: [i, i], chars: [c, c + mark.length - 1] };
+  }
+  return null;
+}

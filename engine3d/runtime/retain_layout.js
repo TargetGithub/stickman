@@ -15,7 +15,7 @@ export const ICONS = {
 };
 /** Cues a call-and-response pause can show. */
 export const CUES = ["ear", "hand", "mouth", "eye", "question"];
-export const TRACKER_STYLES = ["train", "checklist", "stars", "path", "islands", "town", "gauges", "pencil", "rainbow"];
+export const TRACKER_STYLES = ["train", "checklist", "stars", "path", "islands", "town", "gauges", "pencil", "rainbow", "fuel", "moon"];
 export const TRACKER_CORNERS = ["top_left", "top_right", "top"];
 
 /** Fixed screen spots (HUD units). */
@@ -69,6 +69,14 @@ export function trackerLayout(o) {
   if (style === "gauges") {
     const slots = Array.from({ length: n }, (_, i) => [0.4 + i * 0.86, 0, 0]);
     return { slots, width: n * 0.86 - 0.06, height: 1.0 };
+  }
+  if (style === "moon") {
+    const slots = Array.from({ length: n }, (_, i) => [0.32 + i * 0.7, 0, 0]);
+    return { slots, width: n * 0.7 - 0.06, height: 1.0 };
+  }
+  if (style === "fuel") {
+    const slots = Array.from({ length: n }, (_, i) => [0.15 + i * 0.3, -0.05, 0]);
+    return { slots, width: n * 0.3, height: 1.25 };
   }
   if (style === "pencil") {
     const slots = Array.from({ length: n }, (_, i) => [0.12, -0.3 - i * 0.26, 0]);

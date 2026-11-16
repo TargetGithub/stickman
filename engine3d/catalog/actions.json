@@ -4,7 +4,8 @@
   "show": {
    "params": {
     "target": "object id",
-    "dur": "fade/scale-in seconds, default 0.4"
+    "dur": "fade/scale-in seconds, default 0.4",
+    "scale": "optional size to grow to (a number or [x, y, z]); default: the size it had when last hidden, else its own scale (#146)"
    },
    "description": "Make a hidden object appear (scales up from nothing).",
    "tags": [
@@ -25,7 +26,8 @@
    "params": {
     "target": "object id",
     "dur": "default 0.5",
-    "sound": "default pop"
+    "sound": "default pop",
+    "scale": "optional size to grow to (a number or [x, y, z]); default: the size it had when last hidden, else its own scale (#146)"
    },
    "description": "Pop an object in with an overshoot and a sound (numbers, letters).",
    "tags": [
@@ -151,7 +153,7 @@
   },
   "stress": {
    "params": {
-    "target": "a letter word (rings off its chars), or any object (rings off all of it, upright or flat on the floor)",
+    "target": "a letter word (rings off its chars), or any object (rings off all of it, upright or flat on the floor); a letter piece \"word#c3\" ripples just that character (#150)",
     "chars": "the stressed syllable's character numbers ([1, 2, 3] in \"rabbit\" is rab), default the whole word",
     "color": "the rings' colour, default orange",
     "count": "rings, 1-6, default 3",
@@ -333,7 +335,9 @@
     "pan": "-1..1",
     "voice": "a letter sound (ph_...) in this voice's timbre (soft, squeaky, deep, robot...), made on first use",
     "pitch": "with a letter sound: the voice's pitch, 0.8-1.3 (default 1.1)",
-    "who": "with a letter sound: say it in this speaker's voice (its catalog voice, else meta.cast)"
+    "who": "with a letter sound: say it in this speaker's voice (its catalog voice, else meta.cast)",
+    "echo": "true (3 repeats) or 0-6: the sound comes back softer, halving each time (#158; an echo cave, the echo_machine)",
+    "echoGap": "seconds between echoes, default 0.35"
    },
    "description": "Play a sound effect. Letter sounds (ph_...) can be said in a speaker's voice (who, or voice + pitch).",
    "tags": [
@@ -508,6 +512,23 @@
     "reveal"
    ]
   },
+  "dust": {
+   "params": {
+    "target": "object id: the puff bursts from its foot (or give from)",
+    "from": "optional [x, y, z] to puff from instead",
+    "color": "default cream (flour); grey or sand for dust",
+    "amount": "0.05-1, how thick, default 0.85",
+    "size": "the cloud's width in metres, default the object's width",
+    "count": "3-20 puffs, default 9",
+    "dur": "default 1.4",
+    "sound": "default whoosh; false for none"
+   },
+   "description": "A puff of flour or dust (#147): soft puffs burst out from the foot of an object, rise, spread and fade (a sack lands, a cake is mixed, feet stamp).",
+   "tags": [
+    "effect",
+    "kitchen"
+   ]
+  },
   "stage": {
    "params": {
     "preset": "stages.json name (required)",
@@ -585,7 +606,8 @@
     "dur": "seconds, default 4 (0.5 s of it to glide into place)",
     "sink": "metres they sit lower (swimming in a pond: only their tops show), default 0",
     "bob": "default true: a gentle bob as they go",
-    "dir": "1 anticlockwise seen from above (default), -1 the other way"
+    "dir": "1 anticlockwise seen from above (default), -1 the other way",
+    "face": "\"front\" (default): when the ride ends each rider turns back the way it faced before (#150); \"travel\" keeps them facing along the ring"
    },
    "description": "A group swims, flies or runs round in a circle together: evenly spaced, each facing the way it moves, bobbing gently; sink lowers them into water.",
    "tags": [
@@ -897,7 +919,7 @@
   },
   "ripple": {
    "params": {
-    "target": "any object (or a letter word, with chars)",
+    "target": "any object (or a letter word, with chars); a letter piece \"word#c3\" ripples just that character (#150)",
     "color": "default orange",
     "count": "rings, 1-6, default 3",
     "dur": "seconds from the first ring to the last one fading, default 1.2",
@@ -947,7 +969,8 @@
     "who": "optional speaker",
     "caption": "default true",
     "reset": "true: a slid, tipped or opened cover glides back to where it started once the hook is over (a lifted cover is always put back unseen, so a later show finds it in place)",
-    "peek": "true: the target is not hidden but shows a little under the cover on purpose (a letter's tail peeking out); the reveal hops and glows it instead of popping it in"
+    "peek": "true: the target is not hidden but shows a little under the cover on purpose (a letter's tail peeking out); the reveal hops and glows it instead of popping it in",
+    "revealFraming": "the reveal shot's framing: default medium for one revealed thing (wide for a group), or close / wide / cover (#149)"
    },
    "description": "Open with a surprise: ask a question, wiggle the cover twice, then take it away and pop the hidden answer with a sparkle (peekaboo). Put it in the first beat; the beat stretches to fit.",
    "tags": [
@@ -985,14 +1008,16 @@
     "prompt": "the call (required)",
     "keywords": "keyword badges on the opening line: word -> icon, prop, shape or keyword options (as on say)",
     "promptSpoken": "what the voice reads for prompt when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
-    "answer": "the response, spoken after the pause (required)",
+    "answer": "the response, spoken after the pause (required unless answerSound)",
     "answerSpoken": "what the voice reads for answer when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "cue": "ear, hand (default), mouth, eye or question",
     "wait": "pause seconds, 1-6, default 2.5",
     "who": "prompt speaker",
     "answerWho": "answer speaker (default who)",
     "reveal": "optional object to pop (if hidden) or glow with the answer",
-    "caption": "default true"
+    "caption": "default true",
+    "answerSound": "a sound to play as the answer instead of a spoken line: a letter sound (ph_m) or any catalog sound (#148)",
+    "answerDur": "how long the answerSound answer holds, default 1.2 s"
    },
    "description": "Call-and-response: a prompt, a pause with a pulsing cue badge (the music dips), then the answer is revealed. The beat stretches to fit.",
    "tags": [
@@ -1051,7 +1076,7 @@
     "icon": "a badge icon (ear, hand, mouth, eye, question, star, check, heart, drop, sun, leaf, apple, music, home, moon, snow)",
     "model": "a catalog prop shown in 3D on the badge",
     "shape": "a catalog shape shown in 3D on the badge (plate, bottle, tube...); color colours the shape",
-    "text": "1-4 characters",
+    "text": "1-8 characters (past 4 the type shrinks to fit the badge, #150)",
     "color": "badge colour, default per icon",
     "sound": "default per icon; false for none",
     "dur": "seconds on screen, default 2.2",

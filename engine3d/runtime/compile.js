@@ -61,17 +61,20 @@ export function compileScript(script, { catalog, speech = {} }) {
       // Three passes, each in script order: plain moves first, then lines and kit macros (a challenge's options pulse
       // from how they look after a pop in the same beat), then shots (they frame where their targets end up after the
       // beat's moves). Times come from each action's own at, so the passes change only what each step can see.
-      const pass = (a) => (a.do === "shot" ? 2 : a.do === "say" || a.do === "caption" || RETAIN_MACROS.includes(a.do) ? 1 : 0);
+      // atAnswer (#144): an action timed from when the beat's call or challenge gives its answer runs after the macros.
+      const pass = (a) => (a.do === "shot" ? 3 : a.atAnswer != null ? 2 : a.do === "say" || a.do === "caption" || RETAIN_MACROS.includes(a.do) ? 1 : 0);
+      const marks = {};
       const ordered = (beat.do ?? []).map((a, ai) => [a, ai]).sort((x, y) => pass(x[0]) - pass(y[0]) || x[1] - y[1]);
       ordered.forEach(([a, ai]) => {
         // look's at may name what to look at (an id or a point); a number is always the time.
         // A say with at: "after" starts when the beat's previous line ends (its measured clip), plus SAY_GAP.
-        const rel = a.do === "say" && a.at === "after" ? sayEnd + (sayEnd > 0 ? SAY_GAP : 0) : typeof a.at === "number" ? a.at : 0;
+        if (a.atAnswer != null && marks.answer == null) throw new Error(`${a.do}: atAnswer needs a call or challenge in the same beat`);
+        const rel = a.atAnswer != null ? marks.answer + a.atAnswer : a.do === "say" && a.at === "after" ? sayEnd + (sayEnd > 0 ? SAY_GAP : 0) : typeof a.at === "number" ? a.at : 0;
         const start = t + rel;
         if (a.do === "say") speak(a, rel, ai);
         else if (a.do === "caption") later.push(a);
         // A beat's caption: false reaches the kit macros' spoken lines too (#111), unless the macro says otherwise.
-        else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(beat.caption === false && a.caption == null ? { ...a, caption: false } : a, { d, t, rel, speak: (l, r) => speak(l, r), audience: meta.audience }));
+        else if (RETAIN_MACROS.includes(a.do)) len = Math.max(len, runMacro(beat.caption === false && a.caption == null ? { ...a, caption: false } : a, { d, t, rel, speak: (l, r) => speak(l, r), audience: meta.audience, marks }));
         else {
           // sound who: a letter sound in that speaker's voice (its catalog voice, else meta.cast).
           if (a.do === "sound" && a.who != null && a.voice == null) {
@@ -139,6 +142,7 @@ function run(d, a, start) {
     case "reset": return d.reset(a.target, o);
     case "alive": return d.alive(a.target, o);
     case "mist": return d.mist(a.target, o);
+    case "dust": return d.dust(a.target, o);
     case "gesture": return d.gesture(a.target, o);
     case "rewind": return d.rewind(o);
     case "circle": return d.circle(o);

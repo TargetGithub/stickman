@@ -44,6 +44,10 @@ test("tracker labels fit the style", () => {
   assert.deepEqual(trackerFrom(spec("train cars", ["line of 5", "scatter"]), {}).labels, ["1", "2"]);
   assert.equal(trackerFrom(spec("a checklist card", ["find the goal", "count"], "g10001"), {}).style, "checklist");
   assert.equal(trackerFrom(spec("train", ["a", "b"], "bb0001"), {}).style, "stars");
+  // #142: stars keep word labels, and a short list on a long tracker labels the first slots.
+  assert.deepEqual(trackerFrom(spec("gold stars", ["cat", "sun"]), {}).labels, ["cat", "sun"]);
+  assert.deepEqual(trackerFrom({ id: "pk0001", progress_tracker: { style: "train", steps: 10, labels: ["S", "O", "V"] } }, {}).labels, ["S", "O", "V"]);
+  assert.equal(trackerFrom({ id: "pk0001", progress_tracker: { style: "train", steps: 10, labels: ["S", "O", "V"] } }, {}).slots, 10);
   assert.equal(fitLabel("the golden tenth firefly", 14), "golden tenth");
   assert.equal(fitLabel("short", 14), "short");
 });

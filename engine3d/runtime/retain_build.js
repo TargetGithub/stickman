@@ -76,7 +76,8 @@ function buildBadge(o, group, kit) {
     inner.add(plane);
   } else if (o.text) {
     const len = String(o.text).length;
-    const size = r * [0.62, 0.48, 0.36, 0.28][Math.min(3, len - 1)];
+    // Up to 8 characters (#150): past 4 the type shrinks so the word stays inside the round face.
+    const size = r * (len <= 4 ? [0.62, 0.48, 0.36, 0.28][len - 1] : Math.min(0.25, 1.25 / len));
     const t = kit.label(o.text, size, kit.material(rimColor === "white" ? "ink" : rimColor, "glossy"));
     t.position.z = 0.085 * r;
     inner.add(t);

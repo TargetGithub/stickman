@@ -188,11 +188,17 @@ export function validateScript(script, catalog, opts = {}) {
   function checkAction(a, p, beat) {
     const spec = catalog.actions[a?.do];
     if (!spec) return err("E3D_ACTION", `${p}.do`, `unknown action "${a?.do}" (known: ${Object.keys(catalog.actions).join(", ")})`);
-    for (const k of Object.keys(a)) if (k !== "do" && k !== "at" && k !== "id" && !(k in spec.params)) warn("W3D_UNKNOWN_FIELD", `${p}.${k}`, `${a.do} has no parameter "${k}"`);
+    for (const k of Object.keys(a)) if (k !== "do" && k !== "at" && k !== "id" && k !== "atAnswer" && !(k in spec.params)) warn("W3D_UNKNOWN_FIELD", `${p}.${k}`, `${a.do} has no parameter "${k}"`);
     // look's at may name what to look at; a say's at may be "after" (queued after the beat's previous line).
     const timed = (a.do !== "look" || typeof a.at === "number") && !(a.do === "say" && a.at === "after");
     if (a.at != null && timed && !isNum(a.at, 0, 60)) err("E3D_RANGE", `${p}.at`, "at must be 0-60 s from the beat start");
     if (a.at != null && timed && typeof beat.dur === "number" && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
+    if (a.atAnswer != null) {
+      // atAnswer (#144): seconds after the beat's call or challenge gives its answer (it may be negative, to lead it).
+      if (!isNum(a.atAnswer, -5, 30)) err("E3D_RANGE", `${p}.atAnswer`, "atAnswer must be -5 to 30 s from the answer");
+      else if (!beat.do.some((b) => b?.do === "call" || b?.do === "challenge")) err("E3D_ANSWER", `${p}.atAnswer`, "atAnswer needs a call or challenge in the same beat");
+      else if (["say", "call", "challenge", "hook", "caption"].includes(a.do)) err("E3D_ANSWER", `${p}.atAnswer`, "atAnswer is for moves, sounds and shots, not lines");
+    }
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
     if (checkR3Action(a, p, { err, warn, ids, catalog })) return; // stage, voices, shot pad, paint from on fractions
@@ -329,6 +335,7 @@ export function validateScript(script, catalog, opts = {}) {
     const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
     if (o.kind === "letter") return [...letterPieces(o), ...letterWords(o).map((_, i) => `w${i + 1}`)]; // characters c1..cN (spaces too), words w1..wK
     if (o.kind === "text_card") return cardWords(o.text).map((_, i) => `w${i + 1}`); // a card's words w1..wN (#84)
+    if (o.kind === "character") return ["head", "chest", "hand_l", "hand_r"]; // bones (objects.js CHARACTER_PARTS, #148)
     return m ? ["head", "body", ...m.parts.filter((x) => x.name).map((x) => x.name)] : teachPieces(o);
   }
 }

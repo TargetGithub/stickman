@@ -17,6 +17,7 @@ import { morphFeeling } from "./faces.js";
 import { buildTeach, isTeachKind } from "./teach.js";
 import { createCharacterRig } from "./talk.js";
 import { buildRetain, isRetainKind } from "./retain_build.js";
+import { characterAnchors } from "./character_parts.js";
 
 /** Load the fonts and characters a plan uses. @returns {Promise<{ fonts: Map, characters: Map }>} */
 export async function loadAssets(plan, catalog, base) {
@@ -259,7 +260,7 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080,
     const faces = [];
     model.traverse((m) => m.isMesh && m.morphTargetDictionary && faces.push(m));
     const rig = createCharacterRig(model, faces); // look and lip-sync on the head bone (talk.js)
-    return { group, mixer, actions, beforeMix: rig.restore, update: (t, s) => (morphFeeling(faces, t, s), rig(t, s)) };
+    return { group, named: characterAnchors(group, model), mixer, actions, beforeMix: rig.restore, update: (t, s) => (morphFeeling(faces, t, s), rig(t, s)) };
   } else if (o.kind === "clock") {
     return { group, update: buildClock(o, group, { material, font: assets.fonts.get(o.font ?? "andika_bold"), textGeometry }) };
   } else if (o.kind === "lamp") {
@@ -367,3 +368,4 @@ function buildStars(o, group, seed, material) {
     mesh.instanceMatrix.needsUpdate = true;
   };
 }
+

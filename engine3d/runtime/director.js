@@ -8,6 +8,7 @@ import { applyStartPose, baseAt } from "./start_pose.js";
 import { letterPieces } from "./letter_layout.js";
 import { installLetters } from "./director_letters.js";
 import { installEffects } from "./director_effects.js";
+import { installFx2 } from "./director_fx2.js";
 import { parseTune, TUNE_DEFAULTS } from "./tune.js";
 import { createTimeline } from "./timeline.js";
 import { deriveRng } from "./rng.js";
@@ -73,6 +74,12 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   tl.base("camera", "lookAt", [0, 1.5, 0]);
   tl.base("camera", "fov", 40);
 
+  /** The scale show and pop grow to: an explicit scale (a number or [x, y, z]), else the size at its last hide before t, else its own. */
+  const shownScale = (o, t, scale) => {
+    if (scale != null) return typeof scale === "number" ? [scale, scale, scale] : V(scale);
+    const last = (o.hides ?? []).filter((h) => h.t <= t).at(-1);
+    return last ? last.scale : o.scale;
+  };
   const d = {
     catalog,
     rng: (name) => deriveRng(seed, name),
@@ -97,8 +104,9 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       }
       spec = retainDefaults(placeOn(spec, objects)); // on: { line, value } stands it on a number line
       if (spec.base === true && spec.kind === "shape") spec = { ...spec, at: baseAt(spec), base: undefined }; // #95: sits like a prop when turned
-      // A letter riding in a train car stands on its lowest point, so a g's or y's tail clears the walls (#80).
-      if (spec.kind === "letter" && spec.lift === undefined && objects.get(spec.parent)?.model === "train_car") spec = { ...spec, lift: "descender" };
+      // A letter riding on a prop (in a train car, on a shelf, a cart, a block) stands on its lowest point, so a
+      // g's or y's tail clears the surface (#80, #143); lift: "none" keeps the baseline.
+      if (spec.kind === "letter" && spec.lift === undefined && objects.get(spec.parent)?.kind === "prop") spec = { ...spec, lift: "descender" };
       if (!spec?.id || objects.has(spec.id) || spec.id === "camera" || spec.id === "stage") throw new Error(`object id "${spec?.id}" is missing or taken`);
       if (!catalog.kinds[spec.kind] && !spec.internal) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
       if (spec.parent != null && !objects.has(spec.parent)) throw new Error(`object "${spec.id}": parent "${spec.parent}" must be added first`);
@@ -159,22 +167,25 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     // --- moves (each is a few tweens; catalog/actions.json documents them) ---
 
-    show(id, { at: t = 0, dur = 0.4 } = {}) {
+    show(id, { at: t = 0, dur = 0.4, scale } = {}) {
       const o = obj(id);
       tl.set(id, "visible", true, t);
-      tl.tween(id, "scale", { start: t, dur, from: [0, 0, 0], to: o.scale, ease: "backOut" });
+      tl.tween(id, "scale", { start: t, dur, from: [0, 0, 0], to: shownScale(o, t, scale), ease: "backOut" });
       return d;
     },
     hide(id, { at: t = 0, dur = 0.3 } = {}) {
-      obj(id);
+      const o = obj(id);
+      // Remember the size it had (#146): a card that grew comes back grown when shown or popped again.
+      const was = now(id, "scale", t);
+      if (Array.isArray(was) && was.some((v) => Math.abs(v) > 1e-3)) (o.hides ??= []).push({ t, scale: was });
       tl.tween(id, "scale", { start: t, dur, to: [0, 0, 0], ease: "backIn" });
       tl.set(id, "visible", false, t + dur);
       return d;
     },
-    pop(id, { at: t = 0, dur = 0.5, sound: s = "pop" } = {}) {
+    pop(id, { at: t = 0, dur = 0.5, sound: s = "pop", scale } = {}) {
       const o = obj(id);
       tl.set(id, "visible", true, t);
-      tl.tween(id, "scale", { start: t, dur, from: [0, 0, 0], to: o.scale, ease: "elasticOut" });
+      tl.tween(id, "scale", { start: t, dur, from: [0, 0, 0], to: shownScale(o, t, scale), ease: "elasticOut" });
       sound(s, t);
       return d;
     },
@@ -360,6 +371,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   installLook(d, { catalog, tl, obj, now, V });
   installLetters(d, { catalog, tl, obj, sound, now });
   installEffects(d, { catalog, tl, obj, now, sound, objects }); // mist, rewind
+  installFx2(d, { catalog, tl, obj, now, sound, objects }); // dust, letter-piece ripple, circle face, sound echo
   const kit2 = installKit2(d, { catalog, tl, obj, now, sound, objects, V });
   const retain = installRetain(d, { catalog, tl, obj, now, sound, objects });
   return d;

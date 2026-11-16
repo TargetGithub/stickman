@@ -6,7 +6,7 @@
 import { letterLayout, letterWords } from "./letter_layout.js";
 import { wordSpots } from "./text_layout.js";
 import { focusPoint } from "./bounds.js";
-import { findWords } from "./card_words.js";
+import { findMark, findWords } from "./card_words.js";
 import { parseDigits, pvLayout, shiftDigits } from "./place_value.js";
 import { withDefaults } from "./teach_layout.js";
 import { apply, chain, compose, decompose, eulerMat, invert, matEuler, mul, rotBetween, transpose } from "./xform.js";
@@ -168,9 +168,10 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       if (words != null) {
         // After a retext the card shows another text: the words are found in, and drawn on, the text showing then.
         const ti = Math.round(now(id, "textIdx", t) ?? 0);
-        const range = findWords(o.texts?.[ti] ?? o.text, words);
+        const mark = findMark(o.texts?.[ti] ?? o.text, words); // "?" or "!" alone marks just that character (#144)
+        const range = mark?.words ?? findWords(o.texts?.[ti] ?? o.text, words);
         if (!range) throw new Error(`emphasize "${id}": no words ${JSON.stringify(words)} on the card`);
-        o.marks.push({ words: range, color, ...(ti ? { text: ti } : {}) });
+        o.marks.push({ words: range, color, ...(mark ? { chars: mark.chars } : {}), ...(ti ? { text: ti } : {}) });
         const i = o.marks.length - 1;
         tl.base(id, `hl${i}`, 0);
         tl.tween(id, `hl${i}`, { start: t + (clear ? 0.3 : 0), dur, from: 0, to: 1, ease: "sineInOut" });

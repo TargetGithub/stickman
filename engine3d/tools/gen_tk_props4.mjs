@@ -1,0 +1,137 @@
+#!/usr/bin/env node
+// Writes catalog/models/tk_props4.json: Toybox 10K props from ENGINE_REQUESTS #142, #145, #147, #150 and #158
+// (flower_face, hair_bow, torn_sail, sort_chute, cubby_shelf, star_map, mailbox, echo_machine, fountain,
+// chick_face, chick_feet, choir_bench). Edit this file, not the JSON:
+//   node engine3d/tools/gen_tk_props4.mjs
+// Conventions: props stand on y = 0 facing +z, readable on a picture card. Letter spots are in each description.
+
+import { writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+const rd = (v) => Math.round(v * 1000) / 1000;
+const P = (p, at, s, o = {}) => ({ p, at: at.map(rd), s: s.map(rd), ...o, ...(o.r ? { r: o.r.map(rd) } : {}) });
+const ball = (at, w, o = {}) => P("sphere", at, [w, w, w], o);
+const props = {};
+const add = (name, color, description, tags, parts) => (props[name] = { color, description, tags: [...tags, "toybox10k"], parts });
+
+// #142: a flower whose middle is a flat cream face, so a letter or a smile reads on it (the catalog flower's
+// middle is a ball that covers letters).
+add("flower_face", "pink", "A big friendly flower 1.3 m tall in its main colour (petals, default pink): a green stem with two leaves and a ring of eight petals round a flat cream face 0.44 m across. Letter spot: the face's middle at local [0, 1.0, 0.07] (a letter of size 0.25 there, `parent` the flower; or put a `face` sticker on it). Named parts `head` (petals and face: wiggle or turn it to nod) and `leaves`.", ["plants", "garden", "flower", "label"], [
+  P("cylinder", [0, 0.42, 0], [0.05, 0.84, 0.05], { c: "leaf" }),
+  P("leaf", [0.14, 0.34, 0.01], [0.26, 0.12, 0.1], { c: "leaf", r: [0, 0, 25], name: "leaves" }),
+  P("leaf", [-0.14, 0.5, 0.01], [0.26, 0.12, 0.1], { c: "leaf", r: [0, 0, 155], name: "leaves" }),
+  ...Array.from({ length: 8 }, (_, k) => {
+    const a = (k * Math.PI) / 4;
+    return P("oval", [Math.cos(a) * 0.3, 1.0 + Math.sin(a) * 0.3, -0.01], [0.24, 0.16, 0.06], { r: [0, 0, (k * 45)], m: "glossy", name: "head" });
+  }),
+  P("disc", [0, 1.0, 0.02], [0.44, 0.06, 0.44], { c: "cream", m: "matte", r: [90, 0, 0], name: "head" }),
+]);
+
+// #145: a hair-ribbon bow (two loops, a knot and two tails), to sit on a head.
+add("hair_bow", "pink", "A hair-ribbon bow 0.4 m wide in its main colour (default pink): two puffy loops, a round knot and two short tails, facing +z. Its origin is under the knot: `parent` it to a character with part \"head\" and place it on top or at the side of the head (size 0.5 on Pip).", ["clothes", "hair", "bow", "ribbon"], [
+  ...[-1, 1].map((sd) => P("oval", [sd * 0.11, 0.12, 0], [0.2, 0.15, 0.08], { m: "glossy", r: [0, 0, sd * 12] })),
+  ball([0, 0.12, 0.02], 0.08, { m: "glossy" }),
+  ...[-1, 1].map((sd) => P("box", [sd * 0.05, 0.03, 0], [0.05, 0.14, 0.02], { m: "glossy", r: [0, 0, sd * 25] })),
+]);
+
+// #145: a little boat's torn sail: the sail has a ragged notch and a loose flap that can flutter.
+add("torn_sail", "white", "A mast 1.8 m tall with a torn sail in its main colour (default white): the sail has a ragged gap near its middle and a loose triangle `flap` hanging from it (wiggle it to flutter; turn it [0, 0, 0] to patch it closed with a move back). Stand it in a `boat` or on a raft; the mast's foot is the origin, the sail faces +z.", ["boat", "sea", "sail", "repair"], [
+  P("cylinder", [0, 0.9, 0], [0.05, 1.8, 0.05], { c: "wood_dark" }),
+  P("triangle", [0.32, 1.42, 0.02], [0.62, 0.62, 0.03], { m: "matte" }),
+  P("triangle", [0.36, 0.62, 0.02], [0.7, 0.6, 0.03], { m: "matte", r: [0, 0, 180] }),
+  P("triangle", [0.24, 1.0, 0.04], [0.3, 0.24, 0.02], { m: "matte", r: [0, 0, 160], name: "flap" }),
+  P("box", [0.36, 0.32, 0.01], [0.72, 0.03, 0.03], { c: "wood_dark" }),
+]);
+
+// #147: a sorting chute: drop a card in the hopper, the chute swings left or right into one of two bins.
+add("sort_chute", "teal", "A sorting machine 1.6 m wide and 1.7 m tall, facing +z: a hopper on legs with a slot on top (mouth at local [0, 1.62, 0]), a slide `chute` under it (hinged at [0, 1.1, 0.1]; turn it [0, 0, 30] to tip toward the left bin, [0, 0, -30] toward the right) and two open bins at its feet: left `bin_left` (blue, middle [-0.55, 0.2, 0.25]) and right `bin_right` (orange, middle [0.55, 0.2, 0.25]). Label spots: each bin's front at z 0.46, y 0.22 (a card of width 0.5). Move a card from the slot down the chute into a bin.", ["machine", "sorting", "bins", "classroom"], [
+  P("cone", [0, 1.45, 0], [0.6, 0.34, 0.6], { r: [180, 0, 0] }),
+  P("box", [0, 1.63, 0], [0.4, 0.04, 0.08], { c: "ink" }),
+  ...[-1, 1].map((sd) => P("cylinder", [sd * 0.22, 0.68, -0.1], [0.05, 1.36, 0.05], { c: "grey" })),
+  P("box", [0, 0.82, 0.1], [0.24, 0.56, 0.05], { c: "yellow", m: "glossy", name: "chute" }),
+  P("box", [-0.55, 0.2, 0.25], [0.6, 0.4, 0.42], { c: "blue", name: "bin_left" }),
+  P("box", [-0.55, 0.41, 0.25], [0.5, 0.02, 0.32], { c: "ink", name: "bin_left" }),
+  P("box", [0.55, 0.2, 0.25], [0.6, 0.4, 0.42], { c: "orange", name: "bin_right" }),
+  P("box", [0.55, 0.41, 0.25], [0.5, 0.02, 0.32], { c: "ink", name: "bin_right" }),
+]);
+
+// #150: a cubby shelf of 3 x 3 open cubes (classroom storage).
+const cubby = [];
+// Each cube's dark back wall shows through its opening (a recess just in front of the frame face).
+for (const x of [-0.6, 0, 0.6]) for (const y of [0.05, 0.6, 1.15]) cubby.push(P("box", [x, y + 0.27, 0.035], [0.52, 0.48, 0.4], { c: "wood_dark", m: "matte" }));
+add("cubby_shelf", "wood", "A classroom cubby shelf 1.85 m wide, 1.75 m tall and 0.45 m deep in its main colour (wood), facing +z, with nine open cubes in three rows. Cube middles (fronts at z 0.22): columns x -0.6, 0, 0.6 and rows y 0.32, 0.87, 1.42; a prop of size 0.4 fits in one, a card label of width 0.45 goes on the cube's lower lip at z 0.24.", ["classroom", "storage", "shelf", "furniture"], [
+  P("box", [0, 0.875, 0], [1.85, 1.75, 0.45]),
+  ...cubby,
+]);
+
+// #150: a star map: a dark board with gold stars joined by dotted lines (constellations).
+const stars = [[-0.6, 1.5], [-0.3, 1.65], [0, 1.45], [0.25, 1.7], [0.6, 1.55], [-0.45, 1.05], [-0.1, 0.9], [0.35, 1.0], [0.62, 0.8]];
+const links = [[0, 1], [1, 2], [2, 3], [3, 4], [5, 6], [6, 7], [7, 8]];
+add("star_map", "midnight", "A star map 1.6 m wide on a little easel, 2 m tall: a dark board (main colour, midnight blue) with nine gold stars joined by dotted lines into two constellations, a moon in the top-left corner, facing +z. Board middle at local [0, 1.25, 0.06]; a title card goes on the frame's bottom edge at y 0.62. Named part `stars` (all stars: twinkle them with highlight or wiggle).", ["space", "stars", "map", "night"], [
+  ...[-1, 1].map((sd) => P("cylinder", [sd * 0.5, 0.5, -0.1], [0.05, 1.0, 0.05], { c: "wood_dark", r: [-8, 0, 0] })),
+  P("box", [0, 1.25, 0], [1.66, 1.16, 0.06], { c: "wood" }),
+  P("box", [0, 1.25, 0.02], [1.56, 1.06, 0.06], { m: "matte" }),
+  P("crescent", [-0.62, 1.66, 0.06], [0.16, 0.16, 0.03], { c: "cream", m: "glow" }),
+  ...stars.map(([x, y]) => P("star", [x, y, 0.06], [0.12, 0.12, 0.04], { c: "gold", m: "glow", name: "stars" })),
+  ...links.flatMap(([a, b]) => [1, 2, 3].map((j) => ball([stars[a][0] + ((stars[b][0] - stars[a][0]) * j) / 4, stars[a][1] + ((stars[b][1] - stars[a][1]) * j) / 4, 0.06], 0.025, { c: "cream", m: "glow" }))),
+]);
+
+// #158: a blue collection mailbox with a pull-down slot flap.
+add("mailbox", "blue", "A blue street mailbox 1.2 m tall, facing +z: a box with a round top on four short legs, a letter slot with a pull-down `flap` (hinged at its top edge, at [0, 0.98, 0.3]: turn it [-60, 0, 0] to open, then post a card into the slot at [0, 0.93, 0.3]) and a white label panel on the front (label spot at [0, 0.6, 0.31], a card of width 0.45). Set color for another colour.", ["post", "mail", "letters", "street"], [
+  ...[-1, 1].flatMap((sx) => [-1, 1].map((sz) => P("box", [sx * 0.24, 0.08, sz * 0.2], [0.06, 0.16, 0.06], { c: "charcoal" }))),
+  P("box", [0, 0.58, 0], [0.6, 0.84, 0.56], { m: "glossy" }),
+  P("cylinder", [0, 1.0, 0], [0.6, 0.56, 0.3], { m: "glossy", r: [0, 0, 90] }),
+  P("box", [0, 0.93, 0.29], [0.4, 0.06, 0.02], { c: "ink" }),
+  P("box", [0, 0.92, 0.3], [0.42, 0.1, 0.02], { c: "blue", m: "glossy", hang: [0, -0.05, 0], name: "flap" }),
+  P("box", [0, 0.6, 0.29], [0.4, 0.26, 0.01], { c: "white", m: "matte" }),
+]);
+
+// #158: an echo machine: a box with a big horn that plays a sound back again, softer.
+add("echo_machine", "purple", "An echo machine 1.3 m tall, facing +z: a box in its main colour (purple) on stubby feet with two dials, a red `button` on top (press: move it down 0.03 and back) and a big gold horn `horn` on the right that points up and out (wiggle it as the echo plays). A round speaker grille faces front at [-0.18, 0.5, 0.3]; a `light` (glow) blinks on top. Pair with `sound` `echo` (repeats a sound softer).", ["machine", "sound", "echo", "music"], [
+  ...[-1, 1].map((sd) => P("box", [sd * 0.3, 0.04, 0], [0.12, 0.08, 0.4], { c: "charcoal" })),
+  P("box", [0, 0.48, 0], [0.86, 0.8, 0.56], { m: "glossy" }),
+  P("disc", [-0.18, 0.5, 0.29], [0.34, 0.03, 0.34], { c: "charcoal", r: [90, 0, 0] }),
+  ...[-1, 1].map((sd) => P("disc", [0.25, 0.48 + sd * 0.15, 0.29], [0.13, 0.03, 0.13], { c: "cream", r: [90, 0, 0] })),
+  P("cylinder", [-0.15, 0.91, 0], [0.12, 0.06, 0.12], { c: "red", m: "glossy", name: "button" }),
+  ball([0.15, 0.93, 0], 0.1, { c: "yellow", m: "glow", name: "light" }),
+  P("cylinder", [0.36, 1.02, 0.05], [0.07, 0.36, 0.07], { c: "gold", m: "glossy", r: [-20, 0, -25], name: "horn" }),
+  P("cone", [0.48, 1.22, 0.12], [0.32, 0.26, 0.32], { c: "gold", m: "glossy", r: [160, 0, 155], name: "horn" }),
+]);
+
+// #158: a fountain whose water jet rises and lifts a ball or a letter on top of it.
+add("fountain", "grey", "A round garden fountain 1.6 m across: a stone basin (rim top at y 0.45) of blue water with a middle spout and a water `jet` (a glossy water column from y 0.45 up to 1.25). The jet is built to grow from its foot: scale `<id>#jet` to [1, 0.1, 1] to start it low and back to [1, 1, 1] to make it spring up. To lift something on the water, put it at [0, 1.3, 0] (parent the fountain) and move it up with the jet; at scale 0.1 it rests at y 0.53.", ["garden", "water", "fountain", "park"], [
+  P("cylinder", [0, 0.2, 0], [1.6, 0.4, 1.6], { m: "matte" }),
+  P("torus", [0, 0.38, 0], [1.6, 0.14, 1.6], { m: "matte", r: [90, 0, 0] }),
+  P("cylinder", [0, 0.41, 0], [1.4, 0.04, 1.4], { c: "sky", m: "glossy" }),
+  P("cylinder", [0, 0.5, 0], [0.18, 0.2, 0.18]),
+  // The jet's pivot is its foot on the water, so scaling it grows it upward.
+  P("cylinder", [0, 0.45, 0], [0.12, 0.8, 0.12], { c: "sky", m: "glossy", hang: [0, 0.4, 0], name: "jet" }),
+  ball([0, 0.45, 0], 0.22, { c: "white", m: "glossy", hang: [0, 0.8, 0], name: "jet" }),
+]);
+
+// #158: letter-shaped chicks: a chick's eyes and beak, and its feet, to parent on a letter so the letter is the chick.
+add("chick_face", "yellow", "A chick's face to stick on a letter (letter-shaped chicks): two shiny black eyes and an orange beak, plus a little feather tuft on top, 0.3 m wide at size 1, facing +z with its origin at the beak. `parent` it to a letter piece (`word#c1`) near the top of the letter's front face (z just past the letter's depth, about 0.2 x size).", ["animal", "chick", "face", "letters"], [
+  ...[-1, 1].map((sd) => ball([sd * 0.08, 0.07, 0], 0.07, { c: "ink", m: "glossy" })),
+  P("cone", [0, 0, 0.03], [0.07, 0.09, 0.07], { c: "orange", r: [90, 0, 0] }),
+  ...[-1, 0, 1].map((k) => P("oval", [k * 0.03, 0.18, -0.02], [0.04, 0.09, 0.02], { r: [0, 0, -k * 25] })),
+]);
+add("chick_feet", "orange", "A chick's two orange feet (three toes each), 0.3 m wide at size 1, origin between them on the ground: `parent` it to a letter word at the foot of a letter so the letter stands on chick feet.", ["animal", "chick", "feet", "letters"], [
+  ...[-1, 1].flatMap((sd) => [-25, 0, 25].map((a) => P("box", [sd * 0.08 + Math.sin((a * Math.PI) / 180) * 0.04, 0.015, 0.04], [0.025, 0.03, 0.1], { r: [0, a, 0] }))),
+  ...[-1, 1].map((sd) => P("cylinder", [sd * 0.08, 0.06, 0], [0.025, 0.1, 0.025])),
+]);
+
+// #158: a choir riser bench in one colour (a, e, i, o, u each get their own).
+add("choir_bench", "red", "A two-step choir riser bench 1.6 m wide in its main colour (set color: one per vowel), facing +z: a low step (seat top y 0.3, middle z 0.25) in front of a high step (seat top y 0.6, middle z -0.2). Critters stand on it at those heights; a letter or a card label goes on the low step's front at [0, 0.15, 0.46].", ["music", "choir", "bench", "stage", "vowels"], [
+  P("box", [0, 0.15, 0.22], [1.6, 0.3, 0.46], { m: "glossy" }),
+  P("box", [0, 0.3, -0.22], [1.6, 0.6, 0.44], { m: "glossy" }),
+  P("box", [0, 0.305, 0.22], [1.6, 0.01, 0.46], { c: "white", m: "matte" }),
+  P("box", [0, 0.605, -0.22], [1.6, 0.01, 0.44], { c: "white", m: "matte" }),
+]);
+
+const out = {
+  description: "Toybox 10K props from ENGINE_REQUESTS #142-#158 (flower_face, hair_bow, torn_sail, sort_chute, cubby_shelf, star_map, mailbox, echo_machine, fountain, chick_face, chick_feet, choir_bench). Generated by tools/gen_tk_props4.mjs: edit the generator and rerun it, not the JSON.",
+  props,
+};
+const file = fileURLToPath(new URL("../catalog/models/tk_props4.json", import.meta.url));
+writeFileSync(file, JSON.stringify(out, null, 1) + "\n");
+console.log("wrote", file, Object.keys(props).length, "props");

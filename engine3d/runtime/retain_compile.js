@@ -15,7 +15,7 @@ export const RETAIN_MACROS = ["hook", "challenge", "call"];
  *   t: the beat's start; rel: the action's start from it; speak: say a line at rel (seconds from the beat start)
  * @returns {number}  where the action ends, seconds from the beat start
  */
-export function runMacro(a, { d, t, rel, speak, audience }) {
+export function runMacro(a, { d, t, rel, speak, audience, marks = {} }) {
   const at = (r) => t + r;
   // A line's spoken form (respelling or [[ IPA ]]) comes from <field>Spoken: questionSpoken, answerSpoken, ...
   const line = (text, who, spoken, keywords) => ({ do: "say", text, caption: a.caption !== false, ...(who != null ? { who } : {}), ...(spoken != null ? { spoken } : {}), ...(keywords ? { keywords } : {}) });
@@ -56,7 +56,10 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     });
     d.sound("ding", { at: at(reveal + 0.35 + (targets.length - 1) * 0.18), volume: 0.7 });
     // A part cover (a lid, a door) keeps its owner in the frame, so the box and what peeks out both show.
-    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart || style === "none" ? [owner, ...targets] : targets.length > 1 ? targets : targets[0], framing: isPart ? "medium" : "wide", pad: 0.6, dur: 1 });
+    // One revealed thing is framed medium with a small pad, not wide with 0.6 m round it (#149: that backed far off a
+    // little prize); revealFraming picks another framing.
+    const lone = !isPart && style !== "none" && targets.length === 1;
+    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart || style === "none" ? [owner, ...targets] : targets.length > 1 ? targets : targets[0], framing: a.revealFraming ?? (isPart || lone ? "medium" : "wide"), pad: lone ? 0.2 : 0.6, dur: 1 });
     let end = reveal + 2.2 + (targets.length - 1) * 0.18;
     if (a.answer) end = Math.max(end, reveal + 0.9 + speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), reveal + 0.9) + 0.35);
     // A lifted cover is hidden by now: it is put back where it started, unseen, so a later show finds it in place
@@ -77,6 +80,7 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     d.options(null, { at: at(start), targets: a.options, dur: dur + 0.3 });
     d.timer(a.timer, { at: at(start), dur, count: a.count ?? 3 });
     const rang = start + 0.3 + dur;
+    marks.answer = rang + 0.2;
     d.answer(a.answer, { at: at(rang + 0.2), result: "correct", confetti: a.confetti });
     let end = rang + 2.2;
     if (a.praise) end = Math.max(end, rang + 0.9 + speak(line(a.praise, a.who, a.praiseSpoken), rang + 0.9) + 0.35);
@@ -93,7 +97,13 @@ export function runMacro(a, { d, t, rel, speak, audience }) {
     d.music({ at: at(rel + q), gain: 0.45, dur: 0.4 });
     d.music({ at: at(rel + q + wait), gain: 1, dur: 0.6 });
     const ans = rel + q + 0.3 + wait;
-    const len = speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), ans);
+    marks.answer = ans;
+    // answerSound (#148): the answer is a sound (a letter sound ph_m, a moo) instead of a spoken line.
+    let len;
+    if (a.answerSound != null) {
+      d.sound(a.answerSound, { at: at(ans) });
+      len = a.answerDur ?? 1.2;
+    } else len = speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), ans);
     d.sound("sparkle", { at: at(ans), volume: 0.6 });
     if (a.reveal != null) {
       if (!d.timeline.valueAt(a.reveal, "visible", at(ans))) d.pop(a.reveal, { at: at(ans + 0.1) });

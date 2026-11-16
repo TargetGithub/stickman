@@ -63,7 +63,7 @@ const SHAPE_BOX = {
   bowl: [[-0.5, 0, -0.5], [0.5, 0.5, 0.5]], dome: [[-0.5, 0, -0.5], [0.5, 0.5, 0.5]], torus: [[-0.5, 0, -0.15], [0.5, 1, 0.15]],
 };
 const FLAT_SHAPES = new Set(["circle", "square", "triangle", "rectangle", "oval", "diamond", "crescent", "pentagon", "hexagon", "octagon", "half_circle",
-  "quarter_circle", "arrow", "cross", "snowflake", "drop", "leaf", "ring", "star", "heart"]);
+  "quarter_circle", "pie_third", "pie_sixth", "pie_eighth", "arrow", "cross", "snowflake", "drop", "leaf", "ring", "star", "heart"]);
 
 /**
  * base: true (#95): where to put a turned shape so it sits like a prop: turned about its middle, then lowered or

@@ -17,8 +17,8 @@ const isNum = (v, lo = -Infinity, hi = Infinity) => typeof v === "number" && Num
 /** Ranges of a character's voice settings (meta.cast and say). */
 export const VOICE_RANGE = { pitch: [0.8, 1.3], speed: [0.8, 1.2] };
 const CAST_FIELDS = new Set(["voice", "pitch", "speed", "description"]);
-/** Letter lifts: "descender" stands the text on its lowest point. */
-export const LIFTS = ["descender"];
+/** Letter lifts: "descender" stands the text on its lowest point (the default on a prop); "none" keeps the baseline. */
+export const LIFTS = ["descender", "none"];
 
 /** pitch and speed on a cast entry or a say. */
 function checkVoiceNums(v, p, err) {
@@ -130,7 +130,21 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     if (a.radius != null && !isNum(a.radius, 0.3, 20)) err("E3D_RANGE", `${p}.radius`, "radius must be 0.3-20 m");
     if (a.turns != null && !isNum(Math.abs(a.turns), 0.25, 10)) err("E3D_RANGE", `${p}.turns`, "turns must be 0.25-10");
     if (a.sink != null && !isNum(a.sink, 0, 2)) err("E3D_RANGE", `${p}.sink`, "sink must be 0-2 m");
+    if (a.face != null && !["front", "travel"].includes(a.face)) err("E3D_RANGE", `${p}.face`, 'face must be "front" (turn back when done, the default) or "travel"');
     return true;
+  }
+  if (a.do === "dust") {
+    if (a.target == null && a.from == null) err("E3D_REQUIRED", `${p}.target`, "dust needs a target (puffs from its foot) or from: [x, y, z]");
+    if (a.from != null && !(Array.isArray(a.from) && a.from.length === 3 && a.from.every(Number.isFinite))) err("E3D_VEC", `${p}.from`, "from must be [x, y, z]");
+    if (a.amount != null && !isNum(a.amount, 0.05, 1)) err("E3D_RANGE", `${p}.amount`, "amount must be 0.05-1");
+    if (a.size != null && !isNum(a.size, 0.2, 5)) err("E3D_RANGE", `${p}.size`, "size must be 0.2-5 m");
+    if (a.count != null && !(Number.isInteger(a.count) && a.count >= 3 && a.count <= 20)) err("E3D_RANGE", `${p}.count`, "count must be 3-20 puffs");
+    if (a.color != null && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
+    return true;
+  }
+  if (a.do === "sound" && (a.echo != null || a.echoGap != null)) {
+    if (a.echo != null && a.echo !== true && a.echo !== false && !(Number.isInteger(a.echo) && a.echo >= 0 && a.echo <= 6)) err("E3D_RANGE", `${p}.echo`, "echo must be true (3 repeats) or 0-6");
+    if (a.echoGap != null && !isNum(a.echoGap, 0.1, 2)) err("E3D_RANGE", `${p}.echoGap`, "echoGap must be 0.1-2 s");
   }
   if (a.do === "rewind") {
     // Effects (director_effects.js): rewind has no target; it lists targets (default everything in the scene).

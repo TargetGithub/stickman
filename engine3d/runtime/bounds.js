@@ -14,7 +14,7 @@ const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
 
 /** Flat 2D shapes are thin in z; solids are about one unit in each direction. */
 const FLAT = new Set(["circle", "square", "triangle", "rectangle", "oval", "diamond", "crescent", "pentagon", "hexagon", "octagon", "half_circle",
-  "quarter_circle", "arrow", "cross", "snowflake", "drop", "leaf", "ring", "star", "heart"]);
+  "quarter_circle", "pie_third", "pie_sixth", "pie_eighth", "arrow", "cross", "snowflake", "drop", "leaf", "ring", "star", "heart"]);
 
 /** Heights of shapes lower than their 1 m box (geometry.js): a plate, a coin, a hoop, a bowl, a dome. */
 export const THIN = { plate: 0.04, disc: 0.12, hoop: 0.03, bowl: 0.5, dome: 0.5 };

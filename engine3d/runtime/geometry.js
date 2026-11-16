@@ -365,6 +365,10 @@ function make(name) {
     case "octagon": return puffy(regular(8, 0.52, Math.PI / 8));
     case "half_circle": return puffy(slice(Math.PI));
     case "quarter_circle": return puffy(slice(Math.PI / 2));
+    // Pie slices (#148): point at the origin, opening from +x anticlockwise (turn about z to place a wedge).
+    case "pie_third": return puffy(slice((2 * Math.PI) / 3));
+    case "pie_sixth": return puffy(slice(Math.PI / 3));
+    case "pie_eighth": return puffy(slice(Math.PI / 4));
     case "arrow": return puffy(rounded([[-0.5, -0.13], [0.12, -0.13], [0.12, -0.3], [0.5, 0], [0.12, 0.3], [0.12, 0.13], [-0.5, 0.13]], 0.04));
     case "cross": return bars([[1, 0.24, 45], [1, 0.24, -45]]);
     // A tick mark (right answers): a short arm down to the joint and a long arm up to the right.
