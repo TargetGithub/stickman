@@ -35,7 +35,7 @@ function write(dir, text) {
 for (const root of dirs.filter(existsSync)) {
   for (const name of readdirSync(root).sort()) {
     const dir = join(root, name);
-    if (!existsSync(join(dir, "final.mp4"))) continue;
+    if (!existsSync(join(dir, "final.mp4")) || !existsSync(join(dir, "meta.json"))) continue; // still rendering
     const meta = JSON.parse(readFileSync(join(dir, "meta.json"), "utf8"));
     const len = fmt(meta.durationSec ?? meta.duration ?? 0);
     let m;
