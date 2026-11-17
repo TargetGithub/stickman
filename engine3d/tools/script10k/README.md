@@ -139,7 +139,7 @@ is added. One clear teaching object, 1-2 expressive characters, 3-5 objects in a
 
 `review --ok` needs `qa/<band>/<id>/stills.json` from a full-timeline `stills` run (gaps ≤ 30 s, real TTS) on the exact
 current script (sha1); review.json records the script hash, and `render10k` renders only when review, preview and
-script all match. Spot `--times` runs don't count. Any change to the lesson (or a rebuild that changes the script)
+script all match. Spot `--times` runs don't count; they write `spot/` and `spot_N.jpg`, leaving the full `stills/` and `contact_N.jpg` alone. Any change to the lesson (or a rebuild that changes the script)
 needs a new full preview before the next review.
 
 ## Done means

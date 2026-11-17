@@ -90,7 +90,9 @@ if (cmd === "stills") {
   // --times 61.5,90 renders just those moments (spot checks), labelled with their chapter.
   if (opt("--times", null)) { times.clear(); for (const t of opt("--times").split(",").map(Number)) times.set(t, `spot ${sceneOf(t)?.title ?? ""}`); }
   const list = [...times.entries()].sort((a, b) => a[0] - b[0]).slice(0, 100);
-  const dir = join(p.qaDir, "stills");
+  // Spot runs keep their own folder and sheets, so they never wipe the full preview a reviewer looks at.
+  const spot = !!opt("--times", null);
+  const dir = join(p.qaDir, spot ? "spot" : "stills");
   rmSync(dir, { recursive: true, force: true });
   mkdirSync(dir, { recursive: true });
   const r = spawnSync(process.execPath, [join(HERE, "render3d.mjs"), p.script, "--res", "1080p", "--fps", "30", "--speech", speechMode, "--music", "off", "--stills", list.map(([t]) => t).join(","), "--out", join(dir, "x.mp4")], { encoding: "utf8" });
@@ -99,7 +101,7 @@ if (cmd === "stills") {
   const pngs = list.map(([t, label]) => [`${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")} ${label}`, join(pngDir, `${id}_1080p_t${t.toFixed(2)}.png`)]);
   for (let k = 0; k * 20 < pngs.length; k++) {
     const part = pngs.slice(k * 20, k * 20 + 20);
-    const out = join(p.qaDir, `contact_${k + 1}.jpg`);
+    const out = join(p.qaDir, `${spot ? "spot" : "contact"}_${k + 1}.jpg`);
     const c = spawnSync("python3", [join(HERE, "script10k/contact.py"), out, "4", ...part.flat()], { encoding: "utf8" });
     if (c.status !== 0) { console.error(c.stderr); process.exit(1); }
     console.log(out);
