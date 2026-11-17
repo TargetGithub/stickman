@@ -6,7 +6,7 @@
 //   node tools/youtube_upload.mjs --check [--channel <name>]                             connected channel + today's quota use
 //   node tools/youtube_upload.mjs <episode folder | episode id> --dry-run                 show exactly what would be sent
 //   node tools/youtube_upload.mjs <episode folder | episode id> [--privacy private|unlisted|public]
-//        [--publish-at 2026-11-10T16:00:00-08:00] [--playlist <id or exact title> | --no-playlist] [--thumb <file>] [--video <file>]
+//        [--publish-at 2026-11-10T16:00:00-08:00] [--playlist <id or exact title> | --no-playlist] [--no-topic] [--thumb <file>] [--video <file>]
 //        [--no-notify] [--force] [--yes]
 //   node tools/youtube_upload.mjs <episode folder | episode id> --update-status [--yes]   re-apply made for kids, no AI, no paid promotion
 //
@@ -26,7 +26,7 @@ import { basename, isAbsolute, join, resolve } from "node:path";
 import { createInterface } from "node:readline/promises";
 import { fileURLToPath } from "node:url";
 import {
-  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, buildPaidPromotionUpdate, buildStatusUpdate, choosePlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
+  DAILY_QUOTA, PRIVACY, QUOTA, buildAuthUrl, buildPaidPromotionUpdate, buildStatusUpdate, choosePlaylist, chooseTopicPlaylist, buildInsertBody, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir,
   fitTags, humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, validateMeta,
 } from "./lib/youtube.mjs";
 
@@ -230,16 +230,19 @@ function plan(dir) {
   const sidecar = join(dir, "youtube_upload.json");
   const prior = (existsSync(sidecar) && JSON.parse(readFileSync(sidecar, "utf8")).videoId) || registry()?.episodes?.[id]?.youtube?.videoId || null;
   const playlist = choosePlaylist({ explicit: opt.playlist, noPlaylist: opt["no-playlist"], channel: opt.channel, audience: parsed.audience });
-  return { dir, id, meta, dropped, playlist, body, video, size: statSync(video).size, thumb, sidecar, prior, notify: !opt["no-notify"] };
+  // The topic playlist rides along with the automatic grade playlist; --playlist, --no-playlist or --no-topic turn it off.
+  const topic = opt.playlist || opt["no-playlist"] || opt["no-topic"] ? null : chooseTopicPlaylist({ channel: opt.channel, audience: parsed.audience, title: meta.title, skills: parsed.skills });
+  return { dir, id, meta, dropped, playlist, topic, body, video, size: statSync(video).size, thumb, sidecar, prior, notify: !opt["no-notify"] };
 }
 
 function show(p) {
   const s = buildResumableStart(p.body, p.size, p.notify);
-  const cost = QUOTA["videos.insert"] + (p.thumb ? QUOTA["thumbnails.set"] : 0) + (p.playlist ? QUOTA["playlistItems.insert"] + (isPlaylistId(p.playlist.id) ? 0 : QUOTA["playlists.list"]) : 0);
+  const cost = QUOTA["videos.insert"] + (p.thumb ? QUOTA["thumbnails.set"] : 0) + (p.playlist ? QUOTA["playlistItems.insert"] + (isPlaylistId(p.playlist.id) ? 0 : QUOTA["playlists.list"]) : 0) + (p.topic ? QUOTA["playlistItems.insert"] : 0);
   console.log(`Episode:    ${p.id ?? "–"}  ${p.dir}`);
   console.log(`Video:      ${p.video}  (${humanSize(p.size)}, ${p.size} bytes, resumable in ${humanSize(CHUNK)} chunks)`);
   console.log(`Thumbnail:  ${p.thumb ? `${p.thumb}  (${humanSize(statSync(p.thumb).size)})` : "none (YouTube picks a frame)"}`);
   console.log(`Playlist:   ${p.playlist ? `${p.playlist.title ? `${p.playlist.title} (${p.playlist.id})` : p.playlist.id}${p.playlist.auto ? ", the grade playlist" : ""}${isPlaylistId(p.playlist.id) ? "" : "  (title: looked up with playlists.list)"}` : "none"}`);
+  console.log(`Topic:      ${p.topic ? `${p.topic.title} (${p.topic.id})` : "none"}`);
   console.log(`Privacy:    ${p.body.status.privacyStatus}${p.body.status.publishAt ? `, scheduled to go public at ${p.body.status.publishAt}` : ""}`);
   console.log(`Audience:   Made for kids (selfDeclaredMadeForKids: true), category ${p.body.snippet.categoryId} Education`);
   if (p.dropped.length) console.log(`Tags dropped to fit 500 characters: ${p.dropped.join(", ")}`);
@@ -374,7 +377,7 @@ async function upload(arg) {
   console.log(`\nUploading ${humanSize(p.size)}…`);
   const video = await uploadVideo(p);
   console.log(`Uploaded: https://youtu.be/${video.id}  (${video.status?.privacyStatus}, made for kids: ${video.status?.selfDeclaredMadeForKids})`);
-  const extra = { thumbnail: null, playlist: null, paidPromotion: null };
+  const extra = { thumbnail: null, playlist: null, topicPlaylist: null, paidPromotion: null };
   try { await setNoPaidPromotion(video.id); extra.paidPromotion = false; console.log("Paid promotion: No"); }
   catch (e) { console.warn(`warning: ${e.message}`); }
   if (p.thumb) {
@@ -383,6 +386,10 @@ async function upload(arg) {
   }
   if (plId) {
     try { await json(await call(`${API}/playlistItems?part=snippet`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(buildPlaylistItem(plId, video.id)) }, "playlistItems.insert"), "playlistItems.insert"); extra.playlist = plId; console.log(`Added to playlist ${plId}`); }
+    catch (e) { console.warn(`warning: ${e.message}`); }
+  }
+  if (p.topic) {
+    try { await json(await call(`${API}/playlistItems?part=snippet`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(buildPlaylistItem(p.topic.id, video.id)) }, "playlistItems.insert"), "playlistItems.insert"); extra.topicPlaylist = p.topic.id; console.log(`Added to topic playlist ${p.topic.title}`); }
     catch (e) { console.warn(`warning: ${e.message}`); }
   }
   record(p, video, extra);

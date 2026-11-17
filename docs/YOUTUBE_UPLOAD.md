@@ -74,6 +74,11 @@ node tools/youtube_upload.mjs "<episode folder>" --channel toybox --publish-at 2
 - With `--channel toybox`, an upload goes into its grade's playlist automatically, using the grade on the
   `youtube.txt` AUDIENCE line: PreK Videos, Grade1 Videos … Grade5 Videos (`GRADE_PLAYLISTS` in
   `tools/lib/youtube.mjs`). Babies and K have no playlist yet. `--no-playlist` turns this off.
+- It also goes into one topic playlist (`TOPIC_PLAYLISTS` and `chooseTopicPlaylist` in `tools/lib/youtube.mjs`), picked
+  from the AUDIENCE grade plus the title and `Skills:` line: nursery rhymes, Pre-K ABC, preschool basics, Kindergarten
+  reading, Grade 1 phonics, Grade 2 vowels, sentences and story skills, word parts (Grades 3–5), math, or science and
+  social studies. Babies and K land only in their topic playlist. `--no-topic` skips it; `--playlist` and `--no-playlist`
+  skip it too. The dry run prints the choice on the `Topic:` line. It costs one more `playlistItems.insert` (50 units).
 - `--playlist` overrides it, and accepts a playlist id (`PL…`) or the exact title of one of the channel's playlists. The tool
   looks up the playlist before uploading, so a wrong name fails early.
 - `--no-notify` turns off subscriber notifications. `--yes` skips the terminal prompt; use it only after

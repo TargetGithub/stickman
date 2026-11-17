@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  SCOPES, audienceGrade, buildAuthUrl, choosePlaylist, buildInsertBody, buildPaidPromotionUpdate, buildStatusUpdate, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
+  SCOPES, TOPIC_PLAYLISTS, audienceGrade, buildAuthUrl, choosePlaylist, chooseTopicPlaylist, buildInsertBody, buildPaidPromotionUpdate, buildStatusUpdate, buildPlaylistItem, buildResumableStart, contentRange, episodeIdFromDir, fitTags,
   humanSize, isPlaylistId, nextOffset, parsePublishAt, parseYoutubeTxt, pickThumbnail, quotaDay, tagsLength, validateMeta,
 } from "../../tools/lib/youtube.mjs";
 
@@ -163,4 +163,39 @@ test("buildStatusUpdate keeps privacy and schedule, sets made for kids and no al
 
 test("buildPaidPromotionUpdate answers paid promotion No", () => {
   assert.deepEqual(buildPaidPromotionUpdate("v1"), { id: "v1", paidProductPlacementDetails: { hasPaidProductPlacement: false } });
+});
+
+test("chooseTopicPlaylist: Toy Box topic playlists by grade and title", () => {
+  const aud = (g) => `Made for kids (${g}). Length 4:00.`;
+  const table = [
+    ["babies", "Twinkle Twinkle Little Star Sing-Along for Babies", "rhymes"],
+    ["babies", "Peekaboo Colors for Babies", "basics"],
+    ["prek", "Baa Baa Black Sheep 🐑 Learn Colors with Wool for Toddlers", "rhymes"],
+    ["prek", "Duck's Birthday Gifts! Find Lowercase p q r | Pre-K ABC | Toybox Elementary", "abc"],
+    ["prek", "Tangled Yarn! Find Letters Y and Z on the Alphabet Train | Pre-K ABC", "abc"],
+    ["prek", "Dot Dice! Count 0 to 5 in One Look | Preschool Math", "basics"],
+    ["prek", "Sink or Float? Easy Science Experiment for Kids", "science"],
+    ["k", "Start at the Green Dot! Reading Left to Right | Kindergarten Reading", "kreading"],
+    ["grade1", "Robot Talk! Turn Slow Sounds into Real Words | Grade 1 Phonics", "phonics1"],
+    ["grade1", "Parcel Count! How Many Sentences Are in the Text? | Grade 1 Reading", "sentences"],
+    ["grade1", "The Voice Box That Would Not Stop! Add the Missing End Mark | Grade 1 Reading", "sentences"],
+    ["grade1", "Halves and Quarters for Kids! Fair Shares Picnic", "math"],
+    ["grade2", "The Mail Train to Play Bay! ai and ay Say Long a | Grade 2 Reading", "vowels2"],
+    ["grade2", "Jade's Treasure Map Story! Read Long and Short Vowels Smoothly | Grade 2 Reading", "vowels2"],
+    ["grade2", "First, Next, Then, Last! Story Order for Kids | Grade 2 Reading", "sentences"],
+    ["grade2", "Treasure Map Quest! Map Skills for Kids: Key, Compass and Grid | Grade 2", "science"],
+    ["grade3", "Who Is a Sailor? -er and -or Mean a Person Who | Grade 3 Reading", "wordparts"],
+    ["grade3", "Array Garden! Multiplication with Arrays and Equal Groups | Grade 3 Math", "math"],
+    ["grade4", "Long First, Then Flex! Reading VCV Words | Grade 4 Reading", "wordparts"],
+    ["grade4", "Cause and Effect for Kids: Signal Words and Chain Reactions | Grade 4 Reading", "sentences"],
+    ["grade5", "How Your Heart and Lungs Work Together | Grade 5 Science", "science"],
+  ];
+  for (const [g, title, want] of table) {
+    const got = chooseTopicPlaylist({ channel: "toybox", audience: aud(g), title });
+    assert.equal(got?.topic, want, `${g}: ${title}`);
+    assert.equal(got.id, TOPIC_PLAYLISTS.toybox[want].id);
+  }
+  assert.equal(chooseTopicPlaylist({ channel: "toybox", audience: aud("grade2"), title: "Mystery", skills: ["count coins to a dollar"] }).topic, "math");
+  assert.equal(chooseTopicPlaylist({ channel: "doopi", audience: aud("grade1"), title: "Robot Talk" }), null);
+  assert.equal(chooseTopicPlaylist({ channel: "toybox", audience: "Made for kids. Length 1:00.", title: "Anything" }), null);
 });

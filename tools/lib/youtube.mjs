@@ -193,6 +193,58 @@ export function choosePlaylist({ explicit, noPlaylist, channel, audience }) {
   return hit ? { ...hit, auto: true } : null;
 }
 
+/** Topic playlists on each channel (created 2026-11-17, see docs/toybox_channel_review_2026-11.md section 12). */
+export const TOPIC_PLAYLISTS = {
+  toybox: {
+    rhymes: { id: "PLHnaFw2iVBDk", title: "Nursery Rhymes & Sing-Alongs for Toddlers" },
+    abc: { id: "PLeauEIrGSRtY", title: "Pre-K ABC: Alphabet Train & Lowercase Letters" },
+    basics: { id: "PLel3aEVDGETk", title: "Preschool Basics: Colors, Shapes, Numbers & More" },
+    kreading: { id: "PLd7ii0nSqcmg", title: "Kindergarten Reading: Letters, Sounds & Reading Left to Right" },
+    phonics1: { id: "PLPdpTKek_sEY", title: "1st Grade Phonics: Blending Sounds into Words" },
+    vowels2: { id: "PLYONW4RHRUJI", title: "Long and Short Vowels: Silent e and Vowel Teams (Grade 2)" },
+    sentences: { id: "PLKj5x_ZvVT4o", title: "Sentences, Grammar & Story Skills" },
+    wordparts: { id: "PLNjLN1fZ7n7Q", title: "Prefixes, Suffixes & Syllables (Grades 3-5)" },
+    math: { id: "PLVD4hk9v3I7M", title: "Math for Kids: 1st to 5th Grade" },
+    science: { id: "PLBFcRbcBYNa4", title: "Science & Social Studies for Kids" },
+  },
+};
+
+const RX = {
+  rhyme: /sing-?along|nursery rhyme|\bsong\b|clap along|twinkle|wheels on the bus|little monkeys|humpty|itsy bitsy|old macdonald|baa baa|mary had|pat-a-cake|hickory|row, row|hey diddle|this old man|hot cross|head, shoulders|little ducks|bingo|once i caught/i,
+  science: /scien|experiment|plants?\b|habitat|life cycle|seasons?\b|magnet|solids?|liquids?|gases|weather|human body|body systems?|heart|lungs|senses|living|sink or float|light and sound|social studies|citizen|needs and wants|goods and services|community|map skills/i,
+  math: /\bmath|count|number|add(ing|ition)?\b|subtract|place value|coins?\b|money|dollar|telling time|o'clock|measur|fraction|halves|quarters|thirds|fourths|fair shares|multipl|divi(de|sion)|decimal|\bangles?\b|\barea\b|perimeter|\bvolume\b|equal (parts|groups)|skip counting|regroup/i,
+  letters: /letter|\babc|alphabet|lowercase|capital|uppercase/i,
+  sentence: /sentence|punctuation|end mark|capital letter/i,
+  grammar: /sentence|punctuation|end mark|capital letter|grammar|noun|verb|adjective|describing words|story|cause and effect|main idea|first word/i,
+  wordparts: /prefix|suffix|syllable|root word|word parts?|-ful|-less|-ness|-ment|-(er|or)\b|\bvc+v\b/i,
+};
+
+/**
+ * The topic playlist an upload also goes into, from its AUDIENCE grade and its title + Skills line (tags are
+ * too broad). Returns { id, title, topic } or null when no rule fits (or the channel has no topic playlists).
+ * Order matters: rhymes and science win before math (and sentence skills before math, so "Count the Sentences"
+ * stays reading), math before reading.
+ */
+export function chooseTopicPlaylist({ channel, audience, title = "", skills = [] }) {
+  const lists = TOPIC_PLAYLISTS[channel];
+  if (!lists) return null;
+  const grade = audienceGrade(audience);
+  const text = [title, ...skills].join(" | ");
+  const young = grade === "babies" || grade === "prek";
+  let topic = null;
+  if (young && RX.rhyme.test(text)) topic = "rhymes";
+  else if (grade === "babies") topic = "basics";
+  else if (RX.science.test(text)) topic = "science";
+  else if (/^grade[1-5]$/.test(grade ?? "") && RX.sentence.test(text)) topic = "sentences";
+  else if (RX.math.test(text)) topic = grade === "prek" ? "basics" : "math";
+  else if (grade === "prek") topic = RX.letters.test(text) ? "abc" : "basics";
+  else if (grade === "k") topic = "kreading";
+  else if (grade === "grade1") topic = RX.grammar.test(text) ? "sentences" : "phonics1";
+  else if (grade === "grade2") topic = RX.grammar.test(text) && !/vowel|silent e/i.test(text) ? "sentences" : "vowels2";
+  else if (/^grade[345]$/.test(grade ?? "")) topic = RX.wordparts.test(text) ? "wordparts" : "sentences";
+  return topic && lists[topic] ? { ...lists[topic], topic } : null;
+}
+
 /** Episode id from an episode folder name: "g101_short_vowel_island" → "g101". */
 export function episodeIdFromDir(name) {
   const m = /^([a-z]+\d+)_/.exec(name);
