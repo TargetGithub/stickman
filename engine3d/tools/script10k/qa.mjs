@@ -171,9 +171,10 @@ export function qaScript(script, spec, lesson, catalog, { allow = [], speech } =
   // Timed actions that run past their beat (the next beat's hide can come first and leave things on screen).
   if (plan) {
     try {
-      const { beats } = beatTimes(script, catalog);
+      // One timeline for both ends of every beat (mixing it with the measured-speech plan's length gave negative beats).
+      const { beats, plan: est } = beatTimes(script, catalog);
       beats.forEach((bt, k) => {
-        const next = beats[k + 1]?.t ?? plan.duration;
+        const next = beats[k + 1]?.t ?? est.duration;
         const len = next - bt.t;
         script.scenes[bt.si].beats[bt.bi].do.forEach((a, ai) => {
           if (typeof a.at !== "number" || ["say", "caption", "camera", "shot", "orbit"].includes(a.do)) return;

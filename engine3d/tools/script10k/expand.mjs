@@ -145,6 +145,11 @@ function expandBeat(b, ctx) {
   }
   if (b.call) acts.push({ do: "call", ...b.call });
   if (b.challenge) acts.push({ do: "challenge", ...b.challenge });
+  // Beat-level keywords on a beat without a say line belong to its spoken call/challenge (else they were dropped).
+  if (b.say == null && b.keywords && Object.keys(b.keywords).length) {
+    const host = acts.find((x) => x.do === "call" || x.do === "challenge");
+    if (host && !host.keywords) host.keywords = b.keywords;
+  }
   if (b.say != null) {
     const a = { do: "say", text: b.say, caption: b.caption ?? true };
     for (const k of ["who", "voice", "pitch", "speed", "spoken", "style", "stress"]) if (b[k] != null) a[k] = b[k];
