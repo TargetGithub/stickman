@@ -2,6 +2,7 @@
 // number line placement (on) and leap values, and which actions take which kinds. validate.js calls these.
 
 import { BUILD_ORDERS, MAX_TICKS, pieceCount, pieceNames, withDefaults } from "./teach_layout.js";
+import { COUNTRIES } from "./world_map.js";
 
 export const TEACH_FIELDS = {
   number_line: ["from", "to", "length", "step", "minor", "labels", "color"],
@@ -95,6 +96,16 @@ export function checkTeachObject(o, p, { err, warn, ids, catalog, name }) {
 
 /** on: { line, value } — the line must be a number line placed before, and the value on it. */
 function checkOn(o, p, { err, warn, ids }) {
+  if (o.on?.map != null) {
+    // #181: a spot on a world_map prop.
+    const m = ids.get(o.on.map);
+    if (!m || m.model !== "world_map") return err("E3D_ON_MAP", `${p}.on.map`, `on.map must name a world_map prop placed before "${o.id}", got "${o.on.map}"`);
+    if (o.parent != null) err("E3D_ON_MAP", `${p}.on`, "on cannot be used with parent (the map is the parent)");
+    if (o.on.country != null) {
+      if (!COUNTRIES[o.on.country]) err("E3D_ON_MAP", `${p}.on.country`, `unknown country "${o.on.country}" (known: ${Object.keys(COUNTRIES).join(", ")}; or give lat and lon)`);
+    } else if (!(isNum(o.on.lat, -90, 90) && isNum(o.on.lon, -180, 180))) err("E3D_ON_MAP", `${p}.on`, "on.map needs country, or lat (-90 to 90) and lon (-180 to 180)");
+    return;
+  }
   const line = ids.get(o.on?.line);
   if (!line || line.kind !== "number_line") return err("E3D_ON_LINE", `${p}.on.line`, `on.line must name a number_line placed before "${o.id}", got "${o.on?.line}"`);
   if (o.parent != null) err("E3D_ON_LINE", `${p}.on`, "on cannot be used with parent");

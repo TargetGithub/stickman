@@ -143,6 +143,8 @@ function run(d, a, start) {
     case "alive": return d.alive(a.target, o);
     case "mist": return d.mist(a.target, o);
     case "dust": return d.dust(a.target, o);
+    case "punct_mark": return d.punct_mark(a.target, o);
+    case "swirl": return d.swirl(a.target, o);
     case "gesture": return d.gesture(a.target, o);
     case "rewind": return d.rewind(o);
     case "circle": return d.circle(o);

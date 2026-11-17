@@ -1,0 +1,10 @@
+{"kind":"video3d","version":1,"description":"ENGINE_REQUESTS #178-#182: world_map with country pins, a magic swirl, punctuation marks on a sentence and a quote highlight.","meta":{"title":"Round 39","seed":39},"stage":{"preset":"playroom"},"camera":{"position":[0,1.9,9],"lookAt":[0,1.2,0],"fov":44},"objects":[
+{"id":"wm","kind":"prop","model":"world_map","at":[-2.6,0,-1]},
+{"id":"p1","kind":"shape","shape":"star","color":"red","size":0.12,"on":{"map":"wm","country":"japan"}},
+{"id":"p2","kind":"shape","shape":"star","color":"red","size":0.12,"on":{"map":"wm","country":"brazil"}},
+{"id":"p3","kind":"shape","shape":"star","color":"red","size":0.12,"on":{"map":"wm","country":"kenya"}},
+{"id":"p4","kind":"shape","shape":"star","color":"red","size":0.12,"on":{"map":"wm","country":"uk"}},
+{"id":"bx","kind":"prop","model":"toy_box","at":[4.6,0,0.5],"size":0.8},
+{"id":"sn","kind":"letter","text":"Wait, stop.","size":0.45,"at":[0.4,0.1,1.2]},
+{"id":"qc","kind":"text_card","text":"Mom said, \"Come home now.\" Then she smiled.","width":2.4,"at":[3,2.1,-1]}],"scenes":[
+{"id":"a","beats":[{"dur":3,"do":[{"do":"swirl","target":"bx","at":0.2},{"do":"punct_mark","target":"sn","at":0.2},{"do":"emphasize","target":"qc","words":"quotes","at":0.2}]}]}]}

@@ -1,6 +1,7 @@
 // Teaching kit layout shared by the director (Node and page) and the three.js builders: number line ticks and
 // labels, value → position on a line, piece counts and the order pieces are built in. Pure: no three.js, no I/O.
 
+import { mapSpot } from "./world_map.js";
 import { PV_COLUMNS } from "./place_value.js";
 
 /** Kinds of the teaching kit (catalog/kinds.json). */
@@ -96,6 +97,15 @@ export function linePoint(line, value) {
 /** Resolve `on: { line, value }` to an at (the line must already be placed). Returns the spec unchanged otherwise. */
 export function placeOn(spec, objects) {
   if (!spec?.on) return spec;
+  // on: { map, country } (#181): a spot on a world_map prop (or { map, lat, lon }), riding on the map; at adds to it.
+  if (spec.on.map != null) {
+    const map = objects.get(spec.on.map);
+    if (!map || map.model !== "world_map") throw new Error(`object "${spec.id}": on.map "${spec.on.map}" is not a world_map placed before it`);
+    const p = mapSpot(spec.on.country ?? [spec.on.lat, spec.on.lon]);
+    if (!p) throw new Error(`object "${spec.id}": unknown country "${spec.on.country}"`);
+    const off = spec.at ?? [0, 0, 0];
+    return { ...spec, on: undefined, parent: spec.on.map, at: p.map((v, i) => Math.round((v + off[i]) * 1e4) / 1e4) };
+  }
   const line = objects.get(spec.on.line);
   if (!line || line.kind !== "number_line") throw new Error(`object "${spec.id}": on.line "${spec.on.line}" is not a number line placed before it`);
   return { ...spec, at: linePoint(line, spec.on.value) };

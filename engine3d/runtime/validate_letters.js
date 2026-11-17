@@ -10,6 +10,16 @@ const isNum = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >=
  * @param {{ err: Function, ids: Map, catalog: object, name: Function }} k
  */
 export function checkLetterAction(a, p, o, { err, ids, catalog, name }) {
+  if (a.do === "punct_mark") {
+    // #182: a breath cloud at a comma, a stop sign at a full stop, on a letter word.
+    if (o.kind !== "letter") return err("E3D_KIND", `${p}.target`, `punct_mark works on a letter word; "${a.target}" is a ${o.kind}`);
+    const text = Array.from(String(o.text ?? ""));
+    if (a.chars != null && (!Array.isArray(a.chars) || !a.chars.length || a.chars.some((c) => !Number.isInteger(c) || c < 1 || c > text.length))) err("E3D_CHARS", `${p}.chars`, `chars must be character numbers 1-${text.length}`);
+    else if (a.chars == null && !a.clear && !text.some((c) => /[,.;:!?]/.test(c))) err("E3D_CHARS", `${p}.target`, `"${a.target}" has no , . ; : ! or ? to mark`);
+    if (a.kind != null && !["breath", "stop"].includes(a.kind)) err("E3D_RANGE", `${p}.kind`, "kind must be breath or stop");
+    if (a.gap != null && !isNum(a.gap, 0, 5)) err("E3D_RANGE", `${p}.gap`, "gap must be 0-5 s");
+    if (a.color != null) name(catalog.colors, a.color, "E3D_COLOR", `${p}.color`, "color");
+  }
   if (a.do === "vowel_mark") {
     if (o.kind !== "letter") err("E3D_TARGET_KIND", `${p}.target`, `vowel_mark needs a letter word, "${a.target}" is a ${o.kind}`);
     const n = String(o.text ?? "").length;

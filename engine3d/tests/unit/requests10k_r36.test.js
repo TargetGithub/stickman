@@ -254,3 +254,64 @@ test("#176 camera via passes the waypoint", () => {
   assert.deepEqual(p.timeline.valueAt("camera", "position", 2.5), [0, 1.5, 6]);
   assert.ok(codes(S([], [{ do: "camera", via: [0, 4, 2] }])).includes("E3D_VEC"));
 });
+
+test("#178 a bare stage piece id names its set_ id in the error", () => {
+  const s = { ...S([], [{ do: "mist", target: "isle5", at: 0.5 }]), stage: { preset: "phonics_island_chain" } };
+  assert.ok(errs(s).some((e) => e.message.includes('"set_isle5"')), JSON.stringify(errs(s)));
+  assert.deepEqual(errs({ ...S([], [{ do: "mist", target: "set_isle5", at: 0.5 }]), stage: { preset: "phonics_island_chain" } }), []);
+});
+
+const quotes = [
+  { text: 'Mom said, "Come home now." Then she smiled.', want: [[2, 4]] },
+  { text: "“Hi!” said Tom. “Bye!” said Sam.", want: [[0, 0], [3, 3]] },
+  { text: "No quotes here.", want: [] },
+];
+for (const c of quotes) {
+  test(`#179 quotes in "${c.text}"`, async () => {
+    const { findQuotes } = await import("../../runtime/card_words.js");
+    assert.deepEqual(findQuotes(c.text), c.want);
+  });
+}
+
+test("#179 emphasize words quotes marks every quotation", () => {
+  const s = S([{ id: "c", kind: "text_card", text: "“Hi!” said Tom. “Bye!” said Sam." }], [{ do: "emphasize", target: "c", words: "quotes", at: 0.2 }]);
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  assert.deepEqual(p.objects.find((o) => o.id === "c").marks.map((m) => m.words), [[0, 0], [3, 3]]);
+});
+
+test("#180 swirl sparkles spiral up and fade; ribbon draws", () => {
+  const s = (style) => S([{ id: "w", kind: "prop", model: "ball" }], [{ do: "swirl", target: "w", at: 0.5, style }]);
+  assert.deepEqual(errs(s("sparkles")), []);
+  const p = compileScript(s(), { catalog });
+  const st = p.objects.filter((o) => o.id.startsWith("w~swirl"));
+  assert.equal(st.length, 14);
+  const y0 = p.timeline.valueAt(st[0].id, "position", 0.6)[1];
+  assert.ok(p.timeline.valueAt(st[0].id, "position", 2.5)[1] > y0 + 0.2, "rises");
+  assert.deepEqual(p.timeline.valueAt(st[0].id, "scale", 1.5), [1, 1, 1], "visible size while it swirls");
+  assert.equal(p.timeline.valueAt(st[0].id, "visible", 3.5), false);
+  assert.ok(compileScript(s("ribbon"), { catalog }).objects.some((o) => o.id.startsWith("w~ribbon")));
+  assert.ok(codes(s("tornado")).includes("E3D_RANGE"));
+});
+
+test("#181 on: { map, country } puts a pin on the world map", async () => {
+  const { mapSpot } = await import("../../runtime/world_map.js");
+  const objs = (on) => [{ id: "wm", kind: "prop", model: "world_map" }, { id: "pin", kind: "shape", shape: "star", size: 0.1, on }];
+  assert.deepEqual(errs(S(objs({ map: "wm", country: "japan" }), [])), []);
+  const p = compileScript(S(objs({ map: "wm", country: "japan" }), []), { catalog });
+  const pin = p.objects.find((o) => o.id === "pin");
+  assert.equal(pin.parent, "wm");
+  assert.deepEqual(pin.at, mapSpot("japan"));
+  assert.ok(mapSpot("japan")[0] > 0 && mapSpot("brazil")[0] < 0 && mapSpot("brazil")[1] < mapSpot("japan")[1]);
+  assert.ok(codes(S(objs({ map: "wm", country: "atlantis" }), [])).includes("E3D_ON_MAP"));
+});
+
+test("#182 punct_mark: a breath cloud at a comma, a stop sign at a full stop", () => {
+  const s = S([{ id: "w", kind: "letter", text: "Wait, stop.", size: 0.5 }], [{ do: "punct_mark", target: "w", at: 0.2 }]);
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  const ids = p.objects.map((o) => o.id);
+  assert.ok(ids.includes("w~punct1_b") && ids.includes("w~punct2_sign"), "cloud then sign");
+  assert.ok(p.timeline.valueAt("w~punct2", "scale", 1.4)[0] > 0.9, "second mark pops after the gap");
+  assert.ok(codes(S([{ id: "w", kind: "letter", text: "cat" }], [{ do: "punct_mark", target: "w" }])).includes("E3D_CHARS"));
+});

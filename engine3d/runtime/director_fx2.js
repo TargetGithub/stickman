@@ -2,6 +2,7 @@
 // riders back to the front when it ends (#150) and an echo on sounds (#158). Pure: only timeline data.
 
 import { shotBounds } from "./bounds_teach.js";
+import { letterLayout } from "./letter_layout.js";
 
 /**
  * @param {object} d  the director
@@ -102,6 +103,92 @@ export function installFx2(d, { catalog, tl, obj, now, sound, objects }) {
     camera({ ...opts, position: undefined, via: undefined }); // lookAt and fov over the whole move
     tl.tween("camera", "position", { start: t, dur: t1, to: via, ease: "sineIn" });
     tl.tween("camera", "position", { start: t + t1, dur: dur - t1, to: position, ease: "sineOut" });
+    return d;
+  };
+
+  /**
+   * Punctuation helpers (#182) on a letter word: a breath cloud over each comma (and ; :), a stop sign over each full
+   * stop (and ! ?), popping in one after another `gap` s apart. chars picks marks by character number; kind forces
+   * breath or stop; clear: true takes the word's marks away.
+   */
+  const punct = new Map();
+  d.punct_mark = (id, { at: t = 0, chars, kind, gap = 0.5, color, clear = false, sound: s } = {}) => {
+    const o = obj(id);
+    if (o.kind !== "letter") throw new Error(`punct_mark: "${id}" is a ${o.kind}, not a letter word`);
+    if (clear) {
+      for (const m of punct.get(id) ?? []) d.hide(m, { at: t, dur: 0.3 });
+      punct.set(id, []);
+      return d;
+    }
+    const L = letterLayout(o, catalog.fontMetrics);
+    const sel = (chars ?? L.filter((c) => /[,.;:!?]/.test(c.ch)).map((c) => c.n)).map((n) => L[n - 1]);
+    if (!sel.length || sel.some((c) => !c)) throw new Error(`punct_mark "${id}": no punctuation to mark (chars must be character numbers 1-${L.length})`);
+    const k = o.size ?? 1;
+    const list = punct.get(id) ?? [];
+    sel.forEach((c, i) => {
+      const type = kind ?? (/[.!?]/.test(c.ch) ? "stop" : "breath");
+      const gid = `${id}~punct${list.length + 1}`;
+      const x = r4(c.x);
+      d.add({ id: gid, kind: "group", parent: id, at: [x, r4(0.95 * k), 0.08], hidden: true, internal: true });
+      const part = (n, spec) => d.add({ id: `${gid}_${n}`, parent: gid, internal: true, ...spec });
+      if (type === "stop") {
+        part("post", { kind: "shape", shape: "box", color: "grey", at: [0, r4(-0.55 * k), -0.02], scale: [r4(0.05 * k), r4(0.6 * k), r4(0.05 * k)] });
+        part("rim", { kind: "shape", shape: "octagon", color: "white", at: [0, r4(0.02 * k), -0.01], rotation: [0, 0, 22.5], size: r4(0.56 * k) });
+        part("sign", { kind: "shape", shape: "octagon", color: color ?? "red", material: "glossy", at: [0, r4(0.05 * k), 0], rotation: [0, 0, 22.5], size: r4(0.48 * k) });
+      } else {
+        for (const [n, dx, dy, r] of [["a", -0.18, 0, 0.3], ["b", 0.06, 0.1, 0.38], ["c", 0.3, 0, 0.26]]) {
+          part(n, { kind: "shape", shape: "sphere", color: color ?? "white", material: "matte", at: [r4(dx * k), r4(dy * k), 0], size: r4(r * k) });
+        }
+      }
+      d.pop(gid, { at: t + i * gap, sound: s === undefined ? (type === "stop" ? "pop" : "whoosh") : s });
+      list.push(gid);
+    });
+    punct.set(id, list);
+    return d;
+  };
+
+  /**
+   * A magic swirl round an object (#180): sparkles (glowing stars spiralling up round it and fading) or a ribbon (a
+   * helix of light drawn round it, then fading). turns: times round; colors: cycled per sparkle.
+   */
+  let swirls = 0;
+  d.swirl = (id, { at: t = 0, dur = 2.4, style = "sparkles", turns = 2, count = 14, colors = ["gold", "pink", "sky", "white"], color, sound: s = "magic_sparkle" } = {}) => {
+    const o = obj(id);
+    for (const c of color ? [color] : colors) if (!catalog.colors[c]) throw new Error(`unknown color "${c}"`);
+    const b = shotBounds(o, catalog, now, obj, t, [...objects.values()], true);
+    const c = [(b.min[0] + b.max[0]) / 2, b.min[1], (b.min[2] + b.max[2]) / 2];
+    const R = Math.max(0.35, Math.max(b.max[0] - b.min[0], b.max[2] - b.min[2]) / 2 + 0.25);
+    const H = Math.max(0.6, b.max[1] - b.min[1]);
+    const at = (u, ph) => {
+      const a = ph + 2 * Math.PI * turns * u;
+      return [r4(c[0] + R * Math.sin(a)), r4(c[1] + 0.1 + H * u), r4(c[2] + R * Math.cos(a))];
+    };
+    const n = ++swirls;
+    if (style === "ribbon") {
+      const rid = `${id}~ribbon${n}`;
+      const pts = Array.from({ length: Math.round(24 * turns) + 1 }, (_, k) => at(k / Math.round(24 * turns), 0).map((v, i) => r4(v - [c[0], c[1], c[2]][i])));
+      d.add({ id: rid, kind: "stroke", points: pts, smooth: true, width: 0.06, color: color ?? colors[0], material: "glow", at: c.map(r4), hidden: true, internal: true });
+      d.draw(rid, { at: t, dur: dur * 0.7 });
+      d.hide(rid, { at: t + dur, dur: 0.5 });
+    } else {
+      const steps = Math.max(8, Math.round(12 * turns));
+      for (let i = 0; i < count; i++) {
+        const pid = `${id}~swirl${n}_${i + 1}`;
+        const ph = (2 * Math.PI * i) / count;
+        const t0 = t + (i % 4) * 0.08;
+        const u0 = (i % 3) * 0.08;
+        const sz = r4(0.12 + 0.05 * (i % 3));
+        d.add({ id: pid, kind: "shape", shape: "star", color: color ?? colors[i % colors.length], material: "glow", at: at(u0, ph), size: sz, hidden: true, internal: true });
+        tl.base(pid, "fade", 1);
+        tl.set(pid, "visible", true, t0);
+        tl.set(pid, "scale", [1, 1, 1], t0); // added hidden: its scale starts at 0
+        for (let k = 1; k <= steps; k++) tl.tween(pid, "position", { start: t0 + ((k - 1) * dur) / steps, dur: dur / steps, to: at(u0 + ((1 - u0) * k) / steps, ph), ease: "linear" });
+        tl.tween(pid, "rotation", { start: t0, dur, to: [0, 0, 360 * turns], ease: "linear" });
+        tl.tween(pid, "fade", { start: t0 + dur * 0.7, dur: dur * 0.3, to: 0, ease: "quadIn" });
+        tl.set(pid, "visible", false, t0 + dur);
+      }
+    }
+    if (s) sound(s, t, { volume: 0.7 });
     return d;
   };
 

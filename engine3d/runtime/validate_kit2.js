@@ -3,7 +3,7 @@
 // colours) and the actions shift, set, emphasize, reparent and point (plus spin/turn axis). validate.js calls
 // these. Pure.
 
-import { CARD_MAX_CHARS, CARD_MAX_LINES, findMark, findWords } from "./card_words.js";
+import { CARD_MAX_CHARS, CARD_MAX_LINES, findMark, findQuotes, findWords } from "./card_words.js";
 import { POINT, digitsOk, parseDigits, pvLayout, shiftDigits } from "./place_value.js";
 import { pointPart } from "./director_kit2.js";
 import { cardHeight, withDefaults } from "./teach_layout.js";
@@ -154,7 +154,7 @@ export function createKit2Checker({ err, ids, catalog, partNames, texts }) {
       const o = target(a, p, ["text_card"], "emphasize");
       if (a.color != null && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
       if (a.words == null && !a.clear) err("E3D_REQUIRED", `${p}.words`, 'emphasize needs words: "a phrase" or [start, end] (or clear: true)');
-      else if (o && a.words != null && ![o.text, ...(texts?.get(o.id) ?? [])].some((tx) => findWords(tx, a.words) || findMark(tx, a.words))) err("E3D_EMPHASIZE", `${p}.words`, `"${a.target}" has no words ${JSON.stringify(a.words)}`);
+      else if (o && a.words != null && ![o.text, ...(texts?.get(o.id) ?? [])].some((tx) => (a.words === "quotes" ? findQuotes(tx).length : findWords(tx, a.words)) || findMark(tx, a.words))) err("E3D_EMPHASIZE", `${p}.words`, `"${a.target}" has no words ${JSON.stringify(a.words)}`);
       return true;
     }
     if (a.do === "reparent") {

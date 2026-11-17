@@ -53,3 +53,26 @@ export function findMark(text, words) {
   }
   return null;
 }
+
+/**
+ * The spoken parts of a card (#179): each run of words inside quotation marks (straight " or curly “ ”), as word
+ * ranges [start, end] in reading order. An unclosed quote runs to the end of the text.
+ * @returns {[number, number][]}
+ */
+export function findQuotes(text) {
+  const words = cardWords(text);
+  const out = [];
+  let open = -1;
+  words.forEach((w, i) => {
+    const marks = Array.from(w).filter((c) => c === '"' || c === "\u201c" || c === "\u201d").length;
+    if (open < 0 && marks) {
+      if (marks >= 2) out.push([i, i]); // "Hi!" on its own
+      else open = i;
+    } else if (open >= 0 && marks) {
+      out.push([open, i]);
+      open = -1;
+    }
+  });
+  if (open >= 0) out.push([open, words.length - 1]);
+  return out;
+}

@@ -133,6 +133,14 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     if (a.face != null && !["front", "travel"].includes(a.face)) err("E3D_RANGE", `${p}.face`, 'face must be "front" (turn back when done, the default) or "travel"');
     return true;
   }
+  if (a.do === "swirl") {
+    if (a.style != null && !["sparkles", "ribbon"].includes(a.style)) err("E3D_RANGE", `${p}.style`, "style must be sparkles or ribbon");
+    if (a.turns != null && !isNum(a.turns, 0.5, 6)) err("E3D_RANGE", `${p}.turns`, "turns must be 0.5-6");
+    if (a.count != null && !(Number.isInteger(a.count) && a.count >= 3 && a.count <= 40)) err("E3D_RANGE", `${p}.count`, "count must be 3-40 sparkles");
+    for (const c of [a.color, ...(Array.isArray(a.colors) ? a.colors : [])]) if (c != null && !catalog.colors[c]) err("E3D_COLOR", `${p}.color`, `unknown color "${c}"`);
+    if (a.colors != null && (!Array.isArray(a.colors) || !a.colors.length)) err("E3D_COLOR", `${p}.colors`, "colors must be a list of colour names");
+    return true;
+  }
   if (a.do === "dust") {
     if (a.target == null && a.from == null) err("E3D_REQUIRED", `${p}.target`, "dust needs a target (puffs from its foot) or from: [x, y, z]");
     if (a.from != null && !(Array.isArray(a.from) && a.from.length === 3 && a.from.every(Number.isFinite))) err("E3D_VEC", `${p}.from`, "from must be [x, y, z]");

@@ -6,7 +6,7 @@
 import { letterLayout, letterWords } from "./letter_layout.js";
 import { wordSpots } from "./text_layout.js";
 import { focusPoint } from "./bounds.js";
-import { findMark, findWords } from "./card_words.js";
+import { findMark, findQuotes, findWords } from "./card_words.js";
 import { parseDigits, pvLayout, shiftDigits } from "./place_value.js";
 import { withDefaults } from "./teach_layout.js";
 import { apply, chain, compose, decompose, eulerMat, invert, matEuler, mul, rotBetween, transpose } from "./xform.js";
@@ -165,7 +165,18 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
       o.marks ??= [];
       // clear: the earlier highlights wipe away first.
       if (clear) o.marks.forEach((_, i) => tl.tween(id, `hl${i}`, { start: t, dur: 0.3, to: 0, ease: "linear" }));
-      if (words != null) {
+      if (words === "quotes") {
+        // #179: every quotation on the card at once, each swept in its own highlight.
+        const ti = Math.round(now(id, "textIdx", t) ?? 0);
+        const runs = findQuotes(o.texts?.[ti] ?? o.text);
+        if (!runs.length) throw new Error(`emphasize "${id}": the card has no words in quotation marks`);
+        for (const range of runs) {
+          o.marks.push({ words: range, color, ...(ti ? { text: ti } : {}) });
+          const i = o.marks.length - 1;
+          tl.base(id, `hl${i}`, 0);
+          tl.tween(id, `hl${i}`, { start: t + (clear ? 0.3 : 0), dur, from: 0, to: 1, ease: "sineInOut" });
+        }
+      } else if (words != null) {
         // After a retext the card shows another text: the words are found in, and drawn on, the text showing then.
         const ti = Math.round(now(id, "textIdx", t) ?? 0);
         const mark = findMark(o.texts?.[ti] ?? o.text, words); // "?" or "!" alone marks just that character (#144)

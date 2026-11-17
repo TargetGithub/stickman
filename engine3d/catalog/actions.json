@@ -850,7 +850,7 @@
   "emphasize": {
    "params": {
     "target": "text_card id",
-    "words": "the phrase (\"the big storm\", first match, case and punctuation ignored) or [start, end] word numbers from 0",
+    "words": "the phrase (\"the big storm\", first match, case and punctuation ignored) or [start, end] word numbers from 0; \"quotes\": every run of words inside quotation marks, each highlighted (#179)",
     "color": "marker colour, default yellow",
     "dur": "seconds of the sweep, default 0.4 (a still taken during it shows a part highlight: take stills at least 0.4 s after it starts)",
     "clear": "true wipes earlier highlights first (alone: just clear)",
@@ -1104,6 +1104,40 @@
    "tags": [
     "retention",
     "progress"
+   ]
+  },
+  "punct_mark": {
+   "params": {
+    "target": "a letter word (a sentence) with punctuation",
+    "chars": "optional character numbers of the marks; default every , . ; : ! ?",
+    "kind": "breath or stop to force one; default breath at , ; : and stop at . ! ?",
+    "gap": "seconds between marks, default 0.5",
+    "color": "optional: the stop sign's or the cloud's colour",
+    "clear": "true takes the word's marks away",
+    "sound": "default whoosh (breath) / pop (stop); false for none"
+   },
+   "description": "Punctuation helpers (#182): a little breath cloud pops over each comma and a stop sign over each full stop of a letter word, one after another (pause here, stop here).",
+   "tags": [
+    "letters",
+    "reading",
+    "punctuation"
+   ]
+  },
+  "swirl": {
+   "params": {
+    "target": "object id: the swirl goes round it",
+    "style": "sparkles (default: glowing stars spiralling up and fading) or ribbon (a helix of light drawn round it)",
+    "turns": "times round, default 2",
+    "count": "sparkles, default 14",
+    "colors": "colours cycled per sparkle, default gold, pink, sky, white",
+    "color": "one colour for all (and the ribbon)",
+    "dur": "default 2.4",
+    "sound": "default magic_sparkle; false for none"
+   },
+   "description": "A magic swirl round an object (#180): sparkles spiral up round it, or a ribbon of light winds round it, then fade (a spell, a transformation, a wish).",
+   "tags": [
+    "effect",
+    "magic"
    ]
   }
  }

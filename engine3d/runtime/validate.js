@@ -253,7 +253,7 @@ export function validateScript(script, catalog, opts = {}) {
     if (typeof a.target === "string" && a.target.includes("#")) {
       const [base, part] = a.target.split("#");
       const owner = ids.get(base);
-      if (!owner) return err("E3D_TARGET", `${p}.target`, `no object "${base}"`);
+      if (!owner) return err("E3D_TARGET", `${p}.target`, `no object "${base}"${ids.has(`set_${base}`) ? ` (the stage piece is "set_${base}")` : ""}`);
       if (owner.kind === "letter" && /^w\d+$/.test(part)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.target} is a word of a sentence: point at it (point to: "${a.target}") or mark it (vowel_mark words: [${part.slice(1)}]); actions on letters take c1..cN`);
       if (owner.kind === "text_card") return err("E3D_TARGET_KIND", `${p}.target`, `a text card's words (${a.target}) are spots to point at (point to: "${a.target}"); to mark them use emphasize`);
       // A letter word's characters also take hop, grow and paint (one vowel team bounces or turns gold).
@@ -267,7 +267,8 @@ export function validateScript(script, catalog, opts = {}) {
       return;
     }
     const o = ids.get(a.target);
-    if (!o) return err("E3D_TARGET", `${p}.target`, `no object "${a.target}"`);
+    // A stage set piece is "set_<id>" (#178: mist on "isle5" means "set_isle5").
+    if (!o) return err("E3D_TARGET", `${p}.target`, `no object "${a.target}"${ids.has(`set_${a.target}`) ? ` (the stage piece is "set_${a.target}")` : ""}`);
     if (a.do === "feel" && !FEELINGS.includes(a.feeling)) err("E3D_FEELING", `${p}.feeling`, `feeling must be one of ${FEELINGS.join(", ")}`);
     if (a.do === "feel" && o.kind === "shape" && !o.face) err("E3D_TARGET_KIND", `${p}.target`, `feel needs a face: "${a.target}" is a shape without face: true`);
     if (a.do === "paint" && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `paint needs a known color, got "${a.color}"`);
