@@ -10,6 +10,7 @@ animated 3D characters what Lottie did for 2D vector animation: one small JSON f
 - `rig.js`: the skeleton and catalog names.
 - `examples/`: `wave.json` (stick rig), `walk.json` (two characters, follow camera, repeating walk cycle), `jump.json` (block rig, bouncing ball).
 - `index.html`: the demo page.
+- `EDITOR_SPEC.md`: draft spec for the kids' editor (Lottie3D Kids Studio) and format v0.2.
 
 ## The format in 30 seconds
 
