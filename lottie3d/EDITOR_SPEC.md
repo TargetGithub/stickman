@@ -1,19 +1,24 @@
-# Lottie3D Kids Studio: editor spec (draft 0.2)
+# Lottie3D Kids Studio: editor spec (draft 0.3)
 
 A web editor where children build short 3D animated scenes with the Toybox cast, moves and stages,
 without ever seeing JSON. Under the hood it writes a Lottie3D file (format v0.2, section 5) that the
 existing player (`player.js`) plays anywhere.
 
-Status: draft 0.2 for review. Nothing here is built yet. Format v0.1 (`SPEC.md`) and the player are the base.
+Status: draft 0.3 for review. E1 is in progress; nothing else is built yet. Format v0.1 (`SPEC.md`) and the player are the base.
 
-**Decisions (2026-11-17):**
+**Decisions (2026-11-17, updated the same day):**
 
 | Question | Decision |
 |---|---|
 | Where it lives | `abcbunny.com/3dVideoEditor`, a web page (section 10.1). |
-| Which characters | Any 3D model in the catalog; children pick and choose. No fixed lead (section 6.1). |
-| Video export | Yes, free for now, designed so it can become a paid feature later. Signup is required for every export, free ones included (section 8). |
+| Which characters | Any 3D model; children pick and choose. No fixed lead (sections 6.1 and 6.2). |
+| Video export | Yes. Signup is required for every export, free ones included (section 8). |
 | Teacher view | Not planned. |
+| What abcbunny.com runs | KidsLearningPlatform: a Vite web app on Firebase (Hosting, Auth, Firestore, Cloud Functions, project `abcbunny-ad84b`) with Stripe payments. The editor reuses it (section 10.1). |
+| Accounts and consent | The KidsLearningPlatform parent account and its consent flow, one for all abcbunny.com tools (section 9.1). |
+| Free tier | 720p, up to 3 minutes, small watermark, made in the browser (section 8.2). |
+| Paid tier | 4K, rendered on a server (section 8.2). |
+| Models | A free starter set; every other model is paid, metered per use with credits shared across abcbunny.com tools (sections 6.2 and 8.3). |
 
 ## 1. Goals
 
@@ -25,7 +30,7 @@ Status: draft 0.2 for review. Nothing here is built yet. Format v0.1 (`SPEC.md`)
 4. Every scene is a small, valid, deterministic file: same file, same frames, on any device.
 5. Safe for children by design (section 9).
 
-6. A finished scene can be exported as a video file (section 8.2).
+6. A finished scene can be exported as a video file (section 8.2): free in the browser, paid 4K on a server.
 
 Non-goals for this spec: multiplayer, a public gallery, a teacher view, professional keyframe tools,
 children uploading their own 3D model files.
@@ -174,10 +179,24 @@ The build script reads capabilities from the catalog entry (a critter with `eyes
 `clips`) and writes them into `kids.json`. A new model added to `engine3d/catalog` appears in the editor once it is on
 the allowlist, with the right move buttons and no editor code change.
 
-Children cannot upload their own model files in v1 (safety review and file-size limits first). "Any 3D model" means
-any model in our catalog, which the team keeps growing.
-
 Loading: the tray shows thumbnails generated at build time; a model's geometry or `.glb` loads only when it is placed.
+
+### 6.2 Free starter set and the paid model library
+
+- **Free:** the starter set in `kids.json` (the v1 table above). It ships with the page and needs no account.
+- **Paid:** every other model, from a **model library** that can hold any 3D model (glTF/GLB from any licensed
+  source, plus our own catalog models). Using a library model costs credits (section 8.3). The tray shows library
+  models with a small ticket badge; placing one asks for a grown-up when no parent is signed in.
+- **Model library service** (a Cloud Function plus Cloud Storage in the KidsLearningPlatform Firebase project):
+  - Stores each model with its manifest: licence, author, thumbnail, size, height, capabilities and credit price.
+  - On import, a script inspects the file: animation clips → `clips`; a humanoid skeleton whose bone names map to the
+    Lottie3D joints (`shoulderL`, `hipR`, ...) → `limbs` and `joints`; otherwise `body` only. A person reviews and
+    approves every model (licence and content) before it is listed.
+  - The editor asks `getModel(modelId)`; the function checks the parent's credits, records a usage event, and returns
+    a short-lived signed URL to the file. The model then works like any catalog model.
+- Children still cannot upload model files. Adding to the library is an admin task.
+- Billing per use, not per load: a library model is charged once per scene that uses it (when the scene is first
+  saved or exported with it), so reopening or replaying never charges again (rules in section 8.3).
 
 **Porting work per item type:**
 
@@ -216,41 +235,72 @@ Loading: the tray shows thumbnails generated at build time; a model's geometry o
   sounds, and writes an MP4. The scene and the video never leave the device; the server is only asked "may this
   account export, and at what settings?". Browsers without WebCodecs get a clear "use Chrome, Edge or Safari 17+"
   message.
-- **Built to become paid later:** every export asks one entitlement check, `GET /api/entitlements`, which returns the
-  allowed options. The editor never hard-codes what is free. Free today could be, for example:
+- **Entitlements from the server:** every export first calls one entitlement check (a Cloud Function), which returns
+  the allowed options. The editor never hard-codes what is free.
 
-  | Option | Free (now) | Possible paid tier (later) |
+  | Option | Free | Paid |
   |---|---|---|
-  | Resolution | 720p | 1080p, 4K |
-  | Length | up to 30 s | up to 5 min |
+  | Where it renders | in the browser | on a server |
+  | Resolution | 720p | up to 4K (2160p) |
+  | Length | up to 3 minutes | up to 3 minutes at first (raise later) |
   | Watermark | small abcbunny.com mark | none |
-  | Exports | unlimited | unlimited |
+  | Cost | free (signup needed) | credits per export (section 8.3) |
 
-  Turning on paid plans later is then a server change (plans, payment, entitlements), not an editor rewrite.
-- A server-side render path (the `engine3d` pipeline, for 4K60 or long scenes) is a possible paid extra later and is
-  out of scope here.
+- **Paid 4K render on a server:** the editor uploads the scene JSON (not a video) to a render job. A render worker
+  (headless Chromium running the same `player.js`, stepping frames with `seek`, encoding with ffmpeg) produces the
+  MP4, stores it in Cloud Storage for 7 days, and the parent gets a download link in the Parent Zone. Because the
+  player is deterministic, the server video matches the preview frame for frame. Credits are reserved when the job
+  starts and charged when it succeeds; a failed job releases them. Cloud Functions are too small for 4K renders, so
+  the worker runs on Cloud Run (or a similar container service) in the same project.
+- The `engine3d` render pipeline stays separate; reusing its encoding settings (4K60) is a good default.
+
+### 8.3 Credits: one usage system for all abcbunny.com tools
+
+Paid use is metered in **credits** (working name "Bunny tickets"), one balance per parent account, shared by every
+tool on abcbunny.com: this editor, KidsLearningPlatform activities, printable worksheets and future tools. It lives in
+the KidsLearningPlatform Firebase project and gets its own detailed spec there; this section is what the editor needs.
+
+- **Balance and ledger (Firestore, server-written only):** `parents/{uid}/credits/balance` and an append-only
+  `parents/{uid}/creditLedger/{entryId}` with `{ delta, reason, product, item, idempotencyKey, createdAt }`.
+  Clients can read their own, never write.
+- **Earning:** credit packs bought through Stripe (a webhook function adds them), a monthly grant for subscribers,
+  and admin grants.
+- **Spending:** only through one callable function, `spendCredits({ product, action, item, units, idempotencyKey })`.
+  It checks the price list, the balance and the idempotency key in one transaction, writes the ledger entry, and
+  returns the new balance. A repeated key never charges twice. Long jobs use `reserve` then `commit` or `release`.
+- **Price list (server config):** for example `3dVideoEditor.render4k` per minute of video, `3dVideoEditor.model`
+  per library model per scene, `printables.premium` per worksheet. Prices change without a client release.
+- **Usage reports:** the ledger is the usage record per parent; an admin view sums usage per product.
+- **Children never see prices or buy anything.** The editor shows "Ask a grown-up"; spending and buying happen
+  behind the parent gate in the Parent Zone.
 
 ## 9. Child safety and privacy
 
-### 9.1 Accounts
+### 9.1 Accounts and consent (shared with KidsLearningPlatform)
 
-Because export needs signup and the users are under 13, accounts follow COPPA (US) and GDPR-K (EU/UK) rules:
+The editor uses the KidsLearningPlatform account system rather than its own. Because the users are under 13, it
+follows COPPA (US) and GDPR-K (EU/UK) rules:
 
-- The account holder is a **parent or guardian**, signing up with their email, confirming they are an adult, and
-  giving verifiable parental consent before the first export (the consent method is an open question, section 13).
-- The child never types an email, real name, age, photo or location. A parent may add child profiles with a
-  nickname and an avatar picked from the catalog.
-- The server stores only: the parent's email and login, consent record, plan/entitlements, and an export counter.
-  No scenes, no videos, no child data.
-- Parents can delete the account and its data from a settings page.
-- The signup and parent screens sit behind a simple parent gate (for example "type the year you were born" or a
-  hold-to-continue), so a young child does not wander into them.
+- The account holder is a **parent or guardian**: a Firebase Auth user (email/password, or Google), the same login as
+  KidsLearningPlatform. Children are profiles under the parent (`parents/{uid}/students/{studentId}`), never auth
+  users, as in KidsLearningPlatform's data model.
+- **One consent for all tools:** KidsLearningPlatform has a parent gate (the Parent Zone PIN) but no recorded
+  verifiable parental consent yet. Add it there once, as a `consent` record on the parent document
+  (`{ method, version, grantedAt }`, server-written), collected at signup or before the first paid or exporting
+  action in any tool. The editor checks that record; it never runs its own consent flow.
+- Each tool's data use is listed in one privacy notice for parents, so the consent covers the editor's exports,
+  renders and credits as well.
+- The child never types an email, real name, age, photo or location in the editor.
+- The editor stores on the server only: export and render jobs (scene JSON and the video for 7 days, paid renders
+  only) and credit ledger entries. Free exports keep everything on the device.
+- Parents can delete the account and its data from the Parent Zone; that also deletes render jobs and videos.
+- Signup, buying credits and parent screens sit behind the existing parent gate.
 
 ### 9.2 Everything else
 
 - No location, camera or microphone. No analytics that identify a child; only aggregate, anonymous counts.
-- The editor makes no network calls except loading catalog assets from the same site and the signup,
-  sign-in and entitlement calls for export.
+- The editor makes no network calls except loading catalog assets from the same site, Firebase sign-in, and the
+  entitlement, model-library, credit and render calls listed above.
 - No free text that leaves the device. Word-picker speech only by default.
 - No ads, no external links and no purchases inside the child-facing editor. Any future payment happens behind the
   parent gate.
@@ -277,12 +327,17 @@ lottie3d/
 
 ### 10.1 Hosting
 
-- Served at `abcbunny.com/3dVideoEditor/` as static files (HTML, JS, catalog JSON, models, sounds). All paths are
-  relative, so the same files also work locally with `npm run serve`.
-- Three.js stays on its pinned CDN URL in v1; for production, consider self-hosting that one file under the same
-  path so the page has no third-party request.
-- The account and entitlement API (`/api/...`) is a small separate service on the same domain. Its stack depends on
-  what abcbunny.com already runs (open question, section 13).
+- abcbunny.com is the KidsLearningPlatform app on Firebase Hosting (`dist/`, built by Vite). The editor is static
+  files (HTML, JS, catalog JSON, models, sounds) developed here in `lottie3d/`, and a sync script copies a release into
+  `KidsLearningPlatform/public/3dVideoEditor/`, so Vite ships it unchanged and it is served at
+  `abcbunny.com/3dVideoEditor/`. All paths are relative, so the same files also work locally with `npm run serve`.
+- Sign-in uses the Firebase JS SDK with the KidsLearningPlatform web config; a parent signed in on abcbunny.com is
+  signed in on the editor too (same origin).
+- Server parts live in the KidsLearningPlatform Firebase project: entitlements, `spendCredits`, the model library and
+  render jobs as Cloud Functions; the 4K render worker on Cloud Run; videos and library models in Cloud Storage.
+- Three.js stays on its pinned CDN URL while prototyping; for production, self-host that file under the same path so
+  the page has no third-party request. (KidsLearningPlatform bundles three 0.160; the editor keeps its own pinned
+  copy, since it is a separate page.)
 
 - Same principles as the rest of the repo: plain ES modules, no build step, Three.js from a pinned CDN URL,
   no `Math.random` or wall-clock time inside the simulation path, modules under about 350 lines.
@@ -298,9 +353,12 @@ lottie3d/
 | E2 | Tiny mode editor | A child can pick a stage, place cast, tap moves, play, undo, and the scene autosaves. Works on a tablet. |
 | E3 | Maker mode | Timeline drag/stretch/reorder, word-picker speech, sounds, props, camera shots. |
 | E4 | Animator mode | Pose mode with joint limits and mirroring, saved poses as blocks, easing choice, read-only JSON panel. |
-| E5 | Video export | In-browser MP4 export (frames + sound) that matches playback frame for frame; entitlement check decides resolution, length and watermark. |
-| E6 | Parent accounts | Parent gate, parent signup with consent, sign-in, account deletion, entitlement API; export blocked without a signed-in parent. Privacy policy drafted. |
-| E7 | Playtest, polish, launch | Sessions with children in each age band (section 12); fixes; published at `abcbunny.com/3dVideoEditor`. |
+| E5 | Free video export | In-browser 720p MP4 export (frames + sound, up to 3 minutes, watermark) that matches playback frame for frame; entitlement check decides the options. |
+| E6 | Shared accounts and consent | Editor signs in with the KidsLearningPlatform parent account; consent record added in KidsLearningPlatform and checked by the editor; export blocked without a signed-in, consented parent. Privacy notice updated. |
+| E7 | Launch the free editor | Playtests with children in each age band (section 12); fixes; sync into KidsLearningPlatform and publish at `abcbunny.com/3dVideoEditor`. |
+| C1 | Credits service (KidsLearningPlatform) | Balance, ledger, `spendCredits` with reserve/commit, Stripe credit packs, price list, admin usage view; its own spec in KidsLearningPlatform. Needed by E8 and E9. |
+| E8 | Paid 4K server render | Render jobs, Cloud Run worker, Parent Zone downloads, credits reserved and charged per job; server frames match the preview. |
+| E9 | Paid model library | Import script with capability detection and review, library storage, `getModel` with credit charging, ticket badges in the tray. |
 
 Each milestone stops for Sridhar's visual review before the next one starts.
 
@@ -317,16 +375,13 @@ Each milestone stops for Sridhar's visual review before the next one starts.
 
 ## 13. Open questions
 
-Answered on 2026-11-17 (see the decisions table at the top): where it lives, which characters, video export,
-teacher view.
+All earlier questions are answered (see the decisions table at the top).
 
 Still open:
 
-1. What does abcbunny.com run today (static hosting, a backend, an existing login)? This decides how the account
-   and entitlement service is built.
-2. Which verifiable parental consent method (for example a small card check, a signed form, or a third-party
-   consent service)? Needs a quick legal check for the countries we serve.
-3. Free export limits: are 720p, 30 seconds and a small watermark right for the free tier?
-4. Is in-browser export enough, or do we also want server-rendered 4K for the paid tier later?
-5. Which models go on the allowlist first beyond the v1 set, and is there a size budget for the page
-   (for example, under 5 MB before any model is placed)?
+1. Which verifiable parental consent method for the shared consent record (for example a small card check, a
+   signed form, or a third-party consent service)? Needs a quick legal check for the countries abcbunny.com serves.
+2. Credit prices and packs: what a credit costs, and the price of a 4K render minute and a library model.
+3. Does a subscriber (KidsLearningPlatform premium) get a monthly credit grant, and how many?
+4. Where library models come from first (our `engine3d` catalog, CC0 packs, bought packs) and the licence rules for
+   paid use.
