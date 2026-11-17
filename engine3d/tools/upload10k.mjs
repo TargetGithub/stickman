@@ -7,7 +7,7 @@
 // Stops at the first failed upload (quota, expired sign-in) and says why. Prints the uploaded ids with the Studio
 // level each needs (Studio-only fields: Education type Lecture, US system, level), then refreshes 10K/UPLOADS.md.
 
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { ROOT, paths, scriptHash } from "./script10k/index.mjs";
@@ -18,7 +18,9 @@ const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] :
 const COUNT = Number(opt("--count", 10));
 const BANDS = opt("--bands", "pk,kg,g1,g2,g3,g4,g5").split(",");
 const PRIVACY = opt("--privacy", "public");
-const DRY = args.includes("--dry");
+const DRY = args.includes("--dry") || args.includes("--dry-run");
+const KNOWN = new Set(["--count", "--bands", "--privacy", "--dry", "--dry-run"]);
+for (const a of args) if (a.startsWith("--") && !KNOWN.has(a)) { console.error(`unknown option ${a}: nothing uploaded`); process.exit(2); }
 const REPO = new URL("../../", import.meta.url).pathname;
 export const LEVEL = { bb: "Elementary School", pk: "Elementary School", kg: "Kindergarten", g1: "First Grade", g2: "Second Grade", g3: "Third Grade", g4: "Fourth Grade", g5: "Fifth Grade" };
 
@@ -46,6 +48,17 @@ for (let round = 0; picks.length < COUNT && BANDS.some((b) => pool[b].length > r
 
 console.log(`${picks.length} to upload (${PRIVACY}): ${picks.map((p) => p.id).join(" ") || "none"}; left after: ${Object.values(pool).flat().length - picks.length}`);
 if (DRY || !picks.length) process.exit(0);
+
+// One uploader at a time: two runs racing on the same list upload videos twice (happened 2026-11-16).
+const LOCK = join(ROOT, "upload10k.lock");
+try { writeFileSync(LOCK, `${process.pid} ${new Date().toISOString()}\n`, { flag: "wx" }); }
+catch {
+  const [pid] = readFileSync(LOCK, "utf8").split(" ");
+  let alive = false; try { process.kill(Number(pid), 0); alive = true; } catch { /* stale lock */ }
+  if (alive) { console.error(`another upload10k run (pid ${pid}) is uploading: nothing done`); process.exit(3); }
+  writeFileSync(LOCK, `${process.pid} ${new Date().toISOString()}\n`);
+}
+process.on("exit", () => { try { if (readFileSync(LOCK, "utf8").startsWith(`${process.pid} `)) unlinkSync(LOCK); } catch { /* gone */ } });
 
 const done = [];
 for (const p of picks) {
