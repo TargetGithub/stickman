@@ -4,6 +4,9 @@ A small JSON format for keyframed 3D character animation, played by `player.js`.
 Units are meters and degrees. Time is in seconds. The world is right-handed: +Y is up,
 the default camera looks down −Z, and a character with `yaw: 0` faces +Z (toward that camera).
 
+Version 0.2 (the kids' editor format: stage, cast, timeline of move blocks, poses) is specified in
+`EDITOR_SPEC.md` section 5; every v0.1 file stays valid.
+
 Playback is a pure function of time: the frame at time `t` depends only on the document and `t`.
 There is no randomness and no simulation state.
 

@@ -1,0 +1,28 @@
+{
+  "format": "lottie3d",
+  "version": "0.2",
+  "name": "Snow walk",
+  "duration": 9,
+  "fps": 30,
+  "loop": true,
+  "stage": "snow",
+  "cast": [
+    { "id": "robo", "kind": "character", "name": "robot", "at": [-3, 0.5], "facing": 90 },
+    { "id": "cat", "kind": "critter", "name": "cat", "at": [1.5, -0.5], "facing": -30, "color": "#ff9a2e" },
+    { "id": "apple", "kind": "prop", "name": "apple", "at": [0, 1], "size": 0.4 },
+    { "id": "cloud", "kind": "prop", "name": "cloud", "at": [-1, 2.3, -4], "size": 1.6 }
+  ],
+  "timeline": [
+    { "who": "robo", "at": 0, "do": "walk_to", "dur": 3, "with": { "to": [-0.6, 0.5] } },
+    { "who": "robo", "at": 3, "do": "turn", "with": { "to": 0 } },
+    { "who": "robo", "at": 3.8, "do": "clip", "dur": 1.6, "with": { "name": "ThumbsUp" } },
+    { "who": "robo", "at": 6, "do": "clip", "dur": 2.4, "with": { "name": "Jump" } },
+    { "who": "cat", "at": 0.5, "do": "look_at", "with": { "target": "robo" } },
+    { "who": "cat", "at": 3.6, "do": "say", "with": { "words": ["I", "like", "it"] }, "dur": 2 },
+    { "who": "cat", "at": 6, "do": "nod", "with": { "times": 3 } },
+    { "who": "apple", "at": 4, "do": "hop", "with": { "times": 2, "height": 0.8 }, "dur": 1.2 },
+    { "who": "cloud", "at": 0, "do": "walk_to", "dur": 9, "with": { "to": [2.5, -4] } },
+    { "who": "camera", "at": 0, "do": "follow", "dur": 3.4, "with": { "target": "robo" } },
+    { "who": "camera", "at": 3.4, "do": "wide", "dur": 5.6 }
+  ]
+}

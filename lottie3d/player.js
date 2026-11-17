@@ -1,18 +1,19 @@
-// Lottie3D web player v0.1: plays a Lottie3D JSON document (SPEC.md) on a <canvas> with Three.js.
+// Lottie3D web player: plays a Lottie3D JSON document (SPEC.md v0.1, EDITOR_SPEC.md v0.2) on a <canvas>.
 //
 //   import { createPlayer } from "./player.js";
-//   const p = createPlayer(canvas, json);   // throws Lottie3DError if json is invalid
+//   const p = createPlayer(canvas, json, { catalog });   // catalog (catalog/kids.json) is needed for v0.2
+//   await p.ready;                                         // glTF characters loaded
 //   p.play(); p.pause(); p.seek(1.25);
 //
-// Deterministic: each frame is evaluate(doc, t) from sample.js, a pure function of time snapped to whole
-// frames. The only clock is the requestAnimationFrame timestamp, used to advance t while playing.
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js";
-import { HEAD_CENTER, SKELETON } from "./rig.js";
+// Deterministic: every frame is a pure function of the document and t (sample.js evaluate, expand.js evaluateCast),
+// with t snapped to whole frames. The only clock is the requestAnimationFrame timestamp that moves t while playing.
+import { THREE, bubbleSprite, buildCharacter, buildPartsModel, buildProp, buildStage, disposeScene, loadCharacter, makeLight, materialFactory, mesh } from "./models.js";
 import { docTime, evaluate } from "./sample.js";
+import { evaluateCast, expand } from "./expand.js";
 import { formatErrors, validate } from "./validate.js";
 
-export { validate, formatErrors, evaluate };
-export const VERSION = "0.1";
+export { validate, formatErrors, evaluate, expand, evaluateCast };
+export const VERSION = "0.2";
 
 export class Lottie3DError extends Error {
   /** @param {import("./validate.js").ValidationError[]} errors */
@@ -32,49 +33,52 @@ const DEFAULT_LIGHTS = [
 /**
  * @param {HTMLCanvasElement} canvas
  * @param {object|string} json  a Lottie3D document or its JSON text
- * @param {{ autoplay?: boolean, onTime?: (t: number) => void, onEnd?: () => void, pixelRatio?: number }} [options]
+ * @param {{ catalog?: any, assetBase?: string|URL, autoplay?: boolean, onTime?: (t: number) => void,
+ *   onEnd?: () => void, pixelRatio?: number }} [options]
  */
 export function createPlayer(canvas, json, options = {}) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(options.pixelRatio ?? Math.min(globalThis.devicePixelRatio || 1, 2));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  const assetBase = new URL(options.assetBase ?? "./catalog/", import.meta.url);
 
   let doc = null;
+  let resolved = null; // v0.2 expansion
   let scene = null;
   let camera = null;
-  let target = new THREE.Vector3();
-  /** @type {Map<string, {group: THREE.Group, joints: Record<string, THREE.Object3D>}>} */
-  let chars = new Map();
-  /** @type {Map<string, THREE.Object3D>} */
-  let props = new Map();
+  const target = new THREE.Vector3();
+  let chars = new Map(); // v0.1 characters
+  let props = new Map(); // v0.1 props
+  let cast = new Map(); // v0.2 cast: { outer, scaler, tilt, model }
+  let bubbleLayer = null;
+  let ready = Promise.resolve();
+  let generation = 0;
 
-  let clock = 0; // seconds of document time before snapping/looping
+  let clock = 0;
   let playing = false;
   let lastTs = null;
   let raf = 0;
   let disposed = false;
 
   function build(input) {
-    const res = validate(input);
+    const res = validate(input, { catalog: options.catalog });
     if (!res.ok) throw new Lottie3DError(res.errors);
+    const v02 = res.doc.version === "0.2";
+    if (v02 && !options.catalog) throw new Error("a v0.2 document needs the kids catalog: createPlayer(canvas, json, { catalog })");
     if (scene) disposeScene(scene);
+    generation++;
     doc = res.doc;
+    resolved = v02 ? expand(doc, options.catalog) : null;
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(doc.scene.background);
-    camera = new THREE.PerspectiveCamera(doc.scene.camera.fov ?? 40, 1, 0.05, 200);
-    for (const l of doc.scene.lights ?? DEFAULT_LIGHTS) scene.add(makeLight(l));
-    if (doc.scene.ground) {
-      const size = doc.scene.ground.size ?? 20;
-      const ground = new THREE.Mesh(
-        new THREE.PlaneGeometry(size, size),
-        new THREE.MeshStandardMaterial({ color: doc.scene.ground.color ?? "#dddddd", roughness: 0.95 }),
-      );
-      ground.rotation.x = -Math.PI / 2;
-      ground.receiveShadow = true;
-      scene.add(ground);
-    }
+    camera = new THREE.PerspectiveCamera(doc.scene?.camera?.fov ?? 40, 1, 0.05, 200);
+    if (doc.stage) {
+      const stage = buildStage(options.catalog.stages[doc.stage]);
+      scene.background = stage.background;
+      scene.fog = stage.fog;
+      scene.add(stage.group);
+    } else buildScene(doc.scene);
     chars = new Map();
     for (const c of doc.characters ?? []) {
       const built = buildCharacter(c);
@@ -87,42 +91,133 @@ export function createPlayer(canvas, json, options = {}) {
       scene.add(obj);
       props.set(p.id, obj);
     }
+    cast = new Map();
+    const loads = [];
+    if (resolved) {
+      const material = materialFactory(options.catalog.materials);
+      for (const m of resolved.cast) {
+        const model = options.catalog.models[m.name];
+        const slot = castSlot(m.height);
+        scene.add(slot.outer);
+        cast.set(m.id, slot);
+        if (m.kind === "rig") {
+          const built = buildCharacter({ rig: model.rig, color: m.color ?? model.color, accent: model.accent });
+          slot.inner.add(built.group);
+          slot.model = { joints: built.joints };
+        } else if (m.kind === "character") {
+          const gen = generation;
+          loads.push(loadCharacter(new URL(model.file, assetBase).href, model).then((c) => {
+            if (gen !== generation) return;
+            slot.inner.add(c.group);
+            slot.model = { pose: c.pose };
+          }));
+        } else {
+          const built = buildPartsModel(model, { id: m.id, color: m.color }, material);
+          slot.inner.add(built.group);
+          slot.model = { update: built.update };
+        }
+      }
+      bubbleLayer = new THREE.Group();
+      scene.add(bubbleLayer);
+    }
+    ready = Promise.all(loads).then(() => render());
     clock = 0;
     lastTs = null;
     resize();
     render();
   }
 
+  function buildScene(s) {
+    scene.background = new THREE.Color(s.background);
+    for (const l of s.lights ?? DEFAULT_LIGHTS) scene.add(makeLight(l));
+    if (s.ground) {
+      const size = s.ground.size ?? 20;
+      const ground = mesh(new THREE.PlaneGeometry(size, size), new THREE.MeshStandardMaterial({ color: s.ground.color ?? "#dddddd", roughness: 0.95 }));
+      ground.rotation.x = -Math.PI / 2;
+      ground.castShadow = false;
+      scene.add(ground);
+    }
+  }
+
+  /** outer (position, yaw) → scaler (size × scale) → tilt (pitch and roll about the middle) → inner (model). */
+  function castSlot(height) {
+    const outer = new THREE.Group();
+    const scaler = new THREE.Group();
+    const tilt = new THREE.Group();
+    const inner = new THREE.Group();
+    tilt.position.y = height / 2;
+    inner.position.y = -height / 2;
+    outer.add(scaler);
+    scaler.add(tilt);
+    tilt.add(inner);
+    return { outer, scaler, tilt, inner, model: null };
+  }
+
   function render() {
     if (!doc || disposed) return;
     const t = docTime(doc, clock);
-    const f = evaluate(doc, t);
-    camera.position.fromArray(f.camera.position);
-    target.fromArray(f.camera.target);
+    const low = evaluate({ ...doc, scene: doc.scene ?? { camera: { position: [0, 1.6, 6] } } }, t);
+    const high = resolved ? evaluateCast(resolved, t, options.catalog) : null;
+    const cam = high?.camera ?? low.camera;
+    camera.position.fromArray(cam.position);
+    target.fromArray(cam.target);
     camera.lookAt(target);
-    if (camera.fov !== f.camera.fov) {
-      camera.fov = f.camera.fov;
+    if (camera.fov !== cam.fov) {
+      camera.fov = cam.fov;
       camera.updateProjectionMatrix();
     }
-    for (const c of f.characters) {
+    for (const c of low.characters) {
       const built = chars.get(c.id);
       built.group.position.fromArray(c.position);
       built.group.rotation.set(0, c.yaw * DEG, 0);
       built.group.scale.setScalar(c.scale);
-      for (const name in built.joints) {
-        const r = c.joints[name];
-        if (r) built.joints[name].rotation.set(r[0] * DEG, r[1] * DEG, r[2] * DEG, "XYZ");
-        else built.joints[name].rotation.set(0, 0, 0);
-      }
+      applyJoints(built.joints, c.joints);
     }
-    for (const p of f.props) {
+    for (const p of low.props) {
       const obj = props.get(p.id);
       obj.position.fromArray(p.position);
       obj.rotation.set(p.rotation[0] * DEG, p.rotation[1] * DEG, p.rotation[2] * DEG, "XYZ");
       obj.scale.fromArray(p.scale);
     }
+    if (high) renderCast(high, t);
     renderer.render(scene, camera);
     options.onTime?.(t);
+  }
+
+  function renderCast(f, t) {
+    for (const c of f.cast) {
+      const slot = cast.get(c.id);
+      const m = resolved.cast.find((x) => x.id === c.id);
+      slot.outer.position.fromArray(c.position);
+      slot.outer.rotation.set(0, c.rotation[1] * DEG, 0);
+      slot.scaler.scale.set(c.scale[0] * m.size, c.scale[1] * m.size, c.scale[2] * m.size);
+      slot.tilt.rotation.set(c.rotation[0] * DEG, 0, c.rotation[2] * DEG);
+      slot.outer.visible = c.scale[1] > 1e-4;
+      if (slot.model?.joints) applyJoints(slot.model.joints, c.joints);
+      if (slot.model?.update) slot.model.update(t, c.eyes);
+      if (slot.model?.pose && c.clip) slot.model.pose(c.clip);
+    }
+    bubbleLayer.clear();
+    const stacked = new Map();
+    for (const e of f.events) {
+      const slot = cast.get(e.who);
+      const m = resolved.cast.find((x) => x.id === e.who);
+      const c = f.cast.find((x) => x.id === e.who);
+      if (!slot?.outer.visible) continue;
+      const sprite = bubbleSprite(e.type === "sound" ? `🔊 ${e.text}` : e.text);
+      const k = stacked.get(e.who) ?? 0;
+      stacked.set(e.who, k + 1);
+      sprite.position.set(c.position[0], c.position[1] + m.height * m.size * c.scale[1] + 0.25 + k * 0.5, c.position[2]);
+      bubbleLayer.add(sprite);
+    }
+  }
+
+  function applyJoints(nodes, rotations) {
+    for (const name in nodes) {
+      const r = rotations[name];
+      if (r) nodes[name].rotation.set(r[0] * DEG, r[1] * DEG, r[2] * DEG, "XYZ");
+      else nodes[name].rotation.set(0, 0, 0);
+    }
   }
 
   function tick(ts) {
@@ -181,6 +276,8 @@ export function createPlayer(canvas, json, options = {}) {
       build(input);
       if (was) api.play();
     },
+    /** Resolves when every glTF character of the current document has loaded. */
+    get ready() { return ready; },
     get time() { return docTime(doc, clock); },
     get duration() { return doc.duration; },
     get fps() { return doc.fps; },
@@ -198,124 +295,8 @@ export function createPlayer(canvas, json, options = {}) {
   return api;
 }
 
-function makeLight(l) {
-  const color = l.color ?? "#ffffff";
-  const intensity = l.intensity ?? 1;
-  let light;
-  if (l.type === "ambient") light = new THREE.AmbientLight(color, intensity);
-  else if (l.type === "hemisphere") light = new THREE.HemisphereLight(color, l.groundColor ?? "#444444", intensity);
-  else if (l.type === "point") light = new THREE.PointLight(color, intensity, 0, 2);
-  else {
-    light = new THREE.DirectionalLight(color, intensity);
-    if (l.shadow) {
-      light.castShadow = true;
-      light.shadow.mapSize.set(1024, 1024);
-      Object.assign(light.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 0.5, far: 30 });
-      light.shadow.bias = -0.0005;
-    }
-  }
-  if (l.position) light.position.fromArray(l.position);
-  return light;
-}
-
-function mesh(geometry, material) {
-  const m = new THREE.Mesh(geometry, material);
-  m.castShadow = true;
-  m.receiveShadow = true;
-  return m;
-}
-
-/** Build the shared skeleton and dress it with stick or block parts. */
-function buildCharacter(c) {
-  const block = c.rig === "block";
-  const body = new THREE.MeshStandardMaterial({ color: c.color ?? "#333333", roughness: 0.6, flatShading: block });
-  const skin = new THREE.MeshStandardMaterial({ color: c.accent ?? "#f2c48d", roughness: 0.5, flatShading: block });
-  const dark = new THREE.MeshStandardMaterial({ color: "#1a1a1a", roughness: 0.4 });
-  const group = new THREE.Group();
-  /** @type {Record<string, THREE.Object3D>} */
-  const joints = {};
-  for (const j of SKELETON) {
-    const node = new THREE.Object3D();
-    node.name = j.name;
-    node.position.fromArray(j.offset);
-    (j.parent ? joints[j.parent] : group).add(node);
-    joints[j.name] = node;
-    const len = Math.abs(j.bone);
-    const dir = Math.sign(j.bone);
-    if (len > 0 && j.name !== "neck") {
-      const limb = j.name === "spine";
-      const geo = block
-        ? new THREE.BoxGeometry(limb ? 0.34 : 0.12, len, limb ? 0.2 : 0.12)
-        : new THREE.CylinderGeometry(limb ? 0.05 : 0.035, limb ? 0.05 : 0.035, len, 12);
-      const part = mesh(geo, body);
-      part.position.y = (dir * len) / 2;
-      node.add(part);
-    }
-    if (j.name === "neck") {
-      const neck = mesh(block ? new THREE.BoxGeometry(0.08, 0.1, 0.08) : new THREE.CylinderGeometry(0.03, 0.03, 0.1, 8), body);
-      neck.position.y = 0.05;
-      node.add(neck);
-      const head = mesh(block ? new THREE.BoxGeometry(0.26, 0.26, 0.26) : new THREE.SphereGeometry(0.13, 24, 16), skin);
-      head.position.y = HEAD_CENTER;
-      node.add(head);
-      for (const x of [-0.045, 0.045]) {
-        const eye = mesh(block ? new THREE.BoxGeometry(0.035, 0.05, 0.02) : new THREE.SphereGeometry(0.018, 10, 8), dark);
-        eye.position.set(x, HEAD_CENTER + 0.03, block ? 0.13 : 0.118);
-        node.add(eye);
-      }
-    }
-    if (j.end === "hand") {
-      const hand = mesh(block ? new THREE.BoxGeometry(0.1, 0.1, 0.1) : new THREE.SphereGeometry(0.05, 12, 10), skin);
-      hand.position.y = j.bone;
-      node.add(hand);
-    }
-    if (j.end === "foot") {
-      const foot = mesh(new THREE.BoxGeometry(block ? 0.13 : 0.09, 0.05, 0.2), body);
-      foot.position.set(0, j.bone - 0.025, 0.05);
-      node.add(foot);
-    }
-  }
-  // Shoulder bar and pelvis join the limbs to the torso.
-  const shoulders = mesh(block ? new THREE.BoxGeometry(0.46, 0.1, 0.18) : new THREE.CylinderGeometry(0.035, 0.035, 0.36, 8), body);
-  if (!block) shoulders.rotation.z = Math.PI / 2;
-  shoulders.position.y = 0.46;
-  joints.spine.add(shoulders);
-  const pelvis = mesh(block ? new THREE.BoxGeometry(0.32, 0.14, 0.2) : new THREE.CylinderGeometry(0.04, 0.04, 0.24, 8), body);
-  if (!block) pelvis.rotation.z = Math.PI / 2;
-  joints.root.add(pelvis);
-  return { group, joints };
-}
-
-function buildProp(p) {
-  const size = p.size ?? 0.5;
-  const s = Array.isArray(size) ? size : [size, size, size];
-  const mat = new THREE.MeshStandardMaterial({ color: p.color ?? "#888888", roughness: 0.5 });
-  const outer = new THREE.Group();
-  let geo;
-  if (p.type === "box") geo = new THREE.BoxGeometry(1, 1, 1);
-  else if (p.type === "cylinder") geo = new THREE.CylinderGeometry(0.5, 0.5, 1, 24);
-  else if (p.type === "cone") geo = new THREE.ConeGeometry(0.5, 1, 24);
-  else geo = new THREE.SphereGeometry(0.5, 32, 20);
-  const body = mesh(geo, mat);
-  body.scale.fromArray(s);
-  outer.add(body);
-  if (p.type === "ball") {
-    const stripe = mesh(new THREE.TorusGeometry(0.5, 0.06, 8, 40), new THREE.MeshStandardMaterial({ color: "#ffffff", roughness: 0.5 }));
-    stripe.scale.fromArray(s);
-    outer.add(stripe);
-  }
-  return outer;
-}
-
-function disposeScene(scene) {
-  scene.traverse((o) => {
-    o.geometry?.dispose();
-    if (o.material) [].concat(o.material).forEach((m) => m.dispose());
-  });
-}
-
 /**
- * Register <lottie3d-player src="anim.json" autoplay></lottie3d-player>, the drop-in embed.
+ * Register <lottie3d-player src="anim.json" catalog="catalog/kids.json" autoplay></lottie3d-player>.
  * @param {string} [tag]
  */
 export function defineElement(tag = "lottie3d-player") {
@@ -324,8 +305,10 @@ export function defineElement(tag = "lottie3d-player") {
     async connectedCallback() {
       const shadow = this.shadowRoot ?? this.attachShadow({ mode: "open" });
       shadow.innerHTML = `<style>:host{display:block;aspect-ratio:16/9}canvas{width:100%;height:100%;display:block}</style><canvas></canvas>`;
-      const res = await fetch(this.getAttribute("src"));
-      this.player = createPlayer(shadow.querySelector("canvas"), await res.text(), { autoplay: this.hasAttribute("autoplay") });
+      const text = await (await fetch(this.getAttribute("src"))).text();
+      const cat = this.getAttribute("catalog");
+      const catalog = cat ? await (await fetch(cat)).json() : undefined;
+      this.player = createPlayer(shadow.querySelector("canvas"), text, { catalog, autoplay: this.hasAttribute("autoplay") });
     }
     disconnectedCallback() {
       this.player?.dispose();

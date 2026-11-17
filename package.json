@@ -13,6 +13,8 @@
     "test:integration": "node --test tests/integration/",
     "test:timing": "STICKMAN_TIMING=1 node --test tests/unit/bundle_check.test.js",
     "test:lottie3d": "node --test lottie3d/tests/",
+    "lottie3d:catalog": "node tools/lottie3d_catalog.mjs",
+    "lottie3d:catalog:check": "node tools/lottie3d_catalog.mjs --check",
     "serve": "node tools/serve.mjs 5173",
     "validate": "node tools/validate.mjs",
     "record": "node tools/record.mjs",

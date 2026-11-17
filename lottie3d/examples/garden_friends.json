@@ -1,0 +1,35 @@
+{
+  "format": "lottie3d",
+  "version": "0.2",
+  "name": "Garden friends",
+  "duration": 12,
+  "fps": 30,
+  "loop": true,
+  "stage": "garden",
+  "cast": [
+    { "id": "robo", "kind": "character", "name": "robot", "at": [-1.6, 0], "facing": 25 },
+    { "id": "duck", "kind": "critter", "name": "duck", "at": [0.2, 0.4] },
+    { "id": "dog", "kind": "critter", "name": "dog", "at": [3, -0.6], "facing": -60 },
+    { "id": "tree", "kind": "prop", "name": "tree", "at": [-3.2, -2.2], "size": 1.4 },
+    { "id": "flower", "kind": "prop", "name": "flower", "at": [1.6, 1.4], "size": 0.6 },
+    { "id": "sun", "kind": "prop", "name": "sun", "at": [3.2, 3.4, -5], "size": 1.4 }
+  ],
+  "timeline": [
+    { "who": "duck", "at": 0.3, "do": "show" },
+    { "who": "duck", "at": 1, "do": "hop", "with": { "times": 2, "height": 0.6 } },
+    { "who": "duck", "at": 2.6, "do": "say", "with": { "words": ["hello", "friend"] } },
+    { "who": "duck", "at": 5, "do": "look_at", "with": { "target": "dog" } },
+    { "who": "duck", "at": 7.6, "do": "wiggle" },
+    { "who": "duck", "at": 9, "do": "spin" },
+    { "who": "robo", "at": 1.2, "do": "wave", "dur": 2.2 },
+    { "who": "robo", "at": 4, "do": "say", "with": { "words": ["wow"] }, "dur": 1.4 },
+    { "who": "robo", "at": 8.4, "do": "dance", "dur": 3.4 },
+    { "who": "dog", "at": 3.6, "do": "walk_to", "dur": 2.4, "with": { "to": [1.4, 0.2] } },
+    { "who": "dog", "at": 6.2, "do": "sound", "with": { "name": "own" }, "dur": 1.2 },
+    { "who": "dog", "at": 7.6, "do": "hop", "with": { "times": 3, "height": 0.4 }, "dur": 1.2 },
+    { "who": "flower", "at": 9, "do": "grow", "with": { "to": 1.8 } },
+    { "who": "sun", "at": 0, "do": "spin", "dur": 12, "with": { "turns": 1 } },
+    { "who": "camera", "at": 5.8, "do": "close", "dur": 2.6, "with": { "target": "dog" } },
+    { "who": "camera", "at": 8.4, "do": "orbit", "dur": 3.6, "with": { "degrees": 40 } }
+  ]
+}

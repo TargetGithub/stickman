@@ -25,7 +25,7 @@
 </head>
 <body>
 <main>
-  <h1>Lottie3D Player <small>v0.1 · JSON in, 3D characters out</small></h1>
+  <h1>Lottie3D Player <small>v0.2 · JSON in, 3D characters out</small></h1>
   <div class="stage"><canvas id="view"></canvas></div>
   <div class="bar">
     <button id="toggle" class="primary">Pause</button>
@@ -35,9 +35,16 @@
   <div class="bar">
     <label>Example
       <select id="pick">
-        <option value="examples/wave.json">Wave hello</option>
-        <option value="examples/walk.json">Walk past</option>
-        <option value="examples/jump.json">Big jump</option>
+        <optgroup label="v0.2 (kids catalog)">
+          <option value="examples/garden_friends.json">Garden friends</option>
+          <option value="examples/playroom_party.json">Playroom party</option>
+          <option value="examples/snow_walk.json">Snow walk</option>
+        </optgroup>
+        <optgroup label="v0.1 (keyframes)">
+          <option value="examples/wave.json">Wave hello</option>
+          <option value="examples/walk.json">Walk past</option>
+          <option value="examples/jump.json">Big jump</option>
+        </optgroup>
       </select>
     </label>
     <label>or open a file <input id="file" type="file" accept=".json,application/json"></label>
@@ -52,6 +59,7 @@
   const canvas = $("view"), toggle = $("toggle"), scrub = $("scrub"), time = $("time"), errors = $("errors"), info = $("info");
   let player = null;
   let dragging = false;
+  const catalog = await (await fetch("catalog/kids.json")).json();
 
   function onTime(t) {
     if (!player) return;
@@ -65,10 +73,13 @@
     errors.textContent = "";
     try {
       if (player) player.load(text);
-      else player = createPlayer(canvas, text, { autoplay: true, onTime, onEnd: syncButton });
+      else player = createPlayer(canvas, text, { catalog, autoplay: true, onTime, onEnd: syncButton });
       if (!player.playing) player.play();
       const d = player.document;
-      info.textContent = `${label}: ${d.characters?.length ?? 0} character(s), ${d.props?.length ?? 0} prop(s), ${d.fps} fps${d.loop === false ? "" : ", loops"}`;
+      const parts = d.version === "0.2"
+        ? [`stage ${d.stage ?? "custom"}`, `${d.cast?.length ?? 0} cast`, `${d.timeline?.length ?? 0} blocks`]
+        : [`${d.characters?.length ?? 0} character(s)`, `${d.props?.length ?? 0} prop(s)`];
+      info.textContent = `${label} (v${d.version}): ${parts.join(", ")}, ${d.fps} fps${d.loop === false ? "" : ", loops"}`;
     } catch (e) {
       errors.textContent = e instanceof Lottie3DError ? `${label} is not a valid Lottie3D file:\n` + e.errors.map((x) => `• ${x.path || "(document)"} — ${x.code}: ${x.message}`).join("\n") : String(e);
     }

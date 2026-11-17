@@ -1,14 +1,19 @@
-# Lottie3D (prototype v0.1)
+# Lottie3D (prototype v0.2)
 
 A tiny open JSON format for keyframed **3D character animation**, plus a web player. The idea is to do for
 animated 3D characters what Lottie did for 2D vector animation: one small JSON file that any site or app can embed.
 
-- `SPEC.md`: the format (scene, characters with a named-joint rig, props, keyframe tracks, easing, errors).
-- `player.js`: the browser player (Three.js 0.170.0 from jsDelivr, pinned; no other dependencies).
+- `SPEC.md`: format v0.1 (scene, characters with a named-joint rig, props, keyframe tracks, easing, errors).
+- `EDITOR_SPEC.md`: the kids' editor and format v0.2 (stage, cast, timeline of move blocks, poses); E1 status in 11.1.
+- `player.js`: the browser player for v0.1 and v0.2 (Three.js 0.170.0 from jsDelivr, pinned; no other dependencies).
+- `models.js`: Three.js builders (stages, part models, glTF characters, rigs, speech bubbles).
 - `sample.js`: keyframe sampling and `evaluate(doc, t)`, pure and shared by Node and the browser.
-- `validate.js` / `validate-cli.mjs`: the validator, with a path and code for every error.
+- `expand.js` / `moves.js`: v0.2 move blocks → keyframes, clips, camera and events; `evaluateCast(resolved, t)`. Pure.
+- `validate.js` / `validate02.js` / `validate-cli.mjs`: the validator, with a path and code for every error.
 - `rig.js`: the skeleton and catalog names.
-- `examples/`: `wave.json` (stick rig), `walk.json` (two characters, follow camera, repeating walk cycle), `jump.json` (block rig, bouncing ball).
+- `catalog/`: `kids_allow.json` (hand-written allowlist) and `kids.json` + `assets/` (generated from `engine3d/catalog`
+  by `npm run lottie3d:catalog`; never edit by hand).
+- `examples/`: v0.2 `garden_friends.json`, `playroom_party.json`, `snow_walk.json`; v0.1 `wave.json`, `walk.json`, `jump.json`.
 - `index.html`: the demo page.
 - `EDITOR_SPEC.md`: draft spec for the kids' editor (Lottie3D Kids Studio) and format v0.2.
 
@@ -49,8 +54,29 @@ As a module:
 </script>
 ```
 
-`createPlayer` throws a `Lottie3DError` (with `.errors`) if the document is invalid. Options: `autoplay`,
-`onTime(t)`, `onEnd()` (non-looping clips), `pixelRatio`.
+`createPlayer` throws a `Lottie3DError` (with `.errors`) if the document is invalid. Options: `catalog` (the parsed
+`catalog/kids.json`, required for v0.2), `assetBase` (where catalog assets live, default `./catalog/` next to
+`player.js`), `autoplay`, `onTime(t)`, `onEnd()` (non-looping clips), `pixelRatio`. `await p.ready` waits for glTF
+characters to load.
+
+A v0.2 file in 15 lines:
+
+```json
+{
+  "format": "lottie3d", "version": "0.2", "duration": 6, "fps": 30, "stage": "garden",
+  "cast": [
+    { "id": "duck", "kind": "critter", "name": "duck", "at": [0, 0] },
+    { "id": "robo", "kind": "character", "name": "robot", "at": [1.5, 0], "facing": -30 }
+  ],
+  "timeline": [
+    { "who": "duck", "at": 0, "do": "show" },
+    { "who": "duck", "at": 0.8, "do": "hop", "with": { "times": 2 } },
+    { "who": "robo", "at": 1, "do": "wave" },
+    { "who": "duck", "at": 2.6, "do": "say", "with": { "words": ["hello", "friend"] } },
+    { "who": "camera", "at": 4, "do": "close", "dur": 2, "with": { "target": "duck" } }
+  ]
+}
+```
 
 As a custom element:
 
@@ -60,6 +86,7 @@ As a custom element:
   defineElement(); // <lottie3d-player>
 </script>
 <lottie3d-player src="./lottie3d/examples/jump.json" autoplay style="width: 480px"></lottie3d-player>
+<lottie3d-player src="./lottie3d/examples/garden_friends.json" catalog="./lottie3d/catalog/kids.json" autoplay></lottie3d-player>
 ```
 
 Playback is deterministic: the frame shown is `evaluate(doc, t)` with `t` snapped to whole frames, so the same
@@ -85,10 +112,7 @@ node lottie3d/validate-cli.mjs lottie3d/examples/*.json
 npm run test:lottie3d
 ```
 
-## Not in v0.1 (ideas for next steps)
+## Next
 
-- Quaternion interpolation (rotations blend per Euler component today).
-- Custom rigs and skinned glTF characters mapped to the same joint names.
-- Facial expressions, hand poses, more props, textures.
-- An editor (pose a joint, drop a key) and a pose/move library shared with `engine3d/`.
-- Export to video and GIF with the same `evaluate`.
+The kids' editor milestones (E2 onward) are in `EDITOR_SPEC.md` section 11. Format-level ideas: quaternion
+interpolation, more moves (feel, point at, effects), real audio, glTF characters mapped to the Lottie3D joints.

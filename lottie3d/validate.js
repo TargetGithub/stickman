@@ -1,6 +1,7 @@
 // Validator for Lottie3D v0.1 (SPEC.md section 6). Returns every problem it finds, each with a path.
 import { JOINT_NAMES, LIGHT_TYPES, PROP_TYPES, RIGS } from "./rig.js";
 import { EASE_NAMES } from "./sample.js";
+import { validateV02 } from "./validate02.js";
 
 /** @typedef {{ path: string, code: string, message: string }} ValidationError */
 
@@ -10,6 +11,8 @@ const isVec3 = (x) => Array.isArray(x) && x.length === 3 && x.every(isNum);
 const isColor = (x) => typeof x === "string" && /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(x);
 
 const TOP_KEYS = ["format", "version", "name", "duration", "fps", "loop", "scene", "characters", "props", "meta"];
+const V02_KEYS = ["stage", "cast", "timeline", "poses"];
+export const VERSIONS = ["0.1", "0.2"];
 const SCENE_KEYS = ["background", "camera", "lights", "ground"];
 const CAMERA_KEYS = ["position", "target", "fov", "tracks"];
 const LIGHT_KEYS = ["type", "color", "intensity", "position", "groundColor", "shadow"];
@@ -19,11 +22,13 @@ const PROP_KEYS = ["id", "type", "color", "size", "position", "rotation", "track
 const KEY_KEYS = ["t", "v", "ease"];
 
 /**
- * Validate a Lottie3D document (an object, or a JSON string).
+ * Validate a Lottie3D document (an object, or a JSON string). Pass the kids catalog (catalog/kids.json) to also
+ * check v0.2 names, capabilities and move options.
  * @param {unknown} input
+ * @param {{ catalog?: any }} [options]
  * @returns {{ ok: boolean, errors: ValidationError[], doc: any }}
  */
-export function validate(input) {
+export function validate(input, options = {}) {
   /** @type {ValidationError[]} */
   const errors = [];
   const err = (path, code, message) => errors.push({ path, code, message });
@@ -64,9 +69,10 @@ export function validate(input) {
   const oneOf = (v, list, path, what) =>
     list.includes(v) || (err(path, "E_ENUM", `unknown ${what} ${show(v)} (one of: ${list.join(", ")})`), false);
 
-  unknown(doc, TOP_KEYS, "");
+  const v02 = doc.version === "0.2";
+  unknown(doc, v02 ? [...TOP_KEYS, ...V02_KEYS] : TOP_KEYS, "");
   if (req(doc, "format", "") && doc.format !== "lottie3d") err("format", "E_FORMAT", `format must be "lottie3d", got ${show(doc.format)}`);
-  if (req(doc, "version", "") && doc.version !== "0.1") err("version", "E_VERSION", `unsupported version ${show(doc.version)} (this player reads "0.1")`);
+  if (req(doc, "version", "") && !VERSIONS.includes(doc.version)) err("version", "E_VERSION", `unsupported version ${show(doc.version)} (this player reads ${VERSIONS.map((v) => `"${v}"`).join(" and ")})`);
   if (doc.name !== undefined && typeof doc.name !== "string") err("name", "E_TYPE", "name must be a string");
   const durOk = req(doc, "duration", "") && num(doc.duration, "duration", 0, undefined, true);
   const duration = durOk ? doc.duration : Infinity;
@@ -119,8 +125,10 @@ export function validate(input) {
     }
   };
 
-  // Scene
-  if (req(doc, "scene", "")) {
+  // Scene (v0.2: a stage name can replace it; one of the two is required)
+  if (v02 && doc.scene !== undefined && doc.stage !== undefined) err("stage", "E_CONFLICT", "give either stage or scene, not both");
+  if (v02 && doc.scene === undefined && doc.stage === undefined) err("stage", "E_REQUIRED", `"stage" (or "scene") is required`);
+  if (v02 ? doc.scene !== undefined : req(doc, "scene", "")) {
     const s = doc.scene;
     if (!isObj(s)) err("scene", "E_TYPE", "scene must be an object");
     else {
@@ -204,6 +212,8 @@ export function validate(input) {
       tracks(o.tracks, `${p}.tracks`, { position: "vec3", rotation: "vec3", scale: "vec3" });
     });
   }
+
+  if (v02) validateV02(doc, { err, claimId, unknown, duration, catalog: options.catalog });
 
   return { ok: errors.length === 0, errors, doc };
 }

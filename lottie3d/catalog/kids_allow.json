@@ -1,0 +1,140 @@
+{
+  "description": "Hand-written allowlist for the kids' editor (EDITOR_SPEC.md section 6). tools/lottie3d_catalog.mjs reads it with engine3d/catalog and writes kids.json. Only what is listed here is exported. mode: the lowest editor mode that shows the item (tiny, maker, animator). from: the engine3d catalog table an item comes from (characters, critters, props) or rigs for the built-in Lottie3D rigs. needs: the capability a move requires (body, face, limbs, joints, clips, camera). engine3d: the engine3d action a move is modelled on (its description is copied). A move with no engine3d source gives its own description.",
+  "stages": {
+    "garden": { "label": "Garden", "emoji": "🌻", "mode": "tiny" },
+    "playroom": { "label": "Playroom", "emoji": "🧸", "mode": "tiny" },
+    "beach": { "label": "Beach", "emoji": "🏖️", "mode": "tiny" },
+    "snow": { "label": "Snow", "emoji": "⛄", "mode": "tiny" },
+    "space": { "label": "Space", "emoji": "🚀", "mode": "tiny" }
+  },
+  "models": {
+    "robot": { "from": "characters", "label": "Robo", "emoji": "🤖", "group": "people", "mode": "tiny" },
+    "stick": { "from": "rigs", "label": "Stick kid", "emoji": "🧍", "group": "people", "mode": "tiny" },
+    "block": { "from": "rigs", "label": "Block kid", "emoji": "🧱", "group": "people", "mode": "tiny" },
+    "duck": { "from": "critters", "label": "Duck", "emoji": "🐤", "group": "animals", "mode": "tiny" },
+    "dog": { "from": "critters", "label": "Dog", "emoji": "🐶", "group": "animals", "mode": "tiny" },
+    "cat": { "from": "critters", "label": "Cat", "emoji": "🐱", "group": "animals", "mode": "tiny" },
+    "bunny": { "from": "critters", "label": "Bunny", "emoji": "🐰", "group": "animals", "mode": "tiny" },
+    "frog": { "from": "critters", "label": "Frog", "emoji": "🐸", "group": "animals", "mode": "tiny" },
+    "ball": { "from": "props", "label": "Ball", "emoji": "⚽", "group": "things", "mode": "tiny" },
+    "apple": { "from": "props", "label": "Apple", "emoji": "🍎", "group": "things", "mode": "tiny" },
+    "balloon": { "from": "props", "label": "Balloon", "emoji": "🎈", "group": "things", "mode": "tiny" },
+    "gift": { "from": "props", "label": "Gift", "emoji": "🎁", "group": "things", "mode": "tiny" },
+    "tree": { "from": "props", "label": "Tree", "emoji": "🌳", "group": "things", "mode": "tiny" },
+    "flower": { "from": "props", "label": "Flower", "emoji": "🌷", "group": "things", "mode": "tiny" },
+    "sun": { "from": "props", "label": "Sun", "emoji": "☀️", "group": "things", "mode": "tiny" },
+    "cloud": { "from": "props", "label": "Cloud", "emoji": "☁️", "group": "things", "mode": "tiny" }
+  },
+  "moves": {
+    "hop": { "engine3d": "hop", "label": "Hop", "emoji": "🐇", "mode": "tiny", "needs": "body", "dur": 0.6, "options": { "height": { "type": "number", "default": 0.5, "min": 0.1, "max": 3 }, "times": { "type": "int", "default": 1, "min": 1, "max": 10 } }
+    },
+    "spin": { "engine3d": "spin", "label": "Spin", "emoji": "🌀", "mode": "tiny", "needs": "body", "dur": 1, "options": { "turns": { "type": "number", "default": 1, "min": -5, "max": 5 } }
+    },
+    "wiggle": { "engine3d": "wiggle", "label": "Wiggle", "emoji": "〰️", "mode": "tiny", "needs": "body", "dur": 0.8, "options": { "amount": { "type": "number", "default": 12, "min": 2, "max": 40 } }
+    },
+    "nod": { "engine3d": "nod", "label": "Nod", "emoji": "🙂", "mode": "tiny", "needs": "body", "dur": 0.8, "options": { "amount": { "type": "number", "default": 15, "min": 3, "max": 40 }, "times": { "type": "int", "default": 2, "min": 1, "max": 6 } }
+    },
+    "show": { "engine3d": "show", "label": "Pop in", "emoji": "✨", "mode": "tiny", "needs": "body", "dur": 0.5, "options": {}
+    },
+    "dance": { "engine3d": "clip", "label": "Dance", "emoji": "💃", "mode": "tiny", "needs": "body", "dur": 2, "options": {}
+    },
+    "wave": { "engine3d": "clip", "label": "Wave", "emoji": "👋", "mode": "tiny", "needs": "limbs", "dur": 1.6, "options": {}
+    },
+    "sleep": { "engine3d": "sleep", "label": "Sleep", "emoji": "😴", "mode": "tiny", "needs": "face", "dur": 1.2, "options": {}
+    },
+    "wake": { "engine3d": "wake", "label": "Wake up", "emoji": "⏰", "mode": "tiny", "needs": "face", "dur": 0.6, "options": {}
+    },
+    "hide": { "engine3d": "hide", "label": "Hide", "emoji": "🫥", "mode": "maker", "needs": "body", "dur": 0.4, "options": {}
+    },
+    "grow": { "engine3d": "grow", "label": "Grow", "emoji": "⬆️", "mode": "maker", "needs": "body", "dur": 0.6, "options": { "to": { "type": "number", "default": 1.5, "min": 0.2, "max": 4 } }
+    },
+    "shrink": { "engine3d": "grow", "label": "Shrink", "emoji": "⬇️", "mode": "maker", "needs": "body", "dur": 0.6, "options": { "to": { "type": "number", "default": 0.6, "min": 0.2, "max": 4 } }
+    },
+    "walk_to": { "engine3d": "move", "label": "Walk to", "emoji": "🚶", "mode": "maker", "needs": "body", "dur": 2, "options": { "to": { "type": "point", "required": true } }
+    },
+    "leap": { "engine3d": "leap", "label": "Leap", "emoji": "🦘", "mode": "maker", "needs": "body", "dur": 0.9, "options": { "to": { "type": "point", "required": true }, "height": { "type": "number", "default": 1, "min": 0.2, "max": 4 } }
+    },
+    "roll": { "engine3d": "roll", "label": "Roll", "emoji": "🎳", "mode": "maker", "needs": "body", "dur": 1.2, "options": { "distance": { "type": "number", "default": 2, "min": -10, "max": 10 } }
+    },
+    "turn": { "engine3d": "turn", "label": "Turn", "emoji": "↪️", "mode": "maker", "needs": "body", "dur": 0.6, "options": { "to": { "type": "number", "default": 0, "min": -360, "max": 360 } }
+    },
+    "look_at": { "engine3d": "look", "label": "Look at", "emoji": "👀", "mode": "maker", "needs": "body", "dur": 0.6, "options": { "target": { "type": "cast", "required": true } }
+    },
+    "say": { "engine3d": "say", "label": "Say", "emoji": "💬", "mode": "maker", "needs": "body", "dur": 2, "options": { "words": { "type": "words", "required": true } }
+    },
+    "sound": { "engine3d": "sound", "label": "Sound", "emoji": "🔊", "mode": "maker", "needs": "body", "dur": 1, "options": { "name": { "type": "sound", "default": "own" } }
+    },
+    "clip": { "engine3d": "clip", "label": "Play move", "emoji": "🎞️", "mode": "maker", "needs": "clips", "dur": 2, "options": { "name": { "type": "clip", "required": true } }
+    },
+    "pose": { "engine3d": null, "label": "Pose", "emoji": "⭐", "mode": "animator", "needs": "joints", "dur": 1, "options": { "name": { "type": "pose", "required": true } }, "description": "Hold a saved pose (Animator mode): the joints turn to it and come back to rest at the end."
+    },
+    "wide": { "engine3d": "shot", "label": "Wide shot", "emoji": "🎥", "mode": "maker", "needs": "camera", "dur": 3, "options": {}
+    },
+    "close": { "engine3d": "shot", "label": "Close up", "emoji": "🔍", "mode": "maker", "needs": "camera", "dur": 3, "options": { "target": { "type": "cast", "required": true } }
+    },
+    "follow": { "engine3d": null, "label": "Follow", "emoji": "🎯", "mode": "maker", "needs": "camera", "dur": 3, "options": { "target": { "type": "cast", "required": true } }, "description": "Keep the camera on one cast member as it moves."
+    },
+    "orbit": { "engine3d": "orbit", "label": "Orbit", "emoji": "🔄", "mode": "maker", "needs": "camera", "dur": 4, "options": { "degrees": { "type": "number", "default": 90, "min": -720, "max": 720 } }
+    }
+  },
+  "sounds": {
+    "own": { "label": "Its own sound", "emoji": "🗣️" },
+    "pop": { "label": "Pop", "emoji": "🫧" },
+    "boing": { "label": "Boing", "emoji": "🪀" },
+    "yay": { "label": "Yay!", "emoji": "🎉" },
+    "whoosh": { "label": "Whoosh", "emoji": "💨" }
+  },
+  "words": {
+    "hello": "👋",
+    "hi": "👋",
+    "bye": "👋",
+    "yes": "👍",
+    "no": "🙅",
+    "please": "🙏",
+    "thank you": "💐",
+    "wow": "😮",
+    "yay": "🎉",
+    "oops": "🙈",
+    "look": "👀",
+    "come": "🫴",
+    "play": "🎲",
+    "with": "🤝",
+    "me": "🙋",
+    "you": "🫵",
+    "friend": "🤗",
+    "fun": "😄",
+    "happy": "😊",
+    "sad": "😢",
+    "sleepy": "😴",
+    "hungry": "😋",
+    "big": "🐘",
+    "small": "🐭",
+    "fast": "⚡",
+    "slow": "🐢",
+    "up": "⬆️",
+    "down": "⬇️",
+    "jump": "🦘",
+    "run": "🏃",
+    "dance": "💃",
+    "sing": "🎤",
+    "ball": "⚽",
+    "apple": "🍎",
+    "gift": "🎁",
+    "balloon": "🎈",
+    "tree": "🌳",
+    "flower": "🌷",
+    "sun": "☀️",
+    "star": "⭐",
+    "I": "🙋",
+    "love": "❤️",
+    "like": "👍",
+    "it": "👉",
+    "is": "=",
+    "my": "🙋",
+    "a": "🅰️",
+    "the": "👉",
+    "and": "➕",
+    "go": "🟢",
+    "stop": "🛑"
+  }
+}

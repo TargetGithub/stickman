@@ -1,0 +1,44 @@
+{
+  "format": "lottie3d",
+  "version": "0.2",
+  "name": "Playroom party",
+  "duration": 10,
+  "fps": 30,
+  "loop": true,
+  "stage": "playroom",
+  "cast": [
+    { "id": "sam", "kind": "rig", "name": "stick", "at": [-1.4, 0], "facing": 20 },
+    { "id": "max", "kind": "rig", "name": "block", "at": [1.4, 0], "facing": -20 },
+    { "id": "bunny", "kind": "critter", "name": "bunny", "at": [0, -1.2] },
+    { "id": "frog", "kind": "critter", "name": "frog", "at": [-2.6, 1.2], "facing": 60 },
+    { "id": "ball", "kind": "prop", "name": "ball", "at": [-1.8, 1.6], "facing": 90, "size": 0.5 },
+    { "id": "balloon", "kind": "prop", "name": "balloon", "at": [2.4, -1.4], "size": 0.8 },
+    { "id": "gift", "kind": "prop", "name": "gift", "at": [0.6, 1.4], "size": 0.6 }
+  ],
+  "poses": {
+    "star": { "emoji": "⭐", "joints": { "shoulderL": [0, 0, 150], "shoulderR": [0, 0, -150], "hipL": [0, 0, 20], "hipR": [0, 0, -20] } }
+  },
+  "timeline": [
+    { "who": "bunny", "at": 0, "do": "sleep" },
+    { "who": "bunny", "at": 3, "do": "wake" },
+    { "who": "bunny", "at": 3.8, "do": "say", "with": { "words": ["yay", "dance"] }, "dur": 1.6 },
+    { "who": "bunny", "at": 5.6, "do": "dance", "dur": 4 },
+    { "who": "sam", "at": 0.5, "do": "wave" },
+    { "who": "sam", "at": 2.4, "do": "pose", "with": { "name": "star" }, "dur": 1.4 },
+    { "who": "sam", "at": 4.4, "do": "dance", "dur": 4 },
+    { "who": "max", "at": 1, "do": "nod" },
+    { "who": "max", "at": 4.4, "do": "dance", "dur": 4 },
+    { "who": "frog", "at": 1.6, "do": "leap", "with": { "to": [-1.2, 2.2], "height": 0.9 } },
+    { "who": "frog", "at": 3, "do": "sound", "with": { "name": "own" }, "dur": 1.2 },
+    { "who": "frog", "at": 6, "do": "leap", "with": { "to": [-2.6, 1.2], "height": 0.9 } },
+    { "who": "ball", "at": 1, "do": "roll", "with": { "distance": 3 }, "dur": 1.6 },
+    { "who": "ball", "at": 5, "do": "roll", "with": { "distance": -3 }, "dur": 1.6 },
+    { "who": "balloon", "at": 4, "do": "grow", "with": { "to": 1.4 } },
+    { "who": "balloon", "at": 8.6, "do": "hide" },
+    { "who": "gift", "at": 0, "do": "hide", "dur": 0.1 },
+    { "who": "gift", "at": 7.4, "do": "show" },
+    { "who": "gift", "at": 8, "do": "wiggle" },
+    { "who": "camera", "at": 0, "do": "close", "dur": 3.6, "with": { "target": "bunny" } },
+    { "who": "camera", "at": 3.6, "do": "wide", "dur": 6.4 }
+  ]
+}

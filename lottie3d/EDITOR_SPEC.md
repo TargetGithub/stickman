@@ -4,7 +4,7 @@ A web editor where children build short 3D animated scenes with the Toybox cast,
 without ever seeing JSON. Under the hood it writes a Lottie3D file (format v0.2, section 5) that the
 existing player (`player.js`) plays anywhere.
 
-Status: draft 0.3 for review. E1 is in progress; nothing else is built yet. Format v0.1 (`SPEC.md`) and the player are the base.
+Status: draft 0.3 for review. E1 is built (section 11.1); nothing else is built yet. Format v0.1 (`SPEC.md`) and the player are the base.
 
 **Decisions (2026-11-17, updated the same day):**
 
@@ -118,7 +118,8 @@ New top-level keys:
 
 - `stage` replaces `scene` (one of the two is required). A stage brings its background, floor, lights and fog.
 - `cast[].kind`: `rig` (v0.1 stick/block), `critter` (procedural animals), `character` (rigged glTF such as the robot),
-  `prop` (procedural props), `shape` (primitive shapes). `at` is `[x, z]` on the floor; `facing` is degrees.
+  `prop` (procedural props), `shape` (primitive shapes). `at` is `[x, z]` on the floor, or `[x, y, z]` to start
+  above it (a sun, a cloud); `facing` is degrees; `size` scales the model (default 1); `color` recolours its main colour.
 - `timeline[]`: `who` is a cast id or `camera`; `at` and `dur` are seconds; `do` is a move id from the move
   catalog (section 6); `with` holds that move's options, each with a default.
 - `poses`: named joint sets that `do: "pose"` can use.
@@ -310,10 +311,11 @@ follows COPPA (US) and GDPR-K (EU/UK) rules:
 
 ```
 lottie3d/
-  player.js          existing player, gains expand() support for v0.2
-  expand.js          pure: v0.2 doc → v0.1 tracks + events (sounds, bubbles); shared by player and editor
-  moves/             one small module per move family, each a pure expand rule
-  validate.js        grows v0.2 checks
+  player.js          the player: v0.1 keyframes and v0.2 stage/cast/timeline (built in E1)
+  models.js          Three.js builders: stages, part models, glTF characters, rigs, speech bubbles (E1)
+  expand.js          pure: v0.2 doc → keyframe channels, clips, camera tracks, events; evaluateCast(t) (E1)
+  moves.js           pure move rules, one function per move (E1)
+  validate.js        v0.1 checks; validate02.js adds the v0.2 checks (E1)
   catalog/
     kids_allow.json  hand-written allowlist with labels, emoji, modes
     kids.json        generated from engine3d/catalog by tools/lottie3d_catalog.mjs
@@ -361,6 +363,21 @@ lottie3d/
 | E9 | Paid model library | Import script with capability detection and review, library storage, `getModel` with credit charging, ticket badges in the tray. |
 
 Each milestone stops for Sridhar's visual review before the next one starts.
+
+### 11.1 E1 as built (2026-11-17)
+
+- Format v0.2 in the player: `stage`, `cast` (`at` may be `[x, y, z]` for things in the sky), `timeline`, `poses`;
+  v0.1 `characters`/`props` still work alongside. `createPlayer(canvas, json, { catalog })`; `await player.ready`
+  waits for glTF characters.
+- `kids.json` from `npm run lottie3d:catalog` (check with `npm run lottie3d:catalog:check`): 5 stages, 16 models
+  (robot, stick and block rigs, 5 critters, 8 props), 25 moves, the word list and sounds. The robot `.glb` is copied
+  to `catalog/assets/`.
+- Moves built: hop, spin, wiggle, nod, show (pop in), hide, grow, shrink, walk_to, leap, roll, turn, look_at, say,
+  sound, dance, wave, sleep, wake, clip, pose; camera: wide, close, follow, orbit. Gaits and moves adapt to the model:
+  the robot plays its clips (Walking, Wave, Dance, Jump), rigs get joint animation, critters and props waddle and hop.
+- Left for later milestones: `feel` and `point_at` (E3), effects burst/twinkle/swirl (E3), real audio for `sound`
+  (E3; E1 shows a 🔊 bubble), toon eyes, talking mouths and fur from engine3d, rounded box edges.
+- Examples: `garden_friends.json`, `playroom_party.json`, `snow_walk.json` in the demo page.
 
 ## 12. Testing
 
