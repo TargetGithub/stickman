@@ -20,6 +20,20 @@ export function runMacro(a, { d, t, rel, speak, audience, marks = {} }) {
   // A line's spoken form (respelling or [[ IPA ]]) comes from <field>Spoken: questionSpoken, answerSpoken, ...
   const line = (text, who, spoken, keywords) => ({ do: "say", text, caption: a.caption !== false, ...(who != null ? { who } : {}), ...(spoken != null ? { spoken } : {}), ...(keywords ? { keywords } : {}) });
 
+  if (a.do === "hook" && a.behind == null && a.target == null) {
+    // Question only (#170): the question with its pulsing badge, a pause to wonder, then the answer line if any.
+    // look: an object to frame while it is asked.
+    const slow = audience === "babies" || a.slow === true;
+    d.engage("hook", { at: at(rel) });
+    if (a.look != null && a.shot !== false) d.shot({ at: at(rel), target: a.look, framing: "medium", pad: 0.3, dur: 1.2 });
+    const q = speak(line(a.question, a.who, a.questionSpoken, a.keywords), rel + 0.2);
+    const pause = a.reveal ?? (slow ? 1.6 : 1.0);
+    if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, q + pause) });
+    let end = rel + 0.2 + q + pause;
+    if (a.answer) end += 0.1 + speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), end + 0.1) + 0.35;
+    return end;
+  }
+
   if (a.do === "hook") {
     // behind may be a named part ("toy_box#lid"): the camera frames its owner and the reveal opens the part.
     const owner = String(a.behind).split("#")[0];

@@ -99,6 +99,13 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
   if (a.do === "hook") {
     text("question", "E3D_HOOK");
     if (a.revealFraming != null && !["close", "medium", "wide", "cover"].includes(a.revealFraming)) err("E3D_HOOK", `${p}.revealFraming`, "revealFraming must be close, medium, wide or cover");
+    // A question-only hook (#170): no cover and nothing revealed, just the question, its badge and a pause.
+    if (a.behind == null && a.target == null) {
+      if (a.look != null) exists(a.look, `${p}.look`);
+      if (a.who != null) exists(a.who, `${p}.who`);
+      return true;
+    }
+    if (a.behind == null || a.target == null) err("E3D_HOOK", `${p}.${a.behind == null ? "behind" : "target"}`, "a hook needs both behind and target, or neither (a question-only hook)");
     // behind may be a named part of an object ("toy_box#lid"); it then opens (style "open") instead of lifting.
     const [ownerId, partName] = typeof a.behind === "string" ? a.behind.split("#") : [];
     const b = exists(ownerId ?? a.behind, `${p}.behind`);

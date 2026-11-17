@@ -19,6 +19,8 @@ const LOOK = {
   worried: { brow: [1, 16, 0.3], eye: 1.12, mouth: "wobble", tilt: [6, 7] },
   sleepy: { brow: [0, 0, 0], eye: 0.3, mouth: "o_small", tilt: [10, -5] },
   joyful: { brow: [0, -6, 0.25], eye: 1, mouth: "smile", tilt: [-6, 4], shut: 1 },
+  // delighted (#168): joy with the eyes wide open (babies' videos want to see the eyes), brows up.
+  delighted: { brow: [1, -4, 0.45], eye: 1.18, mouth: "smile", tilt: [-6, 4] },
 };
 
 const lerp = (a, b, k) => a + (b - a) * k;
@@ -128,6 +130,7 @@ const MORPHS = {
   worried: { Sad: 0.6, Surprised: 0.45 },
   sleepy: { Sad: 0.35 },
   joyful: {},
+  delighted: { Surprised: 0.25 },
 };
 
 /** Blend a glTF character's face morph targets for the feeling at t. */

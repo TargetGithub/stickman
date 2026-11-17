@@ -417,7 +417,7 @@
   "feel": {
    "params": {
     "target": "critter, character or shape with face: true",
-    "feeling": "happy, sad, surprised, angry, worried, sleepy or joyful (a big smile with the eyes shut in happy arcs)",
+    "feeling": "happy, sad, surprised, angry, worried, sleepy, joyful (a big smile with the eyes shut in happy arcs) or delighted (a big smile with wide-open eyes, #168)",
     "dur": "blend time, default 0.35",
     "sound": "optional sound"
    },
@@ -957,7 +957,7 @@
     "question": "the opening question, spoken and captioned (required)",
     "keywords": "keyword badges on the opening line: word -> icon, prop, shape or keyword options (as on say)",
     "questionSpoken": "what the voice reads for question when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
-    "behind": "the cover object, or a named part of one such as \"toy_box#lid\" (required)",
+    "behind": "the cover object, or a named part of one such as \"toy_box#lid\" (required); leave out with target for a question-only hook (#170)",
     "target": "the object it hides, hidden until the reveal (required); or a list of 1-4 hidden ids, a small group that pops one after another",
     "style": "lift (default: rises and floats away), slide (moves aside), tip (tips back), open (the default for a part: turns it to `open`) or none (no cover moves: the answer pops out of the object or part, e.g. a print slot)",
     "open": "[x, y, z] degrees the part turns to with style open, default [-100, 0, 0] (a lid hinged at its back)",
@@ -973,7 +973,8 @@
     "caption": "default true",
     "reset": "true: a slid, tipped or opened cover glides back to where it started once the hook is over (a lifted cover is always put back unseen, so a later show finds it in place)",
     "peek": "true: the target is not hidden but shows a little under the cover on purpose (a letter's tail peeking out); the reveal hops and glows it instead of popping it in",
-    "revealFraming": "the reveal shot's framing: default medium for one revealed thing (wide for a group), or close / wide / cover (#149)"
+    "revealFraming": "the reveal shot's framing: default medium for one revealed thing (wide for a group), or close / wide / cover (#149)",
+    "look": "question-only hook: an object to frame while the question is asked (optional)"
    },
    "description": "Open with a surprise: ask a question, wiggle the cover twice, then take it away and pop the hidden answer with a sparkle (peekaboo). Put it in the first beat; the beat stretches to fit.",
    "tags": [

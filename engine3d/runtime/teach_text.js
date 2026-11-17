@@ -5,7 +5,7 @@
 
 import * as THREE from "three";
 import { FONT } from "./overlay.js";
-import { cardWords } from "./card_words.js";
+import { cardWords, wordColors } from "./card_words.js";
 import { textCardLayout } from "./text_layout.js";
 import { placeX, pvLayout, POINT } from "./place_value.js";
 import { cardHeight } from "./teach_layout.js";
@@ -141,6 +141,7 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
   // Wrap: words in reading order (numbered as card_words.js numbers them), explicit line breaks kept, laid out from
   // the font's glyph advances (text_layout.js) so word spots known to the director match what is drawn.
   const text = cardWords(o.text);
+  const colored = wordColors(o.text, o.colors).map;
   const L = textCardLayout(o, catalog.fontMetrics);
   S = L.size;
   pad = L.pad;
@@ -198,7 +199,28 @@ export function buildTextCard(o, group, { material, catalog, height = 1080 }) {
     g.fillStyle = ink;
     g.textBaseline = "middle";
     lines.forEach((line, li) => {
-      for (const w of line) g.fillText(text[w.i], px(pad + line.dx) + w.x, px(y0 + (li + 0.55) * lineH));
+      for (const w of line) {
+        const x = px(pad + line.dx) + w.x;
+        const y = px(y0 + (li + 0.55) * lineH);
+        const word = text[w.i];
+        const cs = colored.get(w.i);
+        if (!cs) {
+          g.fillText(word, x, y);
+          continue;
+        }
+        // Coloured words or letters at rest (#188): the word drawn in runs of one colour each, placed by the
+        // width of what comes before them (renderer-only text metrics).
+        const per = Array.from(word, () => ink);
+        for (const c of cs) for (let i = c.from; i <= c.to && i < per.length; i++) per[i] = catalog.colors[c.color].hex;
+        for (let i = 0; i < per.length; ) {
+          let j = i;
+          while (j + 1 < per.length && per[j + 1] === per[i]) j++;
+          g.fillStyle = per[i];
+          g.fillText(word.slice(i, j + 1), x + g.measureText(word.slice(0, i)).width, y);
+          i = j + 1;
+        }
+        g.fillStyle = ink;
+      }
     });
     tex.needsUpdate = true;
   };

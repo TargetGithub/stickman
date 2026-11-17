@@ -16,7 +16,7 @@ export const isComposite = (o) => COMPOSITE_KINDS.includes(o?.kind);
 
 const COMMON = ["at", "rotation", "hidden", "parent", "part", "pivot", "hud", "inherit", "description", "on", "shadow"];
 export const COMPOSITE_FIELDS = {
-  card: ["style", "text", "textSize", "picture", "pictureColor", "pictureRotation", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
+  card: ["style", "text", "textSize", "colors", "picture", "pictureColor", "pictureRotation", "relief", "tag", "width", "height", "color", "bg", "rim", "accent", "size", "scale"],
   page: ["style", "title", "lines", "numbers", "picture", "pictureColor", "relief", "caption", "sidebar", "width", "size", "color", "bg", "accent", "scale"],
   board: ["style", "layout", "labels", "rows", "title", "width", "height", "easel", "color", "accent", "cardWidth", "cardHeight", "headSize", "scale"],
   ...COMPOSITE2_FIELDS,
@@ -115,7 +115,7 @@ function expandCard(o, catalog, add, err) {
   }
   if (text) {
     const y = o.picture && (o.style ?? "card") === "card" ? 0.06 : o.style === "quote" ? 0.12 : 0.04;
-    add("text", { kind: "text_card", text, width: W - 0.12, height: textH, size: ts, align: st.align, bg: "none", pad: 0.15, color: o.color ?? "ink", at: r3([0, y, front + 0.001]) });
+    add("text", { kind: "text_card", text, width: W - 0.12, height: textH, size: ts, align: st.align, bg: "none", pad: 0.15, color: o.color ?? "ink", ...(o.colors ? { colors: o.colors } : {}), at: r3([0, y, front + 0.001]) });
   }
   if (o.tag != null) {
     if (String(o.tag).length > 6) err("E3D_TEXT", "tag", "tag must be at most 6 characters");

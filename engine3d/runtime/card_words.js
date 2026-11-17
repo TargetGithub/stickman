@@ -76,3 +76,30 @@ export function findQuotes(text) {
   if (open >= 0) out.push([open, words.length - 1]);
   return out;
 }
+
+/**
+ * Word colours at rest (#188): text_card `colors` entries { words, color, chars? } -> word index -> [{ from, to,
+ * color }] (character ranges, to inclusive; a whole word when chars is left out). words as for emphasize: a phrase,
+ * [start, end] or a mark ("?"); chars ([first, last], 1-based) colours letters of a single word.
+ * @returns {{ map: Map<number, {from:number,to:number,color:string}[]>, bad: number[] }} bad: entries that matched nothing
+ */
+export function wordColors(text, entries = []) {
+  const all = cardWords(text);
+  const map = new Map();
+  const bad = [];
+  entries.forEach((e, k) => {
+    const mark = findMark(text, e?.words);
+    const range = mark?.words ?? findWords(text, e?.words);
+    if (!range) return bad.push(k);
+    for (let i = range[0]; i <= range[1]; i++) {
+      const len = all[i].length;
+      let [from, to] = mark ? mark.chars : [0, len - 1];
+      if (Array.isArray(e.chars)) {
+        if (range[0] !== range[1] || e.chars[0] < 1 || e.chars[1] > len || e.chars[1] < e.chars[0]) return bad.push(k);
+        [from, to] = [e.chars[0] - 1, e.chars[1] - 1];
+      }
+      map.set(i, [...(map.get(i) ?? []), { from, to, color: e.color }]);
+    }
+  });
+  return { map, bad };
+}

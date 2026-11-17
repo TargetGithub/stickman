@@ -3,7 +3,7 @@
 // colours) and the actions shift, set, emphasize, reparent and point (plus spin/turn axis). validate.js calls
 // these. Pure.
 
-import { CARD_MAX_CHARS, CARD_MAX_LINES, findMark, findQuotes, findWords } from "./card_words.js";
+import { CARD_MAX_CHARS, CARD_MAX_LINES, findMark, findQuotes, findWords, wordColors } from "./card_words.js";
 import { POINT, digitsOk, parseDigits, pvLayout, shiftDigits } from "./place_value.js";
 import { pointPart } from "./director_kit2.js";
 import { cardHeight, withDefaults } from "./teach_layout.js";
@@ -13,7 +13,7 @@ export const KIT2_FIELDS = {
   flow: ["points", "smooth", "closed", "count", "speed", "size", "color", "changes", "track"],
   fraction_text: ["numerator", "denominator", "whole", "color", "size", "depth"],
   place_value_chart: ["columns", "digits", "cell", "color", "bg", "digitColor", "zeroColor"],
-  text_card: ["text", "width", "size", "color", "bg", "align", "height", "depth", "pad"],
+  text_card: ["text", "width", "size", "color", "bg", "align", "height", "depth", "pad", "colors"],
 };
 const ENDS = { head: ["arrow", "none", "dot"], tail: ["none", "arrow", "dot"] };
 const PENS = [true, false, "pencil", "dot", "torch"];
@@ -96,6 +96,11 @@ export function checkKit2Object(o, p, { err, ids, catalog, name }) {
     range("depth", (v) => isNum(v, 0.01, 0.5), "depth must be 0.01-0.5 m");
     range("pad", (v) => isNum(v, 0, 1.5), "pad must be 0-1.5 (a share of the font size)");
     if (o.align != null && !["left", "center"].includes(o.align)) err("E3D_ALIGN", `${p}.align`, 'align must be "left" or "center"');
+    // colors (#188): words or letters in their own colour from the start.
+    if (o.colors != null) {
+      if (!Array.isArray(o.colors) || o.colors.some((e) => typeof e !== "object" || e == null || !catalog.colors[e.color])) err("E3D_COLOR", `${p}.colors`, "colors is a list of { words, color, chars? } with known colour names");
+      else if (typeof o.text === "string") for (const k of wordColors(o.text, o.colors).bad) err("E3D_COLOR", `${p}.colors[${k}]`, `no words ${JSON.stringify(o.colors[k].words)} on the card (or chars outside that one word)`);
+    }
   }
 }
 
