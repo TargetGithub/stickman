@@ -146,6 +146,8 @@ function run(d, a, start) {
     case "punct_mark": return d.punct_mark(a.target, o);
     case "swirl": return d.swirl(a.target, o);
     case "fill": return d.fill(a.target, o);
+    case "dim": return d.dim(a.target, o);
+    case "twinkle": return d.twinkle(a.target, o);
     case "gesture": return d.gesture(a.target, o);
     case "rewind": return d.rewind(o);
     case "circle": return d.circle(o);

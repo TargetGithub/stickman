@@ -301,8 +301,8 @@
     "caption": "true to also show the words as a caption",
     "who": "the speaker's object id (a critter, a character or a shape with face: true): its mouth moves with the voice (Robo nods his head)",
     "pitch": "0.8-1.3 (default 1.1, or the speaker's meta.cast pitch): higher or lower voice; soft moves about 0.6 semitones per 10%",
-    "speed": "0.8-1.2 (default 1, or the speaker's meta.cast speed): times meta.voiceSpeed",
-    "style": "how the whole line is said: whisper, shout, groan, or a mood (happy, laugh, love, surprised, determined, smug, sad, cry, angry, scared, tired, dizzy, asleep)",
+    "speed": "0.6-1.6 (1 normal; 0.6 very slow, 1.6 rushed)",
+    "style": "how the whole line is said: whisper, shout, groan, rushed (much too fast, #202), or a mood (happy, laugh, love, surprised, determined, smug, sad, cry, angry, scared, tired, dizzy, asleep)",
     "stress": "one word of the line said with stress (a little higher and louder) while the line stays one clip: \"I did not say SHE took it\" is stress: \"she\"",
     "at": "seconds from the beat start, or \"after\": start when the beat's previous line ends (its measured clip) plus 0.25 s, so two lines in one beat never overlap",
     "tune": "a melody for a sung line: note names, one per syllable, with :beats for longer or shorter notes (\"G4 G4 G4 D4 E4 E4 D4:2\"; \"|\" bar lines ignored). The voice is chanted on the beat (each syllable placed on its note) and a toy glockenspiel plays each note",
@@ -1159,6 +1159,33 @@
     "water",
     "babies",
     "home"
+   ]
+  },
+  "dim": {
+   "params": {
+    "target": "a lamp",
+    "to": "brightness 0 (off) to 3; 1 is as placed; default 0.3",
+    "dur": "default 1",
+    "ease": "default sineInOut"
+   },
+   "description": "Dim or brighten a lamp's light (#207): its light and shadows fade to the brightness `to` over dur (a bedtime lamp lowering, a torch going flat).",
+   "tags": [
+    "light"
+   ]
+  },
+  "twinkle": {
+   "params": {
+    "target": "object id (or give targets)",
+    "targets": "several ids: each pulses a beat after the last",
+    "dur": "default 3",
+    "amount": "how much bigger at each pulse, default 0.14",
+    "every": "seconds between pulses, default 0.7",
+    "sound": "optional sound at the start"
+   },
+   "description": "A gentle twinkle (#205): stars or lights pulse a little bigger and back, over and over for dur, staggered across targets.",
+   "tags": [
+    "effect",
+    "stars"
    ]
   }
  }

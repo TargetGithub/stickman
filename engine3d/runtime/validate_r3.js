@@ -15,7 +15,7 @@ export const CAPTION_POS = ["left", "right", "top"];
 const isNum = (v, lo = -Infinity, hi = Infinity) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 
 /** Ranges of a character's voice settings (meta.cast and say). */
-export const VOICE_RANGE = { pitch: [0.8, 1.3], speed: [0.8, 1.2] };
+export const VOICE_RANGE = { pitch: [0.8, 1.3], speed: [0.6, 1.6] }; // speed widened for rushed or very slow reading (#202)
 const CAST_FIELDS = new Set(["voice", "pitch", "speed", "description"]);
 /** Letter lifts: "descender" stands the text on its lowest point (the default on a prop); "none" keeps the baseline. */
 export const LIFTS = ["descender", "none"];
@@ -132,6 +132,17 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     if (a.sink != null && !isNum(a.sink, 0, 2)) err("E3D_RANGE", `${p}.sink`, "sink must be 0-2 m");
     if (a.face != null && !["front", "travel"].includes(a.face)) err("E3D_RANGE", `${p}.face`, 'face must be "front" (turn back when done, the default) or "travel"');
     return true;
+  }
+  if (a.do === "twinkle") {
+    if (a.target == null && !(Array.isArray(a.targets) && a.targets.length)) err("E3D_REQUIRED", `${p}.target`, "twinkle needs a target or targets");
+    if (a.targets != null && (!Array.isArray(a.targets) || a.targets.some((id) => !ids.has(id)))) err("E3D_TARGET", `${p}.targets`, "targets must be a list of object ids");
+    if (a.amount != null && !isNum(a.amount, 0.02, 0.6)) err("E3D_RANGE", `${p}.amount`, "amount must be 0.02-0.6 (how much bigger at each pulse)");
+    if (a.every != null && !isNum(a.every, 0.2, 4)) err("E3D_RANGE", `${p}.every`, "every must be 0.2-4 s");
+    return a.target == null;
+  }
+  if (a.do === "dim") {
+    if (a.to != null && !isNum(a.to, 0, 3)) err("E3D_RANGE", `${p}.to`, "to must be 0 (off) to 3 (brighter); 1 is as placed");
+    return false;
   }
   if (a.do === "fill") {
     if (a.level != null && !isNum(a.level, 0, 1)) err("E3D_RANGE", `${p}.level`, "level must be 0 (drained) to 1 (as built)");

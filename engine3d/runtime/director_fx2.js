@@ -281,6 +281,31 @@ export function installFx2(d, { catalog, tl, obj, now, sound, objects }) {
     return reparent(id, { ...opts, hold: undefined, to: [0, r4(0.32 * h), r4(b.max[2] + 0.05)] });
   };
 
+  // dim (#207): a lamp's light (and its beam) fades to `to` (0 off, 1 as placed, up to 3 brighter) over dur.
+  d.dim = (id, { at: t = 0, to = 0.3, dur = 1, ease = "sineInOut" } = {}) => {
+    const o = obj(id);
+    if (o.kind !== "lamp") throw new Error(`dim: "${id}" is a ${o.kind}, not a lamp (paint a prop's light part instead)`);
+    if (!tl.hasBase(id, "brightness")) tl.base(id, "brightness", 1);
+    tl.tween(id, "brightness", { start: t, dur, to, ease });
+    return d;
+  };
+
+  // twinkle (#205): stars (or anything) pulse gently, a little bigger and back, each target a beat after the last.
+  d.twinkle = (id, { at: t = 0, dur = 3, targets, amount = 0.14, every = 0.7, sound: s } = {}) => {
+    const ids = targets ?? [id];
+    ids.forEach((tid, i) => {
+      const o = obj(tid);
+      const base = now(tid, "scale", t) ?? o.scale ?? [1, 1, 1];
+      const off = (i * 0.37) % every;
+      for (let k = 0; off + k * every < dur - 0.2; k++) {
+        const ts = t + off + k * every;
+        tl.tween(tid, "scale", { start: ts, dur: every * 0.9, from: base, to: base.map((v) => r4(v * (1 + amount))), ease: "hop" });
+      }
+    });
+    if (s) sound(s, t, { volume: 0.5 });
+    return d;
+  };
+
   // sound echo (#158): the sound comes back softer, `echo` times (true: 3), 0.35 s apart (echoGap), halving each time.
   const play = d.sound;
   d.sound = (name, opts = {}) => {

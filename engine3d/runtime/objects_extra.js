@@ -127,7 +127,9 @@ export function buildLamp(o, group, { catalog, height }) {
     world,
     update(t, s) {
       const k = Math.max(0, Math.min(1, s.scale[0] / base));
-      light.intensity = (o.intensity ?? 60) * k;
+      // brightness (#207, the dim action): 0 off, 1 as placed, more for brighter.
+      const bright = Math.max(0, s.brightness ?? 1);
+      light.intensity = (o.intensity ?? 60) * k * bright;
       group.scale.set(1, 1, 1);
       target.position.set(...(s.aim ?? [0, 0, 0]));
       if (beam) {
@@ -138,8 +140,8 @@ export function buildLamp(o, group, { catalog, height }) {
         beam.position.copy(p);
         beam.quaternion.setFromUnitVectors(down, aim.normalize());
         beam.scale.set(len, len, len);
-        beam.visible = group.visible && k > 0.01;
-        beam.material.opacity = 0.15 * k;
+        beam.visible = group.visible && k * bright > 0.01;
+        beam.material.opacity = Math.min(0.4, 0.15 * k * bright);
       }
     },
   };

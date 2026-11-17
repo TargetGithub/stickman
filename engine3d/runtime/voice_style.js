@@ -9,6 +9,8 @@ export const VOICE_STYLES = {
   whisper: { bubble: "whisper", tone: { rate: 0.92, gainDb: -1 } },
   shout: { bubble: "shout", tone: { pitch: 1, gainDb: 1 } },
   groan: { bubble: "speech", tone: { rate: 0.72, pitch: -3, gainDb: -2, lowpass: 3200, pause: 0.3 } },
+  // rushed (#202): reading much too fast, the words tumbling together (to show why we slow down).
+  rushed: { bubble: "speech", tone: { rate: 1.45, pause: 0.02 } },
 };
 /** Moods from catalog/story/tts_voices.json that a line may take as its style too. */
 export const VOICE_MOODS = ["happy", "laugh", "love", "surprised", "determined", "smug", "sad", "cry", "angry", "scared", "tired", "dizzy", "asleep"];

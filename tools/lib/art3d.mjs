@@ -37,6 +37,9 @@ export const stillPath3d = (dir, name, t = 1) => resolve(dir, `${name}_stills`, 
  *   rim: white rim width (px); outline: dark outline width (px), both measured outside the glyph
  */
 export function sticker(ctx, text, x, y, size, fill, { font = "bold Andika", rim = size * 0.09, outline = rim * 1.3, ink = INK, white = true, shadow = 1 } = {}) {
+  // An "=" (2 + 3 = 5) would melt into one bar under the thick outline (ENGINE_REQUESTS #216): each one is drawn
+  // as two minus bars set far enough apart for the outline, in the space the "=" takes.
+  if (String(text).includes("=")) return stickerEquals(ctx, String(text), x, y, size, fill, { font, rim, outline, ink, white, shadow });
   ctx.font = fontAt(font, size);
   ctx.textBaseline = "alphabetic";
   ctx.lineJoin = "round";
@@ -59,6 +62,27 @@ export function sticker(ctx, text, x, y, size, fill, { font = "bold Andika", rim
   }
   ctx.fillStyle = fill;
   ctx.fillText(text, x, y);
+  return out;
+}
+
+function stickerEquals(ctx, text, x, y, size, fill, opts) {
+  ctx.font = fontAt(opts.font, size);
+  const align = ctx.textAlign;
+  const total = ctx.measureText(text).width;
+  let left = align === "center" ? x - total / 2 : align === "right" || align === "end" ? x - total : x;
+  ctx.textAlign = "left";
+  let out = 0;
+  for (const part of text.split(/(=)/)) {
+    if (!part) continue;
+    const w = ctx.measureText(part).width;
+    if (part === "=") {
+      // A minus bar sits where the "=" is centred; drawing it 0.22 x size above and below gives the two bars.
+      const mid = left + (w - ctx.measureText("\u2212").width) / 2;
+      for (const dy of [-0.22, 0.22]) out = sticker(ctx, "\u2212", mid, y + size * dy, size, fill, opts);
+    } else out = sticker(ctx, part, left, y, size, fill, opts);
+    left += w;
+  }
+  ctx.textAlign = align;
   return out;
 }
 
