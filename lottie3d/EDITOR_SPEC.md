@@ -1,10 +1,19 @@
-# Lottie3D Kids Studio: editor spec (draft 0.1)
+# Lottie3D Kids Studio: editor spec (draft 0.2)
 
 A web editor where children build short 3D animated scenes with the Toybox cast, moves and stages,
 without ever seeing JSON. Under the hood it writes a Lottie3D file (format v0.2, section 5) that the
 existing player (`player.js`) plays anywhere.
 
-Status: draft for review. Nothing here is built yet. Format v0.1 (`SPEC.md`) and the player are the base.
+Status: draft 0.2 for review. Nothing here is built yet. Format v0.1 (`SPEC.md`) and the player are the base.
+
+**Decisions (2026-11-17):**
+
+| Question | Decision |
+|---|---|
+| Where it lives | `abcbunny.com/3dVideoEditor`, a web page (section 10.1). |
+| Which characters | Any 3D model in the catalog; children pick and choose. No fixed lead (section 6.1). |
+| Video export | Yes, free for now, designed so it can become a paid feature later. Signup is required for every export, free ones included (section 8). |
+| Teacher view | Not planned. |
 
 ## 1. Goals
 
@@ -16,8 +25,10 @@ Status: draft for review. Nothing here is built yet. Format v0.1 (`SPEC.md`) and
 4. Every scene is a small, valid, deterministic file: same file, same frames, on any device.
 5. Safe for children by design (section 9).
 
-Non-goals for this spec: rendering videos from the editor, multiplayer, a public gallery, accounts,
-professional keyframe tools, custom 3D model import.
+6. A finished scene can be exported as a video file (section 8.2).
+
+Non-goals for this spec: multiplayer, a public gallery, a teacher view, professional keyframe tools,
+children uploading their own 3D model files.
 
 ## 2. Users and modes
 
@@ -29,13 +40,13 @@ The same editor has three modes. The mode only changes what is shown, never the 
 | **Maker** | 7–9 | Everything in Tiny, plus a timeline of move blocks they can reorder and stretch, speech bubbles from a word picker, sounds, props, camera shots. | Joint posing, raw numbers. |
 | **Animator** | 10–12 | Everything in Maker, plus pose mode (drag joints and save poses), easing choice, typed numbers, and a read-only "see the code" panel showing the JSON. | Nothing. |
 
-Parents or teachers can lock a mode.
+A parent can lock a mode.
 
 ## 3. Screen layout
 
 ```
 ┌───────────────────────────────────────────────────────────┐
-│ [Stage ▾]  [Mode ▾]                  [↶ Undo] [▶ Play] [💾] │
+│ [Stage ▾] [Mode ▾]          [↶ Undo] [▶ Play] [💾] [🎬 Video] │
 ├──────────┬────────────────────────────────────────────────┤
 │  Cast    │                                                │
 │  tray    │              3D stage (player view)            │
@@ -52,7 +63,9 @@ Parents or teachers can lock a mode.
 ```
 
 - **Stage picker:** the stages from `engine3d/catalog/stages.json` (garden, playroom, beach, snow, space, farm, ...).
-- **Cast tray:** characters and props, drag onto the stage. Dropped items stand on the floor; a ring handle turns them.
+- **Cast tray:** every model in the catalog, grouped into picture tabs (People & robots, Animals, Things, Shapes)
+  with a search-by-picture filter. Drag onto the stage. Dropped items stand on the floor; a ring handle turns them.
+  See section 6.1.
 - **Move buttons:** tapping one adds that move for the selected character at the end of its row, then previews it.
 - **Timeline:** one row per cast member plus a camera row. Blocks can be dragged (when), stretched (how long),
   tapped (options) and deleted. Blocks in one row never overlap; dropping onto a block pushes the rest right.
@@ -142,6 +155,30 @@ editor small and curated (section 2) while the source stays in one place.
 
 Moves in `engine3d` that are about lessons (vowel_mark, place value, fill_box, answer, ...) stay out of v1.
 
+### 6.1 Any model, picked by the child
+
+There is no lead character. Every model in the catalog is a cast member a child can pick, and a scene can mix them
+(a robot, a frog and a balloon together). The v1 table above is the first set to port, not a limit: the target is
+all models in `engine3d/catalog` (rigged characters, critters, props and shapes) plus any added later.
+
+To make "any model" work, every model declares what it can do, and the editor only offers moves that fit:
+
+| Capability | Who has it | Moves it unlocks |
+|---|---|---|
+| `body` (everything) | all models | hop, spin, wiggle, grow/shrink, walk to, roll, pop in, hide/show, say, sound |
+| `face` | critters and characters with eyes/mouth | feel, sleep/wake, look at |
+| `limbs` | v0.1 rigs and rigged glTF characters | wave, point at, poses (Animator) |
+| `clips` | rigged glTF characters | their own clips (Dance, Jump, ThumbsUp, ...) as extra move buttons |
+
+The build script reads capabilities from the catalog entry (a critter with `eyes` gets `face`; a glTF with clips gets
+`clips`) and writes them into `kids.json`. A new model added to `engine3d/catalog` appears in the editor once it is on
+the allowlist, with the right move buttons and no editor code change.
+
+Children cannot upload their own model files in v1 (safety review and file-size limits first). "Any 3D model" means
+any model in our catalog, which the team keeps growing.
+
+Loading: the tray shows thumbnails generated at build time; a model's geometry or `.glb` loads only when it is placed.
+
 **Porting work per item type:**
 
 | Type | Work |
@@ -156,25 +193,68 @@ Moves in `engine3d` that are about lessons (vowel_mark, place value, fill_box, a
 - `sound` plays a clip from a small bundled set (animal sounds from the critter entries, pops, boings, a few music
   loops). Sounds are scheduled from timeline time so scrubbing and replay stay in sync.
 - `say` shows a speech bubble. In Tiny and Maker mode the words come from a picker (a fixed kid-safe word list with
-  pictures), not free typing. Animator mode may allow typing only when a parent or teacher turns it on, and it is
+  pictures), not free typing. Animator mode may allow typing only when a parent turns it on, and it is
   never shared (section 9).
 - Voice (text-to-speech) and lip sync are out of v1.
 
-## 8. Saving and sharing
+## 8. Saving, sharing and video export
 
+### 8.1 Saving
+
+- Building and playing scenes needs no account. Anyone can open the page and start.
 - Autosave to the device (browser storage) after every change; a "My scenes" shelf shows thumbnails.
-- Export: download the `.json` file (and later a GIF). Import: open a `.json` file.
-- Share v1 is local only: a parent or teacher can download and send the file themselves.
-  No upload, no link sharing, no gallery in v1.
+- Download and open the `.json` scene file, also without an account.
+- No upload, link sharing or gallery in v1.
+
+### 8.2 Video export
+
+- The 🎬 Video button exports the scene as an MP4 the family downloads.
+- **Signup is required for every export, free ones included.** The account belongs to a parent (section 9.1). If no
+  parent is signed in, the button opens a "Ask a grown-up" screen, not a signup form aimed at the child.
+- **Rendering happens in the browser:** the exporter steps the player frame by frame (`seek(frame / fps)`, the same
+  deterministic frames as playback), encodes them with the browser's WebCodecs video encoder, mixes in the scheduled
+  sounds, and writes an MP4. The scene and the video never leave the device; the server is only asked "may this
+  account export, and at what settings?". Browsers without WebCodecs get a clear "use Chrome, Edge or Safari 17+"
+  message.
+- **Built to become paid later:** every export asks one entitlement check, `GET /api/entitlements`, which returns the
+  allowed options. The editor never hard-codes what is free. Free today could be, for example:
+
+  | Option | Free (now) | Possible paid tier (later) |
+  |---|---|---|
+  | Resolution | 720p | 1080p, 4K |
+  | Length | up to 30 s | up to 5 min |
+  | Watermark | small abcbunny.com mark | none |
+  | Exports | unlimited | unlimited |
+
+  Turning on paid plans later is then a server change (plans, payment, entitlements), not an editor rewrite.
+- A server-side render path (the `engine3d` pipeline, for 4K60 or long scenes) is a possible paid extra later and is
+  out of scope here.
 
 ## 9. Child safety and privacy
 
-- No accounts, sign-in, names, email, location, camera or microphone. No analytics that identify a child.
-- No network calls after the page loads, except loading catalog assets from the same site.
+### 9.1 Accounts
+
+Because export needs signup and the users are under 13, accounts follow COPPA (US) and GDPR-K (EU/UK) rules:
+
+- The account holder is a **parent or guardian**, signing up with their email, confirming they are an adult, and
+  giving verifiable parental consent before the first export (the consent method is an open question, section 13).
+- The child never types an email, real name, age, photo or location. A parent may add child profiles with a
+  nickname and an avatar picked from the catalog.
+- The server stores only: the parent's email and login, consent record, plan/entitlements, and an export counter.
+  No scenes, no videos, no child data.
+- Parents can delete the account and its data from a settings page.
+- The signup and parent screens sit behind a simple parent gate (for example "type the year you were born" or a
+  hold-to-continue), so a young child does not wander into them.
+
+### 9.2 Everything else
+
+- No location, camera or microphone. No analytics that identify a child; only aggregate, anonymous counts.
+- The editor makes no network calls except loading catalog assets from the same site and the signup,
+  sign-in and entitlement calls for export.
 - No free text that leaves the device. Word-picker speech only by default.
-- No ads, no external links, no in-app purchases inside the editor.
-- The goal is to stay clear of COPPA and GDPR-K data rules by collecting nothing. Any later sharing feature needs
-  its own review before it is designed.
+- No ads, no external links and no purchases inside the child-facing editor. Any future payment happens behind the
+  parent gate.
+- A privacy policy for the editor, written for parents, is needed before launch.
 
 ## 10. Architecture
 
@@ -191,7 +271,18 @@ lottie3d/
     index.html       the studio
     state.js         scene document + undo stack (pure, testable in Node)
     ui/*.js          stage view, cast tray, move bar, timeline, pose mode
+    export/          frame stepper, WebCodecs encoder, audio mix, MP4 muxer
+    account/         parent gate, signup/sign-in, entitlement client
 ```
+
+### 10.1 Hosting
+
+- Served at `abcbunny.com/3dVideoEditor/` as static files (HTML, JS, catalog JSON, models, sounds). All paths are
+  relative, so the same files also work locally with `npm run serve`.
+- Three.js stays on its pinned CDN URL in v1; for production, consider self-hosting that one file under the same
+  path so the page has no third-party request.
+- The account and entitlement API (`/api/...`) is a small separate service on the same domain. Its stack depends on
+  what abcbunny.com already runs (open question, section 13).
 
 - Same principles as the rest of the repo: plain ES modules, no build step, Three.js from a pinned CDN URL,
   no `Math.random` or wall-clock time inside the simulation path, modules under about 350 lines.
@@ -207,22 +298,35 @@ lottie3d/
 | E2 | Tiny mode editor | A child can pick a stage, place cast, tap moves, play, undo, and the scene autosaves. Works on a tablet. |
 | E3 | Maker mode | Timeline drag/stretch/reorder, word-picker speech, sounds, props, camera shots. |
 | E4 | Animator mode | Pose mode with joint limits and mirroring, saved poses as blocks, easing choice, read-only JSON panel. |
-| E5 | Playtest and polish | Sessions with children in each age band (section 12); fixes from what they struggle with. |
+| E5 | Video export | In-browser MP4 export (frames + sound) that matches playback frame for frame; entitlement check decides resolution, length and watermark. |
+| E6 | Parent accounts | Parent gate, parent signup with consent, sign-in, account deletion, entitlement API; export blocked without a signed-in parent. Privacy policy drafted. |
+| E7 | Playtest, polish, launch | Sessions with children in each age band (section 12); fixes; published at `abcbunny.com/3dVideoEditor`. |
 
 Each milestone stops for Sridhar's visual review before the next one starts.
 
 ## 12. Testing
 
 - Unit (Node, no canvas): `expand` per move (table-driven), v0.2 validator fixtures with expected codes,
-  editor state actions and undo, catalog build (allowlist items exist in `engine3d/catalog`).
+  editor state actions and undo, catalog build (allowlist items exist in `engine3d/catalog`, capabilities derived
+  correctly), entitlement handling (export options never exceed what the server allows).
+- Export: an exported video's frames match the player's frames at the same times; length and audio sync checked.
+- Accounts: export is impossible without a signed-in parent; account deletion removes all stored data.
 - Browser: each example and each move previewed in the in-app browser; golden screenshots for a few fixed times.
 - Children: short playtests in each age band. Measure time to first played scene, which buttons they never find,
   and where they ask for help. Goal 1 in section 1 is the pass mark.
 
 ## 13. Open questions
 
-1. Where does it live for children: a page on the Toybox site, a page in KidsLearningPlatform, or an app?
-2. Is the robot the right lead, or should the Toybox series characters be modeled first?
-3. Should scenes be exportable as video (reuse the `engine3d` render pipeline) so children can "make an episode"?
-4. Free or paid (for example, free Tiny mode, paid packs of stages and characters for schools)?
-5. Do we want a teacher view (assign a "make a scene where the frog hops 3 times" task) as a later milestone?
+Answered on 2026-11-17 (see the decisions table at the top): where it lives, which characters, video export,
+teacher view.
+
+Still open:
+
+1. What does abcbunny.com run today (static hosting, a backend, an existing login)? This decides how the account
+   and entitlement service is built.
+2. Which verifiable parental consent method (for example a small card check, a signed form, or a third-party
+   consent service)? Needs a quick legal check for the countries we serve.
+3. Free export limits: are 720p, 30 seconds and a small watermark right for the free tier?
+4. Is in-browser export enough, or do we also want server-rendered 4K for the paid tier later?
+5. Which models go on the allowlist first beyond the v1 set, and is there a size budget for the page
+   (for example, under 5 MB before any model is placed)?
