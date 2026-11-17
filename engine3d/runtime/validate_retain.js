@@ -8,6 +8,7 @@ import { RETAIN_ACTIONS, trackerSteps } from "./director_retain.js";
 import { RETAIN_MACROS } from "./retain_compile.js";
 import { CAPTION_TOP, CUES, ICONS, RETAIN_KINDS, TRACKER_CORNERS, TRACKER_STYLES, trackerRect, wordShare } from "./retain_layout.js";
 import { CUE_PLACES } from "./retain_place.js";
+import { frameLints } from "./lint_frame.js";
 
 export const RETAIN_FIELDS = {
   timer_ring: ["size", "color", "fixed", "face"],
@@ -30,6 +31,10 @@ export function checkRetentionMeta(r, err) {
   if (typeof r !== "object" || Array.isArray(r)) return err("E3D_RETENTION", "meta.retention", "retention must be true, false or { hookBy, talkMax, staticMax }");
   for (const [k, v] of Object.entries(r)) {
     if (k === "lint") continue;
+    if (k === "frameSafety") {
+      if (typeof v !== "boolean") err("E3D_RETENTION", `meta.retention.${k}`, "frameSafety must be true or false (the text-in-frame warnings)");
+      continue;
+    }
     if (!LIMITS[k]) err("E3D_RETENTION", `meta.retention.${k}`, `unknown retention limit "${k}" (known: ${Object.keys(LIMITS).join(", ")})`);
     else if (!isNum(v, ...LIMITS[k])) err("E3D_RANGE", `meta.retention.${k}`, `${k} must be ${LIMITS[k][0]}-${LIMITS[k][1]} s`);
   }
@@ -275,5 +280,8 @@ export function retentionLints(script, catalog, { speech } = {}) {
     const got = tl.valueAt(o.id, "step", plan.duration) ?? 0;
     if (got < trackerSteps(o) - 1e-6) out.push({ code: "W3D_TRACKER_UNFILLED", path: `objects[${i}]`, message: `tracker "${o.id}" fills ${Math.round(got)} of ${trackerSteps(o)} steps${o.surprise ? " (the surprise is the last)" : ""}` });
   });
+
+  // 5. Text the camera crops, captions cover or the HUD hides (#219).
+  if (lim.frameSafety !== false) out.push(...frameLints(plan, catalog));
   return out;
 }

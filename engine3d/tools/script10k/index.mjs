@@ -9,6 +9,8 @@ import { bandOf } from "./bands.mjs";
 import { expandLesson } from "./expand.mjs";
 import { attachKeywords, keepCameraAlive } from "./polish.mjs";
 import { qaScript } from "./qa.mjs";
+import { compileScript } from "../../runtime/compile.js";
+import { speakPlan } from "../lib/audio3d.mjs";
 import { loadProgramme } from "../lib/spec10k/load.mjs";
 import { GROUPS, catalogSets } from "../lib/assets10k.mjs";
 
@@ -40,12 +42,12 @@ export function skillIds() {
  * @param {object} spec
  * @param {object} catalog
  */
-export function buildScript(lesson, spec, catalog) {
+export function buildScript(lesson, spec, catalog, { speech } = {}) {
   const script = expandLesson(lesson, spec, { catalog, skills: skillIds() });
   const keywords = attachKeywords(script, spec, catalog);
   let orbits = 0;
   try { orbits = keepCameraAlive(script, catalog, { babies: spec.band === "bb" }); } catch { /* the validator reports what broke */ }
-  const qa = qaScript(script, spec, lesson, catalog);
+  const qa = qaScript(script, spec, lesson, catalog, { speech: typeof speech === "function" ? speech(script) : speech });
   qa.info.keywordsPlaced = keywords;
   qa.info.orbitsAdded = orbits;
   return { script, qa };
@@ -54,7 +56,12 @@ export function buildScript(lesson, spec, catalog) {
 /** Build one id from disk and write its script and QA report. */
 export function buildId(id, catalog, root = ROOT) {
   const p = paths(id, root);
-  const { script, qa } = buildScript(loadLesson(id, root), loadSpec(id, root), catalog);
+  // Measured speech for QA's timing (#219: frame-safety warnings at the times the render shows them); estimates when
+  // the clips cannot be made (SCRIPT10K_ESTIMATE=1 skips it).
+  const speech = process.env.SCRIPT10K_ESTIMATE === "1" ? undefined : (s) => {
+    try { return speakPlan(compileScript(s, { catalog })); } catch { return undefined; }
+  };
+  const { script, qa } = buildScript(loadLesson(id, root), loadSpec(id, root), catalog, { speech });
   mkdirSync(dirname(p.script), { recursive: true });
   mkdirSync(p.qaDir, { recursive: true });
   writeFileSync(p.script, `${JSON.stringify(script, null, 1)}\n`);

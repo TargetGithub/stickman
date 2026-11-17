@@ -395,3 +395,13 @@ test("#197 lie on a cushion ends on top of it; #199 reparent hold carries at the
   assert.equal(p.timeline.valueAt("b", "parentRef", 2), "c");
   assert.ok(held[1] > 0.05 && held[1] < 0.4, JSON.stringify(held));
 });
+
+test("#219 frame-safety lint flags text in the caption band and cut at the edge, not text that is clear", async () => {
+  const { frameLints } = await import("../../runtime/lint_frame.js");
+  const base = (objects) => ({ ...S(objects, [{ do: "say", text: "Look at the words on the card now please.", at: 0, caption: true }], 6), camera: { position: [0, 1, 6], lookAt: [0, 1, 0], fov: 40 } });
+  const lint = (objects) => frameLints(compileScript(base(objects), { catalog }), catalog).map((w) => w.message);
+  assert.deepEqual(lint([{ id: "ok", kind: "text_card", text: "Safe words", width: 2, at: [0, 1, 0] }]), []);
+  assert.ok(lint([{ id: "low", kind: "text_card", text: "Low words", width: 2, at: [0, -0.9, 0] }]).some((m) => m.includes('"low"') && m.includes("caption band")));
+  assert.ok(lint([{ id: "edge", kind: "text_card", text: "Edge words here", width: 3, at: [3.6, 1, 0] }]).some((m) => m.includes('"edge"') && m.includes("edge of the frame")));
+  assert.equal(codes({ ...base([]), meta: { seed: 1, retention: { frameSafety: 7 } } }).includes("E3D_RETENTION"), true);
+});

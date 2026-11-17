@@ -82,7 +82,7 @@ const sentences = (t) => t.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Bo
  * @param {object} catalog
  * @param {{ allow?: string[] }} [o]
  */
-export function qaScript(script, spec, lesson, catalog, { allow = [] } = {}) {
+export function qaScript(script, spec, lesson, catalog, { allow = [], speech } = {}) {
   const errors = [];
   const warnings = [];
   const E = (code, path, message) => errors.push({ code, path, message });
@@ -91,12 +91,13 @@ export function qaScript(script, spec, lesson, catalog, { allow = [] } = {}) {
   const B = BANDS[band];
 
   // 1. The engine validator, retention lints forced on. Warnings stay warnings except the retention ones.
-  const v = validateScript(script, catalog, { retention: true });
+  // speech: measured clip lengths when the caller has them, so the frame-safety times (#219) match the render.
+  const v = validateScript(script, catalog, { retention: true, ...(speech ? { speech } : {}) });
   for (const e of v.errors) E(e.code, e.path, e.message);
   for (const w of v.warnings) (/^W3D_(HOOK_LATE|TALK_STRETCH|STATIC_CAMERA|TRACKER_UNFILLED)$/.test(w.code) ? E : W)(w.code, w.path, w.message);
   let plan = null;
   if (!v.errors.length) {
-    try { plan = compileScript(script, { catalog }); } catch (e) { E("Q_COMPILE", "", e.message); }
+    try { plan = compileScript(script, { catalog, ...(speech ? { speech } : {}) }); } catch (e) { E("Q_COMPILE", "", e.message); }
   }
 
   // 2. Words: American English, banned words, unknown words, sentence length.

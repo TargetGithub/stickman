@@ -42,6 +42,9 @@ export function textRects({ objects, catalog, now, obj, shown, t }) {
       continue;
     }
     const r = screenRect(box, cam);
+    // A letter word's box keeps room for tails below the baseline (0.47 of 1.92 x size); without g, j, p, q or y
+    // that room is empty, so it comes off the bottom here (the camera keeps the roomier box).
+    if (r && o.kind === "letter" && o.lift !== "descender" && !/[gjpqy,;]/.test(String(o.text ?? ""))) r.y0 += (r.y1 - r.y0) * (0.47 / 1.92);
     if (r) out.push({ id: o.id, ...r });
   }
   return out;
