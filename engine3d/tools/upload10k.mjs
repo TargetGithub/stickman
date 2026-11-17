@@ -10,7 +10,7 @@
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
-import { ROOT, paths, scriptHash } from "./script10k/index.mjs";
+import { ROOT, paths, scriptHash, auditOk } from "./script10k/index.mjs";
 import { bandOf } from "./script10k/bands.mjs";
 
 const args = process.argv.slice(2);
@@ -31,7 +31,7 @@ const reviewOk = (id) => {
   if (!existsSync(f)) return false;
   const r = JSON.parse(readFileSync(f, "utf8"));
   // Reviews from before the preview gate carry no hash; those lessons rendered under the gate that existed then.
-  return r.ok && (r.scriptHash === undefined || r.scriptHash === scriptHash(id));
+  return r.ok && (r.scriptHash === undefined || r.scriptHash === scriptHash(id)) && auditOk(id).ok;
 };
 // Candidates per band: rendered and spot-checked, final present, still reviewed ok, no upload record.
 const pool = Object.fromEntries(BANDS.map((b) => [b, []]));

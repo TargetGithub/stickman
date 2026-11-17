@@ -147,3 +147,15 @@ needs a new full preview before the next review.
 `qa` shows 0 errors and no warning you have not judged; the contact sheets were looked at and every overlap, crop,
 hidden teaching object, wrong visual, unreadable label or still stretch fixed; the thumbnail sheet reads at phone
 size; then `review <id> --ok "..."`. Only reviewed scripts go to the render queue.
+
+## Audit gate (from 2026-11-17)
+
+Lessons reviewed from `AUDIT_FROM` on (script10k/index.mjs) also need an independent visual audit of the same script before
+render10k renders them or upload10k uploads them. An auditor (not the writer) reads every contact sheet and records:
+
+```
+node engine3d/tools/script10k.mjs audit <id> --ok "note"      # needs review ok + preview of this exact script
+node engine3d/tools/script10k.mjs audit <id> --fix "what is wrong, with times"
+```
+
+Any change to the script after the audit voids it. Older reviews are grandfathered.

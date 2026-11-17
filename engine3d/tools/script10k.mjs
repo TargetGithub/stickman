@@ -126,6 +126,23 @@ if (cmd === "thumbs") {
   process.exit(r.status ?? 1);
 }
 
+if (cmd === "audit") {
+  // An independent auditor's verdict on the contact sheets of this exact script (the render gate needs it, see auditOk).
+  const id = positional[0];
+  const p = paths(id);
+  const ok = flag("--ok");
+  const note = opt(ok ? "--ok" : "--fix", "");
+  if (ok) {
+    const r = existsSync(join(p.qaDir, "review.json")) ? JSON.parse(readFileSync(join(p.qaDir, "review.json"), "utf8")) : {};
+    if (!r.ok || r.scriptHash !== scriptHash(id)) { console.error(`${id}: audit refused: the writer's review is not ok for this script`); process.exit(1); }
+    const g = previewOk(id);
+    if (!g.ok) { console.error(`${id}: audit refused: ${g.why}`); process.exit(1); }
+  }
+  writeFileSync(join(p.qaDir, "audit.json"), `${JSON.stringify({ id, ok, note, scriptHash: scriptHash(id), at: new Date().toISOString() }, null, 1)}\n`);
+  console.log(`${id}: audit ${ok ? "ok" : "needs fixes"}`);
+  process.exit(0);
+}
+
 if (cmd === "review") {
   const id = positional[0];
   const p = paths(id);

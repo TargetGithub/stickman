@@ -128,3 +128,20 @@ export function previewOk(id, root = ROOT) {
   if (s.maxGap > MAX_GAP) return { ok: false, why: `preview stills leave a ${s.maxGap.toFixed(0)} s gap (max ${MAX_GAP}): use --every 20 or 25` };
   return { ok: true };
 }
+
+/**
+ * The audit gate: lessons reviewed from AUDIT_FROM on also need an independent visual audit of this exact script
+ * (`script10k audit <id> --ok`), because writers kept passing their own overlaps. Older reviews are grandfathered.
+ */
+export const AUDIT_FROM = "2026-11-17T05:00:00Z";
+export function auditOk(id, root = ROOT) {
+  const dir = paths(id, root).qaDir;
+  const rf = join(dir, "review.json");
+  const r = existsSync(rf) ? readJson(rf) : null;
+  if (!r || !r.at || r.at < AUDIT_FROM) return { ok: true, why: "reviewed before the audit gate" };
+  const af = join(dir, "audit.json");
+  if (!existsSync(af)) return { ok: false, why: "no audit yet: an auditor runs `script10k audit <id> --ok|--fix`" };
+  const a = readJson(af);
+  if (a.scriptHash !== scriptHash(id, root)) return { ok: false, why: "the script changed after the audit" };
+  return a.ok ? { ok: true } : { ok: false, why: `audit: ${a.note}` };
+}
