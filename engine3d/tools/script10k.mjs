@@ -99,6 +99,8 @@ if (cmd === "stills") {
   if (r.status !== 0) { console.error(r.stdout, r.stderr); process.exit(1); }
   const pngDir = join(dir, `${id}_stills`);
   const pngs = list.map(([t, label]) => [`${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")} ${label}`, join(pngDir, `${id}_1080p_t${t.toFixed(2)}.png`)]);
+  // Old sheets from a longer earlier build would otherwise linger next to the new ones (and mislead a reviewer).
+  for (const f of readdirSync(p.qaDir)) if (new RegExp(`^${spot ? "spot" : "contact"}_\\d+\\.jpg$`).test(f)) rmSync(join(p.qaDir, f));
   for (let k = 0; k * 20 < pngs.length; k++) {
     const part = pngs.slice(k * 20, k * 20 + 20);
     const out = join(p.qaDir, `${spot ? "spot" : "contact"}_${k + 1}.jpg`);
