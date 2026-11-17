@@ -25,7 +25,7 @@ const trackers = [
   { style: "fuel", slots: 4, labels: ["full"], ok: false },
   { style: "moon", slots: 8, labels: ["new", "half", "full"], ok: true },
   { style: "rainbow", slots: 6, labels: ["red", "orange"], ok: true },
-  { style: "rainbow", slots: 3, labels: ["crimson!!"], ok: false },
+  { style: "rainbow", slots: 3, labels: ["crimson red!"], ok: false },
 ];
 for (const c of trackers) {
   test(`#142 #148 #150 tracker ${c.style} labels ${JSON.stringify(c.labels)}`, () => {
@@ -314,4 +314,84 @@ test("#182 punct_mark: a breath cloud at a comma, a stop sign at a full stop", (
   assert.ok(ids.includes("w~punct1_b") && ids.includes("w~punct2_sign"), "cloud then sign");
   assert.ok(p.timeline.valueAt("w~punct2", "scale", 1.4)[0] > 0.9, "second mark pops after the gap");
   assert.ok(codes(S([{ id: "w", kind: "letter", text: "cat" }], [{ do: "punct_mark", target: "w" }])).includes("E3D_CHARS"));
+});
+
+test("#164-#170 #183-#187 #190 #196 props and stages exist", () => {
+  for (const m of ["cooking_pot", "flat_pan", "jug", "fridge", "high_chair", "spot_halo", "spoon_face", "pop_up_map", "zip_suitcase", "nightcap", "pyjama_top",
+    "snowman_bunny", "snowman_reindeer", "snowman_bear", "snowman_cat", "towel", "washcloth", "sponge", "faucet", "bath_plug", "paper_sheet", "paper_bird"]) assert.ok(catalog.props[m], m);
+  for (const st of ["undersea", "kitchen_bare", "bathroom_bare"]) assert.ok(catalog.stages[st], st);
+  assert.ok(!catalog.stages.bathroom_bare.set.some((p) => p.id === "tub"));
+});
+
+test("#168 delighted is a feeling", () => {
+  assert.deepEqual(errs(S([{ id: "c", kind: "critter", species: "cat", feeling: "delighted" }], [{ do: "feel", target: "c", feeling: "delighted" }])), []);
+});
+
+test("#170 a question-only hook asks, pauses and ends", () => {
+  const s = S([{ id: "c", kind: "critter", species: "cat" }], [{ do: "hook", question: "What will the cat find?", look: "c" }], "fit");
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  assert.ok(p.duration > 1.5);
+  assert.ok(codes(S([{ id: "c", kind: "critter", species: "cat" }], [{ do: "hook", question: "Hm?", behind: "c" }], "fit")).includes("E3D_HOOK"));
+});
+
+const tints = [
+  { text: "The cat sat.", colors: [{ words: "cat", color: "red" }], want: [[1, [{ from: 0, to: 2, color: "red" }]]] },
+  { text: "The cat sat.", colors: [{ words: "cat", color: "red", chars: [2, 2] }], want: [[1, [{ from: 1, to: 1, color: "red" }]]] },
+  { text: "Stop.", colors: [{ words: ".", color: "blue" }], want: [[0, [{ from: 4, to: 4, color: "blue" }]]] },
+];
+for (const c of tints) {
+  test(`#188 text_card colors ${JSON.stringify(c.colors)}`, async () => {
+    const { wordColors } = await import("../../runtime/card_words.js");
+    assert.deepEqual([...wordColors(c.text, c.colors).map], c.want);
+    assert.deepEqual(errs(S([{ id: "t", kind: "text_card", text: c.text, colors: c.colors }], [])), []);
+  });
+}
+
+test("#200 the cue badge leaves the top centre when text is there", async () => {
+  const { cueSpot, CUE_SPOTS } = await import("../../runtime/retain_place.js");
+  assert.deepEqual(cueSpot({ busy: [] }), CUE_SPOTS.top);
+  assert.deepEqual(cueSpot({ busy: [{ x0: -3, x1: 3, y0: 2.5, y1: 3.8 }] }), CUE_SPOTS.top_right);
+  assert.deepEqual(cueSpot({ place: "left", busy: [] }), CUE_SPOTS.left);
+  // A title card right under the top centre in a real scene: the call's hand cue goes elsewhere.
+  const s = S([{ id: "t", kind: "text_card", text: "BIG TITLE HERE", size: 0.4, width: 5, at: [0, 2.3, 0] }], [{ do: "call", prompt: "Say it!", answer: "Big!", wait: 2 }], "fit");
+  s.camera = { position: [0, 1.6, 7], lookAt: [0, 1.6, 0], fov: 40 };
+  const p = compileScript(s, { catalog });
+  const badge = p.objects.find((o) => o.hud && o.kind === "badge" && o.icon === "hand");
+  assert.ok(badge, "a hand badge");
+  assert.notDeepEqual(p.timeline.valueAt(badge.id, "position", p.duration - 0.5) ?? badge.at, CUE_SPOTS.top);
+  assert.ok(codes(S([], [{ do: "call", prompt: "Hi", answer: "Hi", cueAt: "middle" }], "fit")).includes("E3D_CUE"));
+});
+
+test("#201 a choices row with lane below_text drops under the page when it pops", () => {
+  const s = S([{ id: "pg", kind: "page", style: "book", title: "The Old Oak", lines: ["Mia walked straight to the old oak.", "She held it up while everyone clapped."], at: [0, 0.9, 0] },
+    { id: "ch", kind: "choices", options: ["says", "does"], at: [0, 1.6, 2.4], hidden: true, lane: "below_text" }], [{ do: "pop", target: "ch", at: 0.2 }]);
+  s.camera = { position: [0, 1.8, 7], lookAt: [0, 1.6, 0], fov: 40 };
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  assert.ok(p.timeline.valueAt("ch", "position", 1)[1] < 1.2, JSON.stringify(p.timeline.valueAt("ch", "position", 1)));
+});
+
+test("#192 #193 #194 shot clear hud, tracker plate, 10-character labels", () => {
+  assert.deepEqual(errs(S([{ id: "b", kind: "prop", model: "ball" }], [{ do: "shot", target: "b", clear: "hud" }])), []);
+  assert.deepEqual(errs(S([{ id: "t", kind: "tracker", hud: true, style: "stars", slots: 2, labels: ["washcloth", "towel"], plate: true }], [{ do: "progress", target: "t" }, { do: "progress", target: "t", at: 1 }])), []);
+});
+
+test("#195 fill a tub's water to a level, its bottom on the floor", () => {
+  const s = S([{ id: "tub", kind: "prop", model: "bathtub" }], [{ do: "fill", target: "tub", level: 0.5, at: 0, dur: 1 }]);
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  assert.deepEqual(p.timeline.valueAt("tub#water", "scale", 2), [1, 0.5, 1]);
+  assert.ok(p.timeline.valueAt("tub#water", "position", 2)[1] < 0);
+});
+
+test("#197 lie on a cushion ends on top of it; #199 reparent hold carries at the tummy", () => {
+  const s = S([{ id: "cu", kind: "prop", model: "pillow", at: [1, 0, 0] }, { id: "c", kind: "critter", species: "cat", size: 0.6 }, { id: "b", kind: "prop", model: "ball", size: 0.2, at: [2, 0, 0] }],
+    [{ do: "lie", target: "c", on: "cu", at: 0, dur: 1 }, { do: "reparent", target: "b", parent: "c", hold: true, at: 1.5 }]);
+  assert.deepEqual(errs(s), []);
+  const p = compileScript(s, { catalog });
+  assert.ok(p.timeline.valueAt("c", "position", 2)[1] > 0.15, "up on the cushion");
+  const held = p.timeline.valueAt("b", "position", 2.5);
+  assert.equal(p.timeline.valueAt("b", "parentRef", 2), "c");
+  assert.ok(held[1] > 0.05 && held[1] < 0.4, JSON.stringify(held));
 });

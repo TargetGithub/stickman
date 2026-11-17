@@ -192,7 +192,8 @@
     "pose": "side (default: on its side facing the camera), back (on its back, face up, head to the left with side 1: the camera sees its profile) or up (stand again)",
     "side": "1 (default: head to the left) or -1 (head to the right)",
     "dur": "default 0.8",
-    "ease": "ease name"
+    "ease": "ease name",
+    "on": "optional object id (a cushion, a bed, a mat): climb onto its top middle first, then lie there (#197)"
    },
    "description": "Lie down so it rests on the floor (turns about its base and lifts by its half thickness), or stand up again with pose up. Feelings, looks and blinking keep working: lie on its back, then look up at the sky.",
    "tags": [
@@ -797,7 +798,7 @@
     "ease": "default sineInOut",
     "pad": "extra margin, 0-2: 0.2 frames a box 20% bigger (default 0)",
     "fit": "approx (default: positions only, the boxes look uses) or exact: thin shapes (plates, discs, bowls) at their real height and every turn applied (a sign stood up with rotation x 90, a turned number line, cards on a turned group)",
-    "clear": "left, right, top or bottom: keep that side of the frame empty (a title's column); the targets fill the rest (44% of the width, or half the height)",
+    "clear": "left, right, top or bottom: keep that side of the frame empty (a title's column); the targets fill the rest (44% of the width, or half the height); hud: keep the top fifth (the tracker band) clear, as hook shots do (#192)",
     "below": "a height in metres: the camera stays under it (a waterline or a dock edge: a fish's view where only the ducks' feet show). Make the surface an opaque plate (matte) at that height so what is above stays hidden"
    },
    "description": "Frame objects with the camera from their approximate sizes so nothing is cropped at 16:9 with the current fov; children (anything with parent pointing at a target, recursively) and teaching-kit labels count, so a card with its word or a number line with its numbers is framed whole. Later camera moves take over.",
@@ -885,7 +886,8 @@
     "to": "optional spot in the new parent to glide to",
     "rotation": "optional angles to turn to",
     "dur": "glide time with to, default 0.6",
-    "ease": "default quadInOut"
+    "ease": "default quadInOut",
+    "hold": "true (with a critter parent, no part and no to): carried in front of its tummy, at its size (#199); to on a critter without a part is metres from its foot"
    },
    "description": "Hand an object to another parent (a hat from one head to another) keeping where it is in the world at that moment; later moves are in the new parent's frame.",
    "tags": [
@@ -974,7 +976,8 @@
     "reset": "true: a slid, tipped or opened cover glides back to where it started once the hook is over (a lifted cover is always put back unseen, so a later show finds it in place)",
     "peek": "true: the target is not hidden but shows a little under the cover on purpose (a letter's tail peeking out); the reveal hops and glows it instead of popping it in",
     "revealFraming": "the reveal shot's framing: default medium for one revealed thing (wide for a group), or close / wide / cover (#149)",
-    "look": "question-only hook: an object to frame while the question is asked (optional)"
+    "look": "question-only hook: an object to frame while the question is asked (optional)",
+    "cueAt": "where the cue badge goes: auto (default: top centre unless text in view or the HUD is there, then the first clear spot), top, top_right, top_left, right, left or bottom_right (#200)"
    },
    "description": "Open with a surprise: ask a question, wiggle the cover twice, then take it away and pop the hidden answer with a sparkle (peekaboo). Put it in the first beat; the beat stretches to fit.",
    "tags": [
@@ -998,7 +1001,8 @@
     "praiseSpoken": "what the voice reads for praise when it differs from the caption: a respelling or [[ IPA ]] (see say spoken)",
     "confetti": "optional confetti id to burst",
     "who": "optional speaker",
-    "caption": "default true"
+    "caption": "default true",
+    "cueAt": "where the cue badge goes: auto (default: top centre unless text in view or the HUD is there, then the first clear spot), top, top_right, top_left, right, left or bottom_right (#200)"
    },
    "description": "Point before the timer rings: the prompt is spoken, then the options pulse while a timer ring drains with 3-2-1 ticks, then the answer is celebrated. The beat stretches to fit.",
    "tags": [
@@ -1021,7 +1025,8 @@
     "reveal": "optional object to pop (if hidden) or glow with the answer",
     "caption": "default true",
     "answerSound": "a sound to play as the answer instead of a spoken line: a letter sound (ph_m) or any catalog sound (#148)",
-    "answerDur": "how long the answerSound answer holds, default 1.2 s"
+    "answerDur": "how long the answerSound answer holds, default 1.2 s",
+    "cueAt": "where the cue badge goes: auto (default: top centre unless text in view or the HUD is there, then the first clear spot), top, top_right, top_left, right, left or bottom_right (#200)"
    },
    "description": "Call-and-response: a prompt, a pause with a pulsing cue badge (the music dips), then the answer is revealed. The beat stretches to fit.",
    "tags": [
@@ -1139,6 +1144,21 @@
    "tags": [
     "effect",
     "magic"
+   ]
+  },
+  "fill": {
+   "params": {
+    "target": "a prop with a water part (bathtub), or <id>#<part>",
+    "level": "0 (drained) to 1 (as built), default 1",
+    "part": "the part to fill when not water",
+    "dur": "default 2",
+    "sound": "default pour (filling) / splash (draining); false for none"
+   },
+   "description": "Fill or drain a tub's own water (#195): its water part rises or sinks to level, its bottom staying on the tub floor. Start a tub empty with fill level 0 and dur 0.",
+   "tags": [
+    "water",
+    "babies",
+    "home"
    ]
   }
  }

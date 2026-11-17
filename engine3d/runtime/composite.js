@@ -288,6 +288,7 @@ export function expandComposite(o, catalog) {
   // A page stands tall and thin: its shadow is a faint ghost on the floor, so pages cast none unless asked (#116).
   if (o.kind === "page" && o.shadow == null) group.shadow = false;
   if (sc.some((v) => v !== 1)) group.scale = r3(sc);
+  if (o.kind === "choices" && o.lane) group.lane = o.lane; // #201: the director drops the row under the text in view
   const out = [group];
   // A piece rides on the composite unless it names its own parent (a word train's rider in its car, a book page on its leaf).
   const add = (suffix, spec) => out.push({ ...spec, id: `${o.id}_${suffix}`, parent: spec.parent ?? o.id, ...(o.hud ? { hud: true } : {}) });

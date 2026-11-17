@@ -4,6 +4,7 @@
 
 import { pvLayout } from "./place_value.js";
 import { cardHeight } from "./teach_layout.js";
+import { textCardLayout } from "./text_layout.js";
 
 import { apply, eulerMat, mul } from "./xform.js";
 
@@ -106,7 +107,21 @@ export function localBounds(o, catalog) {
       const L = pvLayout({ columns: o.columns, cell: o.cell });
       return scaleBox({ min: [-L.width / 2 - 0.07, 0, -0.1], max: [L.width / 2 + 0.07, 1.6 * L.cell, 0.2] }, sc);
     }
-    case "text_card": return scaleBox({ min: [-(o.width ?? 4) / 2, 0, -0.05], max: [(o.width ?? 4) / 2, cardHeight(o), 0.05] }, sc);
+    case "text_card": {
+      // Only the words show (bg "none": page lines, card text): the box is the ink, so a shot on a left-aligned page
+      // line frames its words, not the empty right of its card (#191).
+      if (o.bg === "none" && catalog?.fontMetrics) {
+        const L = textCardLayout(o, catalog.fontMetrics);
+        const W = o.width ?? 4;
+        const xs = L.lines.flatMap((ln) => ln.words.map((w) => [ln.dx + w.x, ln.dx + w.x + w.w]));
+        if (xs.length) {
+          const x0 = -W / 2 + L.pad + Math.min(...xs.map((v) => v[0]));
+          const x1 = -W / 2 + L.pad + Math.max(...xs.map((v) => v[1]));
+          return scaleBox({ min: [x0, L.height - L.y0 - L.lines.length * L.lineH, -0.05], max: [x1, L.height - L.y0, 0.05] }, sc);
+        }
+      }
+      return scaleBox({ min: [-(o.width ?? 4) / 2, 0, -0.05], max: [(o.width ?? 4) / 2, cardHeight(o), 0.05] }, sc);
+    }
     case "stroke":
     case "flow": {
       const pts = Array.isArray(o.points) && o.points.length ? o.points : [[0, 0, 0]];

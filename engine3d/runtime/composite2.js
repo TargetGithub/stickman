@@ -14,7 +14,7 @@ export const COMPOSITE2_FIELDS = {
   sign: ["style", "text", "width", "height", "size", "color", "bg", "rim", "post", "letters"],
   word_train: ["words", "colors", "engine", "gap", "tile", "tileSize"],
   book: ["spreads", "width", "height", "size", "color", "bg", "accent", "frame"],
-  choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth"],
+  choices: ["options", "style", "layout", "gap", "width", "color", "bg", "maxWidth", "lane"],
   track: ["style", "length", "width", "color", "posts"],
   crowd: ["count", "rows", "cast", "spacing", "facing", "size"],
   sound_boxes: ["count", "box", "color", "tokenColor", "tokenColors", "gap", "bg"],
@@ -164,6 +164,7 @@ export function expandChoices(o, catalog, add, err) {
   if (!CARD_H[style]) return err("E3D_STYLE", "style", "choices style must be word, tile or strip");
   const layout = o.layout ?? "auto";
   if (!["auto", "row", "column"].includes(layout)) return err("E3D_LAYOUT", "layout", "layout must be auto, row or column");
+  if (o.lane != null && o.lane !== "below_text") err("E3D_LAYOUT", "lane", 'lane must be "below_text" (the row drops under the text in view when it shows)');
   const gap = o.gap ?? 0.3;
   const maxW = o.maxWidth ?? 7.6;
   const ws = opts.map((t) => o.width ?? cardWidth(style, t.length));

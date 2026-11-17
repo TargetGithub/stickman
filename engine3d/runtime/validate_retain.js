@@ -7,10 +7,11 @@ import { compileScript } from "./compile.js";
 import { RETAIN_ACTIONS, trackerSteps } from "./director_retain.js";
 import { RETAIN_MACROS } from "./retain_compile.js";
 import { CAPTION_TOP, CUES, ICONS, RETAIN_KINDS, TRACKER_CORNERS, TRACKER_STYLES, trackerRect, wordShare } from "./retain_layout.js";
+import { CUE_PLACES } from "./retain_place.js";
 
 export const RETAIN_FIELDS = {
   timer_ring: ["size", "color", "fixed", "face"],
-  tracker: ["style", "slots", "labels", "surprise", "color", "accent", "corner", "size", "filled", "hideEmptyLabels"],
+  tracker: ["style", "slots", "labels", "surprise", "color", "accent", "corner", "size", "filled", "hideEmptyLabels", "plate"],
   badge: ["icon", "text", "color", "size"],
 };
 /** Every action name the kit adds. */
@@ -46,10 +47,11 @@ export function checkRetainObject(o, p, { err, warn, name }) {
   if (o.kind !== "tracker") return;
   if (o.style != null && !TRACKER_STYLES.includes(o.style)) err("E3D_TRACKER", `${p}.style`, `style must be ${TRACKER_STYLES.join(", ")}`);
   if (!(Number.isInteger(o.slots) && o.slots >= 1 && o.slots <= 10)) return err("E3D_TRACKER", `${p}.slots`, "slots must be a whole number 1-10");
+  if (o.plate != null && typeof o.plate !== "boolean") err("E3D_TRACKER", `${p}.plate`, "plate must be true or false");
   if (o.hideEmptyLabels != null && typeof o.hideEmptyLabels !== "boolean") err("E3D_TRACKER", `${p}.hideEmptyLabels`, "hideEmptyLabels must be true or false");
   // Labels: a checklist line up to 14 characters; a train car, gauge, island, town, star or path stop up to 7 ("scarf",
   // "flex"; longer words shrink to fit; a rainbow word sits on its band, #148); fuel 1-3; pencil 1-2.
-  const max = o.style === "checklist" ? 14 : ["gauges", "islands", "town", "train", "stars", "path", "rainbow", "moon", undefined].includes(o.style) ? 7 : o.style === "fuel" ? 3 : 2;
+  const max = o.style === "checklist" ? 14 : ["gauges", "islands", "town", "train", "stars", "path", "rainbow", "moon", undefined].includes(o.style) ? 10 : o.style === "fuel" ? 3 : 2;
   if (o.labels != null && !(Array.isArray(o.labels) && o.labels.length <= o.slots && o.labels.every((l) => isStr(l, 1, max)))) err("E3D_TRACKER", `${p}.labels`, `labels must be at most ${o.slots} strings of 1-${max} characters`);
   if (o.surprise != null && typeof o.surprise !== "boolean" && !isStr(o.surprise, 1, max)) err("E3D_TRACKER", `${p}.surprise`, `surprise must be true or 1-${max} characters`);
   if (o.corner != null && !TRACKER_CORNERS.includes(o.corner)) err("E3D_TRACKER", `${p}.corner`, `corner must be ${TRACKER_CORNERS.join(", ")}`);
@@ -96,6 +98,7 @@ export function checkRetainAction(a, p, { err, ids, catalog, progress }) {
     const why = a[f] != null ? spokenError(a[f]) : null;
     if (why) err("E3D_SPOKEN", `${p}.${f}`, why);
   }
+  if (["hook", "challenge", "call"].includes(a.do) && a.cueAt != null && !CUE_PLACES.includes(a.cueAt)) err("E3D_CUE", `${p}.cueAt`, `cueAt must be ${CUE_PLACES.join(", ")}`);
   if (a.do === "hook") {
     text("question", "E3D_HOOK");
     if (a.revealFraming != null && !["close", "medium", "wide", "cover"].includes(a.revealFraming)) err("E3D_HOOK", `${p}.revealFraming`, "revealFraming must be close, medium, wide or cover");

@@ -5,6 +5,7 @@
 
 import { focusPoint, localBounds } from "./bounds.js";
 import { BADGE_D, ICONS, SPOTS, badgeRect, keywordSpot, projectPoint, trackerFit, trackerRect } from "./retain_layout.js";
+import { cueSpot, textRects } from "./retain_place.js";
 
 /** Actions this module adds (compile.js dispatches them with d[name](target, opts)). */
 export const RETAIN_ACTIONS = ["timer", "options", "answer", "keyword", "progress"];
@@ -48,6 +49,13 @@ export function installRetain(d, { catalog, tl, obj, now, sound, objects }) {
     return o;
   };
   const shownAt = (id, t) => now(id, "visible", t) && (now(id, "scale", t) ?? [1])[0] > 1e-3;
+  /** What the HUD already shows from t for dur: trackers, timer rings and badges (screen rectangles). */
+  const hudBusy = (t, dur) => {
+    const busy = [...objects.values()].filter((o) => o.hud && o.kind === "tracker" && shownAt(o.id, t)).map((o) => trackerRect(o, now(o.id, "position", t)));
+    for (const o of objects.values()) if (o.hud && o.kind === "timer_ring" && shownAt(o.id, t)) busy.push(badgeRect(now(o.id, "position", t), 1.2));
+    for (const b of badges) if (b.until > t && b.from <= t + dur) busy.push(b.rect);
+    return busy;
+  };
 
   /** A badge (icon, prop or text) ready to pop: reuses one with the same face when it is free by t. */
   function badgeFor(face, t) {
@@ -175,7 +183,7 @@ export function installRetain(d, { catalog, tl, obj, now, sound, objects }) {
 
     /** Pop a keyword badge at the side of the frame away from what is being taught. */
     keyword(_, { at: t = 0, word, icon, model, shape, text, color, sound: s, dur = 2.2, side = "auto", avoid } = {}) {
-      const face = icon ? { icon } : model ? { model } : shape ? { shape, shapeColor: color ?? "blue" } : { text: String(text ?? word ?? "?").slice(0, 4) };
+      const face = icon ? { icon } : model ? { model } : shape ? { shape, shapeColor: color ?? "blue" } : { text: String(text ?? word ?? "?").slice(0, 8) };
       // A shape face (a plate, a bottle, a straw) takes color for the shape; its badge stays yellow.
       face.color = (shape ? null : color) ?? (icon ? ICONS[icon]?.color : null) ?? "yellow";
       const cam = { position: now("camera", "position", t), lookAt: now("camera", "lookAt", t), fov: now("camera", "fov", t) };
@@ -184,9 +192,7 @@ export function installRetain(d, { catalog, tl, obj, now, sound, objects }) {
         const a = obj(avoid);
         avoidX = a.hud ? (now(avoid, "position", t) ?? a.at)[0] / 8 : projectPoint(focusPoint(a, catalog, now, (id) => obj(id), t), cam).x;
       }
-      const busy = [...objects.values()].filter((o) => o.hud && o.kind === "tracker" && shownAt(o.id, t)).map((o) => trackerRect(o, now(o.id, "position", t)));
-      for (const o of objects.values()) if (o.hud && o.kind === "timer_ring" && shownAt(o.id, t)) busy.push(badgeRect(now(o.id, "position", t), 1.2));
-      for (const b of badges) if (b.until > t && b.from <= t + dur) busy.push(b.rect);
+      const busy = hudBusy(t, dur);
       const spot = keywordSpot({ side, avoidX, busy });
       const rec = badgeFor(face, t);
       popBadge(rec, spot, t, dur, { s: s === undefined ? (icon ? ICONS[icon]?.sound : "pop") ?? "pop" : s });
@@ -195,8 +201,11 @@ export function installRetain(d, { catalog, tl, obj, now, sound, objects }) {
     },
 
     /** A cue badge (call-and-response, the hook's "?") in the middle of the top, pulsing for dur seconds. */
-    cue(icon, { at: t = 0, dur = 2, sound: s } = {}) {
-      popBadge(badgeFor({ icon, color: ICONS[icon]?.color ?? "purple" }, t), [...SPOTS.cue], t, dur, { size: 1.2, pulse: true, s: s === undefined ? ICONS[icon]?.sound : s });
+    cue(icon, { at: t = 0, dur = 2, sound: s, place } = {}) {
+      // #200: off the teaching text in view (and the tracker, timers and badges): top centre when that is clear.
+      const shown = (id, ti) => now(id, "visible", ti) !== false && (now(id, "scale", ti) ?? [1])[0] > 1e-3;
+      const busy = (place ?? "auto") === "auto" ? [...textRects({ objects, catalog, now, obj, shown, t: t + 0.05 }), ...hudBusy(t, dur)] : [];
+      popBadge(badgeFor({ icon, color: ICONS[icon]?.color ?? "purple" }, t), cueSpot({ place: place ?? "auto", busy }), t, dur, { size: 1.2, pulse: true, s: s === undefined ? ICONS[icon]?.sound : s });
       return d;
     },
 

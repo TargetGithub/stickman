@@ -33,7 +33,7 @@ const FIELDS = {
   clock: ["time", "size", "color", "face", "numberColor", "hourColor", "minuteColor", "ticks", "numbers", "minuteHand", "font"],
   lamp: ["color", "intensity", "distance", "angle", "soft", "aim", "beam", "shadow"],
   weather: ["type", "count", "area", "height", "speed", "colors"],
-  group: [],
+  group: ["lane"],
   ...TEACH_FIELDS,
   ...KIT2_FIELDS,
   ...RETAIN_FIELDS,
@@ -297,6 +297,7 @@ export function validateScript(script, catalog, opts = {}) {
     checkLetterAction(a, p, o, { err, ids, catalog, name }); // vowel_mark, stress, turn_page, retext, split
     if (a.do === "lie" && a.pose != null && !["side", "back", "up"].includes(a.pose)) err("E3D_LIE", `${p}.pose`, "pose must be side, back or up");
     if (a.do === "lie" && a.side != null && a.side !== 1 && a.side !== -1) err("E3D_LIE", `${p}.side`, "side must be 1 (head to the left) or -1");
+    if (a.do === "lie" && a.on != null && !ids.has(a.on)) err("E3D_LIE", `${p}.on`, `no object "${a.on}" to lie on`);
     if (a.do === "roll" && a.radius != null && !isNum(a.radius, 0.01, 20)) err("E3D_RANGE", `${p}.radius`, "radius must be 0.01-20 m");
   }
 

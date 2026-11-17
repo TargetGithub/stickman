@@ -67,8 +67,8 @@ add("spot_halo", "cream", "A soft round pool of spotlight on the back wall, 1.6 
 
 // #169: a spoon standing face-on, its bowl to the camera.
 add("spoon_face", "grey", "A toy spoon standing on its handle with the round bowl facing the camera (+z), 0.4 m tall at size 1; the rhymes spoon lies along x and is a thin line from the front. Origin at the handle's foot. Turn it [0, 0, -30] to tip it toward a bowl.", ["kitchen", "spoon", "babies", "eating"], [
-  P("box", [0, 0.13, 0], [0.04, 0.26, 0.02], { m: "metal" }),
-  P("oval", [0, 0.25, 0], [0.16, 0.18, 0.03], { m: "metal" }),
+  P("box", [0, 0.13, 0], [0.04, 0.26, 0.02], { c: "grey", m: "glossy" }),
+  P("oval", [0, 0.25, 0], [0.16, 0.18, 0.03], { c: "grey", m: "glossy" }),
   P("oval", [0, 0.26, 0.012], [0.12, 0.14, 0.01], { c: "white", m: "glossy" }),
 ]);
 
@@ -115,7 +115,7 @@ add("pyjama_top", "sky", "A pyjama top (a tunic with white stripes and buttons) 
 
 // #187: snowmen with animal features (head parts ride on the snowman's head, as its nose and hat do).
 const props_like = {};
-props_like.snowman_bunny = { like: "snowman", add: [...[-1, 1].map((sd) => P("capsule", [sd * 0.07, 0.42, 0], [0.07, 0.24, 0.04], { m: "matte", r: [0, 0, sd * -10], on: "head" })), ...[-1, 1].map((sd) => P("capsule", [sd * 0.07, 0.42, 0.016], [0.035, 0.16, 0.02], { c: "pink", m: "matte", r: [0, 0, sd * -10], on: "head" }))],
+props_like.snowman_bunny = { like: "snowman", add: [...[-1, 1].map((sd) => P("capsule", [sd * 0.17, 0.36, 0], [0.08, 0.3, 0.05], { m: "matte", r: [0, 0, sd * -28], on: "head" })), ...[-1, 1].map((sd) => P("capsule", [sd * 0.17, 0.36, 0.02], [0.04, 0.2, 0.02], { c: "pink", m: "matte", r: [0, 0, sd * -28], on: "head" }))],
   description: "A snowman bunny: the catalog snowman with two tall bunny ears (pink inside) on its head, over its hat." };
 props_like.snowman_reindeer = { like: "snowman", add: [...[-1, 1].flatMap((sd) => [P("cylinder", [sd * 0.1, 0.42, 0], [0.025, 0.2, 0.025], { c: "wood_dark", r: [0, 0, sd * -25], on: "head" }), P("cylinder", [sd * 0.16, 0.48, 0], [0.02, 0.1, 0.02], { c: "wood_dark", r: [0, 0, sd * -70], on: "head" })]), ball([0, 0.16, 0.27], 0.07, { c: "red", m: "glossy", on: "head" })],
   description: "A snowman reindeer: the catalog snowman with brown antlers on its head and a shiny red ball on its carrot nose." };
@@ -125,8 +125,49 @@ props_like.snowman_cat = { like: "snowman", add: [...[-1, 1].map((sd) => P("cone
   description: "A snowman kitten: the catalog snowman with two pointy cat ears on its head and coal whiskers by its nose." };
 for (const [k, v] of Object.entries(props_like)) props[k] = { ...v, tags: ["winter", "snow", "snowman", "animal", "toybox10k"] };
 
+// #196: bath things for the babies' bath-time lessons.
+add("towel", "sky", "A fluffy bath towel 0.9 m wide hanging on a wall rail (rail at y 1.1), in its main colour with two white stripes near the bottom; `towel` is the cloth (wiggle it, or move it off the rail). Origin at the rail's middle foot on the floor line: put it against a wall.", ["bath", "towel", "babies", "home"], [
+  P("cylinder", [0, 1.1, 0], [0.04, 1.0, 0.04], { c: "grey", m: "metal", r: [0, 0, 90] }),
+  P("box", [0, 0.78, 0.04], [0.9, 0.66, 0.06], { m: "matte", name: "towel" }),
+  ...[0.55, 0.6].map((y) => P("box", [0, y, 0.075], [0.9, 0.03, 0.01], { c: "white", m: "matte", name: "towel" })),
+]);
+add("washcloth", "pink", "A small folded washcloth 0.3 m square in its main colour (pink) with a white edge, lying flat (0.04 m thick); hold it with a critter's paw via parent, or lay it on the tub's edge.", ["bath", "washcloth", "babies", "home"], [
+  P("box", [0, 0.02, 0], [0.3, 0.04, 0.3], { c: "white", m: "matte" }),
+  P("box", [0, 0.025, 0], [0.26, 0.04, 0.26], { m: "matte" }),
+]);
+add("sponge", "yellow", "A soft bath sponge 0.24 m long in its main colour (yellow), a rounded block with a few holes on its face, 0.1 m tall. Squeeze it with grow [1, 0.7, 1] and back; add `dust` in white for suds.", ["bath", "sponge", "babies", "home"], [
+  P("capsule", [0, 0.06, 0], [0.24, 0.12, 0.14], { m: "matte", r: [0, 0, 90] }),
+  ...[[-0.06, 0.07], [0.02, 0.09], [0.07, 0.05], [-0.01, 0.04]].map(([x, y]) => P("disc", [x, y, 0.07], [0.025, 0.01, 0.025], { c: "orange", r: [90, 0, 0] })),
+]);
+add("faucet", "grey", "A shiny bath faucet (tap) 0.35 m tall: a curved spout pointing +z and two knobs, red (hot, `knob_hot`) and blue (cold, `knob_cold`) to turn; water runs from the spout mouth at [0, 0.2, 0.22] (add a sky `stroke` or a water_spout there). Put it at the tub's tap end.", ["bath", "tap", "water", "babies"], [
+  P("cylinder", [0, 0.12, 0], [0.06, 0.24, 0.06], { m: "metal" }),
+  P("cylinder", [0, 0.26, 0.09], [0.05, 0.2, 0.05], { m: "metal", r: [90, 0, 0] }),
+  P("cylinder", [0, 0.23, 0.2], [0.05, 0.07, 0.05], { m: "metal" }),
+  P("cylinder", [-0.1, 0.18, 0], [0.07, 0.04, 0.07], { c: "red", m: "glossy", name: "knob_hot" }),
+  P("cylinder", [0.1, 0.18, 0], [0.07, 0.04, 0.07], { c: "blue", m: "glossy", name: "knob_cold" }),
+]);
+add("bath_plug", "charcoal", "A rubber bath plug 0.12 m across on a little chain (0.4 m), lying flat: the `plug` (pull it: move by [0, 0.3, 0]) and its silver chain looping beside it. Pull the plug, then `fill` the tub to level 0 to drain it.", ["bath", "plug", "drain", "babies"], [
+  P("cylinder", [0, 0.025, 0], [0.12, 0.05, 0.12], { m: "matte", name: "plug" }),
+  ball([0, 0.06, 0], 0.03, { c: "grey", m: "metal", name: "plug" }),
+  ...Array.from({ length: 8 }, (_, k) => ball([0.08 + k * 0.04, 0.01, Math.sin(k * 0.8) * 0.05], 0.022, { c: "grey", m: "metal" })),
+]);
+
+// #190: paper magic: a sheet that folds in half, and the paper bird it becomes.
+add("paper_sheet", "white", "A square sheet of paper 0.8 m across standing up, facing +z, in its main colour (white) with a faint fold line down the middle: its right half `flap` is hinged on that line (turn it [0, -180, 0] to fold it over onto the left half, in about 0.8 s), then swap it for a `paper_bird` with hide / pop and a swirl for the magic.", ["paper", "craft", "origami", "magic"], [
+  P("box", [-0.2, 0.4, 0], [0.4, 0.8, 0.01], { m: "matte" }),
+  P("box", [0, 0.4, 0.006], [0.006, 0.8, 0.002], { c: "grey", m: "matte" }),
+  P("box", [0.2, 0.4, 0], [0.4, 0.8, 0.01], { m: "matte", hang: [0.2, 0, 0], name: "flap" }),
+]);
+add("paper_bird", "white", "A paper bird (an origami crane) 0.6 m long, facing +x, in its main colour (white): a pointed body, a folded neck and head, a tail and two big flat `wings` that flap (wiggle them, or turn [20, 0, 0] and back). Origin under its body; it can fly with move.", ["paper", "origami", "bird", "magic"], [
+  P("pyramid", [0, 0.12, 0], [0.26, 0.2, 0.14], { m: "matte" }),
+  P("box", [0.2, 0.26, 0], [0.04, 0.3, 0.03], { m: "matte", r: [0, 0, -30] }),
+  P("box", [0.28, 0.38, 0], [0.12, 0.03, 0.03], { m: "matte", r: [0, 0, 25] }),
+  P("box", [-0.22, 0.24, 0], [0.04, 0.26, 0.03], { m: "matte", r: [0, 0, 35] }),
+  ...[-1, 1].map((sd) => P("triangle", [0, 0.2, sd * 0.06], [0.42, 0.32, 0.01], { m: "matte", r: [sd * 70, 0, 0], hang: [0, 0.15, 0], name: "wings" })),
+]);
+
 const out = {
-  description: "Toybox 10K props from ENGINE_REQUESTS #164-#170 and #183-#187 (cooking_pot, flat_pan, jug, fridge, high_chair, spot_halo, spoon_face, pop_up_map, zip_suitcase, nightcap, pyjama_top, snowman_bunny, snowman_reindeer, snowman_bear, snowman_cat). Generated by tools/gen_tk_props5.mjs: edit the generator and rerun it, not the JSON.",
+  description: "Toybox 10K props from ENGINE_REQUESTS #164-#170 and #183-#187 (cooking_pot, flat_pan, jug, fridge, high_chair, spot_halo, spoon_face, pop_up_map, zip_suitcase, nightcap, pyjama_top, snowman_bunny, snowman_reindeer, snowman_bear, snowman_cat) and #196 (towel, washcloth, sponge, faucet, bath_plug), #190 (paper_sheet, paper_bird). Generated by tools/gen_tk_props5.mjs: edit the generator and rerun it, not the JSON.",
   props,
 };
 const file = fileURLToPath(new URL("../catalog/models/tk_props5.json", import.meta.url));

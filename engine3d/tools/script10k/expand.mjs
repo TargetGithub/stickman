@@ -34,7 +34,7 @@ export function trackerFrom(spec, lesson) {
   if (!labels && raw.length) {
     // Each style's longest label (validate_retain.js); words that do not fit become step numbers (#142: word labels
     // on trains, paths and stars used to be dropped or numbered).
-    const max = style === "checklist" ? 14 : style === "fuel" ? 3 : style === "pencil" ? 2 : 7;
+    const max = style === "checklist" ? 14 : style === "fuel" ? 3 : style === "pencil" ? 2 : 10; // "washcloth" (#194)
     // A checklist line shortens at a word boundary; on the other styles a label that does not fit whole ("line
     // of 5" on a train car) would read wrong cut down, so the row is numbered instead.
     const list = raw.slice(0, slots).map((l) => String(l).trim());
@@ -44,7 +44,9 @@ export function trackerFrom(spec, lesson) {
   if (style === "checklist" && raw.length > slots) labels = undefined; // too many steps for the card: unlabelled ticks
   const t = { id: TRACKER_ID, kind: "tracker", hud: true, style, slots, surprise: own.surprise ?? true, color: own.color ?? "red", accent: own.accent ?? "yellow", hidden: true,
     // A slot's label shows only once it fills, so labels never give an answer away (ENGINE_REQUESTS #138).
-    hideEmptyLabels: own.hideEmptyLabels ?? true };
+    hideEmptyLabels: own.hideEmptyLabels ?? true,
+    // A light panel behind it so labels read over tall set dressing in wide shots (ENGINE_REQUESTS #193).
+    plate: own.plate ?? true };
   // On for every style, checklists too: their labels are often answers (names, words). Set false for step names.
   // Fewer labels than slots label the first ones (#142: 9-10 step lessons with a short list lost them all).
   if (labels?.length && labels.length <= slots) t.labels = labels;
@@ -123,6 +125,8 @@ function buildObjects(lesson, band) {
     if (o.spread || o.stack) continue;
     let out = spread.has(o.id) && o.at == null ? { ...o, at: spread.get(o.id) } : o;
     if (stackSize.has(o.id)) { out = { ...out, size: stackSize.get(o.id) }; delete out.height; }
+    // An answer row drops under the page or board in view when it shows (ENGINE_REQUESTS #201).
+    if (out.kind === "choices" && out.lane === undefined) out = { ...out, lane: "below_text" };
     objects.push(out);
   }
   objects.push(...deferred);

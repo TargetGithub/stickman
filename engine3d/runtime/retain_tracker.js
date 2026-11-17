@@ -140,6 +140,28 @@ export function buildTracker(o, group, kit) {
     return { node, empty, full };
   });
 
+  // plate (#193): a soft light panel behind the whole tracker so its labels read over tall, busy scenery.
+  if (o.plate && style !== "checklist" && style !== "pencil") {
+    const x0 = style === "train" ? -0.15 : -0.3;
+    const x1 = layout.width + 0.3;
+    const y0 = -layout.height / 2 - 0.5;
+    const y1 = layout.height / 2 + 0.25;
+    const r = 0.25;
+    const sh = new THREE.Shape();
+    sh.moveTo(x0 + r, y0);
+    sh.lineTo(x1 - r, y0);
+    sh.quadraticCurveTo(x1, y0, x1, y0 + r);
+    sh.lineTo(x1, y1 - r);
+    sh.quadraticCurveTo(x1, y1, x1 - r, y1);
+    sh.lineTo(x0 + r, y1);
+    sh.quadraticCurveTo(x0, y1, x0, y1 - r);
+    sh.lineTo(x0, y0 + r);
+    sh.quadraticCurveTo(x0, y0, x0 + r, y0);
+    const plate = new THREE.Mesh(new THREE.ShapeGeometry(sh, 6), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.72, depthWrite: false, toneMapped: false }));
+    plate.position.z = -0.35;
+    plate.renderOrder = -1;
+    inner.add(plate);
+  }
   if (style === "train") inner.add(engine(layout.engine));
   const pencil = style === "pencil" ? addPencilPage(inner, layout, kit) : null;
   if (style === "checklist") {

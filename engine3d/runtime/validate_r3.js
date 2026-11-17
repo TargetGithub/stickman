@@ -133,6 +133,10 @@ export function checkR3Action(a, p, { err, warn = () => {}, ids, catalog }) {
     if (a.face != null && !["front", "travel"].includes(a.face)) err("E3D_RANGE", `${p}.face`, 'face must be "front" (turn back when done, the default) or "travel"');
     return true;
   }
+  if (a.do === "fill") {
+    if (a.level != null && !isNum(a.level, 0, 1)) err("E3D_RANGE", `${p}.level`, "level must be 0 (drained) to 1 (as built)");
+    return false; // the target check (a prop with that part) is the general one
+  }
   if (a.do === "swirl") {
     if (a.style != null && !["sparkles", "ribbon"].includes(a.style)) err("E3D_RANGE", `${p}.style`, "style must be sparkles or ribbon");
     if (a.turns != null && !isNum(a.turns, 0.5, 6)) err("E3D_RANGE", `${p}.turns`, "turns must be 0.5-6");

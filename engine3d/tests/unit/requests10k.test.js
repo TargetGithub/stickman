@@ -725,7 +725,7 @@ test("#139 #125 arrow characters lay out like a letter m; stars and path tracker
   const s = script("arrows_labels");
   assert.deepEqual(validateScript(s, catalog).errors, []);
   const bad = structuredClone(s);
-  bad.objects[2].labels = ["elephants"];
+  bad.objects[2].labels = ["hippopotamus"]; // over 10 characters (#194 raised 7 to 10)
   assert.ok(validateScript(bad, catalog).errors.some((e) => e.path === "objects[2].labels"));
 });
 

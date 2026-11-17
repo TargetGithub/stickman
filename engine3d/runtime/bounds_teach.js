@@ -75,7 +75,9 @@ export function transformedBox(o, b, now, get, t) {
   if (par && o.part != null) T = chain(compose([0, 0, 0], [0, 0, 0], [par.size ?? 1, par.size ?? 1, par.size ?? 1]), T);
   let plain = !turned(o);
   while (par) {
-    const s = Array.isArray(par.scale) ? par.scale : [par.scale ?? 1, par.scale ?? 1, par.scale ?? 1];
+    // The parent's scale at t (a page that grew, #191), else its spawn scale.
+    const sNow = now(par.id, "scale", t);
+    const s = Array.isArray(sNow) && sNow.some((v) => v > 1e-3) ? sNow : Array.isArray(par.scale) ? par.scale : [par.scale ?? 1, par.scale ?? 1, par.scale ?? 1];
     if (turned(par) || s.some((v) => v !== 1)) plain = false;
     T = chain(compose(pos(par), rot(par), s), T);
     par = par.parent != null ? get(par.parent) : null;
@@ -110,7 +112,17 @@ export function shotBounds(o, catalog, now, get, t, objects, exact = false) {
   // A turned shape (a card's backing plate stood up, a page's paper) is measured exactly: the loose box ignores
   // turns, so an upright plate would count as a 1 m slab and push the camera far back.
   const turned = (x) => x.kind === "shape" && (x.rotation ?? [0, 0, 0]).some((v) => Math.abs(v) > 1e-6);
-  const one = (x) => (exact || turned(x) ? transformedBox(x, ownBox(x, catalog, true), now, get, t) : placeBox(x, ownBox(x, catalog, false), now, get, t));
+  // On a scaled parent (a page or card at scale 1.4, one that grew) the loose box would be measured unscaled and the
+  // camera would come too close (#191): those take the full transform too.
+  const scaledUp = (x) => {
+    for (let p = x.parent != null ? get(x.parent) : null; p; p = p.parent != null ? get(p.parent) : null) {
+      const sv = now(p.id, "scale", t) ?? p.scale;
+      const arr = Array.isArray(sv) ? sv : [sv ?? 1, sv ?? 1, sv ?? 1];
+      if (arr.some((v) => Math.abs(v - 1) > 1e-6)) return true;
+    }
+    return false;
+  };
+  const one = (x) => (exact || turned(x) || scaledUp(x) ? transformedBox(x, ownBox(x, catalog, true), now, get, t) : placeBox(x, ownBox(x, catalog, false), now, get, t));
   if (!kids.length) return one(o);
   return unionBounds([...(o.kind === "group" ? [] : [one(o)]), ...kids.map(one)]);
 }

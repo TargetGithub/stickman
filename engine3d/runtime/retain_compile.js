@@ -28,7 +28,7 @@ export function runMacro(a, { d, t, rel, speak, audience, marks = {} }) {
     if (a.look != null && a.shot !== false) d.shot({ at: at(rel), target: a.look, framing: "medium", pad: 0.3, dur: 1.2 });
     const q = speak(line(a.question, a.who, a.questionSpoken, a.keywords), rel + 0.2);
     const pause = a.reveal ?? (slow ? 1.6 : 1.0);
-    if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, q + pause) });
+    if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, q + pause), place: a.cueAt });
     let end = rel + 0.2 + q + pause;
     if (a.answer) end += 0.1 + speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), end + 0.1) + 0.35;
     return end;
@@ -40,10 +40,10 @@ export function runMacro(a, { d, t, rel, speak, audience, marks = {} }) {
     const isPart = owner !== a.behind;
     const slow = audience === "babies" || a.slow === true;
     d.engage("hook", { at: at(rel) });
-    if (a.shot !== false) d.shot({ at: at(rel), target: owner, framing: "cover", pad: 0.2, dur: 1.2 });
+    if (a.shot !== false) d.shot({ at: at(rel), target: owner, framing: "cover", pad: 0.2, dur: 1.2, clear: "hud" });
     const q = speak(line(a.question, a.who, a.questionSpoken, a.keywords), rel + 0.2);
     const reveal = rel + 0.2 + q + (a.reveal ?? 0.6);
-    if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, reveal - rel - 0.3) });
+    if (a.badge !== false) d.cue("question", { at: at(rel + 0.3), dur: Math.max(1.2, reveal - rel - 0.3), place: a.cueAt });
     d.wiggle(a.behind, { at: at(rel + 0.6), deg: 8, dur: 0.6 });
     d.sound("squeak", { at: at(rel + 0.65), volume: 0.6 });
     d.wiggle(a.behind, { at: at(rel + 0.6 + Math.max(0.9, Math.min(1.6, q / 2))), deg: 10, dur: 0.6 });
@@ -73,7 +73,7 @@ export function runMacro(a, { d, t, rel, speak, audience, marks = {} }) {
     // One revealed thing is framed medium with a small pad, not wide with 0.6 m round it (#149: that backed far off a
     // little prize); revealFraming picks another framing.
     const lone = !isPart && style !== "none" && targets.length === 1;
-    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart || style === "none" ? [owner, ...targets] : targets.length > 1 ? targets : targets[0], framing: a.revealFraming ?? (isPart || lone ? "medium" : "wide"), pad: lone ? 0.2 : 0.6, dur: 1 });
+    if (a.shot !== false) d.shot({ at: at(reveal + 0.2), target: isPart || style === "none" ? [owner, ...targets] : targets.length > 1 ? targets : targets[0], framing: a.revealFraming ?? (isPart || lone ? "medium" : "wide"), pad: lone ? 0.2 : 0.6, dur: 1, clear: "hud" });
     let end = reveal + 2.2 + (targets.length - 1) * 0.18;
     if (a.answer) end = Math.max(end, reveal + 0.9 + speak(line(a.answer, a.answerWho ?? a.who, a.answerSpoken), reveal + 0.9) + 0.35);
     // A lifted cover is hidden by now: it is put back where it started, unseen, so a later show finds it in place
@@ -107,7 +107,7 @@ export function runMacro(a, { d, t, rel, speak, audience, marks = {} }) {
     const wait = a.wait ?? 2.5;
     const q = speak(line(a.prompt, a.who, a.promptSpoken, a.keywords), rel);
     d.engage("call", { at: at(rel) });
-    d.cue(a.cue ?? "hand", { at: at(rel + q + 0.15), dur: wait + 0.1 });
+    d.cue(a.cue ?? "hand", { at: at(rel + q + 0.15), dur: wait + 0.1, place: a.cueAt });
     d.music({ at: at(rel + q), gain: 0.45, dur: 0.4 });
     d.music({ at: at(rel + q + wait), gain: 1, dur: 0.6 });
     const ans = rel + q + 0.3 + wait;

@@ -377,8 +377,9 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   installLook(d, { catalog, tl, obj, now, V });
   installLetters(d, { catalog, tl, obj, sound, now });
   installEffects(d, { catalog, tl, obj, now, sound, objects }); // mist, rewind
-  installFx2(d, { catalog, tl, obj, now, sound, objects }); // dust, letter-piece ripple, circle face, sound echo
   const kit2 = installKit2(d, { catalog, tl, obj, now, sound, objects, V });
   const retain = installRetain(d, { catalog, tl, obj, now, sound, objects });
+  // Last: it wraps moves the others define (reparent hold, choices lanes on show / pop, lie on, sound echo, ...).
+  installFx2(d, { catalog, tl, obj, now, sound, objects });
   return d;
 }

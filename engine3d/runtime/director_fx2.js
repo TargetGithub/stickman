@@ -3,6 +3,8 @@
 
 import { shotBounds } from "./bounds_teach.js";
 import { letterLayout } from "./letter_layout.js";
+import { localBounds } from "./bounds.js";
+import { HUD, optionsLane, screenRect, textRects } from "./retain_place.js";
 
 /**
  * @param {object} d  the director
@@ -190,6 +192,93 @@ export function installFx2(d, { catalog, tl, obj, now, sound, objects }) {
     }
     if (s) sound(s, t, { volume: 0.7 });
     return d;
+  };
+
+  // choices lane: "below_text" (#201): when the row shows, it drops so it sits under the text in view (a story
+  // page, a board) instead of over it, keeping above the captions; it stays where it was when nothing is in the way.
+  const shown = (id, t) => now(id, "visible", t) !== false && (now(id, "scale", t) ?? [1])[0] > 1e-3;
+  const lane = (id, t) => {
+    const o = objects.get(id);
+    if (!o?.lane || o.kind !== "group") return;
+    const cam = { position: now("camera", "position", t), lookAt: now("camera", "lookAt", t), fov: now("camera", "fov", t) ?? 40 };
+    const texts = textRects({ objects, catalog, now, obj, shown, t }).filter((r) => !r.id.startsWith(`${id}_`));
+    const list = [...objects.values()];
+    const pieces = list.filter((p) => p.parent === id);
+    if (!pieces.length || !cam.position) return;
+    const boxes = pieces.map((p) => shotBounds(p, catalog, now, obj, t, list, true));
+    const box = { min: [0, 1, 2].map((i) => Math.min(...boxes.map((b) => b.min[i]))), max: [0, 1, 2].map((i) => Math.max(...boxes.map((b) => b.max[i]))) };
+    const row = screenRect(box, cam);
+    if (!row || !texts.some((r) => r.x0 < row.x1 && r.x1 > row.x0 && r.y0 < row.y1 && r.y1 > row.y0)) return;
+    const y = optionsLane({ texts, rowH: row.y1 - row.y0 });
+    if (y == null) return;
+    const dyHud = y - (row.y0 + row.y1) / 2;
+    if (dyHud >= 0) return;
+    const p = now(id, "position", t) ?? o.at;
+    const depth = Math.hypot(...p.map((v, i) => v - cam.position[i]));
+    const dy = (dyHud / HUD.y) * depth * Math.tan(((cam.fov ?? 40) * Math.PI) / 360);
+    tl.set(id, "position", [p[0], r4(Math.max(0, p[1] + dy)), p[2]], t);
+  };
+  for (const name of ["show", "pop"]) {
+    const prev = d[name];
+    d[name] = (id, opts = {}) => {
+      lane(id, opts.at ?? 0);
+      return prev(id, opts);
+    };
+  }
+
+  /**
+   * fill / drain (#195): a prop's water part (a bathtub's, a sink's) rises or sinks to `level` (0 empty - 1 as built)
+   * over dur, its bottom staying on the floor of the tub. target "tub" (its part "water") or "tub#<part>".
+   */
+  d.fill = (target, { at: t = 0, level = 1, dur = 2, part, ease = "sineInOut", sound: s } = {}) => {
+    const [id, named] = String(target).split("#");
+    const o = obj(id);
+    const name = named ?? part ?? "water";
+    const m = o.kind === "prop" ? catalog.props[o.model] : o.kind === "critter" ? catalog.critters[o.species] : null;
+    const spec = m?.parts?.find((x) => x.name === name);
+    if (!spec) throw new Error(`fill "${target}": "${id}" has no part "${name}"`);
+    const h = Array.isArray(spec.s) ? spec.s[1] : spec.s ?? 1;
+    const key = `${id}#${name}`;
+    if (!tl.hasBase(key, "scale")) tl.base(key, "scale", [1, 1, 1]);
+    if (!tl.hasBase(key, "position")) tl.base(key, "position", [0, 0, 0]);
+    const k = Math.max(0.001, Math.min(1, level));
+    tl.tween(key, "scale", { start: t, dur, to: [1, r4(k), 1], ease });
+    tl.tween(key, "position", { start: t, dur, to: [0, r4(-(1 - k) * h / 2), 0], ease });
+    if (level <= 0.001) tl.set(key, "scale", [1e-4, 1e-4, 1e-4], t + dur); // drained: gone
+    if (s !== false) sound(s ?? (level > 0.001 ? "pour" : "splash"), t, { volume: 0.5 });
+    return d;
+  };
+
+  // lie on (#197): onto the top of a cushion, a bed or a mat first (its middle), then lie there.
+  const lie = d.lie;
+  d.lie = (id, opts = {}) => {
+    if (opts.on == null) return lie(id, opts);
+    const { at: t = 0, dur = 0.8 } = opts;
+    const base = objects.get(opts.on);
+    if (!base) throw new Error(`lie "${id}": on "${opts.on}" is not an object`);
+    const b = shotBounds(base, catalog, now, obj, t, [...objects.values()], true);
+    // A cushion gives a little: the rider sinks a fifth of its height into it.
+    const top = [r4((b.min[0] + b.max[0]) / 2), r4(b.max[1] - 0.2 * (b.max[1] - b.min[1])), r4((b.min[2] + b.max[2]) / 2)];
+    // Lying on its side turns it about its feet, so its body ends up half its height to one side: aim past the
+    // middle by that much so the body, not the feet, lands on the cushion.
+    if ((opts.pose ?? "side") === "side") {
+      const me = localBounds({ ...obj(id), at: [0, 0, 0], rotation: [0, 0, 0] }, catalog);
+      top[0] = r4(top[0] + ((opts.side ?? 1) * (me.max[1] - me.min[1])) / 2);
+    }
+    tl.tween(id, "position", { start: t, dur: dur * 0.5, to: top, ease: "quadInOut" });
+    tl.tween(id, "hop", { start: t, dur: dur * 0.5, from: 0, to: 0.25, ease: "hop" });
+    return lie(id, { ...opts, on: undefined, at: t + dur * 0.5, dur: dur * 0.5 });
+  };
+
+  // reparent hold (#199): carried in front of a critter's tummy, whatever its size (to on a critter with no part is
+  // in metres from its foot, so a guessed height often landed at its head).
+  const reparent = d.reparent;
+  d.reparent = (id, opts = {}) => {
+    if (!opts.hold || opts.parent == null || opts.to != null || opts.part != null) return reparent(id, opts);
+    const p = obj(opts.parent);
+    const b = localBounds({ ...p, at: [0, 0, 0], rotation: [0, 0, 0] }, catalog);
+    const h = b.max[1] - b.min[1];
+    return reparent(id, { ...opts, hold: undefined, to: [0, r4(0.32 * h), r4(b.max[2] + 0.05)] });
   };
 
   // sound echo (#158): the sound comes back softer, `echo` times (true: 3), 0.35 s apart (echoGap), halving each time.

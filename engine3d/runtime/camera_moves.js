@@ -11,7 +11,7 @@ export const ASPECT = 16 / 9;
 /** Share of the frame the targets fill (width or height, whichever is tighter). */
 export const FRAMING = { wide: 0.64, medium: 0.78, close: 0.9 };
 /** The share of the frame left for the targets when shot clears a side (thumbnail titles take 52% + margins). */
-export const CLEAR_FREE = { left: 0.44, right: 0.44, top: 0.5, bottom: 0.5 };
+export const CLEAR_FREE = { left: 0.44, right: 0.44, top: 0.5, bottom: 0.5, hud: 0.8 };
 const LIFT = 0.06; // targets sit this share of the half-frame above the centre (subtitles live at the bottom)
 
 const sub = (a, b) => a.map((x, i) => x - b[i]);
@@ -107,7 +107,8 @@ export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
         const h = box.max[1] - box.min[1];
         if (clear === "left") box.min[0] = box.max[0] - w / free;
         if (clear === "right") box.max[0] = box.min[0] + w / free;
-        if (clear === "top") box.max[1] = box.min[1] + h / free;
+        // hud (#192): the top band where the tracker and cue badges sit stays clear of the targets.
+        if (clear === "top" || clear === "hud") box.max[1] = box.min[1] + h / free;
         if (clear === "bottom") box.min[1] = box.max[1] - h / free;
       }
       const f = frameBox(box, { framing, yaw, height: below != null && height == null ? 0 : height, fov: now("camera", "fov", t) ?? 40 });

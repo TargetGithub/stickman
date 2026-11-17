@@ -41,7 +41,8 @@ test("tracker labels fit the style", () => {
   const spec = (style, labels, id = "kg0001") => ({ id, progress_tracker: { style, steps: labels.length, labels } });
   assert.equal(trackerFrom(spec("six train cars", ["A", "B", "C"]), {}).style, "train");
   assert.deepEqual(trackerFrom(spec("six train cars", ["A", "B", "C"]), {}).labels, ["A", "B", "C"]);
-  assert.deepEqual(trackerFrom(spec("train cars", ["line of 5", "scatter"]), {}).labels, ["1", "2"]);
+  assert.deepEqual(trackerFrom(spec("train cars", ["line of 5", "scatter"]), {}).labels, ["line of 5", "scatter"]); // up to 10 (#194)
+  assert.deepEqual(trackerFrom(spec("train cars", ["a line of five", "scatter"]), {}).labels, ["1", "2"]);
   assert.equal(trackerFrom(spec("a checklist card", ["find the goal", "count"], "g10001"), {}).style, "checklist");
   assert.equal(trackerFrom(spec("train", ["a", "b"], "bb0001"), {}).style, "stars");
   // #142: stars keep word labels, and a short list on a long tracker labels the first slots.
