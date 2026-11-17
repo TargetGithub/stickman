@@ -168,3 +168,11 @@ test("render drives: home disk first, overflow, minimum free space", () => {
   assert.equal(pickDrive("kg", { free: free({ DISK5MAC: 10, DISK8MAC: 400 }), mounted: mounted({ DISK5MAC: 1, DISK8MAC: 1 }) }).drive, "DISK8MAC");
   assert.equal(pickDrive("g5", { free: free({ DISK7MAC: 5 }), mounted: mounted({ DISK7MAC: 1 }) }), null);
 });
+
+test("qa: generator junk in spoken text is an error", () => {
+  const s = expandLesson(LESSON, SPEC, { catalog, skills: {} });
+  const codes = () => qaScript(s, SPEC, LESSON, catalog).errors.map((e) => e.code);
+  assert.ok(!codes().includes("Q_JUNK_TEXT"));
+  s.scenes[1].beats[0].do[0].spoken = "Read the parts,undefined, then the word!";
+  assert.ok(codes().includes("Q_JUNK_TEXT"));
+});

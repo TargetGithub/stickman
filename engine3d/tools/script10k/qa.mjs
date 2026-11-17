@@ -65,6 +65,8 @@ export function scriptTexts(script) {
       if (a.do === "hook") { push(a.question, p, k(a.questionSpoken)); push(a.answer, p, k(a.answerSpoken)); }
       if (a.do === "call") { push(a.prompt, p, k(a.promptSpoken)); push(a.answer, p, k(a.answerSpoken)); }
       if (a.do === "challenge") { push(a.prompt, p, k(a.promptSpoken)); push(a.praise, p, k(a.praiseSpoken)); }
+      // Spoken twins (often IPA) only get the junk check below.
+      for (const tw of ["spoken", "questionSpoken", "answerSpoken", "promptSpoken", "praiseSpoken"]) push(a[tw], `${p}.${tw}`, "twin");
     }));
   });
   (script.meta?.thumbnails ?? []).forEach((c, i) => { push(c.title, `meta.thumbnails[${i}].title`, "screen"); push(c.subtitle, `meta.thumbnails[${i}].subtitle`, "screen"); });
@@ -105,6 +107,8 @@ export function qaScript(script, spec, lesson, catalog, { allow = [], speech } =
   const dict = dictionary([...names]);
   const unknown = new Map();
   for (const { text, path, kind } of scriptTexts(script)) {
+    if (/\bundefined\b|\bNaN\b|\[object Object\]|\bnull\b/.test(text)) E("Q_JUNK_TEXT", path, `generator junk in ${kind} text (the voice would read it): "${text.slice(0, 80)}"`);
+    if (kind === "twin") continue;
     const lower = text.toLowerCase();
     for (const w of lower.match(/[a-z]+/g) ?? []) { const us = US_SPELLING.get(w); if (us) E("Q_US_SPELLING", path, `"${w}" -> "${us}" (American English)`); }
     for (const [b, a] of US_VOCAB) if (new RegExp(`\\b${b}\\b`).test(lower)) W("Q_US_WORD", path, `"${b}" is British; say "${a}" unless it means something else`);
