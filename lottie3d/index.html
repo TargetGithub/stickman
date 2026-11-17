@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lottie3D Player</title>
+<style>
+  :root { --bg: #f5f5f2; --fg: #1d1d1f; --muted: #6b6b70; --line: #d9d9d4; --accent: #2a6fdb; --err: #b3261e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.4 system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); }
+  main { max-width: 960px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 18px; margin: 0 0 12px; }
+  h1 small { color: var(--muted); font-weight: 400; }
+  .stage { position: relative; aspect-ratio: 16 / 9; background: #ddd; border-radius: 8px; overflow: hidden; }
+  canvas { width: 100%; height: 100%; display: block; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
+  .bar input[type=range] { flex: 1 1 200px; }
+  button, select { font: inherit; padding: 6px 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--fg); cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; min-width: 80px; }
+  #time { font-variant-numeric: tabular-nums; color: var(--muted); min-width: 110px; text-align: right; }
+  #errors { white-space: pre-wrap; color: var(--err); background: #fff; border: 1px solid #f0c8c4; border-radius: 6px; padding: 8px 10px; font: 12px/1.5 ui-monospace, monospace; }
+  #errors:empty { display: none; }
+  .meta { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Lottie3D Player <small>v0.1 · JSON in, 3D characters out</small></h1>
+  <div class="stage"><canvas id="view"></canvas></div>
+  <div class="bar">
+    <button id="toggle" class="primary">Pause</button>
+    <input id="scrub" type="range" min="0" max="1" step="0.001" value="0" aria-label="Scrub">
+    <span id="time">0.00 / 0.00 s</span>
+  </div>
+  <div class="bar">
+    <label>Example
+      <select id="pick">
+        <option value="examples/wave.json">Wave hello</option>
+        <option value="examples/walk.json">Walk past</option>
+        <option value="examples/jump.json">Big jump</option>
+      </select>
+    </label>
+    <label>or open a file <input id="file" type="file" accept=".json,application/json"></label>
+    <span class="meta" id="info"></span>
+  </div>
+  <div id="errors"></div>
+</main>
+<script type="module">
+  import { createPlayer, Lottie3DError } from "./player.js";
+
+  const $ = (id) => document.getElementById(id);
+  const canvas = $("view"), toggle = $("toggle"), scrub = $("scrub"), time = $("time"), errors = $("errors"), info = $("info");
+  let player = null;
+  let dragging = false;
+
+  function onTime(t) {
+    if (!player) return;
+    if (!dragging) scrub.value = String(t / player.duration);
+    time.textContent = `${t.toFixed(2)} / ${player.duration.toFixed(2)} s`;
+    syncButton();
+  }
+  function syncButton() { toggle.textContent = player?.playing ? "Pause" : "Play"; }
+
+  function show(text, label) {
+    errors.textContent = "";
+    try {
+      if (player) player.load(text);
+      else player = createPlayer(canvas, text, { autoplay: true, onTime, onEnd: syncButton });
+      if (!player.playing) player.play();
+      const d = player.document;
+      info.textContent = `${label}: ${d.characters?.length ?? 0} character(s), ${d.props?.length ?? 0} prop(s), ${d.fps} fps${d.loop === false ? "" : ", loops"}`;
+    } catch (e) {
+      errors.textContent = e instanceof Lottie3DError ? `${label} is not a valid Lottie3D file:\n` + e.errors.map((x) => `• ${x.path || "(document)"} — ${x.code}: ${x.message}`).join("\n") : String(e);
+    }
+    syncButton();
+  }
+
+  async function loadUrl(url) {
+    const res = await fetch(url);
+    show(await res.text(), url.split("/").pop());
+  }
+
+  toggle.onclick = () => { if (!player) return; player.playing ? player.pause() : player.play(); syncButton(); };
+  scrub.addEventListener("pointerdown", () => { dragging = true; });
+  scrub.addEventListener("pointerup", () => { dragging = false; });
+  scrub.oninput = () => { if (player) player.seek(Number(scrub.value) * player.duration); };
+  $("pick").onchange = (e) => loadUrl(e.target.value);
+  $("file").onchange = async (e) => { const f = e.target.files[0]; if (f) show(await f.text(), f.name); };
+
+  loadUrl($("pick").value);
+  window.lottie3dDemo = { get player() { return player; }, show };
+</script>
+</body>
+</html>

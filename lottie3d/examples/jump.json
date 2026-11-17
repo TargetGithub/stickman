@@ -1,0 +1,129 @@
+{
+  "format": "lottie3d",
+  "version": "0.1",
+  "name": "Big jump",
+  "duration": 2.0,
+  "fps": 30,
+  "loop": true,
+  "scene": {
+    "background": "#ffe8cc",
+    "camera": { "position": [3.2, 1.6, 4.6], "target": [0, 1.1, 0], "fov": 42 },
+    "lights": [
+      { "type": "ambient", "intensity": 0.55 },
+      { "type": "directional", "intensity": 1.7, "position": [4, 7, 3], "shadow": true }
+    ],
+    "ground": { "color": "#e0b884", "size": 20 }
+  },
+  "characters": [
+    {
+      "id": "max",
+      "rig": "block",
+      "color": "#2a9d8f",
+      "accent": "#ffd6a5",
+      "tracks": {
+        "position": [
+          { "t": 0, "v": [0, 0, 0], "ease": "quadInOut" },
+          { "t": 0.35, "v": [0, -0.3, 0], "ease": "quadOut" },
+          { "t": 0.55, "v": [0, 0.05, 0], "ease": "quadOut" },
+          { "t": 0.85, "v": [0, 0.85, 0], "ease": "quadIn" },
+          { "t": 1.15, "v": [0, 0, 0], "ease": "quadOut" },
+          { "t": 1.3, "v": [0, -0.24, 0], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, 0] }
+        ],
+        "spine": [
+          { "t": 0, "v": [0, 0, 0], "ease": "quadInOut" },
+          { "t": 0.35, "v": [28, 0, 0], "ease": "quadOut" },
+          { "t": 0.55, "v": [-6, 0, 0], "ease": "sineInOut" },
+          { "t": 0.85, "v": [10, 0, 0], "ease": "quadIn" },
+          { "t": 1.15, "v": [5, 0, 0], "ease": "quadOut" },
+          { "t": 1.3, "v": [24, 0, 0], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, 0] }
+        ],
+        "shoulderL": [
+          { "t": 0, "v": [0, 0, 5], "ease": "quadInOut" },
+          { "t": 0.35, "v": [45, 0, 10], "ease": "backOut" },
+          { "t": 0.6, "v": [-165, 0, 20], "ease": "sineInOut" },
+          { "t": 0.95, "v": [-150, 0, 40], "ease": "quadIn" },
+          { "t": 1.25, "v": [-40, 0, 20], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, 5] }
+        ],
+        "shoulderR": [
+          { "t": 0, "v": [0, 0, -5], "ease": "quadInOut" },
+          { "t": 0.35, "v": [45, 0, -10], "ease": "backOut" },
+          { "t": 0.6, "v": [-165, 0, -20], "ease": "sineInOut" },
+          { "t": 0.95, "v": [-150, 0, -40], "ease": "quadIn" },
+          { "t": 1.25, "v": [-40, 0, -20], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, -5] }
+        ],
+        "elbowL": [{ "t": 0, "v": [-15, 0, 0] }],
+        "elbowR": [{ "t": 0, "v": [-15, 0, 0] }],
+        "hipL": [
+          { "t": 0, "v": [0, 0, 0], "ease": "quadInOut" },
+          { "t": 0.35, "v": [-75, 0, 0], "ease": "quadOut" },
+          { "t": 0.55, "v": [0, 0, 0], "ease": "sineInOut" },
+          { "t": 0.85, "v": [-70, 0, 0], "ease": "sineInOut" },
+          { "t": 1.15, "v": [-20, 0, 0], "ease": "quadOut" },
+          { "t": 1.3, "v": [-65, 0, 0], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, 0] }
+        ],
+        "hipR": [
+          { "t": 0, "v": [0, 0, 0], "ease": "quadInOut" },
+          { "t": 0.35, "v": [-75, 0, 0], "ease": "quadOut" },
+          { "t": 0.55, "v": [0, 0, 0], "ease": "sineInOut" },
+          { "t": 0.85, "v": [-70, 0, 0], "ease": "sineInOut" },
+          { "t": 1.15, "v": [-20, 0, 0], "ease": "quadOut" },
+          { "t": 1.3, "v": [-65, 0, 0], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, 0] }
+        ],
+        "kneeL": [
+          { "t": 0, "v": [0, 0, 0], "ease": "quadInOut" },
+          { "t": 0.35, "v": [100, 0, 0], "ease": "quadOut" },
+          { "t": 0.55, "v": [5, 0, 0], "ease": "sineInOut" },
+          { "t": 0.85, "v": [110, 0, 0], "ease": "sineInOut" },
+          { "t": 1.15, "v": [30, 0, 0], "ease": "quadOut" },
+          { "t": 1.3, "v": [90, 0, 0], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, 0] }
+        ],
+        "kneeR": [
+          { "t": 0, "v": [0, 0, 0], "ease": "quadInOut" },
+          { "t": 0.35, "v": [100, 0, 0], "ease": "quadOut" },
+          { "t": 0.55, "v": [5, 0, 0], "ease": "sineInOut" },
+          { "t": 0.85, "v": [110, 0, 0], "ease": "sineInOut" },
+          { "t": 1.15, "v": [30, 0, 0], "ease": "quadOut" },
+          { "t": 1.3, "v": [90, 0, 0], "ease": "sineInOut" },
+          { "t": 1.7, "v": [0, 0, 0] }
+        ]
+      }
+    }
+  ],
+  "props": [
+    {
+      "id": "bouncer",
+      "type": "ball",
+      "color": "#f4a261",
+      "size": 0.35,
+      "position": [-1.3, 0.175, -0.4],
+      "tracks": {
+        "position": {
+          "repeat": true,
+          "keys": [
+            { "t": 0, "v": [-1.3, 0.175, -0.4], "ease": "quadOut" },
+            { "t": 0.5, "v": [-1.3, 1.1, -0.4], "ease": "quadIn" },
+            { "t": 1.0, "v": [-1.3, 0.175, -0.4] }
+          ]
+        },
+        "scale": {
+          "repeat": true,
+          "keys": [
+            { "t": 0, "v": [1.15, 0.85, 1.15], "ease": "quadOut" },
+            { "t": 0.1, "v": [1, 1, 1] },
+            { "t": 0.9, "v": [1, 1, 1], "ease": "quadIn" },
+            { "t": 1.0, "v": [1.15, 0.85, 1.15] }
+          ]
+        }
+      }
+    },
+    { "id": "crate", "type": "box", "color": "#8d6e63", "size": [0.5, 0.5, 0.5], "position": [1.2, 0.25, -0.6], "rotation": [0, 20, 0] },
+    { "id": "cone", "type": "cone", "color": "#e76f51", "size": [0.3, 0.5, 0.3], "position": [-0.9, 0.25, 0.9] }
+  ]
+}
